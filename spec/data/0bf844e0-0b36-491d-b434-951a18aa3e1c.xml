@@ -1,0 +1,540 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Topic Id="0bf844e0-0b36-491d-b434-951a18aa3e1c" Status="New Topic" CreatedOn="2015-01-27T23:06:59.6613626Z" ModifiedOn="2015-02-02T23:07:44.653558Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="DataChart_Creating_Chart_In_XAML_Code" BuildFlags="WINRT,WINPHONE,WPF,SL,XAMARIN">
+  <Title m="2015-01-27T23:07:35.5630624Z">Creating Chart in XAML Code </Title>
+  <ContentsTitle />
+  <Notes></Notes>
+  <TopicSections>
+    <TopicSection Name="BodyText">
+      <Content m="2015-02-02T23:07:44.653558Z">&lt;div class="ig-block-title"&gt;
+    &lt;h2&gt;Topic Overview&lt;/h2&gt;
+&lt;/div&gt;
+
+&lt;table class="ig-layout"&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;th&gt;
+                &lt;h4&gt;Purpose&lt;/h4&gt;
+            &lt;/th&gt;
+
+            &lt;td&gt;
+                &lt;div class="ig-layout-container"&gt;
+                    &lt;p&gt;This topic provides detailed instruction on how to create the&amp;nbsp;&lt;span class="ig-italic"&gt;&lt;a href="%%AssemblyPlatform%%%%AssemblyName%%%%AssemblyVersion%%%%ControlsNamespace%%%%ControlsName%%.html"&gt;%%ControlsName%%&lt;/a&gt;™&lt;/span&gt; control in
+                    XAML code&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+
+        &lt;tr&gt;
+            &lt;th&gt;
+                &lt;h4&gt;Required Background&lt;/h4&gt;
+            &lt;/th&gt;
+
+            &lt;td&gt;
+                &lt;div class="ig-layout-container"&gt;
+                    &lt;p&gt;The following topics are prerequisites to understanding this topic:&lt;/p&gt;
+
+                    &lt;table cellspacing="0" cellpadding="0"&gt;
+                        &lt;tbody&gt;
+                            &lt;tr&gt;
+                                &lt;th&gt;
+                                    &lt;p&gt;Topic&lt;/p&gt;
+                                &lt;/th&gt;
+
+                                &lt;th&gt;
+                                    &lt;p&gt;Purpose&lt;/p&gt;
+                                &lt;/th&gt;
+                            &lt;/tr&gt;
+
+                            &lt;tr&gt;
+                                &lt;td&gt;
+                                    &lt;div class="ig-topic-link"&gt;
+                                        &lt;a href="77948afe-5e9b-42d9-96de-a86fe0d22511" style="auto-update-caption: true"&gt;%%ControlsName%%&lt;/a&gt;
+                                    &lt;/div&gt;
+                                &lt;/td&gt;
+
+                                &lt;td&gt;
+                                    &lt;p&gt;This topic provides a general overview of the &lt;span class="ig-italic"&gt;%%ControlsName%%&lt;/span&gt; control&lt;/p&gt;
+                                &lt;/td&gt;
+                            &lt;/tr&gt;
+
+                            &lt;tr style="hs-build-flags: XAMARIN"&gt;
+                                &lt;td style="hs-build-flags: XAMARIN"&gt;
+                                    &lt;div class="ig-topic-link"&gt;
+                                        &lt;a href="Xamarin_Project_with_Infragistics_Controls.html" style="auto-update-caption: true"&gt;Creating Project with
+                                        Infragistics Controls&lt;/a&gt;
+                                    &lt;/div&gt;
+                                &lt;/td&gt;
+
+                                &lt;td style="hs-build-flags: XAMARIN"&gt;
+                                    &lt;p&gt;This topic explains how to create application project to use with Infragistics Xamarin.Forms controls.&lt;/p&gt;
+                                &lt;/td&gt;
+                            &lt;/tr&gt;
+
+                            &lt;tr&gt;
+                                &lt;td&gt;
+                                    &lt;div class="ig-topic-link"&gt;
+                                        &lt;a href="5f39946e-59dc-43f0-bd49-91714053bfbb" style="auto-update-caption: true"&gt;Getting Started with Data
+                                        Chart&lt;/a&gt;
+                                    &lt;/div&gt;
+                                &lt;/td&gt;
+
+                                &lt;td&gt;
+                                    &lt;p&gt;This topic provides information on how to get started with the &lt;span class="ig-italic"&gt;%%ControlsName%%&lt;/span&gt;
+                                    control.&lt;/p&gt;
+                                &lt;/td&gt;
+                            &lt;/tr&gt;
+
+                            &lt;tr&gt;
+                                &lt;td&gt;
+                                    &lt;div class="ig-topic-link"&gt;
+                                        &lt;a href="ef9a7c2d-a9c4-49d0-b6d9-c2ab9c00df50" style="auto-update-caption: true"&gt;Series Requirements&lt;/a&gt;
+                                    &lt;/div&gt;
+                                &lt;/td&gt;
+
+                                &lt;td&gt;
+                                    &lt;p&gt;This topic provides information on requirements of Series objects in the &lt;span class="ig-italic"&gt;%%ControlsName%%&lt;/span&gt;
+                                    control.&lt;/p&gt;
+                                &lt;/td&gt;
+                            &lt;/tr&gt;
+                        &lt;/tbody&gt;
+                    &lt;/table&gt;&lt;br&gt;
+                &lt;/div&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+
+        &lt;tr&gt;
+            &lt;th&gt;
+                &lt;h4&gt;In this topic&lt;/h4&gt;
+            &lt;/th&gt;
+
+            &lt;td&gt;
+                &lt;div class="ig-layout-container"&gt;
+                    &lt;p&gt;This topic contains the following sections:&lt;/p&gt;
+
+                    &lt;ul&gt;
+                        &lt;li&gt;&lt;a href="#_Ref397371182"&gt;&lt;span class="ig-italic"&gt;Overview&lt;/span&gt;&lt;/a&gt;&lt;a href="#_Ref396219285"&gt;&lt;/a&gt;&lt;/li&gt;
+
+                        &lt;li style="list-style: none; display: inline;"&gt;
+                            &lt;ul&gt;
+                                &lt;li&gt;&lt;a href="#_Ref397371188"&gt;Preview&lt;/a&gt;&lt;/li&gt;
+
+                                &lt;li&gt;&lt;a href="#_Ref396219292"&gt;Application Requirements&lt;/a&gt;&lt;/li&gt;
+
+                                &lt;li&gt;&lt;a href="#_Ref397371278"&gt;Chart Requirements&lt;/a&gt;&lt;/li&gt;
+
+                                &lt;li&gt;&lt;a href="#_Ref396236025"&gt;Creating Application&lt;/a&gt;&lt;/li&gt;
+
+                                &lt;li&gt;&lt;a href="#_Ref396236029"&gt;Creating Data Source&lt;/a&gt;&lt;/li&gt;
+
+                                &lt;li&gt;&lt;a href="#_Ref396236032"&gt;Creating Axes&lt;/a&gt;&lt;/li&gt;
+
+                                &lt;li&gt;&lt;a href="#_Ref396236034"&gt;Creating Series&lt;/a&gt;&lt;/li&gt;
+
+                                &lt;li&gt;&lt;a href="#_Ref396236037"&gt;Creating Chart&lt;/a&gt;&lt;/li&gt;
+                            &lt;/ul&gt;
+                        &lt;/li&gt;
+
+                        &lt;li&gt;&lt;a href="#_Ref388439099"&gt;Related Content&lt;/a&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/div&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+
+        &lt;tr&gt;
+            &lt;th&gt;&lt;/th&gt;
+
+            &lt;td&gt;
+                &lt;div class="ig-layout-container"&gt;&lt;/div&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;&lt;br&gt;
+
+&lt;div class="ig-block-title"&gt;
+    &lt;h2&gt;&lt;a name="_Ref386478097"&gt;&lt;/a&gt;&lt;a name="_Configuring_a_Custom"&gt;&lt;/a&gt;&lt;a name="_Ref397371182"&gt;&lt;/a&gt;&lt;span class="ig-italic"&gt;Overview&lt;/span&gt;&lt;/h2&gt;
+&lt;/div&gt;
+
+&lt;table class="ig-layout"&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;th&gt;
+                &lt;h4&gt;&lt;a name="_Ref397371188"&gt;&lt;/a&gt;Preview&lt;/h4&gt;
+            &lt;/th&gt;
+
+            &lt;td&gt;
+                &lt;div class="ig-layout-container"&gt;
+                    &lt;p&gt;The following is the preview of the result of creating chart control in XAML code.&lt;/p&gt;
+
+                    &lt;p&gt;&lt;img alt="" src="images/DataChart_Creating_Chart_In_Code_Behind_1.png"&gt;&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+
+        &lt;tr&gt;
+            &lt;th&gt;
+                &lt;h4&gt;&lt;a name="_Ref396219292"&gt;&lt;/a&gt;&lt;a name="_Ref388439132"&gt;&lt;/a&gt;Application Requirements&lt;/h4&gt;
+            &lt;/th&gt;
+
+            &lt;td&gt;
+                &lt;div class="ig-layout-container"&gt;
+                    &lt;p&gt;The following table lists requirements for creating the &lt;span class="ig-italic"&gt;%%ControlsName%%&lt;/span&gt; control.&lt;/p&gt;
+
+                    &lt;table cellspacing="0" cellpadding="0"&gt;
+                        &lt;tbody&gt;
+                            &lt;tr&gt;
+                                &lt;th&gt;
+                                    &lt;p&gt;Requirement&lt;/p&gt;
+                                &lt;/th&gt;
+
+                                &lt;th&gt;
+                                    &lt;p&gt;Description&lt;/p&gt;
+                                &lt;/th&gt;
+                            &lt;/tr&gt;
+
+                            &lt;tr&gt;
+                                &lt;td&gt;
+                                    &lt;p&gt;Install Infragistics %%ProductPlatform%% product&lt;/p&gt;
+                                &lt;/td&gt;
+
+                                &lt;td&gt;
+                                    &lt;p&gt;The chart control is part of Infragistics %%ProductPlatform%% product&lt;/p&gt;
+                                &lt;/td&gt;
+                            &lt;/tr&gt;
+                        &lt;/tbody&gt;
+                    &lt;/table&gt;&lt;br&gt;
+                &lt;/div&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+
+        &lt;tr&gt;
+            &lt;th&gt;
+                &lt;h4&gt;&lt;a name="_Ref397371278"&gt;&lt;/a&gt;Chart Requirements&lt;/h4&gt;
+            &lt;/th&gt;
+
+            &lt;td&gt;
+                &lt;div class="ig-layout-container"&gt;
+                    &lt;p&gt;The chart control supports various types of data visualizations called Series. These series objects can visualize wide range of data
+                    source. Refer to the &lt;a href="95bac122-af84-468f-af2a-5a2b73e72844" style="auto-update-caption: true"&gt;Series Types&lt;/a&gt;&amp;nbsp; topic for complete list
+                    of series supported in the chart control. Each type of series can plot data that meets certain requirements (such as number of data column
+                    and their types) as well as what type of axis can be used with it. Refer to the&amp;nbsp;&lt;a href="ef9a7c2d-a9c4-49d0-b6d9-c2ab9c00df50" style="auto-update-caption: true"&gt;Series Requirements&lt;/a&gt;&amp;nbsp;topic for requirements for each of the series.&lt;/p&gt;
+
+                    &lt;p&gt;For demonstration purpose, this topic uses&amp;nbsp;&lt;a href="c7f6d3d3-2278-4166-b503-e06c66ac2cb9" style="auto-update-caption: true"&gt;Sample
+                    Energy Data&lt;/a&gt;&amp;nbsp;with only one &lt;a href="%%AssemblyPlatform%%%%AssemblyName%%%%AssemblyVersion%%%%ControlsNamespace%%AreaSeries.html"&gt;AreaSeries&lt;/a&gt;&amp;nbsp;and two axes:
+                    CategoryXAxis and NumericYAxis.&lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+
+        &lt;tr&gt;
+            &lt;th&gt;
+                &lt;h4&gt;&lt;a name="_Ref396236025"&gt;&lt;/a&gt;Creating Application&lt;/h4&gt;
+            &lt;/th&gt;
+
+            &lt;td&gt;
+                &lt;div class="ig-layout-container"&gt;
+                    &lt;ol&gt;
+                        &lt;li&gt;Create %%PlatformName%% application project using Visual Studio 2012 or latest and call it &lt;strong&gt;SampleApp&lt;/strong&gt;&lt;/li&gt;
+                    &lt;/ol&gt;
+
+                    &lt;ol start="2"&gt;
+                        &lt;li&gt;Add the following namespace declarations to the main XAML file:&lt;/li&gt;
+                    &lt;/ol&gt;
+
+                    &lt;div class="LanguageSpecific" id="Example_XAML" style="display: block;" style="hs-build-flags: SL,WPF"&gt;
+                        &lt;p&gt;&lt;span class="lang"&gt;&lt;b&gt;In XAML:&lt;/b&gt;&lt;/span&gt;&lt;/p&gt;
+                        &lt;pre&gt;&lt;code class="code"&gt;&lt;span class="red"&gt;xmlns&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="red"&gt;ig&lt;/span&gt;&lt;span class="blue"&gt;="http://schemas.infragistics.com/xaml"&lt;/span&gt;
+&lt;span class="red"&gt;xmlns&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="red"&gt;local&lt;/span&gt;&lt;span class="blue"&gt;="clr-namespace:SampleApp"&lt;/span&gt; &lt;/code&gt;
+&lt;/pre&gt;
+                    &lt;/div&gt;
+
+                    &lt;div class="LanguageSpecific" id="Example_XAML" style="display: block;" style="hs-build-flags: WinPhone"&gt;
+                        &lt;p&gt;&lt;span class="lang"&gt;&lt;b&gt;In XAML:&lt;/b&gt;&lt;/span&gt;&lt;/p&gt;
+                        &lt;pre&gt;&lt;code class="code"&gt;&lt;span class="red"&gt;xmlns&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="red"&gt;ig&lt;/span&gt;&lt;span class="blue"&gt;="clr-namespace:Infragistics.Controls.Charts;assembly=%%AssemblyPlatform%%%%AssemblyName%%%%AssemblyVersion%%"&lt;/span&gt;
+&lt;span class="red"&gt;xmlns&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="red"&gt;local&lt;/span&gt;&lt;span class="blue"&gt;="clr-namespace:SampleApp"&lt;/span&gt; &lt;/code&gt;
+&lt;/pre&gt;
+                    &lt;/div&gt;
+
+                    &lt;div class="LanguageSpecific" id="Example_XAML" style="display: block;" style="hs-build-flags: XAMARIN"&gt;
+                        &lt;p&gt;&lt;span class="lang"&gt;&lt;b&gt;In XAML:&lt;/b&gt;&lt;/span&gt;&lt;/p&gt;
+                        &lt;pre&gt;&lt;code class="code"&gt;&lt;span class="red"&gt;xmlns&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="red"&gt;ig&lt;/span&gt;&lt;span class="blue"&gt;="clr-namespace:Infragistics.XF.Controls;assembly=%%AssemblyPlatform%%Controls.Charts"&lt;/span&gt;
+&lt;span class="red"&gt;xmlns&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="red"&gt;local&lt;/span&gt;&lt;span class="blue"&gt;="clr-namespace:SampleApp;assembly=SampleApp"&lt;/span&gt; &lt;/code&gt;
+&lt;/pre&gt;
+                    &lt;/div&gt;
+
+                    &lt;div class="LanguageSpecific" id="Example_XAML" style="display: block;" style="hs-build-flags: WinRT"&gt;
+                        &lt;p&gt;&lt;span class="lang"&gt;&lt;b&gt;In XAML:&lt;/b&gt;&lt;/span&gt;&lt;/p&gt;
+                        &lt;pre&gt;&lt;code class="code"&gt;&lt;span class="red"&gt;xmlns&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="red"&gt;ig&lt;/span&gt;&lt;span class="blue"&gt;="using:Infragistics.Controls.Charts"&lt;/span&gt;&lt;/code&gt;&lt;br&gt;&lt;code class="code"&gt;&lt;span class="red"&gt;xmlns&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="red"&gt;local&lt;/span&gt;&lt;span class="blue"&gt;="using:SampleApp"&lt;/span&gt; &lt;/code&gt;
+&lt;/pre&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+
+        &lt;tr&gt;
+            &lt;th&gt;
+                &lt;h4&gt;&lt;a name="_Ref396236025"&gt;&lt;/a&gt;Adding Assembly References&lt;/h4&gt;
+            &lt;/th&gt;
+
+            &lt;td&gt;
+                &lt;ol&gt;
+                    &lt;li&gt;Add the following Infragistics assemblies to the &lt;strong&gt;SampleApp&lt;/strong&gt; project:
+
+                        &lt;ul&gt;
+                            &lt;li style="hs-build-flags: SL,WPF,WinPhone,WinRT"&gt;%%AssemblyPlatform%%Controls.Charts.XamDataChart.%%AssemblyVersion%%dll&lt;/li&gt;
+
+                            &lt;li style="hs-build-flags: SL,WPF,WinPhone,WinRT"&gt;%%AssemblyPlatform%%DataVisualization.%%AssemblyVersion%%dll&lt;/li&gt;
+
+                            &lt;li style="hs-build-flags: XAMARIN"&gt;%%AssemblyPlatform%%Controls.Charts.%%AssemblyVersion%%dll&lt;/li&gt;
+
+                            &lt;li&gt;%%AssemblyPlatform%%%%AssemblyVersion%%dll&lt;/li&gt;
+                        &lt;/ul&gt;
+                    &lt;/li&gt;
+
+                    &lt;li style="hs-build-flags: XAMARIN"&gt;Add the following Infragistics assemblies to the &lt;strong&gt;SampleApp.WinPhone&lt;/strong&gt; project:
+
+                        &lt;ul style="hs-build-flags: XAMARIN"&gt;
+                            &lt;li&gt;%%AssemblyPlatform%%Controls.Charts.%%AssemblyVersion%%WP.dll&lt;/li&gt;
+
+                            &lt;li&gt;%%AssemblyPlatform%%%%AssemblyVersion%%WP.dll&lt;/li&gt;
+                        &lt;/ul&gt;
+                    &lt;/li&gt;
+  &lt;li style="hs-build-flags: XAMARIN"&gt;Add the following Infragistics assemblies to the &lt;strong&gt;SampleApp.Android&lt;/strong&gt; project:
+
+                        &lt;ul style="hs-build-flags: XAMARIN"&gt;
+                            &lt;li&gt;%%AssemblyPlatform%%Controls.Charts.%%AssemblyVersion%%Android.dll&lt;/li&gt;
+
+                            &lt;li&gt;%%AssemblyPlatform%%%%AssemblyVersion%%Android.dll&lt;/li&gt;
+							 &lt;li&gt;InfragisticsAndroidBindings.dll&lt;/li&gt;
+							
+							
+                        &lt;/ul&gt;
+                    &lt;/li&gt;
+                    &lt;li style="hs-build-flags: XAMARIN"&gt;Add Infragistics Unified (64-bit) or Classic (32-bit) assemblies to the &lt;strong&gt;SampleApp.iOS&lt;/strong&gt; project:
+
+                        &lt;ul style="hs-build-flags: XAMARIN"&gt;
+                            &lt;li&gt;%%AssemblyPlatform%%Controls.Charts.%%AssemblyVersion%%iOS.dll&lt;/li&gt;
+
+                            &lt;li&gt;%%AssemblyPlatform%%%%AssemblyVersion%%iOS.dll&lt;/li&gt;
+
+                            &lt;li&gt;IG.Unified.dll&lt;/li&gt;
+
+                            &lt;li&gt;IGChart.Unified.dll&lt;/li&gt;
+
+                           
+            			&lt;/ul&gt;
+                   &lt;p&gt;or&lt;/p&gt; 
+				   		&lt;ul style="hs-build-flags: XAMARIN"&gt;
+                  
+                            &lt;li&gt;%%AssemblyPlatform%%Controls.Charts.%%AssemblyVersion%%iOS.Classic.dll&lt;/li&gt;
+
+                            &lt;li&gt;%%AssemblyPlatform%%%%AssemblyVersion%%iOS.Classic.dll&lt;/li&gt;
+
+                            &lt;li&gt;IG.Classic.dll&lt;/li&gt;
+
+                            &lt;li&gt;IGChart.Classic.dll&lt;/li&gt;
+                        &lt;/ul&gt;
+                    &lt;/li&gt;
+
+                  
+                &lt;/ol&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+
+        &lt;tr&gt;
+            &lt;th&gt;
+                &lt;h4&gt;&lt;a name="_Ref396236029"&gt;&lt;/a&gt;Creating Data Source&lt;/h4&gt;
+            &lt;/th&gt;
+
+            &lt;td&gt;
+                &lt;div class="ig-layout-container"&gt;
+                    &lt;ol&gt;
+                        &lt;li&gt;Copy sample data code from the&amp;nbsp;&lt;a href="c7f6d3d3-2278-4166-b503-e06c66ac2cb9" style="auto-update-caption: true"&gt;Sample Energy
+                        Data&lt;/a&gt;&amp;nbsp;resource and add it to the&amp;nbsp;&lt;strong&gt;SampleApp&lt;/strong&gt; project&lt;/li&gt;
+                    &lt;/ol&gt;
+
+                    &lt;ol start="2"&gt;
+                        &lt;li&gt;Create an instance of category sample data:&lt;/li&gt;
+                    &lt;/ol&gt;
+
+                    &lt;div class="LanguageSpecific" id="Example_XAML" style="display: block;"&gt;
+                        &lt;p&gt;&lt;span class="lang"&gt;&lt;b&gt;In XAML:&lt;/b&gt;&lt;/span&gt;&lt;/p&gt;
+                        &lt;pre&gt;&lt;code class="code"&gt;&lt;span class="blue"&gt;&amp;lt;&lt;/span&gt;&lt;span class="brownish"&gt;Grid&lt;/span&gt;&lt;span class="blue"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="blue"&gt;&lt;font color="black"&gt;    &lt;/font&gt;&amp;lt;&lt;/span&gt;&lt;span class="brownish"&gt;Grid&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="brownish"&gt;Resources&lt;/span&gt;&lt;span class="blue"&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class="blue"&gt;&amp;lt;&lt;/span&gt;&lt;span class="brownish"&gt;local&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="brownish"&gt;EnergyProductionDataSample &lt;span class="red"&gt;x&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="red"&gt;Name&lt;/span&gt;&lt;span class="blue"&gt;="data"&lt;/span&gt;&lt;/span&gt;&lt;span class="blue"&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span class="blue"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="brownish"&gt;Grid&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="brownish"&gt;Resources&lt;/span&gt;&lt;span class="blue"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="blue"&gt;&amp;lt;/&lt;span class="brownish"&gt;Grid&lt;/span&gt;&lt;/span&gt;&lt;span class="blue"&gt;&amp;gt;&lt;/span&gt;&lt;/code&gt;
+&lt;/pre&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+
+        &lt;tr&gt;
+            &lt;th&gt;
+                &lt;h4&gt;&lt;a name="_Ref396236037"&gt;&lt;/a&gt;Creating Chart&lt;/h4&gt;
+            &lt;/th&gt;
+
+            &lt;td&gt;
+                &lt;div class="ig-layout-container"&gt;
+                    &lt;p&gt;Create an instance an instance of the chart control with settings for one series and two axes.&lt;/p&gt;
+
+                    &lt;div class="LanguageSpecific" id="Example_XAML" style="display: block;"&gt;
+                        &lt;p&gt;&lt;span class="lang"&gt;&lt;b&gt;In XAML:&lt;/b&gt;&lt;/span&gt;&lt;/p&gt;
+                        &lt;pre&gt;&lt;code class="code"&gt;&lt;span class="blue"&gt;&amp;lt;&lt;/span&gt;&lt;span class="brownish"&gt;ig&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="brownish"&gt;%%ControlsName%%&lt;/span&gt; &lt;span class="red"&gt;x&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="red"&gt;Name&lt;/span&gt;&lt;span class="blue"&gt;="Chart"&lt;/span&gt; &lt;span class="blue"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="blue"&gt;&amp;lt;&lt;/span&gt;&lt;span class="brownish"&gt;ig&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="brownish"&gt;%%ControlsName%%.Axes&lt;/span&gt;&lt;span class="blue"&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class="comment"&gt;&amp;lt;!-- axes here --&amp;gt;&lt;/span&gt;
+    &lt;span class="blue"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="brownish"&gt;ig&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="brownish"&gt;%%ControlsName%%.Axes&lt;/span&gt;&lt;span class="blue"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="blue"&gt;&amp;lt;&lt;/span&gt;&lt;span class="brownish"&gt;ig&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="brownish"&gt;%%ControlsName%%.Series&lt;/span&gt;&lt;span class="blue"&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class="comment"&gt;&amp;lt;!-- series here  --&amp;gt;&lt;/span&gt;
+    &lt;span class="blue"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="brownish"&gt;ig&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="brownish"&gt;%%ControlsName%%.Series&lt;/span&gt;&lt;span class="blue"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="blue"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="brownish"&gt;ig&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="brownish"&gt;%%ControlsName%%&lt;/span&gt; &lt;span class="blue"&gt;&amp;gt;&lt;/span&gt;&lt;/code&gt;
+&lt;/pre&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+
+        &lt;tr&gt;
+            &lt;th&gt;
+                &lt;h4&gt;&lt;a name="_Ref396236032"&gt;&lt;/a&gt;Creating Axes&lt;/h4&gt;
+            &lt;/th&gt;
+
+            &lt;td&gt;
+                &lt;div class="ig-layout-container"&gt;
+                    &lt;p&gt;Create category x-axis for displaying labels and numeric y-axis for displaying values&lt;/p&gt;
+
+                    &lt;div class="LanguageSpecific" id="Example_XAML" style="display: block;" style="hs-build-flags: SL,WPF,WINPHONE,WINRT"&gt;
+                        &lt;p&gt;&lt;span class="lang"&gt;&lt;b&gt;In XAML:&lt;/b&gt;&lt;/span&gt;&lt;/p&gt;
+                        &lt;pre&gt;&lt;code class="code"&gt;&lt;span class="blue"&gt;&amp;lt;&lt;/span&gt;&lt;span class="brownish"&gt;ig&lt;/span&gt;&lt;span class="blue"&gt;:&lt;span class="brownish"&gt;XamDataChart&lt;/span&gt;&lt;/span&gt;&lt;span class="brownish"&gt;.Axes&lt;/span&gt;&lt;span class="blue"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="blue"&gt;&amp;lt;&lt;/span&gt;&lt;span class="brownish"&gt;ig&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="brownish"&gt;CategoryXAxis&lt;/span&gt; &lt;span class="red"&gt;x&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="red"&gt;Name&lt;/span&gt;&lt;span class="blue"&gt;="xAxis"&lt;/span&gt; &lt;span class="red"&gt;ItemsSource&lt;/span&gt;&lt;span class="blue"&gt;="{&lt;/span&gt;&lt;span class="brownish"&gt;StaticResource &lt;font color="blue"&gt;data&lt;/font&gt;&lt;/span&gt;&lt;span class="blue"&gt;}"&lt;/span&gt; &lt;span class="red"&gt;Label&lt;/span&gt;&lt;span class="blue"&gt;="{}{Country}&lt;/span&gt;&lt;span class="blue"&gt;"&lt;/span&gt; &lt;span class="blue"&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span class="blue"&gt;&amp;lt;&lt;/span&gt;&lt;span class="brownish"&gt;ig&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="brownish"&gt;NumericYAxis&lt;/span&gt;  &lt;span class="red"&gt;x&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="red"&gt;Name&lt;/span&gt;&lt;span class="blue"&gt;="yAxis"&lt;/span&gt; &lt;span class="blue"&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class="blue"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="brownish"&gt;ig&lt;/span&gt;&lt;span class="blue"&gt;:&lt;span class="brownish"&gt;XamDataChart&lt;/span&gt;&lt;/span&gt;&lt;span class="brownish"&gt;.Axes&lt;/span&gt;&lt;span class="blue"&gt;&amp;gt;&lt;/span&gt;&lt;/code&gt;
+&lt;/pre&gt;
+                    &lt;/div&gt;
+
+                    &lt;div class="LanguageSpecific" id="Example_XAML" style="display: block;" style="hs-build-flags: XAMARIN"&gt;
+                        &lt;p&gt;&lt;span class="lang"&gt;&lt;b&gt;In XAML:&lt;/b&gt;&lt;/span&gt;&lt;/p&gt;
+                        &lt;pre&gt;&lt;code class="code"&gt;&lt;span class="blue"&gt;&amp;lt;&lt;/span&gt;&lt;span class="brownish"&gt;ig&lt;/span&gt;&lt;span class="blue"&gt;:&lt;span class="brownish"&gt;XFDataChart&lt;/span&gt;&lt;/span&gt;&lt;span class="brownish"&gt;.Axes&lt;/span&gt;&lt;span class="blue"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="blue"&gt;&amp;lt;&lt;/span&gt;&lt;span class="brownish"&gt;ig&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="brownish"&gt;CategoryXAxis&lt;/span&gt; &lt;span class="red"&gt;x&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="red"&gt;Name&lt;/span&gt;&lt;span class="blue"&gt;="xAxis"&lt;/span&gt; &lt;span class="red"&gt;ItemsSource&lt;/span&gt;&lt;span class="blue"&gt;="{&lt;/span&gt;&lt;span class="brownish"&gt;StaticResource &lt;font color="blue"&gt;data&lt;/font&gt;&lt;/span&gt;&lt;span class="blue"&gt;}"&lt;/span&gt; &lt;span class="red"&gt;Label&lt;/span&gt;&lt;span class="blue"&gt;="Country&lt;/span&gt;&lt;span class="blue"&gt;"&lt;/span&gt; &lt;span class="blue"&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span class="blue"&gt;&amp;lt;&lt;/span&gt;&lt;span class="brownish"&gt;ig&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="brownish"&gt;NumericYAxis&lt;/span&gt;  &lt;span class="red"&gt;x&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="red"&gt;Name&lt;/span&gt;&lt;span class="blue"&gt;="yAxis"&lt;/span&gt; &lt;span class="blue"&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class="blue"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="brownish"&gt;ig&lt;/span&gt;&lt;span class="blue"&gt;:&lt;span class="brownish"&gt;XFDataChart&lt;/span&gt;&lt;/span&gt;&lt;span class="brownish"&gt;.Axes&lt;/span&gt;&lt;span class="blue"&gt;&amp;gt;&lt;/span&gt;&lt;/code&gt;
+&lt;/pre&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+
+        &lt;tr&gt;
+            &lt;th&gt;
+                &lt;h4&gt;&lt;a name="_Ref396236034"&gt;&lt;/a&gt;Creating Series&lt;/h4&gt;
+            &lt;/th&gt;
+
+            &lt;td&gt;
+                &lt;div class="ig-layout-container"&gt;
+                    &lt;p&gt;Create an instance of a series and with bounding to the sample data source and set data mapping. In addition, the series must have
+                    settings for two axes created in previous section.&lt;/p&gt;
+
+                    &lt;div class="LanguageSpecific" id="Example_XAML" style="display: block;" style="hs-build-flags: SL,WPF,WINPHONE,WINRT"&gt;
+                        &lt;p&gt;&lt;span class="lang"&gt;&lt;b&gt;In XAML:&lt;/b&gt;&lt;/span&gt;&lt;/p&gt;
+                        &lt;pre&gt;&lt;code class="code"&gt;&lt;span class="blue"&gt;&amp;lt;&lt;/span&gt;&lt;span class="brownish"&gt;ig&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="brownish"&gt;XamDataChart.Series&lt;/span&gt;&lt;span class="blue"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="blue"&gt;&amp;lt;&lt;/span&gt;&lt;span class="brownish"&gt;ig&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="brownish"&gt;AreaSeries&lt;/span&gt; &lt;span class="red"&gt;ItemsSource&lt;/span&gt;&lt;span class="blue"&gt;="{&lt;/span&gt;&lt;span class="brownish"&gt;StaticResource &lt;font color="blue"&gt;data&lt;/font&gt;&lt;/span&gt;&lt;span class="blue"&gt;}"&lt;/span&gt; 
+                  &lt;span class="red"&gt;ValueMemberPath&lt;/span&gt;&lt;span class="blue"&gt;="Coal"&lt;/span&gt; 
+                  &lt;span class="red"&gt;XAxis&lt;/span&gt;&lt;span class="blue"&gt;="{&lt;/span&gt;&lt;span class="brownish"&gt;Binding&lt;/span&gt; &lt;span class="red"&gt;ElementName&lt;/span&gt;&lt;span class="blue"&gt;=xAxis&lt;/span&gt;&lt;span class="blue"&gt;}"&lt;/span&gt; 
+                  &lt;span class="red"&gt;YAxis&lt;/span&gt;&lt;span class="blue"&gt;="{&lt;/span&gt;&lt;span class="brownish"&gt;Binding&lt;/span&gt; &lt;span class="red"&gt;ElementName&lt;/span&gt;&lt;span class="blue"&gt;=yAxis&lt;/span&gt;&lt;span class="blue"&gt;}"&lt;/span&gt;&lt;span class="blue"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="blue"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="brownish"&gt;ig&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="brownish"&gt;AreaSeries&lt;/span&gt;&lt;span class="blue"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="blue"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="brownish"&gt;ig&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="brownish"&gt;XamDataChart.Series&lt;/span&gt;&lt;span class="blue"&gt;&amp;gt;&lt;/span&gt;&lt;/code&gt;
+&lt;/pre&gt;
+                    &lt;/div&gt;
+
+                    &lt;div class="LanguageSpecific" id="Example_XAML" style="display: block;" style="hs-build-flags: XAMARIN"&gt;
+                        &lt;p&gt;&lt;span class="lang"&gt;&lt;b&gt;In XAML:&lt;/b&gt;&lt;/span&gt;&lt;/p&gt;
+                        &lt;pre&gt;&lt;code class="code"&gt;&lt;span class="blue"&gt;&amp;lt;&lt;/span&gt;&lt;span class="brownish"&gt;ig&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="brownish"&gt;XFDataChart.Series&lt;/span&gt;&lt;span class="blue"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="blue"&gt;&amp;lt;&lt;/span&gt;&lt;span class="brownish"&gt;ig&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="brownish"&gt;AreaSeries&lt;/span&gt; &lt;span class="red"&gt;ItemsSource&lt;/span&gt;&lt;span class="blue"&gt;="{&lt;/span&gt;&lt;span class="brownish"&gt;StaticResource &lt;font color="blue"&gt;data&lt;/font&gt;&lt;/span&gt;&lt;span class="blue"&gt;}"&lt;/span&gt; 
+                  &lt;span class="red"&gt;ValueMemberPath&lt;/span&gt;&lt;span class="blue"&gt;="Coal"&lt;/span&gt; 
+                  &lt;span class="red"&gt;XAxis&lt;/span&gt;&lt;span class="blue"&gt;="{&lt;/span&gt;&lt;span class="brownish"&gt;x:Reference&lt;/span&gt; &lt;span class="blue"&gt;xAxis&lt;/span&gt;&lt;span class="blue"&gt;}"&lt;/span&gt; 
+                  &lt;span class="red"&gt;YAxis&lt;/span&gt;&lt;span class="blue"&gt;="{&lt;span class="brownish"&gt;x:Reference&lt;/span&gt;&lt;font color="black" face="Courier New"&gt; &lt;/font&gt;&lt;/span&gt;&lt;span class="blue"&gt;yAxis&lt;/span&gt;&lt;span class="blue"&gt;}"&lt;/span&gt;&lt;span class="blue"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="blue"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="brownish"&gt;ig&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="brownish"&gt;AreaSeries&lt;/span&gt;&lt;span class="blue"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="blue"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="brownish"&gt;ig&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="brownish"&gt;XFDataChart.Series&lt;/span&gt;&lt;span class="blue"&gt;&amp;gt;&lt;/span&gt;&lt;/code&gt;
+&lt;/pre&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;&lt;br&gt;
+
+&lt;div class="ig-block-title"&gt;
+    &lt;h2&gt;&lt;a name="_Ref388439099"&gt;&lt;/a&gt;Related Content&lt;/h2&gt;
+&lt;/div&gt;
+
+&lt;table class="ig-layout"&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;th&gt;
+                &lt;h4&gt;&lt;a name="_Ref386478106"&gt;&lt;/a&gt;Topics&lt;/h4&gt;
+            &lt;/th&gt;
+
+            &lt;td&gt;
+                &lt;div class="ig-layout-container"&gt;
+                    &lt;p&gt;The following topics provide additional information related to this topic.&lt;/p&gt;
+
+                    &lt;table cellspacing="0" cellpadding="0"&gt;
+                        &lt;tbody&gt;
+                            &lt;tr&gt;
+                                &lt;th&gt;
+                                    &lt;p&gt;Topic&lt;/p&gt;
+                                &lt;/th&gt;
+
+                                &lt;th&gt;
+                                    &lt;p&gt;Purpose&lt;/p&gt;
+                                &lt;/th&gt;
+                            &lt;/tr&gt;
+
+                            &lt;tr&gt;
+                                &lt;td&gt;
+                                    &lt;div class="ig-topic-link"&gt;&lt;/div&gt;&lt;a href="77948afe-5e9b-42d9-96de-a86fe0d22511" style="auto-update-caption: true"&gt;&lt;strong&gt;%%ControlsName%%&lt;/strong&gt;&lt;/a&gt;
+
+                                    &lt;div class="ig-topic-link"&gt;&lt;/div&gt;
+                                &lt;/td&gt;
+
+                                &lt;td&gt;
+                                    &lt;p&gt;This topic provides a general overview of the &lt;span class="ig-italic"&gt;%%ControlsName%%&lt;/span&gt; control&lt;/p&gt;
+                                &lt;/td&gt;
+                            &lt;/tr&gt;
+
+                            &lt;tr&gt;
+                                &lt;td&gt;
+                                    &lt;div class="ig-topic-link"&gt;
+                                        &lt;a href="5f39946e-59dc-43f0-bd49-91714053bfbb" style="auto-update-caption: true"&gt;Getting Started with Data
+                                        Chart&lt;/a&gt;
+                                    &lt;/div&gt;
+                                &lt;/td&gt;
+
+                                &lt;td&gt;
+                                    &lt;p&gt;This topic provides information on how to get started with the &lt;span class="ig-italic"&gt;%%ControlsName%%&lt;/span&gt;
+                                    control.&lt;/p&gt;
+                                &lt;/td&gt;
+                            &lt;/tr&gt;
+
+                            &lt;tr&gt;
+                                &lt;td&gt;&lt;a href="ef9a7c2d-a9c4-49d0-b6d9-c2ab9c00df50" style="auto-update-caption: true"&gt;&lt;strong&gt;Series Requirements&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt;
+
+                                &lt;td&gt;
+                                    &lt;p&gt;This topic provides information on requirements of Series objects in the &lt;span class="ig-italic"&gt;%%ControlsName%%&lt;/span&gt;
+                                    control.&lt;/p&gt;
+                                &lt;/td&gt;
+                            &lt;/tr&gt;
+                        &lt;/tbody&gt;
+                    &lt;/table&gt;&lt;br&gt;
+                &lt;/div&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;&lt;br&gt;</Content>
+    </TopicSection>
+  </TopicSections>
+  <TopicLinks />
+  <TopicKeywords />
+  <PropertyDefinitionValues />
+  <ExcludedOtherFiles />
+</Topic>

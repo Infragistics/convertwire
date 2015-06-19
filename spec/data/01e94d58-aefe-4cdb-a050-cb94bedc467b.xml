@@ -1,0 +1,1064 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Topic Id="01e94d58-aefe-4cdb-a050-cb94bedc467b" Status="New Topic" CreatedOn="2014-06-05T19:39:00.6433745Z" ModifiedOn="2015-03-12T08:46:58.6844845Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="DataChart_Creating_Custom_Series" BuildFlags="SL,WPF,WINRT">
+  <Title m="2011-10-26T20:51:28.969763Z">Creating Custom Series</Title>
+  <ContentsTitle />
+  <Notes></Notes>
+  <TopicSections>
+    <TopicSection Name="BodyText">
+      <Content m="2015-02-12T19:58:52.067644Z">&lt;p&gt;This topic introduces series inheritance feature of the &lt;a href="%%AssemblyPlatform%%%%AssemblyName%%%%AssemblyVersion%%%%ControlsNamespace%%%%ControlsName%%.html"&gt;%%ControlsName%%&lt;/a&gt;™ control and explains, with code examples, how to use it to create a custom type of series.&lt;/p&gt;
+
+&lt;h1&gt;Overview&lt;/h1&gt;
+
+&lt;p&gt;The topic is organized as follows:&lt;/p&gt;
+
+&lt;ul&gt;
+    &lt;li&gt;&lt;a href="#Introduction"&gt;Introduction&lt;/a&gt;&lt;/li&gt;
+
+    &lt;li&gt;
+        &lt;a href="#Example"&gt;Example&lt;/a&gt;
+
+        &lt;ul&gt;
+            &lt;li&gt;&lt;a href="#Preview"&gt;Preview&lt;/a&gt;&lt;/li&gt;
+
+            &lt;li&gt;
+                &lt;a href="#Procedure"&gt;Procedure&lt;/a&gt;
+
+                &lt;ul&gt;
+                    &lt;li&gt;Inheriting Series&lt;/li&gt;
+
+                    &lt;li&gt;Creating Default Style&lt;/li&gt;
+
+                    &lt;li&gt;Integrating Axes&lt;/li&gt;
+
+                    &lt;li&gt;Overriding Series Methods&lt;/li&gt;
+
+                    &lt;li&gt;Providing Custom Code&lt;/li&gt;
+
+                    &lt;li&gt;Rendering Series&lt;/li&gt;
+
+                    &lt;li style="hs-build-flags: SL,WPF,WinPhone"&gt;Integrating Legend&lt;/li&gt;
+
+                    &lt;li&gt;Integrating Tooltips&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+
+    &lt;li&gt;
+        &lt;a href="#RelatedTopics"&gt;Related Topics&lt;/a&gt;
+
+        &lt;ul&gt;
+            &lt;li&gt;&lt;a href="e0c1a537-ee33-4389-a939-eab0cea8fade" style="auto-update-caption: true"&gt;Chart Axes&lt;/a&gt;&lt;/li&gt;
+
+            &lt;li&gt;&lt;a href="3d087135-84b0-4f6e-b3eb-afe7e962e406" style="auto-update-caption: true"&gt;Chart Series&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id="Introduction" name="Introduction"&gt;Introduction&lt;/h1&gt;
+
+&lt;p&gt;The %%ControlsName%% control is designed to allow application developers to implement custom type of series in their applications. This is accomplished by inheriting from the &lt;a href="%%AssemblyPlatform%%%%AssemblyName%%%%AssemblyVersion%%%%ControlsNamespace%%Series.html"&gt;Series&lt;/a&gt; class, implementing required properties, and overriding methods of the base class. The Series is the base class for all %%ControlsName%% series and it provides basic properties and allows interfacing with the chart control. Moreover, custom series can be created by inheriting from existing types of series (e.g. &lt;a href="%%AssemblyPlatform%%%%AssemblyName%%%%AssemblyVersion%%%%ControlsNamespace%%ScatterSeries.html"&gt;ScatterSeries&lt;/a&gt;) and implementing custom features however this is out of the scope of this topic.&lt;/p&gt;
+
+&lt;h1 id="Example" name="Example"&gt;Example&lt;/h1&gt;
+
+&lt;p&gt;Example of custom type of series is a contour area series which renders as a collection of filled contours along data points with the same values plotted in the Cartesian coordinate system. When all elements of the ContourAreaSeries are implemented the series is defined as shown in the following code listing.&lt;/p&gt;
+
+&lt;div class="ig-note"&gt;
+    &lt;span class="ig-note-caption"&gt;Note:&lt;/span&gt; The following code examples assume that you added &lt;a href="fc801e1d-489b-4e9f-bf9e-b0ec60c7299a" style="auto-update-caption: true"&gt;Sample Contour Data&lt;/a&gt; and &lt;a href="be2c222e-035d-4a86-a4f3-5baa65d2d8f6" style="auto-update-caption: true"&gt;Bezier Curve Builder&lt;/a&gt; resources to you project as source code files. These resources provide sample data model and a class for generating contours of the ContourAreaSeries.
+&lt;/div&gt;
+
+&lt;div class="LanguageSpecific" id="Example_XAML" style="display: block;" style="hs-build-flags: SL,WPF"&gt;
+    &lt;p&gt;&lt;span class="lang"&gt;&lt;b&gt;In XAML:&lt;/b&gt;&lt;/span&gt;&lt;/p&gt;
+    &lt;pre&gt;&lt;code class="code"&gt;&lt;span class="red"&gt;xmlns&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="red"&gt;ig&lt;/span&gt;&lt;span class="blue"&gt;="http://schemas.infragistics.com/xaml"&lt;/span&gt;
+&lt;span class="red"&gt;xmlns&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="red"&gt;local&lt;/span&gt;&lt;span class="blue"&gt;="clr-namespace:Infragistics.Samples.Common"&lt;/span&gt; &lt;/code&gt;
+&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class="LanguageSpecific" id="Example_XAML" style="display: block;" style="hs-build-flags: WinPhone"&gt;
+    &lt;p&gt;&lt;span class="lang"&gt;&lt;b&gt;In XAML:&lt;/b&gt;&lt;/span&gt;&lt;/p&gt;
+    &lt;pre&gt;&lt;code class="code"&gt;&lt;span class="red"&gt;xmlns&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="red"&gt;ig&lt;/span&gt;&lt;span class="blue"&gt;="clr-namespace:Infragistics.Controls.Charts;assembly=%%AssemblyPlatform%%%%AssemblyName%%%%AssemblyVersion%%"&lt;/span&gt; &lt;/code&gt;&lt;br&gt;&lt;code class="code"&gt;&lt;span class="red"&gt;xmlns&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="red"&gt;local&lt;/span&gt;&lt;span class="blue"&gt;="clr-namespace:Infragistics.Samples.Common"&lt;/span&gt;&lt;/code&gt;
+&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class="LanguageSpecific" id="Example_XAML" style="display: block;" style="hs-build-flags: WinRT"&gt;
+    &lt;p&gt;&lt;span class="lang"&gt;&lt;b&gt;In XAML:&lt;/b&gt;&lt;/span&gt;&lt;/p&gt;
+    &lt;pre&gt;&lt;code class="code"&gt;&lt;span class="red"&gt;xmlns&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="red"&gt;ig&lt;/span&gt;&lt;span class="blue"&gt;="using:Infragistics.Controls.Charts"&lt;/span&gt;&lt;/code&gt;&lt;br&gt;&lt;code class="code"&gt;&lt;span class="red"&gt;&lt;span class="red"&gt;xmlns&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="red"&gt;custom&lt;/span&gt;&lt;span class="blue"&gt;="using:Infragistics.Samples.Common"&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;
+&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class="LanguageSpecific" id="Example_XAML" style="display: block;" style="hs-build-flags: SL,WPF,WINPHONE,WINRT"&gt;
+    &lt;p&gt;&lt;span class="lang"&gt;&lt;b&gt;In XAML:&lt;/b&gt;&lt;/span&gt;&lt;/p&gt;
+    &lt;pre&gt;&lt;code class="code"&gt;...
+&lt;span class="red"&gt;&lt;font color="blue" texisting="true" tsize="undefined" tcolor="#0000ff"&gt;&amp;lt;&lt;/font&gt;&lt;code class="brownish"&gt;ig&lt;/code&gt;&lt;/span&gt;&lt;code class="brownish"&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="brownish"&gt;XamDataChart.Series&lt;/span&gt;&lt;/code&gt;&lt;code class="blue"&gt;&amp;gt;&lt;/code&gt;
+    &lt;code class="blue"&gt;&amp;lt;&lt;/code&gt;&lt;code class="brownish"&gt;custom&lt;/code&gt;&lt;code class="blue"&gt;:&lt;/code&gt;&lt;code class="brownish"&gt;ContourAreaSeries&lt;/code&gt; &lt;code class="red"&gt;x&lt;/code&gt;&lt;code class="blue"&gt;:&lt;/code&gt;&lt;code class="red"&gt;Name&lt;/code&gt;&lt;code class="blue"&gt;="customSeries"&lt;/code&gt; 
+                              &lt;code class="red"&gt;ItemsSource&lt;/code&gt;&lt;code class="blue"&gt;="{&lt;/code&gt;&lt;code class="brownish"&gt;StaticResource&lt;/code&gt; &lt;code class="red"&gt;data&lt;/code&gt;&lt;code class="blue"&gt;}"&lt;/code&gt;
+                              &lt;code class="red"&gt;XAxis&lt;/code&gt;&lt;code class="blue"&gt;="{&lt;/code&gt;&lt;code class="brownish"&gt;Binding&lt;/code&gt; &lt;code class="red"&gt;ElementName&lt;/code&gt;&lt;code class="blue"&gt;=xAxis&lt;/code&gt;&lt;code class="blue"&gt;}"&lt;/code&gt; 
+                              &lt;code class="red"&gt;YAxis&lt;/code&gt;&lt;code class="blue"&gt;="{&lt;/code&gt;&lt;code class="brownish"&gt;Binding&lt;/code&gt; &lt;code class="red"&gt;ElementName&lt;/code&gt;&lt;code class="blue"&gt;=yAxis&lt;/code&gt;&lt;code class="blue"&gt;}"&lt;/code&gt;&lt;code class="blue"&gt;&amp;gt;&lt;/code&gt;
+    &lt;code class="blue"&gt;&amp;lt;/&lt;/code&gt;&lt;code class="brownish"&gt;custom&lt;/code&gt;&lt;code class="blue"&gt;:&lt;/code&gt;&lt;code class="brownish"&gt;ContourAreaSeries&lt;/code&gt;&lt;code class="blue"&gt;&amp;gt;&lt;/code&gt;
+&lt;code class="blue"&gt;&amp;lt;/&lt;/code&gt;&lt;code class="brownish"&gt;ig&lt;/code&gt;&lt;code class="blue"&gt;:&lt;/code&gt;&lt;code class="brownish"&gt;XamDataChart.Series&lt;/code&gt;&lt;code class="blue"&gt;&amp;gt;&lt;/code&gt;&lt;/code&gt;
+&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class="LanguageSpecific" id="Example_VB" style="display: block;"&gt;
+    &lt;p&gt;&lt;span class="lang"&gt;&lt;b&gt;In Visual Basic:&lt;/b&gt;&lt;/span&gt;&lt;/p&gt;
+    &lt;pre&gt;&lt;code class="code"&gt;&lt;span class="blue"&gt;Imports&lt;/span&gt; Infragistics.Samples.Data    &lt;span class="comment"&gt;' provides ContourData&lt;/span&gt;
+&lt;span class="blue"&gt;Imports&lt;/span&gt; Infragistics.Samples.Common  &lt;span class="comment"&gt;' provides ContourAreaSeries&lt;/span&gt;
+...
+&lt;span class="blue"&gt;Dim&lt;/span&gt; series &lt;span class="blue"&gt;As&lt;/span&gt; &lt;span class="blue"&gt;New&lt;/span&gt; ContourAreaSeries()
+series.ItemsSource = &lt;span class="blue"&gt;New&lt;/span&gt; ContourDataSample()
+series.XAxis = xAxis
+series.YAxis = yAxis
+...
+&lt;span class="blue"&gt;Me&lt;/span&gt;.DataChart.Series.Add(series)&lt;/code&gt;
+&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class="LanguageSpecific" id="Example_CS" style="display: block;"&gt;
+    &lt;p&gt;&lt;span class="lang"&gt;&lt;b&gt;In C#:&lt;/b&gt;&lt;/span&gt;&lt;/p&gt;
+    &lt;pre&gt;&lt;code class="code"&gt;&lt;span class="blue"&gt;using&lt;/span&gt; Infragistics.Samples.Data    &lt;span class="comment"&gt;// provides ContourData &lt;/span&gt;
+&lt;span class="blue"&gt;using&lt;/span&gt; Infragistics.Samples.Common;   &lt;span class="comment"&gt;// provides ContourAreaSeries&lt;/span&gt;
+...
+ContourAreaSeries series = &lt;span class="blue"&gt;new&lt;/span&gt; ContourAreaSeries();
+series.ItemsSource = &lt;span class="blue"&gt;new&lt;/span&gt; ContourDataSample();
+series.XAxis = xAxis;
+series.YAxis = yAxis;
+...
+&lt;span class="blue"&gt;this&lt;/span&gt;.DataChart.Series.Add(series);&lt;/code&gt;
+&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id="Preview" name="Preview"&gt;Preview&lt;/h2&gt;
+
+&lt;div class="defaultImg"&gt;&lt;img src="images/xamDataChart_Creating_Custom_Series_01.png" style="hs-build-flags: SL,WPF,WinPhone"&gt;&lt;/div&gt;
+
+&lt;div class="defaultImg"&gt;&lt;img src="images/xamDataChart_RT_Creating_Custom_Series_02.png" style="hs-build-flags: WinRT"&gt;&lt;/div&gt;
+
+&lt;p&gt;Figure 1 – Preview of the ContourAreaSeries rendered as a collection of filled contours along data points with the same values.&lt;/p&gt;
+
+&lt;h2 id="Procedure" name="Procedure"&gt;Procedure&lt;/h2&gt;
+
+&lt;p&gt;This section provides step-by-step instructions for creating the ContourAreaSeries and full code example is provided at the end of topic.&lt;/p&gt;
+
+&lt;ol&gt;
+    &lt;li&gt;Inheriting Series – This code snippet shows how to create a class for the ContourAreaSeries and inherit from the Series base class.
+
+        &lt;div class="LanguageSpecific" id="Example_VB" style="display: block;"&gt;
+            &lt;p&gt;&lt;span class="lang"&gt;&lt;b&gt;In Visual Basic:&lt;/b&gt;&lt;/span&gt;&lt;/p&gt;
+            &lt;pre&gt;&lt;code class="code"&gt;&lt;span class="blue"&gt;Imports&lt;/span&gt; Infragistics.Controls.Charts &lt;span class="comment"&gt;' provides elements of %%ControlsName%%&lt;/span&gt;
+...
+&lt;span class="blue"&gt;Namespace&lt;/span&gt; Infragistics.Samples.Common
+    &lt;span class="comment"&gt;''' &amp;lt;summary&amp;gt;&lt;/span&gt;
+    &lt;span class="comment"&gt;''' Represents a custom type of ContourAreaSeries for %%ControlsName%% control.&lt;/span&gt;
+    &lt;span class="comment"&gt;''' &amp;lt;/summary&amp;gt;&lt;/span&gt;
+    &lt;span class="blue"&gt;Public&lt;/span&gt; &lt;span class="blue"&gt;Class&lt;/span&gt; ContourAreaSeries
+        &lt;span class="blue"&gt;Inherits&lt;/span&gt; Series
+        &lt;span class="blue"&gt;Public&lt;/span&gt; &lt;span class="blue"&gt;Sub&lt;/span&gt; &lt;span class="blue"&gt;New&lt;/span&gt;()
+            &lt;span class="comment"&gt;' creates default style for the series from generic resource dictionary&lt;/span&gt;
+            &lt;span class="comment"&gt;' which should be added to generic.xaml or merged with resources of the application &lt;/span&gt;
+            &lt;span class="blue"&gt;Me&lt;/span&gt;.DefaultStyleKey = &lt;span class="blue"&gt;GetType&lt;/span&gt;(ContourAreaSeries)
+        &lt;span class="blue"&gt;End&lt;/span&gt; &lt;span class="blue"&gt;Sub&lt;/span&gt;
+    &lt;span class="blue"&gt;End&lt;/span&gt; &lt;span class="blue"&gt;Class&lt;/span&gt;
+&lt;span class="blue"&gt;End&lt;/span&gt; &lt;span class="blue"&gt;Namespace&lt;/span&gt;&lt;/code&gt;
+&lt;/pre&gt;
+        &lt;/div&gt;
+
+        &lt;div class="LanguageSpecific" id="Example_CS" style="display: block;"&gt;
+            &lt;p&gt;&lt;span class="lang"&gt;&lt;b&gt;In C#:&lt;/b&gt;&lt;/span&gt;&lt;/p&gt;
+            &lt;pre&gt;&lt;code class="code"&gt;&lt;span class="blue"&gt;using&lt;/span&gt; Infragistics.Controls.Charts; &lt;span class="comment"&gt;// provides elements of %%ControlsName%%&lt;/span&gt;
+...
+&lt;span class="blue"&gt;namespace&lt;/span&gt; Infragistics.Samples.Common
+{
+  &lt;span class="comment"&gt;/// &amp;lt;summary&amp;gt;&lt;/span&gt;
+  &lt;span class="comment"&gt;/// Represents a custom type of ContourAreaSeries for %%ControlsName%% control.&lt;/span&gt;
+  &lt;span class="comment"&gt;/// &amp;lt;/summary&amp;gt;&lt;/span&gt;
+  &lt;span class="blue"&gt;public&lt;/span&gt; &lt;span class="blue"&gt;class&lt;/span&gt; ContourAreaSeries : Series
+  {
+    &lt;span class="blue"&gt;public&lt;/span&gt; ContourAreaSeries()
+    {
+        &lt;span class="comment"&gt;// creates default style for the series from generic resource dictionary&lt;/span&gt;
+        &lt;span class="comment"&gt;// which should be added to generic.xaml or merged with resources of the application &lt;/span&gt;
+        &lt;span class="blue"&gt;this&lt;/span&gt;.DefaultStyleKey = &lt;span class="blue"&gt;typeof&lt;/span&gt;(ContourAreaSeries);
+    }
+  }
+}&lt;/code&gt;
+&lt;/pre&gt;
+        &lt;/div&gt;
+    &lt;/li&gt;
+
+    &lt;li&gt;Creating Default Style – Each series must have a default style defined in application generic.xaml or in a resource dictionary that is merged with application resources. The following code snippet shows how to define default style for the ContourAreaSeries type.
+
+        &lt;div class="LanguageSpecific" id="Example_XAML" style="display: block;" style="hs-build-flags: SL,WPF,WINPHONE,WINRT"&gt;
+            &lt;p&gt;&lt;span class="lang"&gt;&lt;b&gt;In XAML:&lt;/b&gt;&lt;/span&gt;&lt;/p&gt;
+            &lt;pre&gt;&lt;code class="code"&gt;&lt;span class="blue"&gt;&amp;lt;&lt;/span&gt;&lt;span class="brownish"&gt;ResourceDictionary&lt;/span&gt;
+&lt;span class="blue"&gt;...&lt;/span&gt;&lt;span class="blue"&gt;&amp;gt;&lt;/span&gt;
+
+    &lt;span class="comment"&gt;&amp;lt;!-- generic style for the ContourAreaSeries series type --&amp;gt;&lt;/span&gt;
+    &lt;span class="blue"&gt;&amp;lt;&lt;/span&gt;&lt;span class="brownish"&gt;Style&lt;/span&gt; &lt;span class="red"&gt;TargetType&lt;/span&gt;&lt;span class="blue"&gt;="custom:ContourAreaSeries"&lt;/span&gt;&lt;span class="blue"&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class="blue"&gt;&amp;lt;&lt;/span&gt;&lt;span class="brownish"&gt;Setter&lt;/span&gt; &lt;span class="red"&gt;Property&lt;/span&gt;&lt;span class="blue"&gt;="Thickness"&lt;/span&gt; &lt;span class="red"&gt;Value&lt;/span&gt;&lt;span class="blue"&gt;="4"&lt;/span&gt; &lt;span class="blue"&gt;/&amp;gt;&lt;/span&gt;
+        &lt;span class="blue"&gt;&amp;lt;&lt;/span&gt;&lt;span class="brownish"&gt;Setter&lt;/span&gt; &lt;span class="red"&gt;Property&lt;/span&gt;&lt;span class="blue"&gt;="Template"&lt;/span&gt;&lt;span class="blue"&gt;&amp;gt;&lt;/span&gt;
+            &lt;span class="blue"&gt;&amp;lt;&lt;/span&gt;&lt;span class="brownish"&gt;Setter.Value&lt;/span&gt;&lt;span class="blue"&gt;&amp;gt;&lt;/span&gt;
+                &lt;span class="blue"&gt;&amp;lt;&lt;/span&gt;&lt;span class="brownish"&gt;ControlTemplate&lt;/span&gt; &lt;span class="red"&gt;TargetType&lt;/span&gt;&lt;span class="blue"&gt;="custom:ContourAreaSeries"&lt;/span&gt;&lt;span class="blue"&gt;&amp;gt;&lt;/span&gt;
+                    &lt;span class="blue"&gt;&amp;lt;&lt;/span&gt;&lt;span class="brownish"&gt;Canvas&lt;/span&gt; &lt;span class="red"&gt;Name&lt;/span&gt;&lt;span class="blue"&gt;="RootCanvas"&lt;/span&gt; &lt;span class="blue"&gt;/&amp;gt;&lt;/span&gt;
+                &lt;span class="blue"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="brownish"&gt;ControlTemplate&lt;/span&gt;&lt;span class="blue"&gt;&amp;gt;&lt;/span&gt;
+            &lt;span class="blue"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="brownish"&gt;Setter.Value&lt;/span&gt;&lt;span class="blue"&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class="blue"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="brownish"&gt;Setter&lt;/span&gt;&lt;span class="blue"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="blue"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="brownish"&gt;Style&lt;/span&gt;&lt;span class="blue"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="blue"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="brownish"&gt;ResourceDictionary&lt;/span&gt;&lt;span class="blue"&gt;&amp;gt;&lt;/span&gt;&lt;/code&gt;
+&lt;/pre&gt;
+        &lt;/div&gt;
+    &lt;/li&gt;
+
+    &lt;li&gt;Integrating Axes - This code snippet shows how to create two dependency properties that are used for binding the custom series to x-axis and y-axis. Also it shows how to attach, using lambda expressions, event handlers that are raised when new values are assigned to these properties.&lt;br&gt;
+        &lt;br&gt;
+
+        &lt;div class="ig-note"&gt;
+            &lt;span class="ig-note-caption"&gt;Note:&lt;/span&gt; Although, this code uses NumericXAxis and NumericYAxis for types of x-axis and y-axis properties, you are not limited to these axes as you can use other types of axes as well. Refer to the Axes topic for more information on existing types of axes in the %%ControlsName%% control.
+        &lt;/div&gt;
+
+        &lt;div class="LanguageSpecific" id="Example_VB" style="display: block;"&gt;
+            &lt;p&gt;&lt;span class="lang"&gt;&lt;b&gt;In Visual Basic:&lt;/b&gt;&lt;/span&gt;&lt;/p&gt;
+            &lt;pre&gt;&lt;code class="code"&gt;&lt;span class="blue"&gt;#Region&lt;/span&gt; &lt;span class="string"&gt;"Property - XAxis"&lt;/span&gt;
+&lt;span class="blue"&gt;Public&lt;/span&gt; &lt;span class="blue"&gt;Const&lt;/span&gt; XAxisPropertyName &lt;span class="blue"&gt;As&lt;/span&gt; &lt;span class="blue"&gt;String&lt;/span&gt; = &lt;span class="string"&gt;"XAxis"&lt;/span&gt;
+&lt;span class="blue"&gt;Public&lt;/span&gt; &lt;span class="blue"&gt;Shared&lt;/span&gt; &lt;span class="blue"&gt;ReadOnly&lt;/span&gt; XAxisProperty &lt;span class="blue"&gt;As&lt;/span&gt; DependencyProperty = DependencyProperty.Register(XAxisPropertyName, &lt;span class="blue"&gt;GetType&lt;/span&gt;(NumericXAxis), &lt;span class="blue"&gt;GetType&lt;/span&gt;(ContourAreaSeries), &lt;span class="blue"&gt;New&lt;/span&gt; PropertyMetadata(&lt;span class="blue"&gt;Nothing&lt;/span&gt;, &lt;span class="blue"&gt;Function&lt;/span&gt;(sender, e) 
+&lt;span class="blue"&gt;Dim&lt;/span&gt; series &lt;span class="blue"&gt;As&lt;/span&gt; ContourAreaSeries = &lt;span class="blue"&gt;DirectCast&lt;/span&gt;(sender, ContourAreaSeries)
+series.RaisePropertyChanged(XAxisPropertyName, e.OldValue, e.NewValue)
+
+&lt;span class="blue"&gt;End&lt;/span&gt; &lt;span class="blue"&gt;Function&lt;/span&gt;))
+&lt;span class="blue"&gt;Public&lt;/span&gt; &lt;span class="blue"&gt;Property&lt;/span&gt; XAxis() &lt;span class="blue"&gt;As&lt;/span&gt; NumericXAxis
+    &lt;span class="blue"&gt;Get&lt;/span&gt;
+        &lt;span class="blue"&gt;Return&lt;/span&gt; &lt;span class="blue"&gt;TryCast&lt;/span&gt;(&lt;span class="blue"&gt;Me&lt;/span&gt;.GetValue(XAxisProperty), NumericXAxis)
+    &lt;span class="blue"&gt;End&lt;/span&gt; &lt;span class="blue"&gt;Get&lt;/span&gt;
+    &lt;span class="blue"&gt;Set&lt;/span&gt;
+        &lt;span class="blue"&gt;Me&lt;/span&gt;.SetValue(XAxisProperty, value)
+    &lt;span class="blue"&gt;End&lt;/span&gt; &lt;span class="blue"&gt;Set&lt;/span&gt;
+&lt;span class="blue"&gt;End&lt;/span&gt; &lt;span class="blue"&gt;Property&lt;/span&gt;
+&lt;span class="blue"&gt;#End Region&lt;/span&gt;
+
+&lt;span class="blue"&gt;#Region&lt;/span&gt; &lt;span class="string"&gt;"Property - YAxis"&lt;/span&gt;
+&lt;span class="blue"&gt;Public&lt;/span&gt; &lt;span class="blue"&gt;Const&lt;/span&gt; YAxisPropertyName &lt;span class="blue"&gt;As&lt;/span&gt; &lt;span class="blue"&gt;String&lt;/span&gt; = &lt;span class="string"&gt;"YAxis"&lt;/span&gt;
+&lt;span class="blue"&gt;Public&lt;/span&gt; &lt;span class="blue"&gt;Shared&lt;/span&gt; &lt;span class="blue"&gt;ReadOnly&lt;/span&gt; YAxisProperty &lt;span class="blue"&gt;As&lt;/span&gt; DependencyProperty = DependencyProperty.Register(YAxisPropertyName, &lt;span class="blue"&gt;GetType&lt;/span&gt;(NumericYAxis), &lt;span class="blue"&gt;GetType&lt;/span&gt;(ContourAreaSeries), &lt;span class="blue"&gt;New&lt;/span&gt; PropertyMetadata(&lt;span class="blue"&gt;Nothing&lt;/span&gt;, &lt;span class="blue"&gt;Function&lt;/span&gt;(sender, e) 
+&lt;span class="blue"&gt;Dim&lt;/span&gt; series &lt;span class="blue"&gt;As&lt;/span&gt; ContourAreaSeries = &lt;span class="blue"&gt;DirectCast&lt;/span&gt;(sender, ContourAreaSeries)
+series.RaisePropertyChanged(YAxisPropertyName, e.OldValue, e.NewValue)
+
+&lt;span class="blue"&gt;End&lt;/span&gt; &lt;span class="blue"&gt;Function&lt;/span&gt;))
+&lt;span class="blue"&gt;Public&lt;/span&gt; &lt;span class="blue"&gt;Property&lt;/span&gt; YAxis() &lt;span class="blue"&gt;As&lt;/span&gt; NumericYAxis
+    &lt;span class="blue"&gt;Get&lt;/span&gt;
+        &lt;span class="blue"&gt;Return&lt;/span&gt; &lt;span class="blue"&gt;TryCast&lt;/span&gt;(&lt;span class="blue"&gt;Me&lt;/span&gt;.GetValue(YAxisProperty), NumericYAxis)
+    &lt;span class="blue"&gt;End&lt;/span&gt; &lt;span class="blue"&gt;Get&lt;/span&gt;
+    &lt;span class="blue"&gt;Set&lt;/span&gt;
+        &lt;span class="blue"&gt;Me&lt;/span&gt;.SetValue(YAxisProperty, value)
+    &lt;span class="blue"&gt;End&lt;/span&gt; &lt;span class="blue"&gt;Set&lt;/span&gt;
+&lt;span class="blue"&gt;End&lt;/span&gt; &lt;span class="blue"&gt;Property&lt;/span&gt;
+&lt;span class="blue"&gt;#End Region&lt;/span&gt;&lt;/code&gt;
+&lt;/pre&gt;
+        &lt;/div&gt;
+
+        &lt;div class="LanguageSpecific" id="Example_CS" style="display: block;"&gt;
+            &lt;p&gt;&lt;span class="lang"&gt;&lt;b&gt;In C#:&lt;/b&gt;&lt;/span&gt;&lt;/p&gt;
+            &lt;pre&gt;&lt;code class="code"&gt;&lt;span class="blue"&gt;#region&lt;/span&gt; Property - XAxis
+&lt;span class="blue"&gt;public&lt;/span&gt; &lt;span class="blue"&gt;const&lt;/span&gt; &lt;span class="blue"&gt;string&lt;/span&gt; XAxisPropertyName = &lt;span class="string"&gt;"XAxis"&lt;/span&gt;;
+&lt;span class="blue"&gt;public&lt;/span&gt; &lt;span class="blue"&gt;static&lt;/span&gt; &lt;span class="blue"&gt;readonly&lt;/span&gt; DependencyProperty XAxisProperty =
+    DependencyProperty.Register(XAxisPropertyName, &lt;span class="blue"&gt;typeof&lt;/span&gt;(NumericXAxis),
+    &lt;span class="blue"&gt;typeof&lt;/span&gt;(ContourAreaSeries), &lt;span class="blue"&gt;new&lt;/span&gt; PropertyMetadata(&lt;span class="blue"&gt;null&lt;/span&gt;, (sender, e) =&amp;gt;
+    {
+        ContourAreaSeries series = (ContourAreaSeries)sender;
+        series.RaisePropertyChanged(XAxisPropertyName, e.OldValue, e.NewValue);
+    }));
+&lt;span class="blue"&gt;public&lt;/span&gt; NumericXAxis XAxis
+{
+    get
+    {
+        &lt;span class="blue"&gt;return&lt;/span&gt; &lt;span class="blue"&gt;this&lt;/span&gt;.GetValue(XAxisProperty) &lt;span class="blue"&gt;as&lt;/span&gt; NumericXAxis;
+    }
+    set
+    {
+        &lt;span class="blue"&gt;this&lt;/span&gt;.SetValue(XAxisProperty, &lt;span class="blue"&gt;value&lt;/span&gt;);
+    }
+}
+&lt;span class="blue"&gt;#endregion&lt;/span&gt;
+
+&lt;span class="blue"&gt;#region&lt;/span&gt; Property - YAxis
+&lt;span class="blue"&gt;public&lt;/span&gt; &lt;span class="blue"&gt;const&lt;/span&gt; &lt;span class="blue"&gt;string&lt;/span&gt; YAxisPropertyName = &lt;span class="string"&gt;"YAxis"&lt;/span&gt;;
+&lt;span class="blue"&gt;public&lt;/span&gt; &lt;span class="blue"&gt;static&lt;/span&gt; &lt;span class="blue"&gt;readonly&lt;/span&gt; DependencyProperty YAxisProperty =
+    DependencyProperty.Register(YAxisPropertyName, &lt;span class="blue"&gt;typeof&lt;/span&gt;(NumericYAxis),
+    &lt;span class="blue"&gt;typeof&lt;/span&gt;(ContourAreaSeries), &lt;span class="blue"&gt;new&lt;/span&gt; PropertyMetadata(&lt;span class="blue"&gt;null&lt;/span&gt;, (sender, e) =&amp;gt;
+    {
+        ContourAreaSeries series = (ContourAreaSeries)sender;
+        series.RaisePropertyChanged(YAxisPropertyName, e.OldValue, e.NewValue);
+    }));
+&lt;span class="blue"&gt;public&lt;/span&gt; NumericYAxis YAxis
+{
+    get
+    {
+        &lt;span class="blue"&gt;return&lt;/span&gt; &lt;span class="blue"&gt;this&lt;/span&gt;.GetValue(YAxisProperty) &lt;span class="blue"&gt;as&lt;/span&gt; NumericYAxis;
+    }
+    set
+    {
+        &lt;span class="blue"&gt;this&lt;/span&gt;.SetValue(YAxisProperty, &lt;span class="blue"&gt;value&lt;/span&gt;);
+    }
+}
+&lt;span class="blue"&gt;#endregion&lt;/span&gt;&lt;/code&gt;
+&lt;/pre&gt;
+        &lt;/div&gt;
+    &lt;/li&gt;
+
+    &lt;li&gt;Overriding Series Methods – This code snippet shows series methods that must be overridden in order to render the series when specific properties of the custom series have changed.
+
+        &lt;div class="LanguageSpecific" id="Example_VB" style="display: block;"&gt;
+            &lt;p&gt;&lt;span class="lang"&gt;&lt;b&gt;In Visual Basic:&lt;/b&gt;&lt;/span&gt;&lt;/p&gt;
+            &lt;pre&gt;&lt;code class="code"&gt;&lt;span class="comment"&gt;''' &amp;lt;summary&amp;gt;&lt;/span&gt;
+&lt;span class="comment"&gt;''' Calls rendering of this series any time the Viewport rect has changed&lt;/span&gt;
+&lt;span class="comment"&gt;''' &amp;lt;/summary&amp;gt;&lt;/span&gt;
+&lt;span class="blue"&gt;Protected&lt;/span&gt; &lt;span class="blue"&gt;Overrides&lt;/span&gt; &lt;span class="blue"&gt;Sub&lt;/span&gt; ViewportRectChangedOverride(oldViewportRect &lt;span class="blue"&gt;As&lt;/span&gt; Rect, newViewportRect &lt;span class="blue"&gt;As&lt;/span&gt; Rect)
+    &lt;span class="blue"&gt;MyBase&lt;/span&gt;.ViewportRectChangedOverride(oldViewportRect, newViewportRect)
+    &lt;span class="blue"&gt;Me&lt;/span&gt;.RenderSeries(&lt;span class="blue"&gt;False&lt;/span&gt;)
+&lt;span class="blue"&gt;End&lt;/span&gt; &lt;span class="blue"&gt;Sub&lt;/span&gt;
+&lt;span class="comment"&gt;''' &amp;lt;summary&amp;gt;&lt;/span&gt;
+&lt;span class="comment"&gt;''' Calls rendering of this series any time the Window rect has changed&lt;/span&gt;
+&lt;span class="comment"&gt;''' &amp;lt;/summary&amp;gt;&lt;/span&gt;
+&lt;span class="blue"&gt;Protected&lt;/span&gt; &lt;span class="blue"&gt;Overrides&lt;/span&gt; &lt;span class="blue"&gt;Sub&lt;/span&gt; WindowRectChangedOverride(oldWindowRect &lt;span class="blue"&gt;As&lt;/span&gt; Rect, newWindowRect &lt;span class="blue"&gt;As&lt;/span&gt; Rect)
+    &lt;span class="blue"&gt;MyBase&lt;/span&gt;.WindowRectChangedOverride(oldWindowRect, newWindowRect)
+    &lt;span class="blue"&gt;Me&lt;/span&gt;.RenderSeries(&lt;span class="blue"&gt;False&lt;/span&gt;)
+&lt;span class="blue"&gt;End&lt;/span&gt; &lt;span class="blue"&gt;Sub&lt;/span&gt;
+&lt;span class="comment"&gt;''' &amp;lt;summary&amp;gt;&lt;/span&gt;
+&lt;span class="comment"&gt;''' Checks if series should be re-draw any time a property of the series has changed&lt;/span&gt;
+&lt;span class="comment"&gt;''' &amp;lt;/summary&amp;gt;&lt;/span&gt;
+&lt;span class="blue"&gt;Protected&lt;/span&gt; &lt;span class="blue"&gt;Overrides&lt;/span&gt; &lt;span class="blue"&gt;Sub&lt;/span&gt; PropertyUpdatedOverride(sender &lt;span class="blue"&gt;As&lt;/span&gt; &lt;span class="blue"&gt;Object&lt;/span&gt;, propertyName &lt;span class="blue"&gt;As&lt;/span&gt; &lt;span class="blue"&gt;String&lt;/span&gt;, oldValue &lt;span class="blue"&gt;As&lt;/span&gt; &lt;span class="blue"&gt;Object&lt;/span&gt;, newValue &lt;span class="blue"&gt;As&lt;/span&gt; &lt;span class="blue"&gt;Object&lt;/span&gt;)
+    &lt;span class="blue"&gt;MyBase&lt;/span&gt;.PropertyUpdatedOverride(sender, propertyName, oldValue, newValue)
+    &lt;span class="blue"&gt;Select&lt;/span&gt; &lt;span class="blue"&gt;Case&lt;/span&gt; propertyName
+                      &lt;span class="comment"&gt;' renders series on changes made to the items source&lt;/span&gt;
+        &lt;span class="blue"&gt;Case&lt;/span&gt; ItemsSourcePropertyName
+            &lt;span class="blue"&gt;Me&lt;/span&gt;.RenderSeries(&lt;span class="blue"&gt;False&lt;/span&gt;)
+            &lt;span class="blue"&gt;If&lt;/span&gt; &lt;span class="blue"&gt;Me&lt;/span&gt;.XAxis IsNot &lt;span class="blue"&gt;Nothing&lt;/span&gt; &lt;span class="blue"&gt;Then&lt;/span&gt;
+                &lt;span class="blue"&gt;Me&lt;/span&gt;.XAxis.UpdateRange()
+            &lt;span class="blue"&gt;End&lt;/span&gt; &lt;span class="blue"&gt;If&lt;/span&gt;
+            &lt;span class="blue"&gt;If&lt;/span&gt; &lt;span class="blue"&gt;Me&lt;/span&gt;.YAxis IsNot &lt;span class="blue"&gt;Nothing&lt;/span&gt; &lt;span class="blue"&gt;Then&lt;/span&gt;
+                &lt;span class="blue"&gt;Me&lt;/span&gt;.YAxis.UpdateRange()
+            &lt;span class="blue"&gt;End&lt;/span&gt; &lt;span class="blue"&gt;If&lt;/span&gt;
+            &lt;span class="blue"&gt;Exit&lt;/span&gt; &lt;span class="blue"&gt;Select&lt;/span&gt;
+
+                      &lt;span class="comment"&gt;' renders series if a new the x-axis is assigned&lt;/span&gt;
+        Cae XAxisPropertyName
+            &lt;span class="blue"&gt;If&lt;/span&gt; oldValue IsNot &lt;span class="blue"&gt;Nothing&lt;/span&gt; &lt;span class="blue"&gt;Then&lt;/span&gt;
+                &lt;span class="blue"&gt;DirectCast&lt;/span&gt;(oldValue, Axis).DeregisterSeries(&lt;span class="blue"&gt;Me&lt;/span&gt;)
+            &lt;span class="blue"&gt;End&lt;/span&gt; &lt;span class="blue"&gt;If&lt;/span&gt;
+
+            &lt;span class="blue"&gt;If&lt;/span&gt; newValue IsNot &lt;span class="blue"&gt;Nothing&lt;/span&gt; &lt;span class="blue"&gt;Then&lt;/span&gt;
+                &lt;span class="blue"&gt;DirectCast&lt;/span&gt;(newValue, Axis).RegisterSeries(&lt;span class="blue"&gt;Me&lt;/span&gt;)
+            &lt;span class="blue"&gt;End&lt;/span&gt; &lt;span class="blue"&gt;If&lt;/span&gt;
+
+            &lt;span class="blue"&gt;If&lt;/span&gt; (XAxis IsNot &lt;span class="blue"&gt;Nothing&lt;/span&gt; &lt;span class="blue"&gt;AndAlso&lt;/span&gt; &lt;span class="blue"&gt;Not&lt;/span&gt; XAxis.UpdateRange()) &lt;span class="blue"&gt;OrElse&lt;/span&gt; (newValue &lt;span class="blue"&gt;Is&lt;/span&gt; &lt;span class="blue"&gt;Nothing&lt;/span&gt; &lt;span class="blue"&gt;AndAlso&lt;/span&gt; oldValue IsNot &lt;span class="blue"&gt;Nothing&lt;/span&gt;) &lt;span class="blue"&gt;Then&lt;/span&gt;
+                RenderSeries(&lt;span class="blue"&gt;False&lt;/span&gt;)
+            &lt;span class="blue"&gt;End&lt;/span&gt; &lt;span class="blue"&gt;If&lt;/span&gt;
+            &lt;span class="blue"&gt;Exit&lt;/span&gt; &lt;span class="blue"&gt;Select&lt;/span&gt;
+
+                      &lt;span class="comment"&gt;' renders series if a new the y-axis is assigned&lt;/span&gt;
+        &lt;span class="blue"&gt;Case&lt;/span&gt; YAxisPropertyName
+            &lt;span class="blue"&gt;If&lt;/span&gt; oldValue IsNot &lt;span class="blue"&gt;Nothing&lt;/span&gt; &lt;span class="blue"&gt;Then&lt;/span&gt;
+                &lt;span class="blue"&gt;DirectCast&lt;/span&gt;(oldValue, Axis).DeregisterSeries(&lt;span class="blue"&gt;Me&lt;/span&gt;)
+            &lt;span class="blue"&gt;End&lt;/span&gt; &lt;span class="blue"&gt;If&lt;/span&gt;
+
+            &lt;span class="blue"&gt;If&lt;/span&gt; newValue IsNot &lt;span class="blue"&gt;Nothing&lt;/span&gt; &lt;span class="blue"&gt;Then&lt;/span&gt;
+                &lt;span class="blue"&gt;DirectCast&lt;/span&gt;(newValue, Axis).RegisterSeries(&lt;span class="blue"&gt;Me&lt;/span&gt;)
+            &lt;span class="blue"&gt;End&lt;/span&gt; &lt;span class="blue"&gt;If&lt;/span&gt;
+            &lt;span class="blue"&gt;If&lt;/span&gt; (YAxis IsNot &lt;span class="blue"&gt;Nothing&lt;/span&gt; &lt;span class="blue"&gt;AndAlso&lt;/span&gt; &lt;span class="blue"&gt;Not&lt;/span&gt; YAxis.UpdateRange()) &lt;span class="blue"&gt;OrElse&lt;/span&gt; (newValue &lt;span class="blue"&gt;Is&lt;/span&gt; &lt;span class="blue"&gt;Nothing&lt;/span&gt; &lt;span class="blue"&gt;AndAlso&lt;/span&gt; oldValue IsNot &lt;span class="blue"&gt;Nothing&lt;/span&gt;) &lt;span class="blue"&gt;Then&lt;/span&gt;
+                RenderSeries(&lt;span class="blue"&gt;False&lt;/span&gt;)
+            &lt;span class="blue"&gt;End&lt;/span&gt; &lt;span class="blue"&gt;If&lt;/span&gt;
+            &lt;span class="blue"&gt;Exit&lt;/span&gt; &lt;span class="blue"&gt;Select&lt;/span&gt;
+    &lt;span class="blue"&gt;End&lt;/span&gt; &lt;span class="blue"&gt;Select&lt;/span&gt;
+&lt;span class="blue"&gt;End&lt;/span&gt; &lt;span class="blue"&gt;Sub&lt;/span&gt;
+&lt;span class="comment"&gt;''' &amp;lt;summary&amp;gt;&lt;/span&gt;
+&lt;span class="comment"&gt;''' Calculates range of a given axis based on  X/Y values of data items&lt;/span&gt;
+&lt;span class="comment"&gt;''' &amp;lt;/summary&amp;gt;&lt;/span&gt;
+&lt;span class="comment"&gt;''' &amp;lt;param name="axis"&amp;gt;&amp;lt;/param&amp;gt;&lt;/span&gt;
+&lt;span class="comment"&gt;''' &amp;lt;returns&amp;gt;&amp;lt;/returns&amp;gt;&lt;/span&gt;
+&lt;span class="blue"&gt;Protected&lt;/span&gt; &lt;span class="blue"&gt;Overrides&lt;/span&gt; &lt;span class="blue"&gt;Function&lt;/span&gt; GetRange(axis &lt;span class="blue"&gt;As&lt;/span&gt; Axis) &lt;span class="blue"&gt;As&lt;/span&gt; AxisRange
+    &lt;span class="blue"&gt;Dim&lt;/span&gt; myData &lt;span class="blue"&gt;As&lt;/span&gt; ContourData = &lt;span class="blue"&gt;TryCast&lt;/span&gt;(&lt;span class="blue"&gt;Me&lt;/span&gt;.ItemsSource, ContourData)
+    &lt;span class="blue"&gt;If&lt;/span&gt; myData &lt;span class="blue"&gt;Is&lt;/span&gt; &lt;span class="blue"&gt;Nothing&lt;/span&gt; &lt;span class="blue"&gt;Then&lt;/span&gt;
+        &lt;span class="blue"&gt;Return&lt;/span&gt; &lt;span class="blue"&gt;MyBase&lt;/span&gt;.GetRange(axis)
+    &lt;span class="blue"&gt;End&lt;/span&gt; &lt;span class="blue"&gt;If&lt;/span&gt;
+           &lt;span class="comment"&gt;' for x-axis range use X values of data points&lt;/span&gt;
+    &lt;span class="blue"&gt;If&lt;/span&gt; axis = &lt;span class="blue"&gt;Me&lt;/span&gt;.XAxis &lt;span class="blue"&gt;Then&lt;/span&gt;
+        &lt;span class="blue"&gt;Dim&lt;/span&gt; min &lt;span class="blue"&gt;As&lt;/span&gt; &lt;span class="blue"&gt;Double&lt;/span&gt; = &lt;span class="blue"&gt;Double&lt;/span&gt;.MaxValue
+        &lt;span class="blue"&gt;Dim&lt;/span&gt; max &lt;span class="blue"&gt;As&lt;/span&gt; &lt;span class="blue"&gt;Double&lt;/span&gt; = &lt;span class="blue"&gt;Double&lt;/span&gt;.MinValue
+        &lt;span class="blue"&gt;For&lt;/span&gt; &lt;span class="blue"&gt;Each&lt;/span&gt; dataPoint &lt;span class="blue"&gt;As&lt;/span&gt; ContourDataPoint &lt;span class="blue"&gt;In&lt;/span&gt; myData
+            min = System.Math.Min(min, dataPoint.X)
+            max = System.Math.Max(max, dataPoint.X)
+        &lt;span class="blue"&gt;Next&lt;/span&gt;
+        &lt;span class="blue"&gt;Return&lt;/span&gt; &lt;span class="blue"&gt;New&lt;/span&gt; AxisRange(min, max)
+           &lt;span class="comment"&gt;' for y-axis range use Y values of data points&lt;/span&gt;
+    &lt;span class="blue"&gt;ElseIf&lt;/span&gt; axis = &lt;span class="blue"&gt;Me&lt;/span&gt;.YAxis &lt;span class="blue"&gt;Then&lt;/span&gt;
+        &lt;span class="blue"&gt;Dim&lt;/span&gt; min &lt;span class="blue"&gt;As&lt;/span&gt; &lt;span class="blue"&gt;Double&lt;/span&gt; = &lt;span class="blue"&gt;Double&lt;/span&gt;.MaxValue
+        &lt;span class="blue"&gt;Dim&lt;/span&gt; max &lt;span class="blue"&gt;As&lt;/span&gt; &lt;span class="blue"&gt;Double&lt;/span&gt; = &lt;span class="blue"&gt;Double&lt;/span&gt;.MinValue
+        &lt;span class="blue"&gt;For&lt;/span&gt; &lt;span class="blue"&gt;Each&lt;/span&gt; dataPoint &lt;span class="blue"&gt;As&lt;/span&gt; ContourDataPoint &lt;span class="blue"&gt;In&lt;/span&gt; myData
+            min = System.Math.Min(min, dataPoint.Y)
+            max = System.Math.Max(max, dataPoint.Y)
+        &lt;span class="blue"&gt;Next&lt;/span&gt;
+        &lt;span class="blue"&gt;Return&lt;/span&gt; &lt;span class="blue"&gt;New&lt;/span&gt; AxisRange(min, max)
+    &lt;span class="blue"&gt;Else&lt;/span&gt;
+        &lt;span class="blue"&gt;Return&lt;/span&gt; &lt;span class="blue"&gt;MyBase&lt;/span&gt;.GetRange(axis)
+    &lt;span class="blue"&gt;End&lt;/span&gt; &lt;span class="blue"&gt;If&lt;/span&gt;
+&lt;span class="blue"&gt;End&lt;/span&gt; &lt;span class="blue"&gt;Function&lt;/span&gt;&lt;/code&gt;
+&lt;/pre&gt;
+        &lt;/div&gt;
+
+        &lt;div class="LanguageSpecific" id="Example_CS" style="display: block;"&gt;
+            &lt;p&gt;&lt;span class="lang"&gt;&lt;b&gt;In C#:&lt;/b&gt;&lt;/span&gt;&lt;/p&gt;
+            &lt;pre&gt;&lt;code class="code"&gt;&lt;span class="comment"&gt;/// &amp;lt;summary&amp;gt;&lt;/span&gt;
+&lt;span class="comment"&gt;/// Calls rendering of this series any time the Viewport rect has changed&lt;/span&gt;
+&lt;span class="comment"&gt;/// &amp;lt;/summary&amp;gt;&lt;/span&gt;
+&lt;span class="blue"&gt;protected&lt;/span&gt; &lt;span class="blue"&gt;override&lt;/span&gt; &lt;span class="blue"&gt;void&lt;/span&gt; ViewportRectChangedOverride(Rect oldViewportRect, Rect newViewportRect)
+{
+    &lt;span class="blue"&gt;base&lt;/span&gt;.ViewportRectChangedOverride(oldViewportRect, newViewportRect);
+    &lt;span class="blue"&gt;this&lt;/span&gt;.RenderSeries(&lt;span class="blue"&gt;false&lt;/span&gt;);
+}
+&lt;span class="comment"&gt;/// &amp;lt;summary&amp;gt;&lt;/span&gt;
+&lt;span class="comment"&gt;/// Calls rendering of this series any time the Window rect has changed&lt;/span&gt;
+&lt;span class="comment"&gt;/// &amp;lt;/summary&amp;gt;&lt;/span&gt;
+&lt;span class="blue"&gt;protected&lt;/span&gt; &lt;span class="blue"&gt;override&lt;/span&gt; &lt;span class="blue"&gt;void&lt;/span&gt; WindowRectChangedOverride(Rect oldWindowRect, Rect newWindowRect)
+{
+    &lt;span class="blue"&gt;base&lt;/span&gt;.WindowRectChangedOverride(oldWindowRect, newWindowRect);
+    &lt;span class="blue"&gt;this&lt;/span&gt;.RenderSeries(&lt;span class="blue"&gt;false&lt;/span&gt;);
+}
+
+&lt;span class="comment"&gt;/// &amp;lt;summary&amp;gt;&lt;/span&gt;
+&lt;span class="comment"&gt;/// Checks if series should be re-draw any time a property of the series has changed&lt;/span&gt;
+&lt;span class="comment"&gt;/// &amp;lt;/summary&amp;gt;&lt;/span&gt;
+&lt;span class="blue"&gt;protected&lt;/span&gt; &lt;span class="blue"&gt;override&lt;/span&gt; &lt;span class="blue"&gt;void&lt;/span&gt; PropertyUpdatedOverride(&lt;span class="blue"&gt;object&lt;/span&gt; sender, &lt;span class="blue"&gt;string&lt;/span&gt; propertyName, &lt;span class="blue"&gt;object&lt;/span&gt; oldValue, &lt;span class="blue"&gt;object&lt;/span&gt; newValue)
+{
+    &lt;span class="blue"&gt;base&lt;/span&gt;.PropertyUpdatedOverride(sender, propertyName, oldValue, newValue);
+    &lt;span class="blue"&gt;switch&lt;/span&gt; (propertyName)
+    {
+        &lt;span class="comment"&gt;// renders series on changes made to the items source&lt;/span&gt;
+        &lt;span class="blue"&gt;case&lt;/span&gt; ItemsSourcePropertyName:
+            &lt;span class="blue"&gt;this&lt;/span&gt;.RenderSeries(&lt;span class="blue"&gt;false&lt;/span&gt;);
+            &lt;span class="blue"&gt;if&lt;/span&gt; (&lt;span class="blue"&gt;this&lt;/span&gt;.XAxis != &lt;span class="blue"&gt;null&lt;/span&gt;)
+            {
+                &lt;span class="blue"&gt;this&lt;/span&gt;.XAxis.UpdateRange();
+            }
+            &lt;span class="blue"&gt;if&lt;/span&gt; (&lt;span class="blue"&gt;this&lt;/span&gt;.YAxis != &lt;span class="blue"&gt;null&lt;/span&gt;)
+            {
+                &lt;span class="blue"&gt;this&lt;/span&gt;.YAxis.UpdateRange();
+            }
+            &lt;span class="blue"&gt;break&lt;/span&gt;;
+
+        &lt;span class="comment"&gt;// renders series if a new the x-axis is assigned&lt;/span&gt;
+        &lt;span class="blue"&gt;case&lt;/span&gt; XAxisPropertyName:
+            &lt;span class="blue"&gt;if&lt;/span&gt; (oldValue != &lt;span class="blue"&gt;null&lt;/span&gt;)
+            {
+                ((Axis)oldValue).DeregisterSeries(&lt;span class="blue"&gt;this&lt;/span&gt;);
+            }
+
+            &lt;span class="blue"&gt;if&lt;/span&gt; (newValue != &lt;span class="blue"&gt;null&lt;/span&gt;)
+            {
+                ((Axis)newValue).RegisterSeries(&lt;span class="blue"&gt;this&lt;/span&gt;);
+            }
+
+            &lt;span class="blue"&gt;if&lt;/span&gt; ((XAxis != &lt;span class="blue"&gt;null&lt;/span&gt; &amp;amp;&amp;amp; !XAxis.UpdateRange()) ||
+                (newValue == &lt;span class="blue"&gt;null&lt;/span&gt; &amp;amp;&amp;amp; oldValue != &lt;span class="blue"&gt;null&lt;/span&gt;))
+            {
+                RenderSeries(&lt;span class="blue"&gt;false&lt;/span&gt;);
+            }
+            &lt;span class="blue"&gt;break&lt;/span&gt;;
+
+        &lt;span class="comment"&gt;// renders series if a new the y-axis is assigned&lt;/span&gt;
+        &lt;span class="blue"&gt;case&lt;/span&gt; YAxisPropertyName:
+            &lt;span class="blue"&gt;if&lt;/span&gt; (oldValue != &lt;span class="blue"&gt;null&lt;/span&gt;)
+            {
+                ((Axis)oldValue).DeregisterSeries(&lt;span class="blue"&gt;this&lt;/span&gt;);
+            }
+
+            &lt;span class="blue"&gt;if&lt;/span&gt; (newValue != &lt;span class="blue"&gt;null&lt;/span&gt;)
+            {
+                ((Axis)newValue).RegisterSeries(&lt;span class="blue"&gt;this&lt;/span&gt;);
+            }
+            &lt;span class="blue"&gt;if&lt;/span&gt; ((YAxis != &lt;span class="blue"&gt;null&lt;/span&gt; &amp;amp;&amp;amp; !YAxis.UpdateRange()) ||
+                (newValue == &lt;span class="blue"&gt;null&lt;/span&gt; &amp;amp;&amp;amp; oldValue != &lt;span class="blue"&gt;null&lt;/span&gt;))
+            {
+                RenderSeries(&lt;span class="blue"&gt;false&lt;/span&gt;);
+            }
+            &lt;span class="blue"&gt;break&lt;/span&gt;;
+    }
+}
+&lt;span class="comment"&gt;/// &amp;lt;summary&amp;gt;&lt;/span&gt;
+&lt;span class="comment"&gt;/// Calculates range of a given axis based on  X/Y values of data items&lt;/span&gt;
+&lt;span class="comment"&gt;/// &amp;lt;/summary&amp;gt;&lt;/span&gt;
+&lt;span class="comment"&gt;/// &amp;lt;returns&amp;gt;&amp;lt;/returns&amp;gt;&lt;/span&gt;
+&lt;span class="blue"&gt;protected&lt;/span&gt; &lt;span class="blue"&gt;override&lt;/span&gt; AxisRange GetRange(Axis axis)
+{
+    ContourData myData = &lt;span class="blue"&gt;this&lt;/span&gt;.ItemsSource &lt;span class="blue"&gt;as&lt;/span&gt; ContourData;
+    &lt;span class="blue"&gt;if&lt;/span&gt; (myData == &lt;span class="blue"&gt;null&lt;/span&gt;)
+    {
+        &lt;span class="blue"&gt;return&lt;/span&gt; &lt;span class="blue"&gt;base&lt;/span&gt;.GetRange(axis);
+    }
+    &lt;span class="comment"&gt;// for x-axis range use X values of data points&lt;/span&gt;
+    &lt;span class="blue"&gt;if&lt;/span&gt; (axis == &lt;span class="blue"&gt;this&lt;/span&gt;.XAxis)
+    {
+        &lt;span class="blue"&gt;double&lt;/span&gt; min = &lt;span class="blue"&gt;double&lt;/span&gt;.MaxValue;
+        &lt;span class="blue"&gt;double&lt;/span&gt; max = &lt;span class="blue"&gt;double&lt;/span&gt;.MinValue;
+        &lt;span class="blue"&gt;foreach&lt;/span&gt; (ContourDataPoint dataPoint &lt;span class="blue"&gt;in&lt;/span&gt; myData)
+        {
+            min = System.Math.Min(min, dataPoint.X);
+            max = System.Math.Max(max, dataPoint.X);
+        }
+        &lt;span class="blue"&gt;return&lt;/span&gt; &lt;span class="blue"&gt;new&lt;/span&gt; AxisRange(min, max);
+    }
+    &lt;span class="comment"&gt;// for y-axis range use Y values of data points&lt;/span&gt;
+    &lt;span class="blue"&gt;else&lt;/span&gt; &lt;span class="blue"&gt;if&lt;/span&gt; (axis == &lt;span class="blue"&gt;this&lt;/span&gt;.YAxis)
+    {
+        &lt;span class="blue"&gt;double&lt;/span&gt; min = &lt;span class="blue"&gt;double&lt;/span&gt;.MaxValue;
+        &lt;span class="blue"&gt;double&lt;/span&gt; max = &lt;span class="blue"&gt;double&lt;/span&gt;.MinValue;
+        &lt;span class="blue"&gt;foreach&lt;/span&gt; (ContourDataPoint dataPoint &lt;span class="blue"&gt;in&lt;/span&gt; myData)
+        {
+            min = System.Math.Min(min, dataPoint.Y);
+            max = System.Math.Max(max, dataPoint.Y);
+        }
+        &lt;span class="blue"&gt;return&lt;/span&gt; &lt;span class="blue"&gt;new&lt;/span&gt; AxisRange(min, max);
+    }
+    &lt;span class="blue"&gt;else&lt;/span&gt;
+    {
+        &lt;span class="blue"&gt;return&lt;/span&gt; &lt;span class="blue"&gt;base&lt;/span&gt;.GetRange(axis);
+    }
+}&lt;/code&gt;
+&lt;/pre&gt;
+        &lt;/div&gt;
+    &lt;/li&gt;
+
+    &lt;li&gt;Providing Custom Code – This code snippet shows how to implement custom logic for getting brushes used when rendering different elements of the ContourAreaSeries.&lt;br&gt;
+        &lt;br&gt;
+
+        &lt;div class="ig-note"&gt;
+            &lt;span class="ig-note-caption"&gt;Note:&lt;/span&gt; This does not have to be implemented this way and you can provide your own logic or implement a property of &lt;a href="%%AssemblyPlatform%%%%AssemblyName%%%%AssemblyVersion%%%%ControlsNamespace%%BrushScale.html"&gt;BrushScale&lt;/a&gt; type (see &lt;a href="%%AssemblyPlatform%%%%AssemblyName%%%%AssemblyVersion%%%%ControlsNamespace%%BubbleSeries~FillScale.html"&gt;FillScale&lt;/a&gt; property of the &lt;a href="%%AssemblyPlatform%%%%AssemblyName%%%%AssemblyVersion%%%%ControlsNamespace%%BubbleSeries.html"&gt;BubbleSeries&lt;/a&gt;) to determine the color pattern for rendering the series and to simplify implementation of the custom series.
+        &lt;/div&gt;
+
+        &lt;div class="LanguageSpecific" id="Example_VB" style="display: block;"&gt;
+            &lt;p&gt;&lt;span class="lang"&gt;&lt;b&gt;In Visual Basic:&lt;/b&gt;&lt;/span&gt;&lt;/p&gt;
+            &lt;pre&gt;&lt;code class="code"&gt;&lt;span class="blue"&gt;Public&lt;/span&gt; &lt;span class="blue"&gt;Property&lt;/span&gt; ActualContourBrushes() &lt;span class="blue"&gt;As&lt;/span&gt; BrushCollection
+    &lt;span class="blue"&gt;Get&lt;/span&gt;
+        &lt;span class="blue"&gt;Return&lt;/span&gt; _actualContourBrushes
+    &lt;span class="blue"&gt;End&lt;/span&gt; &lt;span class="blue"&gt;Get&lt;/span&gt;
+    &lt;span class="blue"&gt;Private&lt;/span&gt; &lt;span class="blue"&gt;Set&lt;/span&gt;
+        _actualContourBrushes = Value
+    &lt;span class="blue"&gt;End&lt;/span&gt; &lt;span class="blue"&gt;Set&lt;/span&gt;
+&lt;span class="blue"&gt;End&lt;/span&gt; &lt;span class="blue"&gt;Property&lt;/span&gt;
+&lt;span class="blue"&gt;Private&lt;/span&gt; _actualContourBrushes &lt;span class="blue"&gt;As&lt;/span&gt; BrushCollection
+&lt;span class="blue"&gt;Public&lt;/span&gt; &lt;span class="blue"&gt;Property&lt;/span&gt; ActualContourOutlines() &lt;span class="blue"&gt;As&lt;/span&gt; BrushCollection
+    &lt;span class="blue"&gt;Get&lt;/span&gt;
+        &lt;span class="blue"&gt;Return&lt;/span&gt; _actualContourOutlines
+    &lt;span class="blue"&gt;End&lt;/span&gt; &lt;span class="blue"&gt;Get&lt;/span&gt;
+    &lt;span class="blue"&gt;Private&lt;/span&gt; &lt;span class="blue"&gt;Set&lt;/span&gt;
+        _actualContourOutlines = Value
+    &lt;span class="blue"&gt;End&lt;/span&gt; &lt;span class="blue"&gt;Set&lt;/span&gt;
+&lt;span class="blue"&gt;End&lt;/span&gt; &lt;span class="blue"&gt;Property&lt;/span&gt;
+&lt;span class="blue"&gt;Private&lt;/span&gt; _actualContourOutlines &lt;span class="blue"&gt;As&lt;/span&gt; BrushCollection
+&lt;span class="blue"&gt;Public&lt;/span&gt; &lt;span class="blue"&gt;Property&lt;/span&gt; ActualContourMarkerOutlines() &lt;span class="blue"&gt;As&lt;/span&gt; BrushCollection
+    &lt;span class="blue"&gt;Get&lt;/span&gt;
+        &lt;span class="blue"&gt;Return&lt;/span&gt; _actualContourMarkerOutlines
+    &lt;span class="blue"&gt;End&lt;/span&gt; &lt;span class="blue"&gt;Get&lt;/span&gt;
+    &lt;span class="blue"&gt;Private&lt;/span&gt; &lt;span class="blue"&gt;Set&lt;/span&gt;
+        _actualContourMarkerOutlines = Value
+    &lt;span class="blue"&gt;End&lt;/span&gt; &lt;span class="blue"&gt;Set&lt;/span&gt;
+&lt;span class="blue"&gt;End&lt;/span&gt; &lt;span class="blue"&gt;Property&lt;/span&gt;
+&lt;span class="blue"&gt;Private&lt;/span&gt; _actualContourMarkerOutlines &lt;span class="blue"&gt;As&lt;/span&gt; BrushCollection
+&lt;span class="blue"&gt;Public&lt;/span&gt; &lt;span class="blue"&gt;Property&lt;/span&gt; ActualContourMarkerBrushes() &lt;span class="blue"&gt;As&lt;/span&gt; BrushCollection
+    &lt;span class="blue"&gt;Get&lt;/span&gt;
+        &lt;span class="blue"&gt;Return&lt;/span&gt; _actualContourMarkerBrushes
+    &lt;span class="blue"&gt;End&lt;/span&gt; &lt;span class="blue"&gt;Get&lt;/span&gt;
+    &lt;span class="blue"&gt;Private&lt;/span&gt; &lt;span class="blue"&gt;Set&lt;/span&gt;
+        _actualContourMarkerBrushes = Value
+    &lt;span class="blue"&gt;End&lt;/span&gt; &lt;span class="blue"&gt;Set&lt;/span&gt;
+&lt;span class="blue"&gt;End&lt;/span&gt; &lt;span class="blue"&gt;Property&lt;/span&gt;
+&lt;span class="blue"&gt;Private&lt;/span&gt; _actualContourMarkerBrushes &lt;span class="blue"&gt;As&lt;/span&gt; BrushCollection
+
+&lt;span class="blue"&gt;#Region&lt;/span&gt; &lt;span class="string"&gt;"Brush Methods"&lt;/span&gt;
+&lt;span class="blue"&gt;Private&lt;/span&gt; &lt;span class="blue"&gt;Function&lt;/span&gt; GetContourPathFill(conturIndex &lt;span class="blue"&gt;As&lt;/span&gt; &lt;span class="blue"&gt;Integer&lt;/span&gt;) &lt;span class="blue"&gt;As&lt;/span&gt; Brush
+    &lt;span class="blue"&gt;Return&lt;/span&gt; GetValidBrush(conturIndex, &lt;span class="blue"&gt;Me&lt;/span&gt;.ActualContourBrushes)
+&lt;span class="blue"&gt;End&lt;/span&gt; &lt;span class="blue"&gt;Function&lt;/span&gt;
+&lt;span class="blue"&gt;Private&lt;/span&gt; &lt;span class="blue"&gt;Function&lt;/span&gt; GetContourPathStroke(conturIndex &lt;span class="blue"&gt;As&lt;/span&gt; &lt;span class="blue"&gt;Integer&lt;/span&gt;) &lt;span class="blue"&gt;As&lt;/span&gt; Brush
+    &lt;span class="blue"&gt;Return&lt;/span&gt; GetValidBrush(conturIndex, &lt;span class="blue"&gt;Me&lt;/span&gt;.ActualContourOutlines)
+&lt;span class="blue"&gt;End&lt;/span&gt; &lt;span class="blue"&gt;Function&lt;/span&gt;
+&lt;span class="blue"&gt;Private&lt;/span&gt; &lt;span class="blue"&gt;Function&lt;/span&gt; GetContourMarkerOutline(conturIndex &lt;span class="blue"&gt;As&lt;/span&gt; &lt;span class="blue"&gt;Integer&lt;/span&gt;) &lt;span class="blue"&gt;As&lt;/span&gt; Brush
+    &lt;span class="blue"&gt;Return&lt;/span&gt; GetValidBrush(conturIndex, &lt;span class="blue"&gt;Me&lt;/span&gt;.ActualContourMarkerOutlines)
+&lt;span class="blue"&gt;End&lt;/span&gt; &lt;span class="blue"&gt;Function&lt;/span&gt;
+&lt;span class="blue"&gt;Private&lt;/span&gt; &lt;span class="blue"&gt;Function&lt;/span&gt; GetContourMarkerFill(conturIndex &lt;span class="blue"&gt;As&lt;/span&gt; &lt;span class="blue"&gt;Integer&lt;/span&gt;) &lt;span class="blue"&gt;As&lt;/span&gt; Brush
+    &lt;span class="blue"&gt;Return&lt;/span&gt; GetValidBrush(conturIndex, &lt;span class="blue"&gt;Me&lt;/span&gt;.ActualContourMarkerBrushes)
+&lt;span class="blue"&gt;End&lt;/span&gt; &lt;span class="blue"&gt;Function&lt;/span&gt;
+&lt;span class="blue"&gt;Private&lt;/span&gt; &lt;span class="blue"&gt;Function&lt;/span&gt; GetValidBrush(conturIndex &lt;span class="blue"&gt;As&lt;/span&gt; &lt;span class="blue"&gt;Integer&lt;/span&gt;, brushes &lt;span class="blue"&gt;As&lt;/span&gt; BrushCollection) &lt;span class="blue"&gt;As&lt;/span&gt; Brush
+    &lt;span class="blue"&gt;If&lt;/span&gt; brushes &lt;span class="blue"&gt;Is&lt;/span&gt; &lt;span class="blue"&gt;Nothing&lt;/span&gt; &lt;span class="blue"&gt;OrElse&lt;/span&gt; brushes.Count = 0 &lt;span class="blue"&gt;Then&lt;/span&gt;
+        &lt;span class="blue"&gt;Return&lt;/span&gt; &lt;span class="blue"&gt;New&lt;/span&gt; SolidColorBrush(Colors.Black)
+    &lt;span class="blue"&gt;End&lt;/span&gt; &lt;span class="blue"&gt;If&lt;/span&gt;
+    &lt;span class="blue"&gt;If&lt;/span&gt; conturIndex &amp;gt;= 0 &lt;span class="blue"&gt;AndAlso&lt;/span&gt; conturIndex &amp;lt; brushes.Count &lt;span class="blue"&gt;Then&lt;/span&gt;
+        &lt;span class="blue"&gt;Return&lt;/span&gt; brushes(conturIndex)
+    &lt;span class="blue"&gt;End&lt;/span&gt; &lt;span class="blue"&gt;If&lt;/span&gt;
+    conturIndex = conturIndex &lt;span class="blue"&gt;Mod&lt;/span&gt; brushes.Count
+    &lt;span class="blue"&gt;Return&lt;/span&gt; brushes(conturIndex)
+&lt;span class="blue"&gt;End&lt;/span&gt; &lt;span class="blue"&gt;Function&lt;/span&gt;
+&lt;span class="blue"&gt;#End Region&lt;/span&gt;&lt;/code&gt;
+&lt;/pre&gt;
+        &lt;/div&gt;
+
+        &lt;div class="LanguageSpecific" id="Example_CS" style="display: block;"&gt;
+            &lt;p&gt;&lt;span class="lang"&gt;&lt;b&gt;In C#:&lt;/b&gt;&lt;/span&gt;&lt;/p&gt;
+            &lt;pre&gt;&lt;code class="code"&gt;&lt;span class="blue"&gt;public&lt;/span&gt; BrushCollection ActualContourBrushes { get; &lt;span class="blue"&gt;private&lt;/span&gt; set; }
+&lt;span class="blue"&gt;public&lt;/span&gt; BrushCollection ActualContourOutlines { get; &lt;span class="blue"&gt;private&lt;/span&gt; set; }
+&lt;span class="blue"&gt;public&lt;/span&gt; BrushCollection ActualContourMarkerOutlines { get; &lt;span class="blue"&gt;private&lt;/span&gt; set; }
+&lt;span class="blue"&gt;public&lt;/span&gt; BrushCollection ActualContourMarkerBrushes { get; &lt;span class="blue"&gt;private&lt;/span&gt; set; }
+
+&lt;span class="blue"&gt;#region&lt;/span&gt; Brush Methods
+&lt;span class="blue"&gt;private&lt;/span&gt; Brush GetContourPathFill(&lt;span class="blue"&gt;int&lt;/span&gt; conturIndex)
+{
+    &lt;span class="blue"&gt;return&lt;/span&gt; GetValidBrush(conturIndex, &lt;span class="blue"&gt;this&lt;/span&gt;.ActualContourBrushes);
+}
+&lt;span class="blue"&gt;private&lt;/span&gt; Brush GetContourPathStroke(&lt;span class="blue"&gt;int&lt;/span&gt; conturIndex)
+{
+    &lt;span class="blue"&gt;return&lt;/span&gt; GetValidBrush(conturIndex, &lt;span class="blue"&gt;this&lt;/span&gt;.ActualContourOutlines);
+}
+&lt;span class="blue"&gt;private&lt;/span&gt; Brush GetContourMarkerOutline(&lt;span class="blue"&gt;int&lt;/span&gt; conturIndex)
+{
+    &lt;span class="blue"&gt;return&lt;/span&gt; GetValidBrush(conturIndex, &lt;span class="blue"&gt;this&lt;/span&gt;.ActualContourMarkerOutlines);
+}
+&lt;span class="blue"&gt;private&lt;/span&gt; Brush GetContourMarkerFill(&lt;span class="blue"&gt;int&lt;/span&gt; conturIndex)
+{
+    &lt;span class="blue"&gt;return&lt;/span&gt; GetValidBrush(conturIndex, &lt;span class="blue"&gt;this&lt;/span&gt;.ActualContourMarkerBrushes);
+}
+&lt;span class="blue"&gt;private&lt;/span&gt; Brush GetValidBrush(&lt;span class="blue"&gt;int&lt;/span&gt; conturIndex, BrushCollection brushes)
+{
+    &lt;span class="blue"&gt;if&lt;/span&gt; (brushes == &lt;span class="blue"&gt;null&lt;/span&gt; || brushes.Count == 0)
+    {
+        &lt;span class="blue"&gt;return&lt;/span&gt; &lt;span class="blue"&gt;new&lt;/span&gt; SolidColorBrush(Colors.Black);
+    }
+    &lt;span class="blue"&gt;if&lt;/span&gt; (conturIndex &amp;gt;= 0 &amp;amp;&amp;amp; conturIndex &amp;lt; brushes.Count)
+    {
+        &lt;span class="blue"&gt;return&lt;/span&gt; brushes[conturIndex];
+    }
+    conturIndex = conturIndex % brushes.Count;
+    &lt;span class="blue"&gt;return&lt;/span&gt; brushes[conturIndex];
+}
+&lt;span class="blue"&gt;#endregion&lt;/span&gt;&lt;/code&gt;
+&lt;/pre&gt;
+        &lt;/div&gt;
+    &lt;/li&gt;
+
+    &lt;li&gt;Rendering Series – The RenderSeriesOverride method determines how a custom series is rendered in the %%ControlsName%% control. The following code snippet shows how to implement this method in order to render the custom series as a collection of filled contours along data points with the same values.
+
+        &lt;div class="LanguageSpecific" id="Example_VB" style="display: block;"&gt;
+            &lt;p&gt;&lt;span class="lang"&gt;&lt;b&gt;In Visual Basic:&lt;/b&gt;&lt;/span&gt;&lt;/p&gt;
+            &lt;pre&gt;&lt;code class="code"&gt;&lt;span class="comment"&gt;''' &amp;lt;summary&amp;gt;&lt;/span&gt;
+&lt;span class="comment"&gt;''' Renders the Custom Contour Area Series using bound data points&lt;/span&gt;
+&lt;span class="comment"&gt;''' &amp;lt;/summary&amp;gt;&lt;/span&gt;
+&lt;span class="blue"&gt;Protected&lt;/span&gt; &lt;span class="blue"&gt;Overrides&lt;/span&gt; &lt;span class="blue"&gt;Sub&lt;/span&gt; RenderSeriesOverride(animate &lt;span class="blue"&gt;As&lt;/span&gt; &lt;span class="blue"&gt;Boolean&lt;/span&gt;)
+    &lt;span class="comment"&gt;' disables series rendering with transitions (Motion Framework)&lt;/span&gt;
+    &lt;span class="blue"&gt;MyBase&lt;/span&gt;.RenderSeriesOverride(animate)
+    &lt;span class="comment"&gt;' check if the series can be rendered:&lt;/span&gt;
+    &lt;span class="comment"&gt;' - the Viewport (the bounds rectangle for the series) is not empty, &lt;/span&gt;
+    &lt;span class="comment"&gt;' - the RootCanvas (the container for the custom graphics) is not null.  &lt;/span&gt;
+    &lt;span class="comment"&gt;' - the Axes are not null.  &lt;/span&gt;
+    &lt;span class="comment"&gt;' - the ItemsSource is not null.  &lt;/span&gt;
+    &lt;span class="blue"&gt;If&lt;/span&gt; &lt;span class="blue"&gt;Me&lt;/span&gt;.Viewport.IsEmpty &lt;span class="blue"&gt;OrElse&lt;/span&gt; &lt;span class="blue"&gt;Me&lt;/span&gt;.RootCanvas &lt;span class="blue"&gt;Is&lt;/span&gt; &lt;span class="blue"&gt;Nothing&lt;/span&gt; &lt;span class="blue"&gt;OrElse&lt;/span&gt; _
+       &lt;span class="blue"&gt;Me&lt;/span&gt;.XAxis &lt;span class="blue"&gt;Is&lt;/span&gt; &lt;span class="blue"&gt;Nothing&lt;/span&gt; &lt;span class="blue"&gt;OrElse&lt;/span&gt; &lt;span class="blue"&gt;Me&lt;/span&gt;.YAxis &lt;span class="blue"&gt;Is&lt;/span&gt; &lt;span class="blue"&gt;Nothing&lt;/span&gt; &lt;span class="blue"&gt;OrElse&lt;/span&gt; _
+              &lt;span class="blue"&gt;Me&lt;/span&gt;.ItemsSource &lt;span class="blue"&gt;Is&lt;/span&gt; &lt;span class="blue"&gt;Nothing&lt;/span&gt; &lt;span class="blue"&gt;Then&lt;/span&gt;
+        &lt;span class="blue"&gt;Return&lt;/span&gt;
+    &lt;span class="blue"&gt;End&lt;/span&gt; &lt;span class="blue"&gt;If&lt;/span&gt;
+    &lt;span class="comment"&gt;' clears the RootCanvas on every render of the series&lt;/span&gt;
+    &lt;span class="blue"&gt;Me&lt;/span&gt;.RootCanvas.Children.Clear()
+    &lt;span class="comment"&gt;' create data structure for contours based on values of items in the source of this series&lt;/span&gt;
+    &lt;span class="blue"&gt;Dim&lt;/span&gt; data &lt;span class="blue"&gt;As&lt;/span&gt; ContourData = &lt;span class="blue"&gt;DirectCast&lt;/span&gt;(&lt;span class="blue"&gt;Me&lt;/span&gt;.ItemsSource, ContourData)
+    &lt;span class="blue"&gt;Dim&lt;/span&gt; dataContours &lt;span class="blue"&gt;As&lt;/span&gt; &lt;span class="blue"&gt;New&lt;/span&gt; Dictionary(Of &lt;span class="blue"&gt;Double&lt;/span&gt;, PointCollection)()
+    &lt;span class="blue"&gt;For&lt;/span&gt; &lt;span class="blue"&gt;Each&lt;/span&gt; dataPoint &lt;span class="blue"&gt;As&lt;/span&gt; ContourDataPoint &lt;span class="blue"&gt;In&lt;/span&gt; data
+        &lt;span class="comment"&gt;' scale locations (X/Y) of data point to the series' viewport&lt;/span&gt;
+        &lt;span class="blue"&gt;Dim&lt;/span&gt; x &lt;span class="blue"&gt;As&lt;/span&gt; &lt;span class="blue"&gt;Double&lt;/span&gt; = &lt;span class="blue"&gt;Me&lt;/span&gt;.XAxis.GetScaledValue(dataPoint.X, &lt;span class="blue"&gt;Me&lt;/span&gt;.SeriesViewer.WindowRect, &lt;span class="blue"&gt;Me&lt;/span&gt;.Viewport)
+        &lt;span class="blue"&gt;Dim&lt;/span&gt; y &lt;span class="blue"&gt;As&lt;/span&gt; &lt;span class="blue"&gt;Double&lt;/span&gt; = &lt;span class="blue"&gt;Me&lt;/span&gt;.YAxis.GetScaledValue(dataPoint.Y, &lt;span class="blue"&gt;Me&lt;/span&gt;.SeriesViewer.WindowRect, &lt;span class="blue"&gt;Me&lt;/span&gt;.Viewport)
+        &lt;span class="comment"&gt;' store scaled locations of data point based on the Value property of data points&lt;/span&gt;
+        &lt;span class="blue"&gt;Dim&lt;/span&gt; key &lt;span class="blue"&gt;As&lt;/span&gt; &lt;span class="blue"&gt;Double&lt;/span&gt; = dataPoint.Value
+        &lt;span class="blue"&gt;If&lt;/span&gt; dataContours.ContainsKey(key) &lt;span class="blue"&gt;Then&lt;/span&gt;
+            dataContours(key).Add(&lt;span class="blue"&gt;New&lt;/span&gt; Point(x, y))
+        &lt;span class="blue"&gt;Else&lt;/span&gt;
+            &lt;span class="blue"&gt;Dim&lt;/span&gt; dataPoints &lt;span class="blue"&gt;As&lt;/span&gt; &lt;span class="blue"&gt;New&lt;/span&gt; PointCollection() From { &lt;span class="blue"&gt;New&lt;/span&gt; Point(x, y) }
+            dataContours.Add(key, dataPoints)
+        &lt;span class="blue"&gt;End&lt;/span&gt; &lt;span class="blue"&gt;If&lt;/span&gt;
+    &lt;span class="blue"&gt;Next&lt;/span&gt;
+    &lt;span class="comment"&gt;' sort contours data based on contout &lt;/span&gt;
+    &lt;span class="blue"&gt;Dim&lt;/span&gt; sortedContours = From item &lt;span class="blue"&gt;In&lt;/span&gt; dataContoursOrder By item.Key Ascendingitem
+    &lt;span class="comment"&gt;' re-use chart's brushes and outlines for actual contour's brushes and outlines &lt;/span&gt;
+    &lt;span class="blue"&gt;Me&lt;/span&gt;.ActualContourBrushes = &lt;span class="blue"&gt;DirectCast&lt;/span&gt;(&lt;span class="blue"&gt;Me&lt;/span&gt;.SeriesViewer, %%ControlsName%%).Brushes
+    &lt;span class="blue"&gt;Me&lt;/span&gt;.ActualContourOutlines = &lt;span class="blue"&gt;DirectCast&lt;/span&gt;(&lt;span class="blue"&gt;Me&lt;/span&gt;.SeriesViewer, %%ControlsName%%).MarkerOutlines
+    &lt;span class="blue"&gt;Me&lt;/span&gt;.ActualContourMarkerBrushes = &lt;span class="blue"&gt;DirectCast&lt;/span&gt;(&lt;span class="blue"&gt;Me&lt;/span&gt;.SeriesViewer, %%ControlsName%%).MarkerBrushes
+    &lt;span class="blue"&gt;Me&lt;/span&gt;.ActualContourMarkerOutlines = &lt;span class="blue"&gt;DirectCast&lt;/span&gt;(&lt;span class="blue"&gt;Me&lt;/span&gt;.SeriesViewer, %%ControlsName%%).MarkerOutlines
+    &lt;span class="comment"&gt;' create elements of contours based on contours data structure&lt;/span&gt;
+    &lt;span class="blue"&gt;Dim&lt;/span&gt; conturIndex &lt;span class="blue"&gt;As&lt;/span&gt; &lt;span class="blue"&gt;Integer&lt;/span&gt; = 0
+    &lt;span class="blue"&gt;For&lt;/span&gt; &lt;span class="blue"&gt;Each&lt;/span&gt; contour &lt;span class="blue"&gt;As&lt;/span&gt; KeyValuePair(Of &lt;span class="blue"&gt;Double&lt;/span&gt;, PointCollection) &lt;span class="blue"&gt;In&lt;/span&gt; sortedContours
+        &lt;span class="comment"&gt;'dataContours)&lt;/span&gt;
+        &lt;span class="blue"&gt;For&lt;/span&gt; &lt;span class="blue"&gt;Each&lt;/span&gt; point &lt;span class="blue"&gt;As&lt;/span&gt; Point &lt;span class="blue"&gt;In&lt;/span&gt; contour.Value
+            &lt;span class="comment"&gt;' get parameters of a contour marker&lt;/span&gt;
+            &lt;span class="blue"&gt;Dim&lt;/span&gt; contourMarkerValue &lt;span class="blue"&gt;As&lt;/span&gt; &lt;span class="blue"&gt;Double&lt;/span&gt; = contour.Key
+            &lt;span class="blue"&gt;Dim&lt;/span&gt; contourMarkerSize &lt;span class="blue"&gt;As&lt;/span&gt; &lt;span class="blue"&gt;Double&lt;/span&gt; = 25
+            &lt;span class="blue"&gt;Dim&lt;/span&gt; contourMarkerLocationLeft &lt;span class="blue"&gt;As&lt;/span&gt; &lt;span class="blue"&gt;Double&lt;/span&gt; = point.X - contourMarkerSize / 2
+            &lt;span class="blue"&gt;Dim&lt;/span&gt; contourMarkerLocationTop &lt;span class="blue"&gt;As&lt;/span&gt; &lt;span class="blue"&gt;Double&lt;/span&gt; = point.Y - contourMarkerSize / 2
+
+            &lt;span class="comment"&gt;' create element for shape of a contour marker&lt;/span&gt;
+            &lt;span class="blue"&gt;Dim&lt;/span&gt; contourMarker &lt;span class="blue"&gt;As&lt;/span&gt; &lt;span class="blue"&gt;New&lt;/span&gt; Ellipse()
+            contourMarker.Fill = GetContourMarkerFill(conturIndex)
+            contourMarker.Stroke = GetContourMarkerOutline(conturIndex)
+            contourMarker.StrokeThickness = 1.0
+            contourMarker.Width = contourMarkerSize
+            contourMarker.Height = contourMarkerSize
+            &lt;span class="comment"&gt;' create element for value of a contour marker&lt;/span&gt;
+            &lt;span class="blue"&gt;Dim&lt;/span&gt; markerValueBlock &lt;span class="blue"&gt;As&lt;/span&gt; &lt;span class="blue"&gt;New&lt;/span&gt; TextBlock()
+            markerValueBlock.Text = contourMarkerValue.ToString()
+            markerValueBlock.Foreground = &lt;span class="blue"&gt;New&lt;/span&gt; SolidColorBrush(Colors.White)
+            markerValueBlock.VerticalAlignment = VerticalAlignment.Center
+            markerValueBlock.HorizontalAlignment = HorizontalAlignment.Center
+            &lt;span class="comment"&gt;' create element to hold elements of a contour marker &lt;/span&gt;
+            &lt;span class="blue"&gt;Dim&lt;/span&gt; markerGrid &lt;span class="blue"&gt;As&lt;/span&gt; &lt;span class="blue"&gt;New&lt;/span&gt; Grid()
+            markerGrid.Children.Add(contourMarker)
+            markerGrid.Children.Add(markerValueBlock)
+            Canvas.SetLeft(markerGrid, contourMarkerLocationLeft)
+            Canvas.SetTop(markerGrid, contourMarkerLocationTop)
+            Canvas.SetZIndex(markerGrid, conturIndex + 11)
+            &lt;span class="comment"&gt;' render the marker of the current contour on the canvas of this series&lt;/span&gt;
+            &lt;span class="blue"&gt;Me&lt;/span&gt;.RootCanvas.Children.Add(markerGrid)
+        &lt;span class="blue"&gt;Next&lt;/span&gt;
+
+        &lt;span class="blue"&gt;Dim&lt;/span&gt; contourPoints &lt;span class="blue"&gt;As&lt;/span&gt; PointCollection = contour.Value
+
+        &lt;span class="comment"&gt;' create curve from points of a contour&lt;/span&gt;
+        &lt;span class="blue"&gt;Dim&lt;/span&gt; contourFigure &lt;span class="blue"&gt;As&lt;/span&gt; PathFigure = BezierCurveBuilder.GetBezierSegments(contourPoints, 1.0, &lt;span class="blue"&gt;True&lt;/span&gt;)
+        contourFigure.IsClosed = &lt;span class="blue"&gt;True&lt;/span&gt;
+
+        &lt;span class="comment"&gt;' create a new PathGeometry for a contour&lt;/span&gt;
+        &lt;span class="blue"&gt;Dim&lt;/span&gt; contourGeo &lt;span class="blue"&gt;As&lt;/span&gt; &lt;span class="blue"&gt;New&lt;/span&gt; PathGeometry()
+        contourGeo.Figures.Add(contourFigure)
+        &lt;span class="comment"&gt;' create a new Path for a contour&lt;/span&gt;
+        &lt;span class="blue"&gt;Dim&lt;/span&gt; contourShape &lt;span class="blue"&gt;As&lt;/span&gt; &lt;span class="blue"&gt;New&lt;/span&gt; Path()
+        contourShape.Data = contourGeo
+        contourShape.Stroke = GetContourPathStroke(conturIndex)
+        contourShape.StrokeThickness = &lt;span class="blue"&gt;Me&lt;/span&gt;.Thickness
+        contourShape.Fill = GetContourPathFill(conturIndex)
+        Canvas.SetZIndex(contourShape, conturIndex + 10)
+
+        &lt;span class="comment"&gt;' render shape of the current contour on the canvas of this series&lt;/span&gt;
+        &lt;span class="blue"&gt;Me&lt;/span&gt;.RootCanvas.Children.Add(contourShape)
+        conturIndex += 1
+    &lt;span class="blue"&gt;Next&lt;/span&gt;
+&lt;span class="blue"&gt;End&lt;/span&gt; &lt;span class="blue"&gt;Sub&lt;/span&gt;&lt;/code&gt;
+&lt;/pre&gt;
+        &lt;/div&gt;
+
+        &lt;div class="LanguageSpecific" id="Example_CS" style="display: block;"&gt;
+            &lt;p&gt;&lt;span class="lang"&gt;&lt;b&gt;In C#:&lt;/b&gt;&lt;/span&gt;&lt;/p&gt;
+            &lt;pre&gt;&lt;code class="code"&gt;&lt;span class="comment"&gt;/// &amp;lt;summary&amp;gt;&lt;/span&gt;
+&lt;span class="comment"&gt;/// Renders the Custom Contour Area Series using bound data points&lt;/span&gt;
+&lt;span class="comment"&gt;/// &amp;lt;/summary&amp;gt;&lt;/span&gt;
+&lt;span class="blue"&gt;protected&lt;/span&gt; &lt;span class="blue"&gt;override&lt;/span&gt; &lt;span class="blue"&gt;void&lt;/span&gt; RenderSeriesOverride(&lt;span class="blue"&gt;bool&lt;/span&gt; animate)
+{
+    &lt;span class="comment"&gt;// disables series rendering with transitions (Motion Framework)&lt;/span&gt;
+    &lt;span class="blue"&gt;base&lt;/span&gt;.RenderSeriesOverride(animate);
+    &lt;span class="comment"&gt;// check if the series can be rendered:&lt;/span&gt;
+    &lt;span class="comment"&gt;// - the Viewport (the bounds rectangle for the series) is not empty, &lt;/span&gt;
+    &lt;span class="comment"&gt;// - the RootCanvas (the container for the custom graphics) is not null.  &lt;/span&gt;
+    &lt;span class="comment"&gt;// - the Axes are not null.  &lt;/span&gt;
+    &lt;span class="comment"&gt;// - the ItemsSource is not null.  &lt;/span&gt;
+    &lt;span class="blue"&gt;if&lt;/span&gt; (&lt;span class="blue"&gt;this&lt;/span&gt;.Viewport.IsEmpty || &lt;span class="blue"&gt;this&lt;/span&gt;.RootCanvas == &lt;span class="blue"&gt;null&lt;/span&gt; ||
+        &lt;span class="blue"&gt;this&lt;/span&gt;.XAxis == &lt;span class="blue"&gt;null&lt;/span&gt; || &lt;span class="blue"&gt;this&lt;/span&gt;.YAxis == &lt;span class="blue"&gt;null&lt;/span&gt; ||
+        &lt;span class="blue"&gt;this&lt;/span&gt;.ItemsSource == &lt;span class="blue"&gt;null&lt;/span&gt;)
+    {
+        &lt;span class="blue"&gt;return&lt;/span&gt;;
+    }
+    &lt;span class="comment"&gt;// clears the RootCanvas on every render of the series&lt;/span&gt;
+    &lt;span class="blue"&gt;this&lt;/span&gt;.RootCanvas.Children.Clear();
+            
+    &lt;span class="comment"&gt;// create data structure for contours based on values of items in the source of this series&lt;/span&gt;
+    ContourData data = (ContourData)&lt;span class="blue"&gt;this&lt;/span&gt;.ItemsSource;
+    Dictionary&amp;lt;&lt;span class="blue"&gt;double&lt;/span&gt;, PointCollection&amp;gt; dataContours = &lt;span class="blue"&gt;new&lt;/span&gt; Dictionary&amp;lt;&lt;span class="blue"&gt;double&lt;/span&gt;, PointCollection&amp;gt;();
+    &lt;span class="blue"&gt;foreach&lt;/span&gt; (ContourDataPoint dataPoint &lt;span class="blue"&gt;in&lt;/span&gt; data)
+    {
+        &lt;span class="comment"&gt;// scale locations (X/Y) of data point to the series' viewport&lt;/span&gt;
+        &lt;span class="blue"&gt;double&lt;/span&gt; x = &lt;span class="blue"&gt;this&lt;/span&gt;.XAxis.GetScaledValue(dataPoint.X, &lt;span class="blue"&gt;this&lt;/span&gt;.SeriesViewer.WindowRect, &lt;span class="blue"&gt;this&lt;/span&gt;.Viewport);
+        &lt;span class="blue"&gt;double&lt;/span&gt; y = &lt;span class="blue"&gt;this&lt;/span&gt;.YAxis.GetScaledValue(dataPoint.Y, &lt;span class="blue"&gt;this&lt;/span&gt;.SeriesViewer.WindowRect, &lt;span class="blue"&gt;this&lt;/span&gt;.Viewport);
+        &lt;span class="comment"&gt;// store scaled locations of data point based on the Value property of data points&lt;/span&gt;
+        &lt;span class="blue"&gt;double&lt;/span&gt; key = dataPoint.Value;
+        &lt;span class="blue"&gt;if&lt;/span&gt; (dataContours.ContainsKey(key))
+        {
+            dataContours[key].Add(&lt;span class="blue"&gt;new&lt;/span&gt; Point(x, y));
+        }
+        &lt;span class="blue"&gt;else&lt;/span&gt;
+        {
+            PointCollection dataPoints = &lt;span class="blue"&gt;new&lt;/span&gt; PointCollection { &lt;span class="blue"&gt;new&lt;/span&gt; Point(x, y) };
+            dataContours.Add(key, dataPoints);
+        }
+    }
+    &lt;span class="comment"&gt;// sort contours data based on contout &lt;/span&gt;
+    &lt;span class="blue"&gt;var&lt;/span&gt; sortedContours = from item &lt;span class="blue"&gt;in&lt;/span&gt; dataContours
+                            orderby item.Key ascending
+                            select item;
+
+    &lt;span class="comment"&gt;//// re-use chart's brushes and outlines for actual contour's brushes and outlines &lt;/span&gt;
+    &lt;span class="blue"&gt;this&lt;/span&gt;.ActualContourBrushes = ((%%ControlsName%%)&lt;span class="blue"&gt;this&lt;/span&gt;.SeriesViewer).Brushes;
+    &lt;span class="blue"&gt;this&lt;/span&gt;.ActualContourOutlines = ((%%ControlsName%%)&lt;span class="blue"&gt;this&lt;/span&gt;.SeriesViewer).MarkerOutlines;
+    &lt;span class="blue"&gt;this&lt;/span&gt;.ActualContourMarkerBrushes = ((%%ControlsName%%)&lt;span class="blue"&gt;this&lt;/span&gt;.SeriesViewer).MarkerBrushes;
+    &lt;span class="blue"&gt;this&lt;/span&gt;.ActualContourMarkerOutlines = ((%%ControlsName%%)&lt;span class="blue"&gt;this&lt;/span&gt;.SeriesViewer).MarkerOutlines;
+    &lt;span class="comment"&gt;// create elements of contours based on contours data structure&lt;/span&gt;
+    &lt;span class="blue"&gt;int&lt;/span&gt; conturIndex = 0;
+    &lt;span class="blue"&gt;foreach&lt;/span&gt; (KeyValuePair&amp;lt;&lt;span class="blue"&gt;double&lt;/span&gt;, PointCollection&amp;gt; contour &lt;span class="blue"&gt;in&lt;/span&gt; sortedContours) &lt;span class="comment"&gt;//dataContours)&lt;/span&gt;
+    {
+        &lt;span class="blue"&gt;foreach&lt;/span&gt; (Point point &lt;span class="blue"&gt;in&lt;/span&gt; contour.Value)
+        {
+            &lt;span class="comment"&gt;// get parameters of a contour marker&lt;/span&gt;
+            &lt;span class="blue"&gt;double&lt;/span&gt; contourMarkerValue = contour.Key;
+            &lt;span class="blue"&gt;double&lt;/span&gt; contourMarkerSize = 25;
+            &lt;span class="blue"&gt;double&lt;/span&gt; contourMarkerLocationLeft = point.X - contourMarkerSize / 2;
+            &lt;span class="blue"&gt;double&lt;/span&gt; contourMarkerLocationTop = point.Y - contourMarkerSize / 2;
+            &lt;span class="comment"&gt;// create element for shape of a contour marker&lt;/span&gt;
+            Ellipse contourMarker = &lt;span class="blue"&gt;new&lt;/span&gt; Ellipse();
+            contourMarker.Fill = GetContourMarkerFill(conturIndex);
+            contourMarker.Stroke = GetContourMarkerOutline(conturIndex);
+            contourMarker.StrokeThickness = 1.0;
+            contourMarker.Width = contourMarkerSize;
+            contourMarker.Height = contourMarkerSize;
+            &lt;span class="comment"&gt;// create element for value of a contour marker&lt;/span&gt;
+            TextBlock markerValueBlock = &lt;span class="blue"&gt;new&lt;/span&gt; TextBlock();
+            markerValueBlock.Text = contourMarkerValue.ToString();
+            markerValueBlock.Foreground = &lt;span class="blue"&gt;new&lt;/span&gt; SolidColorBrush(Colors.White);
+            markerValueBlock.VerticalAlignment = VerticalAlignment.Center;
+            markerValueBlock.HorizontalAlignment = HorizontalAlignment.Center;
+            &lt;span class="comment"&gt;// create element to hold elements of a contour marker &lt;/span&gt;
+            Grid markerGrid = &lt;span class="blue"&gt;new&lt;/span&gt; Grid();
+            markerGrid.Children.Add(contourMarker);
+            markerGrid.Children.Add(markerValueBlock);
+            Canvas.SetLeft(markerGrid, contourMarkerLocationLeft);
+            Canvas.SetTop(markerGrid, contourMarkerLocationTop);
+            Canvas.SetZIndex(markerGrid, conturIndex + 11);
+            &lt;span class="comment"&gt;// render the marker of the current contour on the canvas of this series&lt;/span&gt;
+            &lt;span class="blue"&gt;this&lt;/span&gt;.RootCanvas.Children.Add(markerGrid);
+        }
+
+        PointCollection contourPoints = contour.Value;
+
+        &lt;span class="comment"&gt;// create curve from points of a contour&lt;/span&gt;
+        PathFigure contourFigure = BezierCurveBuilder.GetBezierSegments(contourPoints, 1.0, &lt;span class="blue"&gt;true&lt;/span&gt;);
+        contourFigure.IsClosed = &lt;span class="blue"&gt;true&lt;/span&gt;;
+
+        &lt;span class="comment"&gt;// create a new PathGeometry for a contour&lt;/span&gt;
+        PathGeometry contourGeo = &lt;span class="blue"&gt;new&lt;/span&gt; PathGeometry();
+        contourGeo.Figures.Add(contourFigure);
+        &lt;span class="comment"&gt;// create a new Path for a contour&lt;/span&gt;
+        Path contourShape = &lt;span class="blue"&gt;new&lt;/span&gt; Path();
+        contourShape.Data = contourGeo;
+        contourShape.Stroke = GetContourPathStroke(conturIndex);
+        contourShape.StrokeThickness = &lt;span class="blue"&gt;this&lt;/span&gt;.Thickness;
+        contourShape.Fill = GetContourPathFill(conturIndex);
+        Canvas.SetZIndex(contourShape, conturIndex + 10);
+
+        &lt;span class="comment"&gt;// render shape of the current contour on the canvas of this series&lt;/span&gt;
+        &lt;span class="blue"&gt;this&lt;/span&gt;.RootCanvas.Children.Add(contourShape);
+        conturIndex++;
+    }
+}&lt;/code&gt;
+&lt;/pre&gt;
+        &lt;/div&gt;
+    &lt;/li&gt;
+
+    &lt;li&gt;At this point the custom series has all elements implemented and it is ready to be added to the xamChart control. The following code snippet shows how to define and show data using the ContourAreaSeries.
+
+        &lt;div class="LanguageSpecific" id="Example_XAML" style="display: block;" style="hs-build-flags: SL,WPF,WINPHONE,WINRT"&gt;
+            &lt;p&gt;&lt;span class="lang"&gt;&lt;b&gt;In XAML:&lt;/b&gt;&lt;/span&gt;&lt;/p&gt;
+            &lt;pre&gt;&lt;code class="code"&gt;&lt;span class="blue"&gt;&amp;lt;&lt;/span&gt;&lt;span class="brownish"&gt;UserControl &lt;/span&gt;&lt;span class="red"&gt;x&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="red"&gt;Class&lt;/span&gt;&lt;span class="blue"&gt;="Infragistics.Samples.CustomSeriesExample"&lt;/span&gt; &lt;br&gt;&lt;br&gt;&lt;br&gt;      &lt;span class="red"&gt;xmlns&lt;/span&gt;&lt;span class="blue"&gt;="http://schemas.microsoft.com/winfx/2006/xaml/presentation"&lt;/span&gt; &lt;br&gt;&lt;br&gt;&lt;br&gt;      &lt;span class="red"&gt;xmlns&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="red"&gt;x&lt;/span&gt;&lt;span class="blue"&gt;="http://schemas.microsoft.com/winfx/2006/xaml"&lt;/span&gt; 
+      &lt;span class="red"&gt;xmlns&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="red"&gt;d&lt;/span&gt;&lt;span class="blue"&gt;="http://schemas.microsoft.com/expression/blend/2008"&lt;/span&gt;
+      &lt;span class="red"&gt;xmlns&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="red"&gt;mc&lt;/span&gt;&lt;span class="blue"&gt;="http://schemas.openxmlformats.org/markup-compatibility/2006"&lt;/span&gt;&lt;/code&gt;&lt;code class="code"&gt;
+      &lt;span class="red"&gt;mc&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="red"&gt;Ignorable&lt;/span&gt;&lt;span class="blue"&gt;="d"&lt;/span&gt;
+      &lt;span class="blue"&gt;...&lt;/span&gt;&lt;/code&gt;&lt;code class="code"&gt;&lt;span class="blue"&gt;&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;br&gt;&lt;code class="code"&gt;&lt;span class="blue"&gt;    &amp;lt;&lt;/span&gt;&lt;span class="brownish"&gt;UserControl.Resources&lt;/span&gt;&lt;span class="blue"&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class="blue"&gt;&amp;lt;&lt;/span&gt;&lt;span class="brownish"&gt;ResourceDictionary&lt;/span&gt;&lt;span class="blue"&gt;&amp;gt;&lt;/span&gt;
+            &lt;span class="blue"&gt;&amp;lt;&lt;/span&gt;&lt;span class="brownish"&gt;ResourceDictionary.MergedDictionaries&lt;/span&gt;&lt;span class="blue"&gt;&amp;gt;&lt;/span&gt;
+            &lt;span class="comment"&gt;&amp;lt;!-- loads default style for the ContourAreaSeries series from resource dictionary --&amp;gt;&lt;/span&gt;
+                &lt;span class="blue"&gt;&amp;lt;&lt;/span&gt;&lt;span class="brownish"&gt;ResourceDictionary&lt;/span&gt; &lt;span class="red"&gt;Source&lt;/span&gt;&lt;span class="blue"&gt;="/ContourAreaSeries.xaml"&lt;/span&gt; &lt;span class="blue"&gt;/&amp;gt;&lt;/span&gt;
+            &lt;span class="blue"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="brownish"&gt;ResourceDictionary.MergedDictionaries&lt;/span&gt;&lt;span class="blue"&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class="blue"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="brownish"&gt;ResourceDictionary&lt;/span&gt;&lt;span class="blue"&gt;&amp;gt;&lt;/span&gt;
+     &lt;span class="blue"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="brownish"&gt;UserControl.Resources&lt;/span&gt;&lt;span class="blue"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="blue"&gt;&amp;lt;&lt;/span&gt;&lt;span class="brownish"&gt;Grid&lt;/span&gt; &lt;span class="red"&gt;x&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="red"&gt;Name&lt;/span&gt;&lt;span class="blue"&gt;="LayoutRoot"&lt;/span&gt;&lt;span class="blue"&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class="blue"&gt;&amp;lt;&lt;/span&gt;&lt;span class="brownish"&gt;Grid.Resources&lt;/span&gt;&lt;span class="blue"&gt;&amp;gt;&lt;/span&gt;
+            &lt;span class="blue"&gt;&amp;lt;&lt;/span&gt;&lt;span class="brownish"&gt;models&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="brownish"&gt;ContourDataSample&lt;/span&gt; &lt;span class="red"&gt;x&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="red"&gt;Key&lt;/span&gt;&lt;span class="blue"&gt;="data"&lt;/span&gt; &lt;span class="blue"&gt;/&amp;gt;&lt;/span&gt;
+        &lt;span class="blue"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="brownish"&gt;Grid.Resources&lt;/span&gt;&lt;span class="blue"&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class="blue"&gt;&amp;lt;&lt;/span&gt;&lt;span class="brownish"&gt;ig&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="brownish"&gt;XamDataChart&lt;/span&gt; &lt;span class="red"&gt;x&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="red"&gt;Name&lt;/span&gt;&lt;span class="blue"&gt;="DataChart"&lt;/span&gt; &lt;span class="red"&gt;Margin&lt;/span&gt;&lt;span class="blue"&gt;="0"&lt;/span&gt;
+                         &lt;span class="red"&gt;HorizontalZoomable&lt;/span&gt;&lt;span class="blue"&gt;="True"&lt;/span&gt; &lt;span class="red"&gt;HorizontalZoombarVisibility&lt;/span&gt;&lt;span class="blue"&gt;="Visible"&lt;/span&gt;
+                         &lt;span class="red"&gt;VerticalZoomable&lt;/span&gt;&lt;span class="blue"&gt;="True"&lt;/span&gt; &lt;span class="red"&gt;VerticalZoombarVisibility&lt;/span&gt;&lt;span class="blue"&gt;="Visible"&lt;/span&gt;&lt;span class="blue"&gt;&amp;gt;&lt;/span&gt;
+             &lt;span class="blue"&gt;&amp;lt;&lt;/span&gt;&lt;span class="brownish"&gt;ig&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="brownish"&gt;XamDataChart.Axes&lt;/span&gt;&lt;span class="blue"&gt;&amp;gt;&lt;/span&gt;
+                &lt;span class="blue"&gt;&amp;lt;&lt;/span&gt;&lt;span class="brownish"&gt;ig&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="brownish"&gt;NumericXAxis&lt;/span&gt; &lt;span class="red"&gt;Name&lt;/span&gt;&lt;span class="blue"&gt;="xAxis"&lt;/span&gt; &lt;span class="red"&gt;MinimumValue&lt;/span&gt;&lt;span class="blue"&gt;="0"&lt;/span&gt; &lt;span class="red"&gt;MaximumValue&lt;/span&gt;&lt;span class="blue"&gt;="150"&lt;/span&gt; &lt;span class="red"&gt;Interval&lt;/span&gt;&lt;span class="blue"&gt;="10"&lt;/span&gt;&lt;span class="blue"&gt;/&amp;gt;&lt;/span&gt;
+                &lt;span class="blue"&gt;&amp;lt;&lt;/span&gt;&lt;span class="brownish"&gt;ig&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="brownish"&gt;NumericYAxis&lt;/span&gt; &lt;span class="red"&gt;Name&lt;/span&gt;&lt;span class="blue"&gt;="yAxis"&lt;/span&gt; &lt;span class="red"&gt;MinimumValue&lt;/span&gt;&lt;span class="blue"&gt;="0"&lt;/span&gt; &lt;span class="red"&gt;MaximumValue&lt;/span&gt;&lt;span class="blue"&gt;="120"&lt;/span&gt; &lt;span class="red"&gt;Interval&lt;/span&gt;&lt;span class="blue"&gt;="10"&lt;/span&gt; &lt;span class="blue"&gt;/&amp;gt;&lt;/span&gt;
+            &lt;span class="blue"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="brownish"&gt;ig&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="brownish"&gt;XamDataChart.Axes&lt;/span&gt;&lt;span class="blue"&gt;&amp;gt;&lt;/span&gt;
+            &lt;span class="comment"&gt;&amp;lt;!-- ========================================================================== --&amp;gt;&lt;/span&gt;
+            &lt;span class="blue"&gt;&amp;lt;&lt;/span&gt;&lt;span class="brownish"&gt;ig&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="brownish"&gt;XamDataChart.Series&lt;/span&gt;&lt;span class="blue"&gt;&amp;gt;&lt;/span&gt;
+                &lt;span class="blue"&gt;&amp;lt;&lt;/span&gt;&lt;span class="brownish"&gt;custom&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="brownish"&gt;ContourAreaSeries&lt;/span&gt; &lt;span class="red"&gt;x&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="red"&gt;Name&lt;/span&gt;&lt;span class="blue"&gt;="customSeries"&lt;/span&gt; &lt;/code&gt;&lt;br&gt;&lt;code class="code"&gt;                                          &lt;span class="red"&gt;ItemsSource&lt;/span&gt;&lt;span class="blue"&gt;="{&lt;/span&gt;&lt;span class="brownish"&gt;StaticResource&lt;/span&gt; &lt;span class="red"&gt;data&lt;/span&gt;&lt;span class="blue"&gt;}"&lt;/span&gt;
+                                          &lt;span class="red"&gt;XAxis&lt;/span&gt;&lt;span class="blue"&gt;="{&lt;/span&gt;&lt;span class="brownish"&gt;Binding&lt;/span&gt; &lt;span class="red"&gt;ElementName&lt;/span&gt;&lt;span class="blue"&gt;=xAxis&lt;/span&gt;&lt;span class="blue"&gt;}"&lt;/span&gt; 
+                                          &lt;span class="red"&gt;YAxis&lt;/span&gt;&lt;span class="blue"&gt;="{&lt;/span&gt;&lt;span class="brownish"&gt;Binding&lt;/span&gt; &lt;span class="red"&gt;ElementName&lt;/span&gt;&lt;span class="blue"&gt;=yAxis&lt;/span&gt;&lt;span class="blue"&gt;}"&lt;/span&gt;&lt;span class="blue"&gt;&amp;gt;&lt;/span&gt;
+                &lt;span class="blue"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="brownish"&gt;custom&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="brownish"&gt;ContourAreaSeries&lt;/span&gt;&lt;span class="blue"&gt;&amp;gt;&lt;/span&gt;
+            &lt;span class="blue"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="brownish"&gt;ig&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="brownish"&gt;XamDataChart.Series&lt;/span&gt;&lt;span class="blue"&gt;&amp;gt;&lt;/span&gt;
+            &lt;span class="comment"&gt;&amp;lt;!-- ========================================================================== --&amp;gt;&lt;/span&gt;
+        &lt;span class="blue"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="brownish"&gt;ig&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="brownish"&gt;XamDataChart&lt;/span&gt;&lt;span class="blue"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="blue"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="brownish"&gt;Grid&lt;/span&gt;&lt;span class="blue"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="blue"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="brownish"&gt;UserControl&lt;/span&gt;&lt;span class="blue"&gt;&amp;gt;&lt;/span&gt;&lt;/code&gt;
+&lt;/pre&gt;
+        &lt;/div&gt;
+
+        &lt;div class="defaultImg"&gt;&lt;img src="images/xamDataChart_Creating_Custom_Series_02.png" style="hs-build-flags: SL,WPF,WinPhone"&gt;&lt;/div&gt;
+
+        &lt;div class="defaultImg"&gt;&lt;img src="images/xamDataChart_RT_Creating_Custom_Series_02.png" style="hs-build-flags: WinRT"&gt;&lt;/div&gt;
+
+        &lt;p&gt;Figure 2 – Preview of ContourAreaSeries with contours rendered along data points with the same values.&lt;/p&gt;
+    &lt;/li&gt;
+
+    &lt;li class="hs-buildflag-markup" style="hs-build-flags: SL,WPF,WinPhone"&gt;
+        &lt;span&gt;Integrating Legend - By default, custom series does not appear in the legend because the LegendItemTemplate is null by default. However, this can be easily changed by setting a data template to the LegendItemTemplate property of the series as it is shown in the following code snippet.&lt;/span&gt;
+
+        &lt;div class="LanguageSpecific" id="Example_XAML" style="display: block;" style="hs-build-flags: SL,WPF,WinPhone"&gt;
+            &lt;p&gt;&lt;span class="lang"&gt;&lt;b&gt;In XAML:&lt;/b&gt;&lt;/span&gt;&lt;/p&gt;
+            &lt;pre&gt;&lt;code class="code"&gt;...
+&lt;span class="red"&gt;&amp;lt;&lt;code class="brownish"&gt;ig&lt;/code&gt;&lt;/span&gt;&lt;code class="brownish"&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="brownish"&gt;XamDataChart.Series&lt;/span&gt;&lt;/code&gt;&lt;code class="blue"&gt;&amp;gt;&lt;/code&gt;
+    &lt;code class="blue"&gt;&amp;lt;&lt;/code&gt;&lt;code class="brownish"&gt;custom&lt;/code&gt;&lt;code class="blue"&gt;:&lt;/code&gt;&lt;code class="brownish"&gt;ContourAreaSeries&lt;/code&gt; &lt;code class="red"&gt;Title&lt;/code&gt;&lt;code class="blue"&gt;="ContourAreaSeries"&lt;/code&gt;&lt;code class="blue"&gt;&amp;gt;&lt;/code&gt;
+        &lt;code class="blue"&gt;&amp;lt;&lt;/code&gt;&lt;code class="brownish"&gt;custom&lt;/code&gt;&lt;code class="blue"&gt;:&lt;/code&gt;&lt;code class="brownish"&gt;ContourAreaSeries.LegendItemTemplate&lt;/code&gt;&lt;code class="blue"&gt;&amp;gt;&lt;/code&gt;
+             &lt;code class="blue"&gt;&amp;lt;&lt;/code&gt;&lt;code class="brownish"&gt;DataTemplate&lt;/code&gt; &lt;code class="blue"&gt;&amp;gt;&lt;/code&gt;
+                  &lt;code class="blue"&gt;&amp;lt;&lt;/code&gt;&lt;code class="brownish"&gt;StackPanel&lt;/code&gt; &lt;code class="red"&gt;Orientation&lt;/code&gt;&lt;code class="blue"&gt;="Horizontal"&lt;/code&gt; &lt;code class="red"&gt;Margin&lt;/code&gt;&lt;code class="blue"&gt;="1"&lt;/code&gt; &lt;code class="red"&gt;Visibility&lt;/code&gt;&lt;code class="blue"&gt;="{&lt;/code&gt;&lt;code class="brownish"&gt;Binding&lt;/code&gt; &lt;code class="red"&gt;Series&lt;/code&gt;.&lt;code class="red"&gt;Visibility&lt;/code&gt;&lt;code class="blue"&gt;}"&lt;/code&gt;&lt;code class="blue"&gt;&amp;gt;&lt;/code&gt;
+                      &lt;code class="blue"&gt;&amp;lt;&lt;/code&gt;&lt;code class="brownish"&gt;ContentPresenter&lt;/code&gt; &lt;code class="red"&gt;Content&lt;/code&gt;&lt;code class="blue"&gt;="{&lt;/code&gt;&lt;code class="brownish"&gt;Binding&lt;/code&gt;&lt;code class="blue"&gt;}"&lt;/code&gt; &lt;code class="red"&gt;ContentTemplate&lt;/code&gt;&lt;code class="blue"&gt;="{&lt;/code&gt;&lt;code class="brownish"&gt;Binding&lt;/code&gt; &lt;code class="red"&gt;Series&lt;/code&gt;.&lt;code class="red"&gt;LegendItemBadgeTemplate&lt;/code&gt;&lt;code class="blue"&gt;}"&lt;/code&gt; &lt;code class="blue"&gt;/&amp;gt;&lt;/code&gt;
+                      &lt;code class="blue"&gt;&amp;lt;&lt;/code&gt;&lt;code class="brownish"&gt;ContentPresenter&lt;/code&gt; &lt;code class="red"&gt;Content&lt;/code&gt;&lt;code class="blue"&gt;="{&lt;/code&gt;&lt;code class="brownish"&gt;Binding&lt;/code&gt; &lt;code class="red"&gt;Series&lt;/code&gt;.&lt;code class="red"&gt;Title&lt;/code&gt;, &lt;code class="red"&gt;TargetNullValue&lt;/code&gt;&lt;code class="blue"&gt;=Series&lt;/code&gt; &lt;code class="red"&gt;Title&lt;/code&gt;&lt;code class="blue"&gt;}"&lt;/code&gt; &lt;code class="blue"&gt;/&amp;gt;&lt;/code&gt;
+                  &lt;code class="blue"&gt;&amp;lt;/&lt;/code&gt;&lt;code class="brownish"&gt;StackPanel&lt;/code&gt;&lt;code class="blue"&gt;&amp;gt;&lt;/code&gt;
+             &lt;code class="blue"&gt;&amp;lt;/&lt;/code&gt;&lt;code class="brownish"&gt;DataTemplate&lt;/code&gt;&lt;code class="blue"&gt;&amp;gt;&lt;/code&gt;
+        &lt;code class="blue"&gt;&amp;lt;/&lt;/code&gt;&lt;code class="brownish"&gt;custom&lt;/code&gt;&lt;code class="blue"&gt;:&lt;/code&gt;&lt;code class="brownish"&gt;ContourAreaSeries.LegendItemTemplate&lt;/code&gt;&lt;code class="blue"&gt;&amp;gt;&lt;/code&gt;
+        &lt;code class="blue"&gt;&amp;lt;&lt;/code&gt;&lt;code class="brownish"&gt;custom&lt;/code&gt;&lt;code class="blue"&gt;:&lt;/code&gt;&lt;code class="brownish"&gt;ContourAreaSeries.LegendItemBadgeTemplate&lt;/code&gt;&lt;code class="blue"&gt;&amp;gt;&lt;/code&gt;
+             &lt;code class="blue"&gt;&amp;lt;&lt;/code&gt;&lt;code class="brownish"&gt;DataTemplate&lt;/code&gt; &lt;code class="blue"&gt;&amp;gt;&lt;/code&gt;
+                  &lt;code class="blue"&gt;&amp;lt;&lt;/code&gt;&lt;code class="brownish"&gt;Grid&lt;/code&gt; &lt;code class="red"&gt;Width&lt;/code&gt;&lt;code class="blue"&gt;="19"&lt;/code&gt; &lt;code class="red"&gt;Height&lt;/code&gt;&lt;code class="blue"&gt;="14"&lt;/code&gt; &lt;code class="red"&gt;Margin&lt;/code&gt;&lt;code class="blue"&gt;="0,0,5,0"&lt;/code&gt;&lt;code class="blue"&gt;&amp;gt;&lt;/code&gt;
+                       &lt;code class="blue"&gt;&amp;lt;&lt;/code&gt;&lt;code class="brownish"&gt;Grid&lt;/code&gt; &lt;code class="red"&gt;Width&lt;/code&gt;&lt;code class="blue"&gt;="14"&lt;/code&gt; &lt;code class="red"&gt;Height&lt;/code&gt;&lt;code class="blue"&gt;="14"&lt;/code&gt;&lt;code class="blue"&gt;&amp;gt;&lt;/code&gt;
+                           &lt;code class="blue"&gt;&amp;lt;&lt;/code&gt;&lt;code class="brownish"&gt;Ellipse&lt;/code&gt; &lt;code class="red"&gt;Width&lt;/code&gt;&lt;code class="blue"&gt;="7"&lt;/code&gt; &lt;code class="red"&gt;Height&lt;/code&gt;&lt;code class="blue"&gt;="7"&lt;/code&gt; &lt;code class="red"&gt;Margin&lt;/code&gt;&lt;code class="blue"&gt;="0"&lt;/code&gt; &lt;code class="red"&gt;Fill&lt;/code&gt;&lt;code class="blue"&gt;="{&lt;/code&gt;&lt;code class="brownish"&gt;Binding&lt;/code&gt; &lt;code class="red"&gt;Series&lt;/code&gt;.&lt;code class="red"&gt;ActualBrush&lt;/code&gt;&lt;code class="blue"&gt;}"&lt;/code&gt; &lt;code class="red"&gt;Stroke&lt;/code&gt;&lt;code class="blue"&gt;="{&lt;/code&gt;&lt;code class="brownish"&gt;Binding&lt;/code&gt; &lt;code class="red"&gt;Series&lt;/code&gt;.&lt;code class="red"&gt;ActualOutline&lt;/code&gt;&lt;code class="blue"&gt;}"&lt;/code&gt; &lt;code class="red"&gt;StrokeThickness&lt;/code&gt;&lt;code class="blue"&gt;="0.75"&lt;/code&gt; &lt;code class="red"&gt;HorizontalAlignment&lt;/code&gt;&lt;code class="blue"&gt;="Center"&lt;/code&gt; &lt;code class="red"&gt;VerticalAlignment&lt;/code&gt;&lt;code class="blue"&gt;="Top"&lt;/code&gt; &lt;code class="blue"&gt;/&amp;gt;&lt;/code&gt;
+                           &lt;code class="blue"&gt;&amp;lt;&lt;/code&gt;&lt;code class="brownish"&gt;Ellipse&lt;/code&gt; &lt;code class="red"&gt;Width&lt;/code&gt;&lt;code class="blue"&gt;="7"&lt;/code&gt; &lt;code class="red"&gt;Height&lt;/code&gt;&lt;code class="blue"&gt;="7"&lt;/code&gt; &lt;code class="red"&gt;Margin&lt;/code&gt;&lt;code class="blue"&gt;="0"&lt;/code&gt; &lt;code class="red"&gt;Fill&lt;/code&gt;&lt;code class="blue"&gt;="{&lt;/code&gt;&lt;code class="brownish"&gt;Binding&lt;/code&gt; &lt;code class="red"&gt;Series&lt;/code&gt;.&lt;code class="red"&gt;ActualBrush&lt;/code&gt;&lt;code class="blue"&gt;}"&lt;/code&gt; &lt;code class="red"&gt;Stroke&lt;/code&gt;&lt;code class="blue"&gt;="{&lt;/code&gt;&lt;code class="brownish"&gt;Binding&lt;/code&gt; &lt;code class="red"&gt;Series&lt;/code&gt;.&lt;code class="red"&gt;ActualOutline&lt;/code&gt;&lt;code class="blue"&gt;}"&lt;/code&gt; &lt;code class="red"&gt;StrokeThickness&lt;/code&gt;&lt;code class="blue"&gt;="0.75"&lt;/code&gt; &lt;code class="red"&gt;HorizontalAlignment&lt;/code&gt;&lt;code class="blue"&gt;="Left"&lt;/code&gt; &lt;code class="red"&gt;VerticalAlignment&lt;/code&gt;&lt;code class="blue"&gt;="Bottom"&lt;/code&gt; &lt;code class="blue"&gt;/&amp;gt;&lt;/code&gt;
+                           &lt;code class="blue"&gt;&amp;lt;&lt;/code&gt;&lt;code class="brownish"&gt;Ellipse&lt;/code&gt; &lt;code class="red"&gt;Width&lt;/code&gt;&lt;code class="blue"&gt;="7"&lt;/code&gt; &lt;code class="red"&gt;Height&lt;/code&gt;&lt;code class="blue"&gt;="7"&lt;/code&gt; &lt;code class="red"&gt;Margin&lt;/code&gt;&lt;code class="blue"&gt;="0"&lt;/code&gt; &lt;code class="red"&gt;Fill&lt;/code&gt;&lt;code class="blue"&gt;="{&lt;/code&gt;&lt;code class="brownish"&gt;Binding&lt;/code&gt; &lt;code class="red"&gt;Series&lt;/code&gt;.&lt;code class="red"&gt;ActualBrush&lt;/code&gt;&lt;code class="blue"&gt;}"&lt;/code&gt; &lt;code class="red"&gt;Stroke&lt;/code&gt;&lt;code class="blue"&gt;="{&lt;/code&gt;&lt;code class="brownish"&gt;Binding&lt;/code&gt; &lt;code class="red"&gt;Series&lt;/code&gt;.&lt;code class="red"&gt;ActualOutline&lt;/code&gt;&lt;code class="blue"&gt;}"&lt;/code&gt; &lt;code class="red"&gt;StrokeThickness&lt;/code&gt;&lt;code class="blue"&gt;="0.75"&lt;/code&gt; &lt;code class="red"&gt;HorizontalAlignment&lt;/code&gt;&lt;code class="blue"&gt;="Right"&lt;/code&gt; &lt;code class="red"&gt;VerticalAlignment&lt;/code&gt;&lt;code class="blue"&gt;="Bottom"&lt;/code&gt; &lt;code class="blue"&gt;/&amp;gt;&lt;/code&gt;
+                           &lt;code class="blue"&gt;&amp;lt;&lt;/code&gt;&lt;code class="brownish"&gt;Ellipse&lt;/code&gt; &lt;code class="red"&gt;Width&lt;/code&gt;&lt;code class="blue"&gt;="7"&lt;/code&gt; &lt;code class="red"&gt;Height&lt;/code&gt;&lt;code class="blue"&gt;="7"&lt;/code&gt; &lt;code class="red"&gt;Margin&lt;/code&gt;&lt;code class="blue"&gt;="0"&lt;/code&gt; &lt;code class="red"&gt;Fill&lt;/code&gt;&lt;code class="blue"&gt;="{&lt;/code&gt;&lt;code class="brownish"&gt;Binding&lt;/code&gt; &lt;code class="red"&gt;Series&lt;/code&gt;.&lt;code class="red"&gt;ActualBrush&lt;/code&gt;&lt;code class="blue"&gt;}"&lt;/code&gt; &lt;code class="red"&gt;Stroke&lt;/code&gt;&lt;code class="blue"&gt;="{&lt;/code&gt;&lt;code class="brownish"&gt;Binding&lt;/code&gt; &lt;code class="red"&gt;Series&lt;/code&gt;.&lt;code class="red"&gt;ActualOutline&lt;/code&gt;&lt;code class="blue"&gt;}"&lt;/code&gt; &lt;code class="red"&gt;StrokeThickness&lt;/code&gt;&lt;code class="blue"&gt;="0.75"&lt;/code&gt; &lt;code class="red"&gt;HorizontalAlignment&lt;/code&gt;&lt;code class="blue"&gt;="Center"&lt;/code&gt; &lt;code class="red"&gt;VerticalAlignment&lt;/code&gt;&lt;code class="blue"&gt;="Center"&lt;/code&gt; &lt;code class="blue"&gt;/&amp;gt;&lt;/code&gt;
+                       &lt;code class="blue"&gt;&amp;lt;/&lt;/code&gt;&lt;code class="brownish"&gt;Grid&lt;/code&gt;&lt;code class="blue"&gt;&amp;gt;&lt;/code&gt;
+                  &lt;code class="blue"&gt;&amp;lt;/&lt;/code&gt;&lt;code class="brownish"&gt;Grid&lt;/code&gt;&lt;code class="blue"&gt;&amp;gt;&lt;/code&gt;
+             &lt;code class="blue"&gt;&amp;lt;/&lt;/code&gt;&lt;code class="brownish"&gt;DataTemplate&lt;/code&gt;&lt;code class="blue"&gt;&amp;gt;&lt;/code&gt;
+        &lt;code class="blue"&gt;&amp;lt;/&lt;/code&gt;&lt;code class="brownish"&gt;custom&lt;/code&gt;&lt;code class="blue"&gt;:&lt;/code&gt;&lt;code class="brownish"&gt;ContourAreaSeries.LegendItemBadgeTemplate&lt;/code&gt;&lt;code class="blue"&gt;&amp;gt;&lt;/code&gt;
+    &lt;code class="blue"&gt;&amp;lt;/&lt;/code&gt;&lt;code class="brownish"&gt;custom&lt;/code&gt;&lt;code class="blue"&gt;:&lt;/code&gt;&lt;code class="brownish"&gt;ContourAreaSeries&lt;/code&gt;&lt;code class="blue"&gt;&amp;gt;&lt;/code&gt;
+&lt;code class="blue"&gt;&amp;lt;/&lt;/code&gt;&lt;code class="brownish"&gt;ig&lt;/code&gt;&lt;code class="blue"&gt;:&lt;/code&gt;&lt;code class="brownish"&gt;XamDataChart.Series&lt;/code&gt;&lt;code class="blue"&gt;&amp;gt;&lt;/code&gt;
+&lt;/code&gt;
+&lt;/pre&gt;
+        &lt;/div&gt;
+
+        &lt;div class="defaultImg" style="hs-build-flags: SL"&gt;&lt;img src="images/xamDataChart_Creating_Custom_Series_03.png"&gt;&lt;/div&gt;
+
+        &lt;p&gt;Figure 3 – Preview of ContourAreaSeries with a legend showing the series as a legend item.&lt;/p&gt;
+    &lt;/li&gt;
+
+    &lt;li&gt;Integrating Tooltips – This code snippet shows how to provide support for displaying tooltips on series’ markers by overriding the GetItem method and implementing logic for getting a data point corresponding to a marker on which the cursor is hover
+
+        &lt;div class="ig-note"&gt;
+            &lt;span class="ig-note-caption"&gt;Note:&lt;/span&gt; By default, a Series will not display tooltips. To implement tooltips in a custom series, the GetItem method must be overridden and it must return a non-null value otherwise tooltip will not be displayed.
+        &lt;/div&gt;
+
+        &lt;div class="LanguageSpecific" id="Example_VB" style="display: block;"&gt;
+            &lt;p&gt;&lt;span class="lang"&gt;&lt;b&gt;In Visual Basic:&lt;/b&gt;&lt;/span&gt;&lt;/p&gt;
+            &lt;pre&gt;&lt;code class="code"&gt;&lt;span class="comment"&gt;''' &amp;lt;summary&amp;gt;&lt;/span&gt;
+&lt;span class="comment"&gt;''' Gets the item associated with the specified world position &lt;/span&gt;
+&lt;span class="comment"&gt;''' when a tooltip must be displayed on the series' marker&lt;/span&gt;
+&lt;span class="comment"&gt;''' &amp;lt;/summary&amp;gt;&lt;/span&gt;
+&lt;span class="blue"&gt;Protected&lt;/span&gt; &lt;span class="blue"&gt;Overrides&lt;/span&gt; &lt;span class="blue"&gt;Function&lt;/span&gt; GetItem(worldPoint &lt;span class="blue"&gt;As&lt;/span&gt; Point) &lt;span class="blue"&gt;As&lt;/span&gt; &lt;span class="blue"&gt;Object&lt;/span&gt;
+ &lt;span class="blue"&gt;Dim&lt;/span&gt; cursorPoint &lt;span class="blue"&gt;As&lt;/span&gt; Point = New Point(((worldPoint.X - &lt;span class="blue"&gt;Me&lt;/span&gt;.SeriesViewer.ActualWindowRect.Left)  _
+                 * (&lt;span class="blue"&gt;Me&lt;/span&gt;.Viewport.Width / &lt;span class="blue"&gt;Me&lt;/span&gt;.SeriesViewer.ActualWindowRect.Width)), ((worldPoint.Y - &lt;span class="blue"&gt;Me&lt;/span&gt;.SeriesViewer.ActualWindowRect.Top)  _
+                 * (&lt;span class="blue"&gt;Me&lt;/span&gt;.Viewport.Height / &lt;span class="blue"&gt;Me&lt;/span&gt;.SeriesViewer.ActualWindowRect.Height)))
+
+    &lt;span class="blue"&gt;Dim&lt;/span&gt; data &lt;span class="blue"&gt;As&lt;/span&gt; ContourData = &lt;span class="blue"&gt;DirectCast&lt;/span&gt;(&lt;span class="blue"&gt;Me&lt;/span&gt;.ItemsSource, ContourData)
+    &lt;span class="blue"&gt;For&lt;/span&gt; &lt;span class="blue"&gt;Each&lt;/span&gt; dataPoint &lt;span class="blue"&gt;As&lt;/span&gt; ContourDataPoint &lt;span class="blue"&gt;In&lt;/span&gt; data
+        &lt;span class="comment"&gt;' scale locations of data point to the series' viewport&lt;/span&gt;
+        &lt;span class="blue"&gt;Dim&lt;/span&gt; x &lt;span class="blue"&gt;As&lt;/span&gt; &lt;span class="blue"&gt;Double&lt;/span&gt; = &lt;span class="blue"&gt;Me&lt;/span&gt;.XAxis.GetScaledValue(dataPoint.X, &lt;span class="blue"&gt;Me&lt;/span&gt;.SeriesViewer.ActualWindowRect, &lt;span class="blue"&gt;Me&lt;/span&gt;.Viewport)
+        &lt;span class="blue"&gt;Dim&lt;/span&gt; y &lt;span class="blue"&gt;As&lt;/span&gt; &lt;span class="blue"&gt;Double&lt;/span&gt; = &lt;span class="blue"&gt;Me&lt;/span&gt;.YAxis.GetScaledValue(dataPoint.Y, &lt;span class="blue"&gt;Me&lt;/span&gt;.SeriesViewer.ActualWindowRect, &lt;span class="blue"&gt;Me&lt;/span&gt;.Viewport)
+
+        &lt;span class="blue"&gt;Dim&lt;/span&gt; size &lt;span class="blue"&gt;As&lt;/span&gt; &lt;span class="blue"&gt;Double&lt;/span&gt; = 25
+        &lt;span class="blue"&gt;Dim&lt;/span&gt; left &lt;span class="blue"&gt;As&lt;/span&gt; &lt;span class="blue"&gt;Double&lt;/span&gt; = x - size / 2
+        &lt;span class="blue"&gt;Dim&lt;/span&gt; top &lt;span class="blue"&gt;As&lt;/span&gt; &lt;span class="blue"&gt;Double&lt;/span&gt; = y - size / 2
+
+        &lt;span class="blue"&gt;Dim&lt;/span&gt; itemBounds &lt;span class="blue"&gt;As&lt;/span&gt; &lt;span class="blue"&gt;New&lt;/span&gt; Rect(left, top, size, size)
+        &lt;span class="blue"&gt;If&lt;/span&gt; itemBounds.Contains(cursorPoint) &lt;span class="blue"&gt;Then&lt;/span&gt;
+            &lt;span class="blue"&gt;Return&lt;/span&gt; dataPoint
+        &lt;span class="blue"&gt;End&lt;/span&gt; &lt;span class="blue"&gt;If&lt;/span&gt;
+    &lt;span class="blue"&gt;Next&lt;/span&gt;
+
+    &lt;span class="blue"&gt;Return&lt;/span&gt; &lt;span class="blue"&gt;Nothing&lt;/span&gt;
+&lt;span class="blue"&gt;End&lt;/span&gt; &lt;span class="blue"&gt;Function&lt;/span&gt;&lt;/code&gt;
+&lt;/pre&gt;
+        &lt;/div&gt;
+
+        &lt;div class="LanguageSpecific" id="Example_CS" style="display: block;"&gt;
+            &lt;p&gt;&lt;span class="lang"&gt;&lt;b&gt;In C#:&lt;/b&gt;&lt;/span&gt;&lt;/p&gt;
+            &lt;pre&gt;&lt;code class="code"&gt;&lt;span class="comment"&gt;/// &amp;lt;summary&amp;gt;&lt;/span&gt;
+&lt;span class="comment"&gt;/// Gets the item associated with the specified world position &lt;/span&gt;
+&lt;span class="comment"&gt;/// when a tooltip must be displayed on the series' marker&lt;/span&gt;
+&lt;span class="comment"&gt;/// &amp;lt;/summary&amp;gt;&lt;/span&gt;
+&lt;span class="blue"&gt;protected&lt;/span&gt; &lt;span class="blue"&gt;override&lt;/span&gt; &lt;span class="blue"&gt;object&lt;/span&gt; GetItem(Point worldPoint)
+{
+    Point cursorPoint = &lt;span class="keyword"&gt;new&lt;/span&gt; Point(
+(worldPoint.X - &lt;span class="keyword"&gt;this&lt;/span&gt;.SeriesViewer.ActualWindowRect.Left) * &lt;span class="keyword"&gt;this&lt;/span&gt;.Viewport.Width / &lt;span class="keyword"&gt;this&lt;/span&gt;.SeriesViewer.ActualWindowRect.Width,
+(worldPoint.Y - &lt;span class="keyword"&gt;this&lt;/span&gt;.SeriesViewer.ActualWindowRect.Top) * &lt;span class="keyword"&gt;this&lt;/span&gt;.Viewport.Height / &lt;span class="keyword"&gt;this&lt;/span&gt;.SeriesViewer.ActualWindowRect.Height);
+
+ContourData data = (ContourData)&lt;span class="blue"&gt;this&lt;/span&gt;.ItemsSource;
+    &lt;span class="blue"&gt;foreach&lt;/span&gt; (ContourDataPoint dataPoint &lt;span class="blue"&gt;in&lt;/span&gt; data)
+    {
+        &lt;span class="comment"&gt;// scale locations of data point to the series' viewport&lt;/span&gt;
+        &lt;span class="blue"&gt;double&lt;/span&gt; x = &lt;span class="blue"&gt;this&lt;/span&gt;.XAxis.GetScaledValue(dataPoint.X, &lt;span class="blue"&gt;this&lt;/span&gt;.SeriesViewer.ActualWindowRect, &lt;span class="blue"&gt;this&lt;/span&gt;.Viewport);
+        &lt;span class="blue"&gt;double&lt;/span&gt; y = &lt;span class="blue"&gt;this&lt;/span&gt;.YAxis.GetScaledValue(dataPoint.Y, &lt;span class="blue"&gt;this&lt;/span&gt;.SeriesViewer.ActualWindowRect, &lt;span class="blue"&gt;this&lt;/span&gt;.Viewport);
+
+        &lt;span class="blue"&gt;double&lt;/span&gt; size = 25;
+        &lt;span class="blue"&gt;double&lt;/span&gt; left = x - size / 2;
+        &lt;span class="blue"&gt;double&lt;/span&gt; top = y - size / 2;
+
+        Rect itemBounds = &lt;span class="blue"&gt;new&lt;/span&gt; Rect(left, top, size, size);
+        &lt;span class="blue"&gt;if&lt;/span&gt; (itemBounds.Contains(cursorPoint))
+        {
+            &lt;span class="blue"&gt;return&lt;/span&gt; dataPoint;
+        }
+    }
+
+    &lt;span class="blue"&gt;return&lt;/span&gt; &lt;span class="blue"&gt;null&lt;/span&gt;;
+}&lt;/code&gt;
+&lt;/pre&gt;
+        &lt;/div&gt;
+
+        &lt;p&gt;The "Item" in the DataContext of the Tooltip will be the returns value of the GetItem method. The following code snippet shows how to define a tooltip containing series title and a value of the data point’s Value property.&lt;/p&gt;
+
+        &lt;div class="LanguageSpecific" id="Example_XAML" style="display: block;" style="hs-build-flags: SL,WPF,WINPHONE,WINRT"&gt;
+            &lt;p&gt;&lt;span class="lang"&gt;&lt;b&gt;In XAML:&lt;/b&gt;&lt;/span&gt;&lt;/p&gt;
+            &lt;pre&gt;&lt;code class="code"&gt;...
+&lt;span class="blue"&gt;&amp;lt;&lt;/span&gt;&lt;span class="brownish"&gt;ig&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="brownish"&gt;XamDataChart.Series&lt;/span&gt;&lt;span class="blue"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="blue"&gt;&amp;lt;&lt;/span&gt;&lt;span class="brownish"&gt;custom&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="brownish"&gt;ContourAreaSeries&lt;/span&gt; &lt;span class="red"&gt;Title&lt;/span&gt;&lt;span class="blue"&gt;="ContourAreaSeries"&lt;/span&gt;
+                              &lt;span class="red"&gt;ToolTip&lt;/span&gt;&lt;span class="blue"&gt;="{}{Series.Title}: {Item.Value}"&lt;/span&gt;&lt;span class="blue"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="blue"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="brownish"&gt;custom&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="brownish"&gt;ContourAreaSeries&lt;/span&gt;&lt;span class="blue"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="blue"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="brownish"&gt;ig&lt;/span&gt;&lt;span class="blue"&gt;:&lt;/span&gt;&lt;span class="brownish"&gt;XamDataChart.Series&lt;/span&gt;&lt;span class="blue"&gt;&amp;gt;&lt;/span&gt;&lt;/code&gt;
+&lt;/pre&gt;
+        &lt;/div&gt;
+
+        &lt;div class="defaultImg"&gt;&lt;img src="images/xamDataChart_Creating_Custom_Series_04.png" style="hs-build-flags: SL,WPF,WinPhone"&gt;&lt;/div&gt;
+
+        &lt;div class="defaultImg"&gt;&lt;img src="images/xamDataChart_RT_Creating_Custom_Series_04.png" style="hs-build-flags: WinRT"&gt;&lt;/div&gt;
+
+        &lt;p&gt;Figure 4 – Preview of ContourAreaSeries with a tooltip showing value of a data point.&lt;/p&gt;
+    &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id="RelatedTopics" name="RelatedTopics"&gt;Related Topics&lt;/h1&gt;
+
+&lt;ul&gt;
+    &lt;li&gt;&lt;a href="e0c1a537-ee33-4389-a939-eab0cea8fade" style="auto-update-caption: true"&gt;Chart Axes&lt;/a&gt;&lt;/li&gt;
+
+    &lt;li&gt;&lt;a href="3d087135-84b0-4f6e-b3eb-afe7e962e406" style="auto-update-caption: true"&gt;Chart Series&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</Content>
+    </TopicSection>
+  </TopicSections>
+  <TopicLinks />
+  <TopicKeywords />
+  <PropertyDefinitionValues>
+    <PropertyDefinitionValue PropertyDefinitionId="a4b06b67-5416-4f39-803f-428bbfef0b31">
+      <PropertyValue m="2013-05-23T13:50:17.2520818Z">Charting,
+Data Presentation,
+Getting Started,
+How Do I</PropertyValue>
+    </PropertyDefinitionValue>
+    <PropertyDefinitionValue PropertyDefinitionId="0869df2d-59f4-42af-9840-793b61691220">
+      <PropertyValue m="2013-05-23T13:50:17.2600675Z">xamDataChart</PropertyValue>
+    </PropertyDefinitionValue>
+  </PropertyDefinitionValues>
+</Topic>
