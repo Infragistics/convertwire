@@ -25,7 +25,7 @@
 			
 			var arrayToString = function(array){
 				if(array.length === 0) return '';
-				return "'" + array.join("','") + "'"; 
+				return "\"" + array.join("\",\"") + "\""; 
 			};
 			
 			var metaData = 
