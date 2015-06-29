@@ -1,7 +1,6 @@
 
 (function(module){
 	
-	var path = require('path');
 	var xml2js = require('xml2js');
 	var parser = new xml2js.Parser({
 		explicitArray: false
@@ -30,17 +29,17 @@
 			};
 			
 			var metaData = 
-				"<!--" +
-"|metadata|" +
-"{" +
-"    \"name\": \"" + htmlDocument.name + "\"," +
-"    \"controlName\": \"" + htmlDocument.controlName + "\"," +
-"    \"tags\": [" + arrayToString(htmlDocument.tags) + "]," +
-"    \"docXGuid\": \"" + htmlDocument.docXGuid + "\"," +
-"    \"title\": \"" + htmlDocument.title + "\"," +
-"    \"buildFlags\": [" + arrayToString(htmlDocument.buildFlags) + "]" +
-"}" +
-"|metadata|" +
+				"<!--\n" +
+"|metadata|\n" +
+"{\n" +
+"    \"name\": \"" + htmlDocument.name + "\",\n" +
+"    \"controlName\": \"" + htmlDocument.controlName + "\",\n" +
+"    \"tags\": [" + arrayToString(htmlDocument.tags) + "],\n" +
+"    \"docXGuid\": \"" + htmlDocument.docXGuid + "\",\n" +
+"    \"title\": \"" + htmlDocument.title + "\",\n" +
+"    \"buildFlags\": [" + arrayToString(htmlDocument.buildFlags) + "]\n" +
+"}\n" +
+"|metadata|\n" +
 "-->";
 
 			return htmlString + "\n\n" + metaData;
