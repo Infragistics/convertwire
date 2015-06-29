@@ -1,30 +1,66 @@
+/// <reference path="../typings/node/node.d.ts"/>
 /// <reference path="../typings/jasmine/jasmine.d.ts"/>
 
-describe('topicInfo', function(){
+describe('docXParser', function(){
 	
+	var parser = require('../modules/docXParser.js');
 	var _ = require('lodash');
-	var topicInfo = require('../modules/topicInfo.js');
 	var config = require('./config.js');
+	var fs = require('fs');
+	var path = require('path');
+	var topics = [];
 	
-	describe('getInfo', function(){
-		
-		var topics = [];
-		
+	var getTopics = function(){
 		beforeEach(function(done){	
 			if (topics.length === 0) {
 				var keys = _.keys(config.topicData);
 				keys.forEach(function(key, index){
 					var file = config.topicData[key];
-					topicInfo.getInfo('../spec/data/' + file.fileName, function(error, topic){
-						topics.push(topic);
-						if(topics.length === keys.length){
-							done();
-						}
+					fs.readFile(path.resolve(__dirname, 'data/' + file.fileName), 'utf8', function(readError, xmlString){
+						parser.parse(xmlString, function(error, topic){
+							topics.push(topic);
+							if(topics.length === keys.length){
+								done();
+							}
+						});
 					});
 				});
 			} else {
 				done();
 			}
+		});
+	};
+	
+	describe('toHTML', function () {
+		getTopics();
+		
+		it('serializes htmlDocument markup with metadata', function(){
+			
+			topics.forEach(function(topic, index){
+				var testData = config.topicData[topic.docXGuid];
+				var html = parser.toHtml(topic);
+				
+				// check HTML
+				expect(html).toContain(testData.markupFragment);
+				
+				// check metadata
+				expect(html).toContain("\"docXGuid\": \"" + testData.docXGuid + "\"");
+				expect(html).toContain("\"title\": \"" + testData.title + "\"");
+				expect(html).toContain("\"name\": \"" + testData.name + "\"");
+			});
+			
+		});
+	});
+	
+	describe('parse', function(){
+		
+		getTopics();
+		
+		it('extracts DocumentX name', function(){
+			topics.forEach(function(topic, index){
+				var testData = config.topicData[topic.docXGuid];
+				expect(topic.name).toEqual(testData.name);
+			});
 		});
 		
 		it('extracts DocumentX GUID', function(){
