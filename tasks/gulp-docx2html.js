@@ -2,7 +2,7 @@
 (function(){
 	
 	var through = require('through2');
-	var parser = require('./docXParser.js');
+	var parser = require('../modules/docXParser.js');
 	
 	module.exports = function(){
 		
