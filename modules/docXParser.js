@@ -21,7 +21,7 @@
 	};
 	
 	module.toHtml = function(htmlDocument){
-			var htmlString = htmlDocument.markup;
+			var htmlString = '<div id="docX-root">\n' + htmlDocument.markup + '\n</div>';
 			
 			var arrayToString = function(array){
 				if(array.length === 0) return '';
