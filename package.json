@@ -21,7 +21,8 @@
     "xml2js": "^0.4.9"
   },
   "scripts": {
-    "test": "jasmine-node spec --color --captureExceptions --autotest --watch .",
+    "testwatch": "jasmine-node spec --color --captureExceptions --autotest --watch .",
+    "test": "jasmine-node spec --color --captureExceptions .",
     "gulp": "gulp"
   }
 }
