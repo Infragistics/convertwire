@@ -1,8 +1,9 @@
+/// <reference path="../typings/node/node.d.ts"/>
 /// <reference path="../typings/jasmine/jasmine.d.ts"/>
 
 describe('parser', function(){
 	
-	var parser = require('../modules/parser.js');
+	var parser = require('../modules/html2AsciiDoc');
 	var fs = require('fs');
 	var htmlString = '';
 	var path = require('path');
