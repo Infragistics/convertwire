@@ -22,7 +22,7 @@
   },
   "scripts": {
     "testwatch": "jasmine-node spec --color --captureExceptions --autotest --watch .",
-    "test": "jasmine-node spec --color --captureExceptions .",
+    "test": "jasmine-node ./spec/ --color --captureExceptions",
     "gulp": "gulp"
   }
 }
