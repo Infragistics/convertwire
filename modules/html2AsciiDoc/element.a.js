@@ -4,7 +4,7 @@
 	
 	module.convert = function($e, childContent){
 		var href = $e.attr('href');
-		var text = childContent; //$e.text();
+		var text = childContent;
 		var returnValue = '';
 		
 		href = (typeof href !== "undefined")? href : '';
