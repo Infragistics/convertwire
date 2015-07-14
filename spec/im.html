@@ -1,0 +1,296 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" value="IE=9" />
+
+    
+
+    
+
+    <title>Cell Merging Overview (WebDataGrid)</title>
+    <meta name="Title" content="Cell Merging Overview (WebDataGrid)"/>    
+    
+    <script src="script/jquery-1.7.2.min.js" type="text/javascript" id="mshs_support_script"></script>
+    <script src="script/jquery-ui-1.8.18.custom.min.js" type="text/javascript"></script>
+    <link rel="styleSheet" type="text/css" href="stylesheets/jquery-ui-1.8.18.custom.css" />
+    <link rel="styleSheet" type="text/css" href="stylesheets/jquery.qtip.css" />
+	
+    
+	
+
+    <meta name="Description" content="
+    
+        
+            
+                Purpose
+            
+
+            
+                
+                    This topic provides an overview of the Cell Merging feature of the WebDataGrid™." />
+    
+    <link rel="styleSheet" type="text/css" href="stylesheets/topics.2012.css" data-mshv2-stylesheet="/stylesheets/topics.2012.mshv2.css" />
+    <script src="script/topics.jqueryplugins.2012.min.js" type="text/javascript"></script>
+    <script src="script/topics.2012.js" type="text/javascript"></script>
+    
+    <meta name="Microsoft.Help.Id" content="aebb359b-1821-4008-8b11-542992ebef3c"/>
+    <meta name="Microsoft.Help.TocParent" content="7e4bec9d-c837-429c-8abd-9d65d2f41e27"/>
+    <meta name="Microsoft.Help.TocOrder" content="1"/>
+    <meta name="Microsoft.Help.F1" content=""/>
+    <meta name="Microsoft.Help.ContentType" content="Concepts" />
+    
+    
+    
+    
+    
+    <link rel="styleSheet" type="text/css" href="stylesheets/slimbox2.css"></link>
+    <link rel="styleSheet" type="text/css" href="stylesheets/hs-jquery-common.css"></link>
+    <link rel="styleSheet" type="text/css" href="stylesheets/hs-jquery-slimbox.css"></link>
+    <link rel="styleSheet" type="text/css" href="stylesheets/hs-jquery-expand.css"></link>
+    <link rel="styleSheet" type="text/css" href="stylesheets/hs-expandcollapse.css"></link>
+    <link rel="styleSheet" type="text/css" href="stylesheets/hs-boxes.css"></link>
+    <link rel="styleSheet" type="text/css" href="stylesheets/customstyles.css"></link>
+    <script src="script/jquery-1.7.2.min.js" type="text/javascript"></script>
+    <script src="script/slimbox2.js" type="text/javascript"></script>
+    <script src="script/hs-jquery-common.js" type="text/javascript"></script>
+    <script src="script/jquery-expand.js" type="text/javascript"></script>
+    <script src="script/hs-expandcollapse.js" type="text/javascript"></script>
+    <script src="script/swfobject.js" type="text/javascript"></script>
+
+    
+    
+
+    
+
+    
+</head>
+
+<body>
+    <div id="BeforeHeaderContent">
+        
+    </div>
+    <div id="HeaderContent">
+        
+            
+            <div id="ProjectTitle">Infragistics® ASP.NET 2015.1</div>
+        <div id="PageTitle"><div id="PageTitleText">Cell Merging Overview (WebDataGrid)</div></div>
+    </div>
+    <div id="AfterHeaderContent">
+        <!-- Spacing --> <span id="ToggleAllSectionsLink" class="FunctionLink">
+                <label id="CollapseAllLabel">Collapse All</label>
+                <label id="ExpandAllLabel" style="display: none;">Expand All</label>
+            </span>
+    </div>
+    
+    
+    
+    <div id="BodyContent">
+        <table class="ig-layout">
+    <tbody>
+        <tr>
+            <th>
+                <h4><span style="COLOR: rgb(79,129,189)"><b><span style="COLOR: rgb(79,129,189)">Purpose</span></b></span></h4>
+            </th>
+
+            <td>
+                <div class="ig-layout-container">
+                    <p>This topic provides an overview of the Cell Merging feature of the <span class="ig-italic">WebDataGrid</span>™.</p>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <th>
+                <h4><span style="COLOR: rgb(79,129,189)"><b><span style="COLOR: rgb(79,129,189)">Required Background</span></b></span></h4>
+            </th>
+
+            <td>
+                <div class="ig-layout-container">
+                    <p>The following table lists the materials required as a prerequisite to understanding this topic.</p>
+
+                    <table cellspacing="0" cellpadding="0">
+                        <tbody>
+                            <tr>
+                                <th>
+                                    <p>Topic</p>
+                                </th>
+
+                                <th>
+                                    <p>Purpose</p>
+                                </th>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <p><a class="ig-topic-link" href="WebDataGrid_Sorting.html">Sorting</a></p>
+                                </td>
+
+                                <td>
+                                    <p>This topic explains, with code examples, how to enable sorting for the users of the <span class="ig-italic">WebDataGrid</span>.</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table><br />
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table><br />
+
+<div class="ig-block-title">
+    <h2>Cell Merging Summary</h2>
+</div>
+
+<table class="ig-layout">
+    <tbody>
+        <tr>
+            <th>
+                <h4><span style="COLOR: rgb(79,129,189)"><b><span style="COLOR: rgb(79,129,189)">Cell Merging Summary</span></b></span></h4>
+            </th>
+
+            <td>
+                <div class="ig-layout-container">
+                    <p>Cell merging is a feature that enables users to merge grid cells that have same values. The cells are merged only visually, i.e. the grid structure is not affected by the user’s merging action. Cell merging works on <a class="ig-topic-link" href="WebDataGrid_Sorting.html">sorting</a>.</p>
+
+                    <p>The two pictures that follow demonstrate a column with unmerged (left) and merged (right) values.</p>
+
+                    <table cellspacing="0" cellpadding="0">
+                        <tbody>
+                            <tr>
+                                <th>
+                                    <p><img alt="" src="images/Overview_page_for_Cell_Merging_1.png" width="271" height="182" /></p>
+                                </th>
+
+                                <th>
+                                    <p><img alt="" src="images/Overview_page_for_Cell_Merging_2.png" width="267" height="186" /></p>
+                                </th>
+                            </tr>
+                        </tbody>
+                    </table><br />
+
+                    <p>By default, Cell Merging is disabled. For details on how to enable it, refer to the <a href="WebDataGrid_Enabling_Cell_Merging.html">Enabling Cell Merging (WebDataGrid)</a> topic.</p>
+
+                    <p>If the grid is configured for client-side rendering, Cell Merging will be performed on the client. (The default is on the server.) For details, refer to <a href="WebDataGrid_Enabling_Cell_Merging.html">Enabling Cell Merging (WebDataGrid).</a></p>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table><br />
+
+<div class="ig-block-title">
+    <h2>Related Content</h2>
+</div>
+
+<table class="ig-layout">
+    <tbody>
+        <tr>
+            <th>
+                <p><span style="COLOR: rgb(79,129,189)"><b><span style="COLOR: rgb(79,129,189)">Topics</span></b></span></p>
+            </th>
+
+            <td>
+                <div class="ig-layout-container">
+                    <p>The following topics provide additional information related to this topic.</p>
+
+                    <table cellspacing="0" cellpadding="0">
+                        <tbody>
+                            <tr>
+                                <th>
+                                    <p>Topic</p>
+                                </th>
+
+                                <th>
+                                    <p>Purpose</p>
+                                </th>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <p><span style="COLOR: rgb(54,95,145)"><b><u><span style="COLOR: rgb(54,95,145)"><a href="WebDataGrid_Enabling_Cell_Merging.html">Enabling Cell Merging (WebDataGrid)</a></span></u></b></span></p>
+                                </td>
+
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <p><span style="COLOR: rgb(54,95,145)"><b><u><span style="COLOR: rgb(54,95,145)"><a href="WebDataGrid_Sorting.html">Sorting</a></span></u></b></span></p>
+                                </td>
+
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table><br />
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table><br />
+
+<table class="ig-layout">
+    <tbody>
+        <tr>
+            <th>
+                <div class="ig-block-header"></div>
+            </th>
+
+            <td>
+                <div class="ig-layout-container"></div>
+            </td>
+        </tr>
+
+        <tr>
+            <th>
+                <div class="ig-block-header">
+                    <h3>Samples</h3>
+                </div>
+            </th>
+
+            <td>
+                <div class="ig-layout-container">
+                    <p>The following samples provide additional information related to this topic.</p>
+
+                    <table cellspacing="0" cellpadding="0">
+                        <tbody>
+                            <tr>
+                                <th>
+                                    <p>Sample</p>
+                                </th>
+
+                                <th>
+                                    <p>Purpose</p>
+                                </th>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div class="ig-topic-link">
+                                        <a class="ig-topic-link" href="http://samples.infragistics.com/aspnet/Samples/WebDataGrid/Organization/SortingCellMerging/Default.aspx?cn=data-grid&amp;sid=bc564381-8ac9-4bb6-84e1-7c36e8010857" target="_blank">Cell Merging with Sorting</a>
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <p>This sample demonstrates the cell merging capabilities of the sorting behavior in WebDataGrid™.</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table><br />
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table><br />
+            <a name="seealsobookmark"></a>
+            
+        
+    </div>
+    <div id="FooterContent">
+        
+<p>&nbsp;</p><p>&nbsp;</p><hr style="height: 1px" /><p>Copyright &copy; 2003-2015 Infragistics, Inc. All rights reserved.</p>
+<a href="mailto:HelpFeedback@infragistics.com?subject=ASP.NET_15.1: WebDataGrid_Cell_Merging_Overview.html">E-mail</a> your feedback on this topic.
+    </div>
+    
+</body>
+</html>
