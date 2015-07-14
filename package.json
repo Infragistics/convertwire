@@ -1,9 +1,9 @@
 {
   "name": "convertwire",
   "version": "1.0.0",
-  "description": "",
+  "description": "Convert DocumentX documents to AsciiDoc format",
   "main": "app.js",
-  "author": "",
+  "author": "Craig Shoemaker",
   "license": "ISC",
   "devDependencies": {
     "jasmine": "^2.3.1",
@@ -17,12 +17,15 @@
     "gulp-rename": "^1.2.2",
     "gulp-util": "^3.0.5",
     "lodash": "^3.9.3",
+    "string": "^3.3.0",
     "through2": "^2.0.0",
+    "to-markdown": "^1.2.1",
     "xml2js": "^0.4.9"
   },
   "scripts": {
     "testwatch": "jasmine-node spec --color --captureExceptions --autotest --watch .",
     "test": "jasmine-node ./spec/ --color --captureExceptions",
-    "gulp": "gulp"
+    "gulp": "gulp",
+    "debug": "node-debug app.js"
   }
 }

@@ -1,0 +1,1 @@
+var converter = require('./modules/html2AsciiDoc/index.js');
