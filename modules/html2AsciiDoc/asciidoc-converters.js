@@ -103,7 +103,7 @@ module.exports = [
     filter: function (node) {
       var classIndex = replaceWithBreakClassNames.indexOf(node.className.toLowerCase());
       var idIndex = replaceWithBreakIds.indexOf(node.id.toLowerCase());
-      var match = (classIndex >= 0 || idIndex);
+      var match = (classIndex >= 0 || idIndex >= 0);
       return match;
     },
     replacement: function (content) {

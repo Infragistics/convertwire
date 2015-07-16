@@ -6,7 +6,7 @@
 	  var index = Array.prototype.indexOf.call(node.parentNode.childNodes, node);
 	  var prefix = ' ';
 	  if (index === 0) { prefix = '| '; }
-	  return prefix + content;
+	  return prefix + content + ' |';
 	}
 	
 	var highlightRegEx = /highlight highlight-(\S+)/;
@@ -91,7 +91,6 @@
 	    replacement: function (content, node) {
 	      var language = node.parentNode.className.match(highlightRegEx)[1];
 		  return '\n\n[source,' +  language + ']\n----' + node.textContent + '\n----\n\n';
-	      //return '\n\n```' + language + '\n' + node.textContent + '\n```\n\n';
 	    }
 	  },
 	  
@@ -104,7 +103,6 @@
 	    replacement: function (content, node) {
 	      var language = node.parentNode.className.match(highlightRegEx)[1];
 		  return '\n\n[source,' +  language + ']\n----' + node.textContent + '\n----\n\n';
-	      //return '\n\n```' + language + '\n' + node.textContent + '\n```\n\n';
 	    }
 	  },
 	
