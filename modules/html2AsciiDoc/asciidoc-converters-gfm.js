@@ -1,6 +1,6 @@
-//(function(module){
-	
-//	'use strict';
+(function(){
+
+	'use strict';
 
 	function cell(content, node) {
 	  var index = Array.prototype.indexOf.call(node.parentNode.childNodes, node);
@@ -10,6 +10,7 @@
 	}
 	
 	var highlightRegEx = /highlight highlight-(\S+)/;
+	var mapper = require('./source-code-name-map.js');
 	
 	module.exports = [
 	  {
@@ -71,7 +72,12 @@
 	             node.firstChild.nodeName === 'CODE';
 	    },
 	    replacement: function(content, node) {
-	      return '\n\n```\n' + node.firstChild.textContent + '\n```\n\n';
+			var id = node.parentNode.id;
+			var language = (id.length > 0)? id : '';
+			var parts = language.split('_');
+			language = (parts.length > 0)? parts[1].toLowerCase() : language;
+			language = mapper.map(language);
+			return '\n\n[source,' +  language + ']\n----\n' + node.textContent + '\n----\n\n';
 	    }
 	  },
 	
@@ -84,7 +90,21 @@
 	    },
 	    replacement: function (content, node) {
 	      var language = node.parentNode.className.match(highlightRegEx)[1];
-	      return '\n\n```' + language + '\n' + node.textContent + '\n```\n\n';
+		  return '\n\n[source,' +  language + ']\n----' + node.textContent + '\n----\n\n';
+	      //return '\n\n```' + language + '\n' + node.textContent + '\n```\n\n';
+	    }
+	  },
+	  
+	  {
+	    filter: function (node) {
+	      return node.nodeName === 'CODE' &&
+	             node.parentNode.nodeName === 'DIV' &&
+	             highlightRegEx.test(node.parentNode.className);
+	    },
+	    replacement: function (content, node) {
+	      var language = node.parentNode.className.match(highlightRegEx)[1];
+		  return '\n\n[source,' +  language + ']\n----' + node.textContent + '\n----\n\n';
+	      //return '\n\n```' + language + '\n' + node.textContent + '\n```\n\n';
 	    }
 	  },
 	
@@ -99,4 +119,4 @@
 	  }
 	];
 
-//}(module.exports));
+}());
