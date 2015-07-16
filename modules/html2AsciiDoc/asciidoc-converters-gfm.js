@@ -4,9 +4,11 @@
 
 	function cell(content, node) {
 	  var index = Array.prototype.indexOf.call(node.parentNode.childNodes, node);
-	  var prefix = ' ';
-	  if (index === 0) { prefix = '| '; }
-	  return prefix + content + ' |';
+	  var prefix = (index === 0)? '| ' : ' ';
+	  //if (index === 0) { prefix = '| '; }
+	  var isLastCellInRow = node.cellIndex === (node.parentNode.children.length - 1);
+	  var suffix = (isLastCellInRow)? '' : ' |';
+	  return prefix + content + suffix;
 	}
 	
 	var highlightRegEx = /highlight highlight-(\S+)/;
