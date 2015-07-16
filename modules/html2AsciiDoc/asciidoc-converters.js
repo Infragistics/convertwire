@@ -9,7 +9,10 @@ var replaceWithBreakClassNames = [
 var replaceWithBreakIds = [];
 
 var replaceWithNothingClassNames = [
-  'defaultimg'
+  'defaultimg',
+  'ig-content-container',
+  'ig-content',
+  'ig-layout-container'
 ];
 
 var replaceWithNothingIDs = [
@@ -48,8 +51,7 @@ module.exports = [
       return node.nodeName === 'A' && node.getAttribute('href');
     },
     replacement: function (content, node) {
-      var titlePart = node.title ? ' "' + node.title + '"' : '';
-      return 'link:' + node.getAttribute('href') + titlePart + '[' + content + ']';
+      return 'link:' + node.getAttribute('href') + '[' + content + ']';
     }
   },
 
@@ -84,6 +86,13 @@ module.exports = [
       content = content.replace(/\n{3,}/g, '\n\n');
       content = content.replace(/^/gm, '');
       return '\n\n____\n' + content + '\n____\n\n';
+    }
+  },
+  
+  {
+    filter: 'center',
+    replacement: function (content) {
+      return content;
     }
   },
 
