@@ -4,11 +4,12 @@ module.exports = [
   {
     filter: ['h1', 'h2', 'h3', 'h4','h5', 'h6'],
     replacement: function(content, node) {
-      var hLevel = node.nodeName.charAt(1);
+      var hLevel = parseInt(node.nodeName.charAt(1)) + 1;
       var hPrefix = '';
       for(var i = 0; i < hLevel; i++) {
         hPrefix += '=';
       }
+      content = content.replace(/<.*?><\/.*?>/, '');
       return '\n\n' + hPrefix + ' ' + content + '\n\n';
     }
   },
