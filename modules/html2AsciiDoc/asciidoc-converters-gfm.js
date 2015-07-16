@@ -1,17 +1,17 @@
-(function(module){
+//(function(module){
 	
-	'use strict';
+//	'use strict';
 
 	function cell(content, node) {
 	  var index = Array.prototype.indexOf.call(node.parentNode.childNodes, node);
 	  var prefix = ' ';
 	  if (index === 0) { prefix = '| '; }
-	  return prefix + content + ' |';
+	  return prefix + content;
 	}
 	
 	var highlightRegEx = /highlight highlight-(\S+)/;
 	
-	module = [
+	module.exports = [
 	  {
 	    filter: 'br',
 	    replacement: function () {
@@ -21,7 +21,7 @@
 	  {
 	    filter: ['del', 's', 'strike'],
 	    replacement: function (content) {
-	      return '~~' + content + '~~';
+	      return '[line-through]*' + content + '*';
 	    }
 	  },
 	
@@ -44,19 +44,7 @@
 	  {
 	    filter: 'tr',
 	    replacement: function (content, node) {
-	      var borderCells = '';
-	      var alignMap = { left: ':--', right: '--:', center: ':-:' };
-	
-	      if (node.parentNode.nodeName === 'THEAD') {
-	        for (var i = 0; i < node.childNodes.length; i++) {
-	          var align = node.childNodes[i].attributes.align;
-	          var border = '---';
-	
-	          if (align) { border = alignMap[align.value] || border; }
-	
-	          borderCells += cell(border, node.childNodes[i]);
-	        }
-	      }
+	      var borderCells = '';  
 	      return '\n' + content + (borderCells ? '\n' + borderCells : '');
 	    }
 	  },
@@ -64,10 +52,10 @@
 	  {
 	    filter: 'table',
 	    replacement: function (content) {
-	      return '\n\n' + content + '\n\n';
+	      return '\n\n[options="header"]\n|=======================' + content + '\n|=======================\n\n';
 	    }
 	  },
-	
+	  
 	  {
 	    filter: ['thead', 'tbody', 'tfoot'],
 	    replacement: function (content) {
@@ -111,4 +99,4 @@
 	  }
 	];
 
-}(module.exports));
+//}(module.exports));
