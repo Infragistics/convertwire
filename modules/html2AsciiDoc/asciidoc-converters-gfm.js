@@ -5,7 +5,6 @@
 	function cell(content, node) {
 	  var index = Array.prototype.indexOf.call(node.parentNode.childNodes, node);
 	  var prefix = (index === 0)? '| ' : ' ';
-	  //if (index === 0) { prefix = '| '; }
 	  var isLastCellInRow = node.cellIndex === (node.parentNode.children.length - 1);
 	  var suffix = (isLastCellInRow)? '' : ' |';
 	  return prefix + content + suffix;
@@ -77,9 +76,12 @@
 			var id = node.parentNode.id;
 			var language = (id.length > 0)? id : '';
 			var parts = language.split('_');
-			language = (parts.length > 0)? parts[1].toLowerCase() : language;
-			language = mapper.map(language);
-			return '\n\n[source,' +  language + ']\n----\n' + node.textContent + '\n----\n\n';
+			language = (parts.length > 1)? parts[1].toLowerCase() : language;
+			if(language.length > 0)
+			{
+				language = ',' + mapper.map(language);
+			}
+			return '\n\n[source' +  language + ']\n----\n' + node.textContent + '----\n\n';
 	    }
 	  },
 	
@@ -104,7 +106,7 @@
 	    },
 	    replacement: function (content, node) {
 	      var language = node.parentNode.className.match(highlightRegEx)[1];
-		  return '\n\n[source,' +  language + ']\n----' + node.textContent + '\n----\n\n';
+		  return '\n\n[source,' +  language + ']\n----' + node.textContent + '----\n\n';
 	    }
 	  },
 	
@@ -116,7 +118,26 @@
 	    replacement: function (content) {
 	      return '\n\n' + content + '\n\n';
 	    }
+	  },
+	  
+	  {
+		  filter: function(node){
+			  var match = node.nodeName === 'DIV' &&
+			  				node.className.toLowerCase() === 'relatedtopics';
+			  return match;
+		  },
+		  replacement: function(content){
+			  return '\n\n== ' + content + '\n';
+		  } 
+	  },
+	 
+	  {
+		  filter: 'div',
+		  replacement: function(content){
+			  return content;
+		  }
 	  }
+	  
 	];
 
 }());

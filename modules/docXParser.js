@@ -74,18 +74,30 @@
 				var defs = obj.Topic.PropertyDefinitionValues.PropertyDefinitionValue;
 				
 				if(_.isArray(defs) && defs.length >= 1){
-					htmlDocument.tags = listToArray(defs[0].PropertyValue._, ',');
+					var tagsList = defs[0].PropertyValue._;
+					if(!_.isUndefined(tagsList)) {
+						htmlDocument.tags = listToArray(tagsList, ',');
+					}
 				}
 				
 				if(_.isArray(defs) && defs.length >= 2){
-					htmlDocument.controlName = defs[1].PropertyValue._.trim();
+					var controlName = defs[1].PropertyValue._;
+					if(!_.isUndefined(controlName)){
+						htmlDocument.controlName = controlName.trim();
+					}
 				}
 				
-				htmlDocument.docXGuid = getValue(obj.Topic.$.Id);
+				if(!_.isUndefined(obj.Topic.$.Id)) {
+					htmlDocument.docXGuid = getValue(obj.Topic.$.Id);
+				}
 				
-				htmlDocument.name = getValue(obj.Topic.$.Name);
+				if(!_.isUndefined(obj.Topic.$.Name)) {
+					htmlDocument.name = getValue(obj.Topic.$.Name);
+				}
 				
-				htmlDocument.buildFlags = listToArray(obj.Topic.$.BuildFlags, ',');
+				if(!_.isUndefined(obj.Topic.$.BuildFlags)) {
+					htmlDocument.buildFlags = listToArray(obj.Topic.$.BuildFlags, ',');
+				} 
 				
 				callback(null, htmlDocument);
 			}

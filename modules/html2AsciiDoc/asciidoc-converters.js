@@ -1,5 +1,7 @@
 'use strict';
 
+var _ = require('lodash');
+
 var replaceWithBreakClassNames = [
   'ig-block-title',
   'languagespecific',
@@ -28,8 +30,15 @@ module.exports = [
       for (var i = 0; i < hLevel; i++) {
         hPrefix += '=';
       }
+         
       content = content.replace(/<.*?><\/.*?>/, '');
-      return '\n\n' + hPrefix + ' ' + content + '\n\n';
+      var linkMatches = content.match(/link:{\S+\[(.*)]/)
+      
+      if(_.isArray(linkMatches) && linkMatches.length > 0){
+        return '\n\n' + hPrefix + ' ' + linkMatches[1] + '\n\n' + content + '\n\n';
+      } 
+        
+      return '\n\n' + hPrefix + ' ' + content + '\n\n'; 
     }
   },
 
