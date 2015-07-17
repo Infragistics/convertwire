@@ -68,8 +68,14 @@
 			if(error){
 				callback(error, null);			
 			} else {
-				htmlDocument.title = obj.Topic.Title._.trim();
-				htmlDocument.markup = obj.Topic.TopicSections.TopicSection.Content._;
+				
+				if(!_.isUndefined(obj.Topic.Title) && !_.isUndefined(obj.Topic.Title._)){
+					htmlDocument.title = obj.Topic.Title._.trim();
+				}
+				
+				if(!_.isUndefined(obj.Topic.TopicSections.TopicSection.Content._)){
+					htmlDocument.markup = obj.Topic.TopicSections.TopicSection.Content._;
+				}
 				
 				var defs = obj.Topic.PropertyDefinitionValues.PropertyDefinitionValue;
 				

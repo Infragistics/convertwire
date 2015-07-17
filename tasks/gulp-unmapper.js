@@ -2,7 +2,7 @@
 (function(){
 	
 	var through = require('through2');
-	var unmapper = require('../modules/unmapper.js');
+	var unmapper = require('../modules/unmapper');
 	
 	module.exports = function(){
 		
