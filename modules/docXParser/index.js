@@ -32,7 +32,7 @@
 			};
 			
 			var metaData = 
-				"<!--\n" +
+				"<pre id='metadata'>\n" +
 "|metadata|\n" +
 "{\n" +
 "    \"name\": \"" + htmlDocument.name + "\",\n" +
@@ -43,9 +43,9 @@
 "    \"buildFlags\": [" + arrayToString(htmlDocument.buildFlags) + "]\n" +
 "}\n" +
 "|metadata|\n" +
-"-->";
+"</pre>";
 
-			return htmlString + "\n\n" + metaData;
+			return metaData + "\n\n" + htmlString;
 	};
 	
 	module.parse = function(xmlString, callback) {

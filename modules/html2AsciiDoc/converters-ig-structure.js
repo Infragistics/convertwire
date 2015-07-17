@@ -63,12 +63,23 @@
       return content;
     }
   };
+  
+  var metadata = {
+    filter: function(node){
+      var match = node.id === 'metadata';
+      return match;
+    },
+    replacement: function (content) {
+      return '////\n' + content + '////';
+    }
+  };
 
   var converters = [];
 
   converters.push(divRelatedTopics);
   converters.push(nothingElements);
   converters.push(breakElements);
+  converters.push(metadata);
 
   module.get = function () {
     return converters;
