@@ -1,28 +1,11 @@
-'use strict';
+(function (module) {
 
-var _ = require('lodash');
+  'use strict';
 
-var replaceWithBreakClassNames = [
-  'ig-block-title',
-  'languagespecific',
-  'lang'
-];
+  var _ = require('lodash');
 
-var replaceWithBreakIds = [];
 
-var replaceWithNothingClassNames = [
-  'defaultimg',
-  'ig-content-container',
-  'ig-content',
-  'ig-layout-container'
-];
-
-var replaceWithNothingIDs = [
-  'docx-root'
-];
-
-module.exports = [
-  {
+  var headers = {
     filter: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
     replacement: function (content, node) {
       var hLevel = parseInt(node.nodeName.charAt(1)) + 1;
@@ -30,41 +13,42 @@ module.exports = [
       for (var i = 0; i < hLevel; i++) {
         hPrefix += '=';
       }
-         
-      content = content.replace(/<.*?><\/.*?>/, '');
-      var linkMatches = content.match(/link:{\S+\[(.*)]/)
-      
-      if(_.isArray(linkMatches) && linkMatches.length > 0){
-        return '\n\n' + hPrefix + ' ' + linkMatches[1] + '\n\n' + content + '\n\n';
-      } 
-        
-      return '\n\n' + hPrefix + ' ' + content + '\n\n'; 
-    }
-  },
 
-  {
+      content = content.replace(/<.*?><\/.*?>/, '');
+      
+      var linkMatches = content.match(/link:{\S+\[(.*)]/)
+      if (_.isArray(linkMatches) && linkMatches.length > 0) {
+        return '\n\n' + hPrefix + ' ' + linkMatches[1] + '\n\n' + content + '\n\n';
+      }
+
+      return '\n\n' + hPrefix + ' ' + content + '\n\n';
+    }
+  };
+
+  var hr = {
     filter: 'hr',
     replacement: function () {
       return "\n\n'''\n\n";
     }
-  },
-  {
+  };
+
+  var bold = {
     filter: ['strong', 'b'],
     replacement: function (content) {
       return '*' + content + '*';
     }
-  },
+  };
 
-  {
+  var anchor = {
     filter: function (node) {
       return node.nodeName === 'A' && node.getAttribute('href');
     },
     replacement: function (content, node) {
       return 'link:' + node.getAttribute('href') + '[' + content + ']';
     }
-  },
+  };
 
-  {
+  var img = {
     filter: 'img',
     replacement: function (content, node) {
       var alt = node.alt || '';
@@ -73,9 +57,9 @@ module.exports = [
       var titlePart = title ? ' "' + title + '"' : '';
       return 'image:' + src + titlePart + '[' + alt + ']';
     }
-  },
+  };
 
-  {
+  var li = {
     filter: 'li',
     replacement: function (content, node) {
       content = content.replace(/^\s+/, '').replace(/\n/gm, '\n    ');
@@ -86,9 +70,9 @@ module.exports = [
       prefix = /ol/i.test(parent.nodeName) ? index + '.  ' : '*   ';
       return prefix + content;
     }
-  },
+  };
 
-  {
+  var blockquote = {
     filter: 'blockquote',
     replacement: function (content) {
       content = this.trim(content);
@@ -96,36 +80,54 @@ module.exports = [
       content = content.replace(/^/gm, '');
       return '\n\n____\n' + content + '\n____\n\n';
     }
-  },
-  
-  {
+  };
+
+  var center = {
     filter: 'center',
     replacement: function (content) {
       return content;
     }
-  },
-
-  {
-    filter: function (node) {
-      var classIndex = replaceWithNothingClassNames.indexOf(node.className.toLowerCase());
-      var idIndex = replaceWithNothingIDs.indexOf(node.id.toLowerCase());
-      var match = (classIndex >= 0 || idIndex >= 0);
-      return match;
-    },
-    replacement: function (content) {
-      return content;
-    }
-  },
-
-  {
-    filter: function (node) {
-      var classIndex = replaceWithBreakClassNames.indexOf(node.className.toLowerCase());
-      var idIndex = replaceWithBreakIds.indexOf(node.id.toLowerCase());
-      var match = (classIndex >= 0 || idIndex >= 0);
-      return match;
-    },
-    replacement: function (content) {
-      return content + '\n';
-    }
   }
-];
+  
+  var br = {
+	    filter: 'br',
+	    replacement: function () {
+	      return '\n';
+	    }
+	  };
+    
+	  var del = {
+	    filter: ['del', 's', 'strike'],
+	    replacement: function (content) {
+	      return '[line-through]*' + content + '*';
+	    }
+	  };
+	
+  var checkboxListItem = {
+	    filter: function (node) {
+	      return node.type === 'checkbox' && node.parentNode.nodeName === 'LI';
+	    },
+	    replacement: function (content, node) {
+	      return (node.checked ? '[x]' : '[ ]') + ' ';
+	    }
+	  };
+
+  var converters = [];
+
+  converters.push(headers);
+  converters.push(hr);
+  converters.push(bold);
+  converters.push(anchor);
+  converters.push(img);
+  converters.push(li);
+  converters.push(blockquote);
+  converters.push(center);
+  converters.push(br);
+  converters.push(del);
+  converters.push(checkboxListItem);
+
+  module.get = function () {
+    return converters;
+  };
+
+} (module.exports));
