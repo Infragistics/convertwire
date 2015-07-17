@@ -8,6 +8,9 @@
 	
 	var _ = require('lodash');
 	
+	var english = require('./parser-english.js');
+	var japanese = require('./parser-japanese.js');
+	
 	var listToArray = function(listString, delimiter){
 		
 		var list = listString.split(delimiter);
@@ -69,42 +72,19 @@
 				callback(error, null);			
 			} else {
 				
-				if(!_.isUndefined(obj.Topic.Title) && !_.isUndefined(obj.Topic.Title._)){
-					htmlDocument.title = obj.Topic.Title._.trim();
+				var parser = english;
+				
+				/*
+				if(obj.hasOwnProperty('topic')) {
+					parser = japanese;
+				} else if (obj.hasOwnProperty('Topic')){
+					parser = english;
+				} else {
+					throw new DOMException('xml data does not look like it\'s a valid English or Japanese DocumentX file');
 				}
+				*/
 				
-				if(!_.isUndefined(obj.Topic.TopicSections.TopicSection.Content._)){
-					htmlDocument.markup = obj.Topic.TopicSections.TopicSection.Content._;
-				}
-				
-				var defs = obj.Topic.PropertyDefinitionValues.PropertyDefinitionValue;
-				
-				if(_.isArray(defs) && defs.length >= 1){
-					var tagsList = defs[0].PropertyValue._;
-					if(!_.isUndefined(tagsList)) {
-						htmlDocument.tags = listToArray(tagsList, ',');
-					}
-				}
-				
-				if(_.isArray(defs) && defs.length >= 2){
-					var controlName = defs[1].PropertyValue._;
-					if(!_.isUndefined(controlName)){
-						htmlDocument.controlName = controlName.trim();
-					}
-				}
-				
-				if(!_.isUndefined(obj.Topic.$.Id)) {
-					htmlDocument.docXGuid = getValue(obj.Topic.$.Id);
-				}
-				
-				if(!_.isUndefined(obj.Topic.$.Name)) {
-					htmlDocument.name = getValue(obj.Topic.$.Name);
-				}
-				
-				if(!_.isUndefined(obj.Topic.$.BuildFlags)) {
-					htmlDocument.buildFlags = listToArray(obj.Topic.$.BuildFlags, ',');
-				} 
-				
+				htmlDocument = parser.parse(obj, htmlDocument, getValue, listToArray);				
 				callback(null, htmlDocument);
 			}
 			

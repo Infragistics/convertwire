@@ -2,7 +2,7 @@
 // http://twolfson.com/2014-02-17-suggested-reading-for-writing-a-gulp-plugin
 
 var converter = require('./modules/html2AsciiDoc');
-var parser = require('./modules/docXParser.js');
+var parser = require('./modules/docXParser');
 
 //var markup = '<div id="docX-root"><p>This is a <em>test</em> of the <a href="http://www.example.com"><strong>emergency</strong> broadcast</a> system</p></div>';
 //var markup = '<div id="docX-root"><ul><li>1<ul><li>1.1</li></ul>1.a</li><li>2</li></ul></div>';
@@ -10,7 +10,7 @@ var parser = require('./modules/docXParser.js');
 //var asciiDoc = converter.convert(markup);
 //console.log(asciiDoc);
 
-//* asciidoc converstion
+/* asciidoc converstion
 var fs = require('fs');
 var path = require('path');
 //var fullPath = path.join(__dirname, './spec/data/dest/0C71AEB5-1D6C-4BFF-BA3B-78D7C17D5839.html');
@@ -23,10 +23,10 @@ fs.readFile(fullPath, 'utf8', function(error, content){
 }); 
 // */
 
-/* parser
+//* parser
 var fs = require('fs');
 var path = require('path');
-var fullPath = path.join(__dirname, './spec/data/src/0B35C95F-427F-4526-805C-12347F0204E4.xml');
+var fullPath = path.join(__dirname, './spec/data/src/{0A350874-93D1-4735-AF7B-D07F48E85A2F}.ja-JP.xml');
 
 fs.readFile(fullPath, 'utf8', function(error, xml){
 	parser.parse(xml, function(err, html){
