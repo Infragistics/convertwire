@@ -3,6 +3,7 @@
   'use strict';
 
   var _ = require('lodash');
+  var buildFlags = require('./converters-build-flags.js');
 
 
   var headers = {
@@ -55,19 +56,46 @@
       var src = node.getAttribute('src') || '';
       var title = node.title || '';
       var titlePart = title ? ' "' + title + '"' : '';
-      return 'image:' + src + titlePart + '[' + alt + ']';
+      var value = 'image:' + src + titlePart + '[' + alt + ']';
+      
+      if(buildFlags.hasDocXBuildFlags(node)){
+        value = buildFlags.wrapWithBuildFlags(value, node);
+      }
+      
+      return value;
     }
   };
+  
+  var ul = {
+    filter: 'ul',
+    replacement: function (content, node) {
+      content = content.replace(/^\s+/, '').replace(/\n/gm, '\n    ');
+      content = content.replace(/\*   /g, '\n' + listItemPrefix);
+    
+      if(buildFlags.hasDocXBuildFlags(node)){
+        content = buildFlags.wrapWithBuildFlags(content, node);
+      }
+      
+      return content;
+    }
+  };
+  
+  var listItemPrefix = '*   ';
 
   var li = {
     filter: 'li',
     replacement: function (content, node) {
       content = content.replace(/^\s+/, '').replace(/\n/gm, '\n    ');
-      var prefix = '*   ';
+      var prefix = listItemPrefix;
       var parent = node.parentNode;
       var index = Array.prototype.indexOf.call(parent.children, node) + 1;
 
-      prefix = /ol/i.test(parent.nodeName) ? index + '.  ' : '*   ';
+      prefix = /ol/i.test(parent.nodeName) ? index + '.  ' : listItemPrefix;
+      
+      if(buildFlags.hasDocXBuildFlags(node)){
+        content = buildFlags.wrapWithBuildFlags(content, node);
+      }
+      
       return prefix + content;
     }
   };
@@ -119,6 +147,7 @@
   converters.push(bold);
   converters.push(anchor);
   converters.push(img);
+  converters.push(ul);
   converters.push(li);
   converters.push(blockquote);
   converters.push(center);

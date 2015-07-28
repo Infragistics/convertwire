@@ -1,3 +1,4 @@
+/// <reference path="typings/node/node.d.ts"/>
 // https://www.npmjs.com/package/split
 // http://twolfson.com/2014-02-17-suggested-reading-for-writing-a-gulp-plugin
 
@@ -10,11 +11,11 @@ var parser = require('./modules/docXParser');
 //var asciiDoc = converter.convert(markup);
 //console.log(asciiDoc);
 
-/* asciidoc converstion
+//* asciidoc converstion
 var fs = require('fs');
 var path = require('path');
 //var fullPath = path.join(__dirname, './spec/data/dest/0C71AEB5-1D6C-4BFF-BA3B-78D7C17D5839.html');
-var fullPath = path.join(__dirname, './spec/data/dest/0A2D258E-B3A1-4FD4-B900-F119D40035B6.html');
+var fullPath = path.join(__dirname, './spec/data/dest/0f087027-4cf6-4de5-92f2-ff0ea9383701.html');
 
 fs.readFile(fullPath, 'utf8', function(error, content){
 	var html = content;
@@ -23,7 +24,7 @@ fs.readFile(fullPath, 'utf8', function(error, content){
 }); 
 // */
 
-//* parser
+/* parser
 var fs = require('fs');
 var path = require('path');
 var fullPath = path.join(__dirname, './spec/data/src/{0A350874-93D1-4735-AF7B-D07F48E85A2F}.ja-JP.xml');

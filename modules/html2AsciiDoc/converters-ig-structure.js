@@ -4,7 +4,7 @@
   var divRelatedTopics = {
 		  filter: function(node){
 			  var match = node.nodeName === 'DIV' &&
-			  				node.className.toLowerCase() === 'relatedtopics';
+			  				    node.className.toLowerCase() === 'relatedtopics';
 			  return match;
 		  },
 		  replacement: function(content){
