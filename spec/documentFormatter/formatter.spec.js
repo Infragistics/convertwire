@@ -10,7 +10,17 @@ describe('documentFormatter', function(){
 	
 	describe('format', function(){
 		
+		var html = '<pre style="hs-build-flags: SL,WPF,WinPhone">code</pre>';
 		
+		it('returns a value', function(){
+			var newHtml = formatter.format(html);	
+			expect(newHtml).toBeDefined();
+		});
+		
+		it('returns a value', function(){
+			var newHtml = formatter.format(html);	
+			expect(newHtml).toBeDefined();
+		});
 		
 	});
 	
