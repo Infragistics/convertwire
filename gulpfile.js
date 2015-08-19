@@ -11,6 +11,7 @@ gulp.task('asciidoc', function() {
   return gulp.src('./spec/data/src/*.xml')
     .pipe(docx2html())
     .pipe(unmapper())
+    .pipe(sourceFormatter())
     .pipe(html2AsciiDoc())
     .pipe(rename(function(path){
       path.extname = '.adoc';
@@ -27,6 +28,16 @@ gulp.task('html', function() {
       path.extname = '.html';
     }))
     .pipe(gulp.dest('./spec/data/dest'));
+});
+
+gulp.task('html-no-format', function() {
+  return gulp.src('./spec/data/src/*.xml')
+    .pipe(docx2html())
+    .pipe(unmapper())
+    .pipe(rename(function(path){
+      path.extname = '.html';
+    }))
+    .pipe(gulp.dest('./spec/data/dest/no-format'));
 });
 
 gulp.task('clean', function(){

@@ -1,69 +1,161 @@
 (function (module) {
 
 	'use strict';
-	
+
 	var cheerio = require('cheerio');
 	var $;
 	var _ = require('lodash');
-	
-	module.format = function(htmlString){
-		$ = cheerio.load(htmlString);
 
-		var $pres, newPres;
+	var formatter = {
 		
-		$pres = $('pre');
+		XAM_XF_EX: ['sl','wpf','winrt','winphone'],
+		DROID_EX: ['sl','wpf','winphone','winrt','xamarin','winforms'],
+		XAML: ['sl','wpf','winphone','winrt','xamarin'],
 		
-		newPres = [];
-		
-		$pres.each(function(index, pre){
-			var $pre, $flagContainers, uniqueFlags, $newPre,
-				otherFlags;
+		getUniqueBuildFlags: function($PRE){
+			var flags = [], uniqueFlags, $flagContainers;
 			
-			$pre = $(pre);
-			$flagContainers = $pre.find('[style^="hs-build-flags"]');
-			uniqueFlags = [];
+			$flagContainers = $PRE.find('[style^="hs-build-flags"]');
 			
-			$flagContainers.each(function(_index, container){
-				var style = $(container).attr('style');      
-				var flags = style.replace(/hs-build-flags: /, '').split(','); 
+			$flagContainers.each(function(){
+				var style, elementFlags;
 				
-				flags.forEach(function(flag){
-					if(uniqueFlags.indexOf(flag) === -1){
-						uniqueFlags.push(flag);
+				style = $(this).attr('style').toLowerCase();      
+				elementFlags = style.replace(/hs-build-flags: /, '').split(','); 
+				
+				elementFlags.forEach(function(flag){
+					if(flag === 'xam_xf_ex'){
+						flags = flags.concat(formatter.XAM_XF_EX);
+					} else if(flag === 'droid_ex'){
+						flags = flags.concat(formatter.DROID_EX);
+					} else if(flag === 'xaml'){
+						flags = flags.concat(formatter.XAML);
+					} else {
+						flags.push(flag);
 					}
 				});
 			});
 			
-			uniqueFlags.forEach(function(flag){
-				$newPre = $pre.clone();
-				$newPre.attr('style', 'hs-build-flags: ' + flag);
-				otherFlags = _.difference(uniqueFlags, [flag]);
-				otherFlags.forEach(function(flagToRemove){
-					var flaggedElements;
+			uniqueFlags = _.unique(flags);
+			
+			return uniqueFlags;
+		},
+		
+		splitSourceBasedOnBuildFlags: function($PRE, flags){
+			
+			var groupCount = 0;
+			
+			flags.forEach(function(flag){
+				var $newPRE, $flaggedElements;
+				
+				$newPRE = $PRE.clone();
+				$newPRE.attr('style', 'hs-build-flags: ' + flag.toUpperCase());
+				
+				$flaggedElements = $newPRE.find('[style^="hs-build-flags"]');
+				
+				$flaggedElements.each(function(){
+					var $flaggedElement, containsFlagToRemove;
 					
-					flaggedElements = $newPre.find('[style^="hs-build-flags"]');
+					$flaggedElement = $(this);
+										
+					containsFlagToRemove = formatter.hasFlagToRemove($flaggedElement, flag);
 					
-					flaggedElements.each(function(){
-						var $flaggedElement, containsFlagToRemove, containsFlagToKeep;
-						
-						$flaggedElement = $(this);
-						
-						containsFlagToRemove = $flaggedElement.attr('style').indexOf(flagToRemove) > -1;
-						containsFlagToKeep = $flaggedElement.attr('style').indexOf(flag) > -1;
-						
-						if(containsFlagToRemove && (!containsFlagToKeep)){
-							$flaggedElement.remove();
-						}
-					});
+					if(containsFlagToRemove){
+						$flaggedElement.remove();
+					}
+					
+					if(formatter.isFlagGroup($flaggedElement)){
+						groupCount++
+					}
+					
 				});
 				
-				$pre.parent().append($newPre);
+				$PRE.parent().append('\n<!--- ' + flag + ' --->\n');								
+				$PRE.parent().append($newPRE);
+				$PRE.parent().append('\n<!--- /' + flag + ' --->\n');
 			});
 			
-			$pre.remove();
-		});
-
-		return $.html();
+			return {
+				hasFlagGroup: groupCount > 0
+			}
+		},
+		
+		hasFlagToRemove: function($flaggedElement, currentFlag){
+			var result, flags, elementFlags;
+			
+			result = false;
+			currentFlag = currentFlag.toLowerCase();
+			elementFlags = formatter.getElementFlags($flaggedElement);
+			flags = formatter.readFlags(elementFlags);
+			
+			if(flags.isFlagGroup){
+				if(flags.xamXfEx){
+					result = !_.contains(formatter.XAM_XF_EX, currentFlag);
+				} else if(flags.droidEx){
+					result = !_.contains(formatter.DROID_EX, currentFlag);
+				} else if(flags.xaml){
+					result = !_.contains(formatter.XAML, currentFlag);							
+				}
+			} else {
+				result = !_.contains(elementFlags, currentFlag);
+			}
+			
+			return result;
+		},
+		
+		isFlagGroup: function($flagedElement){
+			var elementFlags = formatter.getElementFlags($flagedElement);
+			var flags = formatter.readFlags(elementFlags);
+			flags.isFlagGroup;
+		},
+		
+		getElementFlags: function($flaggedElement){
+			var style = $flaggedElement.attr('style').toLowerCase();
+			var elementFlags = style.replace(/hs-build-flags: /, '').toLowerCase().split(',');
+			return elementFlags;
+		},
+		
+		readFlags: function(elementFlags) {
+												
+			var flags = {
+				xamXfEx : _.contains(elementFlags, 'xam_xf_ex'),
+				droidEx : _.contains(elementFlags, 'droid_ex'),
+				xaml : _.contains(elementFlags, 'xaml')
+			};
+			
+			flags.isFlagGroup = flags.xamXfEx || flags.droidEx || flags.xaml;
+			
+			return flags;
+		}
 	};
+	
+	module.format = function(htmlString){
+		$ = cheerio.load(htmlString);
+		
+		var $PREs;
+				
+		$PREs = $('pre');
+		
+		$PREs.each(function(){
+			var $PRE, uniqueFlags;
+			
+			$PRE = $(this);
+			
+			if($PRE.attr('id') === 'metadata'){
+				return;
+			}
+			
+			uniqueFlags = formatter.getUniqueBuildFlags($PRE);
+			var sourceInfo = formatter.splitSourceBasedOnBuildFlags($PRE, uniqueFlags);
+			
+			if(sourceInfo.hasFlagGroup){
+				$PRE.remove();
+			} else {
+				$PRE.find('[style^="hs-build-flags"]').remove();
+			}
+		});
+		
+		return $.html();
+	}
 
 } (module.exports));
