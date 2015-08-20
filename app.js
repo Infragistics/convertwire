@@ -11,14 +11,15 @@ var parser = require('./modules/docXParser');
 //var asciiDoc = converter.convert(markup);
 //console.log(asciiDoc);
 
-//* asciidoc converstion
+//* asciidoc file converstion
 var fs = require('fs');
 var path = require('path');
 //var fullPath = path.join(__dirname, './spec/data/dest/0C71AEB5-1D6C-4BFF-BA3B-78D7C17D5839.html');
-var fullPath = path.join(__dirname, './spec/data/dest/0f087027-4cf6-4de5-92f2-ff0ea9383701.html');
+var fullPath = path.join(__dirname, './spec/data/dest/code-error.html');
 
 fs.readFile(fullPath, 'utf8', function(error, content){
 	var html = content;
+	console.log(html);
 	var asciiDoc = converter.convert(html);
 	console.log(asciiDoc);	
 }); 

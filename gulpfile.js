@@ -1,11 +1,12 @@
 var gulp = require('gulp');
-var nodeDebug = require('gulp-node-debug');
-var docx2html = require('./tasks/gulp-docx2html.js');
-var unmapper = require('./tasks/gulp-unmapper.js');
-var html2AsciiDoc = require('./tasks/gulp-html2AsciiDoc.js');
 var rename = require('gulp-rename');
 var clean = require('gulp-clean');
+var nodeDebug = require('gulp-node-debug');
+
+var docx2html = require('./tasks/gulp-docx2html.js');
+var unmapper = require('./tasks/gulp-unmapper.js');
 var sourceFormatter = require('./tasks/gulp-sourceFormatter.js');
+var html2AsciiDoc = require('./tasks/gulp-html2AsciiDoc.js');
 
 gulp.task('asciidoc', function() {
   return gulp.src('./spec/data/src/*.xml')
@@ -18,6 +19,32 @@ gulp.task('asciidoc', function() {
     }))
     .pipe(gulp.dest('./spec/data/dest'));
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 gulp.task('html', function() {
   return gulp.src('./spec/data/src/*.xml')
@@ -38,6 +65,15 @@ gulp.task('html-no-format', function() {
       path.extname = '.html';
     }))
     .pipe(gulp.dest('./spec/data/dest/no-format'));
+});
+
+gulp.task('html-no-unmapper', function() {
+  return gulp.src('./spec/data/src/*.xml')
+    .pipe(docx2html())
+    .pipe(rename(function(path){
+      path.extname = '.html';
+    }))
+    .pipe(gulp.dest('./spec/data/dest/no-unmapper'));
 });
 
 gulp.task('clean', function(){
