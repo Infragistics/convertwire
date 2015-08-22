@@ -3,29 +3,51 @@
 	var ifDefTags = [
 		'img',
 		'div',
-		'ul'
+		'ul',
+		'li'
 	];
 	
 	module.hasDocXBuildFlags = function(node){
-		var style = node.getAttribute('style');
-		return /hs-build-flags:/i.test(style);
+		var match = false;
+		
+		var elementHasBuildFlags = function(){
+			return typeof node.style.hsBuildFlags !== 'undefined';
+		};
+		
+		var elementHasSameBuildFlagsAsParent = function(){
+			return node.style.hsBuildFlags === node.parentNode.style.hsBuildFlags
+		};
+		
+		if(elementHasBuildFlags()){
+			if(elementHasSameBuildFlagsAsParent()){
+				match = false;
+			} else {
+				match = true;
+			}
+		}
+		
+		return match;
 	};
 	
 	module.wrapWithBuildFlags = function(content, node){
-		var returnValue = content;
-		var style = node.getAttribute('style');
-		var matches = style.match(/hs-build-flags: (.*)/i);
-		var flags;
+		var returnValue, flags, isElementThatNeedsIfDef;
 		
-		if(matches.length > 0) {
+		returnValue = content;
+		flags = node.style.hsBuildFlags;
+		
+		isElementThatNeedsIfDef = function(){
+			return ifDefTags.indexOf(node.nodeName.toLowerCase()) >= 0;
+		};
+		
+		if(flags.length > 0) {
 			
-			if(ifDefTags.indexOf(node.nodeName.toLowerCase()) >= 0){
-				flags = matches[1].replace(/,/g, '+');
-				returnValue = 'ifeval::[{' + flags + '}]\n'
+			if(isElementThatNeedsIfDef()){
+				flags = flags.replace(/,/g, '+');
+				returnValue = 'ifdef::' + flags +'[]\n'
 				returnValue += content + '\n';
 				returnValue += 'endif::[]\n\n'; 
 			} else {
-				flags = matches[1].replace(/,/g, '.target-');
+				flags = flags.replace(/,/g, '.target-');
 				returnValue = 'pick:[target-' + flags + '="' + content + '"]';	
 			}
 		}
