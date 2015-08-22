@@ -15,11 +15,16 @@ var parser = require('./modules/docXParser');
 var fs = require('fs');
 var path = require('path');
 //var fullPath = path.join(__dirname, './spec/data/dest/0C71AEB5-1D6C-4BFF-BA3B-78D7C17D5839.html');
-var fullPath = path.join(__dirname, './spec/data/dest/code-error.html');
+var fullPath = path.join(__dirname, './spec/data/dest/0bf844e0-0b36-491d-b434-951a18aa3e1c.html');
 
 fs.readFile(fullPath, 'utf8', function(error, content){
 	var html = content;
 	console.log(html);
+	
+	console.log('');
+	console.log('--------------------------');
+	console.log('');
+	
 	var asciiDoc = converter.convert(html);
 	console.log(asciiDoc);	
 }); 
