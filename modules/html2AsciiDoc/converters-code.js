@@ -2,6 +2,7 @@
 
 	var highlightRegEx = /highlight highlight-(\S+)/;
 	var mapper = require('./source-code-name-map.js');
+	var buildFlags = require('./converters-build-flags.js');
 
 	var preCode = {
 		filter: function (node) {
@@ -80,12 +81,12 @@
 		filter: function (node) {
 			var match = false;
 			
-			match = (node.nodeName === 'PRE');
+			match = (node.nodeName === 'PRE' && node.id !== 'metadata');
 			
 			return match;
 		},
 		replacement: function (content, node) {
-			var id, language, parts, prefix;
+			var id, language, parts, prefix, value;
 			
 			id = node.parentNode.id;
 			language = (id.length > 0) ? id : '';
@@ -97,7 +98,15 @@
 				prefix = '[source,' + mapper.map(language) + ']\n';
 			}
 			
-			return '\n\n' + prefix + '----\n' + node.textContent + '----\n\n';
+			value = prefix + '----\n' + node.textContent + '----';
+			
+			if(buildFlags.hasDocXBuildFlags(node)){
+				value = buildFlags.wrapWithBuildFlags(value, node);
+			} else {
+				value = '\n\n' + value + '\n\n';
+			}
+			
+			return value;
 		}
 	}
 	
