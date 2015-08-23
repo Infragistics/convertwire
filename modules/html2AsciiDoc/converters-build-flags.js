@@ -43,7 +43,7 @@
 			
 			if(isElementThatNeedsIfDef()){
 				flags = flags.replace(/,/g, '+');
-				returnValue = 'ifdef::' + flags +'[]\n'
+				returnValue = '\n\nifdef::' + flags +'[]\n'
 				returnValue += content + '\n';
 				returnValue += 'endif::' + flags + '[]\n\n'; 
 			} else {
