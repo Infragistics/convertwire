@@ -45,7 +45,7 @@
 				flags = flags.replace(/,/g, '+');
 				returnValue = 'ifdef::' + flags +'[]\n'
 				returnValue += content + '\n';
-				returnValue += 'endif::[]\n\n'; 
+				returnValue += 'endif::' + flags + '[]\n\n'; 
 			} else {
 				flags = flags.replace(/,/g, '.target-');
 				returnValue = 'pick:[target-' + flags + '="' + content + '"]';	

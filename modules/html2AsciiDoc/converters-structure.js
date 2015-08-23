@@ -91,12 +91,13 @@
       var index = Array.prototype.indexOf.call(parent.children, node) + 1;
 
       prefix = /ol/i.test(parent.nodeName) ? index + '.  ' : listItemPrefix;
+      content = prefix + content;
       
       if(buildFlags.hasDocXBuildFlags(node)){
         content = buildFlags.wrapWithBuildFlags(content, node);
       }
       
-      return prefix + content;
+      return content;
     }
   };
 
