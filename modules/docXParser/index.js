@@ -45,7 +45,7 @@
 "|metadata|\n" +
 "</pre>";
 
-			return metaData + "\n\n" + htmlString;
+			return metaData + "\n\n" + '<h1>' + htmlDocument.title + '</h1>\n\n' + htmlString;
 	};
 	
 	module.parse = function(xmlString, callback) {
