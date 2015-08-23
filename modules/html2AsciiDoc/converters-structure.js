@@ -85,22 +85,28 @@
   var li = {
     filter: 'li',
     replacement: function (content, node) {
-      var prefix, parent, index, hasCodeListings, isOrderedListItem;
+      var prefix, parent, orderedItemNumber, hasCodeListings, isOrderedListItem, startValue;
       
+      prefix = listItemPrefix;
+      parent = node.parentNode;
+      orderedItemNumber = Array.prototype.indexOf.call(parent.children, node) + 1;
       hasCodeListings = /----\n/i.test(content);
+      isOrderedListItem = /ol/i.test(parent.nodeName);
       
       if(!hasCodeListings){
         content = content.replace(/^\s+/, '').replace(/\n/gm, '\n    ');
       }
       
-      prefix = listItemPrefix;
-      parent = node.parentNode;
-      index = Array.prototype.indexOf.call(parent.children, node) + 1;
-      
-      isOrderedListItem = /ol/i.test(parent.nodeName);
-      
       if(isOrderedListItem){
-        prefix = '[start=' + index + ']\n' + index + '.  ';
+        
+        if(orderedItemNumber === 1){
+          startValue = parent.getAttribute('start');
+          startValue = (startValue === null)? orderedItemNumber : startValue;
+        } else {
+          startValue = orderedItemNumber;
+        }
+        
+        prefix = '[start=' + startValue + ']\n' + startValue + '.  ';
       } else {
         prefix = listItemPrefix;
       }
