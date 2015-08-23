@@ -85,7 +85,7 @@
   var li = {
     filter: 'li',
     replacement: function (content, node) {
-      var prefix, parent, index, hasCodeListings;
+      var prefix, parent, index, hasCodeListings, isOrderedListItem;
       
       hasCodeListings = /----\n/i.test(content);
       
@@ -96,8 +96,15 @@
       prefix = listItemPrefix;
       parent = node.parentNode;
       index = Array.prototype.indexOf.call(parent.children, node) + 1;
+      
+      isOrderedListItem = /ol/i.test(parent.nodeName);
+      
+      if(isOrderedListItem){
+        prefix = '[start=' + index + ']\n' + index + '.  ';
+      } else {
+        prefix = listItemPrefix;
+      }
 
-      prefix = /ol/i.test(parent.nodeName) ? index + '.  ' : listItemPrefix;
       content = prefix + content;
       
       if(buildFlags.hasDocXBuildFlags(node)){
