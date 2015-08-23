@@ -85,10 +85,17 @@
   var li = {
     filter: 'li',
     replacement: function (content, node) {
-      content = content.replace(/^\s+/, '').replace(/\n/gm, '\n    ');
-      var prefix = listItemPrefix;
-      var parent = node.parentNode;
-      var index = Array.prototype.indexOf.call(parent.children, node) + 1;
+      var prefix, parent, index, hasCodeListings;
+      
+      hasCodeListings = /----\n/i.test(content);
+      
+      if(!hasCodeListings){
+        content = content.replace(/^\s+/, '').replace(/\n/gm, '\n    ');
+      }
+      
+      prefix = listItemPrefix;
+      parent = node.parentNode;
+      index = Array.prototype.indexOf.call(parent.children, node) + 1;
 
       prefix = /ol/i.test(parent.nodeName) ? index + '.  ' : listItemPrefix;
       content = prefix + content;
