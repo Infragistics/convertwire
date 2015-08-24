@@ -15,7 +15,7 @@
         hPrefix += '=';
       }
 
-      content = content.replace(/<.*?><\/.*?>/, '');
+      content = content.replace(/<[^>]*>/gi, '');
       
       var linkMatches = content.match(/link:{\S+\[(.*)]/)
       if (_.isArray(linkMatches) && linkMatches.length > 0) {
