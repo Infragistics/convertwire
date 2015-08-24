@@ -1,10 +1,9 @@
 (function (module) {
 	
-	var ifDefTags = [
-		'img',
-		'div',
-		'ul',
-		'li'
+	var pickTags = [
+		'b', 'big', 'i', 'small', 'tt', 'abbr', 'acronym', 'cite', 
+		'dfn', 'em', 'kbd', 'strong', 'samp', 'var', 'a', 'bdo', 'br', 
+		'map', 'object', 'q', 'script', 'span', 'sub', 'sup', 'label'
 	];
 	
 	module.hasDocXBuildFlags = function(node){
@@ -30,25 +29,25 @@
 	};
 	
 	module.wrapWithBuildFlags = function(content, node){
-		var returnValue, flags, isElementThatNeedsIfDef;
+		var returnValue, flags, isElementThatNeedsPick;
 		
 		returnValue = content;
 		flags = node.style.hsBuildFlags;
-		
-		isElementThatNeedsIfDef = function(){
-			return ifDefTags.indexOf(node.nodeName.toLowerCase()) >= 0;
+			
+		isElementThatNeedsPick = function(){
+			return pickTags.indexOf(node.nodeName.toLowerCase()) >= 0;
 		};
 		
 		if(flags.length > 0) {
 			
-			if(isElementThatNeedsIfDef()){
+			if(isElementThatNeedsPick()){
+				flags = flags.replace(/,/g, '.target-');
+				returnValue = 'pick:[target-' + flags + '="' + content + '"]';	
+			} else {
 				flags = flags.replace(/,/g, '+');
 				returnValue = '\n\nifdef::' + flags +'[]\n'
 				returnValue += content + '\n';
 				returnValue += 'endif::' + flags + '[]\n\n'; 
-			} else {
-				flags = flags.replace(/,/g, '.target-');
-				returnValue = 'pick:[target-' + flags + '="' + content + '"]';	
 			}
 		}
 		
