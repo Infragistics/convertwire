@@ -24,7 +24,9 @@
 	};
 	
 	module.toHtml = function(htmlDocument){
-			var htmlString = '<div id="docX-root">\n' + htmlDocument.markup + '\n</div>';
+			var htmlString = '<div id="docX-root">\n\n'
+			+ '<h1>' + htmlDocument.title + '</h1>\n\n' 
+			+ htmlDocument.markup + '\n</div>';
 			
 			var arrayToString = function(array){
 				if(array.length === 0) return '';
@@ -45,7 +47,7 @@
 "|metadata|\n" +
 "</pre>";
 
-			return metaData + "\n\n" + '<h1>' + htmlDocument.title + '</h1>\n\n' + htmlString;
+			return metaData + "\n\n" + htmlString;
 	};
 	
 	module.parse = function(xmlString, callback) {
