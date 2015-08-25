@@ -15,9 +15,21 @@
     return info;
   };
 
-
   var headers = {
-    filter: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
+    filter: function(node){
+      var match, tags;
+      
+      tags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
+      match = false;
+      
+      if(tags.indexOf(node.nodeName.toLowerCase()) > -1){
+        if(tags.className !== 'ig-document-title'){
+           match = true;
+        }
+      }
+      
+      return match;
+    },
     replacement: function (content, node) {
       var hLevel = parseInt(node.nodeName.charAt(1)) + 1;
       var hPrefix = '';

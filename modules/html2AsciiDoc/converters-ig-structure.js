@@ -2,15 +2,54 @@
   
   
   var divRelatedTopics = {
-		  filter: function(node){
-			  var match = node.nodeName === 'DIV' &&
-			  				    node.className.toLowerCase() === 'relatedtopics';
+      filter: function(node){
+        var match = node.nodeName === 'DIV' &&
+                    node.className.toLowerCase() === 'relatedtopics';
+        return match;
+      },
+      replacement: function(content){
+        return '\n\n== ' + content + '\n';
+      } 
+    };
+
+  var h1DocumentTitle = {
+    filter: function(node){
+      if(node.nodeName.toLowerCase() === 'h1')
+      var match = node.nodeName.toLowerCase() === 'h1' &&
+                  node.getAttribute('id') === 'ig-document-title';
+      return match;
+    },
+    replacement: function(content){
+      return '\n\n= ' + content;
+    }
+  }; 
+  
+  var spanNoteCaption = {
+    filter: function(node){
+			  var match = node.nodeName === 'SPAN' &&
+			  				    node.className.toLowerCase() === 'ig-note-caption';
 			  return match;
 		  },
 		  replacement: function(content){
-			  return '\n\n== ' + content + '\n';
-		  } 
-	  };
+			  return '.' + content + '\n[NOTE]\n';
+		  }
+  };
+  
+  var divNote = {
+    filter: function(node){
+      var match = false;
+      
+      match = node.nodeName === 'DIV' &&
+              node.className.toLowerCase() === 'note';
+      
+      return match;
+    },
+    replacement: function(content, node){
+      content = content.replace(/\*Note\* /, '');
+      content = content.replace(/\*Note:\* /, '');
+      return '\n\n.Note\n[NOTE]\n' + content;
+    }
+  };
   
   
   // ================================
@@ -76,6 +115,9 @@
 
   var converters = [];
 
+  converters.push(h1DocumentTitle);
+  converters.push(spanNoteCaption);
+  converters.push(divNote);
   converters.push(divRelatedTopics);
   converters.push(nothingElements);
   converters.push(breakElements);

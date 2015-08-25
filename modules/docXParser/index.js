@@ -25,7 +25,7 @@
 	
 	module.toHtml = function(htmlDocument){
 			var htmlString = '<div id="docX-root">\n\n'
-			+ '<h1>' + htmlDocument.title + '</h1>\n\n' 
+			+ '<h1 id="ig-document-title">' + htmlDocument.title + '</h1>\n\n' 
 			+ htmlDocument.markup + '\n</div>';
 			
 			var arrayToString = function(array){
