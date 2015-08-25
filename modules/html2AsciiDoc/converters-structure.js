@@ -4,6 +4,16 @@
 
   var _ = require('lodash');
   var buildFlags = require('./converters-build-flags.js');
+  
+  var getElementInfo = function(content, node){
+    var info = {};
+    info.hasCodeListings = /----\n/i.test(content);
+    info.isOrderedListItem = /ol/i.test(node.parentNode.nodeName);
+    info.hasBuildFlags = typeof node.style.hsBuildFlags !== 'undefined';
+    info.shouldIndentContent = (!info.hasCodeListings || !info.hasBuildFlags) && /\\n/g.test(content);
+    info.hasBuildFlags = buildFlags.hasDocXBuildFlags(node); 
+    return info;
+  };
 
 
   var headers = {
@@ -69,10 +79,16 @@
   var ul = {
     filter: 'ul',
     replacement: function (content, node) {
-      content = content.replace(/^\s+/, '').replace(/\n/gm, '\n    ');
-      content = content.replace(/\*   /g, '\n' + listItemPrefix);
+      var element;
+      
+      element = getElementInfo(content, node);
+      
+      if(element.shouldIndentContent){
+        content = content.replace(/^\s+/, '').replace(/\n/gm, '\n    ');
+        content = content.replace(/\*   /g, '\n' + listItemPrefix);
+      }
     
-      if(buildFlags.hasDocXBuildFlags(node)){
+      if(element.hasBuildFlags){
         content = buildFlags.wrapWithBuildFlags(content, node);
       }
       
@@ -85,19 +101,19 @@
   var li = {
     filter: 'li',
     replacement: function (content, node) {
-      var prefix, parent, orderedItemNumber, hasCodeListings, isOrderedListItem, startValue;
+      var prefix, parent, orderedItemNumber, startValue, element;
       
       prefix = listItemPrefix;
       parent = node.parentNode;
       orderedItemNumber = Array.prototype.indexOf.call(parent.children, node) + 1;
-      hasCodeListings = /----\n/i.test(content);
-      isOrderedListItem = /ol/i.test(parent.nodeName);
       
-      if(!hasCodeListings){
+      element = getElementInfo(content, node);
+      
+      if(element.shouldIndentContent){
         content = content.replace(/^\s+/, '').replace(/\n/gm, '\n    ');
       }
       
-      if(isOrderedListItem){
+      if(element.isOrderedListItem){
         
         if(orderedItemNumber === 1){
           startValue = parent.getAttribute('start');
@@ -108,12 +124,12 @@
         
         prefix = '[start=' + startValue + ']\n' + startValue + '.  ';
       } else {
-        prefix = listItemPrefix;
+        prefix = '\n' + listItemPrefix;
       }
 
       content = prefix + content;
       
-      if(buildFlags.hasDocXBuildFlags(node)){
+      if(element.hasBuildFlags){
         content = buildFlags.wrapWithBuildFlags(content, node);
       }
       

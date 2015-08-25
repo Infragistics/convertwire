@@ -1,5 +1,7 @@
 (function (module) {
 	
+	var _ = require('lodash');
+	
 	var pickTags = [
 		'b', 'big', 'i', 'small', 'tt', 'abbr', 'acronym', 'cite', 
 		'dfn', 'em', 'kbd', 'strong', 'samp', 'var', 'a', 'bdo', 'br', 
@@ -45,7 +47,8 @@
 				returnValue = 'pick:[target-' + flags + '="' + content + '"]';	
 			} else {
 				flags = flags.replace(/,/g, '+');
-				returnValue = '\n\nifdef::' + flags +'[]\n'
+				returnValue = '\n\nifdef::' + flags +'[]'
+				returnValue += (_.startsWith(content, '\n'))? '' : '\n';
 				returnValue += content + '\n';
 				returnValue += 'endif::' + flags + '[]\n\n'; 
 			}
