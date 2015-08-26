@@ -5,21 +5,14 @@
 var converter = require('./modules/html2AsciiDoc');
 var parser = require('./modules/docXParser');
 
-//var markup = '<div id="docX-root"><p>This is a <em>test</em> of the <a href="http://www.example.com"><strong>emergency</strong> broadcast</a> system</p></div>';
-//var markup = '<div id="docX-root"><ul><li>1<ul><li>1.1</li></ul>1.a</li><li>2</li></ul></div>';
-//var markup = '<table><thead><tr><th>Heading1</th></tr></thead><tbody><tr><td>cell1</td></tr></tbody></table>';
-//var asciiDoc = converter.convert(markup);
-//console.log(asciiDoc);
-
 //* asciidoc file converstion
 var fs = require('fs');
 var path = require('path');
-//var fullPath = path.join(__dirname, './spec/data/dest/0C71AEB5-1D6C-4BFF-BA3B-78D7C17D5839.html');
-var fullPath = path.join(__dirname, './spec/data/dest/0bf844e0-0b36-491d-b434-951a18aa3e1c.html');
+var fullPath = path.join(__dirname, './spec/data/src/html/tables-0E8F.html');
 
 fs.readFile(fullPath, 'utf8', function(error, content){
 	var html = content;
-	console.log(html);
+	//console.log(html);
 	
 	console.log('');
 	console.log('--------------------------');
