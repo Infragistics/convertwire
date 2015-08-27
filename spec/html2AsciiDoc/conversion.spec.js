@@ -38,7 +38,6 @@ describe('html2AsciiDoc', function(){
 		fileNames.forEach(function(fileName){
 			var content = getContent(fileName);
 			var result = converter.convert(content.html);
-			//fs.writeFile('C:\\Users\\cshoemaker\\Documents\\IG\\Rewire\\convertwire\\spec\\html2AsciiDoc\\asciidoc\\' + fileName + '.adoc', result);
 			expect(result).toEqual(content.adoc);
 		});
 	});
