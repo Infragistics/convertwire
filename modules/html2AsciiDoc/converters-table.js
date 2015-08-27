@@ -68,17 +68,16 @@
 	var row = {
 		filter: 'tr',
 	    replacement: function (content, node) {
-			return '\n\n' + content + '\n\n';
+			return '\n' + content + '\n\n\n';
 	    }
 	};
 	
 	var table = {
 		filter: 'table',
 	    replacement: function (content, node) {
-			var headerOption = '', value;
+			var headerOption = '', value, headerBreak;
 			
-			// deal with headers
-			debugger;
+			headerBreak = '';
 			
 			var hasHeaders = function(content){
 				var value = false;
@@ -87,7 +86,7 @@
 				
 				var lines = content.substring(0, quarterPosition).split('\n');
 				
-				value = lines[1].lastIndexOf('|') > 0;
+				value = lines[0].lastIndexOf('|') > 0;
 				
 				return value;
 			};
@@ -97,9 +96,10 @@
 			
 			if(hasHeaders(content)){
 				headerOption = '[options="header"]\n'
+				headerBreak = '\n';
 			}
 			
-			value = '\n\n' + headerOption + '|====' + content + '|====\n\n';
+			value = '\n\n' + headerOption + '|====' + headerBreak + content + '|====\n\n';
 			
 			if(buildFlags.hasDocXBuildFlags(node)){
 				value = buildFlags.wrapWithBuildFlags(value, node);
