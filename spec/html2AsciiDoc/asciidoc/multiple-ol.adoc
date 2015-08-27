@@ -1,0 +1,18 @@
+////
+|metadata|
+{
+    "name": "DataChart_Creating_Chart_In_XAML_Code",
+    "controlName": "",
+    "tags": [],
+    "docXGuid": "0bf844e0-0b36-491d-b434-951a18aa3e1c",
+    "title": "Creating Chart in XAML Code",
+    "buildFlags": ["WINRT","WINPHONE","WPF","SL","XAMARIN"]
+}
+|metadata|
+////
+
+[start=1]
+1.  Create %%PlatformName%% application project using Visual Studio 2012 or latest and call it *SampleApp*
+
+[start=2]
+2.  Add the following namespace declarations to the main XAML file:

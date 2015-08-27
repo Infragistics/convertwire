@@ -1,0 +1,35 @@
+////
+|metadata|
+{
+    "name": "xamDataGrid_Getting_Started_with_xamDataGrid",
+    "controlName": "xamDataGrid",
+    "tags": ["Getting Started"],
+    "docXGuid": "{0AD1128D-237A-49E6-A416-E69667BC29BE}",
+    "title": "Adding xamDataGrid to Your Page",
+    "buildFlags": []
+}
+|metadata|
+////
+
+[start=1]
+1.  Add a namespace declaration for xamDataGrid.
+
+*In XAML:*
+
+----
+xmlns:igDP="http://infragistics.com/DataPresenter"
+----
+
+*In Visual Basic:*
+
+[source,vb]
+----
+Imports Infragistics.Windows.DataPresenter
+----
+
+*In C#:*
+
+[source,csharp]
+----
+using Infragistics.Windows.DataPresenter;
+----

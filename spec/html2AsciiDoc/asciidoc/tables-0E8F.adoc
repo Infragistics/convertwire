@@ -1,0 +1,59 @@
+[options="header"]
+|====
+|Item|Description|Corresponding Property
+
+|Add Group With Grid
+|Clicking this link will add an link:%%ProductAssemblyName%%.OutlookBar.v%%ProductVersionShort%%~Infragistics.Windows.OutlookBar.OutlookBarGroup.html[OutlookBarGroup] object to xamOutlookBar. The group's content will be set to a Grid panel.
+|None
+
+|Add Group With Tree
+|Clicking this link will add an OutlookBarGroup object to xamOutlookBar. The groups content will be set to a TreeView control.
+|None
+
+|Add Group With Radio
+|Clicking this link will add an OutlookBarGroup object to xamOutlookBar. The group's content will be set to two ListBox controls. The first ListBox control contains three TextBlock controls and the second ListBox control contains three RadioButton controls.
+|None
+
+|Add Group With Calendar
+|Clicking this link will add an OutlookBarGroup object to xamOutlookBar. The group's content will be set to a xamMonthCalendar™ control. You have to add a reference to %%ProductAssemblyName%%.Controls.Editors.v%%ProductVersionShort%%.dll to your project if you did not add it already.
+|None
+
+|Show More Buttons
+|Clicking this link will show more groups in the groups presenter.
+|None
+
+|Show Fewer Buttons
+|Clicking this link will show fewer groups in the groups presenter.
+|None
+
+|Show Max # of Buttons
+|Clicking this link will show the maximum number of groups in the groups presenter based on the height of the xamOutlookBar control.
+|None
+
+|====
+
+[options="header"]
+|====
+|Item|Description|Corresponding Property
+
+|Add Content With Tree
+|Clicking this link will add an link:%%ProductAssemblyName%%.OutlookBar.v%%ProductVersionShort%%~Infragistics.Windows.OutlookBar.OutlookBarGroup.html[OutlookBarGroup] object to xamOutlookBar. The groups content will be set to a TreeView control.
+|link:%%ProductAssemblyName%%.OutlookBar.v%%ProductVersionShort%%~Infragistics.Windows.OutlookBar.OutlookBarGroup.html[Content]
+
+|Add Content With Radio
+|Clicking this link will add an OutlookBarGroup object to xamOutlookBar. The group's content will be set to two ListBox controls. The first ListBox control contains three TextBlock controls and the second ListBox control contains three RadioButton controls.
+|Content
+
+|Add Content With Calendar
+|Clicking this link will add an OutlookBarGroup object to xamOutlookBar. The group's content will be set to a xamMonthCalendar™ control. You have to add a reference to %%ProductAssemblyName%%.Controls.Editors.v%%ProductVersionShort%%.dll to your project if you did not add it already.
+|Content
+
+|Header
+|This is the text that appears in a group's header.
+|link:%%ProductAssemblyName%%.OutlookBar.v%%ProductVersionShort%%~Infragistics.Windows.OutlookBar.OutlookBarGroup.html[Header]
+
+|Is Selected
+|Clicking this link will select the group.
+|link:%%ProductAssemblyName%%.OutlookBar.v%%ProductVersionShort%%~Infragistics.Windows.OutlookBar.OutlookBarGroup~IsSelected.html[IsSelected]
+
+|====

@@ -1,0 +1,57 @@
+[options="header"]
+|====
+|Property Name|Property Type|Description
+
+|link:%%ApiLink%%.Axis%%ApiProp%%Label.html[Label]
+|String
+|Determines data mapping (category axis) and formating (all axis) of labels
+
+|LabelSettings
+|link:%%ApiLink%%.AxisLabelSettings.html[AxisLabelSettings]
+|Determines labels’ settings such foreground, font, alignment, margins, angle and many more. See also link:2a790505-160b-4323-9d84-ad3825198a94[Configuring Axis Label Settings]
+
+|link:%%ApiLink%%.Axis%%ApiProp%%LabelAngle.html[LabelAngle] + 
+LabelSettings.link:%%ApiLink%%.AxisLabelSettings%%ApiProp%%Angle.html[Angle]
+|double
+|Determines angle rotation of axis labels
+
+|link:%%ApiLink%%.Axis%%ApiProp%%LabelExtent.html[LabelExtent] + 
+LabelSettings.link:%%ApiLink%%.AxisLabelSettings%%ApiProp%%Extent.html[Extent]
+|double
+|Determines empty space that extents between axis labels and the axis main line
+
+|link:%%ApiLink%%.Axis%%ApiProp%%LabelFont.html[LabelFont] + 
+LabelSettings.link:%%ApiLink%%.Axis%%ApiProp%%LabelFontFamily.html[FontFamily] + 
+LabelSettings.link:%%ApiLink%%.AxisLabelSettings%%ApiProp%%FontFamily.html[FontFamily]
+|Font + 
+FontFamily
+|Determines font of axis labels
+
+|link:%%ApiLink%%.Axis%%ApiProp%%LabelHorizontalAlignment.html[LabelHorizontalAlignment] + 
+LabelSettings.link:%%ApiLink%%.AxisLabelSettings%%ApiProp%%HorizontalAlignment.html[HorizontalAlignment]
+|HorizontalAlignment
+|Determines horizontal alignment of labels on CategoryYAxis and NumericYAxis only
+
+|link:%%ApiLink%%.Axis%%ApiProp%%LabelVerticalAlignment.html[LabelVerticalAlignment] + 
+LabelSettings.link:%%ApiLink%%.AxisLabelSettings%%ApiProp%%VerticalAlignment.html[VerticalAlignment]
+|VerticalAlignment
+|Determines vertical alignment of labels on CategoryXAxis and NumericXAxis only
+
+|link:%%ApiLink%%.Axis%%ApiProp%%LabelLocation.html[LabelLocation] + 
+LabelSettings.link:%%ApiLink%%.AxisLabelSettings%%ApiProp%%Location.html[Location]
+|link:%%ApiLink%%.AxisLabelsLocation.html[AxisLabelsLocation] + 
+link:%%ApiLink%%.AxisLabelsLocation.html[AxisLabelsLocation]
+|Determines location of axis labels in relation to axis main line and chart plot area
+
+|link:%%ApiLink%%.Axis%%ApiProp%%LabelsVisible.html[LabelsVisible] + 
+LabelSettings.link:%%ApiLink%%.AxisLabelSettings%%ApiProp%%Visibility.html[Visibility]
+|bool + 
+Visibility
+|Determines whether or not axis labels are visible
+
+|link:%%ApiLink%%.Axis%%ApiProp%%LabelTextColor.html[LabelTextColor] + 
+LabelSettings.link:%%ApiLink%%.AxisLabelSettings%%ApiProp%%Foreground.html[Foreground]
+|Brush
+|Determines text color of axis labels
+
+|====

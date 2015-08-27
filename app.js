@@ -8,16 +8,10 @@ var parser = require('./modules/docXParser');
 //* asciidoc file converstion
 var fs = require('fs');
 var path = require('path');
-var fullPath = path.join(__dirname, './spec/data/src/html/tables-0E8F.html');
+var fullPath = path.join(__dirname, './spec/html2AsciiDoc/html/table.html');
 
 fs.readFile(fullPath, 'utf8', function(error, content){
 	var html = content;
-	//console.log(html);
-	
-	console.log('');
-	console.log('--------------------------');
-	console.log('');
-	
 	var asciiDoc = converter.convert(html);
 	console.log(asciiDoc);	
 }); 
