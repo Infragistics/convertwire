@@ -1,14 +1,10 @@
 /// <reference path="typings/node/node.d.ts"/>
-// https://www.npmjs.com/package/split
-// http://twolfson.com/2014-02-17-suggested-reading-for-writing-a-gulp-plugin
 
+/* asciidoc file converstion
 var converter = require('./modules/html2AsciiDoc');
-var parser = require('./modules/docXParser');
-
-//* asciidoc file converstion
 var fs = require('fs');
 var path = require('path');
-var fullPath = path.join(__dirname, './spec/html2AsciiDoc/html/table.html');
+var fullPath = path.join(__dirname, './spec/data/dest/189b488d-7833-4379-bc1f-0770ff6a6844.html');
 
 fs.readFile(fullPath, 'utf8', function(error, content){
 	var html = content;
@@ -17,16 +13,17 @@ fs.readFile(fullPath, 'utf8', function(error, content){
 }); 
 // */
 
-/* parser
+//* parser
+var parser = require('./modules/docXParser');
 var fs = require('fs');
 var path = require('path');
-var fullPath = path.join(__dirname, './spec/data/src/{0A350874-93D1-4735-AF7B-D07F48E85A2F}.ja-JP.xml');
+var fullPath = path.join(__dirname, './spec/data/src/189b488d-7833-4379-bc1f-0770ff6a6844.xml');
 
 fs.readFile(fullPath, 'utf8', function(error, xml){
-	parser.parse(xml, function(err, html){
+	parser.parse(xml, function(err, document){
 		if(err) console.log(err);
-		
-		console.log(html);
+		var html = parser.toHtml(document);
+		console.log(html.indexOf('&#xA0;'));
 	});	
 }); 
 // */

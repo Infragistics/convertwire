@@ -3,13 +3,16 @@
 	var _ = require('lodash');
 
 	module.parse = function(obj, htmlDocument, getValue, listToArray){
+		var markup;
 		
 		if(!_.isUndefined(obj.Topic.Title) && !_.isUndefined(obj.Topic.Title._)){
 			htmlDocument.title = obj.Topic.Title._.trim();
 		}
 		
 		if(!_.isUndefined(obj.Topic.TopicSections.TopicSection.Content._)){
-			htmlDocument.markup = obj.Topic.TopicSections.TopicSection.Content._;
+			markup = obj.Topic.TopicSections.TopicSection.Content._;
+			markup = markup.replace(/&nbsp;/, ' ');
+			htmlDocument.markup = markup;
 		}
 		
 		var defs = obj.Topic.PropertyDefinitionValues.PropertyDefinitionValue;

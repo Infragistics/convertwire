@@ -47,8 +47,6 @@
 "|metadata|\n" +
 "</pre>";
 
-			htmlString = htmlString.replace(/&#xA0;/g, ' ');
-
 			return metaData + "\n\n" + htmlString;
 	};
 	
