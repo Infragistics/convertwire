@@ -31,20 +31,29 @@
       return match;
     },
     replacement: function (content, node) {
-      var hLevel = parseInt(node.nodeName.charAt(1)) + 1;
-      var hPrefix = '';
+      var hLevel, hPrefix, linkMatches, value;
+      
+      hLevel = parseInt(node.nodeName.charAt(1)) + 1;
+      hPrefix = '';
+      
       for (var i = 0; i < hLevel; i++) {
         hPrefix += '=';
       }
 
       content = content.replace(/<[^>]*>/gi, '');
       
-      var linkMatches = content.match(/link:{\S+\[(.*)]/)
+      linkMatches = content.match(/link:{\S+\[(.*)]/)
       if (_.isArray(linkMatches) && linkMatches.length > 0) {
-        return '\n\n' + hPrefix + ' ' + linkMatches[1] + '\n\n' + content + '\n\n';
+        value = '\n\n' + hPrefix + ' ' + linkMatches[1] + '\n\n' + content + '\n\n';
+      } else {
+        value = '\n\n' + hPrefix + ' ' + content + '\n\n';
       }
-
-      return '\n\n' + hPrefix + ' ' + content + '\n\n';
+      
+      if(buildFlags.hasDocXBuildFlags(node)){
+        value = buildFlags.wrapWithBuildFlags(value, node);
+      }
+      
+      return value;
     }
   };
 
@@ -57,8 +66,15 @@
 
   var bold = {
     filter: ['strong', 'b'],
-    replacement: function (content) {
-      return '*' + content + '*';
+    replacement: function (content, node) {
+      var value;
+      
+      value = content;
+      
+      if(buildFlags.hasDocXBuildFlags(node)){
+        value = buildFlags.wrapWithBuildFlags(value, node);
+      }
+      return '*' + value + '*';
     }
   };
 
@@ -67,18 +83,28 @@
       return node.nodeName === 'A' && node.getAttribute('href');
     },
     replacement: function (content, node) {
-      return 'link:' + node.getAttribute('href') + '[' + content + ']';
+      var value;
+      
+      value = 'link:' + node.getAttribute('href') + '[' + content + ']';
+      
+      if(buildFlags.hasDocXBuildFlags(node)){
+        value = buildFlags.wrapWithBuildFlags(value, node);
+      }
+      
+      return value;
     }
   };
 
   var img = {
     filter: 'img',
     replacement: function (content, node) {
-      var alt = node.alt || '';
-      var src = node.getAttribute('src') || '';
-      var title = node.title || '';
-      var titlePart = title ? ' "' + title + '"' : '';
-      var value = 'image:' + src + titlePart + '[' + alt + ']';
+      var alt, src, title, titlePart, value
+      
+      alt = node.alt || '';
+      src = node.getAttribute('src') || '';
+      title = node.title || '';
+      titlePart = title ? ' "' + title + '"' : '';
+      value = 'image:' + src + titlePart + '[' + alt + ']';
       
       if(buildFlags.hasDocXBuildFlags(node)){
         value = buildFlags.wrapWithBuildFlags(value, node);
@@ -151,11 +177,19 @@
 
   var blockquote = {
     filter: 'blockquote',
-    replacement: function (content) {
+    replacement: function (content, node) {
+      var value;
+      
       content = this.trim(content);
       content = content.replace(/\n{3,}/g, '\n\n');
       content = content.replace(/^/gm, '');
-      return '\n\n____\n' + content + '\n____\n\n';
+      value =  '\n\n____\n' + content + '\n____\n\n';
+      
+      if(buildFlags.hasDocXBuildFlags(node)){
+        value = buildFlags.wrapWithBuildFlags(value, node);
+      }
+      
+      return 
     }
   };
 
@@ -175,8 +209,16 @@
     
 	  var del = {
 	    filter: ['del', 's', 'strike'],
-	    replacement: function (content) {
-	      return '[line-through]*' + content + '*';
+	    replacement: function (content, node) {
+        var value;
+        
+        value = '[line-through]*' + content + '*';
+        
+        if(buildFlags.hasDocXBuildFlags(node)){
+          value = buildFlags.wrapWithBuildFlags(value, node);
+        }
+        
+	      return value;
 	    }
 	  };
 	

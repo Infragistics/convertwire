@@ -1,7 +1,8 @@
 (function(module){
 	
 	var _ = require('lodash');
-	
+	var buildFlags = require('./converters-build-flags.js');
+
 	var cleanTitleAndWhiteSpace = function(content){
 		var doubleBreak;
 
@@ -72,7 +73,7 @@
 	
 	var table = {
 		filter: 'table',
-	    replacement: function (content) {
+	    replacement: function (content, node) {
 			var headerOption = '', value;
 			
 			// deal with headers
@@ -98,6 +99,10 @@
 			}
 			
 			value = '\n\n' + headerOption + '|====' + content + '|====\n\n';
+			
+			if(buildFlags.hasDocXBuildFlags(node)){
+				value = buildFlags.wrapWithBuildFlags(value, node);
+			}
 			
 	      	return value;
 	    }

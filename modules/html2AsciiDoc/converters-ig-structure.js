@@ -1,5 +1,6 @@
 (function (module) {
   
+  var buildFlags = require('./converters-build-flags.js');
   
   var divRelatedTopics = {
       filter: function(node){
@@ -7,8 +8,16 @@
                     node.className.toLowerCase() === 'relatedtopics';
         return match;
       },
-      replacement: function(content){
-        return '\n\n== ' + content + '\n';
+      replacement: function(content, node){
+        var value;
+        
+        value = '\n\n== ' + content + '\n';
+        
+        if(buildFlags.hasDocXBuildFlags(node)){
+          value = buildFlags.wrapWithBuildFlags(value, node);
+        }
+        
+        return value;
       } 
     };
 
@@ -19,8 +28,16 @@
                   node.getAttribute('id') === 'ig-document-title';
       return match;
     },
-    replacement: function(content){
-      return '\n\n= ' + content;
+    replacement: function(content, node){
+      var value;
+      
+      value = '\n\n= ' + content;
+      
+      if(buildFlags.hasDocXBuildFlags(node)){
+        value = buildFlags.wrapWithBuildFlags(value, node);
+      }
+      
+      return value;
     }
   }; 
   
@@ -30,8 +47,16 @@
 			  				    node.className.toLowerCase() === 'ig-note-caption';
 			  return match;
 		  },
-		  replacement: function(content){
-			  return '.' + content + '\n[NOTE]\n';
+		  replacement: function(content, node){
+        var value;
+        
+			  value = '.' + content + '\n[NOTE]\n';
+        
+        if(buildFlags.hasDocXBuildFlags(node)){
+          value = buildFlags.wrapWithBuildFlags(value, node);
+        }
+        
+        return value;
 		  }
   };
   
@@ -45,9 +70,17 @@
       return match;
     },
     replacement: function(content, node){
+      var value;
+      
       content = content.replace(/\*Note\* /, '');
       content = content.replace(/\*Note:\* /, '');
-      return '\n\n.Note\n[NOTE]\n' + content;
+      value = '\n\n.Note\n[NOTE]\n' + content;
+      
+      if(buildFlags.hasDocXBuildFlags(node)){
+        value = buildFlags.wrapWithBuildFlags(value, node);
+      }
+      
+      return value;
     }
   };
   
