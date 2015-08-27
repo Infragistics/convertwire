@@ -31,6 +31,7 @@
 		}
 		
 		content = content.replace(/\n\n\n\n/g, ' + \n');
+		content = content.replace(/\[\] \+/g, '[]'); // remove line break character from build flags
 		
 		return content;
 	};
