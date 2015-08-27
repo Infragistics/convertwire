@@ -20,6 +20,28 @@
         return value;
       } 
     };
+    
+  var spanIGItalic = {
+    filter: function(node){
+      var match = false;
+      
+      match = node.nodeName === 'SPAN' &&
+              node.className === 'ig-italic';
+      
+      return match;
+    },
+    replacement: function(content, node){
+      var value;
+      
+      value = '_' + content + '_';
+      
+      if(buildFlags.hasDocXBuildFlags(node)){
+        value = buildFlags.wrapWithBuildFlags(value, node);
+      }
+      
+      return value;
+    }
+  };
 
   var h1DocumentTitle = {
     filter: function(node){
@@ -149,6 +171,7 @@
   var converters = [];
 
   converters.push(h1DocumentTitle);
+  converters.push(spanIGItalic);
   converters.push(spanNoteCaption);
   converters.push(divNote);
   converters.push(divRelatedTopics);
