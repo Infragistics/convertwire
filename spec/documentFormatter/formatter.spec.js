@@ -1,8 +1,8 @@
 /// <reference path="../../typings/jasmine/jasmine.d.ts"/>
 
-describe('documentFormatter', function(){
+describe('sourceFormatter', function(){
 	
-	var formatter = require('../../modules/documentFormatter');
+	var formatter = require('../../modules/sourceFormatter');
 	
 	it('returns an instance', function(){
 		expect(formatter).not.toBeNull();
