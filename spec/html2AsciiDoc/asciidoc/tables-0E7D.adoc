@@ -1,5 +1,4 @@
 |====
-
 |Controls Namespace: + 
 link:%%ProductAssemblyName%%.v%%ProductVersionShort%%~Infragistics.Windows.Controls_namespace.html[Infragistics.Windows.Controls]
 |Key APIs: + 
