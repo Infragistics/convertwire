@@ -2,6 +2,7 @@
 	
 	var _ = require('lodash');
 	var buildFlags = require('./converters-build-flags.js');
+	var whitespace = require('./whitespace.js');
 
 	var cleanTitleAndWhiteSpace = function(content){
 		var doubleBreak;
@@ -30,8 +31,11 @@
 			content = content.substring(0, content.length - doubleBreak.length);
 		}
 		
+		// remove leftover whitespace link breaks with AsciiDoc link break
 		content = content.replace(/\n\n\n\n/g, ' + \n');
-		content = content.replace(/\[\] \+/g, '[]'); // remove line break character from build flags
+		
+		// remove line break character from build flags  
+		content = content.replace(/\[\] \+/g, '[]'); 
 		
 		return content;
 	};
@@ -75,35 +79,34 @@
 	var table = {
 		filter: 'table',
 	    replacement: function (content, node) {
-			var headerOption = '', value, headerBreak;
-			
-			headerBreak = '';
+			var headerOption = '', value;
 			
 			var hasHeaders = function(content){
-				var value = false;
+				var value, quarterPosition, lines;
 				
-				var quarterPosition = content.length / 4;
-				
-				var lines = content.substring(0, quarterPosition).split('\n');
-				
+				value = false;
+				quarterPosition = content.length / 4;
+				lines = content.substring(0, quarterPosition).split('\n');
 				value = lines[0].lastIndexOf('|') > 0;
 				
 				return value;
 			};
 			
-			
-			content = content.replace(/\n/, '');
+			content = whitespace.removeExtraLineBreaks(content);;
 			
 			if(hasHeaders(content)){
 				headerOption = '[options="header"]\n'
-				headerBreak = '\n';
 			}
 			
-			value = '\n\n' + headerOption + '|====' + headerBreak + content + '|====\n\n';
+			if(!_.startsWith(content, '\n')){
+				content = '\n' + content;
+			}
+			
+			value = '\n\n' + headerOption + '|====' + content + '|====\n\n';
 			
 			if(buildFlags.hasDocXBuildFlags(node)){
 				value = buildFlags.wrapWithBuildFlags(value, node);
-			}
+			} 
 			
 	      	return value;
 	    }

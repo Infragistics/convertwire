@@ -34,12 +34,16 @@ describe('html2AsciiDoc', function(){
 		'titles'		
 	];
 	
-	it('converts html into asciidoc', function(){
-		fileNames.forEach(function(fileName){
+	fileNames.forEach(function(fileName){
+	//['tables-semantic'].forEach(function(fileName){
+		it('converts html into asciidoc: ' + fileName, function(){
 			var content = getContent(fileName);
 			var result = converter.convert(content.html);
+			//fs.writeFileSync(path.resolve(__dirname, './asciidoc/' + fileName + '.adoc'), result);
 			expect(result).toEqual(content.adoc);
 		});
 	});
+	
+	
 	
 });
