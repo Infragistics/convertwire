@@ -4,7 +4,7 @@
 var converter = require('./modules/html2AsciiDoc');
 var fs = require('fs');
 var path = require('path');
-var fullPath = path.join(__dirname, './spec/data/dest/0E8FC032-A48B-432B-A077-B528AB69C964.html');
+var fullPath = path.join(__dirname, './spec/html2AsciiDoc/html/tables-colspan.html');
 
 fs.readFile(fullPath, 'utf8', function(error, content){
 	var html = content;

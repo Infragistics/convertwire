@@ -2,8 +2,8 @@
 
 	var buildFlags = require('./converters-build-flags.js');
 
-	var div = {
-		filter: 'div',
+	var divSpan = {
+		filter: ['div', 'span'],
 		replacement: function (content, node) {
 
 			if (buildFlags.hasDocXBuildFlags(node)) {
@@ -16,7 +16,7 @@
 
 	var converters = [];
 	
-	converters.push(div);
+	converters.push(divSpan);
 
 	module.get = function () {
 		return converters;
