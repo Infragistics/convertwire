@@ -77,8 +77,17 @@
       return '*' + value + '*';
     }
   };
+  
+  var anchorWithoutHref = {
+    filter: function (node) {
+      return node.nodeName === 'A' && (node.getAttribute('href') === null);
+    },
+    replacement: function (content, node) {
+      return '';
+    }
+  };
 
-  var anchor = {
+  var anchorWithHref = {
     filter: function (node) {
       return node.nodeName === 'A' && node.getAttribute('href');
     },
@@ -236,7 +245,8 @@
   converters.push(headers);
   converters.push(hr);
   converters.push(bold);
-  converters.push(anchor);
+  converters.push(anchorWithoutHref);
+  converters.push(anchorWithHref);
   converters.push(img);
   converters.push(ul);
   converters.push(li);
