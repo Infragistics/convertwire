@@ -18,7 +18,7 @@ describe('html2AsciiDoc', function(){
 		return result;
 	};
 	
-	var fileNames = [
+	[
 		'build-list',
 		'indented-code',		
 		'multiple-ol',		
@@ -31,18 +31,28 @@ describe('html2AsciiDoc', function(){
 		'tables-no-headers',		
 		'tables-semantic',		
 		'title-anchors',		
-		'titles'		
-	];
-	
-	fileNames.forEach(function(fileName){
-	//['tables-semantic'].forEach(function(fileName){
+		'titles'
+	].forEach(function(fileName){
 		it('converts html into asciidoc: ' + fileName, function(){
 			var content = getContent(fileName);
 			var result = converter.convert(content.html);
-			//fs.writeFileSync(path.resolve(__dirname, './asciidoc/' + fileName + '.adoc'), result);
+			//fs.writeFileSync(path.resolve(__dirname, './asciidoc/' + fileName + '-test.adoc'), result);
 			expect(result).toEqual(content.adoc);
 		});
 	});
+	
+	[
+		'tables-colspan',		
+		'tables-rowspan',
+	].forEach(function(fileName){
+		it('converts html into asciidoc: ' + fileName, function(){
+			var content = getContent(fileName);
+			var result = converter.convert(content.html);
+			expect(result).toMatch(content.adoc);
+		});
+	});
+	
+	
 	
 	
 	

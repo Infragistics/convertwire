@@ -41,14 +41,24 @@
 	};
 	
 	var createCell = function(content, node, isHeader) {
-		var value = '';
+		var value = '', colspan = '', rowspan = ''; debugger;
 		
 		content = cleanTitleAndWhiteSpace(content);
 		
-		if(isHeader){
-			value = '|' + content;
-		} else {
-			value = '\n|' + content;
+		colspan = node.getAttribute('colspan');
+		colspan = (_.isNull(colspan))? '' : colspan + '+';
+		
+		rowspan = node.getAttribute('rowspan');
+		rowspan = (_.isNull(rowspan))? '' : '.' + rowspan + '+';
+		
+		if(rowspan.length > 0){
+			colspan = _.trimRight(colspan, '+') + rowspan;
+		}
+		
+		value = colspan + '|' + content;
+		
+		if(!isHeader){
+			value = '\n' + value;
 		}
 		
 		return value;

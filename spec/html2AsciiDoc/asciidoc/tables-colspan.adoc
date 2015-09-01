@@ -1,0 +1,18 @@
+[options="header"]
+|====
+|Col 1|Col 2|Col 3
+
+2+|row one cell one
+|row one cell three
+
+|row two cell one
+|row two cell two
+|row two cell three
+
+3+|row three cell one
+
+|row four cell one
+|row four cell two
+|row four cell three
+
+|====
