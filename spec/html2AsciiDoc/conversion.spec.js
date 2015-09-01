@@ -25,6 +25,7 @@ describe('html2AsciiDoc', function(){
 		'nested-flags',		
 		'notes',				
 		'table',
+		'ig-bold',
 		'tables-0E7D',
 		'tables-0E8F',		
 		'tables-headers',		
