@@ -1,6 +1,6 @@
 var path = require('path')
 var logger = require(path.resolve(__dirname, '../../modules/logger'));
-var dest = __dirname + '\\test-log.csv';
+var dest = path.resolve(__dirname, '../data') + '\\test-log.csv';
 var fs = require('fs');
 
 describe('logger', function(){
