@@ -8,6 +8,7 @@
 	
 	var _ = require('lodash');
 	var path = require('path');
+	var logger = require(path.resolve(__dirname, '../logger'));
 	
 	var english = require('./parser-english.js');
 	var japanese = require('./parser-japanese.js');
@@ -65,7 +66,7 @@
 		};
 		
 		parser.parseString(xmlString, function(error, obj){
-			var parser = null, errorMessage;
+			var parser = null, parseError;
 			
 			var getValue = function(element){
 				if(typeof element === 'undefined' || element === null) return '';
@@ -89,8 +90,15 @@
 				} else if (isEnglishTopic(obj)){
 					parser = english;
 				} else {
-					errorMessage = 'Not an English or Japanese topic';
-					callback(errorMessage, null);
+					parseError = {
+						message: 'Not an English or Japanese topic',
+						filePath: filePath,
+						tag: 'format'
+					};
+					
+					logger.info(parseError);
+					
+					callback(parseError, null);
 				}
 				
 				if(parser !== null){

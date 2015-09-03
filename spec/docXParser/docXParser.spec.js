@@ -35,15 +35,6 @@ describe('docXParser', function(){
 	describe('toHTML', function () {
 		getTopics();
 		
-		it('logs bad files to log file', function(){
-			
-			parser.parse('<badFile></badFile>', 'c:\bad-file.xml', function(error, topic){
-				expect(error).not.toBeNull();
-				expect(topic).toBeNull();
-			});
-			
-		});
-		
 		it('serializes htmlDocument markup with metadata', function(){
 			
 			topics.forEach(function(topic, index){
@@ -65,6 +56,15 @@ describe('docXParser', function(){
 	describe('parse', function(){
 		
 		getTopics();
+		
+		it('returns error for bad file', function(){
+			
+			parser.parse('<badFile></badFile>', 'c:\bad-file.xml', function(error, topic){
+				expect(error).not.toBeNull();
+				expect(topic).toBeNull();
+			});
+			
+		});
 		
 		it('extracts DocumentX name', function(){
 			topics.forEach(function(topic, index){
