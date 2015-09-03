@@ -52,7 +52,7 @@
 			return metaData + "\n\n" + htmlString;
 	};
 	
-	module.parse = function(xmlString, callback) {
+	module.parse = function(xmlString, filePath, callback) {
 		
 		var htmlDocument = {
 			fileName: '',
@@ -66,7 +66,7 @@
 		};
 		
 		parser.parseString(xmlString, function(error, obj){
-			var parser = null;
+			var parser = null, errorMessage;
 			
 			var getValue = function(element){
 				if(typeof element === 'undefined' || element === null) return '';
@@ -90,7 +90,9 @@
 				} else if (isEnglishTopic(obj)){
 					parser = english;
 				} else {
-					logger.log('Not an English or Japanese topic', obj, 'data-format');
+					errorMessage = 'Not an English or Japanese topic';
+					logger.log(errorMessage, filePath, 'data-format');
+					callback(errorMessage, null);
 				}
 				
 				if(parser !== null){

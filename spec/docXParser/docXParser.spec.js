@@ -16,8 +16,9 @@ describe('docXParser', function(){
 				var keys = _.keys(config.topicData);
 				keys.forEach(function(key, index){
 					var file = config.topicData[key];
-					fs.readFile(path.resolve(__dirname, 'data/' + file.fileName), 'utf8', function(readError, xmlString){
-						parser.parse(xmlString, function(error, topic){
+					var filePath = path.resolve(__dirname, 'data/' + file.fileName);
+					fs.readFile(filePath, 'utf8', function(readError, xmlString){
+						parser.parse(xmlString, filePath, function(error, topic){
 							topics.push(topic);
 							if(topics.length === keys.length){
 								done();
@@ -33,6 +34,16 @@ describe('docXParser', function(){
 	
 	describe('toHTML', function () {
 		getTopics();
+		
+		it('logs bad files to log file', function(){
+			
+			parser.parse('<badFile></badFile>', 'c:\bad-file.xml', function(error, topic){
+				expect(error).not.toBeNull();
+				console.log(error);
+				expect(topic).toBeNull();
+			});
+			
+		});
 		
 		it('serializes htmlDocument markup with metadata', function(){
 			

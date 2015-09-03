@@ -9,7 +9,7 @@
 		var processStream = function(file, encoding, next){
 			var xmlString = file.contents.toString(encoding);
 			var stream = this;
-			parser.parse(xmlString, function(error, topic){
+			parser.parse(xmlString, file.path, function(error, topic){
 				file.contents = new Buffer(parser.toHtml(topic), encoding);
 				stream.push(file);
 				next();	
