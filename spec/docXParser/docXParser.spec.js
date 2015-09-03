@@ -39,7 +39,6 @@ describe('docXParser', function(){
 			
 			parser.parse('<badFile></badFile>', 'c:\bad-file.xml', function(error, topic){
 				expect(error).not.toBeNull();
-				console.log(error);
 				expect(topic).toBeNull();
 			});
 			

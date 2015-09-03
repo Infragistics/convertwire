@@ -11,7 +11,6 @@
 	
 	var english = require('./parser-english.js');
 	var japanese = require('./parser-japanese.js');
-	var logger = require(path.resolve(__dirname, '../logger'));
 	
 	var listToArray = function(listString, delimiter){
 		
@@ -91,7 +90,6 @@
 					parser = english;
 				} else {
 					errorMessage = 'Not an English or Japanese topic';
-					logger.log(errorMessage, filePath, 'data-format');
 					callback(errorMessage, null);
 				}
 				
