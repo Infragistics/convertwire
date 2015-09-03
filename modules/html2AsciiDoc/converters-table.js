@@ -41,7 +41,7 @@
 	};
 	
 	var createCell = function(content, node, isHeader) {
-		var value = '', colspan = '', rowspan = ''; debugger;
+		var value = '', colspan = '', rowspan = '';
 		
 		content = cleanTitleAndWhiteSpace(content);
 		

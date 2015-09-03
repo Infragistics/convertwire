@@ -6,7 +6,7 @@ var _ = require('lodash');
 var module = module.exports;
 
 module.options = {
-	dest: ''
+	dest: path.resolve(__dirname, './logs/error.csv')
 };
 
 module.log = function(message, context, tag, callback){
