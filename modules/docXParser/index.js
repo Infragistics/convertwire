@@ -7,9 +7,11 @@
 	});
 	
 	var _ = require('lodash');
+	var path = require('path');
 	
 	var english = require('./parser-english.js');
 	var japanese = require('./parser-japanese.js');
+	var logger = require(path.resolve(__dirname, '../logger'));
 	
 	var listToArray = function(listString, delimiter){
 		
@@ -64,30 +66,37 @@
 		};
 		
 		parser.parseString(xmlString, function(error, obj){
+			var parser = null;
 			
 			var getValue = function(element){
 				if(typeof element === 'undefined' || element === null) return '';
 				return element;
 			};
 			
+			var isEnglishTopic = function(obj){
+				return obj.hasOwnProperty('Topic') && obj.Topic.$.Id.length > 0;
+			};
+			
+			var isJapaneseTopic = function(){
+				return obj.hasOwnProperty('topic');
+			};
+			
 			if(error){
 				callback(error, null);			
 			} else {
-				
-				var parser = english;
-				
-				/*
-				if(obj.hasOwnProperty('topic')) {
+
+				if(isJapaneseTopic(obj)) {
 					parser = japanese;
-				} else if (obj.hasOwnProperty('Topic')){
+				} else if (isEnglishTopic(obj)){
 					parser = english;
 				} else {
-					throw new DOMException('xml data does not look like it\'s a valid English or Japanese DocumentX file');
+					logger.log('Not an English or Japanese topic', obj, 'data-format');
 				}
-				*/
 				
-				htmlDocument = parser.parse(obj, htmlDocument, getValue, listToArray);				
-				callback(null, htmlDocument);
+				if(parser !== null){
+					htmlDocument = parser.parse(obj, htmlDocument, getValue, listToArray);				
+					callback(null, htmlDocument);
+				}
 			}
 			
 		});
