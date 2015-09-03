@@ -1,9 +1,9 @@
-/// <reference path="../typings/node/node.d.ts"/>
-/// <reference path="../typings/jasmine/jasmine.d.ts"/>
+/// <reference path="../../typings/node/node.d.ts"/>
+/// <reference path="../../typings/jasmine/jasmine.d.ts"/>
 
 describe('docXParser', function(){
 	
-	var parser = require('../modules/docXParser');
+	var parser = require('../../modules/docXParser');
 	var _ = require('lodash');
 	var config = require('./config.js');
 	var fs = require('fs');
@@ -16,7 +16,7 @@ describe('docXParser', function(){
 				var keys = _.keys(config.topicData);
 				keys.forEach(function(key, index){
 					var file = config.topicData[key];
-					fs.readFile(path.resolve(__dirname, 'data/src/' + file.fileName), 'utf8', function(readError, xmlString){
+					fs.readFile(path.resolve(__dirname, 'data/' + file.fileName), 'utf8', function(readError, xmlString){
 						parser.parse(xmlString, function(error, topic){
 							topics.push(topic);
 							if(topics.length === keys.length){
