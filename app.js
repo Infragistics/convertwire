@@ -13,22 +13,26 @@ fs.readFile(fullPath, 'utf8', function(error, content){
 }); 
 // */
 
-/* parser
+//* parser
 var parser = require('./modules/docXParser');
 var fs = require('fs');
 var path = require('path');
-var fullPath = path.join(__dirname, './spec/data/src/189b488d-7833-4379-bc1f-0770ff6a6844.xml');
+var fullPath = path.join(__dirname, './spec/data/src/bad-file.xml');
 
 fs.readFile(fullPath, 'utf8', function(error, xml){
-	parser.parse(xml, function(err, document){
-		if(err) console.log(err);
-		var html = parser.toHtml(document);
-		console.log(html.indexOf('&#xA0;'));
+	parser.parse(xml, fullPath, function(err, document){
+		if(err) {
+			console.log(err)
+		}
+		
+		if(document){
+			var html = parser.toHtml(document);
+		}
 	});	
 }); 
 // */
 
-//* logger
+/* logger
 var logger = require('./modules/logger');
 var fs = require('fs');
 

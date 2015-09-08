@@ -7,8 +7,6 @@
 	});
 	
 	var _ = require('lodash');
-	var path = require('path');
-	var logger = require(path.resolve(__dirname, '../logger'));
 	
 	var english = require('./parser-english.js');
 	var japanese = require('./parser-japanese.js');
@@ -95,9 +93,6 @@
 						filePath: filePath,
 						tag: 'format'
 					};
-					
-					logger.info(parseError);
-					
 					callback(parseError, null);
 				}
 				
