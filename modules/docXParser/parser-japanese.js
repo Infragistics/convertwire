@@ -1,17 +1,62 @@
 (function(module){
 	
 	var _ = require('lodash');
+	var fs = require('fs');
+	var path = require('path')
+	var utils = require('./utils.js')
+	var enParser = require('./parser-english.js');
+	var xml2js = require('xml2js');
+	var parser = new xml2js.Parser({
+		explicitArray: false
+	});
 
-	module.parse = function(obj, htmlDocument, getValue, listToArray){
+	module.parse = function(xmlObj, filePath, callback) {
+		var file, englishXML, htmlDocument, jpFileNameExpression;
+		
+		htmlDocument = utils.createHtmlDocument();
+		
+		jpFileNameExpression = /.ja-JP/;
+		
+		file = {
+			en: {
+				fileName: path.basename(filePath).replace(jpFileNameExpression, ''),
+				fullPath: filePath.replace(jpFileNameExpression, '')
+			},
+			jp: {
+				fileName: path.basename(filePath),
+				fullPath: filePath
+			}
+		};
+		
+		englishXML = fs.readFileSync(file.en.fullPath, 'utf8');
+		
+		parser.parseString(englishXML, function(error, obj){
+			enParser.parse(obj, filePath, function(parseError, englishHtmlDocument){
+				htmlDocument = englishHtmlDocument;
+				
+				var jpXML = fs.readFileSync(file.jp.fullPath, 'utf8');
+				
+				parser.parseString(jpXML, function(jpParseError, jpObj){
+					
+					if(!_.isUndefined(jpObj.topic.title) && !_.isUndefined(jpObj.topic.title._)){
+						htmlDocument.title = jpObj.topic.title._.trim();
+					}
+					
+					if(!_.isUndefined(jpObj.topic.topicsection)){
+						htmlDocument.markup = jpObj.topic.topicsection._;
+					}
+					
+					callback(error, htmlDocument);
+				});
+			});
+		});
 		
 		/*
 		if(!_.isUndefined(obj.Topic.Title) && !_.isUndefined(obj.Topic.Title._)){
 			htmlDocument.title = obj.Topic.Title._.trim();
 		}
 		
-		if(!_.isUndefined(obj.Topic.TopicSections.TopicSection.Content._)){
-			htmlDocument.markup = obj.Topic.TopicSections.TopicSection.Content._;
-		}
+		
 		
 		var defs = obj.Topic.PropertyDefinitionValues.PropertyDefinitionValue;
 		
@@ -41,8 +86,6 @@
 			htmlDocument.buildFlags = listToArray(obj.Topic.$.BuildFlags, ',');
 		}
 		*/
-		
-		return htmlDocument;
 		
 	};
 	

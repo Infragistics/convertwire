@@ -1,0 +1,896 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic>
+  <title m="2014-10-06T02:05:10Z">カスタム シリーズの作成</title>
+  <topicsection m="2014-10-06T14:05:10Z" name="BodyText">
+&lt;P&gt;このトピックは、&lt;A href="%%AssemblyPlatform%%%%AssemblyName%%%%AssemblyVersion%%%%ControlsNamespace%%%%ControlsName%%.html"&gt;%%ControlsName%%&lt;/A&gt;™ コントロールのシリーズ継承機能を紹介し、コード例を示してカスタム シリーズ タイプの作成方法を説明します。&lt;/P&gt;
+&lt;H1&gt;概要&lt;/H1&gt;
+&lt;P&gt;トピックは以下のとおりです。&lt;/P&gt;
+&lt;UL&gt;
+&lt;LI&gt;&lt;A href="#Introduction"&gt;概要&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="#Example"&gt;例&lt;/A&gt; 
+&lt;UL&gt;
+&lt;LI&gt;&lt;A href="#Preview"&gt;プレビュー&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="#Procedure"&gt;手順&lt;/A&gt; 
+&lt;UL&gt;
+&lt;LI&gt;シリーズの継承 
+&lt;LI&gt;デフォルト スタイルの作成 
+&lt;LI&gt;軸の継承 
+&lt;LI&gt;シリーズ メソッドのオーバーライド 
+&lt;LI&gt;カスタム コードの提供 
+&lt;LI&gt;シリーズの描画 
+&lt;LI style="hs-build-flags: SL,WPF,WinPhone"&gt;凡例の統合 
+&lt;LI&gt;ツールチップの統合 &lt;/LI&gt;&lt;/UL&gt;&lt;/LI&gt;&lt;/UL&gt;
+&lt;LI&gt;&lt;A href="#RelatedTopics"&gt;関連トピック&lt;/A&gt; 
+&lt;UL&gt;
+&lt;LI&gt;&lt;A href="e0c1a537-ee33-4389-a939-eab0cea8fade" style="auto-update-caption: true"&gt;チャート軸&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="3d087135-84b0-4f6e-b3eb-afe7e962e406" style="auto-update-caption: true"&gt;チャート シリーズ&lt;/A&gt; &lt;/LI&gt;&lt;/UL&gt;&lt;/LI&gt;&lt;/UL&gt;
+&lt;H1 id=Introduction name="Introduction"&gt;はじめに&lt;/H1&gt;
+&lt;P&gt;%%ControlsName%% コントロールは、カスタム シリーズ タイプをアプリケーション内で実装できるよう設計されています。これは、&lt;A href="%%AssemblyPlatform%%%%AssemblyName%%%%AssemblyVersion%%%%ControlsNamespace%%Series.html"&gt;Series&lt;/A&gt; クラスを継承し、必要なプロパティを実装し、基本クラスのメソッドをオーバーライドすることにより行います。Series はすべての %%ControlsName%% シリーズの基本クラスです。プロパティを提供し、チャート コントロールと動作します。さらに、カスタム シリーズはシリーズの既存タイプ (&lt;A href="%%AssemblyPlatform%%%%AssemblyName%%%%AssemblyVersion%%%%ControlsNamespace%%ScatterSeries.html"&gt;ScatterSeries&lt;/A&gt; など) から継承しカスタム機能を実装することにより作成できますが、これはこのトピックの範囲を超えています。&lt;/P&gt;
+&lt;H1 id=Example name="Example"&gt;例&lt;/H1&gt;
+&lt;P&gt;カスタム シリーズ タイプの例は輪郭エリア シリーズで、Cartesian 座標システムでプロットされた値と同じ値でデータ ポイントに沿って塗りつぶされた輪郭のコレクションとして描画されます。ContourAreaSeries のすべての要素が実装されると、シリーズは以下のコード リストに示されるように定義されます。&lt;/P&gt;
+&lt;DIV class=ig-note&gt;注: 以下のコード例では、&lt;A href="fc801e1d-489b-4e9f-bf9e-b0ec60c7299a" style="auto-update-caption: true"&gt;輪郭データ サンプル&lt;/A&gt;および&lt;A href="be2c222e-035d-4a86-a4f3-5baa65d2d8f6" style="auto-update-caption: true"&gt;ベジエ曲線ビルダ&lt;/A&gt;リソースをソース コード ファイルとしてプロジェクトに追加済みであることを前提としています。これらのリソースは、ContourAreaSeries の輪郭を生成するためのサンプル データ モデルおよびクラスを提供します。 &lt;/DIV&gt;
+&lt;DIV id=Example_XAML class=LanguageSpecific style="DISPLAY: block" style="hs-build-flags: SL,WPF"&gt;
+&lt;P&gt;&lt;SPAN class=lang&gt;&lt;B&gt;XAML の場合:&lt;/B&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;PRE&gt;&lt;CODE class=code&gt;&lt;SPAN class=red&gt;xmlns&lt;/SPAN&gt;&lt;SPAN class=blue&gt;:&lt;/SPAN&gt;&lt;SPAN class=red&gt;ig&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="http://schemas.infragistics.com/xaml"&lt;/SPAN&gt;
+&lt;SPAN class=red&gt;xmlns&lt;/SPAN&gt;&lt;SPAN class=blue&gt;:&lt;/SPAN&gt;&lt;SPAN class=red&gt;local&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="clr-namespace:Infragistics.Samples.Common"&lt;/SPAN&gt; &lt;/CODE&gt;
+&lt;/PRE&gt;&lt;/DIV&gt;
+&lt;DIV id=Example_XAML class=LanguageSpecific style="DISPLAY: block" style="hs-build-flags: WinPhone"&gt;
+&lt;P&gt;&lt;SPAN class=lang&gt;&lt;B&gt;XAML の場合:&lt;/B&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;PRE&gt;&lt;CODE class=code&gt;&lt;SPAN class=red&gt;xmlns&lt;/SPAN&gt;&lt;SPAN class=blue&gt;:&lt;/SPAN&gt;&lt;SPAN class=red&gt;ig&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="clr-namespace:Infragistics.Controls.Charts;assembly=%%AssemblyPlatform%%%%AssemblyName%%%%AssemblyVersion%%"&lt;/SPAN&gt; &lt;/CODE&gt;&lt;BR&gt;&lt;CODE class=code&gt;&lt;SPAN class=red&gt;xmlns&lt;/SPAN&gt;&lt;SPAN class=blue&gt;:&lt;/SPAN&gt;&lt;SPAN class=red&gt;local&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="clr-namespace:Infragistics.Samples.Common"&lt;/SPAN&gt;&lt;/CODE&gt;
+&lt;/PRE&gt;&lt;/DIV&gt;
+&lt;DIV id=Example_XAML class=LanguageSpecific style="DISPLAY: block" style="hs-build-flags: WinRT"&gt;
+&lt;P&gt;&lt;SPAN class=lang&gt;&lt;B&gt;XAML の場合:&lt;/B&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;PRE&gt;&lt;CODE class=code&gt;&lt;SPAN class=red&gt;xmlns&lt;/SPAN&gt;&lt;SPAN class=blue&gt;:&lt;/SPAN&gt;&lt;SPAN class=red&gt;ig&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="using:Infragistics.Controls.Charts"&lt;/SPAN&gt;&lt;/CODE&gt;&lt;BR&gt;&lt;CODE class=code&gt;&lt;SPAN class=red&gt;&lt;SPAN class=red&gt;xmlns&lt;/SPAN&gt;&lt;SPAN class=blue&gt;:&lt;/SPAN&gt;&lt;SPAN class=red&gt;custom&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="using:Infragistics.Samples.Common"&lt;/SPAN&gt;&lt;/SPAN&gt;&lt;/CODE&gt;
+&lt;/PRE&gt;&lt;/DIV&gt;
+&lt;DIV id=Example_XAML class=LanguageSpecific style="DISPLAY: block" style="hs-build-flags: SL,WPF,WINPHONE,WINRT"&gt;
+&lt;P&gt;&lt;SPAN class=lang&gt;&lt;B&gt;XAML の場合:&lt;/B&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;PRE&gt;&lt;CODE class=code&gt;...
+&lt;SPAN class=red&gt;&lt;FONT color=blue texisting="true" tsize="undefined" tcolor="#0000ff"&gt;&amp;lt;&lt;/FONT&gt;&lt;CODE class=brownish&gt;ig&lt;/CODE&gt;&lt;/SPAN&gt;&lt;CODE class=brownish&gt;&lt;SPAN class=blue&gt;:&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;XamDataChart.Series&lt;/SPAN&gt;&lt;/CODE&gt;&lt;CODE class=blue&gt;&amp;gt;&lt;/CODE&gt;
+    &lt;CODE class=blue&gt;&amp;lt;&lt;/CODE&gt;&lt;CODE class=brownish&gt;custom&lt;/CODE&gt;&lt;CODE class=blue&gt;:&lt;/CODE&gt;&lt;CODE class=brownish&gt;ContourAreaSeries&lt;/CODE&gt; &lt;CODE class=red&gt;x&lt;/CODE&gt;&lt;CODE class=blue&gt;:&lt;/CODE&gt;&lt;CODE class=red&gt;Name&lt;/CODE&gt;&lt;CODE class=blue&gt;="customSeries"&lt;/CODE&gt; 
+                              &lt;CODE class=red&gt;ItemsSource&lt;/CODE&gt;&lt;CODE class=blue&gt;="{&lt;/CODE&gt;&lt;CODE class=brownish&gt;StaticResource&lt;/CODE&gt; &lt;CODE class=red&gt;data&lt;/CODE&gt;&lt;CODE class=blue&gt;}"&lt;/CODE&gt;
+                              &lt;CODE class=red&gt;XAxis&lt;/CODE&gt;&lt;CODE class=blue&gt;="{&lt;/CODE&gt;&lt;CODE class=brownish&gt;Binding&lt;/CODE&gt; &lt;CODE class=red&gt;ElementName&lt;/CODE&gt;&lt;CODE class=blue&gt;=xAxis&lt;/CODE&gt;&lt;CODE class=blue&gt;}"&lt;/CODE&gt; 
+                              &lt;CODE class=red&gt;YAxis&lt;/CODE&gt;&lt;CODE class=blue&gt;="{&lt;/CODE&gt;&lt;CODE class=brownish&gt;Binding&lt;/CODE&gt; &lt;CODE class=red&gt;ElementName&lt;/CODE&gt;&lt;CODE class=blue&gt;=yAxis&lt;/CODE&gt;&lt;CODE class=blue&gt;}"&lt;/CODE&gt;&lt;CODE class=blue&gt;&amp;gt;&lt;/CODE&gt;
+    &lt;CODE class=blue&gt;&amp;lt;/&lt;/CODE&gt;&lt;CODE class=brownish&gt;custom&lt;/CODE&gt;&lt;CODE class=blue&gt;:&lt;/CODE&gt;&lt;CODE class=brownish&gt;ContourAreaSeries&lt;/CODE&gt;&lt;CODE class=blue&gt;&amp;gt;&lt;/CODE&gt;
+&lt;CODE class=blue&gt;&amp;lt;/&lt;/CODE&gt;&lt;CODE class=brownish&gt;ig&lt;/CODE&gt;&lt;CODE class=blue&gt;:&lt;/CODE&gt;&lt;CODE class=brownish&gt;XamDataChart.Series&lt;/CODE&gt;&lt;CODE class=blue&gt;&amp;gt;&lt;/CODE&gt;&lt;/CODE&gt;
+&lt;/PRE&gt;&lt;/DIV&gt;
+&lt;DIV id=Example_VB class=LanguageSpecific style="DISPLAY: block"&gt;
+&lt;P&gt;&lt;SPAN class=lang&gt;&lt;B&gt;Visual Basic の場合:&lt;/B&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;PRE&gt;&lt;CODE class=code&gt;&lt;SPAN class=blue&gt;Imports&lt;/SPAN&gt; Infragistics.Samples.Data    &lt;SPAN class=comment&gt;' ContourData を提供します&lt;/SPAN&gt;
+&lt;SPAN class=blue&gt;Imports&lt;/SPAN&gt; Infragistics.Samples.Common  &lt;SPAN class=comment&gt;' ContourAreaSeries を提供します&lt;/SPAN&gt;
+...
+&lt;SPAN class=blue&gt;Dim&lt;/SPAN&gt; series &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; &lt;SPAN class=blue&gt;New&lt;/SPAN&gt; ContourAreaSeries()
+series.ItemsSource = &lt;SPAN class=blue&gt;New&lt;/SPAN&gt; ContourDataSample()
+series.XAxis = xAxis
+series.YAxis = yAxis
+...
+&lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.DataChart.Series.Add(series)&lt;/CODE&gt;
+&lt;/PRE&gt;&lt;/DIV&gt;
+&lt;DIV id=Example_CS class=LanguageSpecific style="DISPLAY: block"&gt;
+&lt;P&gt;&lt;SPAN class=lang&gt;&lt;B&gt;C# の場合:&lt;/B&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;PRE&gt;&lt;CODE class=code&gt;&lt;SPAN class=blue&gt;using&lt;/SPAN&gt; Infragistics.Samples.Data    &lt;SPAN class=comment&gt;// ContourData を提供します &lt;/SPAN&gt;
+&lt;SPAN class=blue&gt;using&lt;/SPAN&gt; Infragistics.Samples.Common;   &lt;SPAN class=comment&gt;// ContourAreaSeries を提供します&lt;/SPAN&gt;
+...
+ContourAreaSeries series = &lt;SPAN class=blue&gt;new&lt;/SPAN&gt; ContourAreaSeries();
+series.ItemsSource = &lt;SPAN class=blue&gt;new&lt;/SPAN&gt; ContourDataSample();
+series.XAxis = xAxis;
+series.YAxis = yAxis;
+...
+&lt;SPAN class=blue&gt;this&lt;/SPAN&gt;.DataChart.Series.Add(series);&lt;/CODE&gt;
+&lt;/PRE&gt;&lt;/DIV&gt;
+&lt;H2 id=Preview name="Preview"&gt;プレビュー&lt;/H2&gt;
+&lt;DIV class=defaultImg&gt;&lt;IMG src="images/xamDataChart_Creating_Custom_Series_01.png" style="hs-build-flags: SL,WPF,WinPhone"&gt;&lt;/DIV&gt;
+&lt;DIV class=defaultImg&gt;&lt;IMG src="images/xamDataChart_RT_Creating_Custom_Series_02.png" style="hs-build-flags: WinRT"&gt;&lt;/DIV&gt;
+&lt;P&gt;図 1 - 同じ値でデータ ポイントに沿って塗りつぶされた輪郭のコレクションとして描画された ContourAreaSeries のプレビュー&lt;/P&gt;
+&lt;H2 id=Procedure name="Procedure"&gt;手順&lt;/H2&gt;
+&lt;P&gt;このセクションは、ContourAreaSeries を作成するためのステップごとの手順を提供し、完全なコード例がこのトピックの末尾に記載されます。&lt;/P&gt;
+&lt;OL&gt;
+&lt;LI&gt;シリーズの継承 - このコードは、ContourAreaSeries 用にクラスを作成し Series 基本クラスから継承する方法を示します。 
+&lt;DIV id=Example_VB class=LanguageSpecific style="DISPLAY: block"&gt;
+&lt;P&gt;&lt;SPAN class=lang&gt;&lt;B&gt;Visual Basic の場合:&lt;/B&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;PRE&gt;&lt;CODE class=code&gt;&lt;SPAN class=blue&gt;Imports&lt;/SPAN&gt; Infragistics.Controls.Charts &lt;SPAN class=comment&gt;' %%ControlsName%% 要素を提供します&lt;/SPAN&gt;
+...
+&lt;SPAN class=blue&gt;Namespace&lt;/SPAN&gt; Infragistics.Samples.Common
+    &lt;SPAN class=comment&gt;''' &amp;lt;summary&amp;gt;&lt;/SPAN&gt;
+    &lt;SPAN class=comment&gt;''' %%ControlsName%% コントロール用 ContourAreaSeries のカスタム タイプを示します。&lt;/SPAN&gt;
+    &lt;SPAN class=comment&gt;''' &amp;lt;/summary&amp;gt;&lt;/SPAN&gt;
+    &lt;SPAN class=blue&gt;Public&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Class&lt;/SPAN&gt; ContourAreaSeries
+        &lt;SPAN class=blue&gt;Inherits&lt;/SPAN&gt; Series
+        &lt;SPAN class=blue&gt;Public&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Sub&lt;/SPAN&gt; &lt;SPAN class=blue&gt;New&lt;/SPAN&gt;()
+            &lt;SPAN class=comment&gt;' 一般的なリソース ディクショナリからシリーズのデフォルト スタイルを作成します。&lt;/SPAN&gt;
+            &lt;SPAN class=comment&gt;' generic.xaml に追加するか、アプリケーションのリソースと結合してください。 &lt;/SPAN&gt;
+            &lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.DefaultStyleKey = &lt;SPAN class=blue&gt;GetType&lt;/SPAN&gt;(ContourAreaSeries)
+        &lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Sub&lt;/SPAN&gt;
+    &lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Class&lt;/SPAN&gt;
+&lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Namespace&lt;/SPAN&gt;&lt;/CODE&gt;
+&lt;/PRE&gt;&lt;/DIV&gt;
+&lt;DIV id=Example_CS class=LanguageSpecific style="DISPLAY: block"&gt;
+&lt;P&gt;&lt;SPAN class=lang&gt;&lt;B&gt;C# の場合:&lt;/B&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;PRE&gt;&lt;CODE class=code&gt;&lt;SPAN class=blue&gt;using&lt;/SPAN&gt; Infragistics.Controls.Charts; &lt;SPAN class=comment&gt;// %%ControlsName%% 要素を提供します&lt;/SPAN&gt;
+...
+&lt;SPAN class=blue&gt;namespace&lt;/SPAN&gt; Infragistics.Samples.Common
+{
+  &lt;SPAN class=comment&gt;/// &amp;lt;summary&amp;gt;&lt;/SPAN&gt;
+  &lt;SPAN class=comment&gt;/// %%ControlsName%% コントロール用 ContourAreaSeries のカスタム タイプを示します。&lt;/SPAN&gt;
+  &lt;SPAN class=comment&gt;/// &amp;lt;/summary&amp;gt;&lt;/SPAN&gt;
+  &lt;SPAN class=blue&gt;public&lt;/SPAN&gt; &lt;SPAN class=blue&gt;class&lt;/SPAN&gt; ContourAreaSeries : Series
+  {
+    &lt;SPAN class=blue&gt;public&lt;/SPAN&gt; ContourAreaSeries()
+    {
+        &lt;SPAN class=comment&gt;// 一般的なリソース ディクショナリからシリーズのデフォルト スタイルを作成します&lt;/SPAN&gt;
+        &lt;SPAN class=comment&gt;// generic.xaml に追加するか、アプリケーションのリソースと結合してください &lt;/SPAN&gt;
+        &lt;SPAN class=blue&gt;this&lt;/SPAN&gt;.DefaultStyleKey = &lt;SPAN class=blue&gt;typeof&lt;/SPAN&gt;(ContourAreaSeries);
+    }
+  }
+}&lt;/CODE&gt;
+&lt;/PRE&gt;&lt;/DIV&gt;
+&lt;LI&gt;デフォルト スタイルの作成 - 各シリーズは、アプリケーションの generic.xaml または、アプリケーション リソースと結合されるリソース ディクショナリで定義されるデフォルト スタイルを有します。以下のコード例は、ContourAreaSeries のデフォルト スタイルを定義する方法を示します。 
+&lt;DIV id=Example_XAML class=LanguageSpecific style="DISPLAY: block" style="hs-build-flags: SL,WPF,WINPHONE,WINRT"&gt;
+&lt;P&gt;&lt;SPAN class=lang&gt;&lt;B&gt;XAML の場合:&lt;/B&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;PRE&gt;&lt;CODE class=code&gt;&lt;SPAN class=blue&gt;&amp;lt;&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;ResourceDictionary&lt;/SPAN&gt;
+&lt;SPAN class=blue&gt;...&lt;/SPAN&gt;&lt;SPAN class=blue&gt;&amp;gt;&lt;/SPAN&gt;
+
+    &lt;SPAN class=comment&gt;&amp;lt;!-- ContourAreaSeries シリーズ タイプ用一般スタイル --&amp;gt;&lt;/SPAN&gt;
+    &lt;SPAN class=blue&gt;&amp;lt;&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;Style&lt;/SPAN&gt; &lt;SPAN class=red&gt;TargetType&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="custom:ContourAreaSeries"&lt;/SPAN&gt;&lt;SPAN class=blue&gt;&amp;gt;&lt;/SPAN&gt;
+        &lt;SPAN class=blue&gt;&amp;lt;&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;Setter&lt;/SPAN&gt; &lt;SPAN class=red&gt;Property&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="Thickness"&lt;/SPAN&gt; &lt;SPAN class=red&gt;Value&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="4"&lt;/SPAN&gt; &lt;SPAN class=blue&gt;/&amp;gt;&lt;/SPAN&gt;
+        &lt;SPAN class=blue&gt;&amp;lt;&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;Setter&lt;/SPAN&gt; &lt;SPAN class=red&gt;Property&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="Template"&lt;/SPAN&gt;&lt;SPAN class=blue&gt;&amp;gt;&lt;/SPAN&gt;
+            &lt;SPAN class=blue&gt;&amp;lt;&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;Setter.Value&lt;/SPAN&gt;&lt;SPAN class=blue&gt;&amp;gt;&lt;/SPAN&gt;
+                &lt;SPAN class=blue&gt;&amp;lt;&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;ControlTemplate&lt;/SPAN&gt; &lt;SPAN class=red&gt;TargetType&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="custom:ContourAreaSeries"&lt;/SPAN&gt;&lt;SPAN class=blue&gt;&amp;gt;&lt;/SPAN&gt;
+                    &lt;SPAN class=blue&gt;&amp;lt;&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;Canvas&lt;/SPAN&gt; &lt;SPAN class=red&gt;Name&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="RootCanvas"&lt;/SPAN&gt; &lt;SPAN class=blue&gt;/&amp;gt;&lt;/SPAN&gt;
+                &lt;SPAN class=blue&gt;&amp;lt;/&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;ControlTemplate&lt;/SPAN&gt;&lt;SPAN class=blue&gt;&amp;gt;&lt;/SPAN&gt;
+            &lt;SPAN class=blue&gt;&amp;lt;/&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;Setter.Value&lt;/SPAN&gt;&lt;SPAN class=blue&gt;&amp;gt;&lt;/SPAN&gt;
+        &lt;SPAN class=blue&gt;&amp;lt;/&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;Setter&lt;/SPAN&gt;&lt;SPAN class=blue&gt;&amp;gt;&lt;/SPAN&gt;
+    &lt;SPAN class=blue&gt;&amp;lt;/&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;Style&lt;/SPAN&gt;&lt;SPAN class=blue&gt;&amp;gt;&lt;/SPAN&gt;
+&lt;SPAN class=blue&gt;&amp;lt;/&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;ResourceDictionary&lt;/SPAN&gt;&lt;SPAN class=blue&gt;&amp;gt;&lt;/SPAN&gt;&lt;/CODE&gt;
+&lt;/PRE&gt;&lt;/DIV&gt;
+&lt;LI&gt;軸の統合 - このコードは、カスタム シリーズを X 軸および Y 軸にバインドするために使用される 2 つの従属プロパティの作成方法を示します。また、新しい値がこれらのプロパティに割り当てられる時に発生するイベント ハンドラをラムダ式を使用して添付する方法も示します。&lt;BR&gt;&lt;BR&gt;
+&lt;DIV class=ig-note&gt;注: このコードは X 軸および Y 軸のプロパティのタイプ用に NumericXAxis および NumericYAxis を使用しますが、軸の別のタイプを使用する場合にもこれらの軸を利用できます。%%ControlsName%% コントロールの軸の既存のタイプに関する詳細は、「軸」トピックを参照してください。 &lt;/DIV&gt;
+&lt;DIV id=Example_VB class=LanguageSpecific style="DISPLAY: block"&gt;
+&lt;P&gt;&lt;SPAN class=lang&gt;&lt;B&gt;Visual Basic の場合:&lt;/B&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;PRE&gt;&lt;CODE class=code&gt;&lt;SPAN class=blue&gt;#Region&lt;/SPAN&gt; &lt;SPAN class=string&gt;"Property - XAxis"&lt;/SPAN&gt;
+&lt;SPAN class=blue&gt;Public&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Const&lt;/SPAN&gt; XAxisPropertyName &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; &lt;SPAN class=blue&gt;String&lt;/SPAN&gt; = &lt;SPAN class=string&gt;"XAxis"&lt;/SPAN&gt;
+&lt;SPAN class=blue&gt;Public&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Shared&lt;/SPAN&gt; &lt;SPAN class=blue&gt;ReadOnly&lt;/SPAN&gt; XAxisProperty &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; DependencyProperty = DependencyProperty.Register(XAxisPropertyName, &lt;SPAN class=blue&gt;GetType&lt;/SPAN&gt;(NumericXAxis), &lt;SPAN class=blue&gt;GetType&lt;/SPAN&gt;(ContourAreaSeries), &lt;SPAN class=blue&gt;New&lt;/SPAN&gt; PropertyMetadata(&lt;SPAN class=blue&gt;Nothing&lt;/SPAN&gt;, &lt;SPAN class=blue&gt;Function&lt;/SPAN&gt;(sender, e) 
+&lt;SPAN class=blue&gt;Dim&lt;/SPAN&gt; series &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; ContourAreaSeries = &lt;SPAN class=blue&gt;DirectCast&lt;/SPAN&gt;(sender, ContourAreaSeries)
+series.RaisePropertyChanged(XAxisPropertyName, e.OldValue, e.NewValue)
+
+&lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Function&lt;/SPAN&gt;))
+&lt;SPAN class=blue&gt;Public&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Property&lt;/SPAN&gt; XAxis() &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; NumericXAxis
+    &lt;SPAN class=blue&gt;Get&lt;/SPAN&gt;
+        &lt;SPAN class=blue&gt;Return&lt;/SPAN&gt; &lt;SPAN class=blue&gt;TryCast&lt;/SPAN&gt;(&lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.GetValue(XAxisProperty), NumericXAxis)
+    &lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Get&lt;/SPAN&gt;
+    &lt;SPAN class=blue&gt;Set&lt;/SPAN&gt;
+        &lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.SetValue(XAxisProperty, value)
+    &lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Set&lt;/SPAN&gt;
+&lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Property&lt;/SPAN&gt;
+&lt;SPAN class=blue&gt;#End Region&lt;/SPAN&gt;
+
+&lt;SPAN class=blue&gt;#Region&lt;/SPAN&gt; &lt;SPAN class=string&gt;"Property - YAxis"&lt;/SPAN&gt;
+&lt;SPAN class=blue&gt;Public&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Const&lt;/SPAN&gt; YAxisPropertyName &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; &lt;SPAN class=blue&gt;String&lt;/SPAN&gt; = &lt;SPAN class=string&gt;"YAxis"&lt;/SPAN&gt;
+&lt;SPAN class=blue&gt;Public&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Shared&lt;/SPAN&gt; &lt;SPAN class=blue&gt;ReadOnly&lt;/SPAN&gt; YAxisProperty &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; DependencyProperty = DependencyProperty.Register(YAxisPropertyName, &lt;SPAN class=blue&gt;GetType&lt;/SPAN&gt;(NumericYAxis), &lt;SPAN class=blue&gt;GetType&lt;/SPAN&gt;(ContourAreaSeries), &lt;SPAN class=blue&gt;New&lt;/SPAN&gt; PropertyMetadata(&lt;SPAN class=blue&gt;Nothing&lt;/SPAN&gt;, &lt;SPAN class=blue&gt;Function&lt;/SPAN&gt;(sender, e) 
+&lt;SPAN class=blue&gt;Dim&lt;/SPAN&gt; series &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; ContourAreaSeries = &lt;SPAN class=blue&gt;DirectCast&lt;/SPAN&gt;(sender, ContourAreaSeries)
+series.RaisePropertyChanged(YAxisPropertyName, e.OldValue, e.NewValue)
+
+&lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Function&lt;/SPAN&gt;))
+&lt;SPAN class=blue&gt;Public&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Property&lt;/SPAN&gt; YAxis() &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; NumericYAxis
+    &lt;SPAN class=blue&gt;Get&lt;/SPAN&gt;
+        &lt;SPAN class=blue&gt;Return&lt;/SPAN&gt; &lt;SPAN class=blue&gt;TryCast&lt;/SPAN&gt;(&lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.GetValue(YAxisProperty), NumericYAxis)
+    &lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Get&lt;/SPAN&gt;
+    &lt;SPAN class=blue&gt;Set&lt;/SPAN&gt;
+        &lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.SetValue(YAxisProperty, value)
+    &lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Set&lt;/SPAN&gt;
+&lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Property&lt;/SPAN&gt;
+&lt;SPAN class=blue&gt;#End Region&lt;/SPAN&gt;&lt;/CODE&gt;
+&lt;/PRE&gt;&lt;/DIV&gt;
+&lt;DIV id=Example_CS class=LanguageSpecific style="DISPLAY: block"&gt;
+&lt;P&gt;&lt;SPAN class=lang&gt;&lt;B&gt;C# の場合:&lt;/B&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;PRE&gt;&lt;CODE class=code&gt;&lt;SPAN class=blue&gt;#region&lt;/SPAN&gt; Property - XAxis
+&lt;SPAN class=blue&gt;public&lt;/SPAN&gt; &lt;SPAN class=blue&gt;const&lt;/SPAN&gt; &lt;SPAN class=blue&gt;string&lt;/SPAN&gt; XAxisPropertyName = &lt;SPAN class=string&gt;"XAxis"&lt;/SPAN&gt;;
+&lt;SPAN class=blue&gt;public&lt;/SPAN&gt; &lt;SPAN class=blue&gt;static&lt;/SPAN&gt; &lt;SPAN class=blue&gt;readonly&lt;/SPAN&gt; DependencyProperty XAxisProperty =
+    DependencyProperty.Register(XAxisPropertyName, &lt;SPAN class=blue&gt;typeof&lt;/SPAN&gt;(NumericXAxis),
+    &lt;SPAN class=blue&gt;typeof&lt;/SPAN&gt;(ContourAreaSeries), &lt;SPAN class=blue&gt;new&lt;/SPAN&gt; PropertyMetadata(&lt;SPAN class=blue&gt;null&lt;/SPAN&gt;, (sender, e) =&amp;gt;
+    {
+        ContourAreaSeries series = (ContourAreaSeries)sender;
+        series.RaisePropertyChanged(XAxisPropertyName, e.OldValue, e.NewValue);
+    }));
+&lt;SPAN class=blue&gt;public&lt;/SPAN&gt; NumericXAxis XAxis
+{
+    get
+    {
+        &lt;SPAN class=blue&gt;return&lt;/SPAN&gt; &lt;SPAN class=blue&gt;this&lt;/SPAN&gt;.GetValue(XAxisProperty) &lt;SPAN class=blue&gt;as&lt;/SPAN&gt; NumericXAxis;
+    }
+    set
+    {
+        &lt;SPAN class=blue&gt;this&lt;/SPAN&gt;.SetValue(XAxisProperty, &lt;SPAN class=blue&gt;value&lt;/SPAN&gt;);
+    }
+}
+&lt;SPAN class=blue&gt;#endregion&lt;/SPAN&gt;
+
+&lt;SPAN class=blue&gt;#region&lt;/SPAN&gt; Property - YAxis
+&lt;SPAN class=blue&gt;public&lt;/SPAN&gt; &lt;SPAN class=blue&gt;const&lt;/SPAN&gt; &lt;SPAN class=blue&gt;string&lt;/SPAN&gt; YAxisPropertyName = &lt;SPAN class=string&gt;"YAxis"&lt;/SPAN&gt;;
+&lt;SPAN class=blue&gt;public&lt;/SPAN&gt; &lt;SPAN class=blue&gt;static&lt;/SPAN&gt; &lt;SPAN class=blue&gt;readonly&lt;/SPAN&gt; DependencyProperty YAxisProperty =
+    DependencyProperty.Register(YAxisPropertyName, &lt;SPAN class=blue&gt;typeof&lt;/SPAN&gt;(NumericYAxis),
+    &lt;SPAN class=blue&gt;typeof&lt;/SPAN&gt;(ContourAreaSeries), &lt;SPAN class=blue&gt;new&lt;/SPAN&gt; PropertyMetadata(&lt;SPAN class=blue&gt;null&lt;/SPAN&gt;, (sender, e) =&amp;gt;
+    {
+        ContourAreaSeries series = (ContourAreaSeries)sender;
+        series.RaisePropertyChanged(YAxisPropertyName, e.OldValue, e.NewValue);
+    }));
+&lt;SPAN class=blue&gt;public&lt;/SPAN&gt; NumericYAxis YAxis
+{
+    get
+    {
+        &lt;SPAN class=blue&gt;return&lt;/SPAN&gt; &lt;SPAN class=blue&gt;this&lt;/SPAN&gt;.GetValue(YAxisProperty) &lt;SPAN class=blue&gt;as&lt;/SPAN&gt; NumericYAxis;
+    }
+    set
+    {
+        &lt;SPAN class=blue&gt;this&lt;/SPAN&gt;.SetValue(YAxisProperty, &lt;SPAN class=blue&gt;value&lt;/SPAN&gt;);
+    }
+}
+&lt;SPAN class=blue&gt;#endregion&lt;/SPAN&gt;&lt;/CODE&gt;
+&lt;/PRE&gt;&lt;/DIV&gt;
+&lt;LI&gt;シリーズ メソッドのオーバーライド - このコードは、カスタム シリーズの特定のプロパティが変更された場合にシリーズを描画するため、オーバーライドしなければならないシリーズのメソッドを示します。 
+&lt;DIV id=Example_VB class=LanguageSpecific style="DISPLAY: block"&gt;
+&lt;P&gt;&lt;SPAN class=lang&gt;&lt;B&gt;Visual Basic の場合:&lt;/B&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;PRE&gt;&lt;CODE class=code&gt;&lt;SPAN class=comment&gt;''' &amp;lt;summary&amp;gt;&lt;/SPAN&gt;
+&lt;SPAN class=comment&gt;''' Viewport 四角形の変更時には必ずこのシリーズの描画を呼び出します&lt;/SPAN&gt;
+&lt;SPAN class=comment&gt;''' &amp;lt;/summary&amp;gt;&lt;/SPAN&gt;
+&lt;SPAN class=blue&gt;Protected&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Overrides&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Sub&lt;/SPAN&gt; ViewportRectChangedOverride(oldViewportRect &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; Rect, newViewportRect &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; Rect)
+    &lt;SPAN class=blue&gt;MyBase&lt;/SPAN&gt;.ViewportRectChangedOverride(oldViewportRect, newViewportRect)
+    &lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.RenderSeries(&lt;SPAN class=blue&gt;False&lt;/SPAN&gt;)
+&lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Sub&lt;/SPAN&gt;
+&lt;SPAN class=comment&gt;''' &amp;lt;summary&amp;gt;&lt;/SPAN&gt;
+&lt;SPAN class=comment&gt;''' Window 四角形の変更時には必ずこのシリーズの描画を呼び出します&lt;/SPAN&gt;
+&lt;SPAN class=comment&gt;''' &amp;lt;/summary&amp;gt;&lt;/SPAN&gt;
+&lt;SPAN class=blue&gt;Protected&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Overrides&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Sub&lt;/SPAN&gt; WindowRectChangedOverride(oldWindowRect &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; Rect, newWindowRect &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; Rect)
+    &lt;SPAN class=blue&gt;MyBase&lt;/SPAN&gt;.WindowRectChangedOverride(oldWindowRect, newWindowRect)
+    &lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.RenderSeries(&lt;SPAN class=blue&gt;False&lt;/SPAN&gt;)
+&lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Sub&lt;/SPAN&gt;
+&lt;SPAN class=comment&gt;''' &amp;lt;summary&amp;gt;&lt;/SPAN&gt;
+&lt;SPAN class=comment&gt;''' シリーズのプロパティの変更時に必ずシリーズが再描画されるかどうかを確認します&lt;/SPAN&gt;
+&lt;SPAN class=comment&gt;''' &amp;lt;/summary&amp;gt;&lt;/SPAN&gt;
+&lt;SPAN class=blue&gt;Protected&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Overrides&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Sub&lt;/SPAN&gt; PropertyUpdatedOverride(sender &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Object&lt;/SPAN&gt;, propertyName &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; &lt;SPAN class=blue&gt;String&lt;/SPAN&gt;, oldValue &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Object&lt;/SPAN&gt;, newValue &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Object&lt;/SPAN&gt;)
+    &lt;SPAN class=blue&gt;MyBase&lt;/SPAN&gt;.PropertyUpdatedOverride(sender, propertyName, oldValue, newValue)
+    &lt;SPAN class=blue&gt;Select&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Case&lt;/SPAN&gt; propertyName
+                      &lt;SPAN class=comment&gt;' 項目ソースに対して行われた変更についてシリーズを描画します&lt;/SPAN&gt;
+        &lt;SPAN class=blue&gt;Case&lt;/SPAN&gt; ItemsSourcePropertyName
+            &lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.RenderSeries(&lt;SPAN class=blue&gt;False&lt;/SPAN&gt;)
+            &lt;SPAN class=blue&gt;If&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.XAxis IsNot &lt;SPAN class=blue&gt;Nothing&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Then&lt;/SPAN&gt;
+                &lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.XAxis.UpdateRange()
+            &lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;If&lt;/SPAN&gt;
+            &lt;SPAN class=blue&gt;If&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.YAxis IsNot &lt;SPAN class=blue&gt;Nothing&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Then&lt;/SPAN&gt;
+                &lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.YAxis.UpdateRange()
+            &lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;If&lt;/SPAN&gt;
+            &lt;SPAN class=blue&gt;Exit&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Select&lt;/SPAN&gt;
+
+                      &lt;SPAN class=comment&gt;' 新たに X 軸が割り当てられるとシリーズを描画します&lt;/SPAN&gt;
+        Cae XAxisPropertyName
+            &lt;SPAN class=blue&gt;If&lt;/SPAN&gt; oldValue IsNot &lt;SPAN class=blue&gt;Nothing&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Then&lt;/SPAN&gt;
+                &lt;SPAN class=blue&gt;DirectCast&lt;/SPAN&gt;(oldValue, Axis).DeregisterSeries(&lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;)
+            &lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;If&lt;/SPAN&gt;
+
+            &lt;SPAN class=blue&gt;If&lt;/SPAN&gt; newValue IsNot &lt;SPAN class=blue&gt;Nothing&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Then&lt;/SPAN&gt;
+                &lt;SPAN class=blue&gt;DirectCast&lt;/SPAN&gt;(newValue, Axis).RegisterSeries(&lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;)
+            &lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;If&lt;/SPAN&gt;
+
+            &lt;SPAN class=blue&gt;If&lt;/SPAN&gt; (XAxis IsNot &lt;SPAN class=blue&gt;Nothing&lt;/SPAN&gt; &lt;SPAN class=blue&gt;AndAlso&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Not&lt;/SPAN&gt; XAxis.UpdateRange()) &lt;SPAN class=blue&gt;OrElse&lt;/SPAN&gt; (newValue &lt;SPAN class=blue&gt;Is&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Nothing&lt;/SPAN&gt; &lt;SPAN class=blue&gt;AndAlso&lt;/SPAN&gt; oldValue IsNot &lt;SPAN class=blue&gt;Nothing&lt;/SPAN&gt;) &lt;SPAN class=blue&gt;Then&lt;/SPAN&gt;
+                RenderSeries(&lt;SPAN class=blue&gt;False&lt;/SPAN&gt;)
+            &lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;If&lt;/SPAN&gt;
+            &lt;SPAN class=blue&gt;Exit&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Select&lt;/SPAN&gt;
+
+                      &lt;SPAN class=comment&gt;' 新たに Y 軸が割り当てられるとシリーズを描画します&lt;/SPAN&gt;
+        &lt;SPAN class=blue&gt;Case&lt;/SPAN&gt; YAxisPropertyName
+            &lt;SPAN class=blue&gt;If&lt;/SPAN&gt; oldValue IsNot &lt;SPAN class=blue&gt;Nothing&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Then&lt;/SPAN&gt;
+                &lt;SPAN class=blue&gt;DirectCast&lt;/SPAN&gt;(oldValue, Axis).DeregisterSeries(&lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;)
+            &lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;If&lt;/SPAN&gt;
+
+            &lt;SPAN class=blue&gt;If&lt;/SPAN&gt; newValue IsNot &lt;SPAN class=blue&gt;Nothing&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Then&lt;/SPAN&gt;
+                &lt;SPAN class=blue&gt;DirectCast&lt;/SPAN&gt;(newValue, Axis).RegisterSeries(&lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;)
+            &lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;If&lt;/SPAN&gt;
+            &lt;SPAN class=blue&gt;If&lt;/SPAN&gt; (YAxis IsNot &lt;SPAN class=blue&gt;Nothing&lt;/SPAN&gt; &lt;SPAN class=blue&gt;AndAlso&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Not&lt;/SPAN&gt; YAxis.UpdateRange()) &lt;SPAN class=blue&gt;OrElse&lt;/SPAN&gt; (newValue &lt;SPAN class=blue&gt;Is&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Nothing&lt;/SPAN&gt; &lt;SPAN class=blue&gt;AndAlso&lt;/SPAN&gt; oldValue IsNot &lt;SPAN class=blue&gt;Nothing&lt;/SPAN&gt;) &lt;SPAN class=blue&gt;Then&lt;/SPAN&gt;
+                RenderSeries(&lt;SPAN class=blue&gt;False&lt;/SPAN&gt;)
+            &lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;If&lt;/SPAN&gt;
+            &lt;SPAN class=blue&gt;Exit&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Select&lt;/SPAN&gt;
+    &lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Select&lt;/SPAN&gt;
+&lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Sub&lt;/SPAN&gt;
+&lt;SPAN class=comment&gt;''' &amp;lt;summary&amp;gt;&lt;/SPAN&gt;
+&lt;SPAN class=comment&gt;''' データ項目の X/Y 値に基づいて任意の軸の範囲を計算します&lt;/SPAN&gt;
+&lt;SPAN class=comment&gt;''' &amp;lt;/summary&amp;gt;&lt;/SPAN&gt;
+&lt;SPAN class=comment&gt;''' &amp;lt;param name="axis"&amp;gt;&amp;lt;/param&amp;gt;&lt;/SPAN&gt;
+&lt;SPAN class=comment&gt;''' &amp;lt;returns&amp;gt;&amp;lt;/returns&amp;gt;&lt;/SPAN&gt;
+&lt;SPAN class=blue&gt;Protected&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Overrides&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Function&lt;/SPAN&gt; GetRange(axis &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; Axis) &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; AxisRange
+    &lt;SPAN class=blue&gt;Dim&lt;/SPAN&gt; myData &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; ContourData = &lt;SPAN class=blue&gt;TryCast&lt;/SPAN&gt;(&lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.ItemsSource, ContourData)
+    &lt;SPAN class=blue&gt;If&lt;/SPAN&gt; myData &lt;SPAN class=blue&gt;Is&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Nothing&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Then&lt;/SPAN&gt;
+        &lt;SPAN class=blue&gt;Return&lt;/SPAN&gt; &lt;SPAN class=blue&gt;MyBase&lt;/SPAN&gt;.GetRange(axis)
+    &lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;If&lt;/SPAN&gt;
+           &lt;SPAN class=comment&gt;' X 軸範囲の場合は、データ ポイントの X 値を使用します&lt;/SPAN&gt;
+    &lt;SPAN class=blue&gt;If&lt;/SPAN&gt; axis = &lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.XAxis &lt;SPAN class=blue&gt;Then&lt;/SPAN&gt;
+        &lt;SPAN class=blue&gt;Dim&lt;/SPAN&gt; min &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Double&lt;/SPAN&gt; = &lt;SPAN class=blue&gt;Double&lt;/SPAN&gt;.MaxValue
+        &lt;SPAN class=blue&gt;Dim&lt;/SPAN&gt; max &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Double&lt;/SPAN&gt; = &lt;SPAN class=blue&gt;Double&lt;/SPAN&gt;.MinValue
+        &lt;SPAN class=blue&gt;For&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Each&lt;/SPAN&gt; dataPoint &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; ContourDataPoint &lt;SPAN class=blue&gt;In&lt;/SPAN&gt; myData
+            min = System.Math.Min(min, dataPoint.X)
+            max = System.Math.Max(max, dataPoint.X)
+        &lt;SPAN class=blue&gt;Next&lt;/SPAN&gt;
+        &lt;SPAN class=blue&gt;Return&lt;/SPAN&gt; &lt;SPAN class=blue&gt;New&lt;/SPAN&gt; AxisRange(min, max)
+           &lt;SPAN class=comment&gt;' Y 軸範囲の場合は、データ ポイントの Y 値を使用します&lt;/SPAN&gt;
+    &lt;SPAN class=blue&gt;ElseIf&lt;/SPAN&gt; axis = &lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.YAxis &lt;SPAN class=blue&gt;Then&lt;/SPAN&gt;
+        &lt;SPAN class=blue&gt;Dim&lt;/SPAN&gt; min &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Double&lt;/SPAN&gt; = &lt;SPAN class=blue&gt;Double&lt;/SPAN&gt;.MaxValue
+        &lt;SPAN class=blue&gt;Dim&lt;/SPAN&gt; max &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Double&lt;/SPAN&gt; = &lt;SPAN class=blue&gt;Double&lt;/SPAN&gt;.MinValue
+        &lt;SPAN class=blue&gt;For&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Each&lt;/SPAN&gt; dataPoint &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; ContourDataPoint &lt;SPAN class=blue&gt;In&lt;/SPAN&gt; myData
+            min = System.Math.Min(min, dataPoint.Y)
+            max = System.Math.Max(max, dataPoint.Y)
+        &lt;SPAN class=blue&gt;Next&lt;/SPAN&gt;
+        &lt;SPAN class=blue&gt;Return&lt;/SPAN&gt; &lt;SPAN class=blue&gt;New&lt;/SPAN&gt; AxisRange(min, max)
+    &lt;SPAN class=blue&gt;Else&lt;/SPAN&gt;
+        &lt;SPAN class=blue&gt;Return&lt;/SPAN&gt; &lt;SPAN class=blue&gt;MyBase&lt;/SPAN&gt;.GetRange(axis)
+    &lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;If&lt;/SPAN&gt;
+&lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Function&lt;/SPAN&gt;&lt;/CODE&gt;
+&lt;/PRE&gt;&lt;/DIV&gt;
+&lt;DIV id=Example_CS class=LanguageSpecific style="DISPLAY: block"&gt;
+&lt;P&gt;&lt;SPAN class=lang&gt;&lt;B&gt;C# の場合:&lt;/B&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;PRE&gt;&lt;CODE class=code&gt;&lt;SPAN class=comment&gt;/// &amp;lt;summary&amp;gt;&lt;/SPAN&gt;
+&lt;SPAN class=comment&gt;/// Viewport 四角形の変更時には必ずこのシリーズの描画を呼び出します&lt;/SPAN&gt;
+&lt;SPAN class=comment&gt;/// &amp;lt;/summary&amp;gt;&lt;/SPAN&gt;
+&lt;SPAN class=blue&gt;protected&lt;/SPAN&gt; &lt;SPAN class=blue&gt;override&lt;/SPAN&gt; &lt;SPAN class=blue&gt;void&lt;/SPAN&gt; ViewportRectChangedOverride(Rect oldViewportRect, Rect newViewportRect)
+{
+    &lt;SPAN class=blue&gt;base&lt;/SPAN&gt;.ViewportRectChangedOverride(oldViewportRect, newViewportRect);
+    &lt;SPAN class=blue&gt;this&lt;/SPAN&gt;.RenderSeries(&lt;SPAN class=blue&gt;false&lt;/SPAN&gt;);
+}
+&lt;SPAN class=comment&gt;/// &amp;lt;summary&amp;gt;&lt;/SPAN&gt;
+&lt;SPAN class=comment&gt;/// Window 四角形の変更時には必ずこのシリーズの描画を呼び出します&lt;/SPAN&gt;
+&lt;SPAN class=comment&gt;/// &amp;lt;/summary&amp;gt;&lt;/SPAN&gt;
+&lt;SPAN class=blue&gt;protected&lt;/SPAN&gt; &lt;SPAN class=blue&gt;override&lt;/SPAN&gt; &lt;SPAN class=blue&gt;void&lt;/SPAN&gt; WindowRectChangedOverride(Rect oldWindowRect, Rect newWindowRect)
+{
+    &lt;SPAN class=blue&gt;base&lt;/SPAN&gt;.WindowRectChangedOverride(oldWindowRect, newWindowRect);
+    &lt;SPAN class=blue&gt;this&lt;/SPAN&gt;.RenderSeries(&lt;SPAN class=blue&gt;false&lt;/SPAN&gt;);
+}
+
+&lt;SPAN class=comment&gt;/// &amp;lt;summary&amp;gt;&lt;/SPAN&gt;
+&lt;SPAN class=comment&gt;/// シリーズのプロパティの変更時に必ずシリーズが再描画されるかどうかを確認します&lt;/SPAN&gt;
+&lt;SPAN class=comment&gt;/// &amp;lt;/summary&amp;gt;&lt;/SPAN&gt;
+&lt;SPAN class=blue&gt;protected&lt;/SPAN&gt; &lt;SPAN class=blue&gt;override&lt;/SPAN&gt; &lt;SPAN class=blue&gt;void&lt;/SPAN&gt; PropertyUpdatedOverride(&lt;SPAN class=blue&gt;object&lt;/SPAN&gt; sender, &lt;SPAN class=blue&gt;string&lt;/SPAN&gt; propertyName, &lt;SPAN class=blue&gt;object&lt;/SPAN&gt; oldValue, &lt;SPAN class=blue&gt;object&lt;/SPAN&gt; newValue)
+{
+    &lt;SPAN class=blue&gt;base&lt;/SPAN&gt;.PropertyUpdatedOverride(sender, propertyName, oldValue, newValue);
+    &lt;SPAN class=blue&gt;switch&lt;/SPAN&gt; (propertyName)
+    {
+        &lt;SPAN class=comment&gt;// 項目ソースに対して行われた変更についてシリーズを描画します&lt;/SPAN&gt;
+        &lt;SPAN class=blue&gt;case&lt;/SPAN&gt; ItemsSourcePropertyName:
+            &lt;SPAN class=blue&gt;this&lt;/SPAN&gt;.RenderSeries(&lt;SPAN class=blue&gt;false&lt;/SPAN&gt;);
+            &lt;SPAN class=blue&gt;if&lt;/SPAN&gt; (&lt;SPAN class=blue&gt;this&lt;/SPAN&gt;.XAxis != &lt;SPAN class=blue&gt;null&lt;/SPAN&gt;)
+            {
+                &lt;SPAN class=blue&gt;this&lt;/SPAN&gt;.XAxis.UpdateRange();
+            }
+            &lt;SPAN class=blue&gt;if&lt;/SPAN&gt; (&lt;SPAN class=blue&gt;this&lt;/SPAN&gt;.YAxis != &lt;SPAN class=blue&gt;null&lt;/SPAN&gt;)
+            {
+                &lt;SPAN class=blue&gt;this&lt;/SPAN&gt;.YAxis.UpdateRange();
+            }
+            &lt;SPAN class=blue&gt;break&lt;/SPAN&gt;;
+
+        &lt;SPAN class=comment&gt;// 新たに X 軸が割り当てられるとシリーズを描画します&lt;/SPAN&gt;
+        &lt;SPAN class=blue&gt;case&lt;/SPAN&gt; XAxisPropertyName:
+            &lt;SPAN class=blue&gt;if&lt;/SPAN&gt; (oldValue != &lt;SPAN class=blue&gt;null&lt;/SPAN&gt;)
+            {
+                ((Axis)oldValue).DeregisterSeries(&lt;SPAN class=blue&gt;this&lt;/SPAN&gt;);
+            }
+
+            &lt;SPAN class=blue&gt;if&lt;/SPAN&gt; (newValue != &lt;SPAN class=blue&gt;null&lt;/SPAN&gt;)
+            {
+                ((Axis)newValue).RegisterSeries(&lt;SPAN class=blue&gt;this&lt;/SPAN&gt;);
+            }
+
+            &lt;SPAN class=blue&gt;if&lt;/SPAN&gt; ((XAxis != &lt;SPAN class=blue&gt;null&lt;/SPAN&gt; &amp;amp;&amp;amp; !XAxis.UpdateRange()) ||
+                (newValue == &lt;SPAN class=blue&gt;null&lt;/SPAN&gt; &amp;amp;&amp;amp; oldValue != &lt;SPAN class=blue&gt;null&lt;/SPAN&gt;))
+            {
+                RenderSeries(&lt;SPAN class=blue&gt;false&lt;/SPAN&gt;);
+            }
+            &lt;SPAN class=blue&gt;break&lt;/SPAN&gt;;
+
+        &lt;SPAN class=comment&gt;// 新たに Y 軸が割り当てられるとシリーズを描画します&lt;/SPAN&gt;
+        &lt;SPAN class=blue&gt;case&lt;/SPAN&gt; YAxisPropertyName:
+            &lt;SPAN class=blue&gt;if&lt;/SPAN&gt; (oldValue != &lt;SPAN class=blue&gt;null&lt;/SPAN&gt;)
+            {
+                ((Axis)oldValue).DeregisterSeries(&lt;SPAN class=blue&gt;this&lt;/SPAN&gt;);
+            }
+
+            &lt;SPAN class=blue&gt;if&lt;/SPAN&gt; (newValue != &lt;SPAN class=blue&gt;null&lt;/SPAN&gt;)
+            {
+                ((Axis)newValue).RegisterSeries(&lt;SPAN class=blue&gt;this&lt;/SPAN&gt;);
+            }
+            &lt;SPAN class=blue&gt;if&lt;/SPAN&gt; ((YAxis != &lt;SPAN class=blue&gt;null&lt;/SPAN&gt; &amp;amp;&amp;amp; !YAxis.UpdateRange()) ||
+                (newValue == &lt;SPAN class=blue&gt;null&lt;/SPAN&gt; &amp;amp;&amp;amp; oldValue != &lt;SPAN class=blue&gt;null&lt;/SPAN&gt;))
+            {
+                RenderSeries(&lt;SPAN class=blue&gt;false&lt;/SPAN&gt;);
+            }
+            &lt;SPAN class=blue&gt;break&lt;/SPAN&gt;;
+    }
+}
+&lt;SPAN class=comment&gt;/// &amp;lt;summary&amp;gt;&lt;/SPAN&gt;
+&lt;SPAN class=comment&gt;/// データ項目の X/Y 値に基づいて任意の軸の範囲を計算します&lt;/SPAN&gt;
+&lt;SPAN class=comment&gt;/// &amp;lt;/summary&amp;gt;&lt;/SPAN&gt;
+&lt;SPAN class=comment&gt;/// &amp;lt;returns&amp;gt;&amp;lt;/returns&amp;gt;&lt;/SPAN&gt;
+&lt;SPAN class=blue&gt;protected&lt;/SPAN&gt; &lt;SPAN class=blue&gt;override&lt;/SPAN&gt; AxisRange GetRange(Axis axis)
+{
+    ContourData myData = &lt;SPAN class=blue&gt;this&lt;/SPAN&gt;.ItemsSource &lt;SPAN class=blue&gt;as&lt;/SPAN&gt; ContourData;
+    &lt;SPAN class=blue&gt;if&lt;/SPAN&gt; (myData == &lt;SPAN class=blue&gt;null&lt;/SPAN&gt;)
+    {
+        &lt;SPAN class=blue&gt;return&lt;/SPAN&gt; &lt;SPAN class=blue&gt;base&lt;/SPAN&gt;.GetRange(axis);
+    }
+    &lt;SPAN class=comment&gt;// X 軸範囲の場合は、データ ポイントの X 値を使用します&lt;/SPAN&gt;
+    &lt;SPAN class=blue&gt;if&lt;/SPAN&gt; (axis == &lt;SPAN class=blue&gt;this&lt;/SPAN&gt;.XAxis)
+    {
+        &lt;SPAN class=blue&gt;double&lt;/SPAN&gt; min = &lt;SPAN class=blue&gt;double&lt;/SPAN&gt;.MaxValue;
+        &lt;SPAN class=blue&gt;double&lt;/SPAN&gt; max = &lt;SPAN class=blue&gt;double&lt;/SPAN&gt;.MinValue;
+        &lt;SPAN class=blue&gt;foreach&lt;/SPAN&gt; (ContourDataPoint dataPoint &lt;SPAN class=blue&gt;in&lt;/SPAN&gt; myData)
+        {
+            min = System.Math.Min(min, dataPoint.X);
+            max = System.Math.Max(max, dataPoint.X);
+        }
+        &lt;SPAN class=blue&gt;return&lt;/SPAN&gt; &lt;SPAN class=blue&gt;new&lt;/SPAN&gt; AxisRange(min, max);
+    }
+    &lt;SPAN class=comment&gt;// Y 軸範囲の場合は、データ ポイントの Y 値を使用します&lt;/SPAN&gt;
+    &lt;SPAN class=blue&gt;else&lt;/SPAN&gt; &lt;SPAN class=blue&gt;if&lt;/SPAN&gt; (axis == &lt;SPAN class=blue&gt;this&lt;/SPAN&gt;.YAxis)
+    {
+        &lt;SPAN class=blue&gt;double&lt;/SPAN&gt; min = &lt;SPAN class=blue&gt;double&lt;/SPAN&gt;.MaxValue;
+        &lt;SPAN class=blue&gt;double&lt;/SPAN&gt; max = &lt;SPAN class=blue&gt;double&lt;/SPAN&gt;.MinValue;
+        &lt;SPAN class=blue&gt;foreach&lt;/SPAN&gt; (ContourDataPoint dataPoint &lt;SPAN class=blue&gt;in&lt;/SPAN&gt; myData)
+        {
+            min = System.Math.Min(min, dataPoint.Y);
+            max = System.Math.Max(max, dataPoint.Y);
+        }
+        &lt;SPAN class=blue&gt;return&lt;/SPAN&gt; &lt;SPAN class=blue&gt;new&lt;/SPAN&gt; AxisRange(min, max);
+    }
+    &lt;SPAN class=blue&gt;else&lt;/SPAN&gt;
+    {
+        &lt;SPAN class=blue&gt;return&lt;/SPAN&gt; &lt;SPAN class=blue&gt;base&lt;/SPAN&gt;.GetRange(axis);
+    }
+}&lt;/CODE&gt;
+&lt;/PRE&gt;&lt;/DIV&gt;
+&lt;LI&gt;カスタム コードの提供 - このコードは、ContourAreaSeries の異なる要素を描画する際に使用されるブラシを取得するためのカスタム ロジックの実装方法を示します。&lt;BR&gt;&lt;BR&gt;
+&lt;DIV class=ig-note&gt;注: シリーズを描画するための色パターンを決定し、カスタム シリーズの実装を簡単にするには、このように実装する必要はなく、独自のロジックを提供するか、&lt;A href="%%AssemblyPlatform%%%%AssemblyName%%%%AssemblyVersion%%%%ControlsNamespace%%BrushScale.html"&gt;BrushScale&lt;/A&gt; タイプのプロパティ (&lt;A href="%%AssemblyPlatform%%%%AssemblyName%%%%AssemblyVersion%%%%ControlsNamespace%%BubbleSeries.html"&gt;BubbleSeries&lt;/A&gt; の &lt;A href="%%AssemblyPlatform%%%%AssemblyName%%%%AssemblyVersion%%%%ControlsNamespace%%BubbleSeries~FillScale.html"&gt;FillScale&lt;/A&gt; プロパティを参照) を実装できます。 &lt;/DIV&gt;
+&lt;DIV id=Example_VB class=LanguageSpecific style="DISPLAY: block"&gt;
+&lt;P&gt;&lt;SPAN class=lang&gt;&lt;B&gt;Visual Basic の場合:&lt;/B&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;PRE&gt;&lt;CODE class=code&gt;&lt;SPAN class=blue&gt;Public&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Property&lt;/SPAN&gt; ActualContourBrushes() &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; BrushCollection
+    &lt;SPAN class=blue&gt;Get&lt;/SPAN&gt;
+        &lt;SPAN class=blue&gt;Return&lt;/SPAN&gt; _actualContourBrushes
+    &lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Get&lt;/SPAN&gt;
+    &lt;SPAN class=blue&gt;Private&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Set&lt;/SPAN&gt;
+        _actualContourBrushes = Value
+    &lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Set&lt;/SPAN&gt;
+&lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Property&lt;/SPAN&gt;
+&lt;SPAN class=blue&gt;Private&lt;/SPAN&gt; _actualContourBrushes &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; BrushCollection
+&lt;SPAN class=blue&gt;Public&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Property&lt;/SPAN&gt; ActualContourOutlines() &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; BrushCollection
+    &lt;SPAN class=blue&gt;Get&lt;/SPAN&gt;
+        &lt;SPAN class=blue&gt;Return&lt;/SPAN&gt; _actualContourOutlines
+    &lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Get&lt;/SPAN&gt;
+    &lt;SPAN class=blue&gt;Private&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Set&lt;/SPAN&gt;
+        _actualContourOutlines = Value
+    &lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Set&lt;/SPAN&gt;
+&lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Property&lt;/SPAN&gt;
+&lt;SPAN class=blue&gt;Private&lt;/SPAN&gt; _actualContourOutlines &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; BrushCollection
+&lt;SPAN class=blue&gt;Public&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Property&lt;/SPAN&gt; ActualContourMarkerOutlines() &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; BrushCollection
+    &lt;SPAN class=blue&gt;Get&lt;/SPAN&gt;
+        &lt;SPAN class=blue&gt;Return&lt;/SPAN&gt; _actualContourMarkerOutlines
+    &lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Get&lt;/SPAN&gt;
+    &lt;SPAN class=blue&gt;Private&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Set&lt;/SPAN&gt;
+        _actualContourMarkerOutlines = Value
+    &lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Set&lt;/SPAN&gt;
+&lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Property&lt;/SPAN&gt;
+&lt;SPAN class=blue&gt;Private&lt;/SPAN&gt; _actualContourMarkerOutlines &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; BrushCollection
+&lt;SPAN class=blue&gt;Public&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Property&lt;/SPAN&gt; ActualContourMarkerBrushes() &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; BrushCollection
+    &lt;SPAN class=blue&gt;Get&lt;/SPAN&gt;
+        &lt;SPAN class=blue&gt;Return&lt;/SPAN&gt; _actualContourMarkerBrushes
+    &lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Get&lt;/SPAN&gt;
+    &lt;SPAN class=blue&gt;Private&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Set&lt;/SPAN&gt;
+        _actualContourMarkerBrushes = Value
+    &lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Set&lt;/SPAN&gt;
+&lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Property&lt;/SPAN&gt;
+&lt;SPAN class=blue&gt;Private&lt;/SPAN&gt; _actualContourMarkerBrushes &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; BrushCollection
+
+&lt;SPAN class=blue&gt;#Region&lt;/SPAN&gt; &lt;SPAN class=string&gt;"Brush Methods"&lt;/SPAN&gt;
+&lt;SPAN class=blue&gt;Private&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Function&lt;/SPAN&gt; GetContourPathFill(conturIndex &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Integer&lt;/SPAN&gt;) &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; Brush
+    &lt;SPAN class=blue&gt;Return&lt;/SPAN&gt; GetValidBrush(conturIndex, &lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.ActualContourBrushes)
+&lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Function&lt;/SPAN&gt;
+&lt;SPAN class=blue&gt;Private&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Function&lt;/SPAN&gt; GetContourPathStroke(conturIndex &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Integer&lt;/SPAN&gt;) &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; Brush
+    &lt;SPAN class=blue&gt;Return&lt;/SPAN&gt; GetValidBrush(conturIndex, &lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.ActualContourOutlines)
+&lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Function&lt;/SPAN&gt;
+&lt;SPAN class=blue&gt;Private&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Function&lt;/SPAN&gt; GetContourMarkerOutline(conturIndex &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Integer&lt;/SPAN&gt;) &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; Brush
+    &lt;SPAN class=blue&gt;Return&lt;/SPAN&gt; GetValidBrush(conturIndex, &lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.ActualContourMarkerOutlines)
+&lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Function&lt;/SPAN&gt;
+&lt;SPAN class=blue&gt;Private&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Function&lt;/SPAN&gt; GetContourMarkerFill(conturIndex &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Integer&lt;/SPAN&gt;) &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; Brush
+    &lt;SPAN class=blue&gt;Return&lt;/SPAN&gt; GetValidBrush(conturIndex, &lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.ActualContourMarkerBrushes)
+&lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Function&lt;/SPAN&gt;
+&lt;SPAN class=blue&gt;Private&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Function&lt;/SPAN&gt; GetValidBrush(conturIndex &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Integer&lt;/SPAN&gt;, brushes &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; BrushCollection) &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; Brush
+    &lt;SPAN class=blue&gt;If&lt;/SPAN&gt; brushes &lt;SPAN class=blue&gt;Is&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Nothing&lt;/SPAN&gt; &lt;SPAN class=blue&gt;OrElse&lt;/SPAN&gt; brushes.Count = 0 &lt;SPAN class=blue&gt;Then&lt;/SPAN&gt;
+        &lt;SPAN class=blue&gt;Return&lt;/SPAN&gt; &lt;SPAN class=blue&gt;New&lt;/SPAN&gt; SolidColorBrush(Colors.Black)
+    &lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;If&lt;/SPAN&gt;
+    &lt;SPAN class=blue&gt;If&lt;/SPAN&gt; conturIndex &amp;gt;= 0 &lt;SPAN class=blue&gt;AndAlso&lt;/SPAN&gt; conturIndex &amp;lt; brushes.Count &lt;SPAN class=blue&gt;Then&lt;/SPAN&gt;
+        &lt;SPAN class=blue&gt;Return&lt;/SPAN&gt; brushes(conturIndex)
+    &lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;If&lt;/SPAN&gt;
+    conturIndex = conturIndex &lt;SPAN class=blue&gt;Mod&lt;/SPAN&gt; brushes.Count
+    &lt;SPAN class=blue&gt;Return&lt;/SPAN&gt; brushes(conturIndex)
+&lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Function&lt;/SPAN&gt;
+&lt;SPAN class=blue&gt;#End Region&lt;/SPAN&gt;&lt;/CODE&gt;
+&lt;/PRE&gt;&lt;/DIV&gt;
+&lt;DIV id=Example_CS class=LanguageSpecific style="DISPLAY: block"&gt;
+&lt;P&gt;&lt;SPAN class=lang&gt;&lt;B&gt;C# の場合:&lt;/B&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;PRE&gt;&lt;CODE class=code&gt;&lt;SPAN class=blue&gt;public&lt;/SPAN&gt; BrushCollection ActualContourBrushes { get; &lt;SPAN class=blue&gt;private&lt;/SPAN&gt; set; }
+&lt;SPAN class=blue&gt;public&lt;/SPAN&gt; BrushCollection ActualContourOutlines { get; &lt;SPAN class=blue&gt;private&lt;/SPAN&gt; set; }
+&lt;SPAN class=blue&gt;public&lt;/SPAN&gt; BrushCollection ActualContourMarkerOutlines { get; &lt;SPAN class=blue&gt;private&lt;/SPAN&gt; set; }
+&lt;SPAN class=blue&gt;public&lt;/SPAN&gt; BrushCollection ActualContourMarkerBrushes { get; &lt;SPAN class=blue&gt;private&lt;/SPAN&gt; set; }
+
+&lt;SPAN class=blue&gt;#region&lt;/SPAN&gt; Brush Methods
+&lt;SPAN class=blue&gt;private&lt;/SPAN&gt; Brush GetContourPathFill(&lt;SPAN class=blue&gt;int&lt;/SPAN&gt; conturIndex)
+{
+    &lt;SPAN class=blue&gt;return&lt;/SPAN&gt; GetValidBrush(conturIndex, &lt;SPAN class=blue&gt;this&lt;/SPAN&gt;.ActualContourBrushes);
+}
+&lt;SPAN class=blue&gt;private&lt;/SPAN&gt; Brush GetContourPathStroke(&lt;SPAN class=blue&gt;int&lt;/SPAN&gt; conturIndex)
+{
+    &lt;SPAN class=blue&gt;return&lt;/SPAN&gt; GetValidBrush(conturIndex, &lt;SPAN class=blue&gt;this&lt;/SPAN&gt;.ActualContourOutlines);
+}
+&lt;SPAN class=blue&gt;private&lt;/SPAN&gt; Brush GetContourMarkerOutline(&lt;SPAN class=blue&gt;int&lt;/SPAN&gt; conturIndex)
+{
+    &lt;SPAN class=blue&gt;return&lt;/SPAN&gt; GetValidBrush(conturIndex, &lt;SPAN class=blue&gt;this&lt;/SPAN&gt;.ActualContourMarkerOutlines);
+}
+&lt;SPAN class=blue&gt;private&lt;/SPAN&gt; Brush GetContourMarkerFill(&lt;SPAN class=blue&gt;int&lt;/SPAN&gt; conturIndex)
+{
+    &lt;SPAN class=blue&gt;return&lt;/SPAN&gt; GetValidBrush(conturIndex, &lt;SPAN class=blue&gt;this&lt;/SPAN&gt;.ActualContourMarkerBrushes);
+}
+&lt;SPAN class=blue&gt;private&lt;/SPAN&gt; Brush GetValidBrush(&lt;SPAN class=blue&gt;int&lt;/SPAN&gt; conturIndex, BrushCollection brushes)
+{
+    &lt;SPAN class=blue&gt;if&lt;/SPAN&gt; (brushes == &lt;SPAN class=blue&gt;null&lt;/SPAN&gt; || brushes.Count == 0)
+    {
+        &lt;SPAN class=blue&gt;return&lt;/SPAN&gt; &lt;SPAN class=blue&gt;new&lt;/SPAN&gt; SolidColorBrush(Colors.Black);
+    }
+    &lt;SPAN class=blue&gt;if&lt;/SPAN&gt; (conturIndex &amp;gt;= 0 &amp;amp;&amp;amp; conturIndex &amp;lt; brushes.Count)
+    {
+        &lt;SPAN class=blue&gt;return&lt;/SPAN&gt; brushes[conturIndex];
+    }
+    conturIndex = conturIndex % brushes.Count;
+    &lt;SPAN class=blue&gt;return&lt;/SPAN&gt; brushes[conturIndex];
+}
+&lt;SPAN class=blue&gt;#endregion&lt;/SPAN&gt;&lt;/CODE&gt;
+&lt;/PRE&gt;&lt;/DIV&gt;
+&lt;LI&gt;シリーズの描画 - RenderSeriesOverride メソッドは、%%ControlsName%% コントロールでカスタム シリーズがどのように描画されるかを決定します。以下のコードは、データ ポイントに沿って同じ値で塗りつぶされた輪郭のコレクションとしてカスタム シリーズを描画するために、このメソッドを実装する方法を示します。 
+&lt;DIV id=Example_VB class=LanguageSpecific style="DISPLAY: block"&gt;
+&lt;P&gt;&lt;SPAN class=lang&gt;&lt;B&gt;Visual Basic の場合:&lt;/B&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;PRE&gt;&lt;CODE class=code&gt;&lt;SPAN class=comment&gt;''' &amp;lt;summary&amp;gt;&lt;/SPAN&gt;
+&lt;SPAN class=comment&gt;''' バインドされたデータ ポイントを使用するカスタム輪郭エリア シリーズを描画します&lt;/SPAN&gt;
+&lt;SPAN class=comment&gt;''' &amp;lt;/summary&amp;gt;&lt;/SPAN&gt;
+&lt;SPAN class=blue&gt;Protected&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Overrides&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Sub&lt;/SPAN&gt; RenderSeriesOverride(animate &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Boolean&lt;/SPAN&gt;)
+    &lt;SPAN class=comment&gt;' 遷移のあるシリーズ描画を無効にします (モーション フレームワーク)&lt;/SPAN&gt;
+    &lt;SPAN class=blue&gt;MyBase&lt;/SPAN&gt;.RenderSeriesOverride(animate)
+    &lt;SPAN class=comment&gt;' シリーズを描画できるかどうかを確認します。&lt;/SPAN&gt;
+    &lt;SPAN class=comment&gt;' - Viewport (シリーズのバインドされた四角形) は空ではありません。 &lt;/SPAN&gt;
+    &lt;SPAN class=comment&gt;' - RootCanvas (カスタム グラフィックス用のコンテナ) は Null ではありません。  &lt;/SPAN&gt;
+    &lt;SPAN class=comment&gt;' - 軸は Null ではありません。  &lt;/SPAN&gt;
+    &lt;SPAN class=comment&gt;' - ItemsSource は Null ではありません。  &lt;/SPAN&gt;
+    &lt;SPAN class=blue&gt;If&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.Viewport.IsEmpty &lt;SPAN class=blue&gt;OrElse&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.RootCanvas &lt;SPAN class=blue&gt;Is&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Nothing&lt;/SPAN&gt; &lt;SPAN class=blue&gt;OrElse&lt;/SPAN&gt; _
+       &lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.XAxis &lt;SPAN class=blue&gt;Is&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Nothing&lt;/SPAN&gt; &lt;SPAN class=blue&gt;OrElse&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.YAxis &lt;SPAN class=blue&gt;Is&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Nothing&lt;/SPAN&gt; &lt;SPAN class=blue&gt;OrElse&lt;/SPAN&gt; _
+              &lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.ItemsSource &lt;SPAN class=blue&gt;Is&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Nothing&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Then&lt;/SPAN&gt;
+        &lt;SPAN class=blue&gt;Return&lt;/SPAN&gt;
+    &lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;If&lt;/SPAN&gt;
+    &lt;SPAN class=comment&gt;' シリーズの描画ごとに RootCanvas をクリアします&lt;/SPAN&gt;
+    &lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.RootCanvas.Children.Clear()
+    &lt;SPAN class=comment&gt;' このシリーズのソースにおいて項目の値に基づいて輪郭用データ構造を作成します&lt;/SPAN&gt;
+    &lt;SPAN class=blue&gt;Dim&lt;/SPAN&gt; data &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; ContourData = &lt;SPAN class=blue&gt;DirectCast&lt;/SPAN&gt;(&lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.ItemsSource, ContourData)
+    &lt;SPAN class=blue&gt;Dim&lt;/SPAN&gt; dataContours &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; &lt;SPAN class=blue&gt;New&lt;/SPAN&gt; Dictionary(Of &lt;SPAN class=blue&gt;Double&lt;/SPAN&gt;, PointCollection)()
+    &lt;SPAN class=blue&gt;For&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Each&lt;/SPAN&gt; dataPoint &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; ContourDataPoint &lt;SPAN class=blue&gt;In&lt;/SPAN&gt; data
+        &lt;SPAN class=comment&gt;' データ ポイントの位置 (X/Y) をシリーズのビューポートにスケールします&lt;/SPAN&gt;
+        &lt;SPAN class=blue&gt;Dim&lt;/SPAN&gt; x &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Double&lt;/SPAN&gt; = &lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.XAxis.GetScaledValue(dataPoint.X, &lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.SeriesViewer.WindowRect, &lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.Viewport)
+        &lt;SPAN class=blue&gt;Dim&lt;/SPAN&gt; y &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Double&lt;/SPAN&gt; = &lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.YAxis.GetScaledValue(dataPoint.Y, &lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.SeriesViewer.WindowRect, &lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.Viewport)
+        &lt;SPAN class=comment&gt;' データ ポイントのスケール位置をデータ ポイントの Value プロパティに基づいて保存します&lt;/SPAN&gt;
+        &lt;SPAN class=blue&gt;Dim&lt;/SPAN&gt; key &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Double&lt;/SPAN&gt; = dataPoint.Value
+        &lt;SPAN class=blue&gt;If&lt;/SPAN&gt; dataContours.ContainsKey(key) &lt;SPAN class=blue&gt;Then&lt;/SPAN&gt;
+            dataContours(key).Add(&lt;SPAN class=blue&gt;New&lt;/SPAN&gt; Point(x, y))
+        &lt;SPAN class=blue&gt;Else&lt;/SPAN&gt;
+            &lt;SPAN class=blue&gt;Dim&lt;/SPAN&gt; dataPoints &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; &lt;SPAN class=blue&gt;New&lt;/SPAN&gt; PointCollection() From { &lt;SPAN class=blue&gt;New&lt;/SPAN&gt; Point(x, y) }
+            dataContours.Add(key, dataPoints)
+        &lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;If&lt;/SPAN&gt;
+    &lt;SPAN class=blue&gt;Next&lt;/SPAN&gt;
+    &lt;SPAN class=comment&gt;' 輪郭に基づいて輪郭データを並べ替えます &lt;/SPAN&gt;
+    &lt;SPAN class=blue&gt;Dim&lt;/SPAN&gt; sortedContours = From item &lt;SPAN class=blue&gt;In&lt;/SPAN&gt; dataContoursOrder By item.Key Ascendingitem
+    &lt;SPAN class=comment&gt;' 実際の輪郭のブラシおよびアウトライン用にチャートのブラシおよびアウトラインを再利用します &lt;/SPAN&gt;
+    &lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.ActualContourBrushes = &lt;SPAN class=blue&gt;DirectCast&lt;/SPAN&gt;(&lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.SeriesViewer, %%ControlsName%%).Brushes
+    &lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.ActualContourOutlines = &lt;SPAN class=blue&gt;DirectCast&lt;/SPAN&gt;(&lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.SeriesViewer, %%ControlsName%%).MarkerOutlines
+    &lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.ActualContourMarkerBrushes = &lt;SPAN class=blue&gt;DirectCast&lt;/SPAN&gt;(&lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.SeriesViewer, %%ControlsName%%).MarkerBrushes
+    &lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.ActualContourMarkerOutlines = &lt;SPAN class=blue&gt;DirectCast&lt;/SPAN&gt;(&lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.SeriesViewer, %%ControlsName%%).MarkerOutlines
+    &lt;SPAN class=comment&gt;' 輪郭データ構造に基づいて輪郭の要素を作成します&lt;/SPAN&gt;
+    &lt;SPAN class=blue&gt;Dim&lt;/SPAN&gt; conturIndex &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Integer&lt;/SPAN&gt; = 0
+    &lt;SPAN class=blue&gt;For&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Each&lt;/SPAN&gt; contour &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; KeyValuePair(Of &lt;SPAN class=blue&gt;Double&lt;/SPAN&gt;, PointCollection) &lt;SPAN class=blue&gt;In&lt;/SPAN&gt; sortedContours
+        &lt;SPAN class=comment&gt;'dataContours)&lt;/SPAN&gt;
+        &lt;SPAN class=blue&gt;For&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Each&lt;/SPAN&gt; point &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; Point &lt;SPAN class=blue&gt;In&lt;/SPAN&gt; contour.Value
+            &lt;SPAN class=comment&gt;' 輪郭マーカーのパラメータを取得します&lt;/SPAN&gt;
+            &lt;SPAN class=blue&gt;Dim&lt;/SPAN&gt; contourMarkerValue &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Double&lt;/SPAN&gt; = contour.Key
+            &lt;SPAN class=blue&gt;Dim&lt;/SPAN&gt; contourMarkerSize &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Double&lt;/SPAN&gt; = 25
+            &lt;SPAN class=blue&gt;Dim&lt;/SPAN&gt; contourMarkerLocationLeft &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Double&lt;/SPAN&gt; = point.X - contourMarkerSize / 2
+            &lt;SPAN class=blue&gt;Dim&lt;/SPAN&gt; contourMarkerLocationTop &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Double&lt;/SPAN&gt; = point.Y - contourMarkerSize / 2
+
+            &lt;SPAN class=comment&gt;' 輪郭マーカーの形状の要素を作成します&lt;/SPAN&gt;
+            &lt;SPAN class=blue&gt;Dim&lt;/SPAN&gt; contourMarker &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; &lt;SPAN class=blue&gt;New&lt;/SPAN&gt; Ellipse()
+            contourMarker.Fill = GetContourMarkerFill(conturIndex)
+            contourMarker.Stroke = GetContourMarkerOutline(conturIndex)
+            contourMarker.StrokeThickness = 1.0
+            contourMarker.Width = contourMarkerSize
+            contourMarker.Height = contourMarkerSize
+            &lt;SPAN class=comment&gt;' 輪郭マーカーの値の要素を作成します&lt;/SPAN&gt;
+            &lt;SPAN class=blue&gt;Dim&lt;/SPAN&gt; markerValueBlock &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; &lt;SPAN class=blue&gt;New&lt;/SPAN&gt; TextBlock()
+            markerValueBlock.Text = contourMarkerValue.ToString()
+            markerValueBlock.Foreground = &lt;SPAN class=blue&gt;New&lt;/SPAN&gt; SolidColorBrush(Colors.White)
+            markerValueBlock.VerticalAlignment = VerticalAlignment.Center
+            markerValueBlock.HorizontalAlignment = HorizontalAlignment.Center
+            &lt;SPAN class=comment&gt;' 輪郭マーカーの要素を保持する要素を作成します &lt;/SPAN&gt;
+            &lt;SPAN class=blue&gt;Dim&lt;/SPAN&gt; markerGrid &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; &lt;SPAN class=blue&gt;New&lt;/SPAN&gt; Grid()
+            markerGrid.Children.Add(contourMarker)
+            markerGrid.Children.Add(markerValueBlock)
+            Canvas.SetLeft(markerGrid, contourMarkerLocationLeft)
+            Canvas.SetTop(markerGrid, contourMarkerLocationTop)
+            Canvas.SetZIndex(markerGrid, conturIndex + 11)
+            &lt;SPAN class=comment&gt;' このシリーズのキャンバス上に現在の輪郭のマーカーを描画します&lt;/SPAN&gt;
+            &lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.RootCanvas.Children.Add(markerGrid)
+        &lt;SPAN class=blue&gt;Next&lt;/SPAN&gt;
+
+        &lt;SPAN class=blue&gt;Dim&lt;/SPAN&gt; contourPoints &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; PointCollection = contour.Value
+
+        &lt;SPAN class=comment&gt;' 輪郭のポイントから曲線を作成します&lt;/SPAN&gt;
+        &lt;SPAN class=blue&gt;Dim&lt;/SPAN&gt; contourFigure &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; PathFigure = BezierCurveBuilder.GetBezierSegments(contourPoints, 1.0, &lt;SPAN class=blue&gt;True&lt;/SPAN&gt;)
+        contourFigure.IsClosed = &lt;SPAN class=blue&gt;True&lt;/SPAN&gt;
+
+        &lt;SPAN class=comment&gt;' 輪郭の新しい PathGeometry を作成します&lt;/SPAN&gt;
+        &lt;SPAN class=blue&gt;Dim&lt;/SPAN&gt; contourGeo &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; &lt;SPAN class=blue&gt;New&lt;/SPAN&gt; PathGeometry()
+        contourGeo.Figures.Add(contourFigure)
+        &lt;SPAN class=comment&gt;' 輪郭の新しい Path を作成します&lt;/SPAN&gt;
+        &lt;SPAN class=blue&gt;Dim&lt;/SPAN&gt; contourShape &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; &lt;SPAN class=blue&gt;New&lt;/SPAN&gt; Path()
+        contourShape.Data = contourGeo
+        contourShape.Stroke = GetContourPathStroke(conturIndex)
+        contourShape.StrokeThickness = &lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.Thickness
+        contourShape.Fill = GetContourPathFill(conturIndex)
+        Canvas.SetZIndex(contourShape, conturIndex + 10)
+
+        &lt;SPAN class=comment&gt;' このシリーズのキャンバス上に現在の輪郭の形状を描画します&lt;/SPAN&gt;
+        &lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.RootCanvas.Children.Add(contourShape)
+        conturIndex += 1
+    &lt;SPAN class=blue&gt;Next&lt;/SPAN&gt;
+&lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Sub&lt;/SPAN&gt;&lt;/CODE&gt;
+&lt;/PRE&gt;&lt;/DIV&gt;
+&lt;DIV id=Example_CS class=LanguageSpecific style="DISPLAY: block"&gt;
+&lt;P&gt;&lt;SPAN class=lang&gt;&lt;B&gt;C# の場合:&lt;/B&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;PRE&gt;&lt;CODE class=code&gt;&lt;SPAN class=comment&gt;/// &amp;lt;summary&amp;gt;&lt;/SPAN&gt;
+&lt;SPAN class=comment&gt;/// バインドされたデータ ポイントを使用するカスタム輪郭エリア シリーズを描画します&lt;/SPAN&gt;
+&lt;SPAN class=comment&gt;/// &amp;lt;/summary&amp;gt;&lt;/SPAN&gt;
+&lt;SPAN class=blue&gt;protected&lt;/SPAN&gt; &lt;SPAN class=blue&gt;override&lt;/SPAN&gt; &lt;SPAN class=blue&gt;void&lt;/SPAN&gt; RenderSeriesOverride(&lt;SPAN class=blue&gt;bool&lt;/SPAN&gt; animate)
+{
+    &lt;SPAN class=comment&gt;// 遷移のあるシリーズ描画を無効にします (モーション フレームワーク)&lt;/SPAN&gt;
+    &lt;SPAN class=blue&gt;base&lt;/SPAN&gt;.RenderSeriesOverride(animate);
+    &lt;SPAN class=comment&gt;// シリーズを描画できるかどうかを確認します&lt;/SPAN&gt;
+    &lt;SPAN class=comment&gt;// - Viewport (シリーズのバインドされた四角形) は空ではありません &lt;/SPAN&gt;
+    &lt;SPAN class=comment&gt;// - RootCanvas (カスタム グラフィックス用のコンテナ) は Null ではありません。  &lt;/SPAN&gt;
+    &lt;SPAN class=comment&gt;// - 軸は Null ではありません  &lt;/SPAN&gt;
+    &lt;SPAN class=comment&gt;// - ItemsSource は Null ではありません  &lt;/SPAN&gt;
+    &lt;SPAN class=blue&gt;if&lt;/SPAN&gt; (&lt;SPAN class=blue&gt;this&lt;/SPAN&gt;.Viewport.IsEmpty || &lt;SPAN class=blue&gt;this&lt;/SPAN&gt;.RootCanvas == &lt;SPAN class=blue&gt;null&lt;/SPAN&gt; ||
+        &lt;SPAN class=blue&gt;this&lt;/SPAN&gt;.XAxis == &lt;SPAN class=blue&gt;null&lt;/SPAN&gt; || &lt;SPAN class=blue&gt;this&lt;/SPAN&gt;.YAxis == &lt;SPAN class=blue&gt;null&lt;/SPAN&gt; ||
+        &lt;SPAN class=blue&gt;this&lt;/SPAN&gt;.ItemsSource == &lt;SPAN class=blue&gt;null&lt;/SPAN&gt;)
+    {
+        &lt;SPAN class=blue&gt;return&lt;/SPAN&gt;;
+    }
+    &lt;SPAN class=comment&gt;// シリーズの描画ごとに RootCanvas をクリアします&lt;/SPAN&gt;
+    &lt;SPAN class=blue&gt;this&lt;/SPAN&gt;.RootCanvas.Children.Clear();
+            
+    &lt;SPAN class=comment&gt;// このシリーズのソースにおいて項目の値に基づいて輪郭用データ構造を作成します&lt;/SPAN&gt;
+    ContourData data = (ContourData)&lt;SPAN class=blue&gt;this&lt;/SPAN&gt;.ItemsSource;
+    Dictionary&amp;lt;&lt;SPAN class=blue&gt;double&lt;/SPAN&gt;, PointCollection&amp;gt; dataContours = &lt;SPAN class=blue&gt;new&lt;/SPAN&gt; Dictionary&amp;lt;&lt;SPAN class=blue&gt;double&lt;/SPAN&gt;, PointCollection&amp;gt;();
+    &lt;SPAN class=blue&gt;foreach&lt;/SPAN&gt; (ContourDataPoint dataPoint &lt;SPAN class=blue&gt;in&lt;/SPAN&gt; data)
+    {
+        &lt;SPAN class=comment&gt;// データ ポイントの位置 (X/Y) をシリーズのビューポートにスケールします&lt;/SPAN&gt;
+        &lt;SPAN class=blue&gt;double&lt;/SPAN&gt; x = &lt;SPAN class=blue&gt;this&lt;/SPAN&gt;.XAxis.GetScaledValue(dataPoint.X, &lt;SPAN class=blue&gt;this&lt;/SPAN&gt;.SeriesViewer.WindowRect, &lt;SPAN class=blue&gt;this&lt;/SPAN&gt;.Viewport);
+        &lt;SPAN class=blue&gt;double&lt;/SPAN&gt; y = &lt;SPAN class=blue&gt;this&lt;/SPAN&gt;.YAxis.GetScaledValue(dataPoint.Y, &lt;SPAN class=blue&gt;this&lt;/SPAN&gt;.SeriesViewer.WindowRect, &lt;SPAN class=blue&gt;this&lt;/SPAN&gt;.Viewport);
+        &lt;SPAN class=comment&gt;// データ ポイントのスケール位置をデータ ポイントの Value プロパティに基づいて保存します&lt;/SPAN&gt;
+        &lt;SPAN class=blue&gt;double&lt;/SPAN&gt; key = dataPoint.Value;
+        &lt;SPAN class=blue&gt;if&lt;/SPAN&gt; (dataContours.ContainsKey(key))
+        {
+            dataContours[key].Add(&lt;SPAN class=blue&gt;new&lt;/SPAN&gt; Point(x, y));
+        }
+        &lt;SPAN class=blue&gt;else&lt;/SPAN&gt;
+        {
+            PointCollection dataPoints = &lt;SPAN class=blue&gt;new&lt;/SPAN&gt; PointCollection { &lt;SPAN class=blue&gt;new&lt;/SPAN&gt; Point(x, y) };
+            dataContours.Add(key, dataPoints);
+        }
+    }
+    &lt;SPAN class=comment&gt;// 輪郭に基づいて輪郭データを並べ替えます &lt;/SPAN&gt;
+    &lt;SPAN class=blue&gt;var&lt;/SPAN&gt; sortedContours = from item &lt;SPAN class=blue&gt;in&lt;/SPAN&gt; dataContours
+                            orderby item.Key ascending
+                            select item;
+
+    &lt;SPAN class=comment&gt;//// 実際の輪郭のブラシおよびアウトライン用にチャートのブラシおよびアウトラインを再利用します &lt;/SPAN&gt;
+    &lt;SPAN class=blue&gt;this&lt;/SPAN&gt;.ActualContourBrushes = ((%%ControlsName%%)&lt;SPAN class=blue&gt;this&lt;/SPAN&gt;.SeriesViewer).Brushes;
+    &lt;SPAN class=blue&gt;this&lt;/SPAN&gt;.ActualContourOutlines = ((%%ControlsName%%)&lt;SPAN class=blue&gt;this&lt;/SPAN&gt;.SeriesViewer).MarkerOutlines;
+    &lt;SPAN class=blue&gt;this&lt;/SPAN&gt;.ActualContourMarkerBrushes = ((%%ControlsName%%)&lt;SPAN class=blue&gt;this&lt;/SPAN&gt;.SeriesViewer).MarkerBrushes;
+    &lt;SPAN class=blue&gt;this&lt;/SPAN&gt;.ActualContourMarkerOutlines = ((%%ControlsName%%)&lt;SPAN class=blue&gt;this&lt;/SPAN&gt;.SeriesViewer).MarkerOutlines;
+    &lt;SPAN class=comment&gt;// 輪郭データ構造に基づいて輪郭の要素を作成します&lt;/SPAN&gt;
+    &lt;SPAN class=blue&gt;int&lt;/SPAN&gt; conturIndex = 0;
+    &lt;SPAN class=blue&gt;foreach&lt;/SPAN&gt; (KeyValuePair&amp;lt;&lt;SPAN class=blue&gt;double&lt;/SPAN&gt;, PointCollection&amp;gt; contour &lt;SPAN class=blue&gt;in&lt;/SPAN&gt; sortedContours) &lt;SPAN class=comment&gt;//dataContours)&lt;/SPAN&gt;
+    {
+        &lt;SPAN class=blue&gt;foreach&lt;/SPAN&gt; (Point point &lt;SPAN class=blue&gt;in&lt;/SPAN&gt; contour.Value)
+        {
+            &lt;SPAN class=comment&gt;// 輪郭マーカーのパラメータを取得します&lt;/SPAN&gt;
+            &lt;SPAN class=blue&gt;double&lt;/SPAN&gt; contourMarkerValue = contour.Key;
+            &lt;SPAN class=blue&gt;double&lt;/SPAN&gt; contourMarkerSize = 25;
+            &lt;SPAN class=blue&gt;double&lt;/SPAN&gt; contourMarkerLocationLeft = point.X - contourMarkerSize / 2;
+            &lt;SPAN class=blue&gt;double&lt;/SPAN&gt; contourMarkerLocationTop = point.Y - contourMarkerSize / 2;
+            &lt;SPAN class=comment&gt;// 輪郭マーカーの形状の要素を作成します&lt;/SPAN&gt;
+            Ellipse contourMarker = &lt;SPAN class=blue&gt;new&lt;/SPAN&gt; Ellipse();
+            contourMarker.Fill = GetContourMarkerFill(conturIndex);
+            contourMarker.Stroke = GetContourMarkerOutline(conturIndex);
+            contourMarker.StrokeThickness = 1.0;
+            contourMarker.Width = contourMarkerSize;
+            contourMarker.Height = contourMarkerSize;
+            &lt;SPAN class=comment&gt;// 輪郭マーカーの値の要素を作成します&lt;/SPAN&gt;
+            TextBlock markerValueBlock = &lt;SPAN class=blue&gt;new&lt;/SPAN&gt; TextBlock();
+            markerValueBlock.Text = contourMarkerValue.ToString();
+            markerValueBlock.Foreground = &lt;SPAN class=blue&gt;new&lt;/SPAN&gt; SolidColorBrush(Colors.White);
+            markerValueBlock.VerticalAlignment = VerticalAlignment.Center;
+            markerValueBlock.HorizontalAlignment = HorizontalAlignment.Center;
+            &lt;SPAN class=comment&gt;// 輪郭マーカーの要素を保持する要素を作成します &lt;/SPAN&gt;
+            Grid markerGrid = &lt;SPAN class=blue&gt;new&lt;/SPAN&gt; Grid();
+            markerGrid.Children.Add(contourMarker);
+            markerGrid.Children.Add(markerValueBlock);
+            Canvas.SetLeft(markerGrid, contourMarkerLocationLeft);
+            Canvas.SetTop(markerGrid, contourMarkerLocationTop);
+            Canvas.SetZIndex(markerGrid, conturIndex + 11);
+            &lt;SPAN class=comment&gt;// このシリーズのキャンバス上に現在の輪郭のマーカーを描画します&lt;/SPAN&gt;
+            &lt;SPAN class=blue&gt;this&lt;/SPAN&gt;.RootCanvas.Children.Add(markerGrid);
+        }
+
+        PointCollection contourPoints = contour.Value;
+
+        &lt;SPAN class=comment&gt;// 輪郭のポイントから曲線を作成します&lt;/SPAN&gt;
+        PathFigure contourFigure = BezierCurveBuilder.GetBezierSegments(contourPoints, 1.0, &lt;SPAN class=blue&gt;true&lt;/SPAN&gt;);
+        contourFigure.IsClosed = &lt;SPAN class=blue&gt;true&lt;/SPAN&gt;;
+
+        &lt;SPAN class=comment&gt;// 輪郭の新しい PathGeometry を作成します&lt;/SPAN&gt;
+        PathGeometry contourGeo = &lt;SPAN class=blue&gt;new&lt;/SPAN&gt; PathGeometry();
+        contourGeo.Figures.Add(contourFigure);
+        &lt;SPAN class=comment&gt;// 輪郭の新しい Path を作成します&lt;/SPAN&gt;
+        Path contourShape = &lt;SPAN class=blue&gt;new&lt;/SPAN&gt; Path();
+        contourShape.Data = contourGeo;
+        contourShape.Stroke = GetContourPathStroke(conturIndex);
+        contourShape.StrokeThickness = &lt;SPAN class=blue&gt;this&lt;/SPAN&gt;.Thickness;
+        contourShape.Fill = GetContourPathFill(conturIndex);
+        Canvas.SetZIndex(contourShape, conturIndex + 10);
+
+        &lt;SPAN class=comment&gt;// このシリーズのキャンバス上に現在の輪郭の形状を描画します&lt;/SPAN&gt;
+        &lt;SPAN class=blue&gt;this&lt;/SPAN&gt;.RootCanvas.Children.Add(contourShape);
+        conturIndex++;
+    }
+}&lt;/CODE&gt;
+&lt;/PRE&gt;&lt;/DIV&gt;
+&lt;LI&gt;このポイントで、カスタム シリーズはすべての要素が実装されており、xamChart コントロールに追加する準備が整っています。以下のコード例は、ContourAreaSeries を使用してデータを定義、表示する方法を示します。 
+&lt;DIV id=Example_XAML class=LanguageSpecific style="DISPLAY: block" style="hs-build-flags: SL,WPF,WINPHONE,WINRT"&gt;
+&lt;P&gt;&lt;SPAN class=lang&gt;&lt;B&gt;XAML の場合:&lt;/B&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;PRE&gt;&lt;CODE class=code&gt;&lt;SPAN class=blue&gt;&amp;lt;&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;UserControl &lt;/SPAN&gt;&lt;SPAN class=red&gt;x&lt;/SPAN&gt;&lt;SPAN class=blue&gt;:&lt;/SPAN&gt;&lt;SPAN class=red&gt;Class&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="Infragistics.Samples.CustomSeriesExample"&lt;/SPAN&gt; &lt;BR&gt;&lt;BR&gt;&lt;BR&gt;      &lt;SPAN class=red&gt;xmlns&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="http://schemas.microsoft.com/winfx/2006/xaml/presentation"&lt;/SPAN&gt; &lt;BR&gt;&lt;BR&gt;&lt;BR&gt;      &lt;SPAN class=red&gt;xmlns&lt;/SPAN&gt;&lt;SPAN class=blue&gt;:&lt;/SPAN&gt;&lt;SPAN class=red&gt;x&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="http://schemas.microsoft.com/winfx/2006/xaml"&lt;/SPAN&gt; 
+      &lt;SPAN class=red&gt;xmlns&lt;/SPAN&gt;&lt;SPAN class=blue&gt;:&lt;/SPAN&gt;&lt;SPAN class=red&gt;d&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="http://schemas.microsoft.com/expression/blend/2008"&lt;/SPAN&gt;
+      &lt;SPAN class=red&gt;xmlns&lt;/SPAN&gt;&lt;SPAN class=blue&gt;:&lt;/SPAN&gt;&lt;SPAN class=red&gt;mc&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="http://schemas.openxmlformats.org/markup-compatibility/2006"&lt;/SPAN&gt;&lt;/CODE&gt;&lt;CODE class=code&gt;
+      &lt;SPAN class=red&gt;mc&lt;/SPAN&gt;&lt;SPAN class=blue&gt;:&lt;/SPAN&gt;&lt;SPAN class=red&gt;Ignorable&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="d"&lt;/SPAN&gt;
+      &lt;SPAN class=blue&gt;...&lt;/SPAN&gt;&lt;/CODE&gt;&lt;CODE class=code&gt;&lt;SPAN class=blue&gt;&amp;gt;&lt;/SPAN&gt;&lt;/CODE&gt;&lt;BR&gt;&lt;CODE class=code&gt;&lt;SPAN class=blue&gt;    &amp;lt;&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;UserControl.Resources&lt;/SPAN&gt;&lt;SPAN class=blue&gt;&amp;gt;&lt;/SPAN&gt;
+        &lt;SPAN class=blue&gt;&amp;lt;&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;ResourceDictionary&lt;/SPAN&gt;&lt;SPAN class=blue&gt;&amp;gt;&lt;/SPAN&gt;
+            &lt;SPAN class=blue&gt;&amp;lt;&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;ResourceDictionary.MergedDictionaries&lt;/SPAN&gt;&lt;SPAN class=blue&gt;&amp;gt;&lt;/SPAN&gt;
+            &lt;SPAN class=comment&gt;&amp;lt;!-- リソース ディクショナリからの ContourAreaSeries シリーズのデフォルト スタイルをロードします。 --&amp;gt;&lt;/SPAN&gt;
+                &lt;SPAN class=blue&gt;&amp;lt;&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;ResourceDictionary&lt;/SPAN&gt; &lt;SPAN class=red&gt;Source&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="/ContourAreaSeries.xaml"&lt;/SPAN&gt; &lt;SPAN class=blue&gt;/&amp;gt;&lt;/SPAN&gt;
+            &lt;SPAN class=blue&gt;&amp;lt;/&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;ResourceDictionary.MergedDictionaries&lt;/SPAN&gt;&lt;SPAN class=blue&gt;&amp;gt;&lt;/SPAN&gt;
+        &lt;SPAN class=blue&gt;&amp;lt;/&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;ResourceDictionary&lt;/SPAN&gt;&lt;SPAN class=blue&gt;&amp;gt;&lt;/SPAN&gt;
+     &lt;SPAN class=blue&gt;&amp;lt;/&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;UserControl.Resources&lt;/SPAN&gt;&lt;SPAN class=blue&gt;&amp;gt;&lt;/SPAN&gt;
+    &lt;SPAN class=blue&gt;&amp;lt;&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;Grid&lt;/SPAN&gt; &lt;SPAN class=red&gt;x&lt;/SPAN&gt;&lt;SPAN class=blue&gt;:&lt;/SPAN&gt;&lt;SPAN class=red&gt;Name&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="LayoutRoot"&lt;/SPAN&gt;&lt;SPAN class=blue&gt;&amp;gt;&lt;/SPAN&gt;
+        &lt;SPAN class=blue&gt;&amp;lt;&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;Grid.Resources&lt;/SPAN&gt;&lt;SPAN class=blue&gt;&amp;gt;&lt;/SPAN&gt;
+            &lt;SPAN class=blue&gt;&amp;lt;&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;models&lt;/SPAN&gt;&lt;SPAN class=blue&gt;:&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;ContourDataSample&lt;/SPAN&gt; &lt;SPAN class=red&gt;x&lt;/SPAN&gt;&lt;SPAN class=blue&gt;:&lt;/SPAN&gt;&lt;SPAN class=red&gt;Key&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="data"&lt;/SPAN&gt; &lt;SPAN class=blue&gt;/&amp;gt;&lt;/SPAN&gt;
+        &lt;SPAN class=blue&gt;&amp;lt;/&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;Grid.Resources&lt;/SPAN&gt;&lt;SPAN class=blue&gt;&amp;gt;&lt;/SPAN&gt;
+        &lt;SPAN class=blue&gt;&amp;lt;&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;ig&lt;/SPAN&gt;&lt;SPAN class=blue&gt;:&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;XamDataChart&lt;/SPAN&gt; &lt;SPAN class=red&gt;x&lt;/SPAN&gt;&lt;SPAN class=blue&gt;:&lt;/SPAN&gt;&lt;SPAN class=red&gt;Name&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="DataChart"&lt;/SPAN&gt; &lt;SPAN class=red&gt;Margin&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="0"&lt;/SPAN&gt;
+                         &lt;SPAN class=red&gt;HorizontalZoomable&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="True"&lt;/SPAN&gt; &lt;SPAN class=red&gt;HorizontalZoombarVisibility&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="Visible"&lt;/SPAN&gt;
+                         &lt;SPAN class=red&gt;VerticalZoomable&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="True"&lt;/SPAN&gt; &lt;SPAN class=red&gt;VerticalZoombarVisibility&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="Visible"&lt;/SPAN&gt;&lt;SPAN class=blue&gt;&amp;gt;&lt;/SPAN&gt;
+             &lt;SPAN class=blue&gt;&amp;lt;&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;ig&lt;/SPAN&gt;&lt;SPAN class=blue&gt;:&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;XamDataChart.Axes&lt;/SPAN&gt;&lt;SPAN class=blue&gt;&amp;gt;&lt;/SPAN&gt;
+                &lt;SPAN class=blue&gt;&amp;lt;&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;ig&lt;/SPAN&gt;&lt;SPAN class=blue&gt;:&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;NumericXAxis&lt;/SPAN&gt; &lt;SPAN class=red&gt;Name&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="xAxis"&lt;/SPAN&gt; &lt;SPAN class=red&gt;MinimumValue&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="0"&lt;/SPAN&gt; &lt;SPAN class=red&gt;MaximumValue&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="150"&lt;/SPAN&gt; &lt;SPAN class=red&gt;Interval&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="10"&lt;/SPAN&gt;&lt;SPAN class=blue&gt;/&amp;gt;&lt;/SPAN&gt;
+                &lt;SPAN class=blue&gt;&amp;lt;&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;ig&lt;/SPAN&gt;&lt;SPAN class=blue&gt;:&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;NumericYAxis&lt;/SPAN&gt; &lt;SPAN class=red&gt;Name&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="yAxis"&lt;/SPAN&gt; &lt;SPAN class=red&gt;MinimumValue&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="0"&lt;/SPAN&gt; &lt;SPAN class=red&gt;MaximumValue&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="120"&lt;/SPAN&gt; &lt;SPAN class=red&gt;Interval&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="10"&lt;/SPAN&gt; &lt;SPAN class=blue&gt;/&amp;gt;&lt;/SPAN&gt;
+            &lt;SPAN class=blue&gt;&amp;lt;/&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;ig&lt;/SPAN&gt;&lt;SPAN class=blue&gt;:&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;XamDataChart.Axes&lt;/SPAN&gt;&lt;SPAN class=blue&gt;&amp;gt;&lt;/SPAN&gt;
+            &lt;SPAN class=comment&gt;&amp;lt;!-- ========================================================================== --&amp;gt;&lt;/SPAN&gt;
+            &lt;SPAN class=blue&gt;&amp;lt;&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;ig&lt;/SPAN&gt;&lt;SPAN class=blue&gt;:&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;XamDataChart.Series&lt;/SPAN&gt;&lt;SPAN class=blue&gt;&amp;gt;&lt;/SPAN&gt;
+                &lt;SPAN class=blue&gt;&amp;lt;&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;custom&lt;/SPAN&gt;&lt;SPAN class=blue&gt;:&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;ContourAreaSeries&lt;/SPAN&gt; &lt;SPAN class=red&gt;x&lt;/SPAN&gt;&lt;SPAN class=blue&gt;:&lt;/SPAN&gt;&lt;SPAN class=red&gt;Name&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="customSeries"&lt;/SPAN&gt; &lt;/CODE&gt;&lt;BR&gt;&lt;CODE class=code&gt;                                          &lt;SPAN class=red&gt;ItemsSource&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="{&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;StaticResource&lt;/SPAN&gt; &lt;SPAN class=red&gt;data&lt;/SPAN&gt;&lt;SPAN class=blue&gt;}"&lt;/SPAN&gt;
+                                          &lt;SPAN class=red&gt;XAxis&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="{&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;Binding&lt;/SPAN&gt; &lt;SPAN class=red&gt;ElementName&lt;/SPAN&gt;&lt;SPAN class=blue&gt;=xAxis&lt;/SPAN&gt;&lt;SPAN class=blue&gt;}"&lt;/SPAN&gt; 
+                                          &lt;SPAN class=red&gt;YAxis&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="{&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;Binding&lt;/SPAN&gt; &lt;SPAN class=red&gt;ElementName&lt;/SPAN&gt;&lt;SPAN class=blue&gt;=yAxis&lt;/SPAN&gt;&lt;SPAN class=blue&gt;}"&lt;/SPAN&gt;&lt;SPAN class=blue&gt;&amp;gt;&lt;/SPAN&gt;
+                &lt;SPAN class=blue&gt;&amp;lt;/&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;custom&lt;/SPAN&gt;&lt;SPAN class=blue&gt;:&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;ContourAreaSeries&lt;/SPAN&gt;&lt;SPAN class=blue&gt;&amp;gt;&lt;/SPAN&gt;
+            &lt;SPAN class=blue&gt;&amp;lt;/&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;ig&lt;/SPAN&gt;&lt;SPAN class=blue&gt;:&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;XamDataChart.Series&lt;/SPAN&gt;&lt;SPAN class=blue&gt;&amp;gt;&lt;/SPAN&gt;
+            &lt;SPAN class=comment&gt;&amp;lt;!-- ========================================================================== --&amp;gt;&lt;/SPAN&gt;
+        &lt;SPAN class=blue&gt;&amp;lt;/&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;ig&lt;/SPAN&gt;&lt;SPAN class=blue&gt;:&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;XamDataChart&lt;/SPAN&gt;&lt;SPAN class=blue&gt;&amp;gt;&lt;/SPAN&gt;
+    &lt;SPAN class=blue&gt;&amp;lt;/&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;Grid&lt;/SPAN&gt;&lt;SPAN class=blue&gt;&amp;gt;&lt;/SPAN&gt;
+&lt;SPAN class=blue&gt;&amp;lt;/&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;UserControl&lt;/SPAN&gt;&lt;SPAN class=blue&gt;&amp;gt;&lt;/SPAN&gt;&lt;/CODE&gt;
+&lt;/PRE&gt;&lt;/DIV&gt;
+&lt;DIV class=defaultImg&gt;&lt;IMG src="images/xamDataChart_Creating_Custom_Series_02.png" style="hs-build-flags: SL,WPF,WinPhone"&gt;&lt;/DIV&gt;
+&lt;DIV class=defaultImg&gt;&lt;IMG src="images/xamDataChart_RT_Creating_Custom_Series_02.png" style="hs-build-flags: WinRT"&gt;&lt;/DIV&gt;
+&lt;P&gt;図 2 - 同じ値でデータ ポイントに沿って輪郭が描画された ContourAreaSeries のプレビュー&lt;/P&gt;
+&lt;LI class=hs-buildflag-markup style="hs-build-flags: SL,WPF,WinPhone"&gt;&lt;SPAN&gt;凡例の統合 - デフォルトでは LegendItemTemplate は Null であるため、デフォルトではカスタム シリーズは凡例に表示されません。ただし、以下のコードに示されるように、シリーズの LegendItemTemplate プロパティにデータ テンプレートを設定することで簡単に変更できます。&lt;/SPAN&gt; 
+&lt;DIV id=Example_XAML class=LanguageSpecific style="DISPLAY: block" style="hs-build-flags: SL,WPF,WinPhone"&gt;
+&lt;P&gt;&lt;SPAN class=lang&gt;&lt;B&gt;XAML の場合:&lt;/B&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;PRE&gt;&lt;CODE class=code&gt;...
+&lt;SPAN class=red&gt;&amp;lt;&lt;CODE class=brownish&gt;ig&lt;/CODE&gt;&lt;/SPAN&gt;&lt;CODE class=brownish&gt;&lt;SPAN class=blue&gt;:&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;XamDataChart.Series&lt;/SPAN&gt;&lt;/CODE&gt;&lt;CODE class=blue&gt;&amp;gt;&lt;/CODE&gt;
+    &lt;CODE class=blue&gt;&amp;lt;&lt;/CODE&gt;&lt;CODE class=brownish&gt;custom&lt;/CODE&gt;&lt;CODE class=blue&gt;:&lt;/CODE&gt;&lt;CODE class=brownish&gt;ContourAreaSeries&lt;/CODE&gt; &lt;CODE class=red&gt;Title&lt;/CODE&gt;&lt;CODE class=blue&gt;="ContourAreaSeries"&lt;/CODE&gt;&lt;CODE class=blue&gt;&amp;gt;&lt;/CODE&gt;
+        &lt;CODE class=blue&gt;&amp;lt;&lt;/CODE&gt;&lt;CODE class=brownish&gt;custom&lt;/CODE&gt;&lt;CODE class=blue&gt;:&lt;/CODE&gt;&lt;CODE class=brownish&gt;ContourAreaSeries.LegendItemTemplate&lt;/CODE&gt;&lt;CODE class=blue&gt;&amp;gt;&lt;/CODE&gt;
+             &lt;CODE class=blue&gt;&amp;lt;&lt;/CODE&gt;&lt;CODE class=brownish&gt;DataTemplate&lt;/CODE&gt; &lt;CODE class=blue&gt;&amp;gt;&lt;/CODE&gt;
+                  &lt;CODE class=blue&gt;&amp;lt;&lt;/CODE&gt;&lt;CODE class=brownish&gt;StackPanel&lt;/CODE&gt; &lt;CODE class=red&gt;Orientation&lt;/CODE&gt;&lt;CODE class=blue&gt;="Horizontal"&lt;/CODE&gt; &lt;CODE class=red&gt;Margin&lt;/CODE&gt;&lt;CODE class=blue&gt;="1"&lt;/CODE&gt; &lt;CODE class=red&gt;Visibility&lt;/CODE&gt;&lt;CODE class=blue&gt;="{&lt;/CODE&gt;&lt;CODE class=brownish&gt;Binding&lt;/CODE&gt; &lt;CODE class=red&gt;Series&lt;/CODE&gt;.&lt;CODE class=red&gt;Visibility&lt;/CODE&gt;&lt;CODE class=blue&gt;}"&lt;/CODE&gt;&lt;CODE class=blue&gt;&amp;gt;&lt;/CODE&gt;
+                      &lt;CODE class=blue&gt;&amp;lt;&lt;/CODE&gt;&lt;CODE class=brownish&gt;ContentPresenter&lt;/CODE&gt; &lt;CODE class=red&gt;Content&lt;/CODE&gt;&lt;CODE class=blue&gt;="{&lt;/CODE&gt;&lt;CODE class=brownish&gt;Binding&lt;/CODE&gt;&lt;CODE class=blue&gt;}"&lt;/CODE&gt; &lt;CODE class=red&gt;ContentTemplate&lt;/CODE&gt;&lt;CODE class=blue&gt;="{&lt;/CODE&gt;&lt;CODE class=brownish&gt;Binding&lt;/CODE&gt; &lt;CODE class=red&gt;Series&lt;/CODE&gt;.&lt;CODE class=red&gt;LegendItemBadgeTemplate&lt;/CODE&gt;&lt;CODE class=blue&gt;}"&lt;/CODE&gt; &lt;CODE class=blue&gt;/&amp;gt;&lt;/CODE&gt;
+                      &lt;CODE class=blue&gt;&amp;lt;&lt;/CODE&gt;&lt;CODE class=brownish&gt;ContentPresenter&lt;/CODE&gt; &lt;CODE class=red&gt;Content&lt;/CODE&gt;&lt;CODE class=blue&gt;="{&lt;/CODE&gt;&lt;CODE class=brownish&gt;Binding&lt;/CODE&gt; &lt;CODE class=red&gt;Series&lt;/CODE&gt;.&lt;CODE class=red&gt;Title&lt;/CODE&gt;, &lt;CODE class=red&gt;TargetNullValue&lt;/CODE&gt;&lt;CODE class=blue&gt;=Series&lt;/CODE&gt; &lt;CODE class=red&gt;Title&lt;/CODE&gt;&lt;CODE class=blue&gt;}"&lt;/CODE&gt; &lt;CODE class=blue&gt;/&amp;gt;&lt;/CODE&gt;
+                  &lt;CODE class=blue&gt;&amp;lt;/&lt;/CODE&gt;&lt;CODE class=brownish&gt;StackPanel&lt;/CODE&gt;&lt;CODE class=blue&gt;&amp;gt;&lt;/CODE&gt;
+             &lt;CODE class=blue&gt;&amp;lt;/&lt;/CODE&gt;&lt;CODE class=brownish&gt;DataTemplate&lt;/CODE&gt;&lt;CODE class=blue&gt;&amp;gt;&lt;/CODE&gt;
+        &lt;CODE class=blue&gt;&amp;lt;/&lt;/CODE&gt;&lt;CODE class=brownish&gt;custom&lt;/CODE&gt;&lt;CODE class=blue&gt;:&lt;/CODE&gt;&lt;CODE class=brownish&gt;ContourAreaSeries.LegendItemTemplate&lt;/CODE&gt;&lt;CODE class=blue&gt;&amp;gt;&lt;/CODE&gt;
+        &lt;CODE class=blue&gt;&amp;lt;&lt;/CODE&gt;&lt;CODE class=brownish&gt;custom&lt;/CODE&gt;&lt;CODE class=blue&gt;:&lt;/CODE&gt;&lt;CODE class=brownish&gt;ContourAreaSeries.LegendItemBadgeTemplate&lt;/CODE&gt;&lt;CODE class=blue&gt;&amp;gt;&lt;/CODE&gt;
+             &lt;CODE class=blue&gt;&amp;lt;&lt;/CODE&gt;&lt;CODE class=brownish&gt;DataTemplate&lt;/CODE&gt; &lt;CODE class=blue&gt;&amp;gt;&lt;/CODE&gt;
+                  &lt;CODE class=blue&gt;&amp;lt;&lt;/CODE&gt;&lt;CODE class=brownish&gt;Grid&lt;/CODE&gt; &lt;CODE class=red&gt;Width&lt;/CODE&gt;&lt;CODE class=blue&gt;="19"&lt;/CODE&gt; &lt;CODE class=red&gt;Height&lt;/CODE&gt;&lt;CODE class=blue&gt;="14"&lt;/CODE&gt; &lt;CODE class=red&gt;Margin&lt;/CODE&gt;&lt;CODE class=blue&gt;="0,0,5,0"&lt;/CODE&gt;&lt;CODE class=blue&gt;&amp;gt;&lt;/CODE&gt;
+                       &lt;CODE class=blue&gt;&amp;lt;&lt;/CODE&gt;&lt;CODE class=brownish&gt;Grid&lt;/CODE&gt; &lt;CODE class=red&gt;Width&lt;/CODE&gt;&lt;CODE class=blue&gt;="14"&lt;/CODE&gt; &lt;CODE class=red&gt;Height&lt;/CODE&gt;&lt;CODE class=blue&gt;="14"&lt;/CODE&gt;&lt;CODE class=blue&gt;&amp;gt;&lt;/CODE&gt;
+                           &lt;CODE class=blue&gt;&amp;lt;&lt;/CODE&gt;&lt;CODE class=brownish&gt;Ellipse&lt;/CODE&gt; &lt;CODE class=red&gt;Width&lt;/CODE&gt;&lt;CODE class=blue&gt;="7"&lt;/CODE&gt; &lt;CODE class=red&gt;Height&lt;/CODE&gt;&lt;CODE class=blue&gt;="7"&lt;/CODE&gt; &lt;CODE class=red&gt;Margin&lt;/CODE&gt;&lt;CODE class=blue&gt;="0"&lt;/CODE&gt; &lt;CODE class=red&gt;Fill&lt;/CODE&gt;&lt;CODE class=blue&gt;="{&lt;/CODE&gt;&lt;CODE class=brownish&gt;Binding&lt;/CODE&gt; &lt;CODE class=red&gt;Series&lt;/CODE&gt;.&lt;CODE class=red&gt;ActualBrush&lt;/CODE&gt;&lt;CODE class=blue&gt;}"&lt;/CODE&gt; &lt;CODE class=red&gt;Stroke&lt;/CODE&gt;&lt;CODE class=blue&gt;="{&lt;/CODE&gt;&lt;CODE class=brownish&gt;Binding&lt;/CODE&gt; &lt;CODE class=red&gt;Series&lt;/CODE&gt;.&lt;CODE class=red&gt;ActualOutline&lt;/CODE&gt;&lt;CODE class=blue&gt;}"&lt;/CODE&gt; &lt;CODE class=red&gt;StrokeThickness&lt;/CODE&gt;&lt;CODE class=blue&gt;="0.75"&lt;/CODE&gt; &lt;CODE class=red&gt;HorizontalAlignment&lt;/CODE&gt;&lt;CODE class=blue&gt;="Center"&lt;/CODE&gt; &lt;CODE class=red&gt;VerticalAlignment&lt;/CODE&gt;&lt;CODE class=blue&gt;="Top"&lt;/CODE&gt; &lt;CODE class=blue&gt;/&amp;gt;&lt;/CODE&gt;
+                           &lt;CODE class=blue&gt;&amp;lt;&lt;/CODE&gt;&lt;CODE class=brownish&gt;Ellipse&lt;/CODE&gt; &lt;CODE class=red&gt;Width&lt;/CODE&gt;&lt;CODE class=blue&gt;="7"&lt;/CODE&gt; &lt;CODE class=red&gt;Height&lt;/CODE&gt;&lt;CODE class=blue&gt;="7"&lt;/CODE&gt; &lt;CODE class=red&gt;Margin&lt;/CODE&gt;&lt;CODE class=blue&gt;="0"&lt;/CODE&gt; &lt;CODE class=red&gt;Fill&lt;/CODE&gt;&lt;CODE class=blue&gt;="{&lt;/CODE&gt;&lt;CODE class=brownish&gt;Binding&lt;/CODE&gt; &lt;CODE class=red&gt;Series&lt;/CODE&gt;.&lt;CODE class=red&gt;ActualBrush&lt;/CODE&gt;&lt;CODE class=blue&gt;}"&lt;/CODE&gt; &lt;CODE class=red&gt;Stroke&lt;/CODE&gt;&lt;CODE class=blue&gt;="{&lt;/CODE&gt;&lt;CODE class=brownish&gt;Binding&lt;/CODE&gt; &lt;CODE class=red&gt;Series&lt;/CODE&gt;.&lt;CODE class=red&gt;ActualOutline&lt;/CODE&gt;&lt;CODE class=blue&gt;}"&lt;/CODE&gt; &lt;CODE class=red&gt;StrokeThickness&lt;/CODE&gt;&lt;CODE class=blue&gt;="0.75"&lt;/CODE&gt; &lt;CODE class=red&gt;HorizontalAlignment&lt;/CODE&gt;&lt;CODE class=blue&gt;="Left"&lt;/CODE&gt; &lt;CODE class=red&gt;VerticalAlignment&lt;/CODE&gt;&lt;CODE class=blue&gt;="Bottom"&lt;/CODE&gt; &lt;CODE class=blue&gt;/&amp;gt;&lt;/CODE&gt;
+                           &lt;CODE class=blue&gt;&amp;lt;&lt;/CODE&gt;&lt;CODE class=brownish&gt;Ellipse&lt;/CODE&gt; &lt;CODE class=red&gt;Width&lt;/CODE&gt;&lt;CODE class=blue&gt;="7"&lt;/CODE&gt; &lt;CODE class=red&gt;Height&lt;/CODE&gt;&lt;CODE class=blue&gt;="7"&lt;/CODE&gt; &lt;CODE class=red&gt;Margin&lt;/CODE&gt;&lt;CODE class=blue&gt;="0"&lt;/CODE&gt; &lt;CODE class=red&gt;Fill&lt;/CODE&gt;&lt;CODE class=blue&gt;="{&lt;/CODE&gt;&lt;CODE class=brownish&gt;Binding&lt;/CODE&gt; &lt;CODE class=red&gt;Series&lt;/CODE&gt;.&lt;CODE class=red&gt;ActualBrush&lt;/CODE&gt;&lt;CODE class=blue&gt;}"&lt;/CODE&gt; &lt;CODE class=red&gt;Stroke&lt;/CODE&gt;&lt;CODE class=blue&gt;="{&lt;/CODE&gt;&lt;CODE class=brownish&gt;Binding&lt;/CODE&gt; &lt;CODE class=red&gt;Series&lt;/CODE&gt;.&lt;CODE class=red&gt;ActualOutline&lt;/CODE&gt;&lt;CODE class=blue&gt;}"&lt;/CODE&gt; &lt;CODE class=red&gt;StrokeThickness&lt;/CODE&gt;&lt;CODE class=blue&gt;="0.75"&lt;/CODE&gt; &lt;CODE class=red&gt;HorizontalAlignment&lt;/CODE&gt;&lt;CODE class=blue&gt;="Right"&lt;/CODE&gt; &lt;CODE class=red&gt;VerticalAlignment&lt;/CODE&gt;&lt;CODE class=blue&gt;="Bottom"&lt;/CODE&gt; &lt;CODE class=blue&gt;/&amp;gt;&lt;/CODE&gt;
+                           &lt;CODE class=blue&gt;&amp;lt;&lt;/CODE&gt;&lt;CODE class=brownish&gt;Ellipse&lt;/CODE&gt; &lt;CODE class=red&gt;Width&lt;/CODE&gt;&lt;CODE class=blue&gt;="7"&lt;/CODE&gt; &lt;CODE class=red&gt;Height&lt;/CODE&gt;&lt;CODE class=blue&gt;="7"&lt;/CODE&gt; &lt;CODE class=red&gt;Margin&lt;/CODE&gt;&lt;CODE class=blue&gt;="0"&lt;/CODE&gt; &lt;CODE class=red&gt;Fill&lt;/CODE&gt;&lt;CODE class=blue&gt;="{&lt;/CODE&gt;&lt;CODE class=brownish&gt;Binding&lt;/CODE&gt; &lt;CODE class=red&gt;Series&lt;/CODE&gt;.&lt;CODE class=red&gt;ActualBrush&lt;/CODE&gt;&lt;CODE class=blue&gt;}"&lt;/CODE&gt; &lt;CODE class=red&gt;Stroke&lt;/CODE&gt;&lt;CODE class=blue&gt;="{&lt;/CODE&gt;&lt;CODE class=brownish&gt;Binding&lt;/CODE&gt; &lt;CODE class=red&gt;Series&lt;/CODE&gt;.&lt;CODE class=red&gt;ActualOutline&lt;/CODE&gt;&lt;CODE class=blue&gt;}"&lt;/CODE&gt; &lt;CODE class=red&gt;StrokeThickness&lt;/CODE&gt;&lt;CODE class=blue&gt;="0.75"&lt;/CODE&gt; &lt;CODE class=red&gt;HorizontalAlignment&lt;/CODE&gt;&lt;CODE class=blue&gt;="Center"&lt;/CODE&gt; &lt;CODE class=red&gt;VerticalAlignment&lt;/CODE&gt;&lt;CODE class=blue&gt;="Center"&lt;/CODE&gt; &lt;CODE class=blue&gt;/&amp;gt;&lt;/CODE&gt;
+                       &lt;CODE class=blue&gt;&amp;lt;/&lt;/CODE&gt;&lt;CODE class=brownish&gt;Grid&lt;/CODE&gt;&lt;CODE class=blue&gt;&amp;gt;&lt;/CODE&gt;
+                  &lt;CODE class=blue&gt;&amp;lt;/&lt;/CODE&gt;&lt;CODE class=brownish&gt;Grid&lt;/CODE&gt;&lt;CODE class=blue&gt;&amp;gt;&lt;/CODE&gt;
+             &lt;CODE class=blue&gt;&amp;lt;/&lt;/CODE&gt;&lt;CODE class=brownish&gt;DataTemplate&lt;/CODE&gt;&lt;CODE class=blue&gt;&amp;gt;&lt;/CODE&gt;
+        &lt;CODE class=blue&gt;&amp;lt;/&lt;/CODE&gt;&lt;CODE class=brownish&gt;custom&lt;/CODE&gt;&lt;CODE class=blue&gt;:&lt;/CODE&gt;&lt;CODE class=brownish&gt;ContourAreaSeries.LegendItemBadgeTemplate&lt;/CODE&gt;&lt;CODE class=blue&gt;&amp;gt;&lt;/CODE&gt;
+    &lt;CODE class=blue&gt;&amp;lt;/&lt;/CODE&gt;&lt;CODE class=brownish&gt;custom&lt;/CODE&gt;&lt;CODE class=blue&gt;:&lt;/CODE&gt;&lt;CODE class=brownish&gt;ContourAreaSeries&lt;/CODE&gt;&lt;CODE class=blue&gt;&amp;gt;&lt;/CODE&gt;
+&lt;CODE class=blue&gt;&amp;lt;/&lt;/CODE&gt;&lt;CODE class=brownish&gt;ig&lt;/CODE&gt;&lt;CODE class=blue&gt;:&lt;/CODE&gt;&lt;CODE class=brownish&gt;XamDataChart.Series&lt;/CODE&gt;&lt;CODE class=blue&gt;&amp;gt;&lt;/CODE&gt;
+&lt;/CODE&gt;
+&lt;/PRE&gt;&lt;/DIV&gt;
+&lt;DIV class=defaultImg style="hs-build-flags: SL"&gt;&lt;IMG src="images/xamDataChart_Creating_Custom_Series_03.png"&gt;&lt;/DIV&gt;
+&lt;P&gt;図 3 - シリーズを凡例項目として表示する凡例のある ContourAreaSeries のプレビュー&lt;/P&gt;
+&lt;LI&gt;ツールチップの統合 - このコードは、カーソルがホバーするマーカーに対応するデータ ポイントを取得するため、GetItem メソッドをオーバーライドしロジックを実装することによりシリーズのマーカーについてツールチップの表示をサポートする方法を示します。 
+&lt;DIV class=ig-note&gt;注: デフォルトでは、シリーズにはツールチップは表示されません。カスタム シリーズにツールチップを実装するには、GetItem メソッドをオーバーライドし、非 Null 値を返す必要があります。そうでない場合、ツールチップは表示されません。 &lt;/DIV&gt;
+&lt;DIV id=Example_VB class=LanguageSpecific style="DISPLAY: block"&gt;
+&lt;P&gt;&lt;SPAN class=lang&gt;&lt;B&gt;Visual Basic の場合:&lt;/B&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;PRE&gt;&lt;CODE class=code&gt;&lt;SPAN class=comment&gt;''' &amp;lt;summary&amp;gt;&lt;/SPAN&gt;
+&lt;SPAN class=comment&gt;''' 指定したワールド位置に関連付けられた項目を取得します。 &lt;/SPAN&gt;
+&lt;SPAN class=comment&gt;''' ツールチップをシリーズのマーカー上に表示しなければならない場合&lt;/SPAN&gt;
+&lt;SPAN class=comment&gt;''' &amp;lt;/summary&amp;gt;&lt;/SPAN&gt;
+&lt;SPAN class=blue&gt;Protected&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Overrides&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Function&lt;/SPAN&gt; GetItem(worldPoint &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; Point) &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Object&lt;/SPAN&gt;
+ &lt;SPAN class=blue&gt;Dim&lt;/SPAN&gt; cursorPoint &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; Point = New Point(((worldPoint.X - &lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.SeriesViewer.ActualWindowRect.Left)  _
+                 * (&lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.Viewport.Width / &lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.SeriesViewer.ActualWindowRect.Width)), ((worldPoint.Y - &lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.SeriesViewer.ActualWindowRect.Top)  _
+                 * (&lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.Viewport.Height / &lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.SeriesViewer.ActualWindowRect.Height)))
+
+    &lt;SPAN class=blue&gt;Dim&lt;/SPAN&gt; data &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; ContourData = &lt;SPAN class=blue&gt;DirectCast&lt;/SPAN&gt;(&lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.ItemsSource, ContourData)
+    &lt;SPAN class=blue&gt;For&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Each&lt;/SPAN&gt; dataPoint &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; ContourDataPoint &lt;SPAN class=blue&gt;In&lt;/SPAN&gt; data
+        &lt;SPAN class=comment&gt;' データ ポイントの位置をシリーズのビューポートにスケールします。&lt;/SPAN&gt;
+        &lt;SPAN class=blue&gt;Dim&lt;/SPAN&gt; x &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Double&lt;/SPAN&gt; = &lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.XAxis.GetScaledValue(dataPoint.X, &lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.SeriesViewer.ActualWindowRect, &lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.Viewport)
+        &lt;SPAN class=blue&gt;Dim&lt;/SPAN&gt; y &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Double&lt;/SPAN&gt; = &lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.YAxis.GetScaledValue(dataPoint.Y, &lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.SeriesViewer.ActualWindowRect, &lt;SPAN class=blue&gt;Me&lt;/SPAN&gt;.Viewport)
+
+        &lt;SPAN class=blue&gt;Dim&lt;/SPAN&gt; size &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Double&lt;/SPAN&gt; = 25
+        &lt;SPAN class=blue&gt;Dim&lt;/SPAN&gt; left &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Double&lt;/SPAN&gt; = x - size / 2
+        &lt;SPAN class=blue&gt;Dim&lt;/SPAN&gt; top &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Double&lt;/SPAN&gt; = y - size / 2
+
+        &lt;SPAN class=blue&gt;Dim&lt;/SPAN&gt; itemBounds &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; &lt;SPAN class=blue&gt;New&lt;/SPAN&gt; Rect(left, top, size, size)
+        &lt;SPAN class=blue&gt;If&lt;/SPAN&gt; itemBounds.Contains(cursorPoint) &lt;SPAN class=blue&gt;Then&lt;/SPAN&gt;
+            &lt;SPAN class=blue&gt;Return&lt;/SPAN&gt; dataPoint
+        &lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;If&lt;/SPAN&gt;
+    &lt;SPAN class=blue&gt;Next&lt;/SPAN&gt;
+
+    &lt;SPAN class=blue&gt;Return&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Nothing&lt;/SPAN&gt;
+&lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Function&lt;/SPAN&gt;&lt;/CODE&gt;
+&lt;/PRE&gt;&lt;/DIV&gt;
+&lt;DIV id=Example_CS class=LanguageSpecific style="DISPLAY: block"&gt;
+&lt;P&gt;&lt;SPAN class=lang&gt;&lt;B&gt;C# の場合:&lt;/B&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;PRE&gt;&lt;CODE class=code&gt;&lt;SPAN class=comment&gt;/// &amp;lt;summary&amp;gt;&lt;/SPAN&gt;
+&lt;SPAN class=comment&gt;/// 指定したワールド位置に関連付けられた項目を取得します。 &lt;/SPAN&gt;
+&lt;SPAN class=comment&gt;/// ツールチップをシリーズのマーカー上に表示しなければならない場合&lt;/SPAN&gt;
+&lt;SPAN class=comment&gt;/// &amp;lt;/summary&amp;gt;&lt;/SPAN&gt;
+&lt;SPAN class=blue&gt;protected&lt;/SPAN&gt; &lt;SPAN class=blue&gt;override&lt;/SPAN&gt; &lt;SPAN class=blue&gt;object&lt;/SPAN&gt; GetItem(Point worldPoint)
+{
+    Point cursorPoint = &lt;SPAN class=keyword&gt;new&lt;/SPAN&gt; Point(
+(worldPoint.X - &lt;SPAN class=keyword&gt;this&lt;/SPAN&gt;.SeriesViewer.ActualWindowRect.Left) * &lt;SPAN class=keyword&gt;this&lt;/SPAN&gt;.Viewport.Width / &lt;SPAN class=keyword&gt;this&lt;/SPAN&gt;.SeriesViewer.ActualWindowRect.Width,
+(worldPoint.Y - &lt;SPAN class=keyword&gt;this&lt;/SPAN&gt;.SeriesViewer.ActualWindowRect.Top) * &lt;SPAN class=keyword&gt;this&lt;/SPAN&gt;.Viewport.Height / &lt;SPAN class=keyword&gt;this&lt;/SPAN&gt;.SeriesViewer.ActualWindowRect.Height);
+
+ContourData data = (ContourData)&lt;SPAN class=blue&gt;this&lt;/SPAN&gt;.ItemsSource;
+    &lt;SPAN class=blue&gt;foreach&lt;/SPAN&gt; (ContourDataPoint dataPoint &lt;SPAN class=blue&gt;in&lt;/SPAN&gt; data)
+    {
+        &lt;SPAN class=comment&gt;// データ ポイントの位置をシリーズのビューポートにスケールします。&lt;/SPAN&gt;
+        &lt;SPAN class=blue&gt;double&lt;/SPAN&gt; x = &lt;SPAN class=blue&gt;this&lt;/SPAN&gt;.XAxis.GetScaledValue(dataPoint.X, &lt;SPAN class=blue&gt;this&lt;/SPAN&gt;.SeriesViewer.ActualWindowRect, &lt;SPAN class=blue&gt;this&lt;/SPAN&gt;.Viewport);
+        &lt;SPAN class=blue&gt;double&lt;/SPAN&gt; y = &lt;SPAN class=blue&gt;this&lt;/SPAN&gt;.YAxis.GetScaledValue(dataPoint.Y, &lt;SPAN class=blue&gt;this&lt;/SPAN&gt;.SeriesViewer.ActualWindowRect, &lt;SPAN class=blue&gt;this&lt;/SPAN&gt;.Viewport);
+
+        &lt;SPAN class=blue&gt;double&lt;/SPAN&gt; size = 25;
+        &lt;SPAN class=blue&gt;double&lt;/SPAN&gt; left = x - size / 2;
+        &lt;SPAN class=blue&gt;double&lt;/SPAN&gt; top = y - size / 2;
+
+        Rect itemBounds = &lt;SPAN class=blue&gt;new&lt;/SPAN&gt; Rect(left, top, size, size);
+        &lt;SPAN class=blue&gt;if&lt;/SPAN&gt; (itemBounds.Contains(cursorPoint))
+        {
+            &lt;SPAN class=blue&gt;return&lt;/SPAN&gt; dataPoint;
+        }
+    }
+
+    &lt;SPAN class=blue&gt;return&lt;/SPAN&gt; &lt;SPAN class=blue&gt;null&lt;/SPAN&gt;;
+}&lt;/CODE&gt;
+&lt;/PRE&gt;&lt;/DIV&gt;
+&lt;P&gt;ツールチップの DataContext 内の「項目」は、GetItem メソッドの戻り値となります。以下のコードは、シリーズタイトル、およびデータ ポイントの Value プロパティの値を含むツールチップの定義方法を示します。&lt;/P&gt;
+&lt;DIV id=Example_XAML class=LanguageSpecific style="DISPLAY: block" style="hs-build-flags: SL,WPF,WINPHONE,WINRT"&gt;
+&lt;P&gt;&lt;SPAN class=lang&gt;&lt;B&gt;XAML の場合:&lt;/B&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;PRE&gt;&lt;CODE class=code&gt;...
+&lt;SPAN class=blue&gt;&amp;lt;&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;ig&lt;/SPAN&gt;&lt;SPAN class=blue&gt;:&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;XamDataChart.Series&lt;/SPAN&gt;&lt;SPAN class=blue&gt;&amp;gt;&lt;/SPAN&gt;
+    &lt;SPAN class=blue&gt;&amp;lt;&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;custom&lt;/SPAN&gt;&lt;SPAN class=blue&gt;:&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;ContourAreaSeries&lt;/SPAN&gt; &lt;SPAN class=red&gt;Title&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="ContourAreaSeries"&lt;/SPAN&gt;
+                              &lt;SPAN class=red&gt;ToolTip&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="{}{Series.Title}: {Item.Value}"&lt;/SPAN&gt;&lt;SPAN class=blue&gt;&amp;gt;&lt;/SPAN&gt;
+    &lt;SPAN class=blue&gt;&amp;lt;/&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;custom&lt;/SPAN&gt;&lt;SPAN class=blue&gt;:&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;ContourAreaSeries&lt;/SPAN&gt;&lt;SPAN class=blue&gt;&amp;gt;&lt;/SPAN&gt;
+&lt;SPAN class=blue&gt;&amp;lt;/&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;ig&lt;/SPAN&gt;&lt;SPAN class=blue&gt;:&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;XamDataChart.Series&lt;/SPAN&gt;&lt;SPAN class=blue&gt;&amp;gt;&lt;/SPAN&gt;&lt;/CODE&gt;
+&lt;/PRE&gt;&lt;/DIV&gt;
+&lt;DIV class=defaultImg&gt;&lt;IMG src="images/xamDataChart_Creating_Custom_Series_04.png" style="hs-build-flags: SL,WPF,WinPhone"&gt;&lt;/DIV&gt;
+&lt;DIV class=defaultImg&gt;&lt;IMG src="images/xamDataChart_RT_Creating_Custom_Series_04.png" style="hs-build-flags: WinRT"&gt;&lt;/DIV&gt;
+&lt;P&gt;図 4 - データ ポイントの値を示すツールチップのある ContourAreaSeries のプレビュー&lt;/P&gt;&lt;/LI&gt;&lt;/OL&gt;
+&lt;H1 id=RelatedTopics name="RelatedTopics"&gt;関連トピック&lt;/H1&gt;
+&lt;UL&gt;
+&lt;LI&gt;&lt;A href="e0c1a537-ee33-4389-a939-eab0cea8fade" style="auto-update-caption: true"&gt;チャート軸&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="3d087135-84b0-4f6e-b3eb-afe7e962e406" style="auto-update-caption: true"&gt;チャート シリーズ&lt;/A&gt; &lt;/LI&gt;&lt;/UL&gt;</topicsection>
+</topic>

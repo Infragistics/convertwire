@@ -5,23 +5,9 @@
 	var parser = new xml2js.Parser({
 		explicitArray: false
 	});
-	
-	var _ = require('lodash');
-	
+		
 	var english = require('./parser-english.js');
 	var japanese = require('./parser-japanese.js');
-	
-	var listToArray = function(listString, delimiter){
-		
-		var list = listString.split(delimiter);
-		var val = '';
-		list.forEach(function(item, index){
-			val = item.trim().replace(/\n/g, '').replace(/\r/g, '');
-			list[index] = val;
-		});
-		
-		return _.compact(list);
-	};
 	
 	module.toHtml = function(htmlDocument){
 			var htmlString = '<div id="docX-root">\n\n'
@@ -52,24 +38,8 @@
 	
 	module.parse = function(xmlString, filePath, callback) {
 		
-		var htmlDocument = {
-			fileName: '',
-			name: '',
-			title: '',
-			markup: '',
-			controlName: '',
-			tags: [],
-			docXGuid: '',
-			buildFlags: []
-		};
-		
 		parser.parseString(xmlString, function(error, obj){
-			var parser = null, parseError;
-			
-			var getValue = function(element){
-				if(typeof element === 'undefined' || element === null) return '';
-				return element;
-			};
+			var langParser = null, parseError;
 			
 			var isEnglishTopic = function(obj){
 				return obj.hasOwnProperty('Topic') && obj.Topic.$.Id.length > 0;
@@ -84,9 +54,9 @@
 			} else {
 
 				if(isJapaneseTopic(obj)) {
-					parser = japanese;
+					langParser = japanese;
 				} else if (isEnglishTopic(obj)){
-					parser = english;
+					langParser = english;
 				} else {
 					parseError = {
 						message: 'Not an English or Japanese topic',
@@ -96,9 +66,8 @@
 					callback(parseError, null);
 				}
 				
-				if(parser !== null){
-					htmlDocument = parser.parse(obj, htmlDocument, getValue, listToArray);				
-					callback(null, htmlDocument);
+				if(langParser !== null){
+					langParser.parse(obj, filePath, callback);
 				}
 			}
 			

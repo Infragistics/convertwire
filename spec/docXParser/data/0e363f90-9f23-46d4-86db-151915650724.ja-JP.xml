@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<topic>
+<title m="2014-10-07T11:00:43Z">選択および展開</title>
+<topicsection m="2014-10-07T11:00:43Z" name="BodyText">
+&lt;P&gt;このトピックは、&lt;A href="%%ProductAssemblyName%%.Controls.Charts.XamDataChart.v%%ProductVersionShort%%~Infragistics.Controls.Charts.XamPieChart.html"&gt;xamPieChart&lt;/A&gt; コントロールの選択および展開ビヘイビアーを実装する方法を説明します。トピックの最後で、完全なコード例を提供します。&lt;/P&gt;
+&lt;P&gt;トピックは以下のとおりです。&lt;/P&gt;
+&lt;UL&gt;
+&lt;LI&gt;&lt;A href="#Introduction"&gt;概要&lt;/A&gt;&lt;LI&gt;&lt;A href="#Preview"&gt;プレビュー&lt;/A&gt;&lt;LI&gt;&lt;A href="#Requirements"&gt;要件&lt;/A&gt;&lt;LI&gt;&lt;A href="#Overview"&gt;概要&lt;/A&gt;&lt;LI&gt;&lt;A href="#Steps"&gt;手順&lt;/A&gt;&lt;LI&gt;&lt;A href="#Complete"&gt;全コード例&lt;/A&gt;&lt;UL&gt;
+&lt;LI&gt;&lt;A href="#View"&gt;表示&lt;/A&gt;&lt;LI&gt;&lt;A href="#CodeBehind"&gt;コード ビハインド&lt;/A&gt;&lt;/LI&gt;&lt;/UL&gt;
+&lt;LI&gt;
+&lt;DIV class=RelatedTopics&gt;&lt;A href="#RelatedTopics"&gt;関連トピック&lt;/A&gt;&lt;/DIV&gt;&lt;/LI&gt;&lt;/UL&gt;
+&lt;H1&gt;&lt;A id=Introduction name=Introduction&gt;&lt;/A&gt;概要&lt;/H1&gt;
+&lt;P&gt;円チャート コントロールは個々の円スライスの選択と展開だけでなく、選択状態を変更しカスタム ロジックを実装することを可能にする &lt;A href="%%ProductAssemblyName%%.Controls.Charts.XamDataChart.v%%ProductVersionShort%%~Infragistics.Controls.Charts.PieChartBase~SliceClick_EV.html"&gt;SliceClick&lt;/A&gt; イベントをサポートします。&lt;/P&gt;
+&lt;H1&gt;&lt;A id=Preview name=Preview&gt;&lt;/A&gt;プレビュー&lt;/H1&gt;
+&lt;DIV class=defaultImg&gt;&lt;IMG src="images/xamPieChart_SelectionAndExplosion_01.png"&gt;&lt;/DIV&gt;
+&lt;P&gt;図 1: コード サンプルによって実装された xamPieChart コントロール&lt;/P&gt;
+&lt;H1&gt;&lt;A id=Requirements name=Requirements&gt;&lt;/A&gt;要件&lt;/H1&gt;
+&lt;P&gt;このトピックは、ユーザーが&lt;A style="auto-update-caption: true" href="8a5963d0-af62-4426-8aeb-547da883d52d"&gt;データ バインディング&lt;/A&gt;トピックを既に読んでいることを前提とし、開始点としてその中のコードを使用します。&lt;/P&gt;
+&lt;H1&gt;&lt;A id=Overview name=Overview&gt;&lt;/A&gt;概要&lt;/H1&gt;
+&lt;OL&gt;
+&lt;LI&gt;それぞれのプロパティとイベント ハンドラーの構成&lt;LI&gt;選択したスライスの現在のリストを表示するように TextBlock を構成&lt;LI&gt;イベント ハンドラーの実装&lt;LI&gt;(オプション) 結果の検証&lt;/LI&gt;&lt;/OL&gt;
+&lt;H1&gt;&lt;A id=Steps name=Steps&gt;&lt;/A&gt;手順&lt;/H1&gt;
+&lt;OL&gt;
+&lt;LI&gt;それぞれのプロパティとイベント ハンドラーを構成します。&lt;P&gt;&lt;A style="auto-update-caption: true" href="8a5963d0-af62-4426-8aeb-547da883d52d"&gt;データ バインディング&lt;/A&gt; トピックからのコードを開始ポイントにして、&lt;A href="%%ProductAssemblyName%%.Controls.Charts.XamDataChart.v%%ProductVersionShort%%~Infragistics.Controls.Charts.PieChartBase~AllowSliceSelection.html"&gt;AllowSliceSelection&lt;/A&gt; および &lt;A href="%%ProductAssemblyName%%.Controls.Charts.XamDataChart.v%%ProductVersionShort%%~Infragistics.Controls.Charts.PieChartBase~AllowSliceExplosion.html"&gt;AllowSliceExplosion&lt;/A&gt; のプロパティを True に設定して、pieChart_SliceClick をマウス クリックのイベント ハンドラーとして設定して、選択と展開を有効します。&lt;/P&gt;
+&lt;DIV style="DISPLAY: block" id=Example_XAML class=LanguageSpecific&gt;
+&lt;P&gt;&lt;SPAN class=lang&gt;&lt;B&gt;XAML の場合:&lt;/B&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;PRE&gt;&lt;CODE class=code&gt;        &lt;SPAN class=blue&gt;&amp;lt;&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;ig&lt;/SPAN&gt;&lt;SPAN class=blue&gt;:&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;XamPieChart&lt;/SPAN&gt; &lt;SPAN class=red&gt;Name&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="pieChart"&lt;/SPAN&gt;
+                        ...
+                        &lt;SPAN class=red&gt;AllowSliceSelection&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="True"&lt;/SPAN&gt;
+                        &lt;SPAN class=red&gt;AllowSliceExplosion&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="True"&lt;/SPAN&gt;
+                        &lt;SPAN class=red&gt;SliceClick&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="pieChart_SliceClick"&lt;/SPAN&gt;
+                        &lt;SPAN class=blue&gt;/&amp;gt;&lt;/SPAN&gt;
+&lt;/CODE&gt;
+&lt;/PRE&gt;&lt;/DIV&gt;
+&lt;LI&gt;選択したスライスの現在のリストを表示するように TextBlock を構成します。&lt;DIV style="DISPLAY: block" id=Example_XAML class=LanguageSpecific&gt;
+&lt;P&gt;&lt;SPAN class=lang&gt;&lt;B&gt;XAML の場合:&lt;/B&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;PRE&gt;&lt;CODE class=code&gt;        &lt;SPAN class=blue&gt;&amp;lt;&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;TextBlock&lt;/SPAN&gt; &lt;SPAN class=red&gt;Name&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="TextBlockOutput"&lt;/SPAN&gt;
+                   &lt;SPAN class=red&gt;Text&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="Selected Slices:"&lt;/SPAN&gt;
+                   &lt;SPAN class=red&gt;Height&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="300"&lt;/SPAN&gt;
+                   &lt;SPAN class=red&gt;Width&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="100"&lt;/SPAN&gt;
+                   &lt;SPAN class=red&gt;Margin&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="10"&lt;/SPAN&gt;
+                   &lt;SPAN class=red&gt;VerticalAlignment&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="Top"&lt;/SPAN&gt;
+                   &lt;SPAN class=red&gt;HorizontalAlignment&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="Left"&lt;/SPAN&gt;
+                   &lt;SPAN class=blue&gt;/&amp;gt;&lt;/SPAN&gt;
+&lt;/CODE&gt;
+&lt;/PRE&gt;&lt;/DIV&gt;
+&lt;LI&gt;イベント ハンドラーを実装します。&lt;P&gt;SliceClick で、スライスの選択と展開の両方の状態を切り替えます。また、SelectedSlices コレクションを列挙して、すべての現在選択されているスライスのラベル文字列で TextBlock を生成します。&lt;/P&gt;
+&lt;DIV style="DISPLAY: block" id=Example_CS class=LanguageSpecific&gt;
+&lt;P&gt;&lt;SPAN class=lang&gt;&lt;B&gt;C# の場合:&lt;/B&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;PRE&gt;&lt;CODE class=code&gt;        &lt;SPAN class=blue&gt;private&lt;/SPAN&gt; &lt;SPAN class=blue&gt;void&lt;/SPAN&gt; pieChart_SliceClick(&lt;SPAN class=blue&gt;object&lt;/SPAN&gt; sender, Infragistics.Controls.Charts.SliceClickEventArgs e)
+        {
+            e.IsExploded = !e.IsExploded;
+            e.IsSelected = !e.IsSelected;
+            TextBlockOutput.Text = &lt;SPAN class=string&gt;"Selected Slices:"&lt;/SPAN&gt; + Environment.NewLine;
+            &lt;SPAN class=blue&gt;foreach&lt;/SPAN&gt; (&lt;SPAN class=blue&gt;int&lt;/SPAN&gt; index &lt;SPAN class=blue&gt;in&lt;/SPAN&gt; pieChart.SelectedSlices)
+            {
+                &lt;SPAN class=blue&gt;string&lt;/SPAN&gt; label = ((ObservableCollection&amp;lt;DataItem&amp;gt;)pieChart.ItemsSource)[index].Label;
+                TextBlockOutput.Text += label + Environment.NewLine;
+            }
+        }
+&lt;/CODE&gt;
+&lt;/PRE&gt;&lt;/DIV&gt;
+&lt;DIV style="DISPLAY: block" id=Example_VB class=LanguageSpecific&gt;
+&lt;P&gt;&lt;SPAN class=lang&gt;&lt;B&gt;Visual Basic の場合:&lt;/B&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;PRE&gt;&lt;CODE class=code&gt;    &lt;SPAN class=blue&gt;Private&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Sub&lt;/SPAN&gt; pieChart_SliceClick(sender &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Object&lt;/SPAN&gt;, e &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; Infragistics.Controls.Charts.SliceClickEventArgs)            e.IsExploded = &lt;SPAN class=blue&gt;Not&lt;/SPAN&gt; e.IsExploded            e.IsSelected = &lt;SPAN class=blue&gt;Not&lt;/SPAN&gt; e.IsSelected            TextBlockOutput.Text = &lt;SPAN class=string&gt;"Selected Slices:"&lt;/SPAN&gt; &amp; Environment.NewLine            &lt;SPAN class=blue&gt;For&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Each&lt;/SPAN&gt; index &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Integer&lt;/SPAN&gt; &lt;SPAN class=blue&gt;In&lt;/SPAN&gt; pieChart.SelectedSlices                &lt;SPAN class=blue&gt;Dim&lt;/SPAN&gt; label &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; &lt;SPAN class=blue&gt;String&lt;/SPAN&gt; = &lt;SPAN class=blue&gt;DirectCast&lt;/SPAN&gt;(pieChart.ItemsSource, ObservableCollection(Of DataItem))(index).Label                TextBlockOutput.Text += label &amp; Environment.NewLine            &lt;SPAN class=blue&gt;Next&lt;/SPAN&gt;        &lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Sub&lt;/SPAN&gt;
+&lt;/CODE&gt;
+&lt;/PRE&gt;&lt;/DIV&gt;
+&lt;LI&gt;&lt;STRONG&gt;(オプション) 結果を確認します&lt;/STRONG&gt;。&lt;P&gt;結果を検証するために、アプリケーションを実行します。円チャート コントロールは、適切なスライスを選択して外側に展開することで SliceClick イベントに反応します。現在選択されているスライスのリストは、左上角でも保持されます（図 1: 上）。&lt;/P&gt;&lt;/LI&gt;&lt;/OL&gt;
+&lt;H1&gt;&lt;A id=Complete name=Complete&gt;&lt;/A&gt;全コード例&lt;/H1&gt;
+&lt;P&gt;以下は、コンテキストに実装された完全なコード例です。&lt;/P&gt;
+&lt;H1&gt;&lt;A id=View name=View&gt;&lt;/A&gt;表示&lt;/H1&gt;
+&lt;DIV style="DISPLAY: block" id=Example_XAML class=LanguageSpecific&gt;
+&lt;P&gt;&lt;SPAN class=lang&gt;&lt;B&gt;XAML の場合:&lt;/B&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;PRE&gt;&lt;CODE class=code&gt;&lt;SPAN class=blue&gt;&amp;lt;&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;UserControl&lt;/SPAN&gt; &lt;SPAN class=red&gt;x&lt;/SPAN&gt;&lt;SPAN class=blue&gt;:&lt;/SPAN&gt;&lt;SPAN class=red&gt;Class&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="xamPieChart_SelectAndExplode.MainPage"&lt;/SPAN&gt;
+    &lt;SPAN class=red&gt;xmlns&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="http://schemas.microsoft.com/winfx/2006/xaml/presentation"&lt;/SPAN&gt;
+    &lt;SPAN class=red&gt;xmlns&lt;/SPAN&gt;&lt;SPAN class=blue&gt;:&lt;/SPAN&gt;&lt;SPAN class=red&gt;x&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="http://schemas.microsoft.com/winfx/2006/xaml"&lt;/SPAN&gt;
+    &lt;SPAN class=red&gt;xmlns&lt;/SPAN&gt;&lt;SPAN class=blue&gt;:&lt;/SPAN&gt;&lt;SPAN class=red&gt;d&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="http://schemas.microsoft.com/expression/blend/2008"&lt;/SPAN&gt;
+    &lt;SPAN class=red&gt;xmlns&lt;/SPAN&gt;&lt;SPAN class=blue&gt;:&lt;/SPAN&gt;&lt;SPAN class=red&gt;mc&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="http://schemas.openxmlformats.org/markup-compatibility/2006"&lt;/SPAN&gt;
+    &lt;SPAN class=red&gt;xmlns&lt;/SPAN&gt;&lt;SPAN class=blue&gt;:&lt;/SPAN&gt;&lt;SPAN class=red&gt;ig&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="http://schemas.infragistics.com/xaml"&lt;/SPAN&gt;
+    &lt;SPAN style="hs-build-flags: WinPhone" class=hs-buildflag-markup&gt;&lt;SPAN class=red&gt;xmlns&lt;/SPAN&gt;&lt;SPAN class=blue&gt;:&lt;/SPAN&gt;&lt;SPAN class=red&gt;ig&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="clr-namespace:Infragistics.Controls.Charts;assembly=%%ProductAssemblyName%%.Controls.Charts.XamDataChart.v%%ProductVersionShort%%"&lt;/SPAN&gt;&lt;/SPAN&gt;    &lt;SPAN class=red&gt;xmlns&lt;/SPAN&gt;&lt;SPAN class=blue&gt;:&lt;/SPAN&gt;&lt;SPAN class=red&gt;local&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="clr-namespace:xamPieChart_PieOfPie"&lt;/SPAN&gt;
+    &lt;SPAN class=red&gt;mc&lt;/SPAN&gt;&lt;SPAN class=blue&gt;:&lt;/SPAN&gt;&lt;SPAN class=red&gt;Ignorable&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="d"&lt;/SPAN&gt;
+    &lt;SPAN class=red&gt;d&lt;/SPAN&gt;&lt;SPAN class=blue&gt;:&lt;/SPAN&gt;&lt;SPAN class=red&gt;DesignHeight&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="300"&lt;/SPAN&gt; &lt;SPAN class=red&gt;d&lt;/SPAN&gt;&lt;SPAN class=blue&gt;:&lt;/SPAN&gt;&lt;SPAN class=red&gt;DesignWidth&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="400"&lt;/SPAN&gt;&lt;SPAN class=blue&gt;&amp;gt;&lt;/SPAN&gt;
+ 
+    &lt;SPAN class=blue&gt;&amp;lt;&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;Grid&lt;/SPAN&gt; &lt;SPAN class=red&gt;x&lt;/SPAN&gt;&lt;SPAN class=blue&gt;:&lt;/SPAN&gt;&lt;SPAN class=red&gt;Name&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="LayoutRoot"&lt;/SPAN&gt; &lt;SPAN class=red&gt;Background&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="White"&lt;/SPAN&gt;&lt;SPAN class=blue&gt;&amp;gt;&lt;/SPAN&gt;
+        &lt;SPAN class=blue&gt;&amp;lt;&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;Grid.Resources&lt;/SPAN&gt;&lt;SPAN class=blue&gt;&amp;gt;&lt;/SPAN&gt;
+            &lt;SPAN class=blue&gt;&amp;lt;&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;local&lt;/SPAN&gt;&lt;SPAN class=blue&gt;:&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;Data&lt;/SPAN&gt; &lt;SPAN class=red&gt;x&lt;/SPAN&gt;&lt;SPAN class=blue&gt;:&lt;/SPAN&gt;&lt;SPAN class=red&gt;Key&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="data"&lt;/SPAN&gt; &lt;SPAN class=blue&gt;/&amp;gt;&lt;/SPAN&gt;
+        &lt;SPAN class=blue&gt;&amp;lt;/&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;Grid.Resources&lt;/SPAN&gt;&lt;SPAN class=blue&gt;&amp;gt;&lt;/SPAN&gt;
+ 
+        &lt;SPAN class=blue&gt;&amp;lt;&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;ig&lt;/SPAN&gt;&lt;SPAN class=blue&gt;:&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;ItemLegend&lt;/SPAN&gt; &lt;SPAN class=red&gt;Name&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="Legend"&lt;/SPAN&gt;
+                       &lt;SPAN class=red&gt;VerticalAlignment&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="Top"&lt;/SPAN&gt;
+                       &lt;SPAN class=red&gt;HorizontalAlignment&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="Right"&lt;/SPAN&gt;  
+                       &lt;SPAN class=red&gt;Margin&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="10"&lt;/SPAN&gt;
+                       &lt;SPAN class=red&gt;Padding&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="10,5,10,5"&lt;/SPAN&gt;
+                       &lt;SPAN class=blue&gt;/&amp;gt;&lt;/SPAN&gt;
+ 
+        &lt;SPAN class=blue&gt;&amp;lt;&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;ig&lt;/SPAN&gt;&lt;SPAN class=blue&gt;:&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;XamPieChart&lt;/SPAN&gt; &lt;SPAN class=red&gt;Name&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="pieChart"&lt;/SPAN&gt;
+                        &lt;SPAN class=red&gt;ItemsSource&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="{&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;StaticResource&lt;/SPAN&gt; &lt;SPAN class=red&gt;data&lt;/SPAN&gt;&lt;SPAN class=blue&gt;}"&lt;/SPAN&gt;
+                        &lt;SPAN class=red&gt;LabelMemberPath&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="Label"&lt;/SPAN&gt;
+                        &lt;SPAN class=red&gt;ValueMemberPath&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="Value"&lt;/SPAN&gt;
+                        &lt;SPAN class=red&gt;ToolTip&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="{&lt;/SPAN&gt;}{Label&lt;SPAN class=blue&gt;}"&lt;/SPAN&gt;
+                        &lt;SPAN class=red&gt;LabelsPosition&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="BestFit"&lt;/SPAN&gt;
+                        &lt;SPAN class=red&gt;Legend&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="{&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;Binding&lt;/SPAN&gt; &lt;SPAN class=red&gt;ElementName&lt;/SPAN&gt;&lt;SPAN class=blue&gt;=Legend&lt;/SPAN&gt;&lt;SPAN class=blue&gt;}"&lt;/SPAN&gt;
+                        &lt;SPAN class=red&gt;AllowSliceSelection&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="True"&lt;/SPAN&gt;
+                        &lt;SPAN class=red&gt;AllowSliceExplosion&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="True"&lt;/SPAN&gt;
+                        &lt;SPAN class=red&gt;SliceClick&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="pieChart_SliceClick"&lt;/SPAN&gt;
+                        &lt;SPAN class=blue&gt;/&amp;gt;&lt;/SPAN&gt;
+        
+        &lt;SPAN class=blue&gt;&amp;lt;&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;TextBlock&lt;/SPAN&gt; &lt;SPAN class=red&gt;Name&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="TextBlockOutput"&lt;/SPAN&gt;
+                   &lt;SPAN class=red&gt;Text&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="Selected Slices:"&lt;/SPAN&gt;
+                   &lt;SPAN class=red&gt;Height&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="300"&lt;/SPAN&gt;
+                   &lt;SPAN class=red&gt;Width&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="100"&lt;/SPAN&gt;
+                   &lt;SPAN class=red&gt;Margin&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="10"&lt;/SPAN&gt;
+                   &lt;SPAN class=red&gt;VerticalAlignment&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="Top"&lt;/SPAN&gt;
+                   &lt;SPAN class=red&gt;HorizontalAlignment&lt;/SPAN&gt;&lt;SPAN class=blue&gt;="Left"&lt;/SPAN&gt;
+                   &lt;SPAN class=blue&gt;/&amp;gt;&lt;/SPAN&gt;
+    &lt;SPAN class=blue&gt;&amp;lt;/&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;Grid&lt;/SPAN&gt;&lt;SPAN class=blue&gt;&amp;gt;&lt;/SPAN&gt;
+&lt;SPAN class=blue&gt;&amp;lt;/&lt;/SPAN&gt;&lt;SPAN class=brownish&gt;UserControl&lt;/SPAN&gt;&lt;SPAN class=blue&gt;&amp;gt;&lt;/SPAN&gt;
+
+&lt;/CODE&gt;
+&lt;/PRE&gt;&lt;/DIV&gt;
+&lt;H1&gt;&lt;A id=CodeBehind name=CodeBehind&gt;&lt;/A&gt;コード ビハインド&lt;/H1&gt;
+&lt;DIV style="DISPLAY: block" id=Example_CS class=LanguageSpecific&gt;
+&lt;P&gt;&lt;SPAN class=lang&gt;&lt;B&gt;C# の場合:&lt;/B&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;PRE&gt;&lt;CODE class=code&gt;&lt;SPAN class=blue&gt;using&lt;/SPAN&gt; System;
+&lt;SPAN class=blue&gt;using&lt;/SPAN&gt; System.Collections.ObjectModel;
+&lt;SPAN class=blue&gt;using&lt;/SPAN&gt; System.Windows.Controls;
+ 
+&lt;SPAN class=blue&gt;namespace&lt;/SPAN&gt; xamPieChart_SelectAndExplode
+{
+    &lt;SPAN class=blue&gt;public&lt;/SPAN&gt; &lt;SPAN class=blue&gt;partial&lt;/SPAN&gt; &lt;SPAN class=blue&gt;class&lt;/SPAN&gt; MainPage : UserControl
+    {
+        &lt;SPAN class=blue&gt;public&lt;/SPAN&gt; MainPage()
+        {
+            InitializeComponent();
+        }
+ 
+        &lt;SPAN class=blue&gt;private&lt;/SPAN&gt; &lt;SPAN class=blue&gt;void&lt;/SPAN&gt; pieChart_SliceClick(&lt;SPAN class=blue&gt;object&lt;/SPAN&gt; sender, Infragistics.Controls.Charts.SliceClickEventArgs e)
+        {
+            e.IsExploded = !e.IsExploded;
+            e.IsSelected = !e.IsSelected;
+            TextBlockOutput.Text = &lt;SPAN class=string&gt;"Selected Slices:"&lt;/SPAN&gt; + Environment.NewLine;
+            &lt;SPAN class=blue&gt;foreach&lt;/SPAN&gt; (&lt;SPAN class=blue&gt;int&lt;/SPAN&gt; index &lt;SPAN class=blue&gt;in&lt;/SPAN&gt; pieChart.SelectedSlices)
+            {
+                &lt;SPAN class=blue&gt;string&lt;/SPAN&gt; label = ((ObservableCollection&amp;lt;DataItem&amp;gt;)pieChart.ItemsSource)[index].Label;
+                TextBlockOutput.Text += label + Environment.NewLine;
+            }
+        }
+    }
+ 
+    &lt;SPAN class=blue&gt;public&lt;/SPAN&gt; &lt;SPAN class=blue&gt;class&lt;/SPAN&gt; DataItem
+    {
+        &lt;SPAN class=blue&gt;public&lt;/SPAN&gt; &lt;SPAN class=blue&gt;string&lt;/SPAN&gt; Label { get; set; }
+        &lt;SPAN class=blue&gt;public&lt;/SPAN&gt; &lt;SPAN class=blue&gt;double&lt;/SPAN&gt; Value { get; set; }
+    }
+ 
+    &lt;SPAN class=blue&gt;public&lt;/SPAN&gt; &lt;SPAN class=blue&gt;class&lt;/SPAN&gt; Data : ObservableCollection&amp;lt;DataItem&amp;gt;
+    {
+        &lt;SPAN class=blue&gt;public&lt;/SPAN&gt; Data()
+        {
+            Add(&lt;SPAN class=blue&gt;new&lt;/SPAN&gt; DataItem { Label = &lt;SPAN class=string&gt;"Item 1"&lt;/SPAN&gt;, Value = 5 });
+            Add(&lt;SPAN class=blue&gt;new&lt;/SPAN&gt; DataItem { Label = &lt;SPAN class=string&gt;"Item 2"&lt;/SPAN&gt;, Value = 6 });
+            Add(&lt;SPAN class=blue&gt;new&lt;/SPAN&gt; DataItem { Label = &lt;SPAN class=string&gt;"Item 3"&lt;/SPAN&gt;, Value = 3 });
+            Add(&lt;SPAN class=blue&gt;new&lt;/SPAN&gt; DataItem { Label = &lt;SPAN class=string&gt;"Item 4"&lt;/SPAN&gt;, Value = 7 });
+            Add(&lt;SPAN class=blue&gt;new&lt;/SPAN&gt; DataItem { Label = &lt;SPAN class=string&gt;"Item 5"&lt;/SPAN&gt;, Value = 5 });
+        }
+    }
+}
+
+&lt;/CODE&gt;
+&lt;/PRE&gt;&lt;/DIV&gt;
+&lt;DIV style="DISPLAY: block" id=Example_VB class=LanguageSpecific&gt;
+&lt;P&gt;&lt;SPAN class=lang&gt;&lt;B&gt;Visual Basic の場合:&lt;/B&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;PRE&gt;&lt;CODE class=code&gt;&lt;SPAN class=blue&gt;Imports&lt;/SPAN&gt; System
+&lt;SPAN class=blue&gt;Imports&lt;/SPAN&gt; System.Collections.ObjectModel
+&lt;SPAN class=blue&gt;Imports&lt;/SPAN&gt; System.Windows.Controls
+
+&lt;SPAN class=blue&gt;Namespace&lt;/SPAN&gt; xamPieChart_SelectAndExplode
+    &lt;SPAN class=blue&gt;Public&lt;/SPAN&gt; Partial &lt;SPAN class=blue&gt;Class&lt;/SPAN&gt; MainPage
+        &lt;SPAN class=blue&gt;Inherits&lt;/SPAN&gt; UserControl
+        &lt;SPAN class=blue&gt;Public&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Sub&lt;/SPAN&gt; &lt;SPAN class=blue&gt;New&lt;/SPAN&gt;()
+            InitializeComponent()
+        &lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Sub&lt;/SPAN&gt;
+
+        &lt;SPAN class=blue&gt;Private&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Sub&lt;/SPAN&gt; pieChart_SliceClick(sender &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Object&lt;/SPAN&gt;, e &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; Infragistics.Controls.Charts.SliceClickEventArgs)
+            e.IsExploded = &lt;SPAN class=blue&gt;Not&lt;/SPAN&gt; e.IsExploded
+            e.IsSelected = &lt;SPAN class=blue&gt;Not&lt;/SPAN&gt; e.IsSelected
+            TextBlockOutput.Text = &lt;SPAN class=string&gt;"Selected Slices:"&lt;/SPAN&gt; &amp; Environment.NewLine
+            &lt;SPAN class=blue&gt;For&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Each&lt;/SPAN&gt; index &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Integer&lt;/SPAN&gt; &lt;SPAN class=blue&gt;In&lt;/SPAN&gt; pieChart.SelectedSlices
+                &lt;SPAN class=blue&gt;Dim&lt;/SPAN&gt; label &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; &lt;SPAN class=blue&gt;String&lt;/SPAN&gt; = &lt;SPAN class=blue&gt;DirectCast&lt;/SPAN&gt;(pieChart.ItemsSource, ObservableCollection(Of DataItem))(index).Label
+                TextBlockOutput.Text += label &amp; Environment.NewLine
+            &lt;SPAN class=blue&gt;Next&lt;/SPAN&gt;
+        &lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Sub&lt;/SPAN&gt;
+    &lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Class&lt;/SPAN&gt;
+
+    &lt;SPAN class=blue&gt;Public&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Class&lt;/SPAN&gt; DataItem
+        &lt;SPAN class=blue&gt;Public&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Property&lt;/SPAN&gt; Label() &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; &lt;SPAN class=blue&gt;String&lt;/SPAN&gt;
+            &lt;SPAN class=blue&gt;Get&lt;/SPAN&gt;
+                &lt;SPAN class=blue&gt;Return&lt;/SPAN&gt; m_Label
+            &lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Get&lt;/SPAN&gt;
+            &lt;SPAN class=blue&gt;Set&lt;/SPAN&gt;
+                m_Label = Value
+            &lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Set&lt;/SPAN&gt;
+        &lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Property&lt;/SPAN&gt;
+        &lt;SPAN class=blue&gt;Private&lt;/SPAN&gt; m_Label &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; &lt;SPAN class=blue&gt;String&lt;/SPAN&gt;
+        &lt;SPAN class=blue&gt;Public&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Property&lt;/SPAN&gt; Value() &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Double&lt;/SPAN&gt;
+            &lt;SPAN class=blue&gt;Get&lt;/SPAN&gt;
+                &lt;SPAN class=blue&gt;Return&lt;/SPAN&gt; m_Value
+            &lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Get&lt;/SPAN&gt;
+            &lt;SPAN class=blue&gt;Set&lt;/SPAN&gt;
+                m_Value = Value
+            &lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Set&lt;/SPAN&gt;
+        &lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Property&lt;/SPAN&gt;
+        &lt;SPAN class=blue&gt;Private&lt;/SPAN&gt; m_Value &lt;SPAN class=blue&gt;As&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Double&lt;/SPAN&gt;
+    &lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Class&lt;/SPAN&gt;
+
+    &lt;SPAN class=blue&gt;Public&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Class&lt;/SPAN&gt; Data
+        &lt;SPAN class=blue&gt;Inherits&lt;/SPAN&gt; ObservableCollection(Of DataItem)
+        &lt;SPAN class=blue&gt;Public&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Sub&lt;/SPAN&gt; &lt;SPAN class=blue&gt;New&lt;/SPAN&gt;()
+            Add(&lt;SPAN class=blue&gt;New&lt;/SPAN&gt; DataItem() &lt;SPAN class=blue&gt;With&lt;/SPAN&gt; { _
+                Key .Label = &lt;SPAN class=string&gt;"Item 1"&lt;/SPAN&gt;, _
+                Key .Value = 5 _
+            })
+            Add(&lt;SPAN class=blue&gt;New&lt;/SPAN&gt; DataItem() &lt;SPAN class=blue&gt;With&lt;/SPAN&gt; { _
+                Key .Label = &lt;SPAN class=string&gt;"Item 2"&lt;/SPAN&gt;, _
+                Key .Value = 6 _
+            })
+            Add(&lt;SPAN class=blue&gt;New&lt;/SPAN&gt; DataItem() &lt;SPAN class=blue&gt;With&lt;/SPAN&gt; { _
+                Key .Label = &lt;SPAN class=string&gt;"Item 3"&lt;/SPAN&gt;, _
+                Key .Value = 3 _
+            })
+            Add(&lt;SPAN class=blue&gt;New&lt;/SPAN&gt; DataItem() &lt;SPAN class=blue&gt;With&lt;/SPAN&gt; { _
+                Key .Label = &lt;SPAN class=string&gt;"Item 4"&lt;/SPAN&gt;, _
+                Key .Value = 7 _
+            })
+            Add(&lt;SPAN class=blue&gt;New&lt;/SPAN&gt; DataItem() &lt;SPAN class=blue&gt;With&lt;/SPAN&gt; { _
+                Key .Label = &lt;SPAN class=string&gt;"Item 5"&lt;/SPAN&gt;, _
+                Key .Value = 5 _
+            })
+        &lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Sub&lt;/SPAN&gt;
+    &lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Class&lt;/SPAN&gt;
+&lt;SPAN class=blue&gt;End&lt;/SPAN&gt; &lt;SPAN class=blue&gt;Namespace&lt;/SPAN&gt;
+&lt;/CODE&gt;
+&lt;/PRE&gt;&lt;/DIV&gt;
+&lt;H1&gt;&lt;A id=RelatedTopics name=RelatedTopics&gt;&lt;/A&gt;関連トピック&lt;/H1&gt;
+&lt;UL&gt;
+&lt;LI&gt;&lt;A style="auto-update-caption: true" href="8a5963d0-af62-4426-8aeb-547da883d52d"&gt;データ バインディング&lt;/A&gt;&lt;LI&gt;&lt;A style="auto-update-caption: true" href="5b5ba0e9-953a-4a6c-84d3-0a4d1641c57b"&gt;その他の分類項目&lt;/A&gt;&lt;/LI&gt;&lt;/UL&gt;</topicsection>
+</topic>

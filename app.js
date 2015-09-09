@@ -17,7 +17,7 @@ fs.readFile(fullPath, 'utf8', function(error, content){
 var parser = require('./modules/docXParser');
 var fs = require('fs');
 var path = require('path');
-var fullPath = path.join(__dirname, './spec/data/src/bad-file.xml');
+var fullPath = path.join(__dirname, './spec/data/src/0bf844e0-0b36-491d-b434-951a18aa3e1c.ja-JP.xml');
 
 fs.readFile(fullPath, 'utf8', function(error, xml){
 	parser.parse(xml, fullPath, function(err, document){

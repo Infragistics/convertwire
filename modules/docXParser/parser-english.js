@@ -1,9 +1,12 @@
 (function(module){
 	
 	var _ = require('lodash');
+	var utils = require('./utils.js');
 
-	module.parse = function(obj, htmlDocument, getValue, listToArray){
-		var markup;
+	module.parse = function(obj, filePath, callback){
+		var markup, htmlDocument;
+		
+		htmlDocument = utils.createHtmlDocument();
 		
 		if(!_.isUndefined(obj.Topic.Title) && !_.isUndefined(obj.Topic.Title._)){
 			htmlDocument.title = obj.Topic.Title._.trim();
@@ -20,7 +23,7 @@
 		if(_.isArray(defs) && defs.length >= 1){
 			var tagsList = defs[0].PropertyValue._;
 			if(!_.isUndefined(tagsList)) {
-				htmlDocument.tags = listToArray(tagsList, ',');
+				htmlDocument.tags = utils.listToArray(tagsList, ',');
 			}
 		}
 		
@@ -32,18 +35,18 @@
 		}
 		
 		if(!_.isUndefined(obj.Topic.$.Id)) {
-			htmlDocument.docXGuid = getValue(obj.Topic.$.Id);
+			htmlDocument.docXGuid = utils.getValue(obj.Topic.$.Id);
 		}
 		
 		if(!_.isUndefined(obj.Topic.$.Name)) {
-			htmlDocument.name = getValue(obj.Topic.$.Name);
+			htmlDocument.name = utils.getValue(obj.Topic.$.Name);
 		}
 		
 		if(!_.isUndefined(obj.Topic.$.BuildFlags)) {
-			htmlDocument.buildFlags = listToArray(obj.Topic.$.BuildFlags, ',');
+			htmlDocument.buildFlags = utils.listToArray(obj.Topic.$.BuildFlags, ',');
 		}
 		
-		return htmlDocument;
+		callback(null, htmlDocument);
 		
 	};
 	
