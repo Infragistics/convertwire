@@ -13,11 +13,12 @@ fs.readFile(fullPath, 'utf8', function(error, content){
 }); 
 // */
 
-//* parser
+/* parser
 var parser = require('./modules/docXParser');
+var unmapper = require('./modules/unmapper');
 var fs = require('fs');
 var path = require('path');
-var fullPath = path.join(__dirname, './spec/data/src/0bf844e0-0b36-491d-b434-951a18aa3e1c.ja-JP.xml');
+var fullPath = path.join(__dirname, './spec/data/src/4fb63863-ed39-497c-a8eb-9cb0b17e16cd.xml');
 
 fs.readFile(fullPath, 'utf8', function(error, xml){
 	parser.parse(xml, fullPath, function(err, document){
@@ -27,6 +28,8 @@ fs.readFile(fullPath, 'utf8', function(error, xml){
 		
 		if(document){
 			var html = parser.toHtml(document);
+			var unmappedMarkup = unmapper.unmap(html);
+			console.log(unmappedMarkup);
 		}
 	});	
 }); 
@@ -50,3 +53,26 @@ logger.log('test', null, null, function(err){
 });
 
 // */
+
+//* unmapper
+//4fb63863-ed39-497c-a8eb-9cb0b17e16cd
+var parser = require('./modules/docXParser');
+var unmapper = require('./modules/unmapper');
+var fs = require('fs');
+var path = require('path');
+var fullPath = path.join(__dirname, './spec/data/src/4fb63863-ed39-497c-a8eb-9cb0b17e16cd.xml');
+
+fs.readFile(fullPath, 'utf8', function(error, xml){
+	parser.parse(xml, fullPath, function(err, document){
+		if(err) {
+			console.log(err)
+		}
+		
+		if(document){
+			var html = parser.toHtml(document);
+			var unmappedMarkup = unmapper.unmap(html);
+			console.log(unmappedMarkup);
+		}
+	});	
+}); 
+//*/

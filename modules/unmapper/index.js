@@ -106,19 +106,31 @@
         },
 
         relatedContent: function () {
-            var selector = 'th:contains("Topic"), th:contains("Sample")';
+            var selector = 'th:contains("Topic"), th:contains("Sample"), th:contains("Samples")';
             var $tables = $(selector).parents('table');
             var $tbodys = $(selector).parents('tbody');
 
             var parse = function (rowIndex, row, isFirst, isLast, cb) {
+                var children, header, content, markup, anchors;
 
                 if (isFirst) {
                     cb('<ul>');
                 } else {
-                    var children = $(row).children();
-                    var header = $(children[0]).find('a')[0].outerHTML;
-                    var content = $(children[1]).text();
-                    var markup = '';
+                    
+                    children = $(row).children();
+                    
+                    if(children.length >= 0){
+                        anchors = $(children[0]).find('a');
+                        if(anchors.length > 0){
+                            header = anchors[0].outerHTML
+                        }
+                    }
+                    
+                    if(children.length >= 1){
+                        content = $(children[1]).text();
+                    }
+                    
+                    markup = '';
 
                     if(header){
                         header = header.replace('<strong>', '');

@@ -34,6 +34,15 @@ gulp.task('asciidoc', function(callback) {
     });
 });
 
+gulp.task('html-only', function() {
+  return gulp.src('./spec/data/src/*.xml')
+    .pipe(docx2html())
+    .pipe(rename(function(path){
+      path.extname = '.html';
+    }))
+    .pipe(gulp.dest('./spec/data/dest'));
+});
+
 gulp.task('html', function() {
   return gulp.src('./spec/data/src/*.xml')
     .pipe(docx2html())
