@@ -1,12 +1,12 @@
 == Related Topics
 
-ifdef::XAM_XF_EX+ANDROID+WINFORMS[]
+ifdef::xam_xf_ex,android,winforms[]
 *   link:9a664e4b-d479-424c-a3cf-d7d051ff0788[Scatter Bubble Series]
-endif::XAM_XF_EX+ANDROID+WINFORMS[]
+endif::xam_xf_ex,android,winforms[]
 
-ifdef::XAM_XF_EX[]
+ifdef::xam_xf_ex[]
 *   link:128868e3-9616-4bfc-a660-fe8cdfa19293[High Density Scatter Series]
-endif::XAM_XF_EX[]
+endif::xam_xf_ex[]
 
 *   link:a3dde4c0-c34f-4561-90fa-0f9f010ca3e4[Adding Multiple Series]
 *   link:ef9a7c2d-a9c4-49d0-b6d9-c2ab9c00df50[Series Requirements]

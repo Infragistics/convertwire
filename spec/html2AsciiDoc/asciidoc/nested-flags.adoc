@@ -1,5 +1,5 @@
-ifdef::XAMARIN[]
+ifdef::xamarin[]
 *   Add the following Infragistics assemblies to the *SampleApp.WinPhone* project:
 *   %%AssemblyPlatform%%Controls.Charts.%%AssemblyVersion%%WP.dll
 *   %%AssemblyPlatform%%%%AssemblyVersion%%WP.dll
-endif::XAMARIN[]
+endif::xamarin[]

@@ -34,7 +34,7 @@
 		var returnValue, flags, isElementThatNeedsPick;
 		
 		returnValue = content;
-		flags = node.style.hsBuildFlags;
+		flags = node.style.hsBuildFlags.toLowerCase();
 			
 		isElementThatNeedsPick = function(){
 			return pickTags.indexOf(node.nodeName.toLowerCase()) >= 0;
@@ -43,10 +43,9 @@
 		if(flags.length > 0) {
 			
 			if(isElementThatNeedsPick()){
-				flags = flags.replace(/,/g, '.target-');
-				returnValue = 'pick:[target-' + flags + '="' + content + '"]';	
+				flags = flags.replace(/,/g, '.');
+				returnValue = 'pick:[' + flags + '="' + content + '"]';	
 			} else {
-				flags = flags.replace(/,/g, '+');
 				returnValue = '\n\nifdef::' + flags +'[]'
 				returnValue += (_.startsWith(content, '\n'))? '' : '\n';
 				returnValue += content + '\n';
