@@ -143,7 +143,14 @@ describe('docXParser', function(){
 			it('extracts topic control name', function(){
 				topics.forEach(function(topic, index){
 					var testData = config.topicData[topic.docXGuid];
-					expect(topic.controlName).toEqual(testData.controlName);
+					var areEqual = _.isEqual(topic.controlName, testData.controlName);
+					if(!areEqual){
+						console.log('-----');
+						console.log(topic.controlName);
+						console.log(testData.controlName);
+						console.log('-----');
+					}
+					expect(areEqual).toBe(true);
 				});
 			});
 			

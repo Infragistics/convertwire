@@ -17,7 +17,7 @@
 				en: '<p>This section lists each namespace that is relevant to the',
 				jp: '<P>このセクションは、'
 			},
-			controlName: 'xamDataChart',
+			controlName: ['xamDataChart'],
 			tags: ['API','Charting'],
 			buildFlags: []
 		},
@@ -51,7 +51,7 @@
 				en: '<P>This topic demonstrates how to implement the selection and',
 				jp: '<P>このトピックは、'
 			},
-			controlName: 'xamPieChart',
+			controlName: ['xamPieChart'],
 			tags: ['Charting','Data Presentation','How Do I'],
 			buildFlags: ['SL','WPF','WinPhone'] 
 		},
@@ -68,7 +68,7 @@
 				en: '<p>This topic introduces series inheritance feature of the',
 				jp: '<P>このトピックは、'
 			},
-			controlName: 'xamDataChart',
+			controlName: ['xamDataChart'],
 			tags: ['Charting','Data Presentation','Getting Started','How Do I'],
 			buildFlags: ['SL','WPF','WINRT'] 
 		}

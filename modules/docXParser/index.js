@@ -24,7 +24,7 @@
 "|metadata|\n" +
 "{\n" +
 "    \"name\": \"" + htmlDocument.name + "\",\n" +
-"    \"controlName\": \"" + htmlDocument.controlName + "\",\n" +
+"    \"controlName\": [" + arrayToString(htmlDocument.controlName) + "],\n" +
 "    \"tags\": [" + arrayToString(htmlDocument.tags) + "],\n" +
 "    \"docXGuid\": \"" + htmlDocument.docXGuid + "\",\n" +
 "    \"title\": \"" + htmlDocument.title + "\",\n" +

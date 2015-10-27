@@ -30,7 +30,7 @@
 		if(_.isArray(defs) && defs.length >= 2){
 			var controlName = defs[1].PropertyValue._;
 			if(!_.isUndefined(controlName)){
-				htmlDocument.controlName = controlName.trim();
+				htmlDocument.controlName = utils.listToArray(controlName.trim(), ',');
 			}
 		}
 		
