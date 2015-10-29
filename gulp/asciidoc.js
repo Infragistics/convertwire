@@ -73,32 +73,13 @@ module.exports.load = function(gulp){
                 .demand(['username', 'password', 'productOrControlName'])
                 .argv;
                 
-    var Firebase = require('firebase');
-    var fb = new Firebase('http://ig-topics.firebaseio.com');
-    
-    var docs = fb.child('documents/' + args.productOrControlName);
-    
-    fb.authWithPassword({
-      email: args.username,
-      password: args.password
-    }, function (error, authData) {
-      if (error) {
-        console.log('Login Failed!', error);
-      } else {
-        console.log('** Authenticated successfully **');
-        
-          console.log('Attempting to access Firebase data...');
-    
-          docs.once('value', function(snap){
-            remoteData = snap.val();
-            
-            console.log(Object.keys(remoteData).length + ' names loaded');
-            console.log('Starting AsciiDoc conversion...');
-            
-            return gulp.start('asciidoc-conversion');
-          });
-      }
+    var repository = require('../modules/firebaseRepository');  
+    repository.get(args.username, args.password, args.productOrControlName, function(snap){
+      remoteData = snap.val();            
+      console.log(Object.keys(remoteData).length + ' names loaded');
+      console.log('Starting AsciiDoc conversion...');
+      
+      return gulp.start('asciidoc-conversion');
     });
   });
-
 };
