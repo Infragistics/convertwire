@@ -7,6 +7,7 @@ var docx2html = require('../tasks/gulp-docx2html.js');
 var unmapper = require('../tasks/gulp-unmapper.js');
 var sourceFormatter = require('../tasks/gulp-sourceFormatter.js');
 var html2AsciiDoc = require('../tasks/gulp-html2AsciiDoc.js');
+var replaceGUIDs = require('../tasks/gulp-replaceGUIDs.js');
 var logger = require('../modules/logger');
 
 var remoteData = {};
@@ -25,6 +26,7 @@ module.exports.load = function(gulp){
       .pipe(unmapper())
       .pipe(sourceFormatter())
       .pipe(html2AsciiDoc())
+      .pipe(replaceGUIDs(remoteData))
       .pipe(rename(function(path){
         path.extname = '.adoc';
       }))
@@ -47,6 +49,7 @@ module.exports.load = function(gulp){
       .pipe(unmapper())
       .pipe(sourceFormatter())
       .pipe(html2AsciiDoc())
+      .pipe(replaceGUIDs(remoteData))
       .pipe(rename(function(path){
         path.extname = '.adoc';
         var isJP = path.basename.indexOf('.ja-JP') > -1;
