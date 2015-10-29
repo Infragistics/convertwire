@@ -15,7 +15,7 @@ module.read = function(relativePath){
 	};
 	
 	files.forEach(function(fileName){
-		var contents, parts, metadata;
+		var contents, parts, metadata, name;
 		
 		contents = fs.readFileSync(path.join(rootPath, fileName), 'utf8');
 		parts = contents.split('|metadata|');
@@ -24,11 +24,13 @@ module.read = function(relativePath){
 		fileName = fileName
 					.replace(/.adoc/i, '')
 					.replace(/.ja-JP/i, '-ja-JP');
+					
+		name = metadata.name.toLowerCase().replace(/_/g, '-');
 		
 		if(value.documents[fileName] !== undefined){
-			value.duplicates[fileName] = metadata.name;
+			value.duplicates[fileName] = name;
 		} else {
-			value.documents[fileName] = metadata.name;
+			value.documents[fileName] = name;
 		}
 	});
 	

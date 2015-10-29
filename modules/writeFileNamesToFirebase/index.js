@@ -19,13 +19,13 @@ fb.authWithPassword({
 		console.log('Login Failed!', error);
 	} else {
 		console.log('Authenticated successfully');
+		
+		var extractFileName = require(path.resolve(__dirname, '../extractFileName'));
+		var value = extractFileName.read(relativePathToAsciiDocFiles);
+		
+		var docs = fb.child('documents/' + productOrControlName);
+		docs.set(value.documents, function(err, status){
+			console.log('File names loaded into Firebase.');
+		});
 	}
-});
-
-var extractFileName = require(path.resolve(__dirname, '../extractFileName'));
-var value = extractFileName.read(relativePathToAsciiDocFiles);
-
-var docs = fb.child('documents/' + productOrControlName);
-docs.set(value.documents, function(err, status){
-	console.log('File names loaded into Firebase.');
 });
