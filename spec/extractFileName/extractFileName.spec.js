@@ -14,7 +14,7 @@ describe('extractFileName', function(){
 		});
 		
 		it('has documents', function(){
-			expect(Object.keys(documents).length).toBeGreaterThan(1);
+			expect(Object.keys(documents).length).toBeGreaterThan(0);
 		});
 		
 	});
