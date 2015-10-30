@@ -15,7 +15,7 @@
 			return match;
 		},
 		replacement: function (content, node) {
-			var id, language, parts, prefix;
+			var id, language, parts, prefix, value;
 			
 			id = node.parentNode.id;
 			language = (id.length > 0) ? id : '';
@@ -26,8 +26,16 @@
 				language = (parts.length > 1) ? parts[1].toLowerCase() : language;
 				prefix = '[source,' + mapper.map(language) + ']\n';
 			}
+				
+			value = prefix + '----\n' + node.textContent + '----';
 			
-			return '\n\n' + prefix + '----\n' + node.textContent + '----\n\n';
+			if(buildFlags.hasDocXBuildFlags(node)){
+				value = buildFlags.wrapWithBuildFlags(value, node);
+			} else {
+				value = '\n\n' + value + '\n\n';
+			}
+			
+			return value;
 		}
 	}
 	
@@ -42,8 +50,18 @@
 			return match;
 		},
 		replacement: function (content, node) {
-			var language = node.parentNode.className.match(highlightRegEx)[1];
-			return '\n\n[source,' + language + ']\n----' + node.textContent + '\n----\n\n';
+			var language, value;
+			
+			language = node.parentNode.className.match(highlightRegEx)[1];
+			value = '[source,' + language + ']\n----' + node.textContent + '\n----';
+			
+			if(buildFlags.hasDocXBuildFlags(node)){
+				value = buildFlags.wrapWithBuildFlags(value, node);
+			} else {
+				value = '\n\n' + value + '\n\n';
+			}
+			
+			return value;
 		}
 	};
 
@@ -58,8 +76,18 @@
 			return match;
 		},
 		replacement: function (content, node) {
+			var language, value;
+			
 			var language = node.parentNode.className.match(highlightRegEx)[1];
-			return '\n\n[source,' + language + ']\n----' + node.textContent + '----\n\n';
+			value = '[source,' + language + ']\n----' + node.textContent + '----';
+			
+			if(buildFlags.hasDocXBuildFlags(node)){
+				value = buildFlags.wrapWithBuildFlags(value, node);
+			} else {
+				value = '\n\n' + value + '\n\n';
+			}
+			
+			return value;
 		}
 	}
 	
