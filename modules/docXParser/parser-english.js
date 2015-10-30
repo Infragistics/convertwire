@@ -14,7 +14,12 @@
 		
 		if(!_.isUndefined(obj.Topic.TopicSections.TopicSection.Content._)){
 			markup = obj.Topic.TopicSections.TopicSection.Content._;
-			markup = markup.replace(/&nbsp;/, ' ');
+			markup = markup.replace(/&nbsp;/g, ' ');
+			
+			// some topics have duplicate style attributes
+			// this removes a common duplicate instance
+			markup = markup.replace(/style=\"display:( )?block(;)?\"/g, '');
+			
 			htmlDocument.markup = markup;
 		}
 		

@@ -1,0 +1,102 @@
+<html>
+    <head>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.js"></script>
+    </head>
+    <body>
+        
+<div id="docX-root">
+
+<div class="LanguageSpecific" id="Example_XAML" style="hs-build-flags: SL,WPF,WinPhone,WinRT">
+    <p><span class="lang"><b>In XAML:</b></span></p>
+    <pre><code class="code"><font color="blue">&lt;</font><span class="brownish">ig</span><span class="blue">:</span><span class="brownish">XamDataChart </span><span class="red">x</span><span class="blue">:</span><span class="red">Name</span><span class="blue">=&quot;DataChart&quot;</span><span class="blue">&gt;</span>
+    <span class="blue">&lt;</span><span class="brownish">ig</span><span class="blue">:</span><span class="brownish">XamDataChart.Series</span><span class="blue">&gt;</span>
+        <span class="blue">&lt;</span><span class="brownish">ig</span><span class="blue">:</span><span class="brownish">FinancialPriceSeries</span> 
+            <span class="red">TrendLineType</span><span class="blue">=&quot;WeightedAverage&quot;</span>
+            <span class="red">TrendLinePeriod</span><span class="blue">=&quot;10&quot;</span> <span class="blue">&gt;</span>
+        <span class="blue">&lt;/</span><span class="brownish">ig</span><span class="blue">:</span><span class="brownish">FinancialPriceSeries</span><span class="blue">&gt;</span>
+    <span class="blue">&lt;/</span><span class="brownish">ig</span><span class="blue">:</span><span class="brownish">XamDataChart.Series</span><span class="blue">&gt;</span>
+<span class="blue">&lt;/</span><span class="brownish">ig</span><span class="blue">:</span><span class="brownish">XamDataChart</span><span class="blue">&gt;</span></code>
+</pre>
+</div>
+
+<hr>
+
+<div class="LanguageSpecific" id="Example_VB">
+    <p><span class="lang"><b>In Visual Basic:</b></span></p>
+    <pre><code class="code"><span class="comment">&apos; create financial price series with a trend line</span>
+<span class="blue">Dim</span> series <span class="blue">As</span> <span class="blue">New</span> FinancialPriceSeries()
+<span class="comment">&apos; ...</span>
+series.TrendLineType = TrendLineType.WeightedAverage
+series.TrendLinePeriod = 10
+<span class="comment">&apos; add a series to the chart</span></code><br><code class="code">DataChart.Series.Add(series)</code>
+</pre>
+</div>
+
+<hr>
+
+<div class="LanguageSpecific" id="Example_CS">
+    <p><span class="lang"><b>In C#:</b></span></p>
+    <pre><code class="code"><span class="comment">// create financial price series with a trend line</span>
+var series = <span class="blue">new</span> FinancialPriceSeries();
+<span class="comment">// ...</span>
+series.TrendLineType = TrendLineType.WeightedAverage;
+series.TrendLinePeriod = 10;
+<span class="comment">// add a series to the chart</span>
+DataChart.Series.Add(series);</code>
+</pre>
+</div>
+
+<hr>
+
+<div class="LanguageSpecific" id="Example_XAML" style="hs-build-flags: SL,WPF,WinPhone,WinRT">
+    <p><span class="lang"><b>In XAML:</b></span></p>
+    <pre><code class="code"><font color="blue">&lt;</font><span class="brownish">ig</span><span class="blue">:</span><span class="brownish">XamDataChart</span> <span class="red">x</span><span class="blue">:</span><span class="red">Name</span><span class="blue">=&quot;DataChart&quot;</span><span class="blue">&gt;</span>
+    <span class="blue">&lt;</span><span class="brownish">ig</span><span class="blue">:</span><span class="brownish">XamDataChart.Series</span><span class="blue">&gt;</span>
+        <span class="blue">&lt;</span><span class="brownish">ig</span><span class="blue">:</span><span class="brownish">FinancialPriceSeries</span> 
+            <span class="red">TrendLineBrush</span><span class="blue">=&quot;Orange&quot;</span> 
+            <span class="red">TrendLineDashArray</span><span class="blue">=&quot;3 3&quot;</span>
+            <span class="red">TrendLineDashCap</span><span class="blue">=&quot;Flat&quot;</span>
+            <span class="red">TrendLineThickness</span><span class="blue">=&quot;5&quot;</span> <span class="blue">&gt;</span>
+        <span class="blue">&lt;/</span><span class="brownish">ig</span><span class="blue">:</span><span class="brownish">FinancialPriceSeries</span><span class="blue">&gt;</span>
+    <span class="blue">&lt;/</span><span class="brownish">ig</span><span class="blue">:</span><span class="brownish">XamDataChart.Series</span><span class="blue">&gt;</span>
+<span class="blue">&lt;/</span><span class="brownish">ig</span><span class="blue">:</span><span class="brownish">XamDataChart</span><span class="blue">&gt;</span></code>
+</pre>
+</div>
+
+<hr>
+
+<div class="LanguageSpecific" id="Example_VB">
+    <p><span class="lang"><b>In Visual Basic:</b></span></p>
+    <pre><code class="code"><span class="comment">&apos; create financial price series and style its trend line</span>
+<span class="blue">Dim</span> series <span class="blue">As</span> <span class="blue">New</span> FinancialPriceSeries()
+<span class="comment">&apos; ...</span>
+series.TrendLineBrush = <span class="blue">New</span> SolidColorBrush(Colors.Orange)
+series.TrendLineDashArray = <span class="blue">New</span> DoubleCollection() From { 3.0, 3.0 }
+series.TrendLineDashCap = PenLineCap.Flat
+series.TrendLineThickness = 5.0
+<span class="comment">&apos; add a series to the chart</span>
+DataChart.Series.Add(series)</code>
+</pre>
+</div>
+
+<hr>
+
+<div class="LanguageSpecific" id="Example_CS">
+    <p><span class="lang"><b>In C#:</b></span></p>
+    <pre><code class="code"><span class="comment">// create financial price series with and style its trend line</span>
+var series = <span class="blue">new</span> FinancialPriceSeries();
+<span class="comment">// ...</span>
+series.TrendLineBrush = <span class="blue">new</span> SolidColorBrush(Colors.Orange);
+series.TrendLineDashArray = <span class="blue">new</span> DoubleCollection { 3.0, 3.0 };
+series.TrendLineDashCap = PenLineCap.Flat;
+series.TrendLineThickness = 5.0;
+<span class="comment">// add a series to the chart</span>
+DataChart.Series.Add(series);</code>
+</pre>
+</div>
+
+</div>
+        <script type="text/javascript" src="sourceFormatter.js"></script>
+    </body>
+</html>

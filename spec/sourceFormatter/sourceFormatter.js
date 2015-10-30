@@ -1,10 +1,10 @@
-(function (module) {
+//(function (module) {
 
 	'use strict';
 
-	var cheerio = require('cheerio');
-	var $;
-	var _ = require('lodash');
+//	var cheerio = require('cheerio');
+//	var $;
+//	var _ = require('lodash');
 
 	var formatter = {
 		
@@ -156,8 +156,8 @@
 		}
 	};
 	
-	module.format = function(htmlString){
-		$ = cheerio.load(htmlString);
+	var format = function(htmlString){
+		//$ = cheerio.load(htmlString);
 		
 		var $PREs;
 				
@@ -175,16 +175,20 @@
 			uniqueFlags = formatter.getUniqueBuildFlags($PRE);
 			var sourceInfo = formatter.splitSourceBasedOnBuildFlags($PRE, uniqueFlags);
 			
-			//if(sourceInfo.hasFlagGroup){
-			//	$PRE.remove();
-			//} else {
-			//	$PRE.find('[style^="hs-build-flags"]').remove();
-			//}
+			if(sourceInfo.hasFlagGroup){
+				$PRE.remove();
+			} else {
+				$PRE.find('[style^="hs-build-flags"]').remove();
+			}
 			
-			$PRE.remove();
+			//$PRE.remove();
 		});
 		
-		return $.html();
+		//return $.html();
 	}
 
-} (module.exports));
+//} (module.exports));
+
+$(function(){
+	format();
+});
