@@ -15,6 +15,11 @@ module.read = function(relativePath){
 	};
 	
 	files.forEach(function(fileName){
+		
+		if(fileName.indexOf('.adoc') === -1){
+			return;
+		}
+		
 		var contents, parts, metadata, name;
 		
 		contents = fs.readFileSync(path.join(rootPath, fileName), 'utf8');
