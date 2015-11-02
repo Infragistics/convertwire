@@ -81,7 +81,7 @@ module.exports.load = function(gulp){
       
       args = require('yargs')
                   .usage('Usage: gulp asciidoc $0')
-                  .demand(['productOrControlName'])
+                  .demand(['name'])
                   .argv;
       
       args.username = credentials.username;
@@ -90,12 +90,12 @@ module.exports.load = function(gulp){
     } else {
       args = require('yargs')
                   .usage('Usage: gulp asciidoc $0 $1 $2')
-                  .demand(['username', 'password', 'productOrControlName'])
+                  .demand(['username', 'password', 'name'])
                   .argv;
     }
                 
     var repository = require('../modules/firebaseRepository');  
-    repository.get(args.username, args.password, args.productOrControlName, function(snap){
+    repository.get(args.username, args.password, args.name, function(snap){
       remoteData = snap.val();            
       console.log(Object.keys(remoteData).length + ' names loaded');
       console.log('Starting AsciiDoc conversion...');
