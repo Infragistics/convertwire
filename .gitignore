@@ -1,3 +1,4 @@
 node_modules
 spec/data
 logs
+gulp/credentials.json

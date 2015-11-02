@@ -71,10 +71,28 @@ module.exports.load = function(gulp){
   
   gulp.task('asciidoc', function(){
     
-    var args = require('yargs')
-                .usage('Usage: gulp asciidoc $0 $1 $2')
-                .demand(['username', 'password', 'productOrControlName'])
-                .argv;
+    var fs = require('fs')
+    var path = require('path');
+    var args = {};
+    
+    if(fs.existsSync(path.resolve(__dirname, './credentials.json'))){
+      var credentials = fs.readFileSync(path.resolve(__dirname, './credentials.json'), 'utf8');
+      credentials = JSON.parse(credentials);
+      
+      args = require('yargs')
+                  .usage('Usage: gulp asciidoc $0')
+                  .demand(['productOrControlName'])
+                  .argv;
+      
+      args.username = credentials.username;
+      args.password = credentials.password; 
+      
+    } else {
+      args = require('yargs')
+                  .usage('Usage: gulp asciidoc $0 $1 $2')
+                  .demand(['username', 'password', 'productOrControlName'])
+                  .argv;
+    }
                 
     var repository = require('../modules/firebaseRepository');  
     repository.get(args.username, args.password, args.productOrControlName, function(snap){
