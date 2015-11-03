@@ -145,7 +145,7 @@
     filter: function (node) {
       var classIndex = replaceWithBreakClassNames.indexOf(node.className.toLowerCase());
       var idIndex = replaceWithBreakIds.indexOf(node.id.toLowerCase());
-      var match = (classIndex >= 0 || idIndex >= 0);
+      var match = (classIndex >= 0 || idIndex >= 0) && !(typeof node.style.hsBuildFlags !== 'undefined');
       return match;
     },
     replacement: function (content) {
