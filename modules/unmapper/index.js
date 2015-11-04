@@ -1,175 +1,182 @@
-(function (module) {
-
-    'use strict';
-	
+var isNodejsContext = typeof module !== 'undefined';
+ 
+if(isNodejsContext){
+	module = module.exports;
 	var cheerio = require('cheerio');
 	var $;
+	var _ = require('lodash');
+} else {
+	var module = {};
+}
 
-    var util = {
+'use strict';
 
-        skipHeaders: [
-            'in this topic'
-        ],
+var cheerio = require('cheerio');
+var $;
 
-        getNewMarkup: function (header, content, level) {
-            level = level ? level : '2';
+var util = {
 
-            return '<div class="ig-content-container">' +
-                       '<h' + level + ' class="ig-header">' + header + '</h' + level + ' >' +
-                       '<div class="ig-content">' + content + '</div>' +
-                   '</div>';
-        },
+    skipHeaders: [
+        'in this topic'
+    ],
 
-        parseTables: function ($tables, $tbodys, rowParser) {
+    getNewMarkup: function (header, content, level) {
+        level = level ? level : '2';
 
-            var newMarkup = [];
+        return '<div class="ig-content-container">' +
+                    '<h' + level + ' class="ig-header">' + header + '</h' + level + ' >' +
+                    '<div class="ig-content">' + content + '</div>' +
+                '</div>';
+    },
 
-            $tbodys.each(function (index, tbody) {
+    parseTables: function ($tables, $tbodys, rowParser) {
 
-                var $tbody = $(tbody);
-                var $rows = $($tbody.children('tr'));
-                var rowMarkup = '';
+        var newMarkup = [];
 
-                $rows.each(function (rowIndex, row) {
+        $tbodys.each(function (index, tbody) {
 
-                    var isFirst = rowIndex === 0;
-                    var isLast = rowIndex === $rows.length - 1;
+            var $tbody = $(tbody);
+            var $rows = $($tbody.children('tr'));
+            var rowMarkup = '';
 
-                    rowParser(rowIndex, row, isFirst, isLast, function (markup) {
-                        rowMarkup += markup;
-                    });
+            $rows.each(function (rowIndex, row) {
+
+                var isFirst = rowIndex === 0;
+                var isLast = rowIndex === $rows.length - 1;
+
+                rowParser(rowIndex, row, isFirst, isLast, function (markup) {
+                    rowMarkup += markup;
                 });
-
-                newMarkup.push(rowMarkup);
             });
 
-            $tables.each(function (index, table) {
+            newMarkup.push(rowMarkup);
+        });
 
-                $(table).before(newMarkup[index]);
+        $tables.each(function (index, table) {
 
-            });
+            $(table).before(newMarkup[index]);
 
-            $tables.remove();
-        },
+        });
 
-        imLayout: function ($tables, $tbodys, level) {
+        $tables.remove();
+    },
 
-            $tables = $tables ? $tables : $('.ig-layout');
-            $tbodys = $tbodys ? $tbodys : $('.ig-layout>tbody');
+    imLayout: function ($tables, $tbodys, level) {
 
-            var parse = function (rowIndex, row, isFirst, isLast, cb) {
+        $tables = $tables ? $tables : $('.ig-layout');
+        $tbodys = $tbodys ? $tbodys : $('.ig-layout>tbody');
 
-                var $header = $(row).children('th');
-                var header = '';
-                var content = $(row).children('td').html();
+        var parse = function (rowIndex, row, isFirst, isLast, cb) {
 
-                if ($header.html() !== undefined) {
+            var $header = $(row).children('th');
+            var header = '';
+            var content = $(row).children('td').html();
 
-                    header = $header.text().trim();
+            if ($header.html() !== undefined) {
 
-                    var shouldRowBeSkipped = util.skipHeaders.indexOf(header.toLowerCase()) >= 0;
+                header = $header.text().trim();
 
-                    if (!shouldRowBeSkipped) {
-                        cb(util.getNewMarkup(header, content, level));
-                    }
+                var shouldRowBeSkipped = util.skipHeaders.indexOf(header.toLowerCase()) >= 0;
 
-                }
-            };
-
-            util.parseTables($tables, $tbodys, parse);
-        },
-
-        labeledTable: function ($tables, $tbodys, level) {
-
-            var parse = function (rowIndex, row, isFirst, isLast, cb) {
-
-                // skipping first row that just has labels
-                if (!isFirst) {
-                    var children = $(row).children();
-                    var header = children[0].innerText;
-                    var content = children[1].innerHTML;
+                if (!shouldRowBeSkipped) {
                     cb(util.getNewMarkup(header, content, level));
                 }
 
-            };
+            }
+        };
 
-            util.parseTables($tables, $tbodys, parse);
-            
-        },
+        util.parseTables($tables, $tbodys, parse);
+    },
 
-        steps: function (level) {
-            var selector = 'th:contains("Step")';
-            var $tables = $(selector).parents('table');
-            var $tbodys = $(selector).parents('tbody');
+    labeledTable: function ($tables, $tbodys, level) {
 
-            util.labeledTable($tables, $tbodys, level);
-        },
+        var parse = function (rowIndex, row, isFirst, isLast, cb) {
 
-        relatedContent: function () {
-            var selector = 'th:contains("Topic"), th:contains("Sample"), th:contains("Samples")';
-            var $tables = $(selector).parents('table');
-            var $tbodys = $(selector).parents('tbody');
+            // skipping first row that just has labels
+            if (!isFirst) {
+                var children = $(row).children();
+                var header = children[0].innerText;
+                var content = children[1].innerHTML;
+                cb(util.getNewMarkup(header, content, level));
+            }
 
-            var parse = function (rowIndex, row, isFirst, isLast, cb) {
-                var children, header, content, markup, anchors;
+        };
 
-                if (isFirst) {
-                    cb('<ul>');
-                } else {
-                    
-                    children = $(row).children();
-                    
-                    if(children.length >= 0){
-                        anchors = $(children[0]).find('a');
-                        if(anchors.length > 0){
-                            header = anchors[0].outerHTML
-                        }
+        util.parseTables($tables, $tbodys, parse);
+        
+    },
+
+    steps: function (level) {
+        var selector = 'th:contains("Step")';
+        var $tables = $(selector).parents('table');
+        var $tbodys = $(selector).parents('tbody');
+
+        util.labeledTable($tables, $tbodys, level);
+    },
+
+    relatedContent: function () {
+        var selector = 'th:contains("Topic"), th:contains("Sample"), th:contains("Samples")';
+        var $tables = $(selector).parents('table');
+        var $tbodys = $(selector).parents('tbody');
+
+        var parse = function (rowIndex, row, isFirst, isLast, cb) {
+            var children, header, content, markup, anchors;
+
+            if (isFirst) {
+                cb('<ul>');
+            } else {
+                
+                children = $(row).children();
+                
+                if(children.length >= 0){
+                    anchors = $(children[0]).find('a');
+                    if(anchors.length > 0){
+                        header = anchors[0].outerHTML
                     }
-                    
-                    if(children.length >= 1){
-                        content = $(children[1]).text();
-                    }
-                    
-                    markup = '';
+                }
+                
+                if(children.length >= 1){
+                    content = $(children[1]).text();
+                }
+                
+                markup = '';
 
-                    if(header){
-                        header = header.replace('<strong>', '');
-                        header = header.replace('</strong>', '');
-                        header = header.replace('<b>', '');
-                        header = header.replace('</b>', '');
-    
-                        markup = '<li>' + header + ': ' + content + '</li>';
-    
-                        if (isLast) {
-                            markup += '</ul>';
-                        }
-                    }
+                if(header){
+                    header = header.replace('<strong>', '');
+                    header = header.replace('</strong>', '');
+                    header = header.replace('<b>', '');
+                    header = header.replace('</b>', '');
 
-                    cb(markup);
+                    markup = '<li>' + header + ': ' + content + '</li>';
+
+                    if (isLast) {
+                        markup += '</ul>';
+                    }
                 }
 
-            };
+                cb(markup);
+            }
 
-            util.parseTables($tables, $tbodys, parse);
-        },
+        };
 
-        layoutContainer: function (level) {
-            var $tables = $('.ig-layout-container').parents('table');
-            var $tbodys = $('.ig-layout-container').parents('tbody');
+        util.parseTables($tables, $tbodys, parse);
+    },
 
-            util.imLayout($tables, $tbodys, level);
-        },
+    layoutContainer: function (level) {
+        var $tables = $('.ig-layout-container').parents('table');
+        var $tbodys = $('.ig-layout-container').parents('tbody');
 
-        unmap: function (htmlString) {
-			$ = cheerio.load(htmlString);
-            util.imLayout(null, null, 3);
-            util.steps(4);
-            util.layoutContainer(3);
-            util.relatedContent();
-			return $.html().replace(/&#xA0;/g, '&nbsp;');
-        }
-    };
-    
-    module.unmap = util.unmap;
+        util.imLayout($tables, $tbodys, level);
+    },
 
-}(module.exports));
+    unmap: function (htmlString) {
+        $ = cheerio.load(htmlString);
+        util.imLayout(null, null, 3);
+        util.steps(4);
+        util.layoutContainer(3);
+        util.relatedContent();
+        return $.html().replace(/&#xA0;/g, '&nbsp;');
+    }
+};
+
+module.unmap = util.unmap;
