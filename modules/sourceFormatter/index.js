@@ -77,15 +77,17 @@ var formatter = {
 			
 			flag = flag.trim().toLowerCase();
 			
-			if(flag === 'xam_xf_ex'){
-				flags = flags.concat(formatter.XAM_XF_EX);
-			} else if(flag === 'droid_ex'){
-				flags = flags.concat(formatter.DROID_EX);
-			} else if(flag === 'xaml'){
-				flags = flags.concat(formatter.XAML);
-			} else {
-				flags.push(flag);
-			}
+//			if(flag === 'xam_xf_ex'){
+//				flags = flags.concat(formatter.XAM_XF_EX);
+//			} else if(flag === 'droid_ex'){
+//				flags = flags.concat(formatter.DROID_EX);
+//			} else if(flag === 'xaml'){
+//				flags = flags.concat(formatter.XAML);
+//			} else {
+//				flags.push(flag);
+//			}
+
+			flags.push(flag);
 		});
 		
 		return _.unique(flags); 
