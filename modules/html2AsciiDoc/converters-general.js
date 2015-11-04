@@ -18,8 +18,8 @@
 		}
 	};
 
-	var divSpan = {
-		filter: ['div', 'span'],
+	var general = {
+		filter: ['div', 'span', 'u', 'font'],
 		replacement: function (content, node) {
 
 			if (buildFlags.hasDocXBuildFlags(node)) {
@@ -32,7 +32,7 @@
 
 	var converters = [];
 	
-	converters.push(divSpan);
+	converters.push(general);
 	converters.push(divBuildFlagged);
 
 	module.get = function () {

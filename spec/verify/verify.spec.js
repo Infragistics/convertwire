@@ -21,12 +21,13 @@ describe('verify', () => {
 		
 		it('works with no matches', () => {
 			
-			var results = verify.checkText('<a href="http://test.com">0f087027-4cf6-4de5-92f2-ff0ea9383701</a>');
+			var results = verify.checkText('<a href="http://test.com">test</a>');
 			
 			expect(results.html).toBeDefined();
 			expect(results.html.count).toBe(1);
 			
-			expect(results.guid).not.toBeDefined();
+			expect(results.guid).toBeDefined();
+			expect(results.guid.count).toBe(0);
 		});
 		
 	});

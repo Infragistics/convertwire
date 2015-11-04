@@ -31,14 +31,29 @@
 	};
 	
 	module.wrapWithBuildFlags = function(content, node){
-		var returnValue, flags, isElementThatNeedsPick;
+		var returnValue, flags, isElementThatNeedsPick, ensureFlagValues;
 		
 		returnValue = content;
 		flags = node.style.hsBuildFlags.toLowerCase();
+		
+		ensureFlagValues = function(){
+			// These adjustments compensate for a bug in
+			// how the to-markdown module parses a node's
+			// style collection.
+			if(flags.indexOf('"') > -1){
+				flags = flags.substr(0, flags.indexOf('"'));
+			}
+			
+			if(flags.indexOf('>') > -1){
+				flags = flags.substr(0, flags.indexOf('>'));
+			}
+		};
 			
 		isElementThatNeedsPick = function(){
 			return pickTags.indexOf(node.nodeName.toLowerCase()) >= 0;
 		};
+		
+		ensureFlagValues();
 		
 		if(flags.length > 0) {
 			
