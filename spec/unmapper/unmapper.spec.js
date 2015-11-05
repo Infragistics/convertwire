@@ -2,7 +2,7 @@
 
 describe('unmapper', function(){
 	
-	var unmapper = require('../modules/unmapper');
+	var unmapper = require('../../modules/unmapper');
 	var fs = require('fs');
 	var mappedHTML = '';
 	var unmappedHTML = '';

@@ -11,10 +11,6 @@ if(isNodejsContext){
 
 var formatter = {
 	
-	XAM_XF_EX: ['sl','wpf','winrt','winphone'],
-	DROID_EX: ['sl','wpf','winphone','winrt','xamarin','winforms'],
-	XAML: ['sl','wpf','winphone','winrt','xamarin'],
-	
 	getContainerInfo: function($pre){
 		var info = {}, style;
 		
@@ -51,7 +47,7 @@ var formatter = {
 	},
 	
 	getUniqueFlags : function($flaggedContainer){
-		var style, matches, elementFlags = [], flags = [];
+		var style, matches, uniques, elementFlags = [], flags = [];
 		
 		// get flags from container
 		if($flaggedContainer.attr('style')){
@@ -60,13 +56,14 @@ var formatter = {
 		}
 		
 		// get flags from any children
-		matches = $flaggedContainer.html().match(/(hs-build-flags:( )?.*(;)?")/g);
+		matches = $flaggedContainer.html().match(/hs-build-flags: ?(.*?)"/gi);
 		if(matches) {
 			matches.forEach(function(match){
 				match = match
 							.trim()
-							.replace(/hs-build-flags:( )?/, '')
+							.replace(/hs-build-flags: ?/, '')
 							.replace('"','')
+							.replace(';', '')
 							.replace(', ', ',');
 				
 				elementFlags = elementFlags.concat(match.split(','));
@@ -74,44 +71,45 @@ var formatter = {
 		}
 		
 		elementFlags.forEach(function(flag){
-			
 			flag = flag.trim().toLowerCase();
-			
-//			if(flag === 'xam_xf_ex'){
-//				flags = flags.concat(formatter.XAM_XF_EX);
-//			} else if(flag === 'droid_ex'){
-//				flags = flags.concat(formatter.DROID_EX);
-//			} else if(flag === 'xaml'){
-//				flags = flags.concat(formatter.XAML);
-//			} else {
-//				flags.push(flag);
-//			}
-
 			flags.push(flag);
 		});
 		
-		return _.unique(flags); 
+		uniques = _.unique(flags);
+		
+		return uniques; 
 	},
 	
 	duplicateContainersByFlag : function($flaggedContainers){
 		$flaggedContainers.each(function(index, container){
-			var $flaggedContainer, uniqueFlags;
+			var $flaggedContainer, $parent, uniqueFlags, domIndex;
 			
 			$flaggedContainer = $(container);
+			$parent = $flaggedContainer.parent();
+			domIndex = $flaggedContainer.index();
+			
+			var _clone = $flaggedContainer.clone();
+			$flaggedContainer.remove();
+			
 			uniqueFlags = formatter.getUniqueFlags($flaggedContainer);
 			
 			uniqueFlags.forEach(function(flag){
-				var $clone;
+				var $clone, $container, id;
 				
-				$clone = $flaggedContainer.clone();
+				id = Math.floor(Math.random(1,100000) * 10000000);
+				
+				$container = $(`<div id="${id}">`);
+				$clone = _clone.clone();
 				$clone.attr('style', 'hs-build-flags: ' + flag);
 				
-				$flaggedContainer.parent().append('\n<!--- ' + flag + ' --->\n');								
-				$flaggedContainer.parent().append($clone);
-				$flaggedContainer.parent().append('\n<!--- /' + flag + ' --->\n');
+				$container.append('\n<!--- ' + flag + ' --->\n');								
+				$container.append($clone);
+				$container.append('\n<!--- /' + flag + ' --->\n');
+				
+				$parent.insertAt($container, domIndex);
+				
+				domIndex = $(`#${id}`).index();
 			});
-			
-			$flaggedContainer.remove();
 		});
 	}
 };
@@ -121,6 +119,15 @@ module.format = function(html){
 	
 	if(isNodejsContext){
 		$ = cheerio.load(html);
+	}
+	
+	$.fn.insertAt = function(elements, index) {
+		//var array = $.makeArray(this.children().clone(true));
+		var array = _.map(this.children().clone(true), function(element){
+			return element;
+		});
+		array.splice(index, 0, elements);
+		this.empty().append(array);
 	}
 	
 	$flaggedContainers = formatter.getFlaggedContainers();

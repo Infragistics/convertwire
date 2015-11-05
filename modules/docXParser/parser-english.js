@@ -3,6 +3,8 @@
 	var _ = require('lodash');
 	var utils = require('./utils.js');
 
+	//	the file path is not used here, but is used in the jp parser and
+	//  is included in this module to keep the interface uniform
 	module.parse = function(obj, filePath, callback){
 		var markup, htmlDocument;
 		
@@ -18,7 +20,7 @@
 			
 			// some topics have duplicate style attributes
 			// this removes a common duplicate instance
-			markup = markup.replace(/style=\"display:( )?block(;)?\"/g, '');
+			markup = markup.replace(/style=\"display:( )?block(;)?\"/gi, '');
 			
 			htmlDocument.markup = markup;
 		}

@@ -83,4 +83,4 @@ module.checkFolder = (folderPath) => {
 	console.log(totalResults.length + ' invalid files');
 };
 
-module.checkFolder('../../spec/data/dest');
+//module.checkFolder('../../spec/data/dest');
