@@ -4,13 +4,20 @@ var _ = require('lodash');
 var path = require('path');
 var fs = require('fs');
 
-module.getRandomFileNames = (folderPath, count, groupCount) => {
+module.getRandomFileNames = (folderPath, count, groupCount, english) => {
 	var randoms, basePath, fileNames, fileCount, index;
 
 	randoms = [];
 
 	basePath = path.resolve(__dirname, folderPath);
 	fileNames = fs.readdirSync(basePath);
+	fileNames = fileNames.filter((fileName) => {
+		if(english){
+			return fileName.indexOf('.ja-JP') === -1;
+		} else {
+			return fileName.indexOf('.ja-JP') !== -1;
+		}
+	});
 	fileCount = fileNames.length;
 
 	for (var g = 0; g < groupCount; g++) {
@@ -24,10 +31,14 @@ module.getRandomFileNames = (folderPath, count, groupCount) => {
 		}
 		randoms.push('\n');
 	}
+	
+	var nameSuffix = english? '' : '-ja-JP';
 
-	fs.writeFileSync(path.resolve(__dirname, '../../logs/randomNames.txt'), randoms.join('\n'), 'utf8');
+	fs.writeFileSync(path.resolve(__dirname, `../../logs/randomNames${nameSuffix}.txt`), randoms.join('\n'), 'utf8');
+	
+	console.log('names generated');
 };
-//module.getRandomFileNames('../../spec/data/dest', 10, 5);
+//module.getRandomFileNames('../../spec/data/dest', 10, 5, false);
 
 module.crazyTables = function (folderPath) {
 	var basePath, fileNames, matches, results = [], title = '';
@@ -48,7 +59,7 @@ module.crazyTables = function (folderPath) {
 			
 			matches = contents.match(/name&quot;: &quot;(.*)&/);
 			
-			if(matches.length > 0){
+			if(matches && matches.length > 0){
 				title = matches[1]
 							.toLowerCase()
 							.replace(/_/g, '-');
@@ -68,7 +79,7 @@ module.crazyTables = function (folderPath) {
 
 };
 
-//module.crazyTables('../../spec/data/dest');
+//module.crazyTables('../../spec/data/dest/no-format');
 
 module.findBuildFlaggedCode = function (folderPath) {
 	var basePath, fileNames, results = [];
@@ -101,7 +112,6 @@ module.findBuildFlaggedCode = function (folderPath) {
 		
 	});
 
-
 	if (results.length > 0) {
 		fs.writeFileSync(path.resolve(__dirname, '../../logs/build-flagged-code.txt'), results.join('\n'), 'utf8');
 		console.log(`${results.length} topics with build flagged code`);
@@ -110,4 +120,4 @@ module.findBuildFlaggedCode = function (folderPath) {
 	}
 };
 
-module.findBuildFlaggedCode('../../spec/data/dest');
+//module.findBuildFlaggedCode('../../spec/data/dest');
