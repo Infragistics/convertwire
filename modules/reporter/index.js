@@ -68,4 +68,46 @@ module.crazyTables = function (folderPath) {
 
 };
 
-module.crazyTables('../../spec/data/dest');
+//module.crazyTables('../../spec/data/dest');
+
+module.findBuildFlaggedCode = function (folderPath) {
+	var basePath, fileNames, results = [];
+
+	basePath = path.resolve(__dirname, folderPath);
+	fileNames = fs.readdirSync(basePath);
+
+	fileNames.forEach((fileName) => {
+		var filePath, contents, flaggedBlocks, flaggedCodeCount = 0;
+
+		filePath = path.join(basePath, fileName);
+		
+		if(path.extname(filePath) === '.adoc'){
+			contents = fs.readFileSync(filePath, 'utf8');
+			
+			flaggedBlocks = contents.split('ifdef');
+			
+			if(flaggedBlocks.length > 1){
+				flaggedBlocks.forEach((block) => {
+					if(block.indexOf('[source') > -1){
+						flaggedCodeCount++;
+					}
+				});
+				
+				if(flaggedCodeCount > 0){
+					results.push(fileName);
+				}
+			}
+		}
+		
+	});
+
+
+	if (results.length > 0) {
+		fs.writeFileSync(path.resolve(__dirname, '../../logs/build-flagged-code.txt'), results.join('\n'), 'utf8');
+		console.log(`${results.length} topics with build flagged code`);
+	} else {
+		console.log('no topics with build flagged code found');
+	}
+};
+
+module.findBuildFlaggedCode('../../spec/data/dest');
