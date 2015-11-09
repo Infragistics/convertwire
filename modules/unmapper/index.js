@@ -99,8 +99,8 @@ var util = {
                 var children, header, content;
                 
                 children = $(row).children();
-                header = children[0].innerText;
-                content = children[1].innerHTML;
+                header = $(children[0]).text();
+                content = $(children[1]).html();
                 
                 cb(util.getNewMarkup(header, content, level));
             }
@@ -183,12 +183,22 @@ var util = {
     },
 
     unmap: function (htmlString) {
-        $ = cheerio.load(htmlString);
+        var result = '';
+        
+        if(isNodejsContext){
+            $ = cheerio.load(htmlString);
+        }
+        
         util.imLayout(null, null, 3);
         util.steps(4);
         util.layoutContainer(3);
         util.relatedContent();
-        return $.html().replace(/&#xA0;/g, '&nbsp;');
+        
+        if(isNodejsContext){
+            result = $.html().replace(/&#xA0;/g, '&nbsp;');
+        }
+        
+        return result;
     }
 };
 

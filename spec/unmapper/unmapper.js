@@ -99,8 +99,8 @@ var util = {
                 var children, header, content;
                 
                 children = $(row).children();
-                header = children[0].innerText;
-                content = children[1].innerHTML;
+                header = $(children[0]).text();
+                content = $(children[1]).html();
                 
                 cb(util.getNewMarkup(header, content, level));
             }
