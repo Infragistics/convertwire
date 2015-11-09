@@ -22,7 +22,8 @@
 			// this removes a common duplicate instance
 			markup = markup
 						.replace(/style=\"display:( )?block(;)?\"/gi, '')
-						.replace(/[â|€|¦]/g, '');
+						.replace(/â€¦/g, '...')
+						.replace(/â„¢/g, '&trade;');
 			
 			htmlDocument.markup = markup;
 		}

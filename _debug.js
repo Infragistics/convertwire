@@ -15,21 +15,21 @@ repository.get(credentials.username, credentials.password, 'DataChart', function
                   
       console.log(Object.keys(remoteData).length + ' names loaded');
       
-      var filePath = path.resolve('./spec/data/src/f9c350d3-9dc2-46da-b669-8005c46fb800.xml');
-      var xml, html, unmapped, formatted, asciidoc, noguids;
+      var filePath = path.resolve('./spec/data/src/df0a8627-2218-4100-9011-5e109745c35e.xml');
+      var result, xml, html, unmapped, formatted, asciidoc, noguids;
       
-      xml = fs.readFileSync(filePath, 'utf8');
+      result = xml = fs.readFileSync(filePath, 'utf8');
       
       docx2html.parse(xml, filePath, function(error, topic){
             if(error){
-                  console.log(error);
+                  console.log('error: ' + error);
             } else {
-                  html = docx2html.toHtml(topic);
-                  unmapped = unmapper.unmap(html);
-                  formatted = sourceFormatter.format(unmapped);
-                  asciidoc = html2AsciiDoc.convert(formatted);
-                  noguids = replaceGuids.replace(asciidoc, remoteData);
-                  console.log(noguids);
+                  result = html = docx2html.toHtml(topic);
+                  result = unmapped = unmapper.unmap(html);
+                  result = formatted = sourceFormatter.format(unmapped);
+                  result = asciidoc = html2AsciiDoc.convert(formatted);
+                  result = noguids = replaceGuids.replace(asciidoc, remoteData);
+                  console.log(result);
             }
       });
 });

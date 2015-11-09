@@ -31,15 +31,19 @@ var util = {
         var newMarkup = [];
 
         $tbodys.each(function (index, tbody) {
+            
+            var $tbody, $rows, rowMarkup;
 
-            var $tbody = $(tbody);
-            var $rows = $($tbody.children('tr'));
-            var rowMarkup = '';
+            $tbody = $(tbody);
+            $rows = $($tbody.children('tr'));
+            rowMarkup = '';
 
             $rows.each(function (rowIndex, row) {
+                
+                var isFirst, isLast;
 
-                var isFirst = rowIndex === 0;
-                var isLast = rowIndex === $rows.length - 1;
+                isFirst = rowIndex === 0;
+                isLast = rowIndex === $rows.length - 1;
 
                 rowParser(rowIndex, row, isFirst, isLast, function (markup) {
                     rowMarkup += markup;
@@ -64,10 +68,11 @@ var util = {
         $tbodys = $tbodys ? $tbodys : $('.ig-layout>tbody');
 
         var parse = function (rowIndex, row, isFirst, isLast, cb) {
+            var $header, header, content;
 
-            var $header = $(row).children('th');
-            var header = '';
-            var content = $(row).children('td').html();
+            $header = $(row).children('th');
+            header = '';
+            content = $(row).children('td').html();
 
             if ($header.html() !== undefined) {
 
@@ -91,9 +96,12 @@ var util = {
 
             // skipping first row that just has labels
             if (!isFirst) {
-                var children = $(row).children();
-                var header = children[0].innerText;
-                var content = children[1].innerHTML;
+                var children, header, content;
+                
+                children = $(row).children();
+                header = children[0].innerText;
+                content = children[1].innerHTML;
+                
                 cb(util.getNewMarkup(header, content, level));
             }
 
@@ -104,17 +112,21 @@ var util = {
     },
 
     steps: function (level) {
-        var selector = 'th:contains("Step")';
-        var $tables = $(selector).parents('table');
-        var $tbodys = $(selector).parents('tbody');
+        var selector, $tables, $tbodys;
+        
+        selector = 'th:contains("Step")';
+        $tables = $(selector).parents('table');
+        $tbodys = $(selector).parents('tbody');
 
         util.labeledTable($tables, $tbodys, level);
     },
 
     relatedContent: function () {
-        var selector = 'th:contains("Topic"), th:contains("Sample"), th:contains("Samples")';
-        var $tables = $(selector).parents('table');
-        var $tbodys = $(selector).parents('tbody');
+        var selector, $tables, $tbodys, tempContainer;
+        
+        selector = 'th:contains("Topic"), th:contains("Sample"), th:contains("Samples")';
+        $tables = $(selector).parents('table');
+        $tbodys = $(selector).parents('tbody');
 
         var parse = function (rowIndex, row, isFirst, isLast, cb) {
             var children, header, content, markup, anchors;
@@ -125,10 +137,12 @@ var util = {
                 
                 children = $(row).children();
                 
-                if(children.length >= 0){
+                if(children.length > 0){
                     anchors = $(children[0]).find('a');
                     if(anchors.length > 0){
-                        header = anchors[0].outerHTML
+                        tempContainer = $('<div>');
+                        tempContainer.append(anchors[0]);
+                        header = tempContainer.html();
                     }
                 }
                 
@@ -160,8 +174,10 @@ var util = {
     },
 
     layoutContainer: function (level) {
-        var $tables = $('.ig-layout-container').parents('table');
-        var $tbodys = $('.ig-layout-container').parents('tbody');
+        var $tables, $tbodys;
+        
+        $tables = $('.ig-layout-container').parents('table');
+        $tbodys = $('.ig-layout-container').parents('tbody');
 
         util.imLayout($tables, $tbodys, level);
     },
