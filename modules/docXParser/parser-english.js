@@ -20,10 +20,7 @@
 			
 			// some topics have duplicate style attributes
 			// this removes a common duplicate instance
-			markup = markup
-						.replace(/style=\"display:( )?block(;)?\"/gi, '')
-						.replace(/â€¦/g, '...')
-						.replace(/â„¢/g, '&trade;');
+			markup = markup.replace(/style=\"display:( )?block(;)?\"/gi, '');
 			
 			htmlDocument.markup = markup;
 		}

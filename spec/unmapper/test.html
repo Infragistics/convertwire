@@ -7,1024 +7,151 @@
         </style>
     </head>
 <body>
-<pre id='metadata'>
-|metadata|
-{
-    "name": "xamBulletGraph_Configuring_the_Scale",
-    "controlName": ["xamBulletGraph"],
-    "tags": ["Charting","How Do I"],
-    "docXGuid": "3eaac3d7-7fdc-4659-974e-b57c15e8d236",
-    "title": "Configuring the Scale (xamBulletGraph)",
-    "buildFlags": ["SL","WPF"]
-}
-|metadata|
-</pre>
-
 <div id="docX-root">
-
-<h1 id="ig-document-title">Configuring the Scale (xamBulletGraph)</h1>
-
-<DIV class=ig-block-title>
-<H2>Topic Overview</H2></DIV>
 <TABLE class=ig-layout>
 <TBODY>
 <TR>
 <TH>
-<H4>Purpose</H4></TH>
+<H4><A name=_Ref327265276></A>Introduction</H4></TH>
 <TD>
 <DIV class=ig-layout-container>
-<P>This topic explains, with examples, how to customize the scale of the <SPAN class=ig-italic>xamBulletGraph</SPAN>™ control. This includes positioning the scale inside the control and configuring the scale tick marks and labels. (For the default settings, see the <A class=ig-topic-link href="e814ac4f-aa81-4605-94ea-12b7301084ed"><I>xamBulletGraph</I> Overview</A> topic.)</P></DIV></TD></TR>
+<P>This procedure covers the required steps for displaying OLAP data in a <SPAN class=ig-italic>%%ControlsName%%</SPAN>.</P>
+<P>The specific example outlined in the procedure uses a flat data source and the <A class=ig-topic-link href="SalesDataSample.html">Sales Data Sample</A> (<SPAN class=ig-code-in-text>SalesDataSample</SPAN> class) for generating the sample content displayed in a chart. For details about how to configure the data source, refer to the <A href="xamPivotGrid_DataBinding_Using_FlatDataSource.html" style="auto-update-caption: true">Using FlatDataSource</A> topic.</P>
+<P>The procedure also optionally suggests adding a selector so that users can select items for columns, rows, filters, and measures from the data source (step 4). The selector is implemented through an instance of the <SPAN class=ig-italic>xamPivotDataSelector</SPAN> component.</P></DIV></TD></TR>
 <TR>
 <TH>
-<H4>Required background</H4></TH>
+<H4><A name=_Ref327265280></A>Preview</H4></TH>
 <TD>
 <DIV class=ig-layout-container>
-<P>The following topics are prerequisites to understanding this topic:</P>
-<TABLE cellSpacing=0 cellPadding=0>
-<TBODY>
+<P>The following screenshot is a preview of the final result.</P>
+<P><IMG alt="" src="images/xamDataChart_Visualizing_Multi-Dimensional_Data_02.png"></P></DIV></TD></TR>
 <TR>
 <TH>
-<P>Topic</P></TH>
-<TH>
-<P>Purpose</P></TH></TR>
-<TR>
-<TD>
-<DIV class=ig-topic-link><A href="e814ac4f-aa81-4605-94ea-12b7301084ed"><I>xamBulletGraph</I> Overview</A> </DIV></TD>
-<TD>
-<P>This topic provides conceptual information about the <SPAN class=ig-italic>xamBulletGraph</SPAN> control including its main features, minimum requirements, and user functionality.</P></TD></TR>
-<TR>
-<TD>
-<DIV class=ig-topic-link><A href="1d4c8246-db15-476a-b025-68aaf9a4a630">Adding <I>xamBulletGraph</I></A> </DIV></TD>
-<TD>
-<P>This topic explains how to add the <SPAN class=ig-italic>xamBulletGraph</SPAN> control to a %%PlatformName%% application.</P></TD></TR></TBODY></TABLE><BR></DIV></TD></TR>
-<TR>
-<TH>
-<H4>In this topic</H4></TH>
+<H4><A name=_Ref327265283></A>Requirements</H4></TH>
 <TD>
 <DIV class=ig-layout-container>
-<P>This topic contains the following sections:</P>
+<P>To complete the procedure, you need the following:</P>
 <UL>
-<LI><A href="#_Introduction"><SPAN class=ig-bold>Introduction</SPAN></A> 
+<LI>A %%PlatformName%% %%PlatformIDE%% application project. 
+<LI>References to the following assemblies: 
 <UL>
-<LI><A href="#_Ref361864023">Scale configuration summary</A> 
-<LI><A href="#_Ref361864029">Scale configuration summary chart</A> </LI></UL>
-<LI><A href="#_Ref357787105"><SPAN class=ig-bold>Configuring the Scale’s Size and Position</SPAN></A> 
-<UL>
-<LI><A href="#_Ref361864053">Overview</A> 
-<LI><A href="#_Ref361864060">Property settings</A> 
-<LI><A href="#_Ref361864068">Example</A> </LI></UL>
-<LI><A href="#_Ref362967447"><SPAN class=ig-bold>Configuring the Scale’s Range</SPAN></A> 
-<UL>
-<LI><A href="#_Ref362957285">Overview</A> 
-<LI><A href="#_Ref362957294">Property settings</A> 
-<LI><A href="#_Ref362957303">Example</A> </LI></UL>
-<LI><A href="#_ConfiguringScaleMajorTickMarks"><SPAN class=ig-bold>Configuring the Scale’s Major Tick Marks</SPAN></A> 
-<UL>
-<LI><A href="#_Ref361864212">Overview</A> 
-<LI><A href="#_ConfiguringThePositionAlongTheScale">Configuring the position along the scale, count, and spacing</A> 
-<LI><A href="#_Ref362623912">Configuring the position across the scale and the length of the segments</A> 
-<LI><A href="#_Ref361864247">Property settings</A> 
-<LI><A href="#_Ref361864252">Example</A> </LI></UL>
-<LI><A href="#_Ref358209462"><SPAN class=ig-bold>Configuring the Scale’s Minor Tick Marks</SPAN></A> 
-<UL>
-<LI><A href="#_Ref361864270">Overview</A> 
-<LI><A href="#_Ref362631410">Configuring the position along the scale, count, and spacing</A> 
-<LI><A href="#_Ref362631420">Configuring the position across the scale and the length of the segments</A> 
-<LI><A href="#_Ref361864274">Property settings</A> 
-<LI><A href="#_Ref361864279">Example</A> </LI></UL>
-<LI><A href="#_Ref362292715"><SPAN class=ig-bold>Configuring the Scale’s Labeling</SPAN></A> 
-<UL>
-<LI><A href="#_Ref361864298">Overview</A> 
-<LI><A href="#_Ref361864305">Event handling</A> 
-<LI><A href="#_Ref361864310">Property settings</A> 
-<LI><A href="#_Ref361864318">Example – horizontal orientation</A> 
-<LI><A href="#_Ref361864329">Example – vertical orientation</A> </LI></UL>
-<LI><A href="#_Ref361864362"><SPAN class=ig-bold>Related Content</SPAN></A> 
-<UL>
-<LI><A href="#_Ref361864379">Topics</A> 
-<LI><A href="#_Ref361864383">Samples</A> 
-<LI><A href="#_Ref362293151">Resources</A> <A href="#_Ref357787115"></A></LI></UL></LI></UL></DIV></TD></TR></TBODY></TABLE><BR>
-<DIV class=ig-block-title>
-<H2><A name=_Introduction></A>Introduction</H2></DIV>
-<TABLE class=ig-layout>
-<TBODY>
+<LI><SPAN class=ig-italic>%%AssemblyPlatform%%%%ApiVersion%%</SPAN> 
+<LI><SPAN class=ig-italic>%%AssemblyPlatform%%DataVisualization.%%ApiVersion%%</SPAN> 
+<LI><SPAN class=ig-italic>%%AssemblyPlatform%%.Olap.%%ApiVersion%%</SPAN> 
+<LI><SPAN class=ig-italic>%%AssemblyPlatform%%.Olap.FlatData.%%ApiVersion%%</SPAN> (if you are not using flat data, include the respective assembly) 
+<LI><SPAN class=ig-italic>%%AssemblyPlatform%%Controls.Grids.XamPivotGrid.%%ApiVersion%%</SPAN> (required only if you want to use the <A href="%%AssemblyPlatform%%Controls.Grids.XamPivotGrid%%ApiVersion%%Infragistics.Controls.Grids.XamPivotDataSelector_members.html">XamPivotDataSelector</A>™) 
+<LI><SPAN class=ig-italic>%%AssemblyPlatform%%%%AssemblyName%%%%ApiVersion%%</SPAN> 
+<LI><SPAN class=ig-italic>%%AssemblyPlatform%%Controls.Charts.Olap.%%ApiVersion%%</SPAN> </LI></UL>
+<LI>The <SPAN class=ig-code-in-text>SalesDataSample</SPAN> class from the <A class=ig-topic-link href="SalesDataSample.html">Sales Data Sample</A> resource added to your application </LI></UL></DIV></TD></TR>
 <TR>
 <TH>
-<H4><A name=_Ref361864023></A>Scale configuration summary</H4></TH>
+<H4><A name=_Ref327265286></A>Overview</H4></TH>
+<TD>
+<P class=ig-layout-container>The following is a conceptual overview of the process:</P>
+<DIV class=ig-layout-container><SPAN class=ig-bold>1.</SPAN> <SPAN class=ig-bold>Configuring the data source</SPAN> </DIV>
+<DIV class=ig-layout-container><SPAN class=ig-bold>2. Adding data chart and axes</SPAN> </DIV>
+<DIV class=ig-layout-container><SPAN class=ig-bold>3. Configuring the</SPAN> <SPAN class=ig-bold>OlapXAxis</SPAN> </DIV>
+<P class=ig-layout-container><SPAN class=ig-bold>4.</SPAN> <SPAN class=ig-italic>(Optional)</SPAN> <SPAN class=ig-bold>Adding a pivot data selector</SPAN></P></TD></TR>
+<TR>
+<TH>
+<H4><A name=_Ref327265289></A>Steps</H4></TH>
 <TD>
 <DIV class=ig-layout-container>
-<P>The scale of the <SPAN class=ig-italic>xamBulletGraph</SPAN> control is a logical entity formed by the tick marks and the (numbering) labels. The size and position of the tick marks is configured relative to the <A class=ig-topic-link href="e814ac4f-aa81-4605-94ea-12b7301084ed#_GraphAreaLink">Graph area</A> and the position of the numbering labels – relative to the inner edge of the control (the bottom edge at horizontal orientation).</P>
-<P>The tick marks of the <I>xamBulletGraph</I> control identify equal intervals of measure along the graph. Two types of tick marks are supported – major and minor. Both can be positioned along the scale by adjusting the values of the respective extent-related properties which are measured against the Graph area. The tick marks’ exact count, position, look, and frequency of occurrence can be customized by property settings.</P>
-<P>As far as the labels are concerned, various aspects of them can be configured such as position, text, format, etc..</P></DIV></TD></TR>
-<TR>
-<TH>
-<H4><A name=_Ref361864029></A>Scale configuration summary chart</H4></TH>
-<TD>
-<DIV class=ig-layout-container>
-<P>The following table explains briefly the configurable aspects of <SPAN class=ig-italic>xamBulletGraph</SPAN> control’s scale and maps them to properties that configure them.</P>
-<TABLE cellSpacing=0 cellPadding=0>
-<TBODY>
-<TR>
-<TH colSpan=4>Configurable aspects</TH>
-<TH>
-<P>Property</P></TH>
-<TH>Default value</TH></TR>
-<TR>
-<TH rowSpan=2 colSpan=4><SPAN class=ig-bold>Position</SPAN></TH>
-<TD><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~ScaleStartExtent.html">ScaleStartExtent</A></TD>
-<TD><SPAN class=ig-italic>0.05</SPAN></TD></TR>
-<TR>
-<TD><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~ScaleEndExtent.html">ScaleEndExtent</A></TD>
-<TD><SPAN class=ig-italic>0.95</SPAN></TD></TR>
-<TR>
-<TH rowSpan=2 colSpan=2><SPAN class=ig-bold>Range and Values</SPAN></TH>
-<TH colSpan=2><SPAN class=ig-bold>Max value</SPAN></TH>
-<TD><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~MinimumValue.html">MinimumValue</A></TD>
-<TD><SPAN class=ig-italic>0</SPAN></TD></TR>
-<TR>
-<TH colSpan=2><SPAN class=ig-bold>Min value</SPAN></TH>
-<TD><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~MaximumValue.html">MaximumValue</A></TD>
-<TD><SPAN class=ig-italic>100</SPAN></TD></TR>
-<TR>
-<TH rowSpan=12><SPAN class=ig-bold>Tick marks</SPAN></TH>
-<TH rowSpan=7><SPAN class=ig-bold>Major tick marks</SPAN></TH>
-<TH rowSpan=5 colSpan=2>
-<P><SPAN class=ig-bold>Position</SPAN> (within the scale)<SPAN class=ig-bold>, spacing, and length</SPAN></P></TH>
-<TD><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~Interval.html">Interval</A></TD>
-<TD>
-<P>Not set</P></TD></TR>
-<TR>
-<TD><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~TicksPostInitial.html">TicksPostInitial</A></TD>
-<TD><SPAN class=ig-italic>0</SPAN></TD></TR>
-<TR>
-<TD><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~TicksPreTerminal.html">TicksPreTerminal</A></TD>
-<TD><SPAN class=ig-italic>0</SPAN></TD></TR>
-<TR>
-<TD><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~TickStartExtent.html">TickStartExtent</A></TD>
-<TD><SPAN class=ig-italic>0.02</SPAN></TD></TR>
-<TR>
-<TD><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~TickEndExtent.html">TickEndExtent</A></TD>
-<TD><SPAN class=ig-italic>0.2</SPAN></TD></TR>
-<TR>
-<TH rowSpan=2><SPAN class=ig-bold>Look-and-feel</SPAN></TH>
-<TH>
-<P>Color</P></TH>
-<TD><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~TickBrush.html">TickBrush</A></TD>
-<TD>Defined in the default theme</TD></TR>
-<TR>
-<TH>
-<P>Width</P></TH>
-<TD><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~TickStrokeThickness.html">TickStrokeThickness</A></TD>
-<TD><SPAN class=ig-italic>2.0</SPAN></TD></TR>
-<TR>
-<TH rowSpan=5><SPAN class=ig-bold>Minor tick marks</SPAN></TH>
-<TH colSpan=2>
-<P><SPAN class=ig-bold>Number</SPAN> (between two adjacent major tick marks)</P></TH>
-<TD><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~MinorTickCount.html">MinorTickCount</A></TD>
-<TD>
-<P><SPAN class=ig-italic>3.0</SPAN></P></TD></TR>
-<TR>
-<TH rowSpan=2 colSpan=2><SPAN class=ig-bold>Position</SPAN></TH>
-<TD><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~MinorTickStartExtent.html">MinorTickStartExtent</A></TD>
-<TD><SPAN class=ig-italic>0.06</SPAN></TD></TR>
-<TR>
-<TD><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~MinorTickEndExtent.html">MinorTickEndExtent</A></TD>
-<TD><SPAN class=ig-italic>0.2</SPAN></TD></TR>
-<TR>
-<TH rowSpan=2><SPAN class=ig-bold>Look-and-feel</SPAN></TH>
-<TH>
-<P>Color</P></TH>
-<TD><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~MinorTickBrush.html">MinorTickBrush</A></TD>
-<TD>Defined in the default theme</TD></TR>
-<TR>
-<TH>
-<P>Width</P></TH>
-<TD><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~MinorTickStrokeThickness.html">MinorTickStrokeThickness</A></TD>
-<TD><SPAN class=ig-italic>1.0</SPAN></TD></TR>
-<TR>
-<TH rowSpan=6><SPAN class=ig-bold>Labels</SPAN></TH>
-<TH rowSpan=4 colSpan=3>
-<P><SPAN class=ig-bold>Position and spacing</SPAN></P></TH>
-<TD>
-<P><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~LabelExtent.html">LabelExtent</A></P></TD>
-<TD><SPAN class=ig-italic>0</SPAN></TD></TR>
-<TR>
-<TD><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~LabelInterval.html">LabelInterval</A></TD>
-<TD>
-<P>Not set</P></TD></TR>
-<TR>
-<TD><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~LabelsPostInitial.html">LabelsPostInitial</A></TD>
-<TD><SPAN class=ig-italic>0</SPAN></TD></TR>
-<TR>
-<TD><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~LabelsPreTerminal.html">LabelsPreTerminal</A></TD>
-<TD><SPAN class=ig-italic>0</SPAN></TD></TR>
-<TR>
-<TH colSpan=3><SPAN class=ig-bold>Number format</SPAN></TH>
-<TD><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~LabelFormat.html">LabelFormat</A></TD>
-<TD>
-<P>Not set</P></TD></TR>
-<TR>
-<TH colSpan=2><SPAN class=ig-bold>Look-and-feel</SPAN></TH>
-<TH>
-<P>Color</P></TH>
-<TD><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~FontBrush.html">FontBrush</A></TD>
-<TD>
-<P>Defined in the default theme</P></TD></TR></TBODY></TABLE><BR></DIV></TD></TR></TBODY></TABLE><BR>
-<DIV class=ig-block-title>
-<H2><A name=_Ref357787105></A><A name=_Ref358209445></A><A name=_Ref361864037></A><A name=_Ref362970089></A>Configuring the Scale’s Size and Position</H2></DIV>
-<TABLE class=ig-layout>
-<TBODY>
-<TR>
-<TH>
-<H4><A name=_Ref361864053></A>Overview</H4></TH>
-<TD>
-<DIV class=ig-layout-container>
-<P>The scale’s size and position within the <SPAN class=ig-italic>xamBulletGraph</SPAN> control in the along-the scale-dimension is determined relative the <A class=ig-topic-link href="e814ac4f-aa81-4605-94ea-12b7301084ed#_GraphAreaLink">Graph area</A>. This is done through a pair of properties (<A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~ScaleStartExtent.html">ScaleStartExtent</A> and <A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~ScaleEndExtent.html">ScaleEndExtent</A>).</P>
-<P><IMG alt="" src="images/xamBulletGraph_Configuring_the_Scale_1.png"></P>
-<P>The positioning of the scale in the other (across-the-scale) dimension of the Graph area is not configurable by itself; instead, all elements comprising the scale are configured individually.</P>
-<P style="FONT-WEIGHT: bold">Note</P>
-<DIV class=ig-note>The value of the <SPAN class=ig-code-in-text>LabelExtent</SPAN> property, which controls the positioning of the numbering labels, is measured relative to the height of the control when its orientation is horizontal and to its width otherwise. (For details, see <A class=ig-topic-link href="786f11e2-e056-45d5-a397-b5111e96420a">Configuring Orientation and Direction</A>.) </DIV></DIV></TD></TR>
-<TR>
-<TH>
-<H4><A name=_Ref361864060></A>Property settings</H4></TH>
-<TD>
-<DIV class=ig-layout-container>
-<P>The following table maps the desired behavior to its respective property settings. For an illustration of the configurable aspects, see the <A class=ig-topic-link href="#_Ref361864068">Example</A>.</P>
-<TABLE cellSpacing=0 cellPadding=0>
-<TBODY>
-<TR>
-<TH colSpan=3>
-<P>In order to configure:</P></TH>
-<TH rowSpan=2>
-<P>Use this property:</P></TH>
-<TH rowSpan=2>
-<P>And set it to:</P></TH></TR>
-<TR>
-<TH colSpan=2>
-<P><SPAN class=ig-bold>Aspect</SPAN></P></TH>
-<TH>
-<P><SPAN class=ig-bold>Details</SPAN></P></TH></TR>
-<TR>
-<TH rowSpan=2>
-<P>Dimension along the scale – size and position</P></TH>
-<TH>
-<P>Starting position</P></TH>
-<TD>
-<P><A id=ScaleStartExten name=ScaleStartExten></A><SPAN class=ig-bold>The starting position of the</SPAN> <SPAN class=ig-bold>scale</SPAN> relative to the left edge of the <A class=ig-topic-link href="e814ac4f-aa81-4605-94ea-12b7301084ed#_GraphAreaLink">Graph area</A> at horizontal orientation or to the bottom edge at vertical orientation.</P>
-<P>(When the direction of the scale is inverted, these become, respectively, the right edge at horizontal orientation and top edge at vertical orientation. For details, see <A class=ig-topic-link href="786f11e2-e056-45d5-a397-b5111e96420a">Configuring the Orientation and Direction</A>.)</P></TD>
-<TD>
-<P><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~ScaleStartExtent.html">ScaleStartExtent</A></P></TD>
-<TD>
-<P>The desired value as a relative part the width/height of the control (depending on the orientation) presented as a fraction of 1 (e.g. <I>0.2</I>)</P></TD></TR>
-<TR>
-<TH>
-<P>Ending position</P></TH>
-<TD>
-<P><A id=ScaleEndExten name=ScaleEndExten></A><SPAN class=ig-bold>The ending position of the scale</SPAN> relative to the left edge of the Graph area relative to the left edge of the control in horizontal orientation or to the bottom edge in vertical orientation.</P>
-<P>(When the direction of the scale is inverted, these become, respectively, the right edge at horizontal orientation and top edge at vertical orientation. For details, see <A class=ig-topic-link href="786f11e2-e056-45d5-a397-b5111e96420a">Configuring the Orientation and Direction</A>.)</P></TD>
-<TD>
-<P><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~ScaleEndExtent.html">ScaleEndExtent</A></P></TD>
-<TD>
-<P>The desired value as a relative part the width/height of the control width/height (depending on the orientation) presented as a fraction of 1 (e.g. <I>0.</I><I>8</I>)</P></TD></TR></TBODY></TABLE><BR></DIV></TD></TR>
-<TR>
-<TH>
-<H4><A name=_Ref361864068></A>Example</H4></TH>
-<TD>
-<DIV class=ig-layout-container>
-<P>The screenshot below demonstrates how the <SPAN class=ig-italic>xamBulletGraph</SPAN> would look as a result of the following settings:</P>
 <TABLE cellSpacing=0 cellPadding=0>
 <TBODY>
 <TR>
 <TH>
-<P>Property</P></TH>
+<P>Step</P></TH>
 <TH>
-<P>Value</P></TH></TR>
+<P>Description</P></TH></TR>
 <TR>
+<TD><SPAN class=ig-bold>1. Configure the data source.</SPAN></TD>
 <TD>
-<P><SPAN class=ig-code-in-text>ScaleStartExtent</SPAN></P></TD>
-<TD><SPAN class=ig-italic>0.2</SPAN></TD></TR>
+<P>If you choose not to use a <A href="%%AssemblyPlatform%%Controls.Grids.XamPivotGrid%%ApiVersion%%Infragistics.Controls.Grids.XamPivotDataSelector_members.html">XamPivotDataSelector</A> control for assigning hierarchies and measures, you should provide some other mechanism for this, or as in the example below, assign some initial items as columns and measures to the data source. The following code should be placed in the resources section of your page/user control.</P>
+<DIV id=Example_XAML class=LanguageSpecific  style="hs-build-flags: XAM_XF_EX">
+<P><SPAN class=lang><B>In XAML:</B></SPAN></P><PRE><SPAN class=code><SPAN class=blue>&lt;</SPAN><SPAN class=brownish>models</SPAN><SPAN class=blue>:</SPAN><SPAN class=brownish>SalesDataSample</SPAN> <SPAN class=red>x</SPAN><SPAN class=blue>:</SPAN><SPAN class=red>Key</SPAN><SPAN class=blue>="DataSample"</SPAN><SPAN class=blue>/&gt;</SPAN>
+<SPAN class=blue>&lt;</SPAN><SPAN class=brownish>olap</SPAN><SPAN class=blue>:</SPAN><SPAN class=brownish>FlatDataSource</SPAN>
+    <SPAN class=red>x</SPAN><SPAN class=blue>:</SPAN><SPAN class=red>Key</SPAN><SPAN class=blue>="DataSource"</SPAN>
+    <SPAN class=red>Columns</SPAN><SPAN class=blue>="[Date].[Date]"</SPAN>
+    <SPAN class=red>Measures</SPAN><SPAN class=blue>="AmountOfSale, NumberOfUnits"</SPAN>
+    <SPAN class=red>MeasureListLocation</SPAN><SPAN class=blue>="Rows"</SPAN>
+    <SPAN class=red>ItemsSource</SPAN><SPAN class=blue>="{</SPAN><SPAN class=brownish>StaticResource</SPAN> <SPAN class=red>DataSample</SPAN><SPAN class=blue>}"</SPAN> <SPAN class=blue>/&gt;</SPAN></SPAN>
+</PRE></DIV>
+<P style="BACKGROUND-COLOR: rgb(251,212,180)"></P></TD></TR>
 <TR>
+<TD><SPAN class=ig-bold>2. Add data chart and axes.</SPAN></TD>
 <TD>
-<P><SPAN class=ig-code-in-text>ScaleEndExtent</SPAN></P></TD>
-<TD><SPAN class=ig-italic>0.9</SPAN></TD></TR></TBODY></TABLE><BR>
-<P><IMG alt="" src="images/xamBulletGraph_Configuring_the_Scale_2.png"></P>
-<P>Following is the code that implements this example.</P>
-<DIV id=Example_XAML class=LanguageSpecific style="DISPLAY: block">
-<P><SPAN class=lang><B>In XAML:</B></SPAN></P><PRE><SPAN class=code>        <SPAN class=blue>&lt;</SPAN><SPAN class=brownish>ig</SPAN><SPAN class=blue>:</SPAN><SPAN class=brownish>XamBulletGraph</SPAN> <SPAN class=red>x</SPAN><SPAN class=blue>:</SPAN><SPAN class=red>Name</SPAN><SPAN class=blue>="bulletGraph"</SPAN>
-                           <SPAN class=red>Height</SPAN><SPAN class=blue>="70"</SPAN>
-                           <SPAN class=red>Width</SPAN><SPAN class=blue>="300"</SPAN>
-                           <SPAN class=red>ScaleStartExtent</SPAN><SPAN class=blue>="0.2"</SPAN>
-                           <SPAN class=red>ScaleEndExtent</SPAN><SPAN class=blue>="0.9"</SPAN>
-        <SPAN class=blue>/&gt;</SPAN></SPAN>
-</PRE></DIV></DIV></TD></TR></TBODY></TABLE><BR>
-<DIV class=ig-block-title>
-<H2><A name=_Configuring_the_Scale’s></A><A name=_Ref362957272></A><A name=_Ref362967447></A><A name=_Ref361864088></A><A name=_Ref357787115></A><A name=_Ref358209468></A>Configuring the Scale’s Range</H2></DIV>
-<TABLE class=ig-layout>
-<TBODY>
+<P><SPAN class=ig-bold>1. Add a</SPAN> <I><SPAN class=ig-bold>x</SPAN></I><I><SPAN class=ig-bold>amDataChart</SPAN></I> <SPAN class=ig-bold>control to your page.</SPAN></P><SPAN class=ig-bold>2.</SPAN> <SPAN class=ig-bold>Add the required axes.</SPAN> 
+<P>A. Add the x-axis.</P><SPAN class=ig-bold>Add an</SPAN> <SPAN class=ig-code-in-text>OlapXAxis</SPAN> <SPAN class=ig-bold>to the</SPAN> <SPAN class=ig-code-in-text>Axes</SPAN> <SPAN class=ig-bold>collection of the</SPAN> <SPAN class=ig-italic>%%ControlsName%%</SPAN> <SPAN class=ig-bold>chart.</SPAN> 
+<P>B. Add the y-axis.</P>
+<P><SPAN class=ig-bold>Add a</SPAN> <A href="%%ApiLink%%.NumericYAxis_members.html">NumericYAxis</A> <SPAN class=ig-bold>to the</SPAN> <SPAN class=ig-code-in-text>Axes</SPAN> <SPAN class=ig-bold>collection of the</SPAN> <SPAN class=ig-italic>%%ControlsName%%</SPAN> <SPAN class=ig-bold>chart.</SPAN></P>
+<P>Since the data that is visualized contains numeric values, you need such a y-axis to correctly display the data chart series.</P></TD></TR>
+<TR>
+<TD><SPAN class=ig-bold>3. Configure</SPAN> <SPAN class=ig-bold>the OLAP</SPAN> <SPAN class=ig-bold>x-axis</SPAN><SPAN class=ig-bold>.</SPAN></TD>
+<TD><SPAN class=ig-bold>1. Attach the added y-axis to the OLAP-x-axis.</SPAN> 
+<P><B>Set the</B> <A href="%%ApiLink%%.NumericYAxis_members.html">YAxis</A> <B>property to the</B> <SPAN class=ig-code-in-text>NumericYAxis</SPAN> defined in the previous step.</P><SPAN class=ig-bold>2. Set the data source.</SPAN> 
+<P>Set the <A href="%%AssemblyPlatform%%Controls.Grids.XamPivotGrid%%ApiVersion%%Infragistics.Controls.Grids.XamPivotDataSelector%%ApiProp%%DataSource.html">DataSource</A> property to the data source defined in step 1.</P><SPAN class=ig-bold>3.</SPAN> <SPAN class=ig-bold>Configure the data axis from which the data is read.</SPAN> 
+<P>To do this, <SPAN class=ig-bold>set the</SPAN> <A href="%%AssemblyPlatform%%Controls.Charts.Olap%%ApiVersion%%%%ControlsNamespace%%.OlapAxis%%ApiProp%%OlapAxisSource.html">OlapAxisSource</A> <SPAN class=ig-bold>property</SPAN>. This property determines whether data is read from rows or from the columns of the data source.</P>
+<P>If you choose the columns, then each column in the data source will be displayed in the <SPAN class=ig-code-in-text>OlapXAxis</SPAN> of the data chart. For each row, a data chart series will be generated and displayed. The illustration in the <A href="#OLE_LINK20"></A><A class=ig-topic-link href="#displayingOlapDataSummary">Displaying OLAP data in <I>%%ControlsName%%</I> summary</A> block demonstrates a pivot grid control and a data chart with an OLAP axis where the <SPAN class=ig-code-in-text>OlapAxisSource</SPAN> is set to<A href="%%AssemblyPlatform%%Controls.Charts.Olap%%ApiVersion%%%%ControlsNamespace%%.OlapAxisSource.html">Columns</A>.</P>
+<P><SPAN class=ig-bold>4.</SPAN> <SPAN class=ig-bold>Configure the series type.</SPAN></P>
+<P>To configure the series type, set the <A href="%%AssemblyPlatform%%Controls.Charts.Olap%%ApiVersion%%%%ControlsNamespace%%.OlapXAxisDefaultSeries.html">DefaultSeries</A> property. (If you don’t configure it, the default Column series will be displayed.)</P></TD></TR>
+<TR>
+<TD><SPAN class=ig-bold>4.</SPAN> <SPAN class=ig-italic>(Optional)</SPAN> <SPAN class=ig-bold>Add a</SPAN> <SPAN class=ig-bold>pivot data selector</SPAN><SPAN class=ig-bold>.</SPAN></TD>
+<TD>
+<P>The following snippet will add a <SPAN class=ig-italic>XamPivotDataSelector</SPAN> component bound to the same data source as the data chart.</P>
+<DIV id=Example_XAML class=LanguageSpecific  style="hs-build-flags: XAM_XF_EX">
+<P><SPAN class=lang><B>In XAML:</B></SPAN></P><PRE><SPAN class=code><SPAN class=blue>&lt;</SPAN><SPAN class=brownish>ig</SPAN><SPAN class=blue>:</SPAN><SPAN class=brownish>Expander</SPAN> <SPAN class=red>Grid</SPAN>.<SPAN class=red>Column</SPAN><SPAN class=blue>="1"</SPAN><SPAN class=blue>&gt;</SPAN>
+<SPAN class=blue>    &lt;</SPAN><SPAN class=brownish>ig</SPAN><SPAN class=blue>:</SPAN><SPAN class=brownish>XamPivotDataSelector</SPAN> <SPAN class=red>DataSource</SPAN><SPAN class=blue>="{</SPAN><SPAN class=brownish>StaticResource</SPAN> <SPAN class=red>DataSource</SPAN><SPAN class=blue>}"</SPAN><SPAN class=blue>/&gt;</SPAN>
+<SPAN class=blue>&lt;/</SPAN><SPAN class=brownish>ig</SPAN><SPAN class=blue>:</SPAN><SPAN class=brownish>Expander</SPAN><SPAN class=blue>&gt;</SPAN></SPAN>
+</PRE></DIV></TD></TR></TBODY></TABLE><BR></DIV></TD></TR>
 <TR>
 <TH>
-<H4><A name=_Ref362957285></A>Overview</H4></TH>
+<H4><A name=_Ref333329436></A>Code</H4></TH>
 <TD>
 <DIV class=ig-layout-container>
-<P>The values of the scale are defined by specifying its value range, that is, its minimum and maximum values. This is done with the <A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~MinimumValue.html">MinimumValue</A> and <A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~MaximumValue.html">MaximumValue</A> properties.</P>
-<P>Setting the minimum and maximum values implicitly defines all values within the scale; all values are meant as evenly distributed between the minimum and maximum values. However, only those values are displayed for which there is a numbering label, placed on the scale. (The scale’s values can be displayed only through the numbering labels. The labels display the respective values based on the label’s position on the scale, i.e. the labels’ values are configured through the positioning of the labels along the scale and not set explicitly.) There is no requirement to have labels at the positions of the minimum and maximum values which means that the minimum and maximum values may not be indicated visually on the scale and the scale can look something like this:</P>
-<P><IMG alt="" src="images/xamBulletGraph_Configuring_the_Scale_3.png"></P>
-<P>Having the scales’ range defined also enables the positioning of the other value-based visual elements on the scale, namely the comparative ranges, comparative marker, and the performance bar. Note that because these elements are value-based, when the scale’s range changes (i.e. when either its minimum or maximum value (or both) changes), these visual elements are re-positioned spatially together with the scale’s values keeping their position on the scale. (To see this effect in action, refer to the <A class=ig-topic-link href="%%SamplesURL%%/bullet-graph/#/range-settings" target=_blank style="hs-build-flags: SL">Range Settngs</A> <A class=ig-topic-link href="%%SamplesURL%%/bullet-graph/range-settings" target=_blank style="hs-build-flags: WPF">Range Settings</A> sample.)</P></DIV></TD></TR>
-<TR>
-<TH>
-<H4><A name=_Ref362957294></A>Property settings</H4></TH>
-<TD>
-<DIV class=ig-layout-container>
-<P>The following table maps the desired behavior to its respective property settings. For an illustration of the configurable aspects, see the <A class=ig-topic-link href="#_Ref361864068">Example</A>.</P>
-<TABLE cellSpacing=0 cellPadding=0>
-<TBODY>
-<TR>
-<TH colSpan=2>
-<P>In order to configure:</P></TH>
-<TH rowSpan=2>
-<P>Use this property:</P></TH>
-<TH rowSpan=2>
-<P>And set it to:</P></TH></TR>
-<TR>
-<TH>
-<P><SPAN class=ig-bold>Aspect</SPAN></P></TH>
-<TH>
-<P><SPAN class=ig-bold>Details</SPAN></P></TH></TR>
-<TR>
-<TD>
-<P>The minimum value of the scale</P></TD>
-<TD>
-<P>The value at which the scale starts.</P></TD>
-<TD>
-<P><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~MinimumValue.html">MinimumValue</A></P></TD>
-<TD>
-<P>The desired value in the measures of the scale</P></TD></TR>
-<TR>
-<TD>
-<P>The maximum value of the scale</P></TD>
-<TD>
-<P>The value at which the scale ends.</P></TD>
-<TD>
-<P><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~MaximumValue.html">MaximumValue</A></P></TD>
-<TD>
-<P>The desired value in the measures of the scale</P></TD></TR></TBODY></TABLE><BR></DIV></TD></TR>
-<TR>
-<TH>
-<H4><A name=_Ref362957303></A>Example</H4></TH>
-<TD>
-<DIV class=ig-layout-container>
-<P>The screenshot below demonstrates how the <SPAN class=ig-italic>xamBulletGraph</SPAN> would look as a result of the following settings:</P>
-<TABLE cellSpacing=0 cellPadding=0>
-<TBODY>
-<TR>
-<TH>
-<P>Property</P></TH>
-<TH>
-<P>Value</P></TH></TR>
-<TR>
-<TD>
-<P><SPAN class=ig-code-in-text>MinimumValue</SPAN></P></TD>
-<TD><SPAN class=ig-italic>60</SPAN></TD></TR>
-<TR>
-<TD>
-<P><SPAN class=ig-code-in-text>MaximumValue</SPAN></P></TD>
-<TD><SPAN class=ig-italic>70</SPAN></TD></TR></TBODY></TABLE><BR>
-<P><IMG alt="" src="images/xamBulletGraph_Configuring_the_Scale_4.png"></P>
-<P>Following is the code that implements this example.</P>
-<DIV id=Example_XAML class=LanguageSpecific style="DISPLAY: block">
-<P><SPAN class=lang><B>In XAML:</B></SPAN></P><PRE><SPAN class=code>        <SPAN class=blue>&lt;</SPAN><SPAN class=brownish>ig</SPAN><SPAN class=blue>:</SPAN><SPAN class=brownish>XamBulletGraph</SPAN> <SPAN class=red>x</SPAN><SPAN class=blue>:</SPAN><SPAN class=red>Name</SPAN><SPAN class=blue>="bulletGraph"</SPAN>
-                           <SPAN class=red>Height</SPAN><SPAN class=blue>="70"</SPAN>
-                           <SPAN class=red>Width</SPAN><SPAN class=blue>="300"</SPAN>
-                           <SPAN class=red>MinimumValue</SPAN><SPAN class=blue>="60"</SPAN>
-                           <SPAN class=red>MaximumValue</SPAN><SPAN class=blue>="70"</SPAN>
-         <SPAN class=blue>/&gt;</SPAN></SPAN>
-</PRE></DIV></DIV></TD></TR></TBODY></TABLE><BR>
-<DIV class=ig-block-title>
-<H2><A name=_ConfiguringScaleMajorTickMarks></A>Configuring the Scale’s Major Tick Marks</H2></DIV>
-<TABLE class=ig-layout>
-<TBODY>
-<TR>
-<TH>
-<H4><A name=_Ref361864212></A>Overview</H4></TH>
-<TD>
-<DIV class=ig-layout-container>
-<P>The major tick marks of the <I>xamBulletGraph</I> control can be customized in terms of position and interval at which they occur. The height, thickness, and color of the line segments that forms the major tick marks are configurable as well.</P></DIV></TD></TR>
-<TR>
-<TH>
-<H4><A name=_ConfiguringThePositionAlongTheScale></A>Configuring the position along the scale, count, and spacing</H4></TH>
-<TD>
-<DIV class=ig-layout-container>
-<P>The major tick marks are defined in terms of starting and ending points (the positions of the first and the last tick marks relative to the edges of the <A class=ig-topic-link href="e814ac4f-aa81-4605-94ea-12b7301084ed#_GraphAreaLink">Graph area</A> and the interval (the distance from each other) at which they occur. (This is done through the <A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~TicksPostInitial.html">TicksPostInitial</A>, <A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~TicksPreTerminal.html">TicksPreTerminal</A>, and <A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~Interval.html">Interval</A> properties.) This way, defining the starting and ending points of the major tick marks essentially defines the position and length of the scale.</P>
-<P><IMG alt="" src="images/xamBulletGraph_Configuring_the_Scale_5.png"></P></DIV></TD></TR>
-<TR>
-<TH>
-<H4><A name=_Ref362623912></A>Configuring the position across the scale and the length of the segments</H4></TH>
-<TD>
-<DIV class=ig-layout-container>
-<P>In the across-the-scale dimension, the length and position of the line segments that form the major tick marks is configured relative to the edges of the <A class=ig-topic-link href="e814ac4f-aa81-4605-94ea-12b7301084ed#_GraphAreaLink">Graph area</A>. (This is done through the <A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~TickStartExtent.html">TickStartExtent</A> and <A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~TickEndExtent.html">TickEndExtent</A> properties.)</P>
-<P><IMG alt="" src="images/xamBulletGraph_Configuring_the_Scale_6.png"></P></DIV></TD></TR>
-<TR>
-<TH>
-<H4><A name=_Ref361864247></A>Property settings</H4></TH>
-<TD>
-<DIV class=ig-layout-container>
-<P>The following table maps the desired behavior to its respective property settings. For an illustration of the configurable aspects, see the <A class=ig-topic-link href="#_Ref361864252">Example</A>.</P>
-<TABLE cellSpacing=0 cellPadding=0>
-<TBODY>
-<TR>
-<TH colSpan=3>
-<P>In order to configure:</P></TH>
-<TH rowSpan=2>
-<P>Use this property:</P></TH>
-<TH rowSpan=2>
-<P>And set it to:</P></TH></TR>
-<TR>
-<TH colSpan=2>
-<P><SPAN class=ig-bold>Aspect</SPAN></P></TH>
-<TH>
-<P><SPAN class=ig-bold>Details</SPAN></P></TH></TR>
-<TR>
-<TH rowSpan=3>
-<P><SPAN class=ig-bold>Position along the scale, count, and spacing</SPAN></P></TH>
-<TH>
-<P>Starting point</P></TH>
-<TD>
-<P>The distance at which the major tick marks begin relative to the <A class=ig-topic-link href="#_Ref361864060">starting position</A> of the scale</P></TD>
-<TD><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~TicksPostInitial.html">TicksPostInitial</A></TD>
-<TD>
-<P>The desired distance (in the measures of the scale) from scale start position</P></TD></TR>
-<TR>
-<TH>
-<P>Ending point</P></TH>
-<TD>
-<P>The distance at which the major tick marks end relative to the <A class=ig-topic-link href="#_Ref361864060">ending position</A> of the scale</P></TD>
-<TD><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~TicksPreTerminal.html">TicksPreTerminal</A></TD>
-<TD>
-<P>The desired distance (in the measures of the scale) from the scale end position</P></TD></TR>
-<TR>
-<TH>
-<P>Interval</P></TH>
-<TD>
-<P>The interval at which to place the major tick marks (Interval is the distance – in the measures of the scale – between two adjacent major tick marks.)</P></TD>
-<TD>
-<P><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~Interval.html">Interval</A></P></TD>
-<TD>
-<P>The desired value in measures of the scale</P></TD></TR>
-<TR>
-<TH rowSpan=2><SPAN class=ig-bold>Position across the scale and length of the segments</SPAN></TH>
-<TH>
-<P>Starting point</P></TH>
-<TD>
-<P>The starting point of the line segments that form the major tick marks.</P>
-<P>(The starting point is defined relative to the bottom of the Graph area in horizontal orientation or to the left edge of the Graph area in vertical orientation.)</P>
-<P>Negative values are supported as well, indicating positions beneath/ on the left of the Graph area.</P></TD>
-<TD>
-<P><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~TickStartExtent.html">TickStartExtent</A></P></TD>
-<TD>
-<P>The desired value (in the measures of the scale) as a relative part the height/width of the Graph area (depending on the orientation) presented as a fraction of 1 (e.g. <I>0.2</I>)</P></TD></TR>
-<TR>
-<TH>
-<P>Ending point</P></TH>
-<TD>
-<P>The ending point of the line segments that form major tick marks relative to the bottom of the Graph area in horizontal orientation or to the left border of the Graph area in vertical orientation.</P>
-<P>Negative values are supported as well, indicating positions beneath/ on the left of the Graph area.</P>
-<P>(The difference between the starting and the ending points forms the length of the marks’ line segments.)</P></TD>
-<TD>
-<P><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~TickEndExtent.html">TickEndExtent</A></P></TD>
-<TD>
-<P>The desired value as a relative part the height/width of the Graph area (depending on the orientation) presented as a fraction of 1 (e.g. <I>0.</I><I>8</I>)</P></TD></TR>
-<TR>
-<TH rowSpan=2>
-<P><SPAN class=ig-bold>Look-and-feel</SPAN></P></TH>
-<TH>
-<P>Thickness</P></TH>
-<TD>
-<P>The thickness of the major tick marks’ line segments.</P></TD>
-<TD>
-<P><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~TickStrokeThickness.html">TickStrokeThickness</A></P></TD>
-<TD>
-<P>The desired value in pixels</P></TD></TR>
-<TR>
-<TH>
-<P>Color</P></TH>
-<TD>
-<P>The color of the major tick marks</P></TD>
-<TD>
-<P><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~TickBrush.html">TickBrush</A></P></TD>
-<TD>
-<P>The desired color</P></TD></TR></TBODY></TABLE><BR></DIV></TD></TR>
-<TR>
-<TH>
-<H4><A name=_Ref361864252></A>Example</H4></TH>
-<TD>
-<DIV class=ig-layout-container>
-<P>The screenshot below demonstrates how the <I>xamBulletGraph</I> looks as a result of the following settings:</P>
-<TABLE cellSpacing=0 cellPadding=0>
-<TBODY>
-<TR>
-<TH>
-<P>Property</P></TH>
-<TH>
-<P>Value</P></TH></TR>
-<TR>
-<TD>
-<P><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~Interval.html">Interval</A></P></TD>
-<TD><SPAN class=ig-italic>30</SPAN></TD></TR>
-<TR>
-<TD>
-<P><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~TickBrush.html">TickBrush</A></P></TD>
-<TD><SPAN class=ig-italic>Lime</SPAN></TD></TR>
-<TR>
-<TD>
-<P><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~TickEndExtent.html">TickEndExtent</A></P></TD>
-<TD><SPAN class=ig-italic>0.9</SPAN></TD></TR>
-<TR>
-<TD><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~TicksPostInitial.html">TicksPostInitial</A></TD>
-<TD><SPAN class=ig-italic>30</SPAN></TD></TR>
-<TR>
-<TD><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~TicksPreTerminal.html">TicksPreTerminal</A></TD>
-<TD><SPAN class=ig-italic>10</SPAN></TD></TR>
-<TR>
-<TD>
-<P><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~TickStartExtent.html">TickStartExtent</A></P></TD>
-<TD><SPAN class=ig-italic>0.5</SPAN></TD></TR>
-<TR>
-<TD>
-<P><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~TickStrokeThickness.html">TickStrokeThickness</A></P></TD>
-<TD><SPAN class=ig-italic>3</SPAN></TD></TR></TBODY></TABLE><BR>
-<P><IMG alt="" src="images/xamBulletGraph_Configuring_the_Scale_7.png"></P>
-<P>Following is the code that implements this example.</P>
-<DIV id=Example_XAML class=LanguageSpecific style="DISPLAY: block">
-<P><SPAN class=lang><B>In XAML:</B></SPAN></P><PRE><SPAN class=code>        <SPAN class=blue>&lt;</SPAN><SPAN class=brownish>ig</SPAN><SPAN class=blue>:</SPAN><SPAN class=brownish>XamBulletGraph</SPAN> <SPAN class=red>x</SPAN><SPAN class=blue>:</SPAN><SPAN class=red>Name</SPAN><SPAN class=blue>="bulletGraph"</SPAN>
-                           <SPAN class=red>Height</SPAN><SPAN class=blue>="70"</SPAN>
-                           <SPAN class=red>Width</SPAN><SPAN class=blue>="300"</SPAN>
-                           <SPAN class=red>Interval</SPAN><SPAN class=blue>="30"</SPAN>
-                           <SPAN class=red>TickBrush</SPAN><SPAN class=blue>="Lime"</SPAN>
-                           <SPAN class=red>TickEndExtent</SPAN><SPAN class=blue>="0.9"</SPAN>
-                           <SPAN class=red>TicksPostInitial</SPAN><SPAN class=blue>="30"</SPAN>
-                           <SPAN class=red>TicksPreTerminal</SPAN><SPAN class=blue>="10"</SPAN>
-                           <SPAN class=red>TickStartExtent</SPAN><SPAN class=blue>="0.5"</SPAN>
-                           <SPAN class=red>TickStrokeThickness</SPAN><SPAN class=blue>="3"</SPAN>
-                           <SPAN class=blue>/&gt;</SPAN></SPAN>
-</PRE></DIV></DIV></TD></TR></TBODY></TABLE><BR>
-<DIV class=ig-block-title>
-<H2><A name=_Ref358209462></A>Configuring the Scale’s Minor Tick Marks</H2></DIV>
-<TABLE class=ig-layout>
-<TBODY>
-<TR>
-<TH>
-<H4><A name=_Ref361864270></A>Overview</H4></TH>
-<TD>
-<DIV class=ig-layout-container>
-<P>The minor tick marks of the <I>xamBulletGraph</I> control can be explicitly disabled or customized in terms of number (between two major tick marks), positioning, size, and color.</P></DIV></TD></TR>
-<TR>
-<TH>
-<H4><A name=_Ref362631410></A>Configuring the position along the scale, count, and spacing</H4></TH>
-<TD>
-<DIV class=ig-layout-container>
-<P>The minor tick marks are defined as a count (the number of minor tick marks between two adjacent major tick marks). (This is done through the <A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~MinorTickCount.html">MinorTickCount</A> property; setting this property to <I>0</I> disables (hides) the minor tick marks.) When the count is set, the specified number of minor tick marks is placed evenly between every two adjacent major tick marks, from the first one, to the last.</P></DIV></TD></TR>
-<TR>
-<TH>
-<H4><A name=_Ref362631420></A>Configuring the position across the scale and the length of the segments</H4></TH>
-<TD>
-<DIV class=ig-layout-container>
-<P>In the across-the-scale dimension, the minor tick marks length and position is configured relative to the edges of the <A class=ig-topic-link href="e814ac4f-aa81-4605-94ea-12b7301084ed#_GraphAreaLink">Graph area</A>.</P>
-<P><IMG alt="" src="images/xamBulletGraph_Configuring_the_Scale_8.png"></P></DIV></TD></TR>
-<TR>
-<TH>
-<H4><A name=_Ref361864274></A>Property settings</H4></TH>
-<TD>
-<DIV class=ig-layout-container>
-<P>The following table maps the desired behavior to its respective property settings. For an illustration of the configurable aspects, see the <A class=ig-topic-link href="#_Ref361864279">Example</A>.</P>
-<TABLE cellSpacing=0 cellPadding=0>
-<TBODY>
-<TR>
-<TH colSpan=4>
-<P>In order to configure:</P></TH>
-<TH rowSpan=2>
-<P>Use this property:</P></TH>
-<TH rowSpan=2>
-<P>And set it to:</P></TH></TR>
-<TR>
-<TH colSpan=3><SPAN class=ig-bold>Aspect</SPAN></TH>
-<TH><SPAN class=ig-bold>Details</SPAN></TH></TR>
-<TR>
-<TH colSpan=3><SPAN class=ig-bold>Number and spacing</SPAN></TH>
-<TD>
-<P>The number of minor tick marks between two adjacent major tick marks.</P></TD>
-<TD><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~MinorTickCount.html">MinorTickCount</A></TD>
-<TD>
-<P>The desired number; setting of <I>0</I> hides the minor tick marks</P></TD></TR>
-<TR>
-<TH rowSpan=4><SPAN class=ig-bold>Line segments</SPAN></TH>
-<TH rowSpan=2><SPAN class=ig-bold>Length and position</SPAN></TH>
-<TH>Starting point</TH>
-<TD>
-<P>The starting point of the line segments that form the minor tick marks.</P>
-<P>(The starting point is defined relative to the bottom of the <A class=ig-topic-link href="e814ac4f-aa81-4605-94ea-12b7301084ed#_GraphAreaLink">Graph area</A> in horizontal orientation or to the left edge of the Graph area in vertical orientation.)</P>
-<P>Negative values are supported as well, indicating positions beneath/ on the left of the Graph area.</P></TD>
-<TD>
-<P><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~MinorTickStartExtent.html">MinorTickStartExtent</A></P></TD>
-<TD>
-<P>The desired value as a relative part the height/width of the control height/width (depending on the orientation) presented as a fraction of 1 (e.g. <I>0.2</I>)</P></TD></TR>
-<TR>
-<TH><SPAN class=ig-bold>Ending point</SPAN></TH>
-<TD>
-<P>The ending point of the line segments that form minor tick marks relative to the bottom of the Graph area in horizontal orientation or to the left border of the Graph area in vertical orientation.</P>
-<P>Negative values are supported as well, indicating positions beneath/ on the left of the Graph area.</P>
-<P>(The difference between the starting and the ending points forms the length of the marks’ line segments.)</P></TD>
-<TD>
-<P><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~MinorTickEndExtent.html">MinorTickEndExtent</A></P></TD>
-<TD>
-<P>The desired value as a relative part the height/width of the control height/width (depending on the orientation) presented as a fraction of 1 (e.g. <I>0.2</I><I>5</I>)</P></TD></TR>
-<TR>
-<TH rowSpan=2><SPAN class=ig-bold>Look-and-feel</SPAN></TH>
-<TH>
-<P>Thickness</P></TH>
-<TD>
-<P>The thickness of the minor tick marks</P></TD>
-<TD>
-<P><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~MinorTickStrokeThickness.html">MinorTickStrokeThickness</A></P></TD>
-<TD>
-<P>The desired value in pixels</P></TD></TR>
-<TR>
-<TH>
-<P>Color</P></TH>
-<TD>
-<P>The color of the minor tick marks</P></TD>
-<TD>
-<P><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~MinorTickBrush.html">MinorTickBrush</A></P></TD>
-<TD>
-<P>The desired color</P></TD></TR></TBODY></TABLE><BR></DIV></TD></TR>
-<TR>
-<TH>
-<H4><A name=_Ref361864279></A>Example</H4></TH>
-<TD>
-<DIV class=ig-layout-container>
-<P>The screenshot below demonstrates how the <I>xamBulletGraph</I> looks as a result of the following settings:</P>
-<TABLE cellSpacing=0 cellPadding=0>
-<TBODY>
-<TR>
-<TH>
-<P>Property</P></TH>
-<TH>
-<P>Value</P></TH></TR>
-<TR>
-<TD>
-<P><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~MinorTickBrush.html">MinorTickBrush</A></P></TD>
-<TD><SPAN class=ig-italic>Purple</SPAN></TD></TR>
-<TR>
-<TD><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~MinorTickCount.html">MinorTickCount</A></TD>
-<TD><SPAN class=ig-italic>4</SPAN></TD></TR>
-<TR>
-<TD>
-<P><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~MinorTickEndExtent.html">MinorTickEndExtent</A></P></TD>
-<TD><SPAN class=ig-italic>0.1</SPAN></TD></TR>
-<TR>
-<TD>
-<P><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~MinorTickStartExtent.html">MinorTickStartExtent</A></P></TD>
-<TD><SPAN class=ig-italic>0.05</SPAN></TD></TR>
-<TR>
-<TD>
-<P><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~MinorTickStrokeThickness.html">MinorTickStrokeThickness</A></P></TD>
-<TD><SPAN class=ig-italic>2</SPAN></TD></TR>
-<TR>
-<TD>
-<P><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~Interval.html">Interval</A></P></TD>
-<TD><SPAN class=ig-italic>20</SPAN></TD></TR></TBODY></TABLE><BR>
-<P><IMG alt="" src="images/xamBulletGraph_Configuring_the_Scale_9.png"></P>
-<P>Following is the code that implements this example.</P>
-<DIV id=Example_XAML class=LanguageSpecific style="DISPLAY: block">
-<P><SPAN class=lang><B>In XAML:</B></SPAN></P><PRE><SPAN class=code>        <SPAN class=blue>&lt;</SPAN><SPAN class=brownish>ig</SPAN><SPAN class=blue>:</SPAN><SPAN class=brownish>XamBulletGraph</SPAN> <SPAN class=red>x</SPAN><SPAN class=blue>:</SPAN><SPAN class=red>Name</SPAN><SPAN class=blue>="bulletGraph"</SPAN>
-                           <SPAN class=red>Height</SPAN><SPAN class=blue>="70"</SPAN>
-                           <SPAN class=red>Width</SPAN><SPAN class=blue>="300"</SPAN>
-                           <SPAN class=red>MinorTickBrush</SPAN><SPAN class=blue>="Purple"</SPAN>
-                           <SPAN class=red>MinorTickCount</SPAN><SPAN class=blue>="4"</SPAN>
-                           <SPAN class=red>MinorTickEndExtent</SPAN><SPAN class=blue>="0.1"</SPAN>
-                           <SPAN class=red>MinorTickStartExtent</SPAN><SPAN class=blue>="0.05"</SPAN>
-                           <SPAN class=red>MinorTickStrokeThickness</SPAN><SPAN class=blue>="2"</SPAN>
-                           <SPAN class=red>Interval</SPAN><SPAN class=blue>="20"</SPAN>
-                           <SPAN class=blue>/&gt;</SPAN></SPAN>
-</PRE></DIV></DIV></TD></TR></TBODY></TABLE><BR>
-<DIV class=ig-block-title>
-<H2><A name=_Ref361864288></A><A name=_Ref362292715></A>Configuring the Scale’s Labeling</H2></DIV>
-<TABLE class=ig-layout>
-<TBODY>
-<TR>
-<TH>
-<H4><A name=_Ref361864298></A>Overview</H4></TH>
-<TD>
-<DIV class=ig-layout-container>
-<P>By default, the labels indicating the scale’s measures are enabled. The labels are defined in terms of the following factors:</P>
-<UL>
-<LI><SPAN class=ig-bold>Starting and ending points</SPAN> – the positions of the first and the last label relative to the edges of the scale 
-<LI><SPAN class=ig-bold>Breadth of the label row</SPAN> – relative to the height/width of the control, depending on the orientation (vertical/horizontal). The breadth can be controlled only indirectly by the font settings in the applied style template. 
-<LI><SPAN class=ig-bold>The interval</SPAN> (the distance from each other) at which they occur. (This is done through the <A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~LabelsPostInitial.html">LabelsPostInitial</A>, <A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~LabelsPreTerminal.html">LabelsPreTerminal</A> and <A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~LabelInterval.html">LabelInterval</A> properties.) 
-<LI><SPAN class=ig-bold>The position of the label row</SPAN> in the across-the-scale dimension – the default is at the bottom / on the left of the control (for horizontal or vertical orientation, respectively); the entire row can be shifted vertically at horizontal scale orientation or the horizontally at vertical scale orientation. (This is done through the <A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~LabelExtent.html">LabelExtent</A> property.) </LI></UL>
-<P><IMG alt="" src="images/xamBulletGraph_Configuring_the_Scale_10.png"></P>
-<P>The value that each label displays is defined by the value represented by its position on the scale (This requires <A href="#_Configuring_the_Scale%E2%80%99s"></A><A class=ig-topic-link href="#_Ref362967447">configuring the scale’s value range</A>.) A string format can be applied to the labels so that their look is additionally customized. By default, a numeric label is displayed for each of the major tick marks and the labels are positioned beneath / on the left of the scale depending on the scale’s orientation (horizontal/vertical, respectively).</P>
-<P>If you customize the labels and the major tick marks, you will more likely need to make sure they align to each other; to achieve alignment, set the same value for the tick marks interval (<A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~Interval.html">Interval</A> property) and the label interval (<SPAN class=ig-code-in-text>LabelInterval</SPAN> property). (By default, they are aligned because the <SPAN class=ig-code-in-text>LabelInterval</SPAN> property is not set and uses the value set for <SPAN class=ig-code-in-text>Interval</SPAN>.)</P></DIV></TD></TR>
-<TR>
-<TH>
-<H4><A name=_Ref361864305></A>Event handling</H4></TH>
-<TD>
-<DIV class=ig-layout-container>
-<P>The labels of <I>xamBulletGraph</I> can be additionally formatted and aligned on handling the corresponding events.</P>
-<P>The following table maps the desired behavior to its respective event.</P>
-<TABLE cellSpacing=0 cellPadding=0>
-<TBODY>
-<TR>
-<TH>
-<P>In order to:</P></TH>
-<TH>
-<P>Handle this event:</P></TH></TR>
-<TR>
-<TD>
-<P>Format the labels</P></TD>
-<TD>
-<P><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~FormatLabel_EV.html">FormatLabel</A></P></TD></TR>
-<TR>
-<TD>
-<P>Align the labels</P></TD>
-<TD>
-<P><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~AlignLabel_EV.html">AlignLabel</A></P></TD></TR></TBODY></TABLE><BR></DIV></TD></TR>
-<TR>
-<TH>
-<H4><A name=_Ref361864310></A>Property settings</H4></TH>
-<TD>
-<DIV class=ig-layout-container>
-<P>The following table maps the desired behavior to its respective property settings. For an illustration of the configurable aspects, see <A href="#_Ref361864318"></A><A class=ig-topic-link href="#_Ref361864318">Example – horizontal orientation</A>.</P>
-<TABLE cellSpacing=0 cellPadding=0>
-<TBODY>
-<TR>
-<TH colSpan=3>
-<P>In order to configure:</P></TH>
-<TH rowSpan=2>
-<P>Use this property:</P></TH>
-<TH rowSpan=2>
-<P>And set it to:</P></TH></TR>
-<TR>
-<TH colSpan=2>
-<P><SPAN class=ig-bold>Aspect</SPAN></P></TH>
-<TH>
-<P><SPAN class=ig-bold>Details</SPAN></P></TH></TR>
-<TR>
-<TH><SPAN class=ig-bold>Label row</SPAN></TH>
-<TH>
-<P>Position</P></TH>
-<TD>
-<P>The positioning of the label row relative to bottom/left edge of the control (depending on the orientation – vertical/horizontal).</P></TD>
-<TD>
-<P><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~LabelExtent.html">LabelExtent</A></P></TD>
-<TD>
-<P>The desired value presented as a relative part the height/width of the control (depending on the orientation – vertical/horizontal) presented as a fraction of 1 (e.g. <I>0.</I><I>8</I>).</P></TD></TR>
-<TR>
-<TH rowSpan=3>
-<P><SPAN class=ig-bold>Number and spacing</SPAN></P></TH>
-<TH>
-<P>Starting point</P></TH>
-<TD>
-<P>Position (in the measures of the scale) of the first label along the scale</P></TD>
-<TD>
-<P><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~LabelsPostInitial.html">LabelsPostInitial</A></P></TD>
-<TD>
-<P>The value (in the measures of the scale) at which the first label of the scale is to be displayed</P></TD></TR>
-<TR>
-<TH>
-<P>Ending point</P></TH>
-<TD>
-<P>Position (in the measures of the scale) of the last label along the scale</P></TD>
-<TD>
-<P><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~LabelsPreTerminal.html">LabelsPreTerminal</A></P></TD>
-<TD>
-<P>The value (in the measures of the scale) at which the last label of the scale is to be displayed</P></TD></TR>
-<TR>
-<TH>
-<P>Interval</P></TH>
-<TD>
-<P>The interval at which to place the labels (Interval is the distance between two adjacent labels in the measures of the scale.)</P></TD>
-<TD>
-<P><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~LabelInterval.html">LabelInterval</A></P></TD>
-<TD>
-<P>The desired value in the measure of the scale</P></TD></TR>
-<TR>
-<TH rowSpan=2>
-<P><SPAN class=ig-bold>Look-and-feel</SPAN></P></TH>
-<TH>
-<P>String format</P></TH>
-<TD>
-<P>The string format of the labels (e.g. numeric, time, composite, etc.)</P></TD>
-<TD><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~LabelFormat.html">LabelFormat</A></TD>
-<TD>
-<P>The desired <A href="http://msdn.microsoft.com/en-us/library/26etazsy.aspx">string format</A> (e.g. <SPAN class=ig-italic>{0:c}</SPAN> for displaying currency values)</P></TD></TR>
-<TR>
-<TH>
-<P>Font color</P></TH>
-<TD>
-<P>Font color of the labels</P></TD>
-<TD>
-<P><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~FontBrush.html">FontBrush</A></P></TD>
-<TD>
-<P>The desired color</P></TD></TR></TBODY></TABLE><BR></DIV></TD></TR>
-<TR>
-<TH>
-<H4><A name=_Ref361864318></A>Example – horizontal orientation</H4></TH>
-<TD>
-<DIV class=ig-layout-container>
-<P>The screenshot below demonstrates how the <I>xamBulletGraph</I> looks as a result of the following settings with the default horizontal scale orientation:</P>
-<TABLE cellSpacing=0 cellPadding=0>
-<TBODY>
-<TR>
-<TH>
-<P>Property</P></TH>
-<TH>
-<P>Value</P></TH></TR>
-<TR>
-<TD>
-<P><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~LabelExtent.html">LabelExtent</A></P></TD>
-<TD><SPAN class=ig-italic>0.5</SPAN></TD></TR>
-<TR>
-<TD>
-<P><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~LabelInterval.html">LabelInterval</A></P></TD>
-<TD><SPAN class=ig-italic>30</SPAN></TD></TR>
-<TR>
-<TD>
-<P><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~LabelsPostInitial.html">LabelsPostInitial</A></P></TD>
-<TD><SPAN class=ig-italic>20</SPAN></TD></TR>
-<TR>
-<TD>
-<P><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~LabelsPreTerminal.html">LabelsPreTerminal</A></P></TD>
-<TD><SPAN class=ig-italic>20</SPAN></TD></TR>
-<TR>
-<TD>
-<P><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~FontBrush.html">FontBrush</A></P></TD>
-<TD><SPAN class=ig-italic>Green</SPAN></TD></TR></TBODY></TABLE><BR>
-<P><IMG alt="" src="images/xamBulletGraph_Configuring_the_Scale_11.png"></P>
-<P>Following is the code that implements this example.</P>
-<DIV id=Example_XAML class=LanguageSpecific style="DISPLAY: block">
-<P><SPAN class=lang><B>In XAML:</B></SPAN></P><PRE><SPAN class=code>        <SPAN class=blue>&lt;</SPAN><SPAN class=brownish>ig</SPAN><SPAN class=blue>:</SPAN><SPAN class=brownish>XamBulletGraph</SPAN> <SPAN class=red>x</SPAN><SPAN class=blue>:</SPAN><SPAN class=red>Name</SPAN><SPAN class=blue>="bulletGraph"</SPAN>
-                           <SPAN class=red>Height</SPAN><SPAN class=blue>="70"</SPAN>
-                           <SPAN class=red>Width</SPAN><SPAN class=blue>="300"</SPAN>
-                           <SPAN class=red>LabelExtent</SPAN><SPAN class=blue>="0.5"</SPAN>
-                           <SPAN class=red>LabelInterval</SPAN><SPAN class=blue>="30"</SPAN>
-                           <SPAN class=red>LabelsPostInitial</SPAN><SPAN class=blue>="20"</SPAN>
-                           <SPAN class=red>LabelsPreTerminal</SPAN><SPAN class=blue>="20"</SPAN>
-                           <SPAN class=red>FontBrush</SPAN><SPAN class=blue>="Green"</SPAN>             
-                           <SPAN class=blue>/&gt;</SPAN>
-    </SPAN>
-</PRE></DIV></DIV></TD></TR>
-<TR>
-<TH>
-<H4><A name=_Ref361864329></A>Example – vertical orientation</H4></TH>
-<TD>
-<DIV class=ig-layout-container>
-<P>The screenshot below demonstrates how the <I>xamBulletGraph</I> looks as a result of the following property settings (same as in <A href="#_Ref361864318"></A><A class=ig-topic-link href="#_Ref361864318">Example – horizontal orientation</A>) and vertical orientation:</P>
-<TABLE cellSpacing=0 cellPadding=0>
-<TBODY>
-<TR>
-<TH>
-<P>Property</P></TH>
-<TH>
-<P>Value</P></TH></TR>
-<TR>
-<TD>
-<P><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~Orientation.html">Orientation</A></P></TD>
-<TD><SPAN class=ig-italic>Vertical</SPAN></TD></TR>
-<TR>
-<TD>
-<P><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~LabelExtent.html">LabelExtent</A></P></TD>
-<TD><SPAN class=ig-italic>0.5</SPAN></TD></TR>
-<TR>
-<TD>
-<P><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~LabelInterval.html">LabelInterval</A></P></TD>
-<TD><SPAN class=ig-italic>30</SPAN></TD></TR>
-<TR>
-<TD>
-<P><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~LabelsPostInitial.html">LabelsPostInitial</A></P></TD>
-<TD><SPAN class=ig-italic>20</SPAN></TD></TR>
-<TR>
-<TD>
-<P><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~LabelsPreTerminal.html">LabelsPreTerminal</A></P></TD>
-<TD><SPAN class=ig-italic>20</SPAN></TD></TR>
-<TR>
-<TD>
-<P><A href="%%ProductAssemblyName%%.Controls.Gauges.v%%ProductVersionShort%%~Infragistics.Controls.Gauges.XamBulletGraph~FontBrush.html">FontBrush</A></P></TD>
-<TD><SPAN class=ig-italic>Green</SPAN></TD></TR></TBODY></TABLE><BR>
-<P><IMG alt="" src="images/xamBulletGraph_Configuring_the_Scale_12.png"></P>
-<P>Following is the code that implements this example.</P>
-<DIV id=Example_XAML class=LanguageSpecific style="DISPLAY: block">
-<P><SPAN class=lang><B>In XAML:</B></SPAN></P><PRE><SPAN class=code>        <SPAN class=blue>&lt;</SPAN><SPAN class=brownish>ig</SPAN><SPAN class=blue>:</SPAN><SPAN class=brownish>XamBulletGraph</SPAN> <SPAN class=red>x</SPAN><SPAN class=blue>:</SPAN><SPAN class=red>Name</SPAN><SPAN class=blue>="bulletGraph"</SPAN>
-                           <SPAN class=red>Orientation</SPAN><SPAN class=blue>="Vertical"</SPAN>
-                           <SPAN class=red>Width</SPAN><SPAN class=blue>="70"</SPAN>
-                           <SPAN class=red>Height</SPAN><SPAN class=blue>="300"</SPAN>
-                           <SPAN class=red>LabelExtent</SPAN><SPAN class=blue>="0.5"</SPAN>
-                           <SPAN class=red>LabelInterval</SPAN><SPAN class=blue>="30"</SPAN>
-                           <SPAN class=red>LabelsPostInitial</SPAN><SPAN class=blue>="20"</SPAN>
-                           <SPAN class=red>LabelsPreTerminal</SPAN><SPAN class=blue>="20"</SPAN>
-                           <SPAN class=red>FontBrush</SPAN><SPAN class=blue>="Green"</SPAN>
-                           <SPAN class=blue>/&gt;</SPAN>    </SPAN>
-</PRE></DIV></DIV></TD></TR></TBODY></TABLE><BR>
-<DIV class=ig-block-title>
-<H2><A name=_Ref361864362></A>Related Content</H2></DIV>
-<TABLE class=ig-layout>
-<TBODY>
-<TR>
-<TH>
-<H4><A name=_Ref361864379></A>Topics</H4></TH>
-<TD>
-<DIV class=ig-layout-container>
-<P>The following topics provide additional information related to this topic.</P>
-<TABLE cellSpacing=0 cellPadding=0>
-<TBODY>
-<TR>
-<TH>
-<P>Topic</P></TH>
-<TH>
-<P>Purpose</P></TH></TR>
-<TR>
-<TD>
-<DIV class=ig-topic-link><A href="786f11e2-e056-45d5-a397-b5111e96420a">Configuring Orientation and Direction (<I>xamBulletGraph</I>)</A> </DIV></TD>
-<TD>
-<P>This topic explains how to configure the <SPAN class=ig-italic>xamBulletGraph</SPAN> control with vertical scale and/or inverted scale direction.</P></TD></TR>
-<TR>
-<TD>
-<DIV class=ig-topic-link><A href="2f6ecc5f-4cc2-4705-a9ae-7b52b586cdb2">Configuring the Title/Subtitle (<I>xamBulletGraph</I>)</A> </DIV></TD>
-<TD>
-<P>This topic explains, with code examples, how to configure the title and subtitle of the <SPAN class=ig-italic>xamBulletGraph</SPAN> control. This includes the title area width the start position of the text and the title/subtitle text itself.</P></TD></TR>
-<TR>
-<TD>
-<DIV class=ig-topic-link><A href="d244bad6-b3f4-44f3-bc2b-eb189e40c881">Configuring the Performance Bar (<I>xamBulletGraph</I>)</A> </DIV></TD>
-<TD>
-<P>This topic explains, with examples, how to configure the performance bar of the <SPAN class=ig-italic>xamBulletGraph</SPAN> control. This includes the value indicated by the bar, its width, position, and formatting.</P></TD></TR>
-<TR>
-<TD>
-<DIV class=ig-topic-link><A href="5baaf616-a697-4a11-b162-b85251ff9d70">Configuring the Comparative Marker (<I>xamBulletGraph</I>)</A> </DIV></TD>
-<TD>
-<P>This topic explains, with code examples, how to configure the comparative measure marker of the <SPAN class=ig-italic>xamBulletGraph</SPAN> control. This includes the marker’s value, width, and formatting.</P></TD></TR>
-<TR>
-<TD>
-<DIV class=ig-topic-link><A href="17579bdd-6bcb-4cf0-95c4-6d83387af629">Configuring Comparative Ranges (<I>xamBulletGraph</I>)</A> </DIV></TD>
-<TD>
-<P>This topic explains, with code examples, how to configure ranges in the <SPAN class=ig-italic>xamBulletGraph</SPAN> control. This includes the number of ranges and their positions, lengths, widths, and formatting.</P></TD></TR>
-<TR>
-<TD>
-<DIV class=ig-topic-link><A href="f774a2ab-6b55-40b8-b5e9-ab54ce1e83ff">Configuring the Background (<I>xamBulletGraph</I>)</A> </DIV></TD>
-<TD>
-<P>This topic explains, with code examples, how to configure a background for the bullet graph. This includes setting the background’s size, position, color, and border.</P></TD></TR>
-<TR>
-<TD>
-<DIV class=ig-topic-link><A href="e0a3ab7f-f465-4924-8f59-82b07e05f47e">Configuring the Tooltips (<I>xamBulletGraph</I>)</A> </DIV></TD>
-<TD>
-<P>This topic explains, with code examples, how to enable the tooltips in the <SPAN class=ig-italic>xamBulletGraph</SPAN> control and configure the delay with which they are displayed.</P></TD></TR></TBODY></TABLE><BR></DIV></TD></TR>
-<TR>
-<TH>
-<H4><A name=_Ref361864383></A>Samples</H4></TH>
-<TD>
-<DIV class=ig-layout-container>
-<P>The following samples provide additional information related to this topic.</P>
-<TABLE cellSpacing=0 cellPadding=0>
-<TBODY>
-<TR>
-<TH>
-<P>Sample</P></TH>
-<TH>
-<P>Purpose</P></TH></TR>
-<TR>
-<TD>
-<P class=ig-topic-link style="hs-build-flags: SL"><A class=ig-topic-link href="%%SamplesURL%%/bullet-graph/#/tick-marks-settings" target=_blank>Tick Marks Settings</A></P>
-<P class=ig-topic-link style="hs-build-flags: WPF"><A class=ig-topic-link href="%%SamplesURL%%/bullet-graph/tick-marks-settings" target=_blank>Tick Marks Settings</A></P></TD>
-<TD>
-<P>This sample demonstrates the supported tick marks configurations of the <SPAN class=ig-italic>igBulletGraph</SPAN> control.</P></TD></TR>
-<TR>
-<TD>
-<P class=ig-topic-link style="hs-build-flags: SL"><A class=ig-topic-link href="%%SamplesURL%%/bullet-graph/#/scale-labeling-settings" target=_blank>Scale Labeling Settings</A></P>
-<P class=ig-topic-link style="hs-build-flags: WPF"><A class=ig-topic-link href="%%SamplesURL%%/bullet-graph/scale-labeling-settings" target=_blank>Scale Labeling Settings</A></P></TD>
-<TD>
-<P>This sample demonstrates the supported scale labeling configurations of the <SPAN class=ig-italic>igBulletGraph</SPAN> control.</P></TD></TR></TBODY></TABLE><BR></DIV></TD></TR>
-<TR>
-<TH>
-<H4><A name=_Ref362293151></A>Resources</H4></TH>
-<TD>
-<DIV class=ig-layout-container>
-<P>The following material (available outside the Infragistics family of content) provides additional information related to this topic.</P>
-<TABLE cellSpacing=0 cellPadding=0>
-<TBODY>
-<TR>
-<TH>
-<P>Title</P></TH>
-<TH>
-<P>Purpose</P></TH></TR>
-<TR>
-<TD>
-<DIV class=ig-topic-link><A class=ig-topic-link href="http://msdn.microsoft.com/en-us/library/26etazsy.aspx" target=_blank>Formatting Types</A> </DIV></TD>
-<TD>
-<P>An MSDN overview article on formatting types with sub-articles on the specific string formats.</P></TD></TR></TBODY></TABLE><BR></DIV></TD></TR></TBODY></TABLE><BR>
+<P>Following is the complete XAML code of the procedure.</P>
+<DIV id=Example_XAML class=LanguageSpecific  style="hs-build-flags: XAM_XF_EX">
+<P><SPAN class=lang><B>In XAML:</B></SPAN></P><PRE><SPAN class=code><SPAN class=blue>&lt;</SPAN><SPAN class=brownish>UserControl</SPAN> 
+      …
+      <SPAN class=red>xmlns</SPAN><SPAN class=blue>:</SPAN><SPAN class=red>ig</SPAN><SPAN class=blue>="http://schemas.infragistics.com/xaml"</SPAN>
+      <SPAN class=red>xmlns</SPAN><SPAN class=blue>:</SPAN><SPAN class=red>models</SPAN><SPAN class=blue>="clr-namespace:Infragistics.Samples.Data.Models"</SPAN>
+      <SPAN class=red>xmlns</SPAN><SPAN class=blue>:</SPAN><SPAN class=red>olap</SPAN><SPAN class=blue>="http://schemas.infragistics.com/olap"</SPAN><SPAN class=blue>&gt;</SPAN>
+    <SPAN class=blue>&lt;</SPAN><SPAN class=brownish>UserControl.Resources</SPAN><SPAN class=blue>&gt;</SPAN>
+        <SPAN class=blue>&lt;</SPAN><SPAN class=brownish>models</SPAN><SPAN class=blue>:</SPAN><SPAN class=brownish>SalesDataSample</SPAN> <SPAN class=red>x</SPAN><SPAN class=blue>:</SPAN><SPAN class=red>Key</SPAN><SPAN class=blue>="DataSample"</SPAN><SPAN class=blue>/&gt;</SPAN>
+        <SPAN class=blue>&lt;</SPAN><SPAN class=brownish>olap</SPAN><SPAN class=blue>:</SPAN><SPAN class=brownish>FlatDataSource</SPAN>
+            <SPAN class=red>x</SPAN><SPAN class=blue>:</SPAN><SPAN class=red>Key</SPAN><SPAN class=blue>="DataSource"</SPAN>
+            <SPAN class=red>Columns</SPAN><SPAN class=blue>="[Date].[Date]"</SPAN>
+            <SPAN class=red>Measures</SPAN><SPAN class=blue>="AmountOfSale, NumberOfUnits"</SPAN>
+            <SPAN class=red>MeasureListLocation</SPAN><SPAN class=blue>="Rows"</SPAN>
+            <SPAN class=red>ItemsSource</SPAN><SPAN class=blue>="{</SPAN><SPAN class=brownish>StaticResource</SPAN> <SPAN class=red>DataSample</SPAN><SPAN class=blue>}"</SPAN> <SPAN class=blue>/&gt;</SPAN>
+    <SPAN class=blue>&lt;/</SPAN><SPAN class=brownish>UserControl.Resources</SPAN><SPAN class=blue>&gt;</SPAN>
+    <SPAN class=blue>&lt;</SPAN><SPAN class=brownish>Grid</SPAN> <SPAN class=red>x</SPAN><SPAN class=blue>:</SPAN><SPAN class=red>Name</SPAN><SPAN class=blue>="LayoutRoot"</SPAN> <SPAN class=red>Background</SPAN><SPAN class=blue>="White"</SPAN><SPAN class=blue>&gt;</SPAN>
+        <SPAN class=blue>&lt;</SPAN><SPAN class=brownish>Grid.ColumnDefinitions</SPAN><SPAN class=blue>&gt;</SPAN>
+            <SPAN class=blue>&lt;</SPAN><SPAN class=brownish>ColumnDefinition</SPAN> <SPAN class=blue>/&gt;</SPAN>
+            <SPAN class=blue>&lt;</SPAN><SPAN class=brownish>ColumnDefinition</SPAN> <SPAN class=red>Width</SPAN><SPAN class=blue>="Auto"</SPAN><SPAN class=blue>/&gt;</SPAN>
+        <SPAN class=blue>&lt;/</SPAN><SPAN class=brownish>Grid.ColumnDefinitions</SPAN><SPAN class=blue>&gt;</SPAN>
+        <SPAN class=blue>&lt;</SPAN><SPAN class=brownish>ig</SPAN><SPAN class=blue>:</SPAN><SPAN class=brownish>%%ControlsName%%</SPAN> <SPAN class=red>OverviewPlusDetailPaneVisibility</SPAN><SPAN class=blue>="Visible"</SPAN> <SPAN class=red>HorizontalZoomable</SPAN><SPAN class=blue>="True"</SPAN> <SPAN class=red>VerticalZoomable</SPAN><SPAN class=blue>="True"</SPAN><SPAN class=blue>&gt;</SPAN>
+            <SPAN class=blue>&lt;</SPAN><SPAN class=brownish>ig</SPAN><SPAN class=blue>:</SPAN><SPAN class=brownish>%%ControlsName%%.Axes</SPAN><SPAN class=blue>&gt;</SPAN>
+                <SPAN class=blue>&lt;</SPAN><SPAN class=brownish>ig</SPAN><SPAN class=blue>:</SPAN><SPAN class=brownish>OlapXAxis</SPAN>
+                    <SPAN class=red>YAxis</SPAN><SPAN class=blue>="{</SPAN><SPAN class=brownish>Binding</SPAN> <SPAN class=red>ElementName</SPAN><SPAN class=blue>=YAxis</SPAN><SPAN class=blue>}"</SPAN>
+                    <SPAN class=red>DataSource</SPAN><SPAN class=blue>="{</SPAN><SPAN class=brownish>StaticResource</SPAN> <SPAN class=red>DataSource</SPAN><SPAN class=blue>}"</SPAN>
+                    <SPAN class=red>OlapAxisSource</SPAN><SPAN class=blue>="Columns"</SPAN>
+                    <SPAN class=red>DefaultSeries</SPAN><SPAN class=blue>="ColumnSeries"</SPAN><SPAN class=blue>/&gt;</SPAN>
+                <SPAN class=blue>&lt;</SPAN><SPAN class=brownish>ig</SPAN><SPAN class=blue>:</SPAN><SPAN class=brownish>NumericYAxis</SPAN> <SPAN class=red>x</SPAN><SPAN class=blue>:</SPAN><SPAN class=red>Name</SPAN><SPAN class=blue>="YAxis"</SPAN> <SPAN class=red>MinimumValue</SPAN><SPAN class=blue>="0"</SPAN><SPAN class=blue>/&gt;</SPAN>
+            <SPAN class=blue>&lt;/</SPAN><SPAN class=brownish>ig</SPAN><SPAN class=blue>:</SPAN><SPAN class=brownish>%%ControlsName%%.Axes</SPAN><SPAN class=blue>&gt;</SPAN>
+        <SPAN class=blue>&lt;/</SPAN><SPAN class=brownish>ig</SPAN><SPAN class=blue>:</SPAN><SPAN class=brownish>%%ControlsName%%</SPAN><SPAN class=blue>&gt;</SPAN>
+        <SPAN class=comment>&lt;!--&lt;ig:Expander Grid.Column="1"&gt;
+        &lt;ig:XamPivotDataSelector DataSource="{StaticResource DataSource}"/&gt;
+        &lt;/ig:Expander&gt;--&gt;</SPAN>
+    <SPAN class=blue>&lt;/</SPAN><SPAN class=brownish>Grid</SPAN><SPAN class=blue>&gt;</SPAN>
+<SPAN class=blue>&lt;/</SPAN><SPAN class=brownish>UserControl</SPAN><SPAN class=blue>&gt;</SPAN></SPAN>
+</PRE></DIV></DIV></TD></TR></TBODY></TABLE>
 </div>
 <script src="https://code.jquery.com/jquery-2.1.4.min.js" type="text/javascript"></script>
 <script src="unmapper.js" type="text/javascript"></script>
 <script>
     $(function(){
-        //module.unmap();
+        module.unmap();
     });
 </script>
 </body>
