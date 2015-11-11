@@ -1,9 +1,9 @@
-module.exports.get = function(username, password, productOrControlName, callback){
+module.exports.get = function(username, password, productOrControlName, version, callback){
 	               
     var Firebase = require('firebase');
     var fb = new Firebase('http://ig-topics.firebaseio.com');
     
-    var docs = fb.child('documents/' + productOrControlName);
+    var docs = fb.child(`documents/${productOrControlName}/${version}`);
     
     fb.authWithPassword({
       email: username,
