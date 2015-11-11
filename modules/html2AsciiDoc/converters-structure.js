@@ -4,55 +4,92 @@
 
   var _ = require('lodash');
   var buildFlags = require('./converters-build-flags.js');
-  
-  var getElementInfo = function(content, node){
+  var listElements = ['UL', 'OL', 'LI'];
+
+  var getListDepth = function (node, level, increment) {
+    var isListElement, isListItemElement;
+
+    isListElement = _.contains(listElements, node.nodeName);
+    isListItemElement = node.nodeName === 'LI';
+
+    if (isListElement) {
+      level += increment;
+
+      if (isListItemElement) {
+        level = getListDepth(node.parentNode, level, 1);
+      }
+      else {
+        level = getListDepth(node.parentNode, level, 0);
+      }
+    }
+
+    return level;
+  };
+
+  var getListLevel = function (node, level) {
+    var increment;
+
+    if (!level) {
+      level = 0;
+    }
+
+    increment = level;
+
+    level = getListDepth(node, level, increment);
+
+    return level;
+  };
+
+  var getElementInfo = function (content, node) {
     var info = {};
     info.hasCodeListings = /----\n/i.test(content);
     info.isOrderedListItem = /ol/i.test(node.parentNode.nodeName);
     info.hasBuildFlags = typeof node.style.hsBuildFlags !== 'undefined';
-    info.shouldIndentContent = (!info.hasCodeListings || !info.hasBuildFlags) && /\\n/g.test(content);
-    info.hasBuildFlags = buildFlags.hasDocXBuildFlags(node); 
+    info.listLevel = getListLevel(node);
+    info.shouldIndentContent = (!info.hasCodeListings || !info.hasBuildFlags) &&
+    (info.listLevel > 0);
+    info.hasBuildFlags = buildFlags.hasDocXBuildFlags(node);
     return info;
   };
 
   var headers = {
-    filter: function(node){
+    filter: function (node) {
       var match, tags;
-      
+
       tags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
       match = false;
-      
-      if(tags.indexOf(node.nodeName.toLowerCase()) > -1){
-        if(tags.className !== 'ig-document-title'){
-           match = true;
+
+      if (tags.indexOf(node.nodeName.toLowerCase()) > -1) {
+        if (tags.className !== 'ig-document-title') {
+          match = true;
         }
       }
-      
+
       return match;
     },
     replacement: function (content, node) {
       var hLevel, hPrefix, linkMatches, value;
-      
+
       hLevel = parseInt(node.nodeName.charAt(1)) + 1;
       hPrefix = '';
-      
+
       for (var i = 0; i < hLevel; i++) {
         hPrefix += '=';
       }
 
       content = content.replace(/<[^>]*>/gi, '');
-      
+
       linkMatches = content.match(/link:{\S+\[(.*)]/)
       if (_.isArray(linkMatches) && linkMatches.length > 0) {
         value = '\n\n' + hPrefix + ' ' + linkMatches[1] + '\n\n' + content + '\n\n';
       } else {
         value = '\n\n' + hPrefix + ' ' + content + '\n\n';
       }
-      
-      if(buildFlags.hasDocXBuildFlags(node)){
+
+      if (buildFlags.hasDocXBuildFlags(node)) {
         value = buildFlags.wrapWithBuildFlags(value, node);
       }
-      
+
       return value;
     }
   };
@@ -68,16 +105,16 @@
     filter: ['strong', 'b'],
     replacement: function (content, node) {
       var value;
-      
+
       value = content;
-      
-      if(buildFlags.hasDocXBuildFlags(node)){
+
+      if (buildFlags.hasDocXBuildFlags(node)) {
         value = buildFlags.wrapWithBuildFlags(value, node);
       }
       return '*' + value + '*';
     }
   };
-  
+
   var anchorWithoutHref = {
     filter: function (node) {
       return node.nodeName === 'A' && (node.getAttribute('href') === null);
@@ -93,13 +130,13 @@
     },
     replacement: function (content, node) {
       var value;
-      
+
       value = 'link:' + node.getAttribute('href') + '[' + content + ']';
-      
-      if(buildFlags.hasDocXBuildFlags(node)){
+
+      if (buildFlags.hasDocXBuildFlags(node)) {
         value = buildFlags.wrapWithBuildFlags(value, node);
       }
-      
+
       return value;
     }
   };
@@ -108,78 +145,80 @@
     filter: 'img',
     replacement: function (content, node) {
       var alt, src, title, titlePart, value
-      
+
       alt = node.alt || '';
       src = node.getAttribute('src') || '';
       title = node.title || '';
       titlePart = title ? ' "' + title + '"' : '';
       value = 'image:' + src + titlePart + '[' + alt + ']';
-      
-      if(buildFlags.hasDocXBuildFlags(node)){
+
+      if (buildFlags.hasDocXBuildFlags(node)) {
         value = buildFlags.wrapWithBuildFlags(value, node);
       }
-      
+
       return value;
     }
   };
-  
+
   var ul = {
     filter: 'ul',
     replacement: function (content, node) {
       var element;
-      
+
       element = getElementInfo(content, node);
-      
-      if(element.shouldIndentContent){
-        content = content.replace(/^\s+/, '').replace(/\n/gm, '\n    ');
-        content = content.replace(/\*   /g, '\n' + listItemPrefix);
-      }
-    
-      if(element.hasBuildFlags){
+
+      //if (element.shouldIndentContent) {
+      //  content = content.replace(/^\s+/, '').replace(/\n/gm, '\n    ');
+      //  content = content.replace(/\*   /g, '\n' + '* ');
+      //}
+
+      if (element.hasBuildFlags) {
         content = buildFlags.wrapWithBuildFlags(content, node);
       }
-      
+
       return content;
     }
   };
-  
-  var listItemPrefix = '*   ';
 
   var li = {
     filter: 'li',
     replacement: function (content, node) {
-      var prefix, parent, orderedItemNumber, startValue, element;
-      
-      prefix = listItemPrefix;
+      var prefix, parent, orderedItemNumber, startValue, element, isNestedListItemContainer;
+
       parent = node.parentNode;
       orderedItemNumber = Array.prototype.indexOf.call(parent.children, node) + 1;
-      
+      isNestedListItemContainer = _.startsWith(content, '\n*');
+
       element = getElementInfo(content, node);
       
-      if(element.shouldIndentContent){
-        content = content.replace(/^\s+/, '').replace(/\n/gm, '\n    ');
-      }
-      
-      if(element.isOrderedListItem){
-        
-        if(orderedItemNumber === 1){
+      if (element.isOrderedListItem) {
+
+        if (orderedItemNumber === 1) {
           startValue = parent.getAttribute('start');
-          startValue = (startValue === null)? orderedItemNumber : startValue;
+          startValue = (startValue === null) ? orderedItemNumber : startValue;
         } else {
           startValue = orderedItemNumber;
         }
-        
+
         prefix = '[start=' + startValue + ']\n' + startValue + '.  ';
       } else {
-        prefix = '\n' + listItemPrefix;
+        if(!isNestedListItemContainer){
+          if (element.listLevel > 0) {
+            prefix = '\n' + Array(element.listLevel + 1).join('*') + ' ';
+          } else {
+            prefix = '\n';
+          }
+        }
+      }
+      
+      if(prefix){
+        content = prefix + content;
       }
 
-      content = prefix + content;
-      
-      if(element.hasBuildFlags){
+      if (element.hasBuildFlags) {
         content = buildFlags.wrapWithBuildFlags(content, node);
       }
-      
+
       return content;
     }
   };
@@ -188,17 +227,17 @@
     filter: 'blockquote',
     replacement: function (content, node) {
       var value;
-      
+
       content = this.trim(content);
       content = content.replace(/\n{3,}/g, '\n\n');
       content = content.replace(/^/gm, '');
-      value =  '\n\n____\n' + content + '\n____\n\n';
-      
-      if(buildFlags.hasDocXBuildFlags(node)){
+      value = '\n\n____\n' + content + '\n____\n\n';
+
+      if (buildFlags.hasDocXBuildFlags(node)) {
         value = buildFlags.wrapWithBuildFlags(value, node);
       }
-      
-      return 
+
+      return
     }
   };
 
@@ -208,37 +247,37 @@
       return content;
     }
   }
-  
+
   var br = {
-	    filter: 'br',
-	    replacement: function () {
-	      return '\n';
-	    }
-	  };
-    
-	  var del = {
-	    filter: ['del', 's', 'strike'],
-	    replacement: function (content, node) {
-        var value;
-        
-        value = '[line-through]*' + content + '*';
-        
-        if(buildFlags.hasDocXBuildFlags(node)){
-          value = buildFlags.wrapWithBuildFlags(value, node);
-        }
-        
-	      return value;
-	    }
-	  };
-	
+    filter: 'br',
+    replacement: function () {
+      return '\n';
+    }
+  };
+
+  var del = {
+    filter: ['del', 's', 'strike'],
+    replacement: function (content, node) {
+      var value;
+
+      value = '[line-through]*' + content + '*';
+
+      if (buildFlags.hasDocXBuildFlags(node)) {
+        value = buildFlags.wrapWithBuildFlags(value, node);
+      }
+
+      return value;
+    }
+  };
+
   var checkboxListItem = {
-	    filter: function (node) {
-	      return node.type === 'checkbox' && node.parentNode.nodeName === 'LI';
-	    },
-	    replacement: function (content, node) {
-	      return (node.checked ? '[x]' : '[ ]') + ' ';
-	    }
-	  };
+    filter: function (node) {
+      return node.type === 'checkbox' && node.parentNode.nodeName === 'LI';
+    },
+    replacement: function (content, node) {
+      return (node.checked ? '[x]' : '[ ]') + ' ';
+    }
+  };
 
   var converters = [];
 

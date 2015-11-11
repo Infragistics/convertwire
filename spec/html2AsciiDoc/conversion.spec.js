@@ -32,7 +32,10 @@ describe('html2AsciiDoc', function(){
 		'tables-no-headers',		
 		'tables-semantic',		
 		'title-anchors',		
-		'titles'
+		'titles',
+		'list-item-nested',
+		'list-item-nested-with-item-text',
+		'list-unordered'
 	].forEach(function(fileName){
 		it('converts html into asciidoc: ' + fileName, function(){
 			var content = getContent(fileName);
