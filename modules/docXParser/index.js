@@ -23,10 +23,10 @@
 				"<pre id='metadata'>\n" +
 "|metadata|\n" +
 "{\n" +
-"    \"name\": \"" + htmlDocument.name + "\",\n" +
+"    \"name\": \"" + htmlDocument.name.toLowerCase().replace(/_/g,'-') + "\",\n" +
 "    \"controlName\": [" + arrayToString(htmlDocument.controlName) + "],\n" +
 "    \"tags\": [" + arrayToString(htmlDocument.tags) + "],\n" +
-"    \"docXGuid\": \"" + htmlDocument.docXGuid + "\",\n" +
+"    \"docXGuid\": \"" + htmlDocument.docXGuid.replace(/-/g, '`') + "\",\n" + // transform so later regex (that replaces guids) will not affect this value 
 "    \"title\": \"" + htmlDocument.title + "\",\n" +
 "    \"buildFlags\": [" + arrayToString(htmlDocument.buildFlags) + "]\n" +
 "}\n" +

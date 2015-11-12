@@ -51,8 +51,8 @@ module.exports.load = function(gulp){
       .pipe(unmapper())
       .pipe(sourceFormatter())
       .pipe(html2AsciiDoc())
-      .pipe(cleanup())
       .pipe(replaceGUIDs(remoteData))
+      .pipe(cleanup())
       .pipe(rename(function(path){
         path.extname = '.adoc';
         var isJP = path.basename.indexOf('.ja-JP') > -1;
