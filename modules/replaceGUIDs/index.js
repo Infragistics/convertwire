@@ -6,9 +6,11 @@ module.exports.replace = function(content, remoteData){
 	var expression = new RegExp(guidMatchExpression, 'g');
 	var guids = content.match(expression);
 	
-	guids.forEach(function(guid){
-		content = content.replace(guid, remoteData[guid] + '.html');
-	});
+	if(guids){
+		guids.forEach(function(guid){
+			content = content.replace(guid, remoteData[guid] + '.html');
+		});	
+	}
 	
 	return content;
 };

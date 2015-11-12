@@ -114,6 +114,20 @@
       return '*' + value + '*';
     }
   };
+  
+  var paragraph = {
+    filter: 'p',
+    replacement: function (content, node) {
+      var value;
+
+      value = content;
+
+      if (buildFlags.hasDocXBuildFlags(node)) {
+        value = buildFlags.wrapWithBuildFlags(value, node);
+      }
+      return '\n' + value + '\n\n';
+    }
+  };
 
   var anchorWithoutHref = {
     filter: function (node) {
@@ -166,11 +180,6 @@
       var element;
 
       element = getElementInfo(content, node);
-
-      //if (element.shouldIndentContent) {
-      //  content = content.replace(/^\s+/, '').replace(/\n/gm, '\n    ');
-      //  content = content.replace(/\*   /g, '\n' + '* ');
-      //}
 
       if (element.hasBuildFlags) {
         content = buildFlags.wrapWithBuildFlags(content, node);
@@ -284,6 +293,7 @@
   converters.push(headers);
   converters.push(hr);
   converters.push(bold);
+  converters.push(paragraph);
   converters.push(anchorWithoutHref);
   converters.push(anchorWithHref);
   converters.push(img);

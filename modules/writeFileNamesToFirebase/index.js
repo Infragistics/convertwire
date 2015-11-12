@@ -13,6 +13,7 @@ if(credentials){
 	args = require('yargs')
 		.usage('Usage: node index.js $0 $1')
 		.demand(['name', 'version'])
+		.option('version' , { type: 'string' })
 		.argv;
 		
 	args.username = credentials.username;
@@ -21,6 +22,7 @@ if(credentials){
 	args = require('yargs')
 		.usage('Usage: node index.js $0 $1 $2 $3')
 		.demand(['username', 'password', 'name', 'version'])
+		.option('version' , { type: 'string' })
 		.argv;
 }
 
@@ -28,6 +30,8 @@ var relativePathToAsciiDocFiles = '../../spec/data/dest';
 var productOrControlName = args.name;
 var Firebase = require('firebase');
 var fb = new Firebase('https://ig-topics.firebaseio.com/');
+
+args.version = args.version.replace('.', '-');
 
 fb.authWithPassword({
 	email: args.username,
@@ -43,7 +47,7 @@ fb.authWithPassword({
 		
 		var docs = fb.child(`documents/${productOrControlName}/${args.version}`);
 		docs.set(value.documents, function(err, status){
-			console.log('File names loaded into Firebase.');
+			console.log(Object.keys(value.documents).length + ' file names loaded into Firebase.');
 		});
 	}
 });

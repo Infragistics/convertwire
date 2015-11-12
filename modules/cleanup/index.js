@@ -3,9 +3,9 @@ module = module.exports;
 var rules = [
 	{
 		name: 'ordered-list-stray-slash',
-		pattern: /[1-9]\./g,
+		pattern: /[1-9]\\./g,
 		replacement: function(match){
-			return match.replace('\.', '.')
+			return match.replace('\\.', '.')
 		}
 	},
 	{

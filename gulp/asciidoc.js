@@ -41,6 +41,8 @@ module.exports.load = function(gulp){
   
   gulp.task('asciidoc-conversion', function(callback) {
     
+    var count = 0;
+    
     var onError = function(error){
       gutil.beep();
       logger.log(error);
@@ -63,11 +65,15 @@ module.exports.load = function(gulp){
           path.basename += isJP ? '.ja-JP' : '';
           
           console.log(path.basename);
+          count++;
+        } else {
+          console.log(`${name} not found in remote data`);
         }
       }))
       .pipe(gulp.dest('./spec/data/dest'))
       .on('end', function(){
         gutil.beep();
+        console.log(`${count} files converted`);
         logger.report();
       });
   });
@@ -85,17 +91,20 @@ module.exports.load = function(gulp){
       args = require('yargs')
                   .usage('Usage: gulp asciidoc $0 $1')
                   .demand(['name', 'version'])
+                  .option('version' , { type: 'string' })
                   .argv;
       
       args.username = credentials.username;
       args.password = credentials.password; 
-      
     } else {
       args = require('yargs')
                   .usage('Usage: gulp asciidoc $0 $1 $2 $3')
                   .demand(['username', 'password', 'name', 'version'])
+                  .option('version' , { type: 'string' })
                   .argv;
     }
+    
+    args.version = args.version.replace('.', '-');
                 
     var repository = require('../modules/firebaseRepository');  
     repository.get(args.username, args.password, args.name, args.version, function(snap){

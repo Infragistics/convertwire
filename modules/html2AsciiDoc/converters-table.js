@@ -82,7 +82,13 @@
 	var row = {
 		filter: 'tr',
 	    replacement: function (content, node) {
-			return '\n' + content + '\n\n\n';
+			var value = content;
+			
+			if(buildFlags.hasDocXBuildFlags(node)){
+				value = buildFlags.wrapWithBuildFlags(value, node);
+			}
+			 
+			return '\n' + value + '\n\n\n';
 	    }
 	};
 	
