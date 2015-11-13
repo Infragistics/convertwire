@@ -4,16 +4,10 @@
 	var buildFlags = require('./converters-build-flags.js');
 	var whitespace = require('./whitespace.js');
 
-	var cleanTitleAndWhiteSpace = function(content){
-		var doubleBreak;
-
-		doubleBreak = '\n\n';
+	var cleanTitleAndWhiteSpace = function(content, isHeader){
+		var doubleBreak, stripTitleSyntax;
 		
-		if(_.startsWith(content, doubleBreak)){
-			content = content.replace(/\n\n/, '');
-		}
-		
-		var stripTitleSyntax = function(){
+		stripTitleSyntax = function(){
 			if(_.startsWith(content, '=')){
 				var i;
 				for(i=0;i<content.length;i++){
@@ -25,17 +19,28 @@
 			}
 		};
 		
-		stripTitleSyntax();
-		
-		if(_.endsWith(content, doubleBreak)){
-			content = content.substring(0, content.length - doubleBreak.length);
+		if(isHeader){
+			content = content.replace(/\n/g, '');
+			stripTitleSyntax();
+		} else{
+			doubleBreak = '\n\n';
+			
+			if(_.startsWith(content, doubleBreak)){
+				content = content.replace(/\n\n/, '');
+			}
+			
+			stripTitleSyntax();
+			
+			if(_.endsWith(content, doubleBreak)){
+				content = content.substring(0, content.length - doubleBreak.length);
+			}
+			
+			// remove leftover whitespace link breaks with AsciiDoc link break
+			content = content.replace(/(\n){2,}/g, ' + \n');
+			
+			// remove line break character from build flags  
+			content = content.replace(/\[\] \+/g, '[]'); 
 		}
-		
-		// remove leftover whitespace link breaks with AsciiDoc link break
-		content = content.replace(/\n\n\n\n/g, ' + \n');
-		
-		// remove line break character from build flags  
-		content = content.replace(/\[\] \+/g, '[]'); 
 		
 		return content;
 	};
@@ -43,7 +48,7 @@
 	var createCell = function(content, node, isHeader) {
 		var value = '', colspan = '', rowspan = '';
 		
-		content = cleanTitleAndWhiteSpace(content);
+		content = cleanTitleAndWhiteSpace(content, isHeader);
 		
 		colspan = node.getAttribute('colspan');
 		colspan = (_.isNull(colspan))? '' : colspan + '+';
@@ -59,6 +64,10 @@
 		
 		if(!isHeader){
 			value = '\n' + value;
+		}
+		
+		if(!_.contains(value, 'ifdef')) {
+			value = value.replace(/\|\n/, '|');
 		}
 		
 		return value;
