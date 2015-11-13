@@ -57,6 +57,8 @@
 		
 		if(flags.length > 0) {
 			
+			flags = flags.replace(/ /g, '');
+			
 			if(isElementThatNeedsPick()){
 				flags = flags.replace(/,/g, '.');
 				returnValue = 'pick:[' + flags + '="' + content + '"]';	
