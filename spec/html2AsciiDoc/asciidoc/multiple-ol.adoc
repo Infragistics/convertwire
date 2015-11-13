@@ -4,7 +4,7 @@
     "name": "DataChart_Creating_Chart_In_XAML_Code",
     "controlName": "",
     "tags": [],
-    "docXGuid": "0bf844e0-0b36-491d-b434-951a18aa3e1c",
+    "guid": "0bf844e0-0b36-491d-b434-951a18aa3e1c",
     "title": "Creating Chart in XAML Code",
     "buildFlags": ["WINRT","WINPHONE","WPF","SL","XAMARIN"]
 }

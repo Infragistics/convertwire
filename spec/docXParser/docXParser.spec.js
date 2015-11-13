@@ -91,9 +91,9 @@ describe('docXParser', function(){
 					expect(html).toContain(testData.markupFragment.en);
 					
 					// check metadata
-					expect(html).toContain("\"docXGuid\": \"" + testData.docXGuid + "\"");
-					expect(html).toContain("\"title\": \"" + testData.title.en + "\"");
-					expect(html).toContain("\"name\": \"" + testData.name + "\"");
+					expect(html).toContain(`"guid": "${testData.docXGuid.replace(/-/g, '`')}`);
+					expect(html).toContain(`"title": "${testData.title.en}`);
+					expect(html).toContain(`"name": "${testData.name.toLowerCase().replace(/_/g, '-')}"`);
 				});
 				
 			});
