@@ -158,7 +158,7 @@
   // ================================
   
   var replaceWithNothingClassNames = [
-    'defaultimg',
+    //'defaultimg',
     'ig-content-container',
     'ig-content',
     'ig-layout-container'
