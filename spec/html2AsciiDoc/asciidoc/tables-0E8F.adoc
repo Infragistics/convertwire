@@ -1,4 +1,4 @@
-[options="header"]
+[options="header", cols="a,a,a"]
 |====
 |Item|Description|Corresponding Property
 
@@ -32,7 +32,7 @@
 
 |====
 
-[options="header"]
+[options="header", cols="a,a,a"]
 |====
 |Item|Description|Corresponding Property
 

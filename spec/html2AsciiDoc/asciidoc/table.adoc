@@ -1,4 +1,4 @@
-[options="header"]
+[options="header", cols="a,a,a"]
 |====
 |Property Name|Property Type|Description
 

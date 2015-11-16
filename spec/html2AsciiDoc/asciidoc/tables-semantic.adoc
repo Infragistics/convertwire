@@ -1,4 +1,4 @@
-[options="header"]
+[options="header", cols="a,a"]
 |====
 |Header 1|Header 2
 
