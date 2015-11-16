@@ -3,6 +3,8 @@
 	var _ = require('lodash');
 	var buildFlags = require('./converters-build-flags.js');
 	var whitespace = require('./whitespace.js');
+	
+	var columnCount = 0;
 
 	var cleanTitleAndWhiteSpace = function(content, isHeader){
 		var doubleBreak, stripTitleSyntax;
@@ -93,6 +95,8 @@
 	    replacement: function (content, node) {
 			var value = content;
 			
+			columnCount = value.split('|').length;
+			
 			if(buildFlags.hasDocXBuildFlags(node)){
 				value = buildFlags.wrapWithBuildFlags(value, node);
 			}
@@ -104,7 +108,7 @@
 	var table = {
 		filter: 'table',
 	    replacement: function (content, node) {
-			var headerOption = '', value;
+			var headerOption = '', value, columnFormats;
 			
 			var hasHeaders = function(content){
 				var value, quarterPosition, lines;
@@ -117,10 +121,17 @@
 				return value;
 			};
 			
-			content = whitespace.removeExtraLineBreaks(content);;
+			content = whitespace.removeExtraLineBreaks(content);
+			
+			if(columnCount > 0){
+				columnFormats = Array(columnCount).join('a,');
+				columnFormats = columnFormats.substr(0, columnFormats.length-1);
+			}
 			
 			if(hasHeaders(content)){
-				headerOption = '[options="header"]\n'
+				headerOption = `[options="header", cols="${columnFormats}"]\n`
+			} else if(columnCount > 0){
+				headerOption = `[cols="${columnFormats}"]\n`
 			}
 			
 			if(!_.startsWith(content, '\n')){
