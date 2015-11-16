@@ -1,6 +1,7 @@
 (function(module){
 	
 	var _ = require('lodash');
+	var cheerio = require('cheerio');
 	var buildFlags = require('./converters-build-flags.js');
 	var whitespace = require('./whitespace.js');
 	
@@ -95,8 +96,6 @@
 	    replacement: function (content, node) {
 			var value = content;
 			
-			columnCount = value.split('|').length;
-			
 			if(buildFlags.hasDocXBuildFlags(node)){
 				value = buildFlags.wrapWithBuildFlags(value, node);
 			}
@@ -108,7 +107,7 @@
 	var table = {
 		filter: 'table',
 	    replacement: function (content, node) {
-			var headerOption = '', value, columnFormats;
+			var headerOption = '', value, columnFormats, $;
 			
 			var hasHeaders = function(content){
 				var value, quarterPosition, lines;
@@ -123,8 +122,13 @@
 			
 			content = whitespace.removeExtraLineBreaks(content);
 			
+			$ = cheerio.load(node.outerHTML);
+			var firstRow = $('tr').first();
+			var columns = firstRow.find('td,th');
+			columnCount = columns.length;
+			
 			if(columnCount > 0){
-				columnFormats = Array(columnCount).join('a,');
+				columnFormats = Array(columnCount + 1).join('a,');
 				columnFormats = columnFormats.substr(0, columnFormats.length-1);
 			}
 			
