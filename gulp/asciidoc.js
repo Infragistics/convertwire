@@ -24,11 +24,12 @@ module.exports.load = function(gulp){
     return gulp.src('./spec/data/src/*.xml')
       .pipe(plumber(onError))
       .pipe(docx2html())
+      .pipe(cleanup('html'))
       .pipe(unmapper())
       .pipe(sourceFormatter())
       .pipe(html2AsciiDoc())
       .pipe(replaceGUIDs(remoteData))
-      .pipe(cleanup())
+      .pipe(cleanup('asciidoc'))
       .pipe(rename(function(path){
         path.extname = '.adoc';
       }))
@@ -50,11 +51,12 @@ module.exports.load = function(gulp){
     return gulp.src('./spec/data/src/*.xml')
       .pipe(plumber(onError))
       .pipe(docx2html())
+      .pipe(cleanup('html'))      
       .pipe(unmapper())
       .pipe(sourceFormatter())
       .pipe(html2AsciiDoc())
       .pipe(replaceGUIDs(remoteData))
-      .pipe(cleanup())
+      .pipe(cleanup('asciidoc'))
       .pipe(rename(function(path){
         path.extname = '.adoc';
         var isJP = path.basename.indexOf('.ja-JP') > -1;
