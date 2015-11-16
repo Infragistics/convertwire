@@ -4,8 +4,6 @@
 	var cheerio = require('cheerio');
 	var buildFlags = require('./converters-build-flags.js');
 	var whitespace = require('./whitespace.js');
-	
-	var columnCount = 0;
 
 	var cleanTitleAndWhiteSpace = function(content, isHeader){
 		var doubleBreak, stripTitleSyntax;
@@ -107,7 +105,7 @@
 	var table = {
 		filter: 'table',
 	    replacement: function (content, node) {
-			var headerOption = '', value, columnFormats, $;
+			var headerOption = '', value, columnFormats, $, firstRow, columns, columnCount;
 			
 			var hasHeaders = function(content){
 				var value, quarterPosition, lines;
@@ -123,8 +121,8 @@
 			content = whitespace.removeExtraLineBreaks(content);
 			
 			$ = cheerio.load(node.outerHTML);
-			var firstRow = $('tr').first();
-			var columns = firstRow.find('td,th');
+			firstRow = $('tr').first();
+			columns = firstRow.find('td,th');
 			columnCount = columns.length;
 			
 			if(columnCount > 0){
