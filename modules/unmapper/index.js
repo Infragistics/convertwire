@@ -4,202 +4,150 @@ if(isNodejsContext){
 	module = module.exports;
 	var cheerio = require('cheerio');
 	var $;
-	var _ = require('lodash');
 } else {
 	var module = {};
 }
 
-'use strict';
+var skipHeaders = ['in this topic'];
 
-var util = {
+var getNewMarkup = (header, content, buildFlags, headerLevel) => {
+    var markup = '';
+    
+    buildFlags = buildFlags? buildFlags : '';
+    
+    headerLevel = headerLevel ? headerLevel : 2;
 
-    skipHeaders: [
-        'in this topic'
-    ],
-
-    getNewMarkup: function (header, content, level) {
-        level = level ? level : '2';
-
-        return '<div class="ig-content-container">' +
-                    '<h' + level + ' class="ig-header">' + header + '</h' + level + ' >' +
-                    '<div class="ig-content">' + content + '</div>' +
-                '</div>';
-    },
-
-    parseTables: function ($tables, $tbodys, rowParser) {
-
-        var newMarkup = [];
-
-        $tbodys.each(function (index, tbody) {
+    markup = `<div class="ig-content-container" ${buildFlags}> 
+                <h${headerLevel} class="ig-header">${header}</h${headerLevel}>
+                <div class="ig-content">${content}</div>
+            </div>`;
             
-            var $tbody, $rows, rowMarkup;
-
-            $tbody = $(tbody);
-            $rows = $($tbody.children('tr'));
-            rowMarkup = '';
-
-            $rows.each(function (rowIndex, row) {
-                
-                var isFirst, isLast;
-
-                isFirst = rowIndex === 0;
-                isLast = rowIndex === $rows.length - 1;
-
-                rowParser(rowIndex, row, isFirst, isLast, function (markup) {
-                    rowMarkup += markup;
-                });
-            });
-
-            newMarkup.push(rowMarkup);
-        });
-
-        $tables.each(function (index, table) {
-
-            $(table).before(newMarkup[index]);
-
-        });
-
-        $tables.remove();
-    },
-
-    imLayout: function ($tables, $tbodys, level) {
-
-        $tables = $tables ? $tables : $('.ig-layout');
-        $tbodys = $tbodys ? $tbodys : $('.ig-layout>tbody');
-
-        var parse = function (rowIndex, row, isFirst, isLast, cb) {
-            var $header, header, content;
-
-            $header = $(row).children('th');
-            header = '';
-            content = $(row).children('td').html();
-
-            if ($header.html() !== undefined) {
-
-                header = $header.text().trim();
-
-                var shouldRowBeSkipped = util.skipHeaders.indexOf(header.toLowerCase()) >= 0;
-
-                if (!shouldRowBeSkipped) {
-                    cb(util.getNewMarkup(header, content, level));
-                }
-
-            }
-        };
-
-        util.parseTables($tables, $tbodys, parse);
-    },
-
-    labeledTable: function ($tables, $tbodys, level) {
-
-        var parse = function (rowIndex, row, isFirst, isLast, cb) {
-
-            // skipping first row that just has labels
-            if (!isFirst) {
-                var children, header, content;
-                
-                children = $(row).children();
-                header = $(children[0]).text();
-                content = $(children[1]).html();
-                
-                cb(util.getNewMarkup(header, content, level));
-            }
-
-        };
-
-        util.parseTables($tables, $tbodys, parse);
-        
-    },
-
-    steps: function (level) {
-        var selector, $tables, $tbodys;
-        
-        selector = 'th:contains("Step")';
-        $tables = $(selector).parents('table');
-        $tbodys = $(selector).parents('tbody');
-
-        util.labeledTable($tables, $tbodys, level);
-    },
-
-    relatedContent: function () {
-        var selector, $tables, $tbodys, tempContainer;
-        
-        selector = 'th:contains("Topic"), th:contains("Sample"), th:contains("Samples")';
-        $tables = $(selector).parents('table');
-        $tbodys = $(selector).parents('tbody');
-
-        var parse = function (rowIndex, row, isFirst, isLast, cb) {
-            var children, header, content, markup, anchors;
-
-            if (isFirst) {
-                cb('<ul>');
-            } else {
-                
-                children = $(row).children();
-                
-                if(children.length > 0){
-                    anchors = $(children[0]).find('a');
-                    if(anchors.length > 0){
-                        tempContainer = $('<div>');
-                        tempContainer.append(anchors[0]);
-                        header = tempContainer.html();
-                    }
-                }
-                
-                if(children.length >= 1){
-                    content = $(children[1]).text();
-                }
-                
-                markup = '';
-
-                if(header){
-                    header = header.replace('<strong>', '');
-                    header = header.replace('</strong>', '');
-                    header = header.replace('<b>', '');
-                    header = header.replace('</b>', '');
-
-                    markup = '<li>' + header + ': ' + content + '</li>';
-
-                    if (isLast) {
-                        markup += '</ul>';
-                    }
-                }
-
-                cb(markup);
-            }
-
-        };
-
-        util.parseTables($tables, $tbodys, parse);
-    },
-
-    layoutContainer: function (level) {
-        var $tables, $tbodys;
-        
-        $tables = $('.ig-layout-container').parents('table');
-        $tbodys = $('.ig-layout-container').parents('tbody');
-
-        util.imLayout($tables, $tbodys, level);
-    },
-
-    unmap: function (htmlString) {
-        var result = '';
-        
-        if(isNodejsContext){
-            $ = cheerio.load(htmlString);
-        }
-        
-        util.imLayout(null, null, 3);
-        util.steps(4);
-        util.layoutContainer(3);
-        util.relatedContent();
-        
-        if(isNodejsContext){
-            result = $.html().replace(/&#xA0;/g, '&nbsp;');
-        }
-        
-        return result;
-    }
+    return markup;
 };
 
-module.unmap = util.unmap;
+var getStepMarkup = (header, content, buildFlags) => {
+    var value, headerLevel = 3;   
+    value = getNewMarkup(header, content, buildFlags, headerLevel);
+    return value;
+};
+
+var getContents = function(element, contentType){
+    var $element, contents = '';
+    
+    $element = $(element);
+    if($element[contentType]()){
+        contents = $element[contentType]().trim();
+    }
+    
+    return contents;
+};
+
+var createNewMarkupFromLayoutTables = () => {
+    var $tbody, $tbodys, $row, $rows, header, content, hasContent, style, 
+        buildFlags = '', rowMarkup = [], tableMarkup = [], value = {};
+    
+    $tbodys = $('table.ig-layout > tbody');
+    
+    $tbodys.each((tbodyIndex, tbody) => {
+        $tbody = $(tbody);
+        $rows = $tbody.children();
+        
+        rowMarkup = [];
+        $rows.each((rowIndex, row) => {
+            $row = $(row);
+            header = getContents($row.find('th')[0], 'text');
+            content = getContents($row.find('.ig-layout-container'), 'html');
+            
+            style = $row.attr('style');
+            if(style){
+                buildFlags = `style="${style}"`;
+            }
+            
+            hasContent = header.length > 0 &&
+                         skipHeaders.indexOf(header.toLowerCase()) === -1 && 
+                         content.length > 0;
+            
+            if(hasContent){
+                rowMarkup.push(getNewMarkup(header, content, buildFlags));
+            }
+        });
+        
+        tableMarkup.push(rowMarkup.join('\n'));
+    });
+    
+    value.markup = tableMarkup;
+    value.$tbodys = $tbodys;
+    
+    return value;
+};
+
+var createNewMarkupFromStepTables = () => {
+    var $tbody, $tbodys, $row, $rows, header, content, hasContent, style, 
+        buildFlags = '', rowMarkup = [], tableMarkup = [], value = {};
+    
+    $tbodys = $('th:contains("Step")').closest('table').children();
+    
+    $tbodys.each((tbodyIndex, tbody) => {
+        $tbody = $(tbody);
+        $rows = $tbody.children();
+        
+        rowMarkup = [];
+        $rows.each((rowIndex, row) => {
+            $row = $(row);
+            header = getContents($row.find('td')[0], 'text');
+            content = getContents($row.find('td')[1], 'html');
+            
+            style = $row.attr('style');
+            if(style){
+                buildFlags = `style="${style}"`;
+            }
+            
+            hasContent = header.length > 0 && 
+                         content.length > 0;
+            
+            if(hasContent){
+                rowMarkup.push(getStepMarkup(header, content, buildFlags));
+            }
+        });
+        
+        tableMarkup.push(rowMarkup.join('\n'));
+    });
+    
+    value.markup = tableMarkup;
+    value.$tbodys = $tbodys;
+    
+    return value;
+};
+
+var addNewMarkup = (tableInfo) => {
+    var $table;
+    
+    tableInfo.$tbodys.each((index, tbody) => {
+        $table = $(tbody).closest('table');
+        $table.after(tableInfo.markup[index]);
+        
+        $table.remove();
+    });
+};
+    
+var unmap = (htmlString) => {
+    var result = '', layoutTableInfo, stepsTableInfo;
+    
+    if(isNodejsContext){
+        $ = cheerio.load(htmlString);
+    }
+    
+    layoutTableInfo = createNewMarkupFromLayoutTables();
+    addNewMarkup(layoutTableInfo);
+    
+    stepsTableInfo = createNewMarkupFromStepTables();
+    addNewMarkup(stepsTableInfo);
+    
+    if(isNodejsContext){
+        result = $.html();
+    }
+    
+    return result;
+};
+
+module.unmap = unmap;

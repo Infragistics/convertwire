@@ -1,62 +1,126 @@
 <html>
     <head>
         <style>
+            
             table, td {
                 border:1px solid maroon;
+            }
+            
+            .ig-layout {
+                border: 1px solid pink;
+            }
+            
+            .ig-layout-container {
+                border: 1px solid maroon;
             }
         </style>
     </head>
 <body>
 <div id="docX-root">
+<pre id='metadata'>
+|metadata|
+{
+    "name": "datachart-exporting-a-chart-to-an-image",
+    "title": "Exporting a Chart to an Image",
+    "controlName": ["xamDataChart"],
+    "tags": ["Charting","Exporting","How Do I"],
+    "guid": "747ed43f`c2cf`4d71`bd75`a8c30f3cffb1",
+    "buildFlags": ["SL"]
+}
+|metadata|
+</pre>
+
+<div id="docX-root">
+
+<h1 id="ig-document-title">Exporting a Chart to an Image</h1>
+
+<DIV class=ig-block-title>
+<H2>Topic Overview</H2></DIV>
 <TABLE class=ig-layout>
 <TBODY>
 <TR>
 <TH>
-<H4><A name=_Ref327265276></A>Introduction</H4></TH>
+<H4>Purpose</H4></TH>
 <TD>
 <DIV class=ig-layout-container>
-<P>This procedure covers the required steps for displaying OLAP data in a <SPAN class=ig-italic>%%ControlsName%%</SPAN>.</P>
-<P>The specific example outlined in the procedure uses a flat data source and the <A class=ig-topic-link href="SalesDataSample.html">Sales Data Sample</A> (<SPAN class=ig-code-in-text>SalesDataSample</SPAN> class) for generating the sample content displayed in a chart. For details about how to configure the data source, refer to the <A href="xamPivotGrid_DataBinding_Using_FlatDataSource.html" style="auto-update-caption: true">Using FlatDataSource</A> topic.</P>
-<P>The procedure also optionally suggests adding a selector so that users can select items for columns, rows, filters, and measures from the data source (step 4). The selector is implemented through an instance of the <SPAN class=ig-italic>xamPivotDataSelector</SPAN> component.</P></DIV></TD></TR>
+<P>This topic explains, with code examples, how to allow users to export the %%ControlsName%%™ control to a PNG or JPEG image.</P></DIV></TD></TR>
 <TR>
 <TH>
-<H4><A name=_Ref327265280></A>Preview</H4></TH>
+<H4>Required background</H4></TH>
 <TD>
 <DIV class=ig-layout-container>
-<P>The following screenshot is a preview of the final result.</P>
-<P><IMG alt="" src="images/xamDataChart_Visualizing_Multi-Dimensional_Data_02.png"></P></DIV></TD></TR>
+<P>The following table lists the topics required as a prerequisite to understanding this topic.</P>
+<TABLE cellSpacing=0 cellPadding=0>
+<TBODY>
 <TR>
 <TH>
-<H4><A name=_Ref327265283></A>Requirements</H4></TH>
+<P>Topic</P></TH>
+<TH>
+<P>Purpose</P></TH></TR>
+<TR>
+<TD>
+<DIV class=ig-topic-link><A href="5f39946e-59dc-43f0-bd49-91714053bfbb" style="auto-update-caption: true">Getting Started with Data Chart</A> </DIV></TD>
+<TD>
+<P>You will learn how to add the %%ControlsName%% control with simple data binding in %%PlatformIDE%% and Expression Blend®.</P></TD></TR>
+<TR>
+<TD>
+<P><A class=ig-topic-link href="IG_Imaging_Exporting_a_BitmapSource_to_Image.html">Exporting a Bitmap to a JPEG/PNG-Encoded Image</A></P></TD>
+<TD>
+<P>This topic explains how to export a bitmap to a JPEG or PNG-encoded image using the Infragistics® imaging assembly.</P></TD></TR></TBODY></TABLE><BR></DIV></TD></TR>
+<TR>
+<TH>
+<H4>In this topic</H4></TH>
+<TD>
+<DIV class=ig-layout-container>
+<P>This topic contains the following sections:</P>
+<UL>
+<LI><A href="#_Ref318986549">Exporting %%ControlsName%% to an Image</A> 
+<UL>
+<LI><A href="#_Ref318986556">Introduction</A> 
+<LI><A href="#_Ref318986563">Requirements</A> 
+<LI><A href="#_Ref318986566">Overview</A> </LI></UL>
+<LI><A href="#_Ref318986575">Code Example: Exporting %%ControlsName%% to a JPEG Image</A> 
+<UL>
+<LI><A href="#_Ref318986588">Description</A> 
+<LI><A href="#_Ref318986598">Code</A> 
+<LI><A href="#_Ref318986600">Code</A> 
+<LI><A href="#_Ref318986603">Code</A> </LI></UL>
+<LI><A href="#_Ref318986605">Related Content</A> 
+<UL>
+<LI><A href="#_Ref318986610">Topics</A> 
+<LI><A href="#_Ref318986613">Samples</A> </LI></UL></LI></UL></DIV></TD></TR></TBODY></TABLE><BR>
+<DIV class=ig-block-title>
+<H2><A name=_Ref318986549></A>Exporting %%ControlsName%% to an Image</H2></DIV>
+<TABLE class=ig-layout>
+<TBODY>
+<TR>
+<TH>
+<H4><A name=_Ref318986556></A>Introduction</H4></TH>
+<TD>
+<DIV class=ig-layout-container>
+<P>This topic will guide you through the process of creating a bitmap snapshot of a %%ControlsName%% control and exporting it to a jpeg or png encoded image file.</P></DIV></TD></TR>
+<TR>
+<TH>
+<H4><A name=_Ref318986563></A>Requirements</H4></TH>
 <TD>
 <DIV class=ig-layout-container>
 <P>To complete the procedure, you need the following:</P>
 <UL>
-<LI>A %%PlatformName%% %%PlatformIDE%% application project. 
-<LI>References to the following assemblies: 
-<UL>
-<LI><SPAN class=ig-italic>%%AssemblyPlatform%%%%ApiVersion%%</SPAN> 
-<LI><SPAN class=ig-italic>%%AssemblyPlatform%%DataVisualization.%%ApiVersion%%</SPAN> 
-<LI><SPAN class=ig-italic>%%AssemblyPlatform%%.Olap.%%ApiVersion%%</SPAN> 
-<LI><SPAN class=ig-italic>%%AssemblyPlatform%%.Olap.FlatData.%%ApiVersion%%</SPAN> (if you are not using flat data, include the respective assembly) 
-<LI><SPAN class=ig-italic>%%AssemblyPlatform%%Controls.Grids.XamPivotGrid.%%ApiVersion%%</SPAN> (required only if you want to use the <A href="%%AssemblyPlatform%%Controls.Grids.XamPivotGrid%%ApiVersion%%Infragistics.Controls.Grids.XamPivotDataSelector_members.html">XamPivotDataSelector</A>™) 
-<LI><SPAN class=ig-italic>%%AssemblyPlatform%%%%AssemblyName%%%%ApiVersion%%</SPAN> 
-<LI><SPAN class=ig-italic>%%AssemblyPlatform%%Controls.Charts.Olap.%%ApiVersion%%</SPAN> </LI></UL>
-<LI>The <SPAN class=ig-code-in-text>SalesDataSample</SPAN> class from the <A class=ig-topic-link href="SalesDataSample.html">Sales Data Sample</A> resource added to your application </LI></UL></DIV></TD></TR>
+<LI>A Silverlight application where the %%ControlsName%% control is used. 
+<LI>A button with an event handler for the Click event. In the event handler you will place the code for capturing the bitmap data, encoding and saving the image file. </LI></UL></DIV></TD></TR>
 <TR>
 <TH>
-<H4><A name=_Ref327265286></A>Overview</H4></TH>
-<TD>
-<P class=ig-layout-container>The following is a conceptual overview of the process:</P>
-<DIV class=ig-layout-container><SPAN class=ig-bold>1.</SPAN> <SPAN class=ig-bold>Configuring the data source</SPAN> </DIV>
-<DIV class=ig-layout-container><SPAN class=ig-bold>2. Adding data chart and axes</SPAN> </DIV>
-<DIV class=ig-layout-container><SPAN class=ig-bold>3. Configuring the</SPAN> <SPAN class=ig-bold>OlapXAxis</SPAN> </DIV>
-<P class=ig-layout-container><SPAN class=ig-bold>4.</SPAN> <SPAN class=ig-italic>(Optional)</SPAN> <SPAN class=ig-bold>Adding a pivot data selector</SPAN></P></TD></TR>
-<TR>
-<TH>
-<H4><A name=_Ref327265289></A>Steps</H4></TH>
+<H4><A name=_Ref318986566></A>Overview</H4></TH>
 <TD>
 <DIV class=ig-layout-container>
+<P>Following is a conceptual overview of the process:</P><SPAN class=ig-bold>1</SPAN><SPAN class=ig-bold>.</SPAN> <SPAN class=ig-bold>Adding the required assembly references to your project.</SPAN> 
+<P><SPAN class=ig-bold>2</SPAN><SPAN class=ig-bold>.</SPAN> <SPAN class=ig-bold>Creating a bitmap snapshot of the %%ControlsName%% and exporting it to an image.</SPAN></P></DIV></TD></TR>
+<TR>
+<TH>
+<H4>Steps</H4></TH>
+<TD>
+<DIV class=ig-layout-container>
+<P>The table below describes the procedure in detail.</P>
 <TABLE cellSpacing=0 cellPadding=0>
 <TBODY>
 <TR>
@@ -65,87 +129,164 @@
 <TH>
 <P>Description</P></TH></TR>
 <TR>
-<TD><SPAN class=ig-bold>1. Configure the data source.</SPAN></TD>
+<TD><SPAN class=ig-bold>1</SPAN><SPAN class=ig-bold>.</SPAN> <SPAN class=ig-bold>Add the required assembly references to your project.</SPAN></TD>
 <TD>
-<P>If you choose not to use a <A href="%%AssemblyPlatform%%Controls.Grids.XamPivotGrid%%ApiVersion%%Infragistics.Controls.Grids.XamPivotDataSelector_members.html">XamPivotDataSelector</A> control for assigning hierarchies and measures, you should provide some other mechanism for this, or as in the example below, assign some initial items as columns and measures to the data source. The following code should be placed in the resources section of your page/user control.</P>
-<DIV id=Example_XAML class=LanguageSpecific  style="hs-build-flags: XAM_XF_EX">
-<P><SPAN class=lang><B>In XAML:</B></SPAN></P><PRE><SPAN class=code><SPAN class=blue>&lt;</SPAN><SPAN class=brownish>models</SPAN><SPAN class=blue>:</SPAN><SPAN class=brownish>SalesDataSample</SPAN> <SPAN class=red>x</SPAN><SPAN class=blue>:</SPAN><SPAN class=red>Key</SPAN><SPAN class=blue>="DataSample"</SPAN><SPAN class=blue>/&gt;</SPAN>
-<SPAN class=blue>&lt;</SPAN><SPAN class=brownish>olap</SPAN><SPAN class=blue>:</SPAN><SPAN class=brownish>FlatDataSource</SPAN>
-    <SPAN class=red>x</SPAN><SPAN class=blue>:</SPAN><SPAN class=red>Key</SPAN><SPAN class=blue>="DataSource"</SPAN>
-    <SPAN class=red>Columns</SPAN><SPAN class=blue>="[Date].[Date]"</SPAN>
-    <SPAN class=red>Measures</SPAN><SPAN class=blue>="AmountOfSale, NumberOfUnits"</SPAN>
-    <SPAN class=red>MeasureListLocation</SPAN><SPAN class=blue>="Rows"</SPAN>
-    <SPAN class=red>ItemsSource</SPAN><SPAN class=blue>="{</SPAN><SPAN class=brownish>StaticResource</SPAN> <SPAN class=red>DataSample</SPAN><SPAN class=blue>}"</SPAN> <SPAN class=blue>/&gt;</SPAN></SPAN>
-</PRE></DIV>
-<P style="BACKGROUND-COLOR: rgb(251,212,180)"></P></TD></TR>
+<P>If you have already added the %%ControlsName%% control to your application then you must have referenced the following assemblies in your project:</P>
+<UL>
+<LI><SPAN class=ig-italic>%%AssemblyPlatform%%%%AssemblyName%%%%ApiVersion%%</SPAN> 
+<LI><SPAN class=ig-italic>%%AssemblyPlatform%%DataVisualization.%%ApiVersion%%</SPAN> 
+<LI><SPAN class=ig-italic>%%AssemblyPlatform%%%%ApiVersion%%.</SPAN> </LI></UL>
+<P>In order to be able to export the control to a jpg or png image you also need to reference <SPAN class=ig-italic>%%AssemblyPlatform%%Imaging%%ApiVersion%%.dll</SPAN>.</P>
+<P>This assembly provides classes for exporting a <SPAN class=ig-code-in-text>BitmapSource</SPAN> to a png or jpeg encoded image.</P>
+<P>For more information, see <A class=ig-topic-link href="IG_Imaging.html">Infragistics Imaging</A>.</P></TD></TR>
 <TR>
-<TD><SPAN class=ig-bold>2. Add data chart and axes.</SPAN></TD>
+<TD><SPAN class=ig-bold>2</SPAN><SPAN class=ig-bold>.</SPAN> <SPAN class=ig-bold>Create a bitmap snapshot of the %%ControlsName%% and export it to an image.</SPAN></TD>
 <TD>
-<P><SPAN class=ig-bold>1. Add a</SPAN> <I><SPAN class=ig-bold>x</SPAN></I><I><SPAN class=ig-bold>amDataChart</SPAN></I> <SPAN class=ig-bold>control to your page.</SPAN></P><SPAN class=ig-bold>2.</SPAN> <SPAN class=ig-bold>Add the required axes.</SPAN> 
-<P>A. Add the x-axis.</P><SPAN class=ig-bold>Add an</SPAN> <SPAN class=ig-code-in-text>OlapXAxis</SPAN> <SPAN class=ig-bold>to the</SPAN> <SPAN class=ig-code-in-text>Axes</SPAN> <SPAN class=ig-bold>collection of the</SPAN> <SPAN class=ig-italic>%%ControlsName%%</SPAN> <SPAN class=ig-bold>chart.</SPAN> 
-<P>B. Add the y-axis.</P>
-<P><SPAN class=ig-bold>Add a</SPAN> <A href="%%ApiLink%%.NumericYAxis_members.html">NumericYAxis</A> <SPAN class=ig-bold>to the</SPAN> <SPAN class=ig-code-in-text>Axes</SPAN> <SPAN class=ig-bold>collection of the</SPAN> <SPAN class=ig-italic>%%ControlsName%%</SPAN> <SPAN class=ig-bold>chart.</SPAN></P>
-<P>Since the data that is visualized contains numeric values, you need such a y-axis to correctly display the data chart series.</P></TD></TR>
-<TR>
-<TD><SPAN class=ig-bold>3. Configure</SPAN> <SPAN class=ig-bold>the OLAP</SPAN> <SPAN class=ig-bold>x-axis</SPAN><SPAN class=ig-bold>.</SPAN></TD>
-<TD><SPAN class=ig-bold>1. Attach the added y-axis to the OLAP-x-axis.</SPAN> 
-<P><B>Set the</B> <A href="%%ApiLink%%.NumericYAxis_members.html">YAxis</A> <B>property to the</B> <SPAN class=ig-code-in-text>NumericYAxis</SPAN> defined in the previous step.</P><SPAN class=ig-bold>2. Set the data source.</SPAN> 
-<P>Set the <A href="%%AssemblyPlatform%%Controls.Grids.XamPivotGrid%%ApiVersion%%Infragistics.Controls.Grids.XamPivotDataSelector%%ApiProp%%DataSource.html">DataSource</A> property to the data source defined in step 1.</P><SPAN class=ig-bold>3.</SPAN> <SPAN class=ig-bold>Configure the data axis from which the data is read.</SPAN> 
-<P>To do this, <SPAN class=ig-bold>set the</SPAN> <A href="%%AssemblyPlatform%%Controls.Charts.Olap%%ApiVersion%%%%ControlsNamespace%%.OlapAxis%%ApiProp%%OlapAxisSource.html">OlapAxisSource</A> <SPAN class=ig-bold>property</SPAN>. This property determines whether data is read from rows or from the columns of the data source.</P>
-<P>If you choose the columns, then each column in the data source will be displayed in the <SPAN class=ig-code-in-text>OlapXAxis</SPAN> of the data chart. For each row, a data chart series will be generated and displayed. The illustration in the <A href="#OLE_LINK20"></A><A class=ig-topic-link href="#displayingOlapDataSummary">Displaying OLAP data in <I>%%ControlsName%%</I> summary</A> block demonstrates a pivot grid control and a data chart with an OLAP axis where the <SPAN class=ig-code-in-text>OlapAxisSource</SPAN> is set to<A href="%%AssemblyPlatform%%Controls.Charts.Olap%%ApiVersion%%%%ControlsNamespace%%.OlapAxisSource.html">Columns</A>.</P>
-<P><SPAN class=ig-bold>4.</SPAN> <SPAN class=ig-bold>Configure the series type.</SPAN></P>
-<P>To configure the series type, set the <A href="%%AssemblyPlatform%%Controls.Charts.Olap%%ApiVersion%%%%ControlsNamespace%%.OlapXAxisDefaultSeries.html">DefaultSeries</A> property. (If you don’t configure it, the default Column series will be displayed.)</P></TD></TR>
-<TR>
-<TD><SPAN class=ig-bold>4.</SPAN> <SPAN class=ig-italic>(Optional)</SPAN> <SPAN class=ig-bold>Add a</SPAN> <SPAN class=ig-bold>pivot data selector</SPAN><SPAN class=ig-bold>.</SPAN></TD>
-<TD>
-<P>The following snippet will add a <SPAN class=ig-italic>XamPivotDataSelector</SPAN> component bound to the same data source as the data chart.</P>
-<DIV id=Example_XAML class=LanguageSpecific  style="hs-build-flags: XAM_XF_EX">
-<P><SPAN class=lang><B>In XAML:</B></SPAN></P><PRE><SPAN class=code><SPAN class=blue>&lt;</SPAN><SPAN class=brownish>ig</SPAN><SPAN class=blue>:</SPAN><SPAN class=brownish>Expander</SPAN> <SPAN class=red>Grid</SPAN>.<SPAN class=red>Column</SPAN><SPAN class=blue>="1"</SPAN><SPAN class=blue>&gt;</SPAN>
-<SPAN class=blue>    &lt;</SPAN><SPAN class=brownish>ig</SPAN><SPAN class=blue>:</SPAN><SPAN class=brownish>XamPivotDataSelector</SPAN> <SPAN class=red>DataSource</SPAN><SPAN class=blue>="{</SPAN><SPAN class=brownish>StaticResource</SPAN> <SPAN class=red>DataSource</SPAN><SPAN class=blue>}"</SPAN><SPAN class=blue>/&gt;</SPAN>
-<SPAN class=blue>&lt;/</SPAN><SPAN class=brownish>ig</SPAN><SPAN class=blue>:</SPAN><SPAN class=brownish>Expander</SPAN><SPAN class=blue>&gt;</SPAN></SPAN>
-</PRE></DIV></TD></TR></TBODY></TABLE><BR></DIV></TD></TR>
+<P>The procedure that follows is mostly the same as the one described in the <A class=ig-topic-link href="IG_Imaging_Exporting_a_BitmapSource_to_Image.html">Exporting a Bitmap to a JPEG/PNG-Encoded Image</A> topic. Here instead of capturing a button’s bitmap representation, you need to capture the %%ControlsName%%’s bitmap. Below is an overview of the steps needed to achieve that. For the full code, refer to the <A href="#_Code_Example:_%3CTITLE%3E"><SPAN style="TEXT-DECORATION: underline; COLOR: rgb(0,0,255)"><SPAN style="TEXT-DECORATION: underline; COLOR: rgb(0,0,255)">code example</SPAN></SPAN></A> at the end.</P>
+<P><SPAN class=ig-bold>1</SPAN><SPAN class=ig-bold>.</SPAN> <SPAN class=ig-bold>Create a</SPAN> <SPAN class=ig-code-in-text>WriteableBitmap</SPAN> <SPAN class=ig-bold>object</SPAN> by passing the %%ControlsName%% control as the first argument of the constructor. The second parameter of this constructor is a <SPAN class=ig-code-in-text>Transform</SPAN>, so if you do not want to transform the %%ControlsName%%’s bitmap in any way, use <SPAN class=ig-code-in-text>null</SPAN>/<SPAN class=ig-code-in-text>Nothing</SPAN>.</P>
+<DIV class=ig-note><SPAN class=ig-note-caption>Note:</SPAN> If you want to include the Legend in the image that will be exported, you need to place it in a common container with the %%ControlsName%% e.g. a Grid. </DIV><SPAN class=ig-bold>2</SPAN><SPAN class=ig-bold>.</SPAN> <SPAN class=ig-bold>Create a</SPAN> <SPAN class=ig-code-in-text>SaveFileDialog</SPAN><SPAN class=ig-bold>.</SPAN> 
+<P><SPAN class=ig-bold>3</SPAN><SPAN class=ig-bold>. Set the dialog’s</SPAN> <SPAN class=ig-code-in-text>DefaultExt</SPAN> <SPAN class=ig-bold>property</SPAN> to either <SPAN class=ig-italic>JPG</SPAN> or <SPAN class=ig-italic>PNG</SPAN>.</P>
+<P><SPAN class=ig-bold>4</SPAN><SPAN class=ig-bold>. Show the dialog and call the</SPAN> <SPAN class=ig-bold>OpenFile</SPAN> <SPAN class=ig-bold>method</SPAN> to create a <SPAN class=ig-code-in-text>FileStream</SPAN> where the encoded image will be written.</P>
+<P><SPAN class=ig-bold>5</SPAN><SPAN class=ig-bold>. Create a</SPAN> <A href="%%AssemblyPlatform%%Imaging%%ApiVersion%%Infragistics.Imaging.JpegImageEncoder_members.html">JpegImageEncoder</A> <SPAN class=ig-bold>or</SPAN> <A href="%%AssemblyPlatform%%Imaging%%ApiVersion%%Infragistics.Imaging.PngImageEncoder_members.html">PngImageEncoder</A> depending on what format you want to export to.</P>
+<P><SPAN class=ig-bold>6</SPAN><SPAN class=ig-bold>. (Optional) Specify the jpeg image quality.</SPAN> If you omit it the image will be exported with the default quality level (75 out of 100).</P>
+<P>Create a <SPAN class=ig-code-in-text>List</SPAN> of <A href="%%AssemblyPlatform%%ApiVersion%%Infragistics.Imaging.EncodingProperty_members.html">EncodingProperty</A> objects and add to it a <A href="%%AssemblyPlatform%%Imaging%%ApiVersion%%Infragistics.Imaging.JpegQualityProperty_members.html">JpegQualityProperty</A> instance with its <A href="%%AssemblyPlatform%%Imaging%%ApiVersion%%Infragistics.Imaging.JpegQualityProperty%%ApiProp%%Quality.html">Quality</A> property set to an integer in the range between 1 and 100.</P>
+<P><SPAN class=ig-bold>7</SPAN><SPAN class=ig-bold>. Call the</SPAN> <A href="%%AssemblyPlatform%%ApiVersion%%Infragistics.Imaging.IImageEncoder%%ApiProp%%Encode.html">Encode</A> <SPAN class=ig-bold>method of the</SPAN> <SPAN class=ig-code-in-text>Jpeg/</SPAN><SPAN class=ig-code-in-text>PngImageEncoder</SPAN><SPAN class=ig-bold>.</SPAN> As arguments of the method use the WriteableBitmap (step 1), the <SPAN class=ig-code-in-text>List</SPAN> of <SPAN class=ig-code-in-text>EncodingProperty</SPAN> objects (step 6 or empty list if exporting to png) and the stream (step 4).</P></TD></TR></TBODY></TABLE><BR></DIV></TD></TR></TBODY></TABLE><BR>
+<DIV class=ig-block-title>
+<H2><A name="_Code_Example:_<TITLE>"></A><A name=_Ref318986575></A></H2></DIV>
+<DIV class=ig-block-title>
+<H2>Code Example: Exporting %%ControlsName%% to a JPEG Image</H2></DIV>
+<TABLE class=ig-layout>
+<TBODY>
 <TR>
 <TH>
-<H4><A name=_Ref333329436></A>Code</H4></TH>
+<H4><A name=_Ref318986588></A>Description</H4></TH>
 <TD>
 <DIV class=ig-layout-container>
-<P>Following is the complete XAML code of the procedure.</P>
-<DIV id=Example_XAML class=LanguageSpecific  style="hs-build-flags: XAM_XF_EX">
-<P><SPAN class=lang><B>In XAML:</B></SPAN></P><PRE><SPAN class=code><SPAN class=blue>&lt;</SPAN><SPAN class=brownish>UserControl</SPAN> 
-      …
-      <SPAN class=red>xmlns</SPAN><SPAN class=blue>:</SPAN><SPAN class=red>ig</SPAN><SPAN class=blue>="http://schemas.infragistics.com/xaml"</SPAN>
-      <SPAN class=red>xmlns</SPAN><SPAN class=blue>:</SPAN><SPAN class=red>models</SPAN><SPAN class=blue>="clr-namespace:Infragistics.Samples.Data.Models"</SPAN>
-      <SPAN class=red>xmlns</SPAN><SPAN class=blue>:</SPAN><SPAN class=red>olap</SPAN><SPAN class=blue>="http://schemas.infragistics.com/olap"</SPAN><SPAN class=blue>&gt;</SPAN>
-    <SPAN class=blue>&lt;</SPAN><SPAN class=brownish>UserControl.Resources</SPAN><SPAN class=blue>&gt;</SPAN>
-        <SPAN class=blue>&lt;</SPAN><SPAN class=brownish>models</SPAN><SPAN class=blue>:</SPAN><SPAN class=brownish>SalesDataSample</SPAN> <SPAN class=red>x</SPAN><SPAN class=blue>:</SPAN><SPAN class=red>Key</SPAN><SPAN class=blue>="DataSample"</SPAN><SPAN class=blue>/&gt;</SPAN>
-        <SPAN class=blue>&lt;</SPAN><SPAN class=brownish>olap</SPAN><SPAN class=blue>:</SPAN><SPAN class=brownish>FlatDataSource</SPAN>
-            <SPAN class=red>x</SPAN><SPAN class=blue>:</SPAN><SPAN class=red>Key</SPAN><SPAN class=blue>="DataSource"</SPAN>
-            <SPAN class=red>Columns</SPAN><SPAN class=blue>="[Date].[Date]"</SPAN>
-            <SPAN class=red>Measures</SPAN><SPAN class=blue>="AmountOfSale, NumberOfUnits"</SPAN>
-            <SPAN class=red>MeasureListLocation</SPAN><SPAN class=blue>="Rows"</SPAN>
-            <SPAN class=red>ItemsSource</SPAN><SPAN class=blue>="{</SPAN><SPAN class=brownish>StaticResource</SPAN> <SPAN class=red>DataSample</SPAN><SPAN class=blue>}"</SPAN> <SPAN class=blue>/&gt;</SPAN>
-    <SPAN class=blue>&lt;/</SPAN><SPAN class=brownish>UserControl.Resources</SPAN><SPAN class=blue>&gt;</SPAN>
-    <SPAN class=blue>&lt;</SPAN><SPAN class=brownish>Grid</SPAN> <SPAN class=red>x</SPAN><SPAN class=blue>:</SPAN><SPAN class=red>Name</SPAN><SPAN class=blue>="LayoutRoot"</SPAN> <SPAN class=red>Background</SPAN><SPAN class=blue>="White"</SPAN><SPAN class=blue>&gt;</SPAN>
-        <SPAN class=blue>&lt;</SPAN><SPAN class=brownish>Grid.ColumnDefinitions</SPAN><SPAN class=blue>&gt;</SPAN>
-            <SPAN class=blue>&lt;</SPAN><SPAN class=brownish>ColumnDefinition</SPAN> <SPAN class=blue>/&gt;</SPAN>
-            <SPAN class=blue>&lt;</SPAN><SPAN class=brownish>ColumnDefinition</SPAN> <SPAN class=red>Width</SPAN><SPAN class=blue>="Auto"</SPAN><SPAN class=blue>/&gt;</SPAN>
-        <SPAN class=blue>&lt;/</SPAN><SPAN class=brownish>Grid.ColumnDefinitions</SPAN><SPAN class=blue>&gt;</SPAN>
-        <SPAN class=blue>&lt;</SPAN><SPAN class=brownish>ig</SPAN><SPAN class=blue>:</SPAN><SPAN class=brownish>%%ControlsName%%</SPAN> <SPAN class=red>OverviewPlusDetailPaneVisibility</SPAN><SPAN class=blue>="Visible"</SPAN> <SPAN class=red>HorizontalZoomable</SPAN><SPAN class=blue>="True"</SPAN> <SPAN class=red>VerticalZoomable</SPAN><SPAN class=blue>="True"</SPAN><SPAN class=blue>&gt;</SPAN>
-            <SPAN class=blue>&lt;</SPAN><SPAN class=brownish>ig</SPAN><SPAN class=blue>:</SPAN><SPAN class=brownish>%%ControlsName%%.Axes</SPAN><SPAN class=blue>&gt;</SPAN>
-                <SPAN class=blue>&lt;</SPAN><SPAN class=brownish>ig</SPAN><SPAN class=blue>:</SPAN><SPAN class=brownish>OlapXAxis</SPAN>
-                    <SPAN class=red>YAxis</SPAN><SPAN class=blue>="{</SPAN><SPAN class=brownish>Binding</SPAN> <SPAN class=red>ElementName</SPAN><SPAN class=blue>=YAxis</SPAN><SPAN class=blue>}"</SPAN>
-                    <SPAN class=red>DataSource</SPAN><SPAN class=blue>="{</SPAN><SPAN class=brownish>StaticResource</SPAN> <SPAN class=red>DataSource</SPAN><SPAN class=blue>}"</SPAN>
-                    <SPAN class=red>OlapAxisSource</SPAN><SPAN class=blue>="Columns"</SPAN>
-                    <SPAN class=red>DefaultSeries</SPAN><SPAN class=blue>="ColumnSeries"</SPAN><SPAN class=blue>/&gt;</SPAN>
-                <SPAN class=blue>&lt;</SPAN><SPAN class=brownish>ig</SPAN><SPAN class=blue>:</SPAN><SPAN class=brownish>NumericYAxis</SPAN> <SPAN class=red>x</SPAN><SPAN class=blue>:</SPAN><SPAN class=red>Name</SPAN><SPAN class=blue>="YAxis"</SPAN> <SPAN class=red>MinimumValue</SPAN><SPAN class=blue>="0"</SPAN><SPAN class=blue>/&gt;</SPAN>
-            <SPAN class=blue>&lt;/</SPAN><SPAN class=brownish>ig</SPAN><SPAN class=blue>:</SPAN><SPAN class=brownish>%%ControlsName%%.Axes</SPAN><SPAN class=blue>&gt;</SPAN>
-        <SPAN class=blue>&lt;/</SPAN><SPAN class=brownish>ig</SPAN><SPAN class=blue>:</SPAN><SPAN class=brownish>%%ControlsName%%</SPAN><SPAN class=blue>&gt;</SPAN>
-        <SPAN class=comment>&lt;!--&lt;ig:Expander Grid.Column="1"&gt;
-        &lt;ig:XamPivotDataSelector DataSource="{StaticResource DataSource}"/&gt;
-        &lt;/ig:Expander&gt;--&gt;</SPAN>
-    <SPAN class=blue>&lt;/</SPAN><SPAN class=brownish>Grid</SPAN><SPAN class=blue>&gt;</SPAN>
-<SPAN class=blue>&lt;/</SPAN><SPAN class=brownish>UserControl</SPAN><SPAN class=blue>&gt;</SPAN></SPAN>
-</PRE></DIV></DIV></TD></TR></TBODY></TABLE>
+<P>The code below demonstrates how to export a %%ControlsName%% control as a jpg/png encoded image.</P></DIV></TD></TR>
+<TR>
+<TH>
+<H4><A name=_Ref318986598></A>Code</H4></TH>
+<TD>
+<DIV class=ig-layout-container>
+<DIV id=Example_XAML class=LanguageSpecific style="DISPLAY: block" style="hs-build-flags: XAM_XF_EX">
+<P><SPAN class=lang><B>In XAML:</B></SPAN></P><PRE><SPAN class=code>Code
+…
+<SPAN class=blue>&lt;</SPAN><SPAN class=brownish>ig</SPAN><SPAN class=blue>:</SPAN><SPAN class=brownish>%%ControlsName%%</SPAN> <SPAN class=red>xmlns</SPAN><SPAN class=blue>:</SPAN><SPAN class=red>ig</SPAN><SPAN class=blue>="http://schemas.infragistics.com/xaml"</SPAN>
+ <SPAN class=red>x</SPAN><SPAN class=blue>:</SPAN><SPAN class=red>Name</SPAN><SPAN class=blue>="dataChart"</SPAN><SPAN class=blue>&gt;</SPAN>
+…
+<SPAN class=blue>&lt;/</SPAN><SPAN class=brownish>ig</SPAN><SPAN class=blue>:</SPAN><SPAN class=brownish>%%ControlsName%%</SPAN><SPAN class=blue>&gt;</SPAN>
+<SPAN class=blue>&lt;</SPAN><SPAN class=brownish>Button</SPAN> <SPAN class=red>Click</SPAN><SPAN class=blue>="SaveButton_Click"</SPAN> <SPAN class=red>Content</SPAN><SPAN class=blue>="Export Image"</SPAN><SPAN class=blue>/&gt;</SPAN>
+…</SPAN>
+</PRE></DIV></DIV></TD></TR>
+<TR>
+<TH>
+<H4><A name=_Ref318986600></A>Code</H4></TH>
+<TD>
+<DIV class=ig-layout-container>
+<DIV id=Example_CS class=LanguageSpecific style="DISPLAY: block" style="hs-build-flags: DROID_EX">
+<P><SPAN class=lang><B>In C#:</B></SPAN></P><PRE><SPAN class=code>Code
+<SPAN class=blue>private</SPAN> <SPAN class=blue>void</SPAN> SaveButton_Click(<SPAN class=blue>object</SPAN> sender, RoutedEventArgs e)
+{
+    WriteableBitmap bitmap = 
+        <SPAN class=blue>new</SPAN> WriteableBitmap(<SPAN class=blue>this</SPAN>.dataChart, <SPAN class=blue>null</SPAN>);
+ 
+    SaveFileDialog savedialog = <SPAN class=blue>new</SPAN> SaveFileDialog();
+    savedialog.DefaultExt = <SPAN class=string>"JPEG"</SPAN>; <SPAN class=comment>// or "PNG"</SPAN>
+    <SPAN class=blue>if</SPAN> (savedialog.ShowDialog() == <SPAN class=blue>true</SPAN>)
+    {
+        <SPAN class=blue>using</SPAN> (Stream stream = savedialog.OpenFile())
+        {
+            JpegImageEncoder encoder = <SPAN class=blue>new</SPAN> JpegImageEncoder();
+            List&lt;EncodingProperty&gt; qualityList = 
+               <SPAN class=blue>new</SPAN> List&lt;EncodingProperty&gt;();
+            qualityList.Add(<SPAN class=blue>new</SPAN> JpegQualityProperty() { Quality = 90 });
+ 
+            encoder.Encode(bitmap, qualityList, stream);
+ 
+            <SPAN class=comment>// Exporting to PNG</SPAN>
+            <SPAN class=comment>// PngImageEncoder encoder = new PngImageEncoder();</SPAN>
+            <SPAN class=comment>// encoder.Encode(bitmap, new List&lt;EncodingProperty&gt;(0), stream);</SPAN>
+        }
+    }
+}</SPAN>
+</PRE></DIV></DIV></TD></TR>
+<TR>
+<TH>
+<H4><A name=_Ref318986603></A>Code</H4></TH>
+<TD>
+<DIV class=ig-layout-container>
+<DIV id=Example_VB class=LanguageSpecific style="DISPLAY: block" style="hs-build-flags: DROID_EX">
+<P><SPAN class=lang><B>In Visual Basic:</B></SPAN></P><PRE><SPAN class=code>Code
+<SPAN class=blue>Imports</SPAN> System.IO
+<SPAN class=blue>Imports</SPAN> Infragistics.Imaging
+<SPAN class=blue>Imports</SPAN> System.Windows.Media.Imaging
+…
+<SPAN class=blue>Private</SPAN> <SPAN class=blue>Sub</SPAN> SaveButton_Click(sender <SPAN class=blue>As</SPAN> <SPAN class=blue>Object</SPAN>, e <SPAN class=blue>As</SPAN> RoutedEventArgs)
+    <SPAN class=blue>Dim</SPAN> saveDialog <SPAN class=blue>As</SPAN> <SPAN class=blue>New</SPAN> SaveFileDialog()
+    saveDialog.DefaultExt = <SPAN class=string>"JPG"</SPAN> <SPAN class=comment>' or "PNG"</SPAN>
+    <SPAN class=blue>If</SPAN> saveDialog.ShowDialog() = <SPAN class=blue>True</SPAN> <SPAN class=blue>Then</SPAN>
+        Using stream <SPAN class=blue>As</SPAN> Stream = saveDialog.OpenFile()
+            <SPAN class=blue>Dim</SPAN> bitmap <SPAN class=blue>As</SPAN> <SPAN class=blue>New</SPAN> WriteableBitmap(<SPAN class=blue>Me</SPAN>.dataChart, <SPAN class=blue>Nothing</SPAN>)
+ 
+            <SPAN class=blue>Dim</SPAN> encoder <SPAN class=blue>As</SPAN> <SPAN class=blue>New</SPAN> JpegImageEncoder()
+            <SPAN class=blue>Dim</SPAN> qualityList <SPAN class=blue>As</SPAN> <SPAN class=blue>New</SPAN> List(Of EncodingProperty)()
+            qualityList.Add(<SPAN class=blue>New</SPAN> JpegQualityProperty() 
+                <SPAN class=blue>With</SPAN> {.Quality = 90})
+            encoder.Encode(bitmap, qualityList, stream)
+ 
+            <SPAN class=comment>' Exporting to PNG</SPAN>
+            <SPAN class=comment>' Dim encoder As New PngImageEncoder()</SPAN>
+            <SPAN class=comment>' encoder.Encode(bitmap, New List(Of EncodingProperty)(0), stream)</SPAN>
+        <SPAN class=blue>End</SPAN> Using
+    <SPAN class=blue>End</SPAN> <SPAN class=blue>If</SPAN>
+<SPAN class=blue>End</SPAN> Sub</SPAN>
+</PRE></DIV></DIV></TD></TR></TBODY></TABLE><BR>
+<DIV class=ig-block-title>
+<H2><A name=_Ref318986605></A>Related Content</H2></DIV>
+<TABLE class=ig-layout>
+<TBODY>
+<TR>
+<TH>
+<H4><A name=_Ref318986610></A>Topics</H4></TH>
+<TD>
+<DIV class=ig-layout-container>
+<P>The following topics provide additional information related to this topic.</P>
+<TABLE cellSpacing=0 cellPadding=0>
+<TBODY>
+<TR>
+<TH>
+<P>Topic</P></TH>
+<TH>
+<P>Purpose</P></TH></TR>
+<TR>
+<TD>
+<DIV class=ig-topic-link><A href="5f39946e-59dc-43f0-bd49-91714053bfbb" style="auto-update-caption: true">Getting Started with Data Chart</A> </DIV></TD>
+<TD>
+<P>You will learn how to add the %%ControlsName%% control with simple data binding in %%PlatformIDE%% and Expression Blend®.</P></TD></TR>
+<TR>
+<TD>
+<P><A class=ig-topic-link href="IG_Imaging_Exporting_a_BitmapSource_to_Image.html">Exporting a Bitmap to a JPEG/PNG-Encoded Image</A></P></TD>
+<TD>
+<P>This topic explains how to export a bitmap to a JPEG or PNG-encoded image using the Infragistics® imaging assembly.</P></TD></TR></TBODY></TABLE><BR></DIV></TD></TR>
+<TR>
+<TH style="hs-build-flags: SL">
+<H4><A name=_Ref318986613></A>Samples</H4></TH>
+<TD style="hs-build-flags: SL">
+<DIV class=ig-layout-container>
+<P>The following samples provide additional information related to this topic.</P>
+<TABLE cellSpacing=0 cellPadding=0>
+<TBODY>
+<TR>
+<TH>
+<P>Sample</P></TH>
+<TH>
+<P>Purpose</P></TH></TR>
+<TR>
+<TD>
+<DIV class=ig-topic-link><A href="%%SamplesURL%%/data-chart/#/exporting-datachart-to-image">Exporting DataChart to Image</A> </DIV></TD>
+<TD>
+<P>This sample shows how to export the %%ControlsName%% control to a JPEG or PNG encoded image. To do this, the Infragistics Imaging assembly is used. Refer to the code-behind for details.</P></TD></TR></TBODY></TABLE><BR></DIV></TD></TR></TBODY></TABLE><BR>
+</div>
 </div>
 <script src="https://code.jquery.com/jquery-2.1.4.min.js" type="text/javascript"></script>
 <script src="unmapper.js" type="text/javascript"></script>

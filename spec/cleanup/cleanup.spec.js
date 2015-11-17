@@ -50,5 +50,11 @@ describe('cleanup', function(){
 			expect(dest).toEqual(expected);
 		});
 		
+		it('replaces &#xA0; with &nbsp;', function(){
+			var src = '<div>&#xA0;</div>';
+			var dest = cleanup.html(src);
+			var expected = '<div>&nbsp;</div>';
+			expect(dest).toEqual(expected);
+		});
 	});
 });
