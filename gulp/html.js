@@ -27,7 +27,7 @@ module.exports.load = function(gulp){
       .pipe(rename(function(path){
         path.extname = '.html';
       }))
-      .pipe(gulp.dest('./spec/data/dest'));
+      .pipe(gulp.dest('./spec/data/dest/html'));
   });
   
   gulp.task('html-no-format', function() {
