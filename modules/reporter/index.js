@@ -3,6 +3,7 @@ module = module.exports;
 var _ = require('lodash');
 var path = require('path');
 var fs = require('fs');
+var cheerio = require('cheerio');
 
 module.getRandomFileNames = (folderPath, count, groupCount, english) => {
 	var randoms, basePath, fileNames, fileCount, index;
@@ -71,7 +72,7 @@ module.crazyTables = function (folderPath) {
 	});
 
 	if (results.length > 0) {
-		fs.writeFileSync(path.resolve(__dirname, '../../logs/tables/tables.txt'), results.join('\n'), 'utf8');
+		fs.writeFileSync(path.resolve(__dirname, '../../logs/tables/complex/list.txt'), results.join('\n'), 'utf8');
 		console.log(`${results.length} crazy tables found`);
 	} else {
 		console.log('no crazy tables found');
@@ -80,6 +81,53 @@ module.crazyTables = function (folderPath) {
 };
 
 //module.crazyTables('../../spec/data/dest/no-format');
+
+module.nestedTables = function (folderPath) {
+	var basePath, fileNames, results = [], matches, title = '';
+
+	basePath = path.resolve(__dirname, folderPath);
+	fileNames = fs.readdirSync(basePath);
+
+	fileNames.forEach((fileName) => {
+		var filePath, contents, $, nestedTableCount;
+		
+		if(path.extname(fileName) === '.html'){
+			filePath = path.join(basePath, fileName);
+			contents = fs.readFileSync(filePath, 'utf8');
+			$ = cheerio.load(contents);
+			
+			$('table').each((i, table) => {
+				var $table = $('table');
+				nestedTableCount = $table.find('table').length;
+			});
+	
+			if (nestedTableCount) {
+				matches = contents.match(/name&quot;: &quot;(.*)&/);
+				
+				if(matches && matches.length > 0){
+					title = matches[1]
+								.toLowerCase()
+								.replace(/_/g, '-');
+				}
+				
+				results.push(`${fileName}\t\t\t${title}.adoc`);
+				fs.writeFileSync(path.resolve(__dirname, `../../logs/tables/nested/${fileName}`), contents, 'utf8');
+			}
+		}
+
+	});
+
+	if (results.length > 0) {
+		fs.writeFileSync(path.resolve(__dirname, '../../logs/tables/nested/list.txt'), results.join('\n'), 'utf8');
+		console.log(`${results.length} nested tables found`);
+	} else {
+		console.log('no nested tables found');
+	}
+
+};
+
+// run against: gulp html
+//module.nestedTables('../../spec/data/dest/');
 
 module.findBuildFlaggedCode = function (folderPath) {
 	var basePath, fileNames, results = [];
