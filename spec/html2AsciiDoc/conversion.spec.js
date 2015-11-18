@@ -19,6 +19,7 @@ describe('html2AsciiDoc', function(){
 	};
 	
 	[
+		'anchors',
 		'build-list',
 		'indented-code',		
 		'multiple-ol',		

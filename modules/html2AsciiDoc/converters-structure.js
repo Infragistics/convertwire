@@ -131,10 +131,54 @@
 
   var anchorWithoutHref = {
     filter: function (node) {
-      return node.nodeName === 'A' && (node.getAttribute('href') === null);
+      return node.nodeName === 'A' && 
+            (node.getAttribute('href') === null) &&
+            (node.getAttribute('id') === null);
     },
     replacement: function (content, node) {
       return '';
+    }
+  };
+  
+  var anchorWithIdAsAnchor = {
+    filter: (node) => {
+      var match = false, id;
+      
+      id = node.getAttribute('id');
+      match = (node.nodeName === 'A' && id !== null);
+      
+      return match;
+    },
+    replacement: (content, node) => {
+      var value, id;
+      
+      id = node.getAttribute('id');
+      
+      value = `[[${id}]]${content}`;
+      
+      return value;
+    }
+  };
+  
+  var anchorInDocumentHref = {
+    filter: (node) => {
+      var match = false, href;
+      
+      href = node.getAttribute('href');
+      if(node.nodeName === 'A' && href !== null){
+        match = (href[0] === '#');
+      } 
+      
+      return match;
+    },
+    replacement: (content, node) => {
+      var value, href;
+      
+      href = node.getAttribute('href').replace('#', '');
+      
+      value = `<<${href},${content}>>`;
+      
+      return value; 
     }
   };
 
@@ -295,6 +339,8 @@
   converters.push(bold);
   converters.push(paragraph);
   converters.push(anchorWithoutHref);
+  converters.push(anchorWithIdAsAnchor);
+  converters.push(anchorInDocumentHref);
   converters.push(anchorWithHref);
   converters.push(img);
   converters.push(ul);
