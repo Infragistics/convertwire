@@ -1,4 +1,4 @@
-module.exports = [
+module.exports.regex = [
 	{
 		name: 'ordered-list-stray-slash',
 		pattern: /[1-9]\\./g,

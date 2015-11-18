@@ -56,5 +56,16 @@ describe('cleanup', function(){
 			var expected = '<div>&nbsp;</div>';
 			expect(dest).toEqual(expected);
 		});
+		
+		it('preserves in-document anchors', () => {
+			var src = '<div><a id="yep"></a> Yep</div>';
+			var dest = cleanup.html(src);
+			var expected = '<div><a id="yep"><!-- in-document link ---></a> Yep</div>';
+			expect(dest).toEqual(expected);
+		});
+		
+		it('removes empty HTML tags', () => {
+			
+		});
 	});
 });

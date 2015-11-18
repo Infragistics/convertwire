@@ -10,7 +10,7 @@ if(isNodejsContext){
 
 var skipHeaders = ['in this topic'];
 
-var getNewMarkup = (header, content, buildFlags, headerLevel) => {
+var getNewMarkup = (header, anchorMarkup, content, buildFlags, headerLevel) => {
     var markup = '';
     
     buildFlags = buildFlags? buildFlags : '';
@@ -18,6 +18,7 @@ var getNewMarkup = (header, content, buildFlags, headerLevel) => {
     headerLevel = headerLevel ? headerLevel : 2;
 
     markup = `<div class="ig-content-container" ${buildFlags}> 
+                ${anchorMarkup}
                 <h${headerLevel} class="ig-header">${header}</h${headerLevel}>
                 <div class="ig-content">${content}</div>
             </div>`;
@@ -27,7 +28,7 @@ var getNewMarkup = (header, content, buildFlags, headerLevel) => {
 
 var getStepMarkup = (header, content, buildFlags) => {
     var value, headerLevel = 3;   
-    value = getNewMarkup(header, content, buildFlags, headerLevel);
+    value = getNewMarkup(header, '', content, buildFlags, headerLevel);
     return value;
 };
 
@@ -43,7 +44,7 @@ var getContents = function(element, contentType){
 };
 
 var createNewMarkupFromLayoutTables = () => {
-    var $tbody, $tbodys, $row, $rows, header, content, hasContent, style, 
+    var $tbody, $tbodys, $row, $rows, header, $header, headerPlainText, content, hasContent, style, 
         buildFlags = '', rowMarkup = [], tableMarkup = [], value = {};
     
     $tbodys = $('table.ig-layout > tbody');
@@ -55,7 +56,17 @@ var createNewMarkupFromLayoutTables = () => {
         rowMarkup = [];
         $rows.each((rowIndex, row) => {
             $row = $(row);
-            header = getContents($row.find('th')[0], 'text');
+            
+            $header = $(getContents($row.find('th')[0], 'html'));
+            
+            var anchorMarkup = '';
+            
+            if($header.find('a').length > 0){
+                anchorMarkup = $('<div>').append($header.find('a')[0]).html();
+            }
+            
+            header = $header.text();
+            
             content = getContents($row.find('.ig-layout-container'), 'html');
             
             style = $row.attr('style');
@@ -68,7 +79,7 @@ var createNewMarkupFromLayoutTables = () => {
                          content.length > 0;
             
             if(hasContent){
-                rowMarkup.push(getNewMarkup(header, content, buildFlags));
+                rowMarkup.push(getNewMarkup(header, anchorMarkup, content, buildFlags));
             }
         });
         

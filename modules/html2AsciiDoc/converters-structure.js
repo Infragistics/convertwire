@@ -334,12 +334,12 @@
 
   var converters = [];
 
+  converters.push(anchorWithIdAsAnchor);
   converters.push(headers);
   converters.push(hr);
   converters.push(bold);
   converters.push(paragraph);
   converters.push(anchorWithoutHref);
-  converters.push(anchorWithIdAsAnchor);
   converters.push(anchorInDocumentHref);
   converters.push(anchorWithHref);
   converters.push(img);

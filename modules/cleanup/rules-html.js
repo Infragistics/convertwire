@@ -1,4 +1,4 @@
-module.exports = [
+module.exports.regex = [
 	{
 		name: 'style-display-none',
 		// includes all possible values for CSS display property
@@ -9,5 +9,34 @@ module.exports = [
 		name: 'non-breaking-space',
 		pattern: /&#xA0;/g,
 		replacement: '&nbsp;'
+	},
+	/*{
+		name: 'empty-html-tags',
+		pattern: /<[^\/>][^>]*><\/[^>]+>/g,
+		replacement: ''
+	}*/
+];
+
+module.exports.jquery = [
+	{
+		name: 'add-comment-to-in-document-anchors',
+		apply:  ($) => {
+			var src = '', dest = '';
+			
+			$('a').each((i, a) => {
+				var $a = $(a);
+				if($a.text().length === 0 && (typeof $a.attr('id') !== 'undefined')){
+					src = $('<div>').append($a).html();
+					
+					$a.html('<!-- in-document link --->');
+					dest = $('<div>').append($a).html();
+				}
+			});
+			
+			return {
+				src: src,
+				dest: dest
+			};
+		}
 	}
 ];
