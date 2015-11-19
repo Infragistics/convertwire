@@ -8,6 +8,7 @@ var unmapper = require('../tasks/gulp-unmapper.js');
 var sourceFormatter = require('../tasks/gulp-sourceFormatter.js');
 var html2AsciiDoc = require('../tasks/gulp-html2AsciiDoc.js');
 var logger = require('../modules/logger');
+var cleanup = require('../tasks/gulp-cleanup.js');
 
 module.exports.load = function(gulp){
   gulp.task('html-only', function() {
@@ -22,6 +23,7 @@ module.exports.load = function(gulp){
   gulp.task('html', function() {
     return gulp.src('./spec/data/src/*.xml')
       .pipe(docx2html())
+      .pipe(cleanup('html'))
       .pipe(unmapper())
       .pipe(sourceFormatter())
       .pipe(rename(function(path){

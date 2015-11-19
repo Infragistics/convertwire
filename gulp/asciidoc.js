@@ -60,7 +60,9 @@ module.exports.load = function(gulp){
       .pipe(rename(function(path){
         path.extname = '.adoc';
         var isJP = path.basename.indexOf('.ja-JP') > -1;
-        var name = path.basename.replace(/\.ja-JP/i, '-ja-JP');
+        var name = path.basename
+                              .replace(/\.ja-JP/i, '-ja-JP')
+                              .replace(/\{|\}/g, '');
         
         if(remoteData[name]){
           path.basename = remoteData[name];

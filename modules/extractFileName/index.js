@@ -29,7 +29,8 @@ module.read = function(relativePath){
 		fileName = fileName
 					.replace(/.adoc/i, '')
 					.replace(/.ja-JP/i, '-ja-JP')
-					.replace('.html', '');
+					.replace('.html', '')
+					.replace(/\{|\}/g, '');
 					
 		name = metadata.name.toLowerCase().replace(/_/g, '-');
 		
