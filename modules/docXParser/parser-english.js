@@ -1,12 +1,14 @@
 (function(module){
 	
-	var _ = require('lodash');
-	var utils = require('./utils.js');
+	'use strict';
+	
+	const _ = require('lodash');
+	const utils = require('./utils.js');
 
 	//	the file path is not used here, but is used in the jp parser and
 	//  is included in this module to keep the interface uniform
-	module.parse = function(obj, filePath, callback){
-		var markup, htmlDocument;
+	module.parse = (obj, filePath, callback) => {
+		let markup, htmlDocument;
 		
 		htmlDocument = utils.createHtmlDocument();
 		
@@ -23,14 +25,14 @@
 		var defs = obj.Topic.PropertyDefinitionValues.PropertyDefinitionValue;
 		
 		if(_.isArray(defs) && defs.length >= 1){
-			var tagsList = defs[0].PropertyValue._;
+			let tagsList = defs[0].PropertyValue._;
 			if(!_.isUndefined(tagsList)) {
 				htmlDocument.tags = utils.listToArray(tagsList, ',');
 			}
 		}
 		
 		if(_.isArray(defs) && defs.length >= 2){
-			var controlName = defs[1].PropertyValue._;
+			let controlName = defs[1].PropertyValue._;
 			if(!_.isUndefined(controlName)){
 				htmlDocument.controlName = utils.listToArray(controlName.trim(), ',');
 			}
