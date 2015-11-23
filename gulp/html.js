@@ -14,6 +14,7 @@ module.exports.load = function(gulp){
   gulp.task('html-only', function() {
     return gulp.src('./spec/data/src/*.xml')
       .pipe(docx2html())
+      .pipe(cleanup('html'))
       .pipe(rename(function(path){
         path.extname = '.html';
       }))
@@ -35,6 +36,7 @@ module.exports.load = function(gulp){
   gulp.task('html-no-format', function() {
     return gulp.src('./spec/data/src/*.xml')
       .pipe(docx2html())
+      .pipe(cleanup('html'))
       .pipe(unmapper())
       .pipe(rename(function(path){
         path.extname = '.html';
@@ -45,6 +47,7 @@ module.exports.load = function(gulp){
   gulp.task('html-no-unmapper', function() {
     return gulp.src('./spec/data/src/*.xml')
       .pipe(docx2html())
+      .pipe(cleanup('html'))
       .pipe(rename(function(path){
         path.extname = '.html';
       }))

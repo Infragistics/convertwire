@@ -10,6 +10,41 @@ module.exports.regex = [
 		pattern: /&#xA0;/g,
 		replacement: '&nbsp;'
 	},
+	{
+		name: 'build-flag:winforms',
+		pattern: /A33F8D9D-1A93-4A02-85E3-FC849DE1B8EA/g,
+		replacement: 'winforms'
+	},
+	{
+		name: 'build-flag:winrt',
+		pattern: /34ADE70F-C190-412D-A2CE-25D1E1AE0FF8/g,
+		replacement: 'winrt'
+	},
+	{
+		name: 'build-flag:wpf',
+		pattern: /{673B143B-6568-4204-99C0-4548E4AFEF3C}/g,
+		replacement: 'wpf'
+	},
+	{
+		name: 'build-flag:android',
+		pattern: /18DC7F35-922E-46A9-9127-9FA472AE43E2/g,
+		replacement: 'android'
+	},
+	{
+		name: 'build-flag:android_in',
+		pattern: /DROID_IN/g,
+		replacement: 'android'
+	},
+	{
+		name: 'build-flag:sl',
+		pattern: /{A72AF817-CD06-4101-A8ED-A0E52FC4DD05}/g,
+		replacement: 'sl'
+	},
+	{
+		name: 'build-flag:',
+		pattern: /27968E2C-EB4E-49F9-9A03-2FF58C6428F6/g,
+		replacement: 'winphone'
+	},
 	/*{
 		name: 'empty-html-tags',
 		pattern: /<[^\/>][^>]*><\/[^>]+>/g,
