@@ -23,11 +23,7 @@
 		}
 		
 		let defs = obj.Topic.PropertyDefinitionValues.PropertyDefinitionValue;
-		
-		// TODO: loop through each def and determine if it is 
-		// metadata or extra content.
-		// WinForms {0AA0DB3F-68DC-472E-BCE2-6D601CEFAA33}.xml
-		
+			
 		if(_.isArray(defs)) {
 			let isExtraContent = (value) => {
 				let match = value.indexOf('<') > -1 || value.length > 100;
@@ -53,7 +49,8 @@
 			};
 			
 			defs.forEach((def, i) => {
-				let value = def.PropertyValue._.trim(); 
+				let value = def.PropertyValue._;
+				value = !_.isUndefined(value)? value.trim() : ''; 
 				if(isExtraContent(value)){
 					htmlDocument.markup += '\n\n' + value;
 				} else if (isTags(value, i)){
