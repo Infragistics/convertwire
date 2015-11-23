@@ -37,7 +37,7 @@
 			}
 			
 			// remove leftover whitespace link breaks with AsciiDoc link break
-			content = content.replace(/(\n){2,}/g, ' + \n');
+			content = content.replace(/(\n){2,}/g, ' \n');
 			
 			// remove line break character from build flags  
 			content = content.replace(/\[\] \+/g, '[]'); 
@@ -52,10 +52,10 @@
 		content = cleanTitleAndWhiteSpace(content, isHeader);
 		
 		colspan = node.getAttribute('colspan');
-		colspan = (_.isNull(colspan))? '' : colspan + '+';
+		colspan = (_.isNull(colspan))? '' : colspan;
 		
 		rowspan = node.getAttribute('rowspan');
-		rowspan = (_.isNull(rowspan))? '' : '.' + rowspan + '+';
+		rowspan = (_.isNull(rowspan))? '' : '.' + rowspan;
 		
 		if(rowspan.length > 0){
 			colspan = _.trimRight(colspan, '+') + rowspan;
