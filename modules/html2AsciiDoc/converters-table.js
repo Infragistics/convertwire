@@ -40,7 +40,9 @@
 			content = content.replace(/(\n){2,}/g, ' \n');
 			
 			// remove line break character from build flags  
-			content = content.replace(/\[\] \+/g, '[]'); 
+			content = content.replace(/\[\] \+/g, '[]');
+			
+			content = content.replace(/\<temp-token role=\"list:start\"\>/g, '\n\n'); 
 		}
 		
 		return content;

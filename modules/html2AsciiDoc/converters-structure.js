@@ -219,7 +219,7 @@
   };
 
   var ul = {
-    filter: 'ul',
+    filter: ['ul', 'ol'],
     replacement: function (content, node) {
       var element;
 
@@ -229,7 +229,7 @@
         content = buildFlags.wrapWithBuildFlags(content, node);
       }
 
-      return content;
+      return '\n\n\<temp-token role="list:start">' + content;
     }
   };
 

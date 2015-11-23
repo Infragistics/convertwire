@@ -27,5 +27,10 @@ module.exports.regex = [
 		name: 'note-in-a-table-cell',
 		pattern: /(\+ ?)\n.Note:/g,
 		replacement: '+\n\n.Note:'
+	},
+	{
+		name: 'temp-token=>list:start',
+		pattern: /\<temp-token role=\"list:start\"\>/g,
+		replacement: ''
 	}
 ];
