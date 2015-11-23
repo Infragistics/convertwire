@@ -1,6 +1,6 @@
 (function(module){
 	
-	'use strict';
+	'use strict'
 	
 	const _ = require('lodash');
 	const utils = require('./utils.js');
@@ -22,20 +22,46 @@
 			htmlDocument.markup = markup;
 		}
 		
-		var defs = obj.Topic.PropertyDefinitionValues.PropertyDefinitionValue;
+		let defs = obj.Topic.PropertyDefinitionValues.PropertyDefinitionValue;
 		
-		if(_.isArray(defs) && defs.length >= 1){
-			let tagsList = defs[0].PropertyValue._;
-			if(!_.isUndefined(tagsList)) {
-				htmlDocument.tags = utils.listToArray(tagsList, ',');
-			}
-		}
+		// TODO: loop through each def and determine if it is 
+		// metadata or extra content.
+		// WinForms {0AA0DB3F-68DC-472E-BCE2-6D601CEFAA33}.xml
 		
-		if(_.isArray(defs) && defs.length >= 2){
-			let controlName = defs[1].PropertyValue._;
-			if(!_.isUndefined(controlName)){
-				htmlDocument.controlName = utils.listToArray(controlName.trim(), ',');
-			}
+		if(_.isArray(defs)) {
+			let isExtraContent = (value) => {
+				let match = value.indexOf('<') > -1 || value.length > 100;
+				if(!match){
+					let count = value.match(/ /g);
+					match = (count && count.length > 4);
+				}
+				return match;
+			};
+			
+			let isTags = (def, i) => {
+				let match = false;
+				let targetIndex = defs.length === 3? 1 : 0;
+				match = !isExtraContent(def) && i === targetIndex;
+				return match;
+			};
+			
+			let isControlName = (def, i) => {
+				let match = false;
+				let targetIndex = defs.length === 3? 2 : 1;				
+				match = !isExtraContent(def) && i === targetIndex;
+				return match;
+			};
+			
+			defs.forEach((def, i) => {
+				let value = def.PropertyValue._.trim(); 
+				if(isExtraContent(value)){
+					htmlDocument.markup += '\n\n' + value;
+				} else if (isTags(value, i)){
+					htmlDocument.tags = utils.listToArray(value, ',');
+				} else if (isControlName(value, i)){
+					htmlDocument.controlName = utils.listToArray(value, ',');
+				}
+			});
 		}
 		
 		if(!_.isUndefined(obj.Topic.$.Id)) {

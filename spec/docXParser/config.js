@@ -71,6 +71,23 @@
 			controlName: ['xamDataChart'],
 			tags: ['Charting','Data Presentation','Getting Started','How Do I'],
 			buildFlags: ['SL','WPF','WINRT'] 
+		},
+		'{0AA0DB3F-68DC-472E-BCE2-6D601CEFAA33}': {
+			fileName: '{0AA0DB3F-68DC-472E-BCE2-6D601CEFAA33}.xml',
+			fileNameJP: '{0AA0DB3F-68DC-472E-BCE2-6D601CEFAA33}.ja-JP.xml',
+			name: 'WinToolbarsManager_Converting_a_Standard_Toolbar_to_a_Ribbon',
+			docXGuid: '{0AA0DB3F-68DC-472E-BCE2-6D601CEFAA33}',
+			title: {
+				en: 'Converting a Standard Toolbar to a Ribbon',
+				jp: '標準のツールバーをリボンに変換'
+			},
+			markupFragment: {
+				en: '<H2>Before You Begin',
+				jp: '<H2>始める前に'
+			},
+			controlName: ['WinToolbarsManager'],
+			tags: ['Application Scenarios'],
+			buildFlags: [] 
 		}
 	};
 	

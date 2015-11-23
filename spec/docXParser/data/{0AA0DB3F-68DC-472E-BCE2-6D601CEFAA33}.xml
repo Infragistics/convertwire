@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Topic Id="{0AA0DB3F-68DC-472E-BCE2-6D601CEFAA33}" Status="In Progress" CreatedOn="2006-06-10T10:45:29Z" ModifiedOn="2014-04-11T20:03:06.6593972Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="WinToolbarsManager_Converting_a_Standard_Toolbar_to_a_Ribbon" BuildFlags="">
+  <Title m="2007-05-12T20:25:16Z">Converting a Standard Toolbar to a Ribbon</Title>
+  <ContentsTitle m="2007-05-12T20:25:16Z" />
+  <Notes></Notes>
+  <TopicSections>
+    <TopicSection Name="BodyText">
+      <Content m="2014-04-11T20:03:06.6593972Z">&lt;P&gt;%%Warning%%&lt;/P&gt;
+&lt;H2&gt;Before You Begin&lt;/H2&gt;
+&lt;P&gt;Because of their unique object models, the Ribbon and a standard toolbar are actually quite similar. Both the toolbar and Ribbon use the same tools. Adding tools to these two objects is surprisingly similar. WinToolbarsManager™ includes a &lt;A title="Link to the API Reference Guide to the toolbarscollection member." style="hs-build-flags: {15005e59-85f4-4255-ad91-c66026ebb030}" href="Infragistics4.Win.UltraWinToolbars.v%%ProductVersionShort%%~Infragistics.Win.UltraWinToolbars.ToolbarsCollection.html"&gt;Toolbars&lt;/A&gt; collection and a &lt;A title="Link to the API Reference Guide to the ribbon member." style="hs-build-flags: {15005e59-85f4-4255-ad91-c66026ebb030}" href="Infragistics4.Win.UltraWinToolbars.v%%ProductVersionShort%%~Infragistics.Win.UltraWinToolbars.Ribbon.html"&gt;Ribbon&lt;/A&gt; off the main class. Each toolbar includes a &lt;A title="Link to the API Reference Guide to the toolscollection member." style="hs-build-flags: {15005e59-85f4-4255-ad91-c66026ebb030}" href="Infragistics4.Win.UltraWinToolbars.v%%ProductVersionShort%%~Infragistics.Win.UltraWinToolbars.ToolsCollection.html"&gt;Tools&lt;/A&gt; collection. The Ribbon includes a Groups collection, and then a Tools collection. Once you know how to add and manipulate tools on a standard toolbar, the Ribbon can be modified in the same way.&lt;/P&gt;
+&lt;P&gt;Both at design time and in the run time object model, you can add tools to the Ribbon just as you would a standard toolbar. At design time, when the WinToolbarsManager component is selected in the component tray, you will notice a button that says Show Ribbon. Clicking this button displays the Ribbon. You can then click the Add Tab button followed by the Add Group button. For more information on these buttons, see &lt;A title="add a tab to the ribbon" style="auto-update-caption: true" href="{336B5150-7AB2-4E9E-ADFB-831484399FDE}"&gt;Add a Tab to the Ribbon&lt;/A&gt; and &lt;A title="add a group to the ribbon tab" style="auto-update-caption: true" href="{CF89BCFF-3914-4D27-ABEA-C452B2605C18}"&gt;Add a Group to a Ribbon Tab&lt;/A&gt;. Once you have a group in the Ribbon, you will see the Add Tool button. Once you click this button, you will have the choice between adding a new tool or adding an existing tool. This is where the toolbar conversion process begins.&lt;/P&gt;
+&lt;P&gt;To "convert" your standard toolbar to a Ribbon, you need only add all your previously existing tools to the Ribbon. In essence, you aren't actually converting your toolbar to a Ribbon, you are simply re-adding all the tools. Your standard toolbar and Ribbon can exist only if the Office2007UICompatibility property is set to False. You will need to do this so you can see both Ribbon and standard toolbar in order to drag tools from the standard toolbar to the Ribbon.&lt;/P&gt;
+&lt;H1&gt;What You Will Accomplish&lt;/H1&gt;
+&lt;P&gt;Follow along as we guide you through the simple process of creating a Ribbon based on a standard toolbar. You will open the IGPaint sample that ships as part of the Infragistics Professional SDK install. You will drag tools from existing toolbars onto the Ribbon. You will then tweak the appearance of these tools to give them an organized feel.&lt;/P&gt;
+&lt;H1&gt;Follow these Steps&lt;/H1&gt;
+&lt;OL&gt;
+&lt;LI&gt;&lt;STRONG&gt;Copy the IGPaint sample to your Visual Studio Projects\2005 folder.&lt;/STRONG&gt; 
+&lt;P&gt;First you need to copy the IGPaint sample to your project folder so you don't modify the original. You will find the sample in the following default installation folder:&lt;/P&gt;
+&lt;P&gt;&lt;STRONG&gt;Visual Basic project:&lt;/STRONG&gt;&lt;/P&gt;
+&lt;UL&gt;
+&lt;LI&gt;XP -- %%XpSdkInstallPath%%%%ProductNameVersion%%\Samples\Win\WinToolbars\VB\Infragistics Paint VB 
+&lt;LI&gt;Vista -- %%VistaSdkInstallPath%%%%ProductNameVersion%%\Samples\Win\WinToolbars\VB\Infragistics Paint VB&lt;/LI&gt;&lt;/UL&gt;
+&lt;P&gt;&lt;STRONG&gt;C# project:&lt;/STRONG&gt;&lt;/P&gt;
+&lt;UL&gt;
+&lt;LI&gt;XP -- %%XpSdkInstallPath%%%%ProductNameVersion%%\Samples\Win\WinToolbars\CS\Infragistics Paint CS 
+&lt;LI&gt;Vista -- %%VistaSdkInstallPath%%%%ProductNameVersion%%\Samples\Win\WinToolbars\CS\Infragistics Paint CS&lt;/LI&gt;&lt;/UL&gt;
+&lt;P&gt;Copy the Infragistics Paint CS\VB folder to your Visual Studio Projects\2005 folder. Open the solution file. The solution will load in the Solution Explorer. Right-click ImageEditor in the Solution Explorer and select View Designer. The main form of the paint program opens.&lt;/P&gt;
+&lt;LI&gt;&lt;STRONG&gt;Create the Ribbon group to hold the tools.&lt;/STRONG&gt; 
+&lt;P&gt;You need to create a new &lt;A title="Link to the API Reference Guide to the ribbontab member." style="hs-build-flags: {15005e59-85f4-4255-ad91-c66026ebb030}" href="%%ProductAssemblyName%%.Win.UltraWinToolbars.v%%ProductVersionShort%%~Infragistics.Win.UltraWinToolbars.RibbonTab.html"&gt;RibbonTab&lt;/A&gt; and &lt;A title="Link to the API Reference Guide to the ribbongroup member." style="hs-build-flags: {15005e59-85f4-4255-ad91-c66026ebb030}" href="%%ProductAssemblyName%%.Win.UltraWinToolbars.v%%ProductVersionShort%%~Infragistics.Win.UltraWinToolbars.RibbonGroup.html"&gt;RibbonGroup&lt;/A&gt; to place the existing tools inside.&lt;/P&gt;
+&lt;OL class=loweralpha&gt;
+&lt;LI&gt;With the ultraToolbarsManager1 component selected, click the Show Ribbon button towards the top of the form. The Ribbon displays and all other toolbars disappear. 
+&lt;LI&gt;Click the New Tab button. A new tab appears. 
+&lt;LI&gt;Click the New Group button. A new group appears. 
+&lt;DIV class=defaultimg&gt;&lt;IMG alt="example of ultratoolbarsmanager ribbon" src="images/WinToolbarsManager_Converting_a_Standard_Toolbar_to_a_Ribbon_01.png"&gt;&lt;/DIV&gt;&lt;/LI&gt;&lt;/OL&gt;
+&lt;P&gt;You are now ready to transfer tools from the standard toolbar to the Ribbon.&lt;/P&gt;
+&lt;LI&gt;&lt;STRONG&gt;Setup the form to display both toolbars and Ribbon.&lt;/STRONG&gt; 
+&lt;P&gt;In order to transfer the tools, you need to be able to see both the standard toolbars and Ribbon at the same time. In order to do this, you will need to click the Disable Office 2007 UI Compatibility button. Once you do this, the standard toolbars will reappear and the Ribbon will change to the Office 2003 look and feel, matching the standard toolbars.&lt;/P&gt;
+&lt;DIV class=defaultimg&gt;&lt;IMG alt="example of ultratoolbarsmanager toolbar, and ribbon on the form" src="images/WinToolbarsManager_Converting_a_Standard_Toolbar_to_a_Ribbon_02.png"&gt;&lt;/DIV&gt;
+&lt;P&gt;Now that you can see both toolbars and Ribbon, you need to simply drag and drop tools from the toolbars into groups on the Ribbon. This walkthrough will focus on the image toolbar.&lt;/P&gt;
+&lt;DIV class=defaultimg&gt;&lt;IMG alt="example of ultratoolbarsmanager toolbar" src="images/WinToolbarsManager_Converting_a_Standard_Toolbar_to_a_Ribbon_03.png"&gt;&lt;/DIV&gt;
+&lt;P&gt;You may repeat the steps of this walkthrough for all other toolbars in the sample if you wish.&lt;/P&gt;
+&lt;LI&gt;&lt;STRONG&gt;Setup the Ribbon group to display the tools properly.&lt;/STRONG&gt; 
+&lt;P&gt;You are going to change three properties on the group you created. First you are going to change the caption of the group to Image. This reflects the purpose of the tools that you are going to transfer from the toolbar. These tools will affect various image properties. The next thing that you will change is how the buttons are displayed. We only want the image of the button to display, not the text as well. This is useful if you have several buttons and including their text would take up too much space. The third thing to change is the layout directions of the buttons. By default, buttons will be arranged from top to bottom, then left to right. Small buttons will take up three rows before going on to the next column. Large buttons will fill the entire three rows. You will want to change the layout of these buttons from vertical to horizontal. Perform these three actions by following these steps:&lt;/P&gt;
+&lt;OL class=loweralpha&gt;
+&lt;LI&gt;Expand the Ribbon object in the properties window and find the Tabs collection. 
+&lt;LI&gt;Click on the ellipsis (...) to open the RibbonTab Collection Editor. The RibbonTab Collection Editor appears. 
+&lt;LI&gt;Click on the ellipsis next to the Groups Collection in the properties window of the RibbonTab CollectionEditor. The RibbonGroup Collection Editor appears. 
+&lt;LI&gt;Set the Caption property to 'Image'. 
+&lt;LI&gt;Set the PreferredToolSize property to ImageOnly. 
+&lt;LI&gt;Set the LayoutDirection property to Horizontal. 
+&lt;LI&gt;Click OK to close the RibbonGroup Collection Editor. 
+&lt;LI&gt;Click OK to close the RibbonTab Collection Editor.&lt;/LI&gt;&lt;/OL&gt;
+&lt;LI&gt;&lt;STRONG&gt;Transfer the tools from the standard toolbar to the Ribbon group.&lt;/STRONG&gt; 
+&lt;P&gt;You may notice that the standard toolbar is divided up into sections: the grid, the magnifying glass, the flip and rotate buttons, the move buttons, etc. Each tool to the immediate right of a vertical line has their InstanceProps.IsFirstInGroup property set to true. These vertical lines show a clear indication of groups of tools. The Ribbon can also display groups of tools, but does so in a different manner. Each tool has a ButtonGroup property. If two tools are set to the same button group, they will both display as a single group.&lt;/P&gt;
+&lt;OL class=loweralpha&gt;
+&lt;LI&gt;Click and drag the Display Image Grid tool from the toolbar into the Ribbon group. The mouse cursor will turn into a pointer with a plus sign when you are hovering over a valid location to drop the tool. A thick, vertical line will show you where the tool will be placed. 
+&lt;DIV class=defaultimg&gt;&lt;IMG alt="dragging a tool in ultratoolbarsmanager from a toolbar to a ribbon group" src="images/WinToolbarsManager_Converting_a_Standard_Toolbar_to_a_Ribbon_04.png"&gt;&lt;/DIV&gt;
+&lt;LI&gt;Click and drag each of the zoom tools and place them one after the other right after the Display Image Grid tool. The Ribbon group should now look like this: 
+&lt;DIV class=defaultimg&gt;&lt;IMG alt="tools from toolbar moved to ribbon group" src="images/WinToolbarsManager_Converting_a_Standard_Toolbar_to_a_Ribbon_05.png"&gt;&lt;/DIV&gt;
+&lt;LI&gt;Right-click the Zoom In tool and type 'Zoom' in the Button Group textbox. 
+&lt;DIV class=defaultimg&gt;&lt;IMG alt="context menu for ribbon group creating a button group" src="images/WinToolbarsManager_Converting_a_Standard_Toolbar_to_a_Ribbon_06.png"&gt;&lt;/DIV&gt;
+&lt;LI&gt;Right-click the other two zoom tools and set their Button Group property to the same. Now that you've already entered in Zoom once, you can select it from the drop-down. Your Ribbon group should now look like this: 
+&lt;DIV class=defaultimg&gt;&lt;IMG alt="tools grouped together in ribbon group" src="images/WinToolbarsManager_Converting_a_Standard_Toolbar_to_a_Ribbon_07.png"&gt;&lt;/DIV&gt;&lt;/LI&gt;&lt;/OL&gt;
+&lt;P&gt;If you repeat steps 2 through 4 for the remaining button groups (naming them 'FlipRotate', 'Move', 'Color', and 'Image' respectively), your Ribbon group will look like this:&lt;/P&gt;
+&lt;DIV class=defaultimg&gt;&lt;IMG alt="rest of tools from toolbar moved over to ribbon group" src="images/WinToolbarsManager_Converting_a_Standard_Toolbar_to_a_Ribbon_08.png"&gt;&lt;/DIV&gt;
+&lt;P&gt;You can repeat the steps in this walkthrough for all the other toolbars in the sample. You can create new Ribbon groups, or even a new Ribbon tab with other Ribbon groups. You can even transfer the MainMenu toolbar to the ApplicationMenu in the upper left corner of the Ribbon.&lt;/P&gt;
+&lt;P&gt;For now, let's just see what the one group looks like that we just created. Click the Enable Office 2007 UI Compatibility button again. The standard toolbars will disappear and the look and feel of the Ribbon will resolve to Office 2007. The actual Style property of the toolbar, however, will still be set to Office2003. Change it to Office2007.&lt;/P&gt;
+&lt;DIV class=note&gt;&lt;STRONG&gt;Note: &lt;/STRONG&gt;The Style property must be set to Office2007 while the Ribbon is shown.&lt;/DIV&gt;
+&lt;LI&gt;&lt;STRONG&gt;Run the application.&lt;/STRONG&gt; 
+&lt;P&gt;When you run the application, you will see no toolbars. You will only see one Ribbon tab with one Ribbon group. All the tools that you transferred to the group will be fully functioning as if they were originally made for the Ribbon.&lt;/P&gt;
+&lt;DIV class=defaultimg&gt;&lt;IMG alt="converting a standard toolbar to a ribbon" src="images/WinToolbarsManager_Converting_a_Standard_Toolbar_to_a_Ribbon_09.png"&gt;&lt;/DIV&gt;&lt;/LI&gt;&lt;/OL&gt;</Content>
+    </TopicSection>
+  </TopicSections>
+  <TopicLinks />
+  <TopicKeywords />
+  <PropertyDefinitionValues>
+    <PropertyDefinitionValue PropertyDefinitionId="66C9505A-6D7A-4821-AB2B-FCFEAF14B09F">
+      <PropertyValue m="2014-03-21T04:20:39.7820814Z">&lt;div class="note"&gt;
+    &lt;strong&gt;Note:&lt;/strong&gt; When using the Microsoft Office 2007 UI capabilities provided as part of Infragistics products, be aware that the Infragistics license grants you no rights to the Microsoft Office 2007 UI. For more information, please visit &lt;a href="http://msdn.microsoft.com/officeui" target="_blank"&gt;http://msdn.microsoft.com/officeui&lt;/a&gt;, and see &lt;a href="WinToolbarsManager_Installing_Microsoft_Office_2007_UI_Capabilities.html" data-auto-update-caption="true"&gt;Installing Microsoft Office 2007 UI Capabilities&lt;/a&gt;.
+&lt;/div&gt;</PropertyValue>
+    </PropertyDefinitionValue>
+    <PropertyDefinitionValue PropertyDefinitionId="d261669c-ef50-4a7d-aba1-551d78579c76">
+      <PropertyValue m="2013-05-30T12:25:39.2047539Z">Application Scenarios</PropertyValue>
+    </PropertyDefinitionValue>
+    <PropertyDefinitionValue PropertyDefinitionId="0e9e26ee-3914-4ad4-9752-c027228af0eb">
+      <PropertyValue m="2013-05-30T12:25:39.2203562Z">WinToolbarsManager</PropertyValue>
+    </PropertyDefinitionValue>
+  </PropertyDefinitionValues>
+</Topic>
