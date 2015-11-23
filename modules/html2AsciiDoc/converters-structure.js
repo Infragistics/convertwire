@@ -60,7 +60,7 @@
       match = false;
 
       if (tags.indexOf(node.nodeName.toLowerCase()) > -1) {
-        if (tags.className !== 'ig-document-title') {
+        if (node.className !== 'ig-document-title') {
           match = true;
         }
       }
