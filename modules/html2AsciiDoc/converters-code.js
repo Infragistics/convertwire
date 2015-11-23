@@ -3,6 +3,20 @@
 	var highlightRegEx = /highlight highlight-(\S+)/;
 	var mapper = require('./source-code-name-map.js');
 	var buildFlags = require('./converters-build-flags.js');
+	
+	var getLanguage = (node) => {
+		var value = '';
+		
+		if(node.id){
+			if(node.id.match(/Example_/)){
+				value = node.id.substr(node.id.indexOf('_') + 1, node.id.length);
+			} else {
+				value = getLanguage(node.parentNode);
+			}			
+		}
+
+		return value.toLowerCase();
+	};
 
 	var preCode = {
 		filter: function (node) {
@@ -15,15 +29,13 @@
 			return match;
 		},
 		replacement: function (content, node) {
-			var id, language, parts, prefix, value;
+			var language, prefix, value;
 			
-			id = node.parentNode.id;
-			language = (id.length > 0) ? id : '';
-			parts = language.split('_');
+			language = getLanguage(node);
+			
 			prefix = '';
 			
 			if (language.length > 0) {
-				language = (parts.length > 1) ? parts[1].toLowerCase() : language;
 				prefix = '[source,' + mapper.map(language) + ']\n';
 			}
 				
