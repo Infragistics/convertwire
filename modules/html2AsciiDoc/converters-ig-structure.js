@@ -81,7 +81,7 @@
         value = buildFlags.wrapWithBuildFlags(value, node);
       }
       
-      return value;
+      return value + '\n';
     }
   }; 
   
