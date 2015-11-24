@@ -1,5 +1,9 @@
+<temp-token role="list:start">
+
 ifdef::xamarin[]
 * xamarin 0
+
+<temp-token role="list:start">
 ** xamarin 1
 ** xamarin 2
 endif::xamarin[]

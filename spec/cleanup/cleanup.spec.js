@@ -60,7 +60,7 @@ describe('cleanup', function(){
 		it('preserves in-document anchors', () => {
 			var src = '<div><a id="yep"></a> Yep</div>';
 			var dest = cleanup.html(src);
-			var expected = '<div><a id="yep"><!-- in-document link ---></a> Yep</div>';
+			var expected = '<div><a id="yep"><span class="temporary">temp content</span></a> Yep</div>';
 			expect(dest).toEqual(expected);
 		});
 		

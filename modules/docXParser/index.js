@@ -76,7 +76,6 @@ ${htmlDocument.markup}</div>`;
 					langParser.parse(obj, filePath, callback);
 				}
 			}
-			
 		});
 	};
 	

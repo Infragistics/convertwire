@@ -1,5 +1,7 @@
 == Related Topics
 
+<temp-token role="list:start">
+
 ifdef::xam_xf_ex,android,winforms[]
 * link:9a664e4b-d479-424c-a3cf-d7d051ff0788[Scatter Bubble Series]
 endif::xam_xf_ex,android,winforms[]

@@ -6,220 +6,226 @@
 	</head>
 	<body>
 		<div id="docX-root">
-<!-- -->
-			<pre>
-				<span style="hs-build-flags: WinPhone">winphone</span>
-			</pre>
-			<pre>
-				<span style="hs-build-flags: WPF">WPF</span>
-			</pre>
-			<pre>
-				<span style="hs-build-flags: WinPhone">winphone</span>
-				<span style="hs-build-flags: WinPhone">winphone</span>
-				<span style="hs-build-flags: SL,WPF,WinPhone,WinRT">sl, wpf, winphone, winrt</span>
-			</pre>
-			<pre>
-				<span style="hs-build-flags: XAMARIN">xam</span>
-				<span style="hs-build-flags: SL,WPF,WinPhone,WinRT">sl, wpf, winphone, winrt</span>
-			</pre -->
-<!-- -->
-<!--
-			
-<div id="Example_VB" class="LanguageSpecific" style="DISPLAY: block">
-<p><span class="lang"><b>In Visual Basic:</b></span></p><pre>
-<code class="code"><span class="blue">Dim</span> data <span class="blue">As</span> <span class="blue">New</span> FinancialDataSample()
-<span class="blue">Dim</span> yAxis <span class="blue">As</span> <span class="blue">New</span> NumericYAxis()
-<span class="blue">Dim</span> xAxis <span class="blue">As</span> <span class="blue">New</span> CategoryXAxis()
-<span class="hs-buildflag-markup" style="hs-build-flags: WINFORMS">xAxis.DataSource = data</span>
-<span class="hs-buildflag-markup" style="hs-build-flags: XAML">xAxis.ItemsSource = data</span>
-<span class="hs-buildflag-markup" style="hs-build-flags: XAM_XF_EX">xAxis.Label = <span class="string">&quot;{Date}&quot;</span></span>
-<span class="hs-buildflag-markup" style="hs-build-flags: XAMARIN,WINFORMS">xAxis.Label = <span class="string">&quot;Date&quot;</span></span>
-
-<span class="blue">Dim</span> series <span class="blue">As</span> <span class="blue">New</span> PositiveVolumeIndexIndicator()
-<span class="hs-buildflag-markup" style="hs-build-flags: WINFORMS">series.DataSource = data</span>
-<span class="hs-buildflag-markup" style="hs-build-flags: XAML">series.ItemsSource = data</span>
-series.OpenMemberPath = <span class="string">&quot;Open&quot;</span>
-series.HighMemberPath = <span class="string">&quot;High&quot;</span>
-series.LowMemberPath = <span class="string">&quot;Low&quot;</span>
-series.CloseMemberPath = <span class="string">&quot;Close&quot;</span>
-series.VolumeMemberPath = <span class="string">&quot;Volume&quot;</span>
-series.XAxis = xAxis
-series.YAxis = yAxis
- 
-<span class="blue"><span class="blue">Me</span><font color="black" face="Courier New">.DataChart.Axes.Add(xAxis)
-</font><span class="blue">Me</span><font color="black" face="Courier New">.DataChart.Axes.Add(yAxis)
-</font>Me</span>.DataChart.Series.Add(series) </code>
-</pre></div>
-<!-- -->
-<!-- 
-
-<pre>
-<span style="hs-build-flags: WINFORMS">WINFORMS</span>
-<span style="hs-build-flags: DROID_EX">DROID_EX</span>
-<span style="hs-build-flags: XAML">XAML</span>
-<span style="hs-build-flags: SL">SL</span>
-<span style="hs-build-flags: WINPHONE">WINPHONE</span>
-<span style="hs-build-flags: WINRT">WINRT</span>
-<span style="hs-build-flags: WPF">WPF</span>
-<span style="hs-build-flags: XAMARIN">XAMARIN</span>
-<span style="hs-build-flags: XAM_XF_EX">XAM_XF_EX</span>
-<span style="hs-build-flags: XAMARIN,WINFORMS">XAMARIN,WINFORMS</span>
-<span style="hs-build-flags: SL,WPF">SL,WPF</span>
+<pre id="metadata">
+|metadata|
+{
+    &quot;name&quot;: &quot;resources-numeric-data-sample-1&quot;,
+    &quot;title&quot;: &quot;Sample Numeric Data&quot;,
+    &quot;controlName&quot;: [],
+    &quot;tags&quot;: [],
+    &quot;guid&quot;: &quot;ed8d0bce`985f`40a5`8c6f`404f675e3597&quot;,  
+    &quot;buildFlags&quot;: [&quot;SL&quot;,&quot;WPF&quot;]
+}
+|metadata|
 </pre>
--->
 
+<div id="docX-root">
+<h1 id="ig-document-title">Sample Numeric Data</h1> 
+<h1>Introduction</h1>
+<p>The NumericDataSample object provides sample data for the Infragistics Math Calculators.</p>
+<h1>Implementation in Visual Basic</h1>
+<div id="Example_VB" class="LanguageSpecific" style="DISPLAY: block">
+<p><span class="lang"><b>In Visual Basic:</b></span></p><pre><code class="code"><span class="blue">Imports</span> System.Collections.ObjectModel
+
+<span class="blue">Namespace</span> Infragistics.Samples.Models.Series
+    <span class="blue">Public</span> <span class="blue">Class</span> NumericDataSample
+        <span class="blue">Inherits</span> NumericDataCollection
+        <span class="blue">Public</span> <span class="blue">Sub</span> <span class="blue">New</span>()
+            <span class="blue">Me</span>.Add(<span class="blue">New</span> NumericDataPoint() <span class="blue">With</span> { .X = 1, .Y = 1 })
+            <span class="blue">Me</span>.Add(<span class="blue">New</span> NumericDataPoint() <span class="blue">With</span> { .X = 2, .Y = 2 })
+            <span class="blue">Me</span>.Add(<span class="blue">New</span> NumericDataPoint() <span class="blue">With</span> { .X = 3, .Y = 6 })
+            <span class="blue">Me</span>.Add(<span class="blue">New</span> NumericDataPoint() <span class="blue">With</span> { .X = 4, .Y = 8 })
+            <span class="blue">Me</span>.Add(<span class="blue">New</span> NumericDataPoint() <span class="blue">With</span> { .X = 5, .Y = 2 })
+            <span class="blue">Me</span>.Add(<span class="blue">New</span> NumericDataPoint() <span class="blue">With</span> { .X = 6, .Y = 6 })
+            <span class="blue">Me</span>.Add(<span class="blue">New</span> NumericDataPoint() <span class="blue">With</span> { .X = 7, .Y = 4 })
+            <span class="blue">Me</span>.Add(<span class="blue">New</span> NumericDataPoint() <span class="blue">With</span> { .X = 8, .Y = 2 })
+            <span class="blue">Me</span>.Add(<span class="blue">New</span> NumericDataPoint() <span class="blue">With</span> { .X = 9, .Y = 1 })
+
+            <span class="blue">Dim</span> index <span class="blue">As</span> <span class="blue">Integer</span> = 0
+            <span class="blue">For</span> <span class="blue">Each</span> dataPoint <span class="blue">As</span> NumericDataPoint <span class="blue">In</span> Items
+                dataPoint.Index = System.Math.Max(System.Threading.Interlocked.Increment(index),index - 1)
+            <span class="blue">Next</span>
+        <span class="blue">End</span> <span class="blue">Sub</span>
+    <span class="blue">End</span> <span class="blue">Class</span>
+    <span class="blue">Public</span> <span class="blue">Class</span> NumericDataCollection
+        <span class="blue">Inherits</span> ObservableCollection(Of NumericDataPoint)
+
+    <span class="blue">End</span> <span class="blue">Class</span>
+    <span class="blue">Public</span> <span class="blue">Class</span> NumericDataPoint
+        <span class="blue">Inherits</span> ObservableModel
+        <span class="blue">#Region</span> <span class="string">&quot;Properties&quot;</span>
+        <span class="blue">Private</span> _y <span class="blue">As</span> <span class="blue">Double</span>
+        <span class="blue">Public</span> <span class="blue">Property</span> Y() <span class="blue">As</span> <span class="blue">Double</span>
+            <span class="blue">Get</span>
+                <span class="blue">Return</span> _y
+            <span class="blue">End</span> <span class="blue">Get</span>
+            <span class="blue">Set</span>
+                <span class="blue">If</span> _y = value <span class="blue">Then</span>
+                    <span class="blue">Return</span>
+                <span class="blue">End</span> <span class="blue">If</span>
+                _y = value
+                OnPropertyChanged(<span class="string">&quot;Y&quot;</span>)
+            <span class="blue">End</span> <span class="blue">Set</span>
+        <span class="blue">End</span> <span class="blue">Property</span>
+
+        <span class="blue">Private</span> _x <span class="blue">As</span> <span class="blue">Double</span>
+        <span class="blue">Public</span> <span class="blue">Property</span> X() <span class="blue">As</span> <span class="blue">Double</span>
+            <span class="blue">Get</span>
+                <span class="blue">Return</span> _x
+            <span class="blue">End</span> <span class="blue">Get</span>
+            <span class="blue">Set</span>
+                <span class="blue">If</span> _x = value <span class="blue">Then</span>
+                    <span class="blue">Return</span>
+                <span class="blue">End</span> <span class="blue">If</span>
+                _x = value
+                OnPropertyChanged(<span class="string">&quot;X&quot;</span>)
+            <span class="blue">End</span> <span class="blue">Set</span>
+        <span class="blue">End</span> <span class="blue">Property</span>
+
+        <span class="blue">#End Region</span>
+
+        <span class="blue">Public</span> <span class="blue">Shadows</span> <span class="blue">Function</span> ToString() <span class="blue">As</span> <span class="blue">String</span>
+            <span class="blue">Return</span> [<span class="blue">String</span>].Format(<span class="string">&quot;Index {0}, X {1}, Y {2}&quot;</span>, Index, X, Y)
+        <span class="blue">End</span> <span class="blue">Function</span>
+    <span class="blue">End</span> <span class="blue">Class</span>
+
+    <span class="blue">Public</span> <span class="blue">MustInherit</span> <span class="blue">Class</span> ObservableModel
+        <span class="blue">Implements</span> INotifyPropertyChanged
+
+        <span class="blue">Protected</span> <span class="blue">Sub</span> <span class="blue">New</span>()
+        <span class="blue">End</span> <span class="blue">Sub</span>
+
+        <span class="blue">#Region</span> <span class="string">&quot;INotifyPropertyChanged&quot;</span>
+
+        <span class="blue">Public</span> <span class="blue">Event</span> PropertyChanged <span class="blue">As</span> PropertyChangedEventHandler
+
+        <span class="blue">Protected</span> <span class="blue">Sub</span> OnPropertyChanged(propertyName <span class="blue">As</span> <span class="blue">String</span>)
+            <span class="blue">Dim</span> handler <span class="blue">As</span> PropertyChangedEventHandler = <span class="blue">Me</span>.PropertyChanged
+            <span class="blue">RaiseEvent</span> handler(<span class="blue">Me</span>, <span class="blue">New</span> PropertyChangedEventArgs(propertyName))
+        <span class="blue">End</span> <span class="blue">Sub</span>
+                <span style="hs-build-flags: {A72AF817-CD06-4101-A8ED-A0E52FC4DD05},{673B143B-6568-4204-99C0-4548E4AFEF3C}">
+        <span class="blue">Public</span> <span class="blue">Sub</span> OnAsyncPropertyChanged(propertyName <span class="blue">As</span> <span class="blue">String</span>)
+            <span class="blue">If</span> PropertyChanged IsNot <span class="blue">Nothing</span> <span class="blue">Then</span>
+                Deployment.Current.Dispatcher.BeginInvoke(<span class="blue">Function</span>() 
+                <span class="blue">RaiseEvent</span> PropertyChanged(<span class="blue">Me</span>, <span class="blue">New</span> PropertyChangedEventArgs(propertyName))
+
+<span class="blue">End</span> <span class="blue">Function</span>)
+            <span class="blue">End</span> <span class="blue">If</span>
+        <span class="blue">End</span> <span class="blue">Sub</span>
+                </span>
+        <span class="blue">#End Region</span>
+    <span class="blue">End</span> <span class="blue">Class</span>
+<span class="blue">End</span> <span class="blue">Namespace</span></code>
+</pre></div>
+<h1>Implementation in C#</h1>
+<div id="Example_CS" class="LanguageSpecific" style="DISPLAY: block">
+<p><span class="lang"><b>In C#:</b></span></p><pre><code class="code"><span class="blue">using</span> System;
+<span class="blue">using</span> System.Collections.ObjectModel;
+
+<span class="blue">namespace</span> Infragistics.Samples.Models.Series
+{
+    <span class="blue">public</span> <span class="blue">class</span> NumericDataSample : NumericDataCollection
+    {
+        <span class="blue">public</span> NumericDataSample()
+        {
+            <span class="blue">this</span>.Add(<span class="blue">new</span> NumericDataPoint { X = 1, Y = 1 });
+            <span class="blue">this</span>.Add(<span class="blue">new</span> NumericDataPoint { X = 2, Y = 2 });
+            <span class="blue">this</span>.Add(<span class="blue">new</span> NumericDataPoint { X = 3, Y = 6 });
+            <span class="blue">this</span>.Add(<span class="blue">new</span> NumericDataPoint { X = 4, Y = 8 });
+            <span class="blue">this</span>.Add(<span class="blue">new</span> NumericDataPoint { X = 5, Y = 2 });
+            <span class="blue">this</span>.Add(<span class="blue">new</span> NumericDataPoint { X = 6, Y = 6 });
+            <span class="blue">this</span>.Add(<span class="blue">new</span> NumericDataPoint { X = 7, Y = 4 });
+            <span class="blue">this</span>.Add(<span class="blue">new</span> NumericDataPoint { X = 8, Y = 2 });
+            <span class="blue">this</span>.Add(<span class="blue">new</span> NumericDataPoint { X = 9, Y = 1 });
+
+            <span class="blue">int</span> index = 0;
+            <span class="blue">foreach</span> (NumericDataPoint dataPoint <span class="blue">in</span> Items)
+            {
+                dataPoint.Index = index++;
+            }
+        }
+    }
+    <span class="blue">public</span> <span class="blue">class</span> NumericDataCollection : ObservableCollection&lt;NumericDataPoint&gt;
+    {
+
+    }
+    <span class="blue">public</span> <span class="blue">class</span> NumericDataPoint : ObservableModel
+    {
+        <span class="blue">#region</span> Properties
+        <span class="blue">private</span> <span class="blue">double</span> _y;
+        <span class="blue">public</span> <span class="blue">double</span> Y
+        {
+            get { <span class="blue">return</span> _y; }
+            set
+            {
+                <span class="blue">if</span> (_y == <span class="blue">value</span>) <span class="blue">return</span>;
+                _y = <span class="blue">value</span>;
+                OnPropertyChanged(<span class="string">&quot;Y&quot;</span>);
+            }
+        }
+
+        <span class="blue">private</span> <span class="blue">double</span> _x;
+        <span class="blue">public</span> <span class="blue">double</span> X
+        {
+            get { <span class="blue">return</span> _x; }
+            set
+            {
+                <span class="blue">if</span> (_x == <span class="blue">value</span>) <span class="blue">return</span>;
+                _x = <span class="blue">value</span>;
+                OnPropertyChanged(<span class="string">&quot;X&quot;</span>);
+            }
+        }
+
+        <span class="blue">#endregion</span>
+
+        <span class="blue">public</span> <span class="blue">new</span> <span class="blue">string</span> ToString()
+        {
+            <span class="blue">return</span> String.Format(<span class="string">&quot;Index {0}, X {1}, Y {2}&quot;</span>, Index, X, Y);
+        }
+    }
+
+    <span class="blue">public</span> <span class="blue">abstract</span> <span class="blue">class</span> ObservableModel : INotifyPropertyChanged
+    {
+        <span class="blue">protected</span> ObservableModel()
+        {
+
+        }
+
+        <span class="blue">#region</span> INotifyPropertyChanged  
+
+        <span class="blue">public</span> <span class="blue">event</span> PropertyChangedEventHandler PropertyChanged;
+
+        <span class="blue">protected</span> <span class="blue">void</span> OnPropertyChanged(<span class="blue">string</span> propertyName)
+        {
+            PropertyChangedEventHandler handler = <span class="blue">this</span>.PropertyChanged;
+            <span class="blue">if</span> (handler != <span class="blue">null</span>)
+                handler(<span class="blue">this</span>, <span class="blue">new</span> PropertyChangedEventArgs(propertyName));
+        }
+                                <span style="hs-build-flags: {A72AF817-CD06-4101-A8ED-A0E52FC4DD05},{673B143B-6568-4204-99C0-4548E4AFEF3C}">
+        <span class="blue">public</span> <span class="blue">void</span> OnAsyncPropertyChanged(<span class="blue">string</span> propertyName)
+        {
+            <span class="blue">if</span> (PropertyChanged != <span class="blue">null</span>)
+            {
+                Deployment.Current.Dispatcher.BeginInvoke(() =&gt;
+                {
+                    PropertyChanged(<span class="blue">this</span>, <span class="blue">new</span> PropertyChangedEventArgs(propertyName));
+                });
+            }
+        }
+                                        </span>
+        <span class="blue">#endregion</span>
+    }
+}</code>
+</pre></div></div>
 		</div>
-		<script>
-			
-			var formatter = {
-				
-				XAM_XF_EX: ['sl','wpf','winrt','winphone'],
-				DROID_EX: ['sl','wpf','winphone','winrt','xamarin','winforms'],
-				XAML: ['sl','wpf','winphone','winrt','xamarin'],
-				
-				getUniqueBuildFlags: function($PRE){
-					var flags = [], uniqueFlags, $flagContainers;
-					
-					$flagContainers = $PRE.find('[style^="hs-build-flags"]');
-					
-					$flagContainers.each(function(){
-						var style;
-						
-						style = $(this).attr('style').toLowerCase();      
-						elementFlags = style.replace(/hs-build-flags: /, '').split(','); 
-						
-						elementFlags.forEach(function(flag){
-							if(flag === 'xam_xf_ex'){
-								flags = flags.concat(formatter.XAM_XF_EX);
-							} else if(flag === 'droid_ex'){
-								flags = flags.concat(formatter.DROID_EX);
-							} else if(flag === 'xaml'){
-								flags = flags.concat(formatter.XAML);
-							} else {
-								flags.push(flag);
-							}
-						});
-					});
-					
-					uniqueFlags = _.unique(flags);
-					
-					return uniqueFlags;
-				},
-				
-				splitSourceBasedOnBuildFlags: function($PRE, flags){
-					
-					var groupCount = 0;
-					
-					flags.forEach(function(flag){
-						var $newPRE, $flaggedElements;
-						
-						$newPRE = $PRE.clone();
-						$newPRE.attr('style', 'hs-build-flags: ' + flag.toUpperCase());
-						
-						$flaggedElements = $newPRE.find('[style^="hs-build-flags"]');
-						
-						$flaggedElements.each(function(){
-							var $flaggedElement, containsFlagToRemove;
-							
-							$flaggedElement = $(this);
-												
-							containsFlagToRemove = formatter.hasFlagToRemove($flaggedElement, flag);
-							
-							if(containsFlagToRemove){
-								$flaggedElement.remove();
-							}
-							
-							if(formatter.isFlagGroup($flaggedElement)){
-								groupCount++
-							}
-							
-						});
-						
-						$PRE.parent().append('<hr><h1 style="margin-bottom:2px;">' + flag + '</h1>');
-						$PRE.parent().append('\n<!--- ' + flag + ' --->\n');								
-						$PRE.parent().append($newPRE);
-						$PRE.parent().append('\n<!--- /' + flag + ' --->\n');
-					});
-					
-					return {
-						hasFlagGroup: groupCount > 0
-					}
-				},
-				
-				hasFlagToRemove: function($flaggedElement, currentFlag){
-					var result, flags, elementFlags;
-					
-					result = false;
-					currentFlag = currentFlag.toLowerCase();
-					elementFlags = formatter.getElementFlags($flaggedElement);
-					flags = formatter.readFlags(elementFlags);
-					
-					if(flags.isFlagGroup){
-						if(flags.xamXfEx){
-							result = !_.contains(formatter.XAM_XF_EX, currentFlag);
-						} else if(flags.droidEx){
-							result = !_.contains(formatter.DROID_EX, currentFlag);
-						} else if(flags.xaml){
-							result = !_.contains(formatter.XAML, currentFlag);							
-						}
-					} else {
-						result = !_.contains(elementFlags, currentFlag);
-					}
-					
-					return result;
-				},
-				
-				isFlagGroup: function($flagedElement){
-					var elementFlags = formatter.getElementFlags($flagedElement);
-					var flags = formatter.readFlags(elementFlags);
-					flags.isFlagGroup;
-				},
-				
-				getElementFlags: function($flaggedElement){
-					var style = $flaggedElement.attr('style').toLowerCase();
-					var elementFlags = style.replace(/hs-build-flags: /, '').toLowerCase().split(',');
-					return elementFlags;
-				},
-				
-				readFlags: function(elementFlags) {
-														
-					var flags = {
-						xamXfEx : _.contains(elementFlags, 'xam_xf_ex'),
-						droidEx : _.contains(elementFlags, 'droid_ex'),
-						xaml : _.contains(elementFlags, 'xaml')
-					};
-					
-					flags.isFlagGroup = flags.xamXfEx || flags.droidEx || flags.xaml;
-					
-					return flags;
-				}
-			};
-			
-			$(function(){
-				var $PREs;
-				
-				$PREs = $('pre');
-				
-				$PREs.each(function(){
-					var $PRE, uniqueFlags;
-					
-					$PRE = $(this);
-					
-					if($PRE.attr('id') === 'metadata'){
-						return;
-					}
-					
-					uniqueFlags = formatter.getUniqueBuildFlags($PRE);
-					var sourceInfo = formatter.splitSourceBasedOnBuildFlags($PRE, uniqueFlags);
-					
-					if(sourceInfo.hasFlagGroup){
-						$PRE.remove();
-					} else {
-						$PRE.find('[style^="hs-build-flags"]').remove();
-					}
-				});
-			});
-		</script>
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js" type="text/javascript"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+        <script src="sourceFormatter.js" type="text/javascript"></script>
+        <script>
+            $(function(){
+                module.format();
+            });
+        </script>
 	</body>
 
 </html>

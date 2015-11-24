@@ -20,19 +20,19 @@
 <pre id='metadata'>
 |metadata|
 {
-    "name": "datachart-exporting-a-chart-to-an-image",
-    "title": "Exporting a Chart to an Image",
+    "name": "datachart-getting-started-with-datachart",
+    "title": "Getting Started with Data Chart",
     "controlName": ["xamDataChart"],
-    "tags": ["Charting","Exporting","How Do I"],
-    "guid": "747ed43f`c2cf`4d71`bd75`a8c30f3cffb1",
-    "buildFlags": ["SL"]
+    "tags": ["Charting","Getting Started"],
+    "guid": "5f39946e`59dc`43f0`bd49`91714053bfbb",
+    "buildFlags": []
 }
 |metadata|
 </pre>
 
 <div id="docX-root">
 
-<h1 id="ig-document-title">Exporting a Chart to an Image</h1>
+<h1 id="ig-document-title">Getting Started with Data Chart</h1>
 
 <DIV class=ig-block-title>
 <H2>Topic Overview</H2></DIV>
@@ -43,13 +43,13 @@
 <H4>Purpose</H4></TH>
 <TD>
 <DIV class=ig-layout-container>
-<P>This topic explains, with code examples, how to allow users to export the %%ControlsName%%™ control to a PNG or JPEG image.</P></DIV></TD></TR>
+<P>This topic provides information on how to get started with the <SPAN class=ig-italic><A href="%%ApiLink%%.%%ControlsName%%.html">%%ControlsName%%</A>™</SPAN> control in your application.</P></DIV></TD></TR>
 <TR>
 <TH>
 <H4>Required background</H4></TH>
 <TD>
 <DIV class=ig-layout-container>
-<P>The following table lists the topics required as a prerequisite to understanding this topic.</P>
+<P>The following topics are prerequisites to understanding this topic:</P>
 <TABLE cellSpacing=0 cellPadding=0>
 <TBODY>
 <TR>
@@ -57,16 +57,16 @@
 <P>Topic</P></TH>
 <TH>
 <P>Purpose</P></TH></TR>
+<TR style="hs-build-flags: XAMARIN">
+<TD style="hs-build-flags: XAMARIN">
+<DIV class=ig-topic-link><A href="Xamarin_Project_with_Infragistics_Controls.html" style="auto-update-caption: true">Creating Project with Infragistics Controls</A> </DIV></TD>
+<TD style="hs-build-flags: XAMARIN">
+<P>This topic explains how to create application project to use with Infragistics Xamarin.Forms controls.</P></TD></TR>
 <TR>
 <TD>
-<DIV class=ig-topic-link><A href="5f39946e-59dc-43f0-bd49-91714053bfbb" style="auto-update-caption: true">Getting Started with Data Chart</A> </DIV></TD>
+<DIV class=ig-topic-link><A href="77948afe-5e9b-42d9-96de-a86fe0d22511" style="auto-update-caption: true">%%ControlsName%%</A> </DIV></TD>
 <TD>
-<P>You will learn how to add the %%ControlsName%% control with simple data binding in %%PlatformIDE%% and Expression Blend®.</P></TD></TR>
-<TR>
-<TD>
-<P><A class=ig-topic-link href="IG_Imaging_Exporting_a_BitmapSource_to_Image.html">Exporting a Bitmap to a JPEG/PNG-Encoded Image</A></P></TD>
-<TD>
-<P>This topic explains how to export a bitmap to a JPEG or PNG-encoded image using the Infragistics® imaging assembly.</P></TD></TR></TBODY></TABLE><BR></DIV></TD></TR>
+<P>This topic provides a general overview of the <SPAN class=ig-italic>%%ControlsName%%</SPAN>.</P></TD></TR></TBODY></TABLE><BR></DIV></TD></TR>
 <TR>
 <TH>
 <H4>In this topic</H4></TH>
@@ -74,183 +74,48 @@
 <DIV class=ig-layout-container>
 <P>This topic contains the following sections:</P>
 <UL>
-<LI><A href="#_Ref318986549">Exporting %%ControlsName%% to an Image</A> 
-<UL>
-<LI><A href="#_Ref318986556">Introduction</A> 
-<LI><A href="#_Ref318986563">Requirements</A> 
-<LI><A href="#_Ref318986566">Overview</A> </LI></UL>
-<LI><A href="#_Ref318986575">Code Example: Exporting %%ControlsName%% to a JPEG Image</A> 
-<UL>
-<LI><A href="#_Ref318986588">Description</A> 
-<LI><A href="#_Ref318986598">Code</A> 
-<LI><A href="#_Ref318986600">Code</A> 
-<LI><A href="#_Ref318986603">Code</A> </LI></UL>
-<LI><A href="#_Ref318986605">Related Content</A> 
-<UL>
-<LI><A href="#_Ref318986610">Topics</A> 
-<LI><A href="#_Ref318986613">Samples</A> </LI></UL></LI></UL></DIV></TD></TR></TBODY></TABLE><BR>
-<DIV class=ig-block-title>
-<H2><A name=_Ref318986549></A>Exporting %%ControlsName%% to an Image</H2></DIV>
-<TABLE class=ig-layout>
-<TBODY>
+<LI><A href="#Ref397366350">Understanding Chart</A> 
+<LI><A href="#Ref397366354">Selecting Chart</A> 
+<LI><A href="#Ref386478106">Creating Chart</A> </LI></UL></DIV></TD></TR>
 <TR>
 <TH>
-<H4><A name=_Ref318986556></A>Introduction</H4></TH>
+<H4><A id=Ref397366350 name=Ref397366350></A>Understanding Chart</H4></TH>
 <TD>
 <DIV class=ig-layout-container>
-<P>This topic will guide you through the process of creating a bitmap snapshot of a %%ControlsName%% control and exporting it to a jpeg or png encoded image file.</P></DIV></TD></TR>
-<TR>
-<TH>
-<H4><A name=_Ref318986563></A>Requirements</H4></TH>
-<TD>
-<DIV class=ig-layout-container>
-<P>To complete the procedure, you need the following:</P>
-<UL>
-<LI>A Silverlight application where the %%ControlsName%% control is used. 
-<LI>A button with an event handler for the Click event. In the event handler you will place the code for capturing the bitmap data, encoding and saving the image file. </LI></UL></DIV></TD></TR>
-<TR>
-<TH>
-<H4><A name=_Ref318986566></A>Overview</H4></TH>
-<TD>
-<DIV class=ig-layout-container>
-<P>Following is a conceptual overview of the process:</P><SPAN class=ig-bold>1</SPAN><SPAN class=ig-bold>.</SPAN> <SPAN class=ig-bold>Adding the required assembly references to your project.</SPAN> 
-<P><SPAN class=ig-bold>2</SPAN><SPAN class=ig-bold>.</SPAN> <SPAN class=ig-bold>Creating a bitmap snapshot of the %%ControlsName%% and exporting it to an image.</SPAN></P></DIV></TD></TR>
-<TR>
-<TH>
-<H4>Steps</H4></TH>
-<TD>
-<DIV class=ig-layout-container>
-<P>The table below describes the procedure in detail.</P>
+<P>This section provides information on basic elements of the chart control that are required to plot data.</P>
 <TABLE cellSpacing=0 cellPadding=0>
 <TBODY>
 <TR>
 <TH>
-<P>Step</P></TH>
+<P>Chart Element</P></TH>
 <TH>
-<P>Description</P></TH></TR>
+<P>Descrption</P></TH></TR>
 <TR>
-<TD><SPAN class=ig-bold>1</SPAN><SPAN class=ig-bold>.</SPAN> <SPAN class=ig-bold>Add the required assembly references to your project.</SPAN></TD>
+<TD><A href="%%ApiLink%%.%%ControlsName%%.html">%%ControlsName%%</A></TD>
 <TD>
-<P>If you have already added the %%ControlsName%% control to your application then you must have referenced the following assemblies in your project:</P>
-<UL>
-<LI><SPAN class=ig-italic>%%AssemblyPlatform%%%%AssemblyName%%%%ApiVersion%%</SPAN> 
-<LI><SPAN class=ig-italic>%%AssemblyPlatform%%DataVisualization.%%ApiVersion%%</SPAN> 
-<LI><SPAN class=ig-italic>%%AssemblyPlatform%%%%ApiVersion%%.</SPAN> </LI></UL>
-<P>In order to be able to export the control to a jpg or png image you also need to reference <SPAN class=ig-italic>%%AssemblyPlatform%%Imaging%%ApiVersion%%.dll</SPAN>.</P>
-<P>This assembly provides classes for exporting a <SPAN class=ig-code-in-text>BitmapSource</SPAN> to a png or jpeg encoded image.</P>
-<P>For more information, see <A class=ig-topic-link href="IG_Imaging.html">Infragistics Imaging</A>.</P></TD></TR>
+<P>The <SPAN class=ig-italic>%%ControlsName%%</SPAN> is a control that supports various types of data visualizations which are called Series objects. The chart control can contain multiple visualizations of your data in the same chart plot area.</P></TD></TR>
 <TR>
-<TD><SPAN class=ig-bold>2</SPAN><SPAN class=ig-bold>.</SPAN> <SPAN class=ig-bold>Create a bitmap snapshot of the %%ControlsName%% and export it to an image.</SPAN></TD>
+<TD><A href="%%ApiLink%%.Series.html">Series</A></TD>
 <TD>
-<P>The procedure that follows is mostly the same as the one described in the <A class=ig-topic-link href="IG_Imaging_Exporting_a_BitmapSource_to_Image.html">Exporting a Bitmap to a JPEG/PNG-Encoded Image</A> topic. Here instead of capturing a button’s bitmap representation, you need to capture the %%ControlsName%%’s bitmap. Below is an overview of the steps needed to achieve that. For the full code, refer to the <A href="#_Code_Example:_%3CTITLE%3E"><SPAN style="TEXT-DECORATION: underline; COLOR: rgb(0,0,255)"><SPAN style="TEXT-DECORATION: underline; COLOR: rgb(0,0,255)">code example</SPAN></SPAN></A> at the end.</P>
-<P><SPAN class=ig-bold>1</SPAN><SPAN class=ig-bold>.</SPAN> <SPAN class=ig-bold>Create a</SPAN> <SPAN class=ig-code-in-text>WriteableBitmap</SPAN> <SPAN class=ig-bold>object</SPAN> by passing the %%ControlsName%% control as the first argument of the constructor. The second parameter of this constructor is a <SPAN class=ig-code-in-text>Transform</SPAN>, so if you do not want to transform the %%ControlsName%%’s bitmap in any way, use <SPAN class=ig-code-in-text>null</SPAN>/<SPAN class=ig-code-in-text>Nothing</SPAN>.</P>
-<DIV class=ig-note><SPAN class=ig-note-caption>Note:</SPAN> If you want to include the Legend in the image that will be exported, you need to place it in a common container with the %%ControlsName%% e.g. a Grid. </DIV><SPAN class=ig-bold>2</SPAN><SPAN class=ig-bold>.</SPAN> <SPAN class=ig-bold>Create a</SPAN> <SPAN class=ig-code-in-text>SaveFileDialog</SPAN><SPAN class=ig-bold>.</SPAN> 
-<P><SPAN class=ig-bold>3</SPAN><SPAN class=ig-bold>. Set the dialog’s</SPAN> <SPAN class=ig-code-in-text>DefaultExt</SPAN> <SPAN class=ig-bold>property</SPAN> to either <SPAN class=ig-italic>JPG</SPAN> or <SPAN class=ig-italic>PNG</SPAN>.</P>
-<P><SPAN class=ig-bold>4</SPAN><SPAN class=ig-bold>. Show the dialog and call the</SPAN> <SPAN class=ig-bold>OpenFile</SPAN> <SPAN class=ig-bold>method</SPAN> to create a <SPAN class=ig-code-in-text>FileStream</SPAN> where the encoded image will be written.</P>
-<P><SPAN class=ig-bold>5</SPAN><SPAN class=ig-bold>. Create a</SPAN> <A href="%%AssemblyPlatform%%Imaging%%ApiVersion%%Infragistics.Imaging.JpegImageEncoder_members.html">JpegImageEncoder</A> <SPAN class=ig-bold>or</SPAN> <A href="%%AssemblyPlatform%%Imaging%%ApiVersion%%Infragistics.Imaging.PngImageEncoder_members.html">PngImageEncoder</A> depending on what format you want to export to.</P>
-<P><SPAN class=ig-bold>6</SPAN><SPAN class=ig-bold>. (Optional) Specify the jpeg image quality.</SPAN> If you omit it the image will be exported with the default quality level (75 out of 100).</P>
-<P>Create a <SPAN class=ig-code-in-text>List</SPAN> of <A href="%%AssemblyPlatform%%ApiVersion%%Infragistics.Imaging.EncodingProperty_members.html">EncodingProperty</A> objects and add to it a <A href="%%AssemblyPlatform%%Imaging%%ApiVersion%%Infragistics.Imaging.JpegQualityProperty_members.html">JpegQualityProperty</A> instance with its <A href="%%AssemblyPlatform%%Imaging%%ApiVersion%%Infragistics.Imaging.JpegQualityProperty%%ApiProp%%Quality.html">Quality</A> property set to an integer in the range between 1 and 100.</P>
-<P><SPAN class=ig-bold>7</SPAN><SPAN class=ig-bold>. Call the</SPAN> <A href="%%AssemblyPlatform%%ApiVersion%%Infragistics.Imaging.IImageEncoder%%ApiProp%%Encode.html">Encode</A> <SPAN class=ig-bold>method of the</SPAN> <SPAN class=ig-code-in-text>Jpeg/</SPAN><SPAN class=ig-code-in-text>PngImageEncoder</SPAN><SPAN class=ig-bold>.</SPAN> As arguments of the method use the WriteableBitmap (step 1), the <SPAN class=ig-code-in-text>List</SPAN> of <SPAN class=ig-code-in-text>EncodingProperty</SPAN> objects (step 6 or empty list if exporting to png) and the stream (step 4).</P></TD></TR></TBODY></TABLE><BR></DIV></TD></TR></TBODY></TABLE><BR>
-<DIV class=ig-block-title>
-<H2><A name="_Code_Example:_<TITLE>"></A><A name=_Ref318986575></A></H2></DIV>
-<DIV class=ig-block-title>
-<H2>Code Example: Exporting %%ControlsName%% to a JPEG Image</H2></DIV>
-<TABLE class=ig-layout>
-<TBODY>
+<P>The Series objects provide actual visualization of your data. The chart support different types of Series and all types of series are listed in the <A href="95bac122-af84-468f-af2a-5a2b73e72844" style="auto-update-caption: true">Series Types</A> topic. Each type of series can plot data that meets certain data requirements (such as number of data column and their types) as well as what type of axis can be used with it. Refer to the <A href="ef9a7c2d-a9c4-49d0-b6d9-c2ab9c00df50" style="auto-update-caption: true">Series Requirements</A> topic for requirements for each of the series.</P></TD></TR>
+<TR>
+<TD><A href="%%ApiLink%%.Axis.html">Axis</A></TD>
+<TD>
+<P>The Axis objects provide context and information about range of data in a form of labels, numbers, tickmarks, gridlines, stips, and titles. The chart support different types of Axis objects which can be used only with certain types of Series. Refer to the <A href="e0c1a537-ee33-4389-a939-eab0cea8fade" style="auto-update-caption: true">Chart Axes</A> topic for more information about types of axis supported by the chart control.</P></TD></TR></TBODY></TABLE><BR></DIV></TD></TR>
 <TR>
 <TH>
-<H4><A name=_Ref318986588></A>Description</H4></TH>
+<H4><A id=Ref397366354 name=Ref397366354></A>Selecting Chart</H4></TH>
 <TD>
 <DIV class=ig-layout-container>
-<P>The code below demonstrates how to export a %%ControlsName%% control as a jpg/png encoded image.</P></DIV></TD></TR>
+<P>Based on type of your data, you need to choose which type of series you want to use in the chart control. Some types of series offer support only for certain types of axis. Therefore, you also need to select valid axes that work with selected series.</P>
+<P>The following flow chart explains the process of selecting series and axes based on data that you wish to plot in the chart control.</P>
+<P><IMG alt="" src="images/DataChart_Geting_Started_With_Chart_01.png"></P></DIV></TD></TR>
 <TR>
 <TH>
-<H4><A name=_Ref318986598></A>Code</H4></TH>
+<H4><A id=Ref386478106 name=Ref386478106></A>Creating Chart</H4></TH>
 <TD>
 <DIV class=ig-layout-container>
-<DIV id=Example_XAML class=LanguageSpecific style="DISPLAY: block" style="hs-build-flags: XAM_XF_EX">
-<P><SPAN class=lang><B>In XAML:</B></SPAN></P><PRE><SPAN class=code>Code
-…
-<SPAN class=blue>&lt;</SPAN><SPAN class=brownish>ig</SPAN><SPAN class=blue>:</SPAN><SPAN class=brownish>%%ControlsName%%</SPAN> <SPAN class=red>xmlns</SPAN><SPAN class=blue>:</SPAN><SPAN class=red>ig</SPAN><SPAN class=blue>="http://schemas.infragistics.com/xaml"</SPAN>
- <SPAN class=red>x</SPAN><SPAN class=blue>:</SPAN><SPAN class=red>Name</SPAN><SPAN class=blue>="dataChart"</SPAN><SPAN class=blue>&gt;</SPAN>
-…
-<SPAN class=blue>&lt;/</SPAN><SPAN class=brownish>ig</SPAN><SPAN class=blue>:</SPAN><SPAN class=brownish>%%ControlsName%%</SPAN><SPAN class=blue>&gt;</SPAN>
-<SPAN class=blue>&lt;</SPAN><SPAN class=brownish>Button</SPAN> <SPAN class=red>Click</SPAN><SPAN class=blue>="SaveButton_Click"</SPAN> <SPAN class=red>Content</SPAN><SPAN class=blue>="Export Image"</SPAN><SPAN class=blue>/&gt;</SPAN>
-…</SPAN>
-</PRE></DIV></DIV></TD></TR>
-<TR>
-<TH>
-<H4><A name=_Ref318986600></A>Code</H4></TH>
-<TD>
-<DIV class=ig-layout-container>
-<DIV id=Example_CS class=LanguageSpecific style="DISPLAY: block" style="hs-build-flags: DROID_EX">
-<P><SPAN class=lang><B>In C#:</B></SPAN></P><PRE><SPAN class=code>Code
-<SPAN class=blue>private</SPAN> <SPAN class=blue>void</SPAN> SaveButton_Click(<SPAN class=blue>object</SPAN> sender, RoutedEventArgs e)
-{
-    WriteableBitmap bitmap = 
-        <SPAN class=blue>new</SPAN> WriteableBitmap(<SPAN class=blue>this</SPAN>.dataChart, <SPAN class=blue>null</SPAN>);
- 
-    SaveFileDialog savedialog = <SPAN class=blue>new</SPAN> SaveFileDialog();
-    savedialog.DefaultExt = <SPAN class=string>"JPEG"</SPAN>; <SPAN class=comment>// or "PNG"</SPAN>
-    <SPAN class=blue>if</SPAN> (savedialog.ShowDialog() == <SPAN class=blue>true</SPAN>)
-    {
-        <SPAN class=blue>using</SPAN> (Stream stream = savedialog.OpenFile())
-        {
-            JpegImageEncoder encoder = <SPAN class=blue>new</SPAN> JpegImageEncoder();
-            List&lt;EncodingProperty&gt; qualityList = 
-               <SPAN class=blue>new</SPAN> List&lt;EncodingProperty&gt;();
-            qualityList.Add(<SPAN class=blue>new</SPAN> JpegQualityProperty() { Quality = 90 });
- 
-            encoder.Encode(bitmap, qualityList, stream);
- 
-            <SPAN class=comment>// Exporting to PNG</SPAN>
-            <SPAN class=comment>// PngImageEncoder encoder = new PngImageEncoder();</SPAN>
-            <SPAN class=comment>// encoder.Encode(bitmap, new List&lt;EncodingProperty&gt;(0), stream);</SPAN>
-        }
-    }
-}</SPAN>
-</PRE></DIV></DIV></TD></TR>
-<TR>
-<TH>
-<H4><A name=_Ref318986603></A>Code</H4></TH>
-<TD>
-<DIV class=ig-layout-container>
-<DIV id=Example_VB class=LanguageSpecific style="DISPLAY: block" style="hs-build-flags: DROID_EX">
-<P><SPAN class=lang><B>In Visual Basic:</B></SPAN></P><PRE><SPAN class=code>Code
-<SPAN class=blue>Imports</SPAN> System.IO
-<SPAN class=blue>Imports</SPAN> Infragistics.Imaging
-<SPAN class=blue>Imports</SPAN> System.Windows.Media.Imaging
-…
-<SPAN class=blue>Private</SPAN> <SPAN class=blue>Sub</SPAN> SaveButton_Click(sender <SPAN class=blue>As</SPAN> <SPAN class=blue>Object</SPAN>, e <SPAN class=blue>As</SPAN> RoutedEventArgs)
-    <SPAN class=blue>Dim</SPAN> saveDialog <SPAN class=blue>As</SPAN> <SPAN class=blue>New</SPAN> SaveFileDialog()
-    saveDialog.DefaultExt = <SPAN class=string>"JPG"</SPAN> <SPAN class=comment>' or "PNG"</SPAN>
-    <SPAN class=blue>If</SPAN> saveDialog.ShowDialog() = <SPAN class=blue>True</SPAN> <SPAN class=blue>Then</SPAN>
-        Using stream <SPAN class=blue>As</SPAN> Stream = saveDialog.OpenFile()
-            <SPAN class=blue>Dim</SPAN> bitmap <SPAN class=blue>As</SPAN> <SPAN class=blue>New</SPAN> WriteableBitmap(<SPAN class=blue>Me</SPAN>.dataChart, <SPAN class=blue>Nothing</SPAN>)
- 
-            <SPAN class=blue>Dim</SPAN> encoder <SPAN class=blue>As</SPAN> <SPAN class=blue>New</SPAN> JpegImageEncoder()
-            <SPAN class=blue>Dim</SPAN> qualityList <SPAN class=blue>As</SPAN> <SPAN class=blue>New</SPAN> List(Of EncodingProperty)()
-            qualityList.Add(<SPAN class=blue>New</SPAN> JpegQualityProperty() 
-                <SPAN class=blue>With</SPAN> {.Quality = 90})
-            encoder.Encode(bitmap, qualityList, stream)
- 
-            <SPAN class=comment>' Exporting to PNG</SPAN>
-            <SPAN class=comment>' Dim encoder As New PngImageEncoder()</SPAN>
-            <SPAN class=comment>' encoder.Encode(bitmap, New List(Of EncodingProperty)(0), stream)</SPAN>
-        <SPAN class=blue>End</SPAN> Using
-    <SPAN class=blue>End</SPAN> <SPAN class=blue>If</SPAN>
-<SPAN class=blue>End</SPAN> Sub</SPAN>
-</PRE></DIV></DIV></TD></TR></TBODY></TABLE><BR>
-<DIV class=ig-block-title>
-<H2><A name=_Ref318986605></A>Related Content</H2></DIV>
-<TABLE class=ig-layout>
-<TBODY>
-<TR>
-<TH>
-<H4><A name=_Ref318986610></A>Topics</H4></TH>
-<TD>
-<DIV class=ig-layout-container>
-<P>The following topics provide additional information related to this topic.</P>
+<P>After selecting type of series and two valid axes, you can create an instance of the %%ControlsName%% control in your application. The following topics provide instructions on how to create the Data Chart control using different methods.</P>
 <TABLE cellSpacing=0 cellPadding=0>
 <TBODY>
 <TR>
@@ -258,34 +123,31 @@
 <P>Topic</P></TH>
 <TH>
 <P>Purpose</P></TH></TR>
-<TR>
-<TD>
-<DIV class=ig-topic-link><A href="5f39946e-59dc-43f0-bd49-91714053bfbb" style="auto-update-caption: true">Getting Started with Data Chart</A> </DIV></TD>
-<TD>
-<P>You will learn how to add the %%ControlsName%% control with simple data binding in %%PlatformIDE%% and Expression Blend®.</P></TD></TR>
-<TR>
-<TD>
-<P><A class=ig-topic-link href="IG_Imaging_Exporting_a_BitmapSource_to_Image.html">Exporting a Bitmap to a JPEG/PNG-Encoded Image</A></P></TD>
-<TD>
-<P>This topic explains how to export a bitmap to a JPEG or PNG-encoded image using the Infragistics® imaging assembly.</P></TD></TR></TBODY></TABLE><BR></DIV></TD></TR>
-<TR>
-<TH style="hs-build-flags: SL">
-<H4><A name=_Ref318986613></A>Samples</H4></TH>
-<TD style="hs-build-flags: SL">
-<DIV class=ig-layout-container>
-<P>The following samples provide additional information related to this topic.</P>
-<TABLE cellSpacing=0 cellPadding=0>
-<TBODY>
-<TR>
-<TH>
-<P>Sample</P></TH>
-<TH>
-<P>Purpose</P></TH></TR>
-<TR>
-<TD>
-<DIV class=ig-topic-link><A href="%%SamplesURL%%/data-chart/#/exporting-datachart-to-image">Exporting DataChart to Image</A> </DIV></TD>
-<TD>
-<P>This sample shows how to export the %%ControlsName%% control to a JPEG or PNG encoded image. To do this, the Infragistics Imaging assembly is used. Refer to the code-behind for details.</P></TD></TR></TBODY></TABLE><BR></DIV></TD></TR></TBODY></TABLE><BR>
+<TR style="hs-build-flags: XAML">
+<TD style="hs-build-flags: XAML">
+<DIV class=ig-topic-link><A href="189b488d-7833-4379-bc1f-0770ff6a6844" style="auto-update-caption: true">Creating Chart in Code Behind</A> </DIV></TD>
+<TD style="hs-build-flags: XAML">
+<P>This topic provides instruction how to create the %%ControlsName%% control in code behind.</P></TD></TR>
+<TR style="hs-build-flags: XAML">
+<TD style="hs-build-flags: XAML">
+<DIV class=ig-topic-link><A href="0bf844e0-0b36-491d-b434-951a18aa3e1c" style="auto-update-caption: true">Creating Chart in XAML Code </A></DIV></TD>
+<TD style="hs-build-flags: XAML">
+<P>This topic provides instruction how to create the %%ControlsName%% control in XAML code.</P></TD></TR>
+<TR style="hs-build-flags: XAM_XF_EX">
+<TD style="hs-build-flags: XAM_XF_EX">
+<DIV class=ig-topic-link><A href="1f70421a-83b4-409f-a7ce-4fac3b0323d6" style="auto-update-caption: true">Creating Chart in MS Blend</A> </DIV></TD>
+<TD style="hs-build-flags: XAM_XF_EX">
+<P>This topic provides instruction how to create the %%ControlsName%% control in MS Blend designer.</P></TD></TR>
+<TR style="hs-build-flags: WINFORMS">
+<TD style="hs-build-flags: WINFORMS">
+<DIV class=ig-topic-link><A href="DataChart_Creating_Chart_In_VS_Designer_WinForms.html" style="auto-update-caption: true">Creating Chart In VS Designer</A> </DIV></TD>
+<TD style="hs-build-flags: WINFORMS">
+<P>This topic provides instruction how to create the %%ControlsName%% control in %%PlatformIDE%% designer.</P></TD></TR>
+<TR style="hs-build-flags: WINFORMS">
+<TD style="hs-build-flags: WINFORMS">
+<DIV class=ig-topic-link><A href="DataChart_Creating_Chart_In_Code_Behind_WinForms.html" style="auto-update-caption: true">Creating Chart In Code Behind</A> </DIV></TD>
+<TD style="hs-build-flags: WINFORMS">
+<P>This topic provides instruction how to create the %%ControlsName%% control in code behind.</P></TD></TR></TBODY></TABLE><BR></DIV></TD></TR></TBODY></TABLE><BR>
 </div>
 </div>
 <script src="https://code.jquery.com/jquery-2.1.4.min.js" type="text/javascript"></script>

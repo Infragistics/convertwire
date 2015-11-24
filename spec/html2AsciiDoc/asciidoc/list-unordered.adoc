@@ -1,3 +1,4 @@
+<temp-token role="list:start">
 * 1.0
 * 1.1
 * 1.2
