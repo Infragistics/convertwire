@@ -8,8 +8,6 @@ if(isNodejsContext){
 	var module = {};
 }
 
-var skipHeaders = ['in this topic'];
-
 var getNewMarkup = (header, anchorMarkup, content, buildFlags, headerLevel) => {
     var markup = '';
     
@@ -44,7 +42,7 @@ var getContents = function(element, contentType){
 };
 
 var createNewMarkupFromLayoutTables = () => {
-    var $tbody, $tbodys, $row, $rows, header, $header, headerPlainText, content, hasContent, style, 
+    var $tbody, $tbodys, $row, $rows, header, $header, content, hasContent, style, 
         buildFlags = '', rowMarkup = [], tableMarkup = [], value = {};
     
     $tbodys = $('table.ig-layout > tbody');
@@ -74,9 +72,7 @@ var createNewMarkupFromLayoutTables = () => {
                 buildFlags = `style="${style}"`;
             }
             
-            hasContent = header.length > 0 &&
-                         skipHeaders.indexOf(header.toLowerCase()) === -1 && 
-                         content.length > 0;
+            hasContent = header.length > 0 && content.length > 0; 
             
             if(hasContent){
                 rowMarkup.push(getNewMarkup(header, anchorMarkup, content, buildFlags));
