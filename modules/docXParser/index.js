@@ -23,17 +23,18 @@ ${htmlDocument.markup}</div>`;
 				return "\"" + array.join("\",\"") + "\""; 
 			};
 			
-			// transform so later regex (that replaces guids) will not affect this value
+			// transform GUID so later regex (that replaces guids) will not affect this value
 			let metaData = 
 `<pre id='metadata'>
 |metadata|
 {
     "name": "${htmlDocument.name.toLowerCase().replace(/_/g,'-')}",
-    "title": "${htmlDocument.title}",
     "controlName": [${arrayToString(htmlDocument.controlName)}],
     "tags": [${arrayToString(htmlDocument.tags)}],
     "guid": "${htmlDocument.docXGuid.replace(/-/g, '`')}",  
-    "buildFlags": [${arrayToString(htmlDocument.buildFlags)}]
+    "buildFlags": [${arrayToString(htmlDocument.buildFlags)}],
+	"createdOn": "${htmlDocument.createdOn}",
+	"modifiedOn": "${htmlDocument.modifiedOn}"
 }
 |metadata|
 </pre>`;

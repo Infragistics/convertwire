@@ -15,7 +15,7 @@
 		if(!_.isUndefined(obj.Topic.Title) && !_.isUndefined(obj.Topic.Title._)){
 			htmlDocument.title = obj.Topic.Title._.trim();
 		}
-		
+			
 		if(!_.isUndefined(obj.Topic.TopicSections.TopicSection.Content._)){
 			markup = obj.Topic.TopicSections.TopicSection.Content._;
 			markup = markup.replace(/&nbsp;/g, ' ');
@@ -71,6 +71,14 @@
 		
 		if(!_.isUndefined(obj.Topic.$.BuildFlags)) {
 			htmlDocument.buildFlags = utils.listToArray(obj.Topic.$.BuildFlags, ',');
+		}
+		
+		if(!_.isUndefined(obj.Topic.$.CreatedOn)){
+			htmlDocument.createdOn = utils.getValue(obj.Topic.$.CreatedOn);
+		}
+		
+		if(!_.isUndefined(obj.Topic.$.ModifiedOn)){
+			htmlDocument.modifiedOn = utils.getValue(obj.Topic.$.ModifiedOn);
 		}
 		
 		callback(null, htmlDocument);
