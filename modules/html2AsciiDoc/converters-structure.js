@@ -68,29 +68,50 @@
       return match;
     },
     replacement: function (content, node) {
-      var hLevel, hPrefix, linkMatches, value;
+      var hLevel, hPrefix, linkMatches, value, anchorMatches, anchor = '';
 
       hLevel = parseInt(node.nodeName.charAt(1)) + 1;
       hPrefix = '';
-
-      for (var i = 0; i < hLevel; i++) {
-        hPrefix += '=';
-      }
+      
+      hPrefix = Array(hLevel + 1).join('=');
 
       content = content.replace(/<[^>]*>/gi, '');
+      
+      // TODO: move anchors above title
+      anchorMatches = content.match(/\[\[(.*?)\]\]/);
+      if(_.isArray(anchorMatches) && anchorMatches.length >= 2){
+        anchor = anchorMatches[0];
+        content = anchorMatches[1];
+      }
 
       linkMatches = content.match(/link:{\S+\[(.*)]/)
       if (_.isArray(linkMatches) && linkMatches.length > 0) {
-        value = '\n\n' + hPrefix + ' ' + linkMatches[1] + '\n\n' + content + '\n\n';
+        value = '\n' + hPrefix + ' ' + linkMatches[1] + '\n\n' + content;
       } else {
-        value = '\n\n' + hPrefix + ' ' + content + '\n\n';
+        value = '\n' + hPrefix + ' ' + content;
       }
 
       if (buildFlags.hasDocXBuildFlags(node)) {
         value = buildFlags.wrapWithBuildFlags(value, node);
       }
+      
+      value = '\n\n' + anchor + value + '\n\n';
+      
+      value = value.replace('\n\n\n', '\n\n');
 
       return value;
+    }
+  };
+  
+  var spanTemporary = {
+    filter: function(node){
+      var match = false;
+      match = (node.nodeName === 'SPAN' && 
+               node.className === 'temporary');
+      return match;
+    },
+    replacement: function(content, node){
+      return '';
     }
   };
 
@@ -337,6 +358,7 @@
   converters.push(anchorWithIdAsAnchor);
   converters.push(headers);
   converters.push(hr);
+  converters.push(spanTemporary);
   converters.push(bold);
   converters.push(paragraph);
   converters.push(anchorWithoutHref);

@@ -16,11 +16,12 @@ module.html = function(source){
 	var replacements = [];
 	
 	htmlRules.jquery.forEach((rule) => {
-		replacements.push(rule.apply($));
+		replacements = replacements.concat(rule.apply($));
 	});
 	
 	replacements.forEach((rule) => {
-		source = source.replace(rule.src, rule.dest);
+		var regex = new RegExp(rule.src, 'gi');
+		source = source.replace(regex, rule.dest);
 	});
 	
 	htmlRules.regex.forEach((rule) => {
