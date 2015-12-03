@@ -250,7 +250,7 @@
         content = buildFlags.wrapWithBuildFlags(content, node);
       }
 
-      return '\n\n\<temp-token role="list:start">' + content;
+      return '\n\n\<temp-token role="list:start">' + content + '\n\n';
     }
   };
 

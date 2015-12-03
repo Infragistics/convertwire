@@ -6,4 +6,5 @@ ifdef::xamarin[]
 <temp-token role="list:start">
 ** xamarin 1
 ** xamarin 2
+
 endif::xamarin[]
