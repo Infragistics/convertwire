@@ -32,5 +32,13 @@ module.exports.regex = [
 		name: 'temp-token=>list:start',
 		pattern: /\<temp-token role=\"list:start\"\>/g,
 		replacement: ''
+	},
+	{
+		name: 'build-variables',
+		pattern: /%%(.*?)%%/g,
+		replacement: function(match){
+			match = match.replace(/%/g, '');
+			return '<%= ' + match + ' %>';
+		}
 	}
 ];
