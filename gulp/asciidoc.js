@@ -2,6 +2,7 @@ var rename = require('gulp-rename');
 var nodeDebug = require('gulp-node-debug');
 var plumber = require('gulp-plumber');
 var gutil = require('gulp-util');
+var path = require('path');
 
 var docx2html = require('../tasks/gulp-docx2html.js');
 var unmapper = require('../tasks/gulp-unmapper.js');
@@ -11,7 +12,7 @@ var replaceGUIDs = require('../tasks/gulp-replaceGUIDs.js');
 var cleanup = require('../tasks/gulp-cleanup.js');
 var logger = require('../modules/logger');
 
-var remoteData = {};
+var lookupData = {};
 
 module.exports.load = function(gulp){
 
@@ -28,7 +29,7 @@ module.exports.load = function(gulp){
       .pipe(unmapper())
       .pipe(sourceFormatter())
       .pipe(html2AsciiDoc())
-      .pipe(replaceGUIDs(remoteData))
+      .pipe(replaceGUIDs(lookupData))
       .pipe(cleanup('asciidoc'))
       .pipe(rename(function(path){
         path.extname = '.adoc';
@@ -55,17 +56,20 @@ module.exports.load = function(gulp){
       .pipe(unmapper())
       .pipe(sourceFormatter())
       .pipe(html2AsciiDoc())
-      .pipe(replaceGUIDs(remoteData))
+      .pipe(replaceGUIDs(lookupData))
       .pipe(cleanup('asciidoc'))
       .pipe(rename(function(path){
         path.extname = '.adoc';
         var isJP = path.basename.indexOf('.ja-JP') > -1;
+        var guid = path.basename
+                              .replace(/\.ja-JP/i, '')
+                              .replace(/\{|\}/g, '');
         var name = path.basename
                               .replace(/\.ja-JP/i, '-ja-JP')
                               .replace(/\{|\}/g, '');
         
-        if(remoteData[name]){
-          path.basename = remoteData[name];
+        if(lookupData[guid]){
+          path.basename = lookupData[guid];
           path.basename += isJP ? '.ja-JP' : '';
           
           console.log(path.basename);
@@ -82,41 +86,32 @@ module.exports.load = function(gulp){
       });
   });
   
-  gulp.task('asciidoc', function(){
+  gulp.task('asciidoc', function() {
     
-    var fs = require('fs')
-    var path = require('path');
-    var args = {};
+    var fs = require('fs');
+    var args;
     
-    if(fs.existsSync(path.resolve(__dirname, './credentials.json'))){
-      var credentials = fs.readFileSync(path.resolve(__dirname, './credentials.json'), 'utf8');
-      credentials = JSON.parse(credentials);
-      
-      args = require('yargs')
-                  .usage('Usage: gulp asciidoc $0 $1')
-                  .demand(['name', 'version'])
+    args = require('yargs')
+                  .usage('Usage: gulp asciidoc $0 $1 $2')
+                  .demand(['name', 'version', 'lookup'])
                   .option('version' , { type: 'string' })
                   .argv;
-      
-      args.username = credentials.username;
-      args.password = credentials.password; 
-    } else {
-      args = require('yargs')
-                  .usage('Usage: gulp asciidoc $0 $1 $2 $3')
-                  .demand(['username', 'password', 'name', 'version'])
-                  .option('version' , { type: 'string' })
-                  .argv;
+
+    var lookupDataFilePath = './guid-lookups/' + args.lookup + '-lookup.json';
+    var duplicateLookupFilePath = './guid-lookups/' + args.lookup + '-duplicate.json';
+    var doesDuplicatesLookupExist = fs.existsSync(duplicateLookupFilePath);
+    
+    if(doesDuplicatesLookupExist){
+      var duplicates = fs.readFileSync(duplicateLookupFilePath, 'utf8');
+      duplicates = JSON.parse(duplicates); 
+      duplicates.forEach(function(duplicate){
+        console.log('Deleting: ' + duplicate.Guid);
+        fs.unlinkSync('./spec/data/src/' + duplicate.Guid + '.xml')
+      });
     }
     
-    args.version = args.version.replace('.', '-');
-                
-    var repository = require('../modules/firebaseRepository');  
-    repository.get(args.username, args.password, args.name, args.version, function(snap){
-      remoteData = snap.val();            
-      console.log(Object.keys(remoteData).length + ' names loaded');
-      console.log('Starting AsciiDoc conversion...');
-      
-      return gulp.start('asciidoc-conversion');
-    });
+    lookupData = JSON.parse(fs.readFileSync(lookupDataFilePath, 'utf8'));
+    
+    return gulp.start('asciidoc-conversion');
   });
 };
