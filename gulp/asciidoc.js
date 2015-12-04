@@ -13,6 +13,27 @@ var cleanup = require('../tasks/gulp-cleanup.js');
 var logger = require('../modules/logger');
 
 var lookupData = {};
+var args = {};
+
+var lookupPath = {
+  "Android"         : "Android",
+  "iOS"             : "iOS",
+  "BarCodes"        : "Common-Barccodes",
+  "BulletGraph"     : "Common-BulletGraph",
+  "DataChart"       : "Common-DataChart",
+  "LinearGauge"     : "Common-LinearGauge",
+  "PieChart"        : "Common-PieChart",
+  "RadialGauge"     : "Common-RadialGauge",
+  "CommonControls"  : "XAML-CommonControls",
+  "DesignersGuide"  : "XAML-DesignersGuide",
+  "GeneralConcepts" : "XAML-GeneralConcepts",
+  "WPF"             : "XAML-WPF",
+  "Chart"           : "WebAndWin-Chart",
+  "DocumentEngine"  : "WebAndWin-DocumentEngine",
+  "ExcelEngine"     : "WebAndWin-ExcelEngine",
+  "WinForms"        : "WinForms",
+  "Xamarin"         : "Xamarin"
+};
 
 module.exports.load = function(gulp){
 
@@ -89,16 +110,14 @@ module.exports.load = function(gulp){
   gulp.task('asciidoc', function() {
     
     var fs = require('fs');
-    var args;
     
     args = require('yargs')
-                  .usage('Usage: gulp asciidoc $0 $1 $2')
-                  .demand(['name', 'version', 'lookup'])
-                  .option('version' , { type: 'string' })
+                  .usage('Usage: gulp asciidoc $0')
+                  .demand(['name'])
                   .argv;
 
-    var lookupDataFilePath = './guid-lookups/' + args.lookup + '-lookup.json';
-    var duplicateLookupFilePath = './guid-lookups/' + args.lookup + '-duplicate.json';
+    var lookupDataFilePath = './guid-lookups/' + lookupPath[args.name] + '-lookup.json';
+    var duplicateLookupFilePath = './guid-lookups/' + lookupPath[args.name] + '-duplicate.json';
     var doesDuplicatesLookupExist = fs.existsSync(duplicateLookupFilePath);
     
     if(doesDuplicatesLookupExist){
