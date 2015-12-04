@@ -3,23 +3,23 @@ describe('cleanup', function(){
 	var path = require('path');
 	var cleanup = require(path.resolve(__dirname, '../../modules/cleanup'));
 	
-	describe('asciidoc', function(){
+	describe('asciidoc', () => {
 		
-		it('replaces stray slashes in ordered lists', function(){
+		it('replaces stray slashes in ordered lists', () => {
 			var src = '*1\.*';
 			var dest = cleanup.asciidoc(src);
 			var expected = '*1.*';
 			expect(dest).toEqual(expected);
 		});
 		
-		it('replaces sâ€¦ with ....', function(){
+		it('replaces sâ€¦ with ....', () => {
 			var src = 'Usersâ€¦';
 			var dest = cleanup.asciidoc(src);
 			var expected = 'Users...';
 			expect(dest).toEqual(expected);
 		});
 		
-		it('replaces â„¢ with &trade;', function(){
+		it('replaces â„¢ with &trade;', () => {
 			var src = 'xamDataGridâ„¢';
 			var dest = cleanup.asciidoc(src);
 			var expected = 'xamDataGrid&trade;';
@@ -27,30 +27,30 @@ describe('cleanup', function(){
 		});
 	});
 	
-	describe('html', function(){
+	describe('html', () => {
 		
-		it('replaces style="display:none" with nothing', function(){
+		it('replaces style="display:none" with nothing', () => {
 			var src = '<div style="display:none" style="hs-build-flags: WINFORMS">test</div>';
 			var dest = cleanup.html(src);
 			var expected = '<div style="hs-build-flags: WINFORMS">test</div>';
 			expect(dest).toEqual(expected);
 		});
 		
-		it('replaces style="display:none"; with nothing', function(){
+		it('replaces style="display:none"; with nothing', () => {
 			var src = '<div style="display:none;" style="hs-build-flags: WINFORMS">test</div>';
 			var dest = cleanup.html(src);
 			var expected = '<div style="hs-build-flags: WINFORMS">test</div>';
 			expect(dest).toEqual(expected);
 		});
 		
-		it('replaces style="display:block"; with nothing', function(){
+		it('replaces style="display:block"; with nothing', () => {
 			var src = '<div style="display:block;" style="hs-build-flags: WINFORMS">test</div>';
 			var dest = cleanup.html(src);
 			var expected = '<div style="hs-build-flags: WINFORMS">test</div>';
 			expect(dest).toEqual(expected);
 		});
 		
-		it('replaces &#xA0; with &nbsp;', function(){
+		it('replaces &#xA0; with &nbsp;', () => {
 			var src = '<div>&#xA0;</div>';
 			var dest = cleanup.html(src);
 			var expected = '<div>&nbsp;</div>';
