@@ -1,47 +1,17 @@
-[
-  {
-    "17579bdd-6bcb-4cf0-95c4-6d83387af629": "bulletgraph-configuring-comparative-ranges"
-  },
-  {
-    "1cd8c1ad-1f04-40f1-adb2-6d203d00fba7": "bulletgraph-configuring"
-  },
-  {
-    "1d4c8246-db15-476a-b025-68aaf9a4a630": "bulletgraph-adding"
-  },
-  {
-    "2f6ecc5f-4cc2-4705-a9ae-7b52b586cdb2": "bulletgraph-configuring-the-title-subtitle"
-  },
-  {
-    "3eaac3d7-7fdc-4659-974e-b57c15e8d236": "bulletgraph-configuring-the-scale"
-  },
-  {
-    "5baaf616-a697-4a11-b162-b85251ff9d70": "bulletgraph-configuring-the-comparative-marker"
-  },
-  {
-    "66a56e91-cfe3-4e61-baa7-a5ce9aad2a2b": "bulletgraph-api-reference"
-  },
-  {
-    "786f11e2-e056-45d5-a397-b5111e96420a": "bulletgraph-configuring-the-orientation-and-direction"
-  },
-  {
-    "9c4eaa8f-27ea-4b84-9a3a-56321250537d": "bulletgraph-known-issues-and-limitations"
-  },
-  {
-    "a260ac32-6689-49ed-a01f-f3257b61c6ca": "bulletgraph-configuring-the-visual-elements"
-  },
-  {
-    "b9e100d6-b5eb-4c7b-8b0a-8b674b4f3e0a": "bulletgraph"
-  },
-  {
-    "d244bad6-b3f4-44f3-bc2b-eb189e40c881": "bulletgraph-configuring-the-performance-bar"
-  },
-  {
-    "e0a3ab7f-f465-4924-8f59-82b07e05f47e": "bulletgraph-configuring-the-tooltips"
-  },
-  {
-    "e814ac4f-aa81-4605-94ea-12b7301084ed": "bulletgraph-overview"
-  },
-  {
+{ 
+    "17579bdd-6bcb-4cf0-95c4-6d83387af629": "bulletgraph-configuring-comparative-ranges",
+    "1cd8c1ad-1f04-40f1-adb2-6d203d00fba7": "bulletgraph-configuring",
+    "1d4c8246-db15-476a-b025-68aaf9a4a630": "bulletgraph-adding",
+    "2f6ecc5f-4cc2-4705-a9ae-7b52b586cdb2": "bulletgraph-configuring-the-title-subtitle",
+    "3eaac3d7-7fdc-4659-974e-b57c15e8d236": "bulletgraph-configuring-the-scale",
+    "5baaf616-a697-4a11-b162-b85251ff9d70": "bulletgraph-configuring-the-comparative-marker",
+    "66a56e91-cfe3-4e61-baa7-a5ce9aad2a2b": "bulletgraph-api-reference",
+    "786f11e2-e056-45d5-a397-b5111e96420a": "bulletgraph-configuring-the-orientation-and-direction",
+    "9c4eaa8f-27ea-4b84-9a3a-56321250537d": "bulletgraph-known-issues-and-limitations",
+    "a260ac32-6689-49ed-a01f-f3257b61c6ca": "bulletgraph-configuring-the-visual-elements",
+    "b9e100d6-b5eb-4c7b-8b0a-8b674b4f3e0a": "bulletgraph",
+    "d244bad6-b3f4-44f3-bc2b-eb189e40c881": "bulletgraph-configuring-the-performance-bar",
+    "e0a3ab7f-f465-4924-8f59-82b07e05f47e": "bulletgraph-configuring-the-tooltips",
+    "e814ac4f-aa81-4605-94ea-12b7301084ed": "bulletgraph-overview",
     "f774a2ab-6b55-40b8-b5e9-ab54ce1e83ff": "bulletgraph-configuring-the-background"
-  }
-]
+}

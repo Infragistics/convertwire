@@ -1,35 +1,13 @@
-[
-  {
-    "04ff3778-ee67-49b0-bb46-44f7385f5b51": "piechart-api-overview"
-  },
-  {
-    "0e363f90-9f23-46d4-86db-151915650724": "piechart-selection-and-explosion"
-  },
-  {
-    "4e57828c-18e0-4f62-b8df-6c25594619e0": "piechart-visualizing-olap-data-piechart"
-  },
-  {
-    "5b5ba0e9-953a-4a6c-84d3-0a4d1641c57b": "piechart-others-category"
-  },
-  {
-    "72ea0f26-9bdb-4459-a24f-729f6343de37": "piechart-binding-olap-data"
-  },
-  {
-    "7327342b-32f9-4a1e-b74a-3d4163b47378": "piechart"
-  },
-  {
-    "8a5963d0-af62-4426-8aeb-547da883d52d": "piechart-data-binding"
-  },
-  {
-    "9435211d-6fdc-4546-88a3-6c0406196dea": "piechart-getting-started-with-piechart"
-  },
-  {
-    "94b37822-be95-43e9-9a66-e535cc88a868": "piechart-new-default-style"
-  },
-  {
-    "da9aa4fc-d8de-4b97-8b07-3d3789db851f": "piechart-using-piechart"
-  },
-  {
+{ 
+    "04ff3778-ee67-49b0-bb46-44f7385f5b51": "piechart-api-overview",
+    "0e363f90-9f23-46d4-86db-151915650724": "piechart-selection-and-explosion",
+    "4e57828c-18e0-4f62-b8df-6c25594619e0": "piechart-visualizing-olap-data-piechart",
+    "5b5ba0e9-953a-4a6c-84d3-0a4d1641c57b": "piechart-others-category",
+    "72ea0f26-9bdb-4459-a24f-729f6343de37": "piechart-binding-olap-data",
+    "7327342b-32f9-4a1e-b74a-3d4163b47378": "piechart",
+    "8a5963d0-af62-4426-8aeb-547da883d52d": "piechart-data-binding",
+    "9435211d-6fdc-4546-88a3-6c0406196dea": "piechart-getting-started-with-piechart",
+    "94b37822-be95-43e9-9a66-e535cc88a868": "piechart-new-default-style",
+    "da9aa4fc-d8de-4b97-8b07-3d3789db851f": "piechart-using-piechart",
     "df0a8627-2218-4100-9011-5e109745c35e": "piechart-user-interactions-with-olap-data"
-  }
-]
+}

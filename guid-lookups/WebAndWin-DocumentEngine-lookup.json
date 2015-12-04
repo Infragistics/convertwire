@@ -1,152 +1,52 @@
-[
-  {
-    "{05E8D6CA-57A6-463A-B352-7D908839D2D3}": "documentengine-segment"
-  },
-  {
-    "{0FB8A760-AD1E-456B-AC31-83B5EA56F778}": "documentengine-report-elements"
-  },
-  {
-    "{0FCBC065-1184-45B1-B61C-02A33454A938}": "documentengine-report-graphics"
-  },
-  {
-    "{1C16F04D-AEEB-49B4-9CAE-BD3F8E515A6E}": "documentengine-welcome-to-infragistics-document-engine"
-  },
-  {
-    "{21C85D2D-0E84-4C10-9F06-B7CEA8CA0F71}": "documentengine-index"
-  },
-  {
-    "{26019034-4A5F-4047-812A-23E9F75665DB}": "documentengine-rotator"
-  },
-  {
-    "{262FB628-C0CA-4D89-BFCD-223CB0FE23F5}": "documentengine-section"
-  },
-  {
-    "{2A9A1F05-5F76-4CC6-AF5D-058E114ABC0B}": "documentengine-shapes"
-  },
-  {
-    "{2E713222-6301-455D-AA08-FD1A6A9AA649}": "documentengine-site"
-  },
-  {
-    "{2FBC03EE-2945-4B66-8B1A-2F96920517B9}": "documentengine-quick-text"
-  },
-  {
-    "{2FE53039-F852-4F0B-8A77-DCD1E9B52BE3}": "documentengine-quick-image"
-  },
-  {
-    "{34717629-DE75-4810-B4F8-F0AF5921DF7F}": "documentengine-setting-pageorientation-when-publishing-a-report"
-  },
-  {
-    "{3FFE5A7C-924E-4F0B-97BD-37E7065D1A5E}": "documentengine-layout-element-comparison-table"
-  },
-  {
-    "{4424E3D3-E017-4DB3-84FE-1359D63BFC62}": "documentengine-quick-content"
-  },
-  {
-    "{4778E9FD-EAF7-4CB0-8F95-18FEA35F5431}": "documentengine-table-of-contents"
-  },
-  {
-    "{47E4B0B4-7CEF-425D-B78F-D26897368827}": "documentengine-report"
-  },
-  {
-    "{4F302C80-3140-47CC-8682-194F0A3B4926}": "documentengine-gap"
-  },
-  {
-    "{5793A690-4D7A-4AD9-81EE-9C3CF5FA08CE}": "documentengine-flow"
-  },
-  {
-    "{6367C9B4-5788-4BA3-B467-8DE56385A8A3}": "documentengine-brushes"
-  },
-  {
-    "{662551EC-49FF-4225-B035-C059F2144DDB}": "documentengine-group"
-  },
-  {
-    "{679BE7AE-A739-4809-8A5C-3265E2FA098E}": "documentengine-api-overview"
-  },
-  {
-    "{6CE3A21C-1042-4D06-9771-EBBA7FD1D869}": "documentengine-add-page-numbering"
-  },
-  {
-    "{7315066B-C595-4523-A681-7353E131ECF4}": "documentengine-quick-list"
-  },
-  {
-    "{7469ACC8-1869-4035-8595-90CF78947A98}": "documentengine-rule"
-  },
-  {
-    "{7D2ED922-7648-4436-8161-0CBAA9C95092}": "documentengine-writing-reports"
-  },
-  {
-    "{7EBB7DC2-55FD-41F7-8897-C9DDF68FAE36}": "documentengine-fonts"
-  },
-  {
-    "{8482B005-8222-4E7A-8B6C-120074C0D5AE}": "documentengine-navigation-helpers"
-  },
-  {
-    "{8AB3F599-47D1-4F71-A066-FB34D7CC35ED}": "documentengine-canvas"
-  },
-  {
-    "{8D3FF45E-0107-4173-868C-9B11C69A4165}": "documentengine-deploying-infragistics-document-engine"
-  },
-  {
-    "{90407DB0-165D-4854-AF06-DEC470EFDE7B}": "documentengine-pattern-content"
-  },
-  {
-    "{925EE8B7-A15A-4712-90E7-48C67FCAD856}": "documentengine-bookmarks"
-  },
-  {
-    "{93240D74-BFF3-4F5B-8555-B5481355FDFE}": "documentengine-colors"
-  },
-  {
-    "{946903FE-3AB5-47A8-85A9-CE1BAE696479}": "documentengine-grids"
-  },
-  {
-    "{94B73CC1-E2B2-445A-BC0C-535DA92DE219}": "documentengine-trees"
-  },
-  {
-    "{AEDB5D3B-4000-4C3D-8915-20A15A97E1E5}": "documentengine-chain"
-  },
-  {
-    "{B62600CB-9E74-4745-BEB3-28E485C02867}": "documentengine-pens"
-  },
-  {
-    "{BA7ABFD6-7BF4-4472-AF1C-BE30CEA0E988}": "documentengine-band"
-  },
-  {
-    "{C69A04A1-A486-447F-ABAF-288743AF0550}": "documentengine-publish-a-report"
-  },
-  {
-    "{C6F97967-20EB-4B96-BEFA-31CC3CB1481E}": "documentengine-tables"
-  },
-  {
-    "{CE77953A-8811-461E-9DD1-04B75134F953}": "documentengine-getting-started-with-infragistics-document-engine"
-  },
-  {
-    "{DADD015A-31FC-41ED-B05A-E252EB9B2C8F}": "documentengine-section-element"
-  },
-  {
-    "{DB1FF707-8008-4AAF-98E6-BA669C69F701}": "documentengine-report-element"
-  },
-  {
-    "{DF5C32C0-2411-46EB-9732-CF6DE86D5AF7}": "documentengine-advanced-layout-elements"
-  },
-  {
-    "{E3A1B042-5224-4967-9CC5-BBE9434A2558}": "documentengine-report-layout"
-  },
-  {
-    "{E5AE0152-1BD9-4ABC-9C5D-1E99F05F512C}": "documentengine-text"
-  },
-  {
-    "{E923DBCF-5416-446B-93FE-6AC6E325EAD9}": "documentengine-page-break"
-  },
-  {
-    "{EE0BD5A8-F862-42EE-8090-D527C14ACF05}": "documentengine-container-and-condition"
-  },
-  {
-    "{F93652B7-75F6-43C1-8C29-91B98FBAD2B3}": "documentengine-stretcher"
-  },
-  {
-    "{FAF201D6-62AA-460B-B6D9-5B01C9CE9732}": "documentengine-lists"
-  },
-  {
+{
+    "{05E8D6CA-57A6-463A-B352-7D908839D2D3}": "documentengine-segment",
+    "{0FB8A760-AD1E-456B-AC31-83B5EA56F778}": "documentengine-report-elements",
+    "{0FCBC065-1184-45B1-B61C-02A33454A938}": "documentengine-report-graphics",
+    "{1C16F04D-AEEB-49B4-9CAE-BD3F8E515A6E}": "documentengine-welcome-to-infragistics-document-engine",
+    "{21C85D2D-0E84-4C10-9F06-B7CEA8CA0F71}": "documentengine-index",
+    "{26019034-4A5F-4047-812A-23E9F75665DB}": "documentengine-rotator",
+    "{262FB628-C0CA-4D89-BFCD-223CB0FE23F5}": "documentengine-section",
+    "{2A9A1F05-5F76-4CC6-AF5D-058E114ABC0B}": "documentengine-shapes",
+    "{2E713222-6301-455D-AA08-FD1A6A9AA649}": "documentengine-site",
+    "{2FBC03EE-2945-4B66-8B1A-2F96920517B9}": "documentengine-quick-text",
+    "{2FE53039-F852-4F0B-8A77-DCD1E9B52BE3}": "documentengine-quick-image",
+    "{34717629-DE75-4810-B4F8-F0AF5921DF7F}": "documentengine-setting-pageorientation-when-publishing-a-report",
+    "{3FFE5A7C-924E-4F0B-97BD-37E7065D1A5E}": "documentengine-layout-element-comparison-table",
+    "{4424E3D3-E017-4DB3-84FE-1359D63BFC62}": "documentengine-quick-content",
+    "{4778E9FD-EAF7-4CB0-8F95-18FEA35F5431}": "documentengine-table-of-contents",
+    "{47E4B0B4-7CEF-425D-B78F-D26897368827}": "documentengine-report",
+    "{4F302C80-3140-47CC-8682-194F0A3B4926}": "documentengine-gap",
+    "{5793A690-4D7A-4AD9-81EE-9C3CF5FA08CE}": "documentengine-flow",
+    "{6367C9B4-5788-4BA3-B467-8DE56385A8A3}": "documentengine-brushes",
+    "{662551EC-49FF-4225-B035-C059F2144DDB}": "documentengine-group",
+    "{679BE7AE-A739-4809-8A5C-3265E2FA098E}": "documentengine-api-overview",
+    "{6CE3A21C-1042-4D06-9771-EBBA7FD1D869}": "documentengine-add-page-numbering",
+    "{7315066B-C595-4523-A681-7353E131ECF4}": "documentengine-quick-list",
+    "{7469ACC8-1869-4035-8595-90CF78947A98}": "documentengine-rule",
+    "{7D2ED922-7648-4436-8161-0CBAA9C95092}": "documentengine-writing-reports",
+    "{7EBB7DC2-55FD-41F7-8897-C9DDF68FAE36}": "documentengine-fonts",
+    "{8482B005-8222-4E7A-8B6C-120074C0D5AE}": "documentengine-navigation-helpers",
+    "{8AB3F599-47D1-4F71-A066-FB34D7CC35ED}": "documentengine-canvas",
+    "{8D3FF45E-0107-4173-868C-9B11C69A4165}": "documentengine-deploying-infragistics-document-engine",
+    "{90407DB0-165D-4854-AF06-DEC470EFDE7B}": "documentengine-pattern-content",
+    "{925EE8B7-A15A-4712-90E7-48C67FCAD856}": "documentengine-bookmarks",
+    "{93240D74-BFF3-4F5B-8555-B5481355FDFE}": "documentengine-colors",
+    "{946903FE-3AB5-47A8-85A9-CE1BAE696479}": "documentengine-grids",
+    "{94B73CC1-E2B2-445A-BC0C-535DA92DE219}": "documentengine-trees",
+    "{AEDB5D3B-4000-4C3D-8915-20A15A97E1E5}": "documentengine-chain",
+    "{B62600CB-9E74-4745-BEB3-28E485C02867}": "documentengine-pens",
+    "{BA7ABFD6-7BF4-4472-AF1C-BE30CEA0E988}": "documentengine-band",
+    "{C69A04A1-A486-447F-ABAF-288743AF0550}": "documentengine-publish-a-report",
+    "{C6F97967-20EB-4B96-BEFA-31CC3CB1481E}": "documentengine-tables",
+    "{CE77953A-8811-461E-9DD1-04B75134F953}": "documentengine-getting-started-with-infragistics-document-engine",
+    "{DADD015A-31FC-41ED-B05A-E252EB9B2C8F}": "documentengine-section-element",
+    "{DB1FF707-8008-4AAF-98E6-BA669C69F701}": "documentengine-report-element",
+    "{DF5C32C0-2411-46EB-9732-CF6DE86D5AF7}": "documentengine-advanced-layout-elements",
+    "{E3A1B042-5224-4967-9CC5-BBE9434A2558}": "documentengine-report-layout",
+    "{E5AE0152-1BD9-4ABC-9C5D-1E99F05F512C}": "documentengine-text",
+    "{E923DBCF-5416-446B-93FE-6AC6E325EAD9}": "documentengine-page-break",
+    "{EE0BD5A8-F862-42EE-8090-D527C14ACF05}": "documentengine-container-and-condition",
+    "{F93652B7-75F6-43C1-8C29-91B98FBAD2B3}": "documentengine-stretcher",
+    "{FAF201D6-62AA-460B-B6D9-5B01C9CE9732}": "documentengine-lists",
     "{FBCD9A92-3F02-497C-8B44-7D2EF4695FD0}": "documentengine-quick-table"
-  }
-]
+}

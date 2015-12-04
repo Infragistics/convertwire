@@ -1,833 +1,279 @@
-[
-  {
-    "00c9c994-3b28-4b7e-82ff-4ff590b33e93": "igbulletgraphview-configuring-igbulletgraphview"
-  },
-  {
-    "00d257cd-53b5-4c69-bee0-049aed71bbc4": "igchartview-radial-area-series"
-  },
-  {
-    "02db5d99-8bc4-4e2d-b9fd-c9781d3ecbd2": "iggridview-configuring-loading-more-rows"
-  },
-  {
-    "02f7aa69-1727-4983-a174-6868815a0786": "igchartview-stacked-100-spline-area-series"
-  },
-  {
-    "032841ae-0358-42b7-accb-edc3be645852": "igsidemenuview-showing-hiding-side-menu"
-  },
-  {
-    "04b250d2-1ecb-4d01-ad97-ad51e41f94af": "iggaugeview-themes"
-  },
-  {
-    "04c7ce4f-7def-42ce-aa59-2518c7275b14": "known-issues-breaking-changes"
-  },
-  {
-    "06f29b1a-776b-4139-8366-62dc224584d8": "igpiechartview-igpiechart-data-source-helper"
-  },
-  {
-    "07fdd297-2336-4f2b-b941-343f5ae8ea76": "igchartview-stacked-bar-series"
-  },
-  {
-    "08d3b275-279e-4c3c-9446-a94281dbaf8d": "igchartview-using-custom-markers"
-  },
-  {
-    "0a54ed35-cb30-46a8-97fb-91ba9689d20b": "igtreemapview-data-source-helper"
-  },
-  {
-    "0c0fbef7-d40a-4319-9313-a490c4f21135": "whats-new-2013-1"
-  },
-  {
-    "0cc561d8-b686-4742-90ac-11fcac6d9098": "iggaugeview-configuring-gauge-interactions"
-  },
-  {
-    "0f8a3a49-e5c0-4e81-98f4-b5953c6d913e": "igfunnelchartview-enabling-weighted-slices"
-  },
-  {
-    "0fa4452e-40a2-4403-837f-cd0a2b8de36d": "igchartview-full-stochastic-oscillator-indicator"
-  },
-  {
-    "10a290bd-efc5-4802-9a77-b2a58dc51137": "igchartview"
-  },
-  {
-    "1239af13-6bbe-4d72-91dd-5ad02350b9aa": "igchartview-bar-series"
-  },
-  {
-    "12904b2f-7e3d-46d6-9797-3b580deab0e0": "igchartview-markers"
-  },
-  {
-    "12f46a3f-669f-44c9-b2dd-d0d81df180d6": "iggaugeview-adding-iggaugeview-uiview"
-  },
-  {
-    "14b26ca3-0857-4d6e-8403-ec3bb7ae1007": "igtreemapview-configuring-rendering-mode"
-  },
-  {
-    "16f823bb-e929-439a-9f86-61ff0524ad18": "igprogressview-adding-progress-view"
-  },
-  {
-    "1785f974-b90b-4596-94ec-1ae8eeaf5390": "igslidetabview-configuring-tab-locations"
-  },
-  {
-    "17a4f4ef-3749-48f6-aaff-fae83981db2e": "igoverlayview-configuring-custom-animations"
-  },
-  {
-    "17ab709c-015c-4bba-aceb-22655c7e7130": "igchartview-price-channel-overlay"
-  },
-  {
-    "1813ea6b-004a-4e2a-88a2-d6efe42b26d9": "igchartview-absolute-volume-oscillator-indicator"
-  },
-  {
-    "19945f6d-0464-495e-9c1d-915d445ffcdd": "iggridview-row-separators"
-  },
-  {
-    "19afc938-b9b7-4f08-b329-fa5d0b934a5b": "igsidemenuview-configuring-igsidemenuview"
-  },
-  {
-    "1a56aad9-1a79-47f0-a525-b9a384b332c7": "iggridview-attaching-gestures-cells"
-  },
-  {
-    "1f7e55c1-ac38-4aec-ab6b-f64e22a7a6cf": "igpiechart-exploding-slices-igpiechartview"
-  },
-  {
-    "1f8486f3-d8a7-4f72-baca-ffc0129c3bf1": "igchartview-hiding-invalid-data-financial-price-series"
-  },
-  {
-    "1f8f14f0-2614-427f-a290-0333adac2d32": "igbulletgraphview-adding-bullet-graph-view"
-  },
-  {
-    "20b65a47-501f-4c24-9543-9644ba5ae427": "iglineargaugeview-configuring-the-scale"
-  },
-  {
-    "21f756c7-4796-410a-a1e8-0e63e80b23c0": "whats-new-revision-history"
-  },
-  {
-    "2342f559-7285-43ea-a241-48209cd7175e": "igchartview-stacked-100-line-series"
-  },
-  {
-    "238f8f46-98b8-418a-b817-3b195858cdf5": "iglineargaugeview-themes"
-  },
-  {
-    "23e2cf1f-941d-49e6-9962-9ea9be5bd5f8": "igchartview-configuring-numeric-radius-axis"
-  },
-  {
-    "240b9257-75b6-4fac-a566-9be3c08b9fe7": "igchartview-spline-area-series"
-  },
-  {
-    "2491efa1-fb8d-4b06-8cc0-742c0f06ad4a": "igoverlayview-configuring-animations"
-  },
-  {
-    "24c1626b-8631-4fc3-a65d-d7a58e20f405": "iggridview-enabling-configuring-shortcut-bar"
-  },
-  {
-    "2503f2b9-fdc0-43c5-93ef-e17048675bd6": "igfunnelchartview-data-source-helper"
-  },
-  {
-    "261e91c7-945b-4c22-952b-cb278f54f11f": "igchartview-polar-series"
-  },
-  {
-    "26a36d90-f8a4-41d5-bdfa-fa9c95098b3a": "igpiechartview-showing-slices-zero-values-legend"
-  },
-  {
-    "271a5165-a146-45e1-bd4d-c0a6459e7517": "igchartview-mass-index-indicator"
-  },
-  {
-    "27e1c46a-166c-4bfb-b2d1-871564e9fe4d": "igchartview-rate-change-momentum-indicator"
-  },
-  {
-    "28f9b703-0d99-4d85-9cdf-d961ca5050aa": "whats-new-2014-1"
-  },
-  {
-    "2baf3883-95a0-4e83-8f2b-77fd47664516": "igchartview-category-series"
-  },
-  {
-    "2c71be97-bbc0-4e9f-8b67-ef21395f74a0": "igslidetabview-configuring-the-tab-view"
-  },
-  {
-    "2d1472d1-428c-4829-8cb5-8fc6fa580fba": "igchartview-themes"
-  },
-  {
-    "2df82bc2-a3ea-4e1f-86e3-a1fb8420f2d1": "igchartview-radial-series"
-  },
-  {
-    "2e33c623-6a76-4b1b-9a09-aabd7ce3d329": "igchartview-step-line-series"
-  },
-  {
-    "2f734178-f9ed-495f-b79d-970c60336749": "igtreemapview"
-  },
-  {
-    "2fdf2462-fb8d-4350-8c29-9ad289857238": "igchartview-chaikin-volatility-indicator"
-  },
-  {
-    "314ca9c5-c2f8-4386-aa54-7ac855197c69": "iglabel-configuring-iglabel"
-  },
-  {
-    "31592b27-f418-450f-aa16-4b9c2224e003": "igflowlayoutview-data-source"
-  },
-  {
-    "3255bfeb-4ac3-4cf5-9552-e753ca578c1c": "igpiechartview-rotating-the-igpiechartview"
-  },
-  {
-    "332cada3-121f-41bb-98fa-915801920bb9": "igsparklineview-display-types"
-  },
-  {
-    "3455aae5-f1e6-4490-8db7-7b08c199fcf9": "iglineargaugeview-configuring-gauge-interactions"
-  },
-  {
-    "3675e5f8-48aa-44ce-9a21-f6febc9e2050": "igprogressview-configuring-radial-angles"
-  },
-  {
-    "37a1c97a-e124-4b9c-964c-e7aa0be15b60": "iggridview-themes"
-  },
-  {
-    "3a029e4d-5ea0-4169-8a3b-20825f58cd74": "igcalendarview-configuring-appointments"
-  },
-  {
-    "3a0d825f-d62f-4a86-bd86-cd3513e61b72": "igchartview-configuring-axes"
-  },
-  {
-    "3a9bf57d-e593-4422-97bd-1d8f45cc2cc0": "igchartview-market-facilitation-index-indicator"
-  },
-  {
-    "3b30a0ac-fc93-471c-904d-91975216eee8": "igchartview-financial-indicators"
-  },
-  {
-    "3beb6678-bd07-4759-8998-186d2b32f585": "iggridview-data-source-helpers"
-  },
-  {
-    "3e15bd2a-abe4-4e16-a5d1-5dc9c46f62dd": "igsparklineview-data-source-helper"
-  },
-  {
-    "3e3f2436-6699-4a44-ba99-2ea4fdff09f1": "igchartview-configuring-igchartview"
-  },
-  {
-    "3e4ee7a4-69b8-43f4-a24b-fe6f89e2b0b4": "igbarcodeview-configuring-igbarcodeview"
-  },
-  {
-    "3ea45c91-9fd2-4394-9d18-a450def81643": "iglabel"
-  },
-  {
-    "3f8fd56c-3c82-42ff-ba6b-e87d6eafece0": "igchartview-bollinger-band-width-indicator"
-  },
-  {
-    "3ff4923f-d1ed-4d92-9058-445affce5888": "igfunnelchartview-themes"
-  },
-  {
-    "405fcab8-dc61-4bec-9a8f-8178087537a8": "igflowlayoutview-reordering-items"
-  },
-  {
-    "421720e3-f439-416c-bd1c-d75428adedbc": "igcalendarview-themes"
-  },
-  {
-    "445633da-4486-450a-83dc-3e801f399a81": "igprogressview-configuring-igprogressview"
-  },
-  {
-    "466a74e7-657c-4b88-b932-069f6c413bf6": "igpiechartview-configuring-igpiechartview"
-  },
-  {
-    "46f679cb-5fcd-40bf-b16b-aae8fba67ebc": "igchartview-polar-scatter-series"
-  },
-  {
-    "47e22561-8204-4e2e-a111-cfe195e21298": "iggridview-configuring-dynamic-row-height"
-  },
-  {
-    "483eea14-9bd7-457d-99e4-cf3e6388fac2": "iggridview-configuring-ui-column-resizing"
-  },
-  {
-    "4920eceb-52a0-4b47-ace5-a3d334ecded0": "igslidetabview-configuring-the-content-view"
-  },
-  {
-    "4c00eae7-e9d0-4ef1-b92d-d39b832ca577": "igchartview-radial-column-series"
-  },
-  {
-    "4c79ca9d-a72c-4f9b-9f44-e2855e11db27": "igchartview-scatter-line-series"
-  },
-  {
-    "4d3ebeb3-3979-4992-8b70-cd4a4e5d6c31": "iglineargaugeview-configuring-iglineargaugeview"
-  },
-  {
-    "4eba8872-cf2c-4b6c-a0b1-420447fd4ef8": "iglineargaugeview-customizing-scale-labels"
-  },
-  {
-    "4f667f70-6776-42de-a072-2857c55b050b": "igchartview-stacked-100-area-series"
-  },
-  {
-    "51459f4d-45f4-484b-a40d-a1d3e972c3d1": "igslidetabview-configuring-igslidetabview"
-  },
-  {
-    "51fceb0d-6942-4edd-9f6d-beb7efcc385c": "igsparklineview-adding-sparkline-chart-view"
-  },
-  {
-    "531d73fa-906d-4368-9e23-6f76d9153446": "iggridview-configuring-cell-location-viewport"
-  },
-  {
-    "5327032d-4a0b-4003-957b-62bd8ee6d995": "igbarcodeview-configuring-the-barcode-text"
-  },
-  {
-    "53ca744a-79d5-4d76-90fb-1fee7567ca44": "iggridview-adding-the-iggridview-uiview"
-  },
-  {
-    "553ec9da-8978-4a87-ac01-20f4b960b1f9": "igbarcodeview"
-  },
-  {
-    "57df4330-53b2-452b-8f12-96e2f0c110b5": "igchartview-financial-price-series"
-  },
-  {
-    "58fd493d-8a69-4ede-bd91-ee2a467ddcfc": "igchartview-area-series"
-  },
-  {
-    "5aca47e3-3dad-471c-942c-a9f08c9420c7": "igchartview-configuring-category-angle-axis"
-  },
-  {
-    "5b2d7c66-6d7b-4f4b-afd5-f56ce58a54b5": "igcalendarview"
-  },
-  {
-    "5b39291e-c8d7-447c-ae65-b48b00c3d31c": "igchartview-relative-strength-index-indicator"
-  },
-  {
-    "5bb4c303-480d-4656-ac49-ad96794d203c": "igsparklineview-themes"
-  },
-  {
-    "5bdc53f7-2070-479e-b973-1645a463d5ec": "iglabel-adding-iglabel-uiview"
-  },
-  {
-    "5c641b78-d6b6-4b7a-a37e-6eb5b9bc7c25": "igchartview-scatter-series"
-  },
-  {
-    "5d70529c-8306-424d-bdb5-71ee5caa71ec": "iggridview-column-reordering"
-  },
-  {
-    "5db088a1-6a96-400a-a836-a5c96a521a32": "igflowlayoutview-configuring-igflowlayoutview"
-  },
-  {
-    "5dbdc8b5-996e-43ac-9cd9-a32ac0cd36af": "igsparklineview"
-  },
-  {
-    "5e06bb82-dfa4-47c2-91d3-b7b85dd4663b": "whats-new-2015-1"
-  },
-  {
-    "5e8c6b0a-a125-48cf-bf7b-56fd500d63da": "iggridview-inserting-and-deleting-columns"
-  },
-  {
-    "5e98b8cb-8497-42cd-963e-4ac03fffed90": "igchartview-moving-average-convergence-divergence-indicator"
-  },
-  {
-    "5efb3e41-7b7a-4d59-b8a2-e6e0ee1fc099": "igchartview-stochrsi-indicator"
-  },
-  {
-    "5f15d8e0-4414-4593-b7c1-4e0b8a776e62": "igchartview-radial-pie-series"
-  },
-  {
-    "61d311a6-dce7-4a0c-8f75-817210fbd367": "igchartview-stacked-spline-area-series"
-  },
-  {
-    "61ec135d-39ba-4db3-b5a1-d79f95b593e5": "igchartview-adding-the-chart-framework-file"
-  },
-  {
-    "61f583fb-cc34-47f7-90b0-b64b7b1a4504": "igpiechartview"
-  },
-  {
-    "63669e88-1a9b-40ad-a2dd-e7be5dd12275": "igbulletgraphview"
-  },
-  {
-    "644228df-14b5-4fe0-86f0-eb98e860da7e": "igchartview-chaikin-oscillator-indicator"
-  },
-  {
-    "64a5739e-a652-4655-afa3-d7d32a9f2b45": "igchartview-configuring-rounded-corners"
-  },
-  {
-    "64b271af-dad1-42cc-b522-47b3b7bc5381": "ios-introduction"
-  },
-  {
-    "65857f08-d99b-407c-aa93-e423e86691c2": "iggridview-inserting-deleting-cells-rows"
-  },
-  {
-    "65fffab3-4d0e-474c-8a72-82380df5fd7b": "igfunnelchartview-configuring-igfunnelchartview"
-  },
-  {
-    "6a6d79a4-bc58-4da5-b85a-280598ebf52c": "igchartview-stacked-column-series"
-  },
-  {
-    "6ae64a14-0eb9-43f9-ad6d-d5bcb24c2a95": "igtreemapview-layouts"
-  },
-  {
-    "6cdb1af4-ec06-4e97-a1b9-aa5f1127561d": "iglabel-configuring-text-styling-attributes"
-  },
-  {
-    "6d686298-cadc-48d9-a15b-df9d3e879ee3": "igprogressview"
-  },
-  {
-    "6dcf214e-500a-414b-8a46-8cbd110e690f": "igchartview-brushes"
-  },
-  {
-    "6ff7a1c3-f03e-440e-82b8-084a39cf456a": "igbulletgraphview-themes"
-  },
-  {
-    "70a20cc5-3c69-46fa-aad3-5f86fcfd58d1": "igchartview-configuring-smart-axis-label-panel"
-  },
-  {
-    "713d12de-7598-438f-9179-c0a9fc19fd17": "igflowlayoutview-resizing-items"
-  },
-  {
-    "724efda4-9a01-4e89-a551-6448f899ba75": "igpiechartview-configuring-others-pie-slice"
-  },
-  {
-    "73dc4978-17c7-4726-9291-1ad6bbcd2a72": "iggridview-configuring-iggridview"
-  },
-  {
-    "7627b6b2-08cc-45ac-91e1-3a738a4a12ba": "igtreemapview-configuring-color-mapper"
-  },
-  {
-    "77e09883-ed53-4a20-b0ed-c0cc07295497": "iggridview-sorting-columns"
-  },
-  {
-    "79747b57-3294-473f-b621-6565016ab1e0": "-igpiechartview-adding-the-igpiechartview-uiview"
-  },
-  {
-    "7a414e02-2b33-47e2-bf8e-0b3e43da9936": "igcalendarview-navigating-calendar"
-  },
-  {
-    "7a6c2000-a441-47db-8c43-2e81690bc083": "igchartview-step-area-series"
-  },
-  {
-    "7d331bce-e7c3-4a4f-b0d8-8fc2f3f90d01": "igchartview-average-true-range-indicator"
-  },
-  {
-    "7d9f396a-5e26-4116-8d42-09e0241cee7e": "igchartview-stacked-100-spline-series"
-  },
-  {
-    "7e432475-2439-488c-ba41-f4bab17188da": "igchartview-median-price-indicator"
-  },
-  {
-    "7fb2645b-ca84-4db0-9dda-5e54aee6839e": "igchartview-stacked-100-bar-series"
-  },
-  {
-    "80a5c2c4-7fa2-4e5b-a93a-702d6bc48df8": "igbulletgraphview-configuring-ranges"
-  },
-  {
-    "80fb7a33-15f6-41ee-a285-62738fd588ab": "igsparklineview-markers"
-  },
-  {
-    "823e0221-d9a3-4a62-a3c3-661336e193aa": "igfunnelchartview-configuring-slice-selection"
-  },
-  {
-    "826c7554-b464-4199-88fe-8e284b6cb9a5": "igsidemenuview-configuring-side-menu-location"
-  },
-  {
-    "833cb9b3-0235-4366-b286-dea1b1078199": "whats-new-2014-2"
-  },
-  {
-    "84b84a48-3ff7-43e5-9bd6-5228591990c5": "igchartview-weighted-close-indicator"
-  },
-  {
-    "850f1546-e6dc-4f97-80ea-99874f46fe8f": "igchartview-fast-stochastic-oscillator-indicator"
-  },
-  {
-    "85e9f9a2-16a5-40e4-a7ab-734cf50cc813": "igtreemapview-adding-treemap-view"
-  },
-  {
-    "86911bf4-8869-4348-bb2c-0baaeedf26f0": "igchartview-configuring-numeric-angle-axis"
-  },
-  {
-    "86c3e2ca-be2b-47f0-bc15-43e8d2b401a1": "igsparklineview-trend-lines"
-  },
-  {
-    "89599276-3c0e-4b7c-9d17-f1a89e0e91c5": "igcalendarview-configuring-title-bar"
-  },
-  {
-    "8a2ec4d4-ce87-44a0-9bd1-e1030b1cefe5": "igchartview-range-area-series"
-  },
-  {
-    "8a7fa6d4-e630-47c3-a71a-8c22c89158ac": "igchartview-adding-igchartview-uiview"
-  },
-  {
-    "8e8a02b2-1ef3-4437-abcd-4f2806a31aa6": "igbarcodeview-barcode-types"
-  },
-  {
-    "8eaca7e2-f1a5-48f7-b750-625537eedafe": "igbarcodeview-adding-the-barcode-view-to-a-view"
-  },
-  {
-    "8f1a9f19-9f86-4613-bdc4-3c86c34fbbdf": "iggridview-refreshing-data"
-  },
-  {
-    "8f81691b-e1a5-42da-bdc1-b68205213525": "igslidetabview-configuring-tab-padding"
-  },
-  {
-    "90b211ba-2d89-4d03-97aa-518c19ce040c": "igcalendarview-configuring-localization"
-  },
-  {
-    "91227473-9272-4883-832b-7310d66a1c7e": "igchartview-waterfall-series"
-  },
-  {
-    "94858ead-8a75-44ee-82f8-35817c8f94db": "igchartview-typical-price-indicator"
-  },
-  {
-    "94bd5145-d65d-42e6-a92b-6eb57f7ea287": "igchartview-ease-of-movement-indicator"
-  },
-  {
-    "95049cf6-1946-4cc4-b242-37b6a4240b6f": "igchartview-ultimate-oscillator-indicator"
-  },
-  {
-    "9631a767-6301-4950-a279-27eb3f724fe3": "igslidetabview-adding-the-slide-tab-view"
-  },
-  {
-    "96d6421d-41c7-4163-9b28-d7eecbf6cd1a": "igrangeselectorview-styling-range-selector"
-  },
-  {
-    "9b04faf7-0fa3-4776-938c-c6952c2bf007": "iggridview-enabling-configuring-context-menus"
-  },
-  {
-    "9b1d934e-7e2c-44dd-9486-b339762f5ee2": "igchartview-bubble-series"
-  },
-  {
-    "9b6abc2b-77e8-4a09-997e-a4df1b831283": "iggaugeview-configuring-iggaugeview"
-  },
-  {
-    "9bd52194-bef2-4ccd-861e-159f5a3d6c64": "igoverlayview-configuring-igoverlayview"
-  },
-  {
-    "9d808b76-8ae2-4f69-9910-01138dc63a9c": "igfunnelchartview"
-  },
-  {
-    "9db2b441-fa44-4d2a-a8ed-c1c1c347227a": "igchartview-scatter-spline-series"
-  },
-  {
-    "9e0bdf53-4a83-4c00-8cca-4c3d7807e549": "igchartview-stacked-area-series"
-  },
-  {
-    "9e4ee1c4-09ec-4555-bfe9-e487a15c39db": "igchartview-bollinger-band-overlay"
-  },
-  {
-    "9f41bd58-d212-4115-9b60-2f77ea564424": "igbarcodeview-configuring-the-barcode-color"
-  },
-  {
-    "9f9f826b-75ee-4084-af41-c03ad7e7c5db": "whats-new"
-  },
-  {
-    "a17be382-523d-4ec8-a405-62f103536535": "iggridview-enabling-infinite-scrolling"
-  },
-  {
-    "a2152b62-c1f7-453e-8ac9-2edfdc35a2a2": "igchartview-using-asynchronous-category-data-source"
-  },
-  {
-    "a3b58bc5-187c-4658-b7eb-28d08de9b01e": "igchartview-point-series"
-  },
-  {
-    "a3c6e3ad-847f-4017-a3ec-fb2e52b86c61": "igflowlayoutview-layouts"
-  },
-  {
-    "a48d830b-7d22-498b-999a-616a5e476b14": "igchartview-configuring-highlighting-layers"
-  },
-  {
-    "a4ca2c5a-3612-4df6-9001-b6347d2d7282": "igflowlayoutview-inserting-deleting-updating-items"
-  },
-  {
-    "a4d8d98b-a08e-424b-b878-c1645c76df56": "iglineargaugeview-configuring-ranges"
-  },
-  {
-    "a5e50322-219a-4d6e-8cf8-c67657c65392": "igslidetabview"
-  },
-  {
-    "a8e7d47a-96c0-4395-b45f-64ada826c598": "iggridview-configuring-custom-cell"
-  },
-  {
-    "a8e97c31-e31b-44f4-a5a2-4acf25092108": "whats-new-2013-2"
-  },
-  {
-    "a96c26f7-13a9-4c22-82db-5edf82f167bc": "igprogressview-configuring-custom-progress"
-  },
-  {
-    "ab8a0609-17a5-453b-bafd-4a53b8cc3996": "iggridview-data-binding"
-  },
-  {
-    "aba129c9-130a-4c29-95f8-cb6d5916176a": "igchartview-polar-line-series"
-  },
-  {
-    "ad188bbf-73a6-4037-afd5-bf2ab9ca6f24": "iggridview-enabling-configuring-selection"
-  },
-  {
-    "ae0a7f06-51e1-4e73-9f50-70cab38273be": "igslidetabview-dragging-a-tab-item"
-  },
-  {
-    "b11b9a8e-73f5-46a3-b10d-44ebd9e7768c": "iglineargaugeview"
-  },
-  {
-    "b173054f-9f20-4ade-a682-82d78c5bffe6": "iggaugeview-configuring-ranges"
-  },
-  {
-    "b1a94fba-377f-4da3-8c83-a52d95c41758": "igpiechartview-themes"
-  },
-  {
-    "b1f17d4c-339d-434e-a870-f728c4dd4bc1": "iggridview-fixed-columns"
-  },
-  {
-    "b3a8338d-c53f-423c-b475-7669af524c73": "igchartview-stacked-100-column-series"
-  },
-  {
-    "b3ced1b3-a578-4055-9680-9546e82c636f": "igchartview-positive-volume-index-indicator"
-  },
-  {
-    "b3cff76d-edd9-4386-a925-775b1bbff878": "igchartview-williams-percent-range-indicator"
-  },
-  {
-    "b3eb1104-4816-4090-9bc8-e663e029f5d8": "igprogressview-styling-igprogressview"
-  },
-  {
-    "b500b994-1c8e-4320-ad31-1f9fd337ece5": "igflowlayoutview"
-  },
-  {
-    "b520610e-0ac5-4029-9e83-9571ce08b3c3": "igchartview-axis-scales-and-intervals"
-  },
-  {
-    "b555df70-3d1a-47c3-bcdd-ac8e2c4dfe84": "iglabel-configuring-text-variables"
-  },
-  {
-    "b5b2da1a-d078-4d3e-94d4-241f01b83c65": "igchartview-percentage-volume-oscillator-indicator"
-  },
-  {
-    "b6657ceb-e611-4c12-b818-2bc0b1b1f634": "igchartview-spline-series"
-  },
-  {
-    "b67edfaf-6417-4e57-b2bf-b859bf9dd4e7": "igchartview-data-source-helpers"
-  },
-  {
-    "b698743c-4a64-435e-8dbe-b30599fdb616": "igsidemenuview-adding-side-menu-view"
-  },
-  {
-    "b7c8d3cf-3065-4855-b544-511962467921": "iggridview-displaying-sections-section-columns"
-  },
-  {
-    "b878956f-8640-4dcd-a931-a850f93db043": "igchartview-polar-spline-area-series"
-  },
-  {
-    "b9b5b85b-f8ba-4596-80ad-ad1bdc5e8176": "iggaugeview"
-  },
-  {
-    "ba730b72-a725-43c8-a9b3-2b4137d23be5": "igprogressview-progress-types"
-  },
-  {
-    "baeef62a-02d3-4cc7-b191-b3841b36ee55": "igchartview-commodity-channel-index-indicator"
-  },
-  {
-    "bd17f9aa-3a24-468e-a0ae-f178bd870905": "iggaugeview-needles"
-  },
-  {
-    "bd1b95f1-2df5-4d88-8d83-4dceab74b80e": "igchartview-force-index-indicator"
-  },
-  {
-    "bd4aa321-47d3-4cd6-95dd-b66eaf546f1d": "igfunnelchartview-legend"
-  },
-  {
-    "bdcfc52c-7b5f-4d06-9248-aa7759bed9e6": "igchartview-column-series"
-  },
-  {
-    "be0dc65d-7978-4473-b7f1-5194ffd76326": "iggridview-configuring-grid-data-entry"
-  },
-  {
-    "bf485055-9c38-491a-a278-4769ebef0281": "iglabel-adding-the-label-framework-file"
-  },
-  {
-    "c0a2a5ed-50a7-4d97-8675-ea9c1bd3ecec": "igchartview-configuring-initial-animation"
-  },
-  {
-    "c0ac604a-a7e2-4223-8ffc-1d94e291ad35": "iggridview-filtering-attributes"
-  },
-  {
-    "c13b45e9-e51d-4f69-953c-9d9b44d7e92f": "igchartview-line-series"
-  },
-  {
-    "c30fac80-57bc-40e5-a13a-f37a3b420245": "igchartview-legends"
-  },
-  {
-    "c4a53044-b621-49e3-aed9-476bda79f40d": "igchartview-configuring-custom-highlighting"
-  },
-  {
-    "c675b28b-e400-40fa-8767-e32a9a4fea6b": "igchartview-financial-price-series-candlestick"
-  },
-  {
-    "c7e79f09-8b0c-41de-a0a0-e2e3ca924a97": "igchartview-slow-stochastic-oscillator-indicator"
-  },
-  {
-    "c80e6961-26b1-4c21-a175-3a0b52a32ea6": "iglabel-configuring-overflow-indicator"
-  },
-  {
-    "c8ca8c73-39f3-48be-9cef-1af4c9d0abfa": "igrangeselectorview-adding-range-selector-view"
-  },
-  {
-    "c9734f90-918c-492b-b24d-31ee413ee06e": "igpiechartview-selecting-slices-igpiechartview"
-  },
-  {
-    "caf8a4b9-f28d-475d-b7ef-21ff06532e70": "iggridview-data-helpers"
-  },
-  {
-    "cb34dd00-fb9e-4dae-b744-7cde2d314bf7": "igoverlayview-adding-overlay-view"
-  },
-  {
-    "cd055cfe-5e50-49f9-84a0-c74d786bfc76": "igchartview-chart-series"
-  },
-  {
-    "cd0fcb2e-730a-45a9-8295-6c88042016f3": "iglineargaugeview-needles"
-  },
-  {
-    "ce4f27e9-6aaf-4f02-b707-fd8c1e6d440b": "igchartview-axes"
-  },
-  {
-    "ce7a4678-12a5-4648-965a-993e7d8933d9": "igchartview-percentage-price-oscillator-indicator"
-  },
-  {
-    "ced9c9d3-73e0-4141-9c10-953e49bfff56": "igfunnelchartview-adding-funnel-chart-view"
-  },
-  {
-    "cef66b88-037b-494b-916a-a26a6eae3eeb": "igchartview-configuring-category-axis-clustering-mode"
-  },
-  {
-    "cf8104ea-11cb-4b0a-a9f2-ac5488a6f103": "igchartview-axis-crossing"
-  },
-  {
-    "d03ed0a4-c8e3-4086-8ade-fdbd42089792": "iggridview-reordering-cells-rows"
-  },
-  {
-    "d14fafe4-b274-4742-95f1-3765bbdf03cf": "igbulletgraphview-customizing-scale-labels"
-  },
-  {
-    "d1c54b7f-2d45-443a-98f2-6a3894930c28": "iggridview-column-definitions"
-  },
-  {
-    "d22fd8c5-dc74-43aa-929a-7bf912027580": "iggridview-adding-the-ig-framework-file"
-  },
-  {
-    "d2710c6c-a670-48e0-8e91-3b9efa9232b2": "igchartview-value-overlay"
-  },
-  {
-    "d380f3e4-b877-42e2-8278-451777907573": "igchartview-money-flow-index-indicator"
-  },
-  {
-    "d5a7d05e-0a92-460a-bb71-7e16e54777d5": "igchartview-configuring-axis-titles"
-  },
-  {
-    "d5e3d07d-844c-4909-9422-facf716e524e": "iggridview-configuring-swipe-row"
-  },
-  {
-    "d965bfc9-cdd2-4fa3-a713-23893f6ce9ac": "iggridview-enabling-configuring-pull-down-reload"
-  },
-  {
-    "d9fd203e-3197-46ac-b885-f3e94f652319": "igchartview-configuring-single-axis-zoom"
-  },
-  {
-    "dafaef1e-6f51-454c-9f00-a32e556ce009": "igtreemapview-themes"
-  },
-  {
-    "db342e3d-52e4-4fe7-a006-70fb3ca154d9": "igchartview-financial-price-series-ohlc"
-  },
-  {
-    "db6bda7e-1076-4dcd-b9a6-857bbddc59ca": "iggridview-configuring-fixed-rows"
-  },
-  {
-    "dbbe0ab3-2d85-4ff3-990d-ccace61a87d6": "igflowlayoutview-styling-the-igflowlayoutview"
-  },
-  {
-    "dc081776-ff3e-4188-ba45-b7b0272856c8": "igchartview-scatter-series-1"
-  },
-  {
-    "dc4e0996-8de6-4303-b6e1-da92bf7d0a4a": "igchartview-negative-volume-index-indicator"
-  },
-  {
-    "df041f08-aeb0-444c-a1ae-cd27bef78cea": "iggridview"
-  },
-  {
-    "dfb934b2-ed95-49d9-ae77-1eea4bbfdba4": "igchartview-stacked-spline-series"
-  },
-  {
-    "e20f7173-82d1-4c05-b20f-d4c0947dc8f9": "igchartview-accumulation-distribution-indicator"
-  },
-  {
-    "e26f8454-6ac5-4001-9447-1322bf4fce0a": "igoverlayview"
-  },
-  {
-    "e2717a17-bd57-4044-a4de-c780e75a7e6e": "igchartview-stacked-line-series"
-  },
-  {
-    "e2c52009-4c8b-4a17-9ff8-8718b872cc08": "igcalendarview-configuring-custom-appointment-color"
-  },
-  {
-    "e3d57c48-bdea-4155-8b7c-8dbe19bb2a88": "igchartview-trix-indicator"
-  },
-  {
-    "e57a71ac-975c-45ac-a40e-5b8aa8ed2fe3": "igtreemapview-configuring-interactions"
-  },
-  {
-    "e7126edf-c2bc-4d72-9a16-ba008d5217ff": "igchartview-range-column-series"
-  },
-  {
-    "e7512aed-16ca-47a2-b45d-a54d03c59e2a": "igchartview-polar-spline-series"
-  },
-  {
-    "ead46abc-40b8-446a-b7c3-ac9d3031c73b": "igcalendarview-configuring-igcalendarview"
-  },
-  {
-    "eb544eaa-7d3a-41e4-a1d0-e55ad969736e": "igslidetabview-moving-a-tab-item"
-  },
-  {
-    "ecd52219-8444-425c-bb69-8231f024dd48": "igchartview-standard-deviation-indicator"
-  },
-  {
-    "ee07a6ac-e1f2-4be3-a358-6d9f285c3d8f": "igchartview-radial-line-series"
-  },
-  {
-    "ef1c0837-1ce2-4dd2-85f9-8699f05ed6fc": "igflowlayoutview-adding-igflowlayoutview-to-a-view"
-  },
-  {
-    "f05df2b6-0cad-471c-aba1-ef5885d12e0c": "ios-getting-support"
-  },
-  {
-    "f12b17d1-2b21-4195-ab44-4b39deff6084": "igtreemapview-configuring-igtreemapview"
-  },
-  {
-    "f143e803-2284-4260-81e8-66ef3795fceb": "igrangeselectorview"
-  },
-  {
-    "f188f7b7-31e4-4b38-9802-b0f490f728ca": "igchartview-polar-area-series"
-  },
-  {
-    "f2a324b1-dbc3-4f82-b4ff-04caae3bbd18": "iggridview-enabling-single-cell-paging"
-  },
-  {
-    "f2a9850c-db54-4e23-aca7-2a605a276097": "iglineargaugeview-adding-linear-gauge-view"
-  },
-  {
-    "f481fcef-4074-4bb1-a87e-28c930c5eb4e": "igcalendarview-adding-calendar-view"
-  },
-  {
-    "f49f5e6b-f47b-4407-b9e8-d3098a99e6d2": "iggridview-filtering"
-  },
-  {
-    "f525e575-64d4-4af8-80af-c442455618b1": "igpiechartview-legends"
-  },
-  {
-    "f7d56a38-3fd3-4086-91e7-ec03d962b748": "igslidetabview-pulsing-a-tab-item"
-  },
-  {
-    "f88551dd-4b08-458d-99b2-4fbb08b82451": "igchartview-detrended-price-oscillator-indicator"
-  },
-  {
-    "f8a08457-5c55-4b67-94d3-0d168c087873": "igsidemenuview"
-  },
-  {
-    "f9d47c27-ee9d-4c37-96bd-a47ca46edbc2": "iggridview-configuring-expandable-sections"
-  },
-  {
-    "f9f318ea-ba13-4f77-9774-5c52ae5ebb25": "igchartview-on-balance-volume-indicator"
-  },
-  {
-    "fa7cd5a3-087a-4953-8893-34f4a8dc689c": "whats-new-2015-2"
-  },
-  {
-    "fae4c2ee-6a4f-4b64-b53b-4f10f7a94790": "igchartview-motion-framework"
-  },
-  {
-    "fb6d8615-ba89-4251-861b-cf049a493cc9": "igbulletgraphview-configuring-the-scale"
-  },
-  {
-    "feee114b-ea21-408d-af45-6b73814c6d6b": "igpiechartview-styling-igpiechartview"
-  },
-  {
+{
+    "00c9c994-3b28-4b7e-82ff-4ff590b33e93": "igbulletgraphview-configuring-igbulletgraphview",
+    "00d257cd-53b5-4c69-bee0-049aed71bbc4": "igchartview-radial-area-series",
+    "02db5d99-8bc4-4e2d-b9fd-c9781d3ecbd2": "iggridview-configuring-loading-more-rows",
+    "02f7aa69-1727-4983-a174-6868815a0786": "igchartview-stacked-100-spline-area-series",
+    "032841ae-0358-42b7-accb-edc3be645852": "igsidemenuview-showing-hiding-side-menu",
+    "04b250d2-1ecb-4d01-ad97-ad51e41f94af": "iggaugeview-themes",
+    "04c7ce4f-7def-42ce-aa59-2518c7275b14": "known-issues-breaking-changes",
+    "06f29b1a-776b-4139-8366-62dc224584d8": "igpiechartview-igpiechart-data-source-helper",
+    "07fdd297-2336-4f2b-b941-343f5ae8ea76": "igchartview-stacked-bar-series",
+    "08d3b275-279e-4c3c-9446-a94281dbaf8d": "igchartview-using-custom-markers",
+    "0a54ed35-cb30-46a8-97fb-91ba9689d20b": "igtreemapview-data-source-helper",
+    "0c0fbef7-d40a-4319-9313-a490c4f21135": "whats-new-2013-1",
+    "0cc561d8-b686-4742-90ac-11fcac6d9098": "iggaugeview-configuring-gauge-interactions",
+    "0f8a3a49-e5c0-4e81-98f4-b5953c6d913e": "igfunnelchartview-enabling-weighted-slices",
+    "0fa4452e-40a2-4403-837f-cd0a2b8de36d": "igchartview-full-stochastic-oscillator-indicator",
+    "10a290bd-efc5-4802-9a77-b2a58dc51137": "igchartview",
+    "1239af13-6bbe-4d72-91dd-5ad02350b9aa": "igchartview-bar-series",
+    "12904b2f-7e3d-46d6-9797-3b580deab0e0": "igchartview-markers",
+    "12f46a3f-669f-44c9-b2dd-d0d81df180d6": "iggaugeview-adding-iggaugeview-uiview",
+    "14b26ca3-0857-4d6e-8403-ec3bb7ae1007": "igtreemapview-configuring-rendering-mode",
+    "16f823bb-e929-439a-9f86-61ff0524ad18": "igprogressview-adding-progress-view",
+    "1785f974-b90b-4596-94ec-1ae8eeaf5390": "igslidetabview-configuring-tab-locations",
+    "17a4f4ef-3749-48f6-aaff-fae83981db2e": "igoverlayview-configuring-custom-animations",
+    "17ab709c-015c-4bba-aceb-22655c7e7130": "igchartview-price-channel-overlay",
+    "1813ea6b-004a-4e2a-88a2-d6efe42b26d9": "igchartview-absolute-volume-oscillator-indicator",
+    "19945f6d-0464-495e-9c1d-915d445ffcdd": "iggridview-row-separators",
+    "19afc938-b9b7-4f08-b329-fa5d0b934a5b": "igsidemenuview-configuring-igsidemenuview",
+    "1a56aad9-1a79-47f0-a525-b9a384b332c7": "iggridview-attaching-gestures-cells",
+    "1f7e55c1-ac38-4aec-ab6b-f64e22a7a6cf": "igpiechart-exploding-slices-igpiechartview",
+    "1f8486f3-d8a7-4f72-baca-ffc0129c3bf1": "igchartview-hiding-invalid-data-financial-price-series",
+    "1f8f14f0-2614-427f-a290-0333adac2d32": "igbulletgraphview-adding-bullet-graph-view",
+    "20b65a47-501f-4c24-9543-9644ba5ae427": "iglineargaugeview-configuring-the-scale",
+    "21f756c7-4796-410a-a1e8-0e63e80b23c0": "whats-new-revision-history",
+    "2342f559-7285-43ea-a241-48209cd7175e": "igchartview-stacked-100-line-series",
+    "238f8f46-98b8-418a-b817-3b195858cdf5": "iglineargaugeview-themes",
+    "23e2cf1f-941d-49e6-9962-9ea9be5bd5f8": "igchartview-configuring-numeric-radius-axis",
+    "240b9257-75b6-4fac-a566-9be3c08b9fe7": "igchartview-spline-area-series",
+    "2491efa1-fb8d-4b06-8cc0-742c0f06ad4a": "igoverlayview-configuring-animations",
+    "24c1626b-8631-4fc3-a65d-d7a58e20f405": "iggridview-enabling-configuring-shortcut-bar",
+    "2503f2b9-fdc0-43c5-93ef-e17048675bd6": "igfunnelchartview-data-source-helper",
+    "261e91c7-945b-4c22-952b-cb278f54f11f": "igchartview-polar-series",
+    "26a36d90-f8a4-41d5-bdfa-fa9c95098b3a": "igpiechartview-showing-slices-zero-values-legend",
+    "271a5165-a146-45e1-bd4d-c0a6459e7517": "igchartview-mass-index-indicator",
+    "27e1c46a-166c-4bfb-b2d1-871564e9fe4d": "igchartview-rate-change-momentum-indicator",
+    "28f9b703-0d99-4d85-9cdf-d961ca5050aa": "whats-new-2014-1",
+    "2baf3883-95a0-4e83-8f2b-77fd47664516": "igchartview-category-series",
+    "2c71be97-bbc0-4e9f-8b67-ef21395f74a0": "igslidetabview-configuring-the-tab-view",
+    "2d1472d1-428c-4829-8cb5-8fc6fa580fba": "igchartview-themes",
+    "2df82bc2-a3ea-4e1f-86e3-a1fb8420f2d1": "igchartview-radial-series",
+    "2e33c623-6a76-4b1b-9a09-aabd7ce3d329": "igchartview-step-line-series",
+    "2f734178-f9ed-495f-b79d-970c60336749": "igtreemapview",
+    "2fdf2462-fb8d-4350-8c29-9ad289857238": "igchartview-chaikin-volatility-indicator",
+    "314ca9c5-c2f8-4386-aa54-7ac855197c69": "iglabel-configuring-iglabel",
+    "31592b27-f418-450f-aa16-4b9c2224e003": "igflowlayoutview-data-source",
+    "3255bfeb-4ac3-4cf5-9552-e753ca578c1c": "igpiechartview-rotating-the-igpiechartview",
+    "332cada3-121f-41bb-98fa-915801920bb9": "igsparklineview-display-types",
+    "3455aae5-f1e6-4490-8db7-7b08c199fcf9": "iglineargaugeview-configuring-gauge-interactions",
+    "3675e5f8-48aa-44ce-9a21-f6febc9e2050": "igprogressview-configuring-radial-angles",
+    "37a1c97a-e124-4b9c-964c-e7aa0be15b60": "iggridview-themes",
+    "3a029e4d-5ea0-4169-8a3b-20825f58cd74": "igcalendarview-configuring-appointments",
+    "3a0d825f-d62f-4a86-bd86-cd3513e61b72": "igchartview-configuring-axes",
+    "3a9bf57d-e593-4422-97bd-1d8f45cc2cc0": "igchartview-market-facilitation-index-indicator",
+    "3b30a0ac-fc93-471c-904d-91975216eee8": "igchartview-financial-indicators",
+    "3beb6678-bd07-4759-8998-186d2b32f585": "iggridview-data-source-helpers",
+    "3e15bd2a-abe4-4e16-a5d1-5dc9c46f62dd": "igsparklineview-data-source-helper",
+    "3e3f2436-6699-4a44-ba99-2ea4fdff09f1": "igchartview-configuring-igchartview",
+    "3e4ee7a4-69b8-43f4-a24b-fe6f89e2b0b4": "igbarcodeview-configuring-igbarcodeview",
+    "3ea45c91-9fd2-4394-9d18-a450def81643": "iglabel",
+    "3f8fd56c-3c82-42ff-ba6b-e87d6eafece0": "igchartview-bollinger-band-width-indicator",
+    "3ff4923f-d1ed-4d92-9058-445affce5888": "igfunnelchartview-themes",
+    "405fcab8-dc61-4bec-9a8f-8178087537a8": "igflowlayoutview-reordering-items",
+    "421720e3-f439-416c-bd1c-d75428adedbc": "igcalendarview-themes",
+    "445633da-4486-450a-83dc-3e801f399a81": "igprogressview-configuring-igprogressview",
+    "466a74e7-657c-4b88-b932-069f6c413bf6": "igpiechartview-configuring-igpiechartview",
+    "46f679cb-5fcd-40bf-b16b-aae8fba67ebc": "igchartview-polar-scatter-series",
+    "47e22561-8204-4e2e-a111-cfe195e21298": "iggridview-configuring-dynamic-row-height",
+    "483eea14-9bd7-457d-99e4-cf3e6388fac2": "iggridview-configuring-ui-column-resizing",
+    "4920eceb-52a0-4b47-ace5-a3d334ecded0": "igslidetabview-configuring-the-content-view",
+    "4c00eae7-e9d0-4ef1-b92d-d39b832ca577": "igchartview-radial-column-series",
+    "4c79ca9d-a72c-4f9b-9f44-e2855e11db27": "igchartview-scatter-line-series",
+    "4d3ebeb3-3979-4992-8b70-cd4a4e5d6c31": "iglineargaugeview-configuring-iglineargaugeview",
+    "4eba8872-cf2c-4b6c-a0b1-420447fd4ef8": "iglineargaugeview-customizing-scale-labels",
+    "4f667f70-6776-42de-a072-2857c55b050b": "igchartview-stacked-100-area-series",
+    "51459f4d-45f4-484b-a40d-a1d3e972c3d1": "igslidetabview-configuring-igslidetabview",
+    "51fceb0d-6942-4edd-9f6d-beb7efcc385c": "igsparklineview-adding-sparkline-chart-view",
+    "531d73fa-906d-4368-9e23-6f76d9153446": "iggridview-configuring-cell-location-viewport",
+    "5327032d-4a0b-4003-957b-62bd8ee6d995": "igbarcodeview-configuring-the-barcode-text",
+    "53ca744a-79d5-4d76-90fb-1fee7567ca44": "iggridview-adding-the-iggridview-uiview",
+    "553ec9da-8978-4a87-ac01-20f4b960b1f9": "igbarcodeview",
+    "57df4330-53b2-452b-8f12-96e2f0c110b5": "igchartview-financial-price-series",
+    "58fd493d-8a69-4ede-bd91-ee2a467ddcfc": "igchartview-area-series",
+    "5aca47e3-3dad-471c-942c-a9f08c9420c7": "igchartview-configuring-category-angle-axis",
+    "5b2d7c66-6d7b-4f4b-afd5-f56ce58a54b5": "igcalendarview",
+    "5b39291e-c8d7-447c-ae65-b48b00c3d31c": "igchartview-relative-strength-index-indicator",
+    "5bb4c303-480d-4656-ac49-ad96794d203c": "igsparklineview-themes",
+    "5bdc53f7-2070-479e-b973-1645a463d5ec": "iglabel-adding-iglabel-uiview",
+    "5c641b78-d6b6-4b7a-a37e-6eb5b9bc7c25": "igchartview-scatter-series",
+    "5d70529c-8306-424d-bdb5-71ee5caa71ec": "iggridview-column-reordering",
+    "5db088a1-6a96-400a-a836-a5c96a521a32": "igflowlayoutview-configuring-igflowlayoutview",
+    "5dbdc8b5-996e-43ac-9cd9-a32ac0cd36af": "igsparklineview",
+    "5e06bb82-dfa4-47c2-91d3-b7b85dd4663b": "whats-new-2015-1",
+    "5e8c6b0a-a125-48cf-bf7b-56fd500d63da": "iggridview-inserting-and-deleting-columns",
+    "5e98b8cb-8497-42cd-963e-4ac03fffed90": "igchartview-moving-average-convergence-divergence-indicator",
+    "5efb3e41-7b7a-4d59-b8a2-e6e0ee1fc099": "igchartview-stochrsi-indicator",
+    "5f15d8e0-4414-4593-b7c1-4e0b8a776e62": "igchartview-radial-pie-series",
+    "61d311a6-dce7-4a0c-8f75-817210fbd367": "igchartview-stacked-spline-area-series",
+    "61ec135d-39ba-4db3-b5a1-d79f95b593e5": "igchartview-adding-the-chart-framework-file",
+    "61f583fb-cc34-47f7-90b0-b64b7b1a4504": "igpiechartview",
+    "63669e88-1a9b-40ad-a2dd-e7be5dd12275": "igbulletgraphview",
+    "644228df-14b5-4fe0-86f0-eb98e860da7e": "igchartview-chaikin-oscillator-indicator",
+    "64a5739e-a652-4655-afa3-d7d32a9f2b45": "igchartview-configuring-rounded-corners",
+    "64b271af-dad1-42cc-b522-47b3b7bc5381": "ios-introduction",
+    "65857f08-d99b-407c-aa93-e423e86691c2": "iggridview-inserting-deleting-cells-rows",
+    "65fffab3-4d0e-474c-8a72-82380df5fd7b": "igfunnelchartview-configuring-igfunnelchartview",
+    "6a6d79a4-bc58-4da5-b85a-280598ebf52c": "igchartview-stacked-column-series",
+    "6ae64a14-0eb9-43f9-ad6d-d5bcb24c2a95": "igtreemapview-layouts",
+    "6cdb1af4-ec06-4e97-a1b9-aa5f1127561d": "iglabel-configuring-text-styling-attributes",
+    "6d686298-cadc-48d9-a15b-df9d3e879ee3": "igprogressview",
+    "6dcf214e-500a-414b-8a46-8cbd110e690f": "igchartview-brushes",
+    "6ff7a1c3-f03e-440e-82b8-084a39cf456a": "igbulletgraphview-themes",
+    "70a20cc5-3c69-46fa-aad3-5f86fcfd58d1": "igchartview-configuring-smart-axis-label-panel",
+    "713d12de-7598-438f-9179-c0a9fc19fd17": "igflowlayoutview-resizing-items",
+    "724efda4-9a01-4e89-a551-6448f899ba75": "igpiechartview-configuring-others-pie-slice",
+    "73dc4978-17c7-4726-9291-1ad6bbcd2a72": "iggridview-configuring-iggridview",
+    "7627b6b2-08cc-45ac-91e1-3a738a4a12ba": "igtreemapview-configuring-color-mapper",
+    "77e09883-ed53-4a20-b0ed-c0cc07295497": "iggridview-sorting-columns",
+    "79747b57-3294-473f-b621-6565016ab1e0": "-igpiechartview-adding-the-igpiechartview-uiview",
+    "7a414e02-2b33-47e2-bf8e-0b3e43da9936": "igcalendarview-navigating-calendar",
+    "7a6c2000-a441-47db-8c43-2e81690bc083": "igchartview-step-area-series",
+    "7d331bce-e7c3-4a4f-b0d8-8fc2f3f90d01": "igchartview-average-true-range-indicator",
+    "7d9f396a-5e26-4116-8d42-09e0241cee7e": "igchartview-stacked-100-spline-series",
+    "7e432475-2439-488c-ba41-f4bab17188da": "igchartview-median-price-indicator",
+    "7fb2645b-ca84-4db0-9dda-5e54aee6839e": "igchartview-stacked-100-bar-series",
+    "80a5c2c4-7fa2-4e5b-a93a-702d6bc48df8": "igbulletgraphview-configuring-ranges",
+    "80fb7a33-15f6-41ee-a285-62738fd588ab": "igsparklineview-markers",
+    "823e0221-d9a3-4a62-a3c3-661336e193aa": "igfunnelchartview-configuring-slice-selection",
+    "826c7554-b464-4199-88fe-8e284b6cb9a5": "igsidemenuview-configuring-side-menu-location",
+    "833cb9b3-0235-4366-b286-dea1b1078199": "whats-new-2014-2",
+    "84b84a48-3ff7-43e5-9bd6-5228591990c5": "igchartview-weighted-close-indicator",
+    "850f1546-e6dc-4f97-80ea-99874f46fe8f": "igchartview-fast-stochastic-oscillator-indicator",
+    "85e9f9a2-16a5-40e4-a7ab-734cf50cc813": "igtreemapview-adding-treemap-view",
+    "86911bf4-8869-4348-bb2c-0baaeedf26f0": "igchartview-configuring-numeric-angle-axis",
+    "86c3e2ca-be2b-47f0-bc15-43e8d2b401a1": "igsparklineview-trend-lines",
+    "89599276-3c0e-4b7c-9d17-f1a89e0e91c5": "igcalendarview-configuring-title-bar",
+    "8a2ec4d4-ce87-44a0-9bd1-e1030b1cefe5": "igchartview-range-area-series",
+    "8a7fa6d4-e630-47c3-a71a-8c22c89158ac": "igchartview-adding-igchartview-uiview",
+    "8e8a02b2-1ef3-4437-abcd-4f2806a31aa6": "igbarcodeview-barcode-types",
+    "8eaca7e2-f1a5-48f7-b750-625537eedafe": "igbarcodeview-adding-the-barcode-view-to-a-view",
+    "8f1a9f19-9f86-4613-bdc4-3c86c34fbbdf": "iggridview-refreshing-data",
+    "8f81691b-e1a5-42da-bdc1-b68205213525": "igslidetabview-configuring-tab-padding",
+    "90b211ba-2d89-4d03-97aa-518c19ce040c": "igcalendarview-configuring-localization",
+    "91227473-9272-4883-832b-7310d66a1c7e": "igchartview-waterfall-series",
+    "94858ead-8a75-44ee-82f8-35817c8f94db": "igchartview-typical-price-indicator",
+    "94bd5145-d65d-42e6-a92b-6eb57f7ea287": "igchartview-ease-of-movement-indicator",
+    "95049cf6-1946-4cc4-b242-37b6a4240b6f": "igchartview-ultimate-oscillator-indicator",
+    "9631a767-6301-4950-a279-27eb3f724fe3": "igslidetabview-adding-the-slide-tab-view",
+    "96d6421d-41c7-4163-9b28-d7eecbf6cd1a": "igrangeselectorview-styling-range-selector",
+    "9b04faf7-0fa3-4776-938c-c6952c2bf007": "iggridview-enabling-configuring-context-menus",
+    "9b1d934e-7e2c-44dd-9486-b339762f5ee2": "igchartview-bubble-series",
+    "9b6abc2b-77e8-4a09-997e-a4df1b831283": "iggaugeview-configuring-iggaugeview",
+    "9bd52194-bef2-4ccd-861e-159f5a3d6c64": "igoverlayview-configuring-igoverlayview",
+    "9d808b76-8ae2-4f69-9910-01138dc63a9c": "igfunnelchartview",
+    "9db2b441-fa44-4d2a-a8ed-c1c1c347227a": "igchartview-scatter-spline-series",
+    "9e0bdf53-4a83-4c00-8cca-4c3d7807e549": "igchartview-stacked-area-series",
+    "9e4ee1c4-09ec-4555-bfe9-e487a15c39db": "igchartview-bollinger-band-overlay",
+    "9f41bd58-d212-4115-9b60-2f77ea564424": "igbarcodeview-configuring-the-barcode-color",
+    "9f9f826b-75ee-4084-af41-c03ad7e7c5db": "whats-new",
+    "a17be382-523d-4ec8-a405-62f103536535": "iggridview-enabling-infinite-scrolling",
+    "a2152b62-c1f7-453e-8ac9-2edfdc35a2a2": "igchartview-using-asynchronous-category-data-source",
+    "a3b58bc5-187c-4658-b7eb-28d08de9b01e": "igchartview-point-series",
+    "a3c6e3ad-847f-4017-a3ec-fb2e52b86c61": "igflowlayoutview-layouts",
+    "a48d830b-7d22-498b-999a-616a5e476b14": "igchartview-configuring-highlighting-layers",
+    "a4ca2c5a-3612-4df6-9001-b6347d2d7282": "igflowlayoutview-inserting-deleting-updating-items",
+    "a4d8d98b-a08e-424b-b878-c1645c76df56": "iglineargaugeview-configuring-ranges",
+    "a5e50322-219a-4d6e-8cf8-c67657c65392": "igslidetabview",
+    "a8e7d47a-96c0-4395-b45f-64ada826c598": "iggridview-configuring-custom-cell",
+    "a8e97c31-e31b-44f4-a5a2-4acf25092108": "whats-new-2013-2",
+    "a96c26f7-13a9-4c22-82db-5edf82f167bc": "igprogressview-configuring-custom-progress",
+    "ab8a0609-17a5-453b-bafd-4a53b8cc3996": "iggridview-data-binding",
+    "aba129c9-130a-4c29-95f8-cb6d5916176a": "igchartview-polar-line-series",
+    "ad188bbf-73a6-4037-afd5-bf2ab9ca6f24": "iggridview-enabling-configuring-selection",
+    "ae0a7f06-51e1-4e73-9f50-70cab38273be": "igslidetabview-dragging-a-tab-item",
+    "b11b9a8e-73f5-46a3-b10d-44ebd9e7768c": "iglineargaugeview",
+    "b173054f-9f20-4ade-a682-82d78c5bffe6": "iggaugeview-configuring-ranges",
+    "b1a94fba-377f-4da3-8c83-a52d95c41758": "igpiechartview-themes",
+    "b1f17d4c-339d-434e-a870-f728c4dd4bc1": "iggridview-fixed-columns",
+    "b3a8338d-c53f-423c-b475-7669af524c73": "igchartview-stacked-100-column-series",
+    "b3ced1b3-a578-4055-9680-9546e82c636f": "igchartview-positive-volume-index-indicator",
+    "b3cff76d-edd9-4386-a925-775b1bbff878": "igchartview-williams-percent-range-indicator",
+    "b3eb1104-4816-4090-9bc8-e663e029f5d8": "igprogressview-styling-igprogressview",
+    "b500b994-1c8e-4320-ad31-1f9fd337ece5": "igflowlayoutview",
+    "b520610e-0ac5-4029-9e83-9571ce08b3c3": "igchartview-axis-scales-and-intervals",
+    "b555df70-3d1a-47c3-bcdd-ac8e2c4dfe84": "iglabel-configuring-text-variables",
+    "b5b2da1a-d078-4d3e-94d4-241f01b83c65": "igchartview-percentage-volume-oscillator-indicator",
+    "b6657ceb-e611-4c12-b818-2bc0b1b1f634": "igchartview-spline-series",
+    "b67edfaf-6417-4e57-b2bf-b859bf9dd4e7": "igchartview-data-source-helpers",
+    "b698743c-4a64-435e-8dbe-b30599fdb616": "igsidemenuview-adding-side-menu-view",
+    "b7c8d3cf-3065-4855-b544-511962467921": "iggridview-displaying-sections-section-columns",
+    "b878956f-8640-4dcd-a931-a850f93db043": "igchartview-polar-spline-area-series",
+    "b9b5b85b-f8ba-4596-80ad-ad1bdc5e8176": "iggaugeview",
+    "ba730b72-a725-43c8-a9b3-2b4137d23be5": "igprogressview-progress-types",
+    "baeef62a-02d3-4cc7-b191-b3841b36ee55": "igchartview-commodity-channel-index-indicator",
+    "bd17f9aa-3a24-468e-a0ae-f178bd870905": "iggaugeview-needles",
+    "bd1b95f1-2df5-4d88-8d83-4dceab74b80e": "igchartview-force-index-indicator",
+    "bd4aa321-47d3-4cd6-95dd-b66eaf546f1d": "igfunnelchartview-legend",
+    "bdcfc52c-7b5f-4d06-9248-aa7759bed9e6": "igchartview-column-series",
+    "be0dc65d-7978-4473-b7f1-5194ffd76326": "iggridview-configuring-grid-data-entry",
+    "bf485055-9c38-491a-a278-4769ebef0281": "iglabel-adding-the-label-framework-file",
+    "c0a2a5ed-50a7-4d97-8675-ea9c1bd3ecec": "igchartview-configuring-initial-animation",
+    "c0ac604a-a7e2-4223-8ffc-1d94e291ad35": "iggridview-filtering-attributes",
+    "c13b45e9-e51d-4f69-953c-9d9b44d7e92f": "igchartview-line-series",
+    "c30fac80-57bc-40e5-a13a-f37a3b420245": "igchartview-legends",
+    "c4a53044-b621-49e3-aed9-476bda79f40d": "igchartview-configuring-custom-highlighting",
+    "c675b28b-e400-40fa-8767-e32a9a4fea6b": "igchartview-financial-price-series-candlestick",
+    "c7e79f09-8b0c-41de-a0a0-e2e3ca924a97": "igchartview-slow-stochastic-oscillator-indicator",
+    "c80e6961-26b1-4c21-a175-3a0b52a32ea6": "iglabel-configuring-overflow-indicator",
+    "c8ca8c73-39f3-48be-9cef-1af4c9d0abfa": "igrangeselectorview-adding-range-selector-view",
+    "c9734f90-918c-492b-b24d-31ee413ee06e": "igpiechartview-selecting-slices-igpiechartview",
+    "caf8a4b9-f28d-475d-b7ef-21ff06532e70": "iggridview-data-helpers",
+    "cb34dd00-fb9e-4dae-b744-7cde2d314bf7": "igoverlayview-adding-overlay-view",
+    "cd055cfe-5e50-49f9-84a0-c74d786bfc76": "igchartview-chart-series",
+    "cd0fcb2e-730a-45a9-8295-6c88042016f3": "iglineargaugeview-needles",
+    "ce4f27e9-6aaf-4f02-b707-fd8c1e6d440b": "igchartview-axes",
+    "ce7a4678-12a5-4648-965a-993e7d8933d9": "igchartview-percentage-price-oscillator-indicator",
+    "ced9c9d3-73e0-4141-9c10-953e49bfff56": "igfunnelchartview-adding-funnel-chart-view",
+    "cef66b88-037b-494b-916a-a26a6eae3eeb": "igchartview-configuring-category-axis-clustering-mode",
+    "cf8104ea-11cb-4b0a-a9f2-ac5488a6f103": "igchartview-axis-crossing",
+    "d03ed0a4-c8e3-4086-8ade-fdbd42089792": "iggridview-reordering-cells-rows",
+    "d14fafe4-b274-4742-95f1-3765bbdf03cf": "igbulletgraphview-customizing-scale-labels",
+    "d1c54b7f-2d45-443a-98f2-6a3894930c28": "iggridview-column-definitions",
+    "d22fd8c5-dc74-43aa-929a-7bf912027580": "iggridview-adding-the-ig-framework-file",
+    "d2710c6c-a670-48e0-8e91-3b9efa9232b2": "igchartview-value-overlay",
+    "d380f3e4-b877-42e2-8278-451777907573": "igchartview-money-flow-index-indicator",
+    "d5a7d05e-0a92-460a-bb71-7e16e54777d5": "igchartview-configuring-axis-titles",
+    "d5e3d07d-844c-4909-9422-facf716e524e": "iggridview-configuring-swipe-row",
+    "d965bfc9-cdd2-4fa3-a713-23893f6ce9ac": "iggridview-enabling-configuring-pull-down-reload",
+    "d9fd203e-3197-46ac-b885-f3e94f652319": "igchartview-configuring-single-axis-zoom",
+    "dafaef1e-6f51-454c-9f00-a32e556ce009": "igtreemapview-themes",
+    "db342e3d-52e4-4fe7-a006-70fb3ca154d9": "igchartview-financial-price-series-ohlc",
+    "db6bda7e-1076-4dcd-b9a6-857bbddc59ca": "iggridview-configuring-fixed-rows",
+    "dbbe0ab3-2d85-4ff3-990d-ccace61a87d6": "igflowlayoutview-styling-the-igflowlayoutview",
+    "dc081776-ff3e-4188-ba45-b7b0272856c8": "igchartview-scatter-series-1",
+    "dc4e0996-8de6-4303-b6e1-da92bf7d0a4a": "igchartview-negative-volume-index-indicator",
+    "df041f08-aeb0-444c-a1ae-cd27bef78cea": "iggridview",
+    "dfb934b2-ed95-49d9-ae77-1eea4bbfdba4": "igchartview-stacked-spline-series",
+    "e20f7173-82d1-4c05-b20f-d4c0947dc8f9": "igchartview-accumulation-distribution-indicator",
+    "e26f8454-6ac5-4001-9447-1322bf4fce0a": "igoverlayview",
+    "e2717a17-bd57-4044-a4de-c780e75a7e6e": "igchartview-stacked-line-series",
+    "e2c52009-4c8b-4a17-9ff8-8718b872cc08": "igcalendarview-configuring-custom-appointment-color",
+    "e3d57c48-bdea-4155-8b7c-8dbe19bb2a88": "igchartview-trix-indicator",
+    "e57a71ac-975c-45ac-a40e-5b8aa8ed2fe3": "igtreemapview-configuring-interactions",
+    "e7126edf-c2bc-4d72-9a16-ba008d5217ff": "igchartview-range-column-series",
+    "e7512aed-16ca-47a2-b45d-a54d03c59e2a": "igchartview-polar-spline-series",
+    "ead46abc-40b8-446a-b7c3-ac9d3031c73b": "igcalendarview-configuring-igcalendarview",
+    "eb544eaa-7d3a-41e4-a1d0-e55ad969736e": "igslidetabview-moving-a-tab-item",
+    "ecd52219-8444-425c-bb69-8231f024dd48": "igchartview-standard-deviation-indicator",
+    "ee07a6ac-e1f2-4be3-a358-6d9f285c3d8f": "igchartview-radial-line-series",
+    "ef1c0837-1ce2-4dd2-85f9-8699f05ed6fc": "igflowlayoutview-adding-igflowlayoutview-to-a-view",
+    "f05df2b6-0cad-471c-aba1-ef5885d12e0c": "ios-getting-support",
+    "f12b17d1-2b21-4195-ab44-4b39deff6084": "igtreemapview-configuring-igtreemapview",
+    "f143e803-2284-4260-81e8-66ef3795fceb": "igrangeselectorview",
+    "f188f7b7-31e4-4b38-9802-b0f490f728ca": "igchartview-polar-area-series",
+    "f2a324b1-dbc3-4f82-b4ff-04caae3bbd18": "iggridview-enabling-single-cell-paging",
+    "f2a9850c-db54-4e23-aca7-2a605a276097": "iglineargaugeview-adding-linear-gauge-view",
+    "f481fcef-4074-4bb1-a87e-28c930c5eb4e": "igcalendarview-adding-calendar-view",
+    "f49f5e6b-f47b-4407-b9e8-d3098a99e6d2": "iggridview-filtering",
+    "f525e575-64d4-4af8-80af-c442455618b1": "igpiechartview-legends",
+    "f7d56a38-3fd3-4086-91e7-ec03d962b748": "igslidetabview-pulsing-a-tab-item",
+    "f88551dd-4b08-458d-99b2-4fbb08b82451": "igchartview-detrended-price-oscillator-indicator",
+    "f8a08457-5c55-4b67-94d3-0d168c087873": "igsidemenuview",
+    "f9d47c27-ee9d-4c37-96bd-a47ca46edbc2": "iggridview-configuring-expandable-sections",
+    "f9f318ea-ba13-4f77-9774-5c52ae5ebb25": "igchartview-on-balance-volume-indicator",
+    "fa7cd5a3-087a-4953-8893-34f4a8dc689c": "whats-new-2015-2",
+    "fae4c2ee-6a4f-4b64-b53b-4f10f7a94790": "igchartview-motion-framework",
+    "fb6d8615-ba89-4251-861b-cf049a493cc9": "igbulletgraphview-configuring-the-scale",
+    "feee114b-ea21-408d-af45-6b73814c6d6b": "igpiechartview-styling-igpiechartview",
     "ff1f10f3-4592-464f-8b0e-9bee4d9c49c2": "igcalendarview-data-source-helper"
-  }
-]
+}
