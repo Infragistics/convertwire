@@ -17,12 +17,12 @@
 		{
 			name: 'build-flag:winforms',
 			pattern: /A33F8D9D-1A93-4A02-85E3-FC849DE1B8EA/g,
-			replacement: 'winforms'
+			replacement: 'win-forms'
 		},
 		{
 			name: 'build-flag:winrt',
 			pattern: /34ADE70F-C190-412D-A2CE-25D1E1AE0FF8/g,
-			replacement: 'winrt'
+			replacement: 'win-rt'
 		},
 		{
 			name: 'build-flag:wpf',
@@ -45,14 +45,41 @@
 			replacement: 'sl'
 		},
 		{
-			name: 'build-flag:',
+			name: 'build-flag:winphone',
 			pattern: /27968E2C-EB4E-49F9-9A03-2FF58C6428F6/g,
-			replacement: 'winphone'
+			replacement: 'win-phone'
 		},
 		{
 			name: 'empty-html-tags',
 			pattern: /<[^\/>][^>]*><\/[^>]+>/g,
 			replacement: ''
+		},
+		{
+			name: 'build-flag:xam_xf_ex',
+			pattern: /xam_xf_ex/gi,
+			replacement: 'xaml-xf-ex'
+		},
+		{
+			name: 'build-flag:droid_ex',
+			pattern: /droid_ex/gi,
+			replacement: 'android-ex'
+		},
+		{
+			name:'build-flag:winforms2',
+			pattern:/(hs\-build\-flags: |,)(winforms)/ig,
+			replacement: (match) => {
+				return match.replace(/winforms/i, 'win-forms');
+			}
+		},
+		{
+			name:'build-flag:winphone',
+			pattern:/winphone/ig,
+			replacement: 'win-phone'
+		},
+		{
+			name:'build-flag:winrt',
+			pattern:/winrt/ig,
+			replacement: 'win-rt'
 		}
 	];
 	
