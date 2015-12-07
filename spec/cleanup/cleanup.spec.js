@@ -35,10 +35,73 @@ describe('cleanup', function(){
 			expect(dest).toEqual(expected);
 		});
 		
-		it('build variable: AssemblyPlatform => ApiLink', () => {
-			var src = '%%AssemblyPlatform%%';
+		it('build variable: ProductNameShort => ProductName', () => {
+			var src = buildVariables.wrap('ProductNameShort');;
 			var dest = cleanup.asciidoc(src);
-			var expected = delimiters.start + 'ApiLink' + delimiters.end;
+			var expected = buildVariables.wrap('ProductName');;
+			expect(dest).toEqual(expected);
+		});
+		
+		it('build variable: ControlsNameRange => ControlsRangeName', () => {
+			var src = buildVariables.wrap('ControlsNameRange');;
+			var dest = cleanup.asciidoc(src);
+			var expected = buildVariables.wrap('ControlsRangeName');;
+			expect(dest).toEqual(expected);
+		});
+		
+		it('build variable: AssemblyPlatform => ApiLink', () => {
+			var src = buildVariables.wrap('AssemblyPlatform');
+			var dest = cleanup.asciidoc(src);
+			var expected = buildVariables.wrap('ApiLink');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('build variable: ProductAssemblyName => AssemblyName', () => {
+			var src = buildVariables.wrap('ProductAssemblyName');
+			var dest = cleanup.asciidoc(src);
+			var expected = buildVariables.wrap('AssemblyName');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('build variable: ProductPlatform => AssemblyName', () => {
+			var src = buildVariables.wrap('ProductPlatform');
+			var dest = cleanup.asciidoc(src);
+			var expected = buildVariables.wrap('AssemblyName');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('build variable: ProductVersionCondensed => ProductVersion', () => {
+			var src = buildVariables.wrap('ProductVersionCondensed');
+			var dest = cleanup.asciidoc(src);
+			var expected = buildVariables.wrap('ProductVersion');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('build variable: ProductVersionFull => ProductVersion', () => {
+			var src = buildVariables.wrap('ProductVersionFull');
+			var dest = cleanup.asciidoc(src);
+			var expected = buildVariables.wrap('ProductVersion');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('build variable: ProductVersionShort => ProductVersion', () => {
+			var src = buildVariables.wrap('ProductVersionShort');
+			var dest = cleanup.asciidoc(src);
+			var expected = buildVariables.wrap('ProductVersion');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('build variable: ProductVersionNumber => ProductVersion', () => {
+			var src = buildVariables.wrap('ProductVersionNumber');
+			var dest = cleanup.asciidoc(src);
+			var expected = buildVariables.wrap('ProductVersion');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('build variable: VsVersion => PlatformIDE', () => {
+			var src = buildVariables.wrap('VsVersion');
+			var dest = cleanup.asciidoc(src);
+			var expected = buildVariables.wrap('PlatformIDE');
 			expect(dest).toEqual(expected);
 		});
 		

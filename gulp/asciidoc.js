@@ -124,7 +124,7 @@ module.exports.load = function(gulp){
       var duplicates = fs.readFileSync(duplicateLookupFilePath, 'utf8');
       duplicates = JSON.parse(duplicates); 
       duplicates.forEach(function(duplicate){
-        console.log('Deleting: ' + duplicate.Guid);
+        console.log('Deleting: ' + duplicate.Guid + '.xml');
         fs.unlinkSync('./spec/data/src/' + duplicate.Guid + '.xml')
       });
     }

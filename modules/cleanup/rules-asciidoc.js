@@ -1,4 +1,4 @@
-var delimiters = require('./buildVariables.js').delimiters;
+var buildVariables = require('./buildVariables.js'); 
 
 module.exports.regex = [
 	{
@@ -42,13 +42,58 @@ module.exports.regex = [
 		pattern: /%%(.*?)%%/g,
 		replacement: function(match){
 			match = match.replace(/%/g, '');
-			return delimiters.start + match + delimiters.end;
+			return buildVariables.wrap(match);
 		}
 	},
 	{
 		name: 'build-variables: AssemblyPlatform => ApiLink',
-		pattern: /\{AssemblyPlatform\}/g,
-		replacement: delimiters.start + 'ApiLink' + delimiters.end
+		pattern: buildVariables.regex('AssemblyPlatform'),
+		replacement: buildVariables.wrap('ApiLink')
+	},
+	{
+		name: 'build-variables: ProductNameShort => ProductName',
+		pattern: buildVariables.regex('ProductNameShort'),
+		replacement: buildVariables.wrap('ProductName')
+	},
+	{
+		name: 'build-variables: ControlsNameRange => ControlsRangeName',
+		pattern: buildVariables.regex('ControlsNameRange'),
+		replacement: buildVariables.wrap('ControlsRangeName')
+	},
+	{
+		name: 'build-variables: ProductAssemblyName => AssemblyName',
+		pattern: buildVariables.regex('ProductAssemblyName'),
+		replacement: buildVariables.wrap('AssemblyName')
+	},
+	{
+		name: 'build-variables: ProductPlatform => AssemblyName',
+		pattern: buildVariables.regex('ProductPlatform'),
+		replacement: buildVariables.wrap('AssemblyName')
+	},
+	{
+		name: 'build-variables: ProductVersionCondensed => ProductVersion',
+		pattern: buildVariables.regex('ProductVersionCondensed'),
+		replacement: buildVariables.wrap('ProductVersion')
+	},
+	{
+		name: 'build-variables: ProductVersionFull => ProductVersion',
+		pattern: buildVariables.regex('ProductVersionFull'),
+		replacement: buildVariables.wrap('ProductVersion')
+	},
+	{
+		name: 'build-variables: ProductVersionShort => ProductVersion',
+		pattern: buildVariables.regex('ProductVersionShort'),
+		replacement: buildVariables.wrap('ProductVersion')
+	},
+	{
+		name: 'build-variables: ProductVersionNumber => ProductVersion',
+		pattern: buildVariables.regex('ProductVersionNumber'),
+		replacement: buildVariables.wrap('ProductVersion')
+	},
+	{
+		name: 'build-variables: VsVersion => PlatformIDE',
+		pattern: buildVariables.regex('VsVersion'),
+		replacement: buildVariables.wrap('PlatformIDE')
 	}	
 	// ----------------------------------------------
 ];
