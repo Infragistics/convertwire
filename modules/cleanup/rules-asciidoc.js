@@ -1,3 +1,5 @@
+var delimiters = require('./buildVariables.js').delimiters;
+
 module.exports.regex = [
 	{
 		name: 'ordered-list-stray-slash',
@@ -33,12 +35,20 @@ module.exports.regex = [
 		pattern: /\<temp-token role=\"list:start\"\>/g,
 		replacement: ''
 	},
+	
+	// ------------ Build Variables -----------------
 	{
-		name: 'build-variables',
+		name: 'build-variables:delimiters',
 		pattern: /%%(.*?)%%/g,
 		replacement: function(match){
 			match = match.replace(/%/g, '');
-			return '<%= ' + match + ' %>';
+			return delimiters.start + match + delimiters.end;
 		}
-	}
+	},
+	{
+		name: 'build-variables: AssemblyPlatform => ApiLink',
+		pattern: /\{AssemblyPlatform\}/g,
+		replacement: delimiters.start + 'ApiLink' + delimiters.end
+	}	
+	// ----------------------------------------------
 ];

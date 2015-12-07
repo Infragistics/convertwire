@@ -78,7 +78,7 @@ module.exports.load = function(gulp){
       .pipe(sourceFormatter())
       .pipe(html2AsciiDoc())
       .pipe(replaceGUIDs(lookupData))
-      .pipe(cleanup('asciidoc'))
+      .pipe(cleanup('asciidoc', args.name))
       .pipe(rename(function(path){
         path.extname = '.adoc';
         var isJP = path.basename.indexOf('.ja-JP') > -1;
