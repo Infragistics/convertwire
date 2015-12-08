@@ -67,7 +67,7 @@ module.crazyTables = function (folderPath) {
 			}
 			
 			results.push(`${fileName}\t\t\t${title}.adoc`);
-			fs.writeFileSync(path.resolve(__dirname, `../../logs/tables/${fileName}`), contents, 'utf8');
+			fs.writeFileSync(path.resolve(__dirname, `../../logs/tables/complex/${fileName}`), contents, 'utf8');
 		}
 	});
 
@@ -80,7 +80,8 @@ module.crazyTables = function (folderPath) {
 
 };
 
-//module.crazyTables('../../spec/data/dest/no-format');
+// run against html-no-format
+module.crazyTables('../../spec/data/dest/no-format');
 
 module.nestedTables = function (folderPath) {
 	var basePath, fileNames, results = [], matches, title = '';
@@ -127,7 +128,7 @@ module.nestedTables = function (folderPath) {
 };
 
 // run against: gulp html
-//module.nestedTables('../../spec/data/dest/');
+module.nestedTables('../../spec/data/dest/html');
 
 module.findBuildFlaggedCode = function (folderPath) {
 	var basePath, fileNames, results = [];
@@ -168,4 +169,4 @@ module.findBuildFlaggedCode = function (folderPath) {
 	}
 };
 
-//module.findBuildFlaggedCode('../../spec/data/dest');
+module.findBuildFlaggedCode('../../spec/data/dest');

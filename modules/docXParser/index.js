@@ -33,8 +33,7 @@ ${htmlDocument.markup}</div>`;
     "tags": [${arrayToString(htmlDocument.tags)}],
     "guid": "${htmlDocument.docXGuid.replace(/-/g, '`')}",  
     "buildFlags": [${arrayToString(htmlDocument.buildFlags)}],
-	"createdOn": "${htmlDocument.createdOn}",
-	"modifiedOn": "${htmlDocument.modifiedOn}"
+	"createdOn": "${htmlDocument.createdOn}"
 }
 |metadata|
 </pre>`;

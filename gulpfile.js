@@ -9,4 +9,4 @@ gulp.task('clean', function(){
     .pipe(clean());
 });
 
-gulp.task('default', ['clean', 'asciidoc']);
+gulp.task('default', ['asciidoc', 'html-no-format', 'html']);

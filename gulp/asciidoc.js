@@ -18,7 +18,7 @@ var args = {};
 var lookupPath = {
   "Android"         : "Android",
   "iOS"             : "iOS",
-  "BarCodes"        : "Common-Barccodes",
+  "Barcodes"        : "Common-Barcodes",
   "BulletGraph"     : "Common-BulletGraph",
   "DataChart"       : "Common-DataChart",
   "LinearGauge"     : "Common-LinearGauge",
