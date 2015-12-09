@@ -32,7 +32,8 @@ var lookupPath = {
   "DocumentEngine"  : "WebAndWin-DocumentEngine",
   "ExcelEngine"     : "WebAndWin-ExcelEngine",
   "WinForms"        : "WinForms",
-  "Xamarin"         : "Xamarin"
+  "Xamarin"         : "Xamarin",
+  "Silverlight"     : "XAML-Silverlight"
 };
 
 module.exports.load = function(gulp){
@@ -124,8 +125,10 @@ module.exports.load = function(gulp){
       var duplicates = fs.readFileSync(duplicateLookupFilePath, 'utf8');
       duplicates = JSON.parse(duplicates); 
       duplicates.forEach(function(duplicate){
-        console.log('Deleting: ' + duplicate.Guid + '.xml');
-        fs.unlinkSync('./spec/data/src/' + duplicate.Guid + '.xml')
+        if(fs.existsSync(path.resolve(__dirname, './spec/data/src/' + duplicate.Guid + '.xml'))){
+          console.log('Deleting: ' + duplicate.Guid + '.xml');
+          fs.unlinkSync('./spec/data/src/' + duplicate.Guid + '.xml')
+        }
       });
     }
     
