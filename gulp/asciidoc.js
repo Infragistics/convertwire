@@ -121,19 +121,30 @@ module.exports.load = function(gulp){
     var duplicateLookupFilePath = './guid-lookups/' + lookupPath[args.name] + '-duplicate.json';
     var doesDuplicatesLookupExist = fs.existsSync(duplicateLookupFilePath);
     
+    console.log('\nStarting conversion.');    
+    
     if(doesDuplicatesLookupExist){
+      
+      console.log('\nReading duplicates...\n');
+      
       var duplicates = fs.readFileSync(duplicateLookupFilePath, 'utf8');
-      duplicates = JSON.parse(duplicates); 
+      duplicates = JSON.parse(duplicates);
+       
       duplicates.forEach(function(duplicate){
-        if(fs.existsSync(path.resolve(__dirname, './spec/data/src/' + duplicate.Guid + '.xml'))){
+        if(fs.existsSync(path.resolve(__dirname, '../spec/data/src/' + duplicate.Guid + '.xml'))){
           console.log('Deleting: ' + duplicate.Guid + '.xml');
           fs.unlinkSync('./spec/data/src/' + duplicate.Guid + '.xml')
         }
       });
+      
+      console.log('\nDone reading duplicates.\n');
+      
     }
     
+    console.log('\nReading lookup data.\n');
     lookupData = JSON.parse(fs.readFileSync(lookupDataFilePath, 'utf8'));
     
+    console.log('\nStarting conversion task.\n');
     return gulp.start('asciidoc-conversion');
   });
 };
