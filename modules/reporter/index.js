@@ -39,7 +39,6 @@ module.getRandomFileNames = (folderPath, count, groupCount, english) => {
 	
 	console.log('names generated');
 };
-//module.getRandomFileNames('../../spec/data/dest', 10, 5, false);
 
 module.crazyTables = function (folderPath) {
 	var basePath, fileNames, matches, results = [], title = '';
@@ -79,9 +78,6 @@ module.crazyTables = function (folderPath) {
 	}
 
 };
-
-// run against html-no-format
-module.crazyTables('../../spec/data/dest/no-format');
 
 module.nestedTables = function (folderPath) {
 	var basePath, fileNames, results = [], matches, title = '';
@@ -127,9 +123,6 @@ module.nestedTables = function (folderPath) {
 
 };
 
-// run against: gulp html
-module.nestedTables('../../spec/data/dest/html');
-
 module.findBuildFlaggedCode = function (folderPath) {
 	var basePath, fileNames, results = [];
 
@@ -169,4 +162,13 @@ module.findBuildFlaggedCode = function (folderPath) {
 	}
 };
 
-module.findBuildFlaggedCode('../../spec/data/dest');
+
+module.getRandomFileNames('../../spec/data/dest', 10, 5, false);
+
+// run against html-no-format
+//module.crazyTables('../../spec/data/dest/no-format');
+
+// run against: gulp html
+//module.nestedTables('../../spec/data/dest/html');
+
+//module.findBuildFlaggedCode('../../spec/data/dest');

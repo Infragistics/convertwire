@@ -37,8 +37,8 @@ repository.get(credentials.username, credentials.password, 'CommonControls', '16
 });
 // */
 //*
-remoteData['0AA0DB3F-68DC-472E-BCE2-6D601CEFAA33'] = 'WinToolbarsManager_Converting_a_Standard_Toolbar_to_a_Ribbon';
-var filePath = 'C:\\Users\\cshoemaker\\Documents\\IG\\Rewire\\convertwire\\spec\\data\\src\\9a664e4b-d479-424c-a3cf-d7d051ff0788.xml';
+var lookupData = JSON.parse(fs.readFileSync(path.resolve(__dirname, './guid-lookups/Common-LinearGauge-lookup.json'), 'utf8'));
+var filePath = 'C:\\Users\\cshoemaker\\Documents\\IG\\Rewire\\convertwire\\spec\\data\\src\\feb10bdf-4cc6-45ce-b33c-aa7bb722be11.xml';
 result = fs.readFileSync(filePath, 'utf8');
 
 docx2html.parse(result, filePath, function(error, topic){
@@ -50,8 +50,8 @@ docx2html.parse(result, filePath, function(error, topic){
             result = unmapper.unmap(result);
             result = sourceFormatter.format(result);
             result = html2AsciiDoc.convert(result);
-            result = replaceGuids.replace(result, remoteData);
-            result = cleanup.asciidoc(result);
+            result = replaceGuids.replace(result, lookupData);
+            result = cleanup.asciidoc(result, 'LinearGauge');
             
             //fs.writeFileSync('C:\\Users\\cshoemaker\\Documents\\IG\\Rewire\\convertwire\\spec\\data\\dest\\test.adoc', result, 'utf8');
             
