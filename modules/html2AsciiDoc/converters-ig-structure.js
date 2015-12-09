@@ -128,6 +128,110 @@
     }
   };
   
+  // ================================
+  // =====  innovasys:widgets   =====
+  // ================================
+  
+  var innovasysWidgetProperty = {
+    filter: 'innovasys:widgetproperty',
+    replacement: function(content, node){
+      return content;
+    }
+  };
+  
+  var innovasysWidgetColorizedExampleCodeSection = {
+    filter: function(node){
+      var match = false;
+      
+      match = node.nodeName.toLowerCase() === 'innovasys:widget' &&
+              (node.getAttribute('type') === 'Colorized Example Code Section' ||
+              node.getAttribute('type') === 'Colorized Example Code' ||
+              node.getAttribute('type') === 'Colorized Example Code (Tab Style)');
+      
+      return match;
+    },
+    replacement: function(content, node){
+      var value = content, language = '', parts;
+      
+      parts = content.split('\n');
+      
+      if(parts.length > 0){
+        language = parts.shift().replace(/\*/g, '');
+        value = '[source,' + language + ']\n----' + parts.join('\n') + '----';
+      }
+      return value;
+    }
+  };
+  
+  var innovasysWidgetIncludeTopic = {
+    filter: function(node){
+      var match = false;
+      
+      match = node.nodeName.toLowerCase() === 'innovasys:widget' &&
+              node.getAttribute('type') === 'Include Topic';
+      
+      return match;
+    },
+    replacement: function(content, node){
+      return '\ninclude::' + content.toLowerCase().replace(/_/g, '-') + '.adoc[]\n';
+    }
+  };
+  
+  var innovasysWidgetExampleCodeTabStrip = {
+    filter: function(node){
+      var match = false;
+      
+      match = node.nodeName.toLowerCase() === 'innovasys:widget' &&
+              node.getAttribute('type') === 'Example Code Tab Strip';
+      
+      return match;
+    },
+    replacement: function(content, node){
+      return content;
+    }
+  };
+  
+  var innovasysWidgetPropertyTitle = {
+    filter: function(node){
+      var match = false;
+      
+      match = node.nodeName.toLowerCase() === 'innovasys:widgetproperty' &&
+              node.getAttribute('name') === 'Title';
+      
+      return match;
+    },
+    replacement: function(content, node){
+      return '';
+    }
+  };
+  
+  var innovasysWidgetPropertyLanguageName = {
+    filter: function(node){
+      var match = false;
+      
+      match = node.nodeName.toLowerCase() === 'innovasys:widgetproperty' &&
+              node.getAttribute('name') === 'LanguageName';
+      
+      return match;
+    },
+    replacement: function(content, node){
+      return '*' + content + '*\n';
+    }
+  };
+  
+  var innovasysWidgetPropertyContent = {
+    filter: function(node){
+      var match = false;
+      
+      match = node.nodeName.toLowerCase() === 'innovasys:widgetproperty' &&
+              node.getAttribute('name') === 'Content';
+      
+      return match;
+    },
+    replacement: function(content, node){
+      return '\n' + content + '\n';
+    }
+  };
   
   // ================================
   // =====  replace with break  =====
@@ -193,6 +297,13 @@
   var converters = [];
 
   converters.push(h1DocumentTitle);
+  converters.push(innovasysWidgetPropertyTitle);
+  converters.push(innovasysWidgetColorizedExampleCodeSection);
+  converters.push(innovasysWidgetPropertyLanguageName);
+  converters.push(innovasysWidgetPropertyContent);
+  converters.push(innovasysWidgetExampleCodeTabStrip);
+  converters.push(innovasysWidgetIncludeTopic);
+  converters.push(innovasysWidgetProperty);
   converters.push(spanIGBold);
   converters.push(spanIGItalic);
   converters.push(spanNoteCaption);
