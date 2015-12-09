@@ -135,6 +135,10 @@ module.exports.load = function(gulp){
           console.log('Deleting: ' + duplicate.Guid + '.xml');
           fs.unlinkSync('./spec/data/src/' + duplicate.Guid + '.xml')
         }
+        if(fs.existsSync(path.resolve(__dirname, '../spec/data/src/' + duplicate.Guid + '.ja-JP.xml'))){
+          console.log('Deleting: ' + duplicate.Guid + '.ja-JP.xml');
+          fs.unlinkSync('./spec/data/src/' + duplicate.Guid + '.ja-JP.xml')
+        }
       });
       
       console.log('\nDone reading duplicates.\n');
