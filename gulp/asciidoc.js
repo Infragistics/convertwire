@@ -17,6 +17,7 @@ var args = {};
 
 var lookupPath = {
   "Android"         : "Android",
+  "ASPNET"          : "ASPNET",
   "iOS"             : "iOS",
   "Barcodes"        : "Common-Barcodes",
   "BulletGraph"     : "Common-BulletGraph",
