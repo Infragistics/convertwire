@@ -20,6 +20,10 @@ module.read = function(relativePath){
 			return;
 		}
 		
+		if(fileName.indexOf('.ja-JP.adoc') > -1){
+			return;
+		}
+		
 		var contents, parts, metadata, name;
 		
 		contents = fs.readFileSync(path.join(rootPath, fileName), 'utf8');
