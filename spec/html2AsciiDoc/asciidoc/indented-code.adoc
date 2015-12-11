@@ -4,16 +4,19 @@
 
 ----
 xmlns:igDP="http://infragistics.com/DataPresenter"
+
 ----
 
 *In Visual Basic:*
 
 ----
 Imports Infragistics.Windows.DataPresenter
+
 ----
 
 *In C#:*
 
 ----
 using Infragistics.Windows.DataPresenter;
+
 ----

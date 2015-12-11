@@ -4,6 +4,10 @@
 	var mapper = require('./source-code-name-map.js');
 	var buildFlags = require('./converters-build-flags.js');
 	
+	var wrapCodeBlock = (content) => {
+		return '----\n' + content + '\n----';
+	};
+	
 	var getLanguage = (node) => {
 		var value = '';
 		
@@ -39,7 +43,7 @@
 				prefix = '[source,' + mapper.map(language) + ']\n';
 			}
 				
-			value = prefix + '----\n' + node.textContent + '----';
+			value = prefix + wrapCodeBlock(node.textContent);
 			
 			if(buildFlags.hasDocXBuildFlags(node)){
 				value = buildFlags.wrapWithBuildFlags(value, node);
@@ -65,7 +69,7 @@
 			var language, value;
 			
 			language = node.parentNode.className.match(highlightRegEx)[1];
-			value = '[source,' + language + ']\n----' + node.textContent + '\n----';
+			value = '[source,' + language + ']' + node.textContent(node.textContent);
 			
 			if(buildFlags.hasDocXBuildFlags(node)){
 				value = buildFlags.wrapWithBuildFlags(value, node);
@@ -90,8 +94,8 @@
 		replacement: function (content, node) {
 			var language, value;
 			
-			var language = node.parentNode.className.match(highlightRegEx)[1];
-			value = '[source,' + language + ']\n----' + node.textContent + '----';
+			language = node.parentNode.className.match(highlightRegEx)[1];
+			value = '[source,' + language + ']' + wrapCodeBlock(node.textContent);
 			
 			if(buildFlags.hasDocXBuildFlags(node)){
 				value = buildFlags.wrapWithBuildFlags(value, node);
@@ -138,7 +142,7 @@
 				prefix = '[source,' + mapper.map(language) + ']\n';
 			}
 			
-			value = prefix + '----\n' + node.textContent + '----';
+			value = prefix + wrapCodeBlock(node.textContent);
 			
 			if(buildFlags.hasDocXBuildFlags(node)){
 				value = buildFlags.wrapWithBuildFlags(value, node);
