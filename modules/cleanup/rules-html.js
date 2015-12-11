@@ -50,11 +50,6 @@
 			replacement: 'win-phone'
 		},
 		{
-			name: 'empty-html-tags',
-			pattern: /<[^\/>][^>]*><\/[^>]+>/g,
-			replacement: ''
-		},
-		{
 			name: 'build-flag:xam_xf_ex',
 			pattern: /xam_xf_ex/gi,
 			replacement: 'xaml-xf-ex'
@@ -80,6 +75,23 @@
 			name:'build-flag:winrt',
 			pattern:/winrt/ig,
 			replacement: 'win-rt'
+		},
+		{
+			name: 'add-temp-token-to-images',
+			pattern: /\<img (.*?)\>/ig,
+			replacement: (match) => {
+				return match + '{TEMP_TOKEN}';
+			}
+		},
+		{
+			name: 'empty-html-tags',
+			pattern: /<[^\/>][^>]*><\/[^>]+>/g,
+			replacement: ''
+		},
+		{
+			name:'temporary-token',
+			pattern:/\{TEMP_TOKEN\}/ig,
+			replacement: ''
 		}
 	];
 	
