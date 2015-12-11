@@ -42,13 +42,12 @@
 
   var getElementInfo = function (content, node) {
     var info = {};
-    info.hasCodeListings = /----\n/i.test(content);
     info.isOrderedListItem = /ol/i.test(node.parentNode.nodeName);
-    info.hasBuildFlags = typeof node.style.hsBuildFlags !== 'undefined';
+    info.delimiter = /ol/i.test(node.parentNode.nodeName)? '.' : '*';
     info.listLevel = getListLevel(node);
-    info.shouldIndentContent = (!info.hasCodeListings || !info.hasBuildFlags) &&
-    (info.listLevel > 0);
     info.hasBuildFlags = buildFlags.hasDocXBuildFlags(node);
+    info.orderedItemNumber = Array.prototype.indexOf.call(node.parentNode.children, node) + 1;
+    info.isNestedListItemContainer = _.startsWith(content, '\n*') || _.startsWith(content, '\n.'); ///li|ol/i.test(node.parentNode.parentNode.nodeName);
     return info;
   };
 
@@ -257,37 +256,27 @@
   var li = {
     filter: 'li',
     replacement: function (content, node) {
-      var prefix, parent, orderedItemNumber, startValue, element, isNestedListItemContainer;
-
-      parent = node.parentNode;
-      orderedItemNumber = Array.prototype.indexOf.call(parent.children, node) + 1;
-      isNestedListItemContainer = _.startsWith(content, '\n*');
-
+      var 
+        prefix = '', 
+        parent = node.parentNode,  
+        startValue, 
+        element;
+      
       element = getElementInfo(content, node);
+     
+      prefix = Array(element.listLevel + 1).join(element.delimiter) + ' ';
       
-      if (element.isOrderedListItem) {
-
-        if (orderedItemNumber === 1) {
+      if(element.isOrderedListItem){
+        if (element.orderedItemNumber === 1) {
           startValue = parent.getAttribute('start');
-          startValue = (startValue === null) ? orderedItemNumber : startValue;
+          startValue = (startValue === null) ? element.orderedItemNumber : startValue;
         } else {
-          startValue = orderedItemNumber;
+          startValue = element.orderedItemNumber;
         }
-
-        prefix = '[start=' + startValue + ']\n' + startValue + '.  ';
-      } else {
-        if(!isNestedListItemContainer){
-          if (element.listLevel > 0) {
-            prefix = '\n' + Array(element.listLevel + 1).join('*') + ' ';
-          } else {
-            prefix = '\n';
-          }
-        }
-      }
+        prefix = '[start=' + startValue + ']\n' + prefix;
+      } 
       
-      if(prefix){
-        content = prefix + content;
-      }
+      content = prefix + content + '\n';
 
       if (element.hasBuildFlags) {
         content = buildFlags.wrapWithBuildFlags(content, node);

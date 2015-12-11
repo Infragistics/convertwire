@@ -1,12 +1,7 @@
-<temp-token role="list:start">
-* 1.0
-* 
+<temp-token role="list:start">* 1.0
 
-<temp-token role="list:start">
-** 2.0
+<temp-token role="list:start">** 2.0
 ** 2.1
-** 
 
-<temp-token role="list:start">
-*** 3.0
+<temp-token role="list:start">*** 3.0
 *** 3.1

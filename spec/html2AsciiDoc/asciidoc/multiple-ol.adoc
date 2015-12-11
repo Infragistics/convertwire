@@ -12,7 +12,7 @@
 ////
 
 <temp-token role="list:start">[start=1]
-1.  Create %%PlatformName%% application project using Visual Studio 2012 or latest and call it *SampleApp*
+. Create %%PlatformName%% application project using Visual Studio 2012 or latest and call it *SampleApp*
 
 <temp-token role="list:start">[start=2]
-2.  Add the following namespace declarations to the main XAML file:
+. Add the following namespace declarations to the main XAML file:
