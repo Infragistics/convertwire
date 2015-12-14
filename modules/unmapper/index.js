@@ -65,18 +65,22 @@ var createNewMarkupFromLayoutTables = () => {
             
             header = $header.text();
             
-            content = getContents($row.find('.ig-layout-container'), 'html');
+            var $containers = $row.find('.ig-layout-container');
             
-            style = $row.attr('style');
-            if(style){
-                buildFlags = `style="${style}"`;
-            }
-            
-            hasContent = header.length > 0 && content.length > 0; 
-            
-            if(hasContent){
-                rowMarkup.push(getNewMarkup(header, anchorMarkup, content, buildFlags));
-            }
+            $containers.each((containerIndex, container) => {
+                content = getContents(container, 'html');
+                
+                style = $row.attr('style');
+                if(style){
+                    buildFlags = `style="${style}"`;
+                }
+                
+                hasContent = header.length > 0 && content.length > 0;
+                
+                if(hasContent){
+                    rowMarkup.push(getNewMarkup(header, anchorMarkup, content, buildFlags));
+                }
+            });
         });
         
         tableMarkup.push(rowMarkup.join('\n'));

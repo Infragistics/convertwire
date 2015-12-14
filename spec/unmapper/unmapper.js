@@ -44,7 +44,7 @@ var getContents = function(element, contentType){
 };
 
 var createNewMarkupFromLayoutTables = () => {
-    var $tbody, $tbodys, $row, $rows, header, $header, headerPlainText, content, hasContent, style, 
+    var $tbody, $tbodys, $row, $rows, header, $header, content, hasContent, style, 
         buildFlags = '', rowMarkup = [], tableMarkup = [], value = {};
     
     $tbodys = $('table.ig-layout > tbody');
@@ -67,20 +67,24 @@ var createNewMarkupFromLayoutTables = () => {
             
             header = $header.text();
             
-            content = getContents($row.find('.ig-layout-container'), 'html');
+            var $containers = $row.find('.ig-layout-container');
             
-            style = $row.attr('style');
-            if(style){
-                buildFlags = `style="${style}"`;
-            }
-            
-            hasContent = header.length > 0 &&
-                         skipHeaders.indexOf(header.toLowerCase()) === -1 && 
-                         content.length > 0;
-            
-            if(hasContent){
-                rowMarkup.push(getNewMarkup(header, anchorMarkup, content, buildFlags));
-            }
+            $containers.each((containerIndex, container) => {
+                content = getContents(container, 'html');
+                
+                style = $row.attr('style');
+                if(style){
+                    buildFlags = `style="${style}"`;
+                }
+                
+                hasContent = header.length > 0 &&
+                            skipHeaders.indexOf(header.toLowerCase()) === -1 && 
+                            content.length > 0;
+                
+                if(hasContent){
+                    rowMarkup.push(getNewMarkup(header, anchorMarkup, content, buildFlags));
+                }
+            });
         });
         
         tableMarkup.push(rowMarkup.join('\n'));
