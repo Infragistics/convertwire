@@ -1,8 +1,8 @@
 [cols="a,a"]
 |====
-|Controls Namespace: 
+|*Controls Namespace:* + 
 link:%%ProductAssemblyName%%.v%%ProductVersionShort%%~Infragistics.Windows.Controls_namespace.html[Infragistics.Windows.Controls]
-|Key APIs: 
+|*Key APIs:* + 
 link:%%ProductAssemblyName%%.v%%ProductVersionShort%%~Infragistics.Windows.Controls.XamCarouselListBox.html[XamCarouselListBox] 
 link:%%ProductAssemblyName%%.v%%ProductVersionShort%%~Infragistics.Windows.Controls.EffectStop.html[EffectStop] 
 link:%%ProductAssemblyName%%.v%%ProductVersionShort%%~Infragistics.Windows.Controls.CarouselViewSettings.html[CarouselViewSettings] 

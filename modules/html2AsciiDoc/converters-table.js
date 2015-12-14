@@ -17,6 +17,7 @@
 					}
 				}
 				content = content.substring(i+1, content.length);
+				content = '*' + content.replace('\n', '* +\n');
 			}
 		};
 		
