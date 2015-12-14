@@ -84,6 +84,11 @@
 			}
 		},
 		{
+			name: 'empty-cell',
+			pattern: /\<td\>\<\/td\>/gi,
+			replacement: '<td>{temp:empty-cell}</td>'
+		},
+		{
 			name: 'empty-html-tags',
 			pattern: /<[^\/>][^>]*><\/[^>]+>/g,
 			replacement: ''

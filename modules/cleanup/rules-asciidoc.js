@@ -35,6 +35,11 @@ module.exports.regex = [
 		pattern: /\<temp-token role=\"list:start\"\>/g,
 		replacement: ''
 	},
+	{
+		name: 'empty-cell',
+		pattern: /{temp:empty-cell}/ig,
+		replacement: ''
+	},
 	
 	// ------------ Build Variables -----------------
 	{
