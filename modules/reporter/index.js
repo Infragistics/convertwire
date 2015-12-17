@@ -163,12 +163,16 @@ module.findBuildFlaggedCode = function (folderPath) {
 };
 
 
+module.getRandomFileNames('../../spec/data/dest', 10, 5, true);
 module.getRandomFileNames('../../spec/data/dest', 10, 5, false);
 
 // run against html-no-format
-//module.crazyTables('../../spec/data/dest/no-format');
+module.crazyTables('../../spec/data/dest/no-format');
 
 // run against: gulp html
-//module.nestedTables('../../spec/data/dest/html');
+module.nestedTables('../../spec/data/dest/html');
 
-//module.findBuildFlaggedCode('../../spec/data/dest');
+module.findBuildFlaggedCode('../../spec/data/dest');
+
+var verify = require('../verify')
+verify.checkFolder('../../spec/data/dest');

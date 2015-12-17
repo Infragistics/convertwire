@@ -1,3 +1,4 @@
+/*
 describe('verify', () => {
 	
 	var path = require('path');
@@ -31,5 +32,5 @@ describe('verify', () => {
 		});
 		
 	});
-	
 });
+// */

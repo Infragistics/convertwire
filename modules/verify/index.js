@@ -7,50 +7,60 @@ var htmlTags = ['!--','!doctype','a','abbr','acronym','','address','applet','','
 
 var matchRules = [
 	{
-		name: 'html',
-		pattern: '(<[a-zA-Z]+)',
-		message: 'HTML tags'
+		name: 'raw-guid',
+		pattern: /link:([0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12})/gi,
+		message: 'raw GUIDs',
+		description: 'There are links that were not resolved from the GUIDs to file names.',
+		expectedOccurence: 1
 	},
 	{
-		name: 'guid',
-		pattern: '([0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12})',
-		message: 'GUIDs'
+		name: 'bad-link-replacement',
+		pattern: /undefined\.html/gi,
+		message: 'bad link replacement',
+		description: 'A GUID was not located when attempting to find a file name.',
+		expectedOccurence: 0
 	}
 ];
 
 module.checkText = (text) => {
 		
-	var results = { count: 0 };
+	var results = {
+		items: []
+	};
 	
 	matchRules.forEach((rule) => { 
-		var expression, matches, matchCount;
 		
-		expression = new RegExp(rule.pattern, 'gi');
-		matches = text.match(expression);
-		matchCount;
+		var 
+			result = {name: null, count:0}, 
+			count = 0,
+			matches = null,
+			tag = null,
+			matchedText = [];
 		
-		if(rule.name === 'html' && matches){
-			var _matches = [];
-			
-			for(var i=0; i < matches.length; i++){
-				matches[i] = matches[i].substr(1);
-				
-				if(_.contains(htmlTags, matches[i])){
-					_matches.push(matches[i]);
-				}
+		matches = text.match(rule.pattern);
+		
+		if(matches && (matches.length > rule.expectedOccurence)){
+			if(rule.name === 'empty-html'){
+				matches.forEach((match) => {
+					tag = match.replace('<', '');
+					if(_.contains(htmlTags, tag)){
+						count++;
+						matchedText.push(tag);
+					}
+				});
+			} else {
+				count = matches.length;
+				matchedText = matchedText.concat(matches);
 			}
-			
-			matches = _matches;
+			matchedText = _.unique(matchedText);
 		}
 		
-		matchCount = matches ? matches.length : 0;		
-		
-		results[rule.name] = {
-			count: matchCount,
-			message: rule.message,
-			matches: matches ? matches : []
-		};
-		results.count += matchCount;
+		if(count > 0){
+			result.name = rule.name;
+			result.count = count;
+			result.matches = matchedText;
+			results.items.push(result);
+		}
 	});
 	
 	return results;
@@ -61,24 +71,51 @@ module.checkFolder = (folderPath) => {
 	var fs = require('fs');
 	
 	var totalResults = [];
+	var final = [];
 	
 	var basePath = path.resolve(__dirname, folderPath);
 	var fileNames = fs.readdirSync(basePath);
 	
 	fileNames.forEach((fileName) => {
-		var filePath = path.join(basePath, fileName);
-		var text = fs.readFileSync(filePath, 'utf8');
-		var fileResult = module.checkText(text);
-		
-		if(fileResult.count > 0){
-			totalResults.push({
-				path: filePath,
-				results: fileResult
-			});
+		if(!/(html|no-format)/.test(fileName)){
+			var filePath = path.join(basePath, fileName);
+			var text = fs.readFileSync(filePath, 'utf8');
+			var fileResults = module.checkText(text);
+			
+			if(fileResults.items.length > 0){
+				fileResults.name = fileName;
+				totalResults.push(fileResults);
+			}
 		}
 	});
 	
-	fs.writeFileSync(path.resolve(__dirname, '../../logs/validation.txt'), JSON.stringify(totalResults),'utf8');
+	final.push('=====================================================');
+	final.push(` ${totalResults.length} files failed validation`)
+	final.push('=====================================================');
+	final.push('');
+	
+	totalResults.forEach((result) => {
+		final.push(result.name);
+		result.items.forEach((item) => {
+			final.push(`  - ${item.name}: ${item.count - 1}`);
+			if(item.matches){
+				item.matches.forEach((match, i) => {
+					if(item.name === 'raw-guid'){
+						if(i > 0){
+							final.push(`    ${ match.replace('link:', '') }`);
+						}
+					} else {
+						final.push(`    ${match}`);
+					}
+				});
+			}
+		});
+		final.push('');
+	});
+	
+	var finalText = final.join('\n');
+	
+	fs.writeFileSync(path.resolve(__dirname, '../../logs/validation.txt'), finalText,'utf8');
 	
 	console.log(totalResults.length + ' invalid files');
 };
