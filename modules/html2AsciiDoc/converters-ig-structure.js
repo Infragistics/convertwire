@@ -5,7 +5,7 @@
   var jpTextPattern = /([\u3000-\u303f\u3040-\u309f\u30a0-\u30ff\uff00-\uff9f\u4e00-\u9faf\u3400-\u4dbf])/gi;
   
   var getNoteLabel = function(content){
-    return jpTextPattern.test(content) ? '注' : 'NOTE';
+    return jpTextPattern.test(content) ? '注' : 'Note';
   };
   
   var divRelatedTopics = {
@@ -40,6 +40,28 @@
       var value;
       
       value = content + '\n\n';
+      
+      if(buildFlags.hasDocXBuildFlags(node)){
+        value = buildFlags.wrapWithBuildFlags(value, node);
+      }
+      
+      return value;
+    }
+  };
+  
+  var spanClassLang = {
+    filter: function(node){
+      var match = false;
+      
+      match = node.nodeName === 'SPAN' &&
+              node.className === 'lang';
+      
+      return match;
+    },
+    replacement: function(content, node){
+      var value;
+      
+      value = '\n' + content + '\n';
       
       if(buildFlags.hasDocXBuildFlags(node)){
         value = buildFlags.wrapWithBuildFlags(value, node);
@@ -338,6 +360,7 @@
   converters.push(innovasysWidgetIncludeTopic);
   converters.push(innovasysWidgetProperty);
   converters.push(divIGLevel1);
+  converters.push(spanClassLang);
   converters.push(spanIGBold);
   converters.push(spanIGItalic);
   converters.push(spanNoteCaption);
