@@ -2,6 +2,12 @@
   
   var buildFlags = require('./converters-build-flags.js');
   
+  var jpTextPattern = /([\u3000-\u303f\u3040-\u309f\u30a0-\u30ff\uff00-\uff9f\u4e00-\u9faf\u3400-\u4dbf])/gi;
+  
+  var getNoteLabel = function(content){
+    return jpTextPattern.test(content) ? '注' : 'NOTE';
+  };
+  
   var divRelatedTopics = {
       filter: function(node){
         var match = node.nodeName === 'DIV' &&
@@ -136,11 +142,16 @@
       return match;
     },
     replacement: function(content, node){
-      var value;
+      var value, label;
       
+      label = getNoteLabel(content);
+      
+      content = content.replace(/\*注\* /, '');
+      content = content.replace(/\*注:\* /, '');
+
       content = content.replace(/\*Note\* /, '');
       content = content.replace(/\*Note:\* /, '');
-      value = '\n\n.Note\n[NOTE]\n' + content;
+      value = '\n\n.'+ label +'\n[NOTE]\n' + content;
       
       if(buildFlags.hasDocXBuildFlags(node)){
         value = buildFlags.wrapWithBuildFlags(value, node);
