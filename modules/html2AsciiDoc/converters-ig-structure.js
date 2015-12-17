@@ -21,6 +21,28 @@
       } 
     };
     
+  var divIGLevel1 = {
+    filter: function(node){
+      var match = false;
+      
+      match = node.nodeName === 'DIV' &&
+              node.className === 'ig-level-1';
+      
+      return match;
+    },
+    replacement: function(content, node){
+      var value;
+      
+      value = content + '\n\n';
+      
+      if(buildFlags.hasDocXBuildFlags(node)){
+        value = buildFlags.wrapWithBuildFlags(value, node);
+      }
+      
+      return value;
+    }
+  };
+    
   var spanIGItalic = {
     filter: function(node){
       var match = false;
@@ -304,6 +326,7 @@
   converters.push(innovasysWidgetExampleCodeTabStrip);
   converters.push(innovasysWidgetIncludeTopic);
   converters.push(innovasysWidgetProperty);
+  converters.push(divIGLevel1);
   converters.push(spanIGBold);
   converters.push(spanIGItalic);
   converters.push(spanNoteCaption);
