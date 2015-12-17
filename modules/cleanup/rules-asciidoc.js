@@ -99,6 +99,16 @@ module.exports.regex = [
 		name: 'build-variables: VsVersion => PlatformIDE',
 		pattern: buildVariables.regex('VsVersion'),
 		replacement: buildVariables.wrap('PlatformIDE')
-	}	
+	},
+	{
+		name: 'build-variables: CRL2',
+		pattern: buildVariables.regex('AB62A791-93F7-4985-B3E9-FC67170F0851'),
+		replacement: buildVariables.wrap('CRL2')
+	},
+	{
+		name: 'build-variables: CRL3',
+		pattern: buildVariables.regex('E542A2D2-3728-48FD-899D-567D508B9E3B'),
+		replacement: buildVariables.wrap('CRL3')
+	}
 	// ----------------------------------------------
 ];

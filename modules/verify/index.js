@@ -113,11 +113,13 @@ module.checkFolder = (folderPath) => {
 		final.push('');
 	});
 	
-	var finalText = final.join('\n');
-	
-	fs.writeFileSync(path.resolve(__dirname, '../../logs/validation.txt'), finalText,'utf8');
-	
-	console.log(totalResults.length + ' invalid files');
+	if(totalResults.length > 0){
+		var finalText = final.join('\n');
+		
+		fs.writeFileSync(path.resolve(__dirname, '../../logs/validation.txt'), finalText,'utf8');
+		
+		console.log(totalResults.length + ' invalid files');
+	}
 };
 
 //module.checkFolder('../../spec/data/dest');
