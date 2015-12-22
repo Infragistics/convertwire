@@ -20,6 +20,7 @@ describe('html2AsciiDoc', function(){
 	
 	[
 		'anchors',
+		'anchors-title',
 		'build-list',
 		'indented-code',		
 		'multiple-ol',		

@@ -80,7 +80,7 @@
       anchorMatches = content.match(/\[\[(.*?)\]\]/);
       if(_.isArray(anchorMatches) && anchorMatches.length >= 2){
         anchor = anchorMatches[0];
-        content = anchorMatches[1];
+        content = content.substr(content.indexOf('\n') + 1, content.length);
       }
 
       linkMatches = content.match(/link:{\S+\[(.*)]/)
@@ -174,7 +174,7 @@
       
       id = node.getAttribute('id');
       
-      value = `[[${id}]]${content}`;
+      value = `[[${id}]]\n${content}`;
       
       return value;
     }
