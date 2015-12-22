@@ -300,7 +300,7 @@
         value = buildFlags.wrapWithBuildFlags(value, node);
       }
 
-      return
+      return value;
     }
   };
 
