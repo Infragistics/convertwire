@@ -84,18 +84,19 @@
 	var codeDiv = {
 		filter: function (node) {
 			var match = false;
-			
-			match = (node.nodeName === 'CODE' &&
-				node.parentNode.nodeName === 'DIV' &&
-				highlightRegEx.test(node.parentNode.className));
+			          
+            match = (node.nodeName === 'CODE');
 				
 			return match;
 		},
 		replacement: function (content, node) {
-			var language, value;
+			var language = '', value;
 			
-			language = node.parentNode.className.match(highlightRegEx)[1];
-			value = '[source,' + language + ']' + wrapCodeBlock(node.textContent);
+            if(highlightRegEx.test(node.parentNode.className)){
+                language = ',' + node.parentNode.className.match(highlightRegEx)[1];
+            }
+            
+			value = '[source' + language + ']\n' + wrapCodeBlock(node.textContent);
 			
 			if(buildFlags.hasDocXBuildFlags(node)){
 				value = buildFlags.wrapWithBuildFlags(value, node);
