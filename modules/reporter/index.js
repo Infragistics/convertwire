@@ -162,9 +162,12 @@ module.findBuildFlaggedCode = function (folderPath) {
 	}
 };
 
+var files = fs.readdirSync('../../spec/data/dest');
+if(files.length > 100){
+    module.getRandomFileNames('../../spec/data/dest', 10, 5, true);
+    module.getRandomFileNames('../../spec/data/dest', 10, 5, false);
+}
 
-module.getRandomFileNames('../../spec/data/dest', 10, 5, true);
-module.getRandomFileNames('../../spec/data/dest', 10, 5, false);
 
 // run against html-no-format
 module.crazyTables('../../spec/data/dest/no-format');
