@@ -76,11 +76,10 @@
 
       content = content.replace(/<[^>]*>/gi, '');
       
-      // TODO: move anchors above title
       anchorMatches = content.match(/\[\[(.*?)\]\]/);
       if(_.isArray(anchorMatches) && anchorMatches.length >= 2){
-        anchor = anchorMatches[0];
-        content = content.substr(content.indexOf('\n') + 1, content.length);
+        anchor = content.substr(0,content.lastIndexOf('\n'));
+        content = content.substr(content.lastIndexOf('\n') + 1, content.length);
       }
 
       linkMatches = content.match(/link:{\S+\[(.*)]/)
@@ -162,19 +161,25 @@
   
   var anchorWithIdAsAnchor = {
     filter: (node) => {
-      var match = false, id;
+      var match = false, id, name;
       
       id = node.getAttribute('id');
-      match = (node.nodeName === 'A' && id !== null);
+      name = node.getAttribute('name');
+      
+      match = (node.nodeName === 'A' && id !== null) ||
+              (node.nodeName === 'A' && name !== null);
       
       return match;
     },
     replacement: (content, node) => {
-      var value, id;
+      var value, id, name, identifier;
       
       id = node.getAttribute('id');
+      name = node.getAttribute('name');
       
-      value = `[[${id}]]\n${content}`;
+      identifier = id ? id : name;
+      
+      value = `[[${identifier}]]\n${content}`;
       
       return value;
     }
