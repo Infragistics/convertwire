@@ -83,7 +83,7 @@
     replacement: function(content, node){
       var value;
       
-      value = '_' + content + '_';
+      value = ' _' + content + '_  ';
       
       if(buildFlags.hasDocXBuildFlags(node)){
         value = buildFlags.wrapWithBuildFlags(value, node);
@@ -105,7 +105,7 @@
     replacement: function(content, node){
       var value;
       
-      value = '*' + content + '*';
+      value = ' *' + content + '* ';
       
       if(buildFlags.hasDocXBuildFlags(node)){
         value = buildFlags.wrapWithBuildFlags(value, node);
