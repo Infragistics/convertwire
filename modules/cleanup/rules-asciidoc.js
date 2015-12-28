@@ -40,6 +40,22 @@ module.exports.regex = [
 		pattern: /{temp:empty-cell}/ig,
 		replacement: ''
 	},
+    {
+        name: 'bolded-in-document-links',
+        pattern: /<<(.*?),( )?\*(.*?)\*( )?>>/g,
+        replacement: function(match){
+            match = match.replace(/\*/g, '');
+            return ' *' + match + '* '
+        }
+    },
+    {
+        name: 'italics-in-document-links',
+        pattern: /<<(.*?),( )?\_(.*?)\_( )?>>/g,
+        replacement: function(match){
+            match = match.replace(/\_/g, '');
+            return ' _' + match + '_ '
+        }
+    },
 	
 	// ------------ Build Variables -----------------
 	{
@@ -109,6 +125,17 @@ module.exports.regex = [
 		name: 'build-variables: CRL3',
 		pattern: buildVariables.regex('E542A2D2-3728-48FD-899D-567D508B9E3B'),
 		replacement: buildVariables.wrap('CRL3')
-	}
+	},
 	// ----------------------------------------------
+    
+    {
+        name: 'stray-asterisk',
+        pattern: /\n\*( )?\n/g,
+        replacement: ''
+    },
+    {
+        name: 'extra-spaces-between-bold-italic',
+        pattern: /(  +)/g,
+        replacement: ' '
+    }
 ];
