@@ -239,7 +239,7 @@
         value = buildFlags.wrapWithBuildFlags(value, node);
       }
 
-      return value;
+      return '\n\n' + value + '\n\n';
     }
   };
 
