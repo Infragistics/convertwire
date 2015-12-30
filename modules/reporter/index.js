@@ -5,6 +5,11 @@ var path = require('path');
 var fs = require('fs');
 var cheerio = require('cheerio');
 
+fs.mkdirSync(path.resolve(__dirname, '../../logs/tables'));
+fs.mkdirSync(path.resolve(__dirname, '../../logs/tables/complex'));
+fs.mkdirSync(path.resolve(__dirname, '../../logs/tables/nested'));
+fs.mkdirSync(path.resolve(__dirname, '../../logs/tables/blockquote'));
+
 module.getRandomFileNames = (folderPath, count, groupCount, english) => {
 	var randoms, basePath, fileNames, fileCount, index;
 
@@ -79,26 +84,26 @@ module.crazyTables = function (folderPath) {
 
 };
 
-module.nestedTables = function (folderPath) {
+module.nestedElements = function (folderPath, elementName) {
 	var basePath, fileNames, results = [], matches, title = '';
 
 	basePath = path.resolve(__dirname, folderPath);
 	fileNames = fs.readdirSync(basePath);
 
 	fileNames.forEach((fileName) => {
-		var filePath, contents, $, nestedTableCount;
+		var filePath, contents, $, nestedElementCount;
 		
 		if(path.extname(fileName) === '.html'){
 			filePath = path.join(basePath, fileName);
 			contents = fs.readFileSync(filePath, 'utf8');
 			$ = cheerio.load(contents);
 			
-			$('table').each((i, table) => {
-				var $table = $('table');
-				nestedTableCount = $table.find('table').length;
+			$(elementName).each((i, element) => {
+				var $element = $(element);
+				nestedElementCount = $element.find(elementName).length;
 			});
 	
-			if (nestedTableCount) {
+			if (nestedElementCount) {
 				matches = contents.match(/name&quot;: &quot;(.*)&/);
 				
 				if(matches && matches.length > 0){
@@ -108,19 +113,18 @@ module.nestedTables = function (folderPath) {
 				}
 				
 				results.push(`${fileName}\t\t\t${title}.adoc`);
-				fs.writeFileSync(path.resolve(__dirname, `../../logs/tables/nested/${fileName}`), contents, 'utf8');
+				fs.writeFileSync(path.resolve(__dirname, `../../logs/tables/nested/${elementName}/${fileName}`), contents, 'utf8');
 			}
 		}
 
 	});
 
 	if (results.length > 0) {
-		fs.writeFileSync(path.resolve(__dirname, '../../logs/tables/nested/list.txt'), results.join('\n'), 'utf8');
-		console.log(`${results.length} nested tables found`);
+		fs.writeFileSync(path.resolve(__dirname, `../../logs/tables/nested/${elementName}/list.txt`), results.join('\n'), 'utf8');
+		console.log(`${results.length} nested ${elementName} elements found`);
 	} else {
-		console.log('no nested tables found');
+		console.log(`no nested ${elementName} elements found`);
 	}
-
 };
 
 module.findBuildFlaggedCode = function (folderPath) {
@@ -173,7 +177,8 @@ if(files.length > 100){
 module.crazyTables('../../spec/data/dest/no-format');
 
 // run against: gulp html
-module.nestedTables('../../spec/data/dest/html');
+module.nestedElements('../../spec/data/dest/html', 'html');
+module.nestedElements('../../spec/data/dest/html', 'blockquote');
 
 module.findBuildFlaggedCode('../../spec/data/dest');
 
