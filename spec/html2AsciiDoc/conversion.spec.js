@@ -26,6 +26,7 @@ describe('html2AsciiDoc', function(){
 		'multiple-ol',		
 		'nested-flags',		
 		'notes',				
+		'notes-ja',				
 		'table',
 		'ig-bold',
 		'tables-0E7D',
