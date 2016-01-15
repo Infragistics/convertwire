@@ -2,126 +2,145 @@
 |====
 |Property Name|Property Type|Description
 
-|link:%%ApiLink%%.Axis%%ApiProp%%Label.html[Label]
-|String
-|Determines data mapping (category axis) and formating (all axis) of labels
+| +
+link:%%ApiLink%%.Axis%%ApiProp%%Label.html[Label]
+| +
+String
+| +
+Determines data mapping (category axis) and formating (all axis) of labels
 
 ifdef::xam_xf_ex[]
-|LabelSettings
-|link:%%ApiLink%%.AxisLabelSettings.html[AxisLabelSettings]
-|Determines labels’ settings such foreground, font, alignment, margins, angle and many more. See also link:2a790505-160b-4323-9d84-ad3825198a94[Configuring Axis Label Settings]
+| +
+LabelSettings
+| +
+link:%%ApiLink%%.AxisLabelSettings.html[AxisLabelSettings]
+| +
+Determines labels’ settings such foreground, font, alignment, margins, angle and many more. See also link:2a790505-160b-4323-9d84-ad3825198a94[Configuring Axis Label Settings]
 endif::xam_xf_ex[]
 
-|
+| +
 ifdef::winforms,xamarin[]
-link:%%ApiLink%%.Axis%%ApiProp%%LabelAngle.html[LabelAngle]
-endif::winforms,xamarin[] 
+link:%%ApiLink%%.Axis%%ApiProp%%LabelAngle.html[LabelAngle] +
+endif::winforms,xamarin[]
 ifdef::xam_xf_ex[]
-LabelSettings.link:%%ApiLink%%.AxisLabelSettings%%ApiProp%%Angle.html[Angle]
-endif::xam_xf_ex[] 
+LabelSettings.link:%%ApiLink%%.AxisLabelSettings%%ApiProp%%Angle.html[Angle] +
+endif::xam_xf_ex[]
 
-|double
-|Determines angle rotation of axis labels
+| +
+double
+| +
+Determines angle rotation of axis labels
 
-|
+| +
 ifdef::winforms,xamarin[]
-link:%%ApiLink%%.Axis%%ApiProp%%LabelExtent.html[LabelExtent]
-endif::winforms,xamarin[] 
+link:%%ApiLink%%.Axis%%ApiProp%%LabelExtent.html[LabelExtent] +
+endif::winforms,xamarin[]
 ifdef::xam_xf_ex[]
-LabelSettings.link:%%ApiLink%%.AxisLabelSettings%%ApiProp%%Extent.html[Extent]
-endif::xam_xf_ex[] 
+LabelSettings.link:%%ApiLink%%.AxisLabelSettings%%ApiProp%%Extent.html[Extent] +
+endif::xam_xf_ex[]
 
-|double
-|Determines empty space that extents between axis labels and the axis main line
+| +
+double
+| +
+Determines empty space that extents between axis labels and the axis main line
 
-|
+| +
 ifdef::xamarin[]
-link:%%ApiLink%%.Axis%%ApiProp%%LabelFont.html[LabelFont]
-endif::xamarin[] 
+link:%%ApiLink%%.Axis%%ApiProp%%LabelFont.html[LabelFont] +
+endif::xamarin[]
 ifdef::winforms[]
-LabelSettings.link:%%ApiLink%%.Axis%%ApiProp%%LabelFontFamily.html[FontFamily]
-endif::winforms[] 
+LabelSettings.link:%%ApiLink%%.Axis%%ApiProp%%LabelFontFamily.html[FontFamily] +
+endif::winforms[]
 ifdef::xam_xf_ex[]
-LabelSettings.link:%%ApiLink%%.AxisLabelSettings%%ApiProp%%FontFamily.html[FontFamily]
-endif::xam_xf_ex[] 
+LabelSettings.link:%%ApiLink%%.AxisLabelSettings%%ApiProp%%FontFamily.html[FontFamily] +
+endif::xam_xf_ex[]
 
-|
+| +
 ifdef::xamarin[]
-Font
-endif::xamarin[] 
+Font +
+endif::xamarin[]
 ifdef::xam_xf_ex,winforms[]
-FontFamily
-endif::xam_xf_ex,winforms[] 
+FontFamily +
+endif::xam_xf_ex,winforms[]
 
-|Determines font of axis labels
+| +
+Determines font of axis labels
 
-|
+| +
 ifdef::winforms,xamarin[]
-link:%%ApiLink%%.Axis%%ApiProp%%LabelHorizontalAlignment.html[LabelHorizontalAlignment]
-endif::winforms,xamarin[] 
+link:%%ApiLink%%.Axis%%ApiProp%%LabelHorizontalAlignment.html[LabelHorizontalAlignment] +
+endif::winforms,xamarin[]
 ifdef::xam_xf_ex[]
-LabelSettings.link:%%ApiLink%%.AxisLabelSettings%%ApiProp%%HorizontalAlignment.html[HorizontalAlignment]
-endif::xam_xf_ex[] 
+LabelSettings.link:%%ApiLink%%.AxisLabelSettings%%ApiProp%%HorizontalAlignment.html[HorizontalAlignment] +
+endif::xam_xf_ex[]
 
-|HorizontalAlignment
-|Determines horizontal alignment of labels on CategoryYAxis and NumericYAxis only
+| +
+HorizontalAlignment
+| +
+Determines horizontal alignment of labels on CategoryYAxis and NumericYAxis only
 
-|
+| +
 ifdef::winforms,xamarin[]
-link:%%ApiLink%%.Axis%%ApiProp%%LabelVerticalAlignment.html[LabelVerticalAlignment]
-endif::winforms,xamarin[] 
+link:%%ApiLink%%.Axis%%ApiProp%%LabelVerticalAlignment.html[LabelVerticalAlignment] +
+endif::winforms,xamarin[]
 ifdef::xam_xf_ex[]
-LabelSettings.link:%%ApiLink%%.AxisLabelSettings%%ApiProp%%VerticalAlignment.html[VerticalAlignment]
-endif::xam_xf_ex[] 
+LabelSettings.link:%%ApiLink%%.AxisLabelSettings%%ApiProp%%VerticalAlignment.html[VerticalAlignment] +
+endif::xam_xf_ex[]
 
-|VerticalAlignment
-|Determines vertical alignment of labels on CategoryXAxis and NumericXAxis only
+| +
+VerticalAlignment
+| +
+Determines vertical alignment of labels on CategoryXAxis and NumericXAxis only
 
-|
+| +
 ifdef::winforms,xamarin[]
-link:%%ApiLink%%.Axis%%ApiProp%%LabelLocation.html[LabelLocation]
-endif::winforms,xamarin[] 
+link:%%ApiLink%%.Axis%%ApiProp%%LabelLocation.html[LabelLocation] +
+endif::winforms,xamarin[]
 ifdef::xam_xf_ex[]
-LabelSettings.link:%%ApiLink%%.AxisLabelSettings%%ApiProp%%Location.html[Location]
-endif::xam_xf_ex[] 
+LabelSettings.link:%%ApiLink%%.AxisLabelSettings%%ApiProp%%Location.html[Location] +
+endif::xam_xf_ex[]
 
-|
+| +
 ifdef::xam_xf_ex[]
-link:%%ApiLink%%.AxisLabelsLocation.html[AxisLabelsLocation]
-endif::xam_xf_ex[] 
+link:%%ApiLink%%.AxisLabelsLocation.html[AxisLabelsLocation] +
+endif::xam_xf_ex[]
 ifdef::xamarin[]
-link:%%ApiLink%%.AxisLabelsLocation.html[AxisLabelsLocation]
-endif::xamarin[] 
+link:%%ApiLink%%.AxisLabelsLocation.html[AxisLabelsLocation] +
+endif::xamarin[]
 
-|Determines location of axis labels in relation to axis main line and chart plot area
+| +
+Determines location of axis labels in relation to axis main line and chart plot area
 
-|
+| +
 ifdef::winforms,xamarin[]
-link:%%ApiLink%%.Axis%%ApiProp%%LabelsVisible.html[LabelsVisible]
-endif::winforms,xamarin[] 
+link:%%ApiLink%%.Axis%%ApiProp%%LabelsVisible.html[LabelsVisible] +
+endif::winforms,xamarin[]
 ifdef::xam_xf_ex[]
-LabelSettings.link:%%ApiLink%%.AxisLabelSettings%%ApiProp%%Visibility.html[Visibility]
-endif::xam_xf_ex[] 
+LabelSettings.link:%%ApiLink%%.AxisLabelSettings%%ApiProp%%Visibility.html[Visibility] +
+endif::xam_xf_ex[]
 
-|
+| +
 ifdef::winforms,xamarin[]
-bool
-endif::winforms,xamarin[] 
+bool +
+endif::winforms,xamarin[]
 ifdef::xam_xf_ex[]
-Visibility
-endif::xam_xf_ex[] 
+Visibility +
+endif::xam_xf_ex[]
 
-|Determines whether or not axis labels are visible
+| +
+Determines whether or not axis labels are visible
 
-|
+| +
 ifdef::winforms,xamarin[]
-link:%%ApiLink%%.Axis%%ApiProp%%LabelTextColor.html[LabelTextColor]
-endif::winforms,xamarin[] 
+link:%%ApiLink%%.Axis%%ApiProp%%LabelTextColor.html[LabelTextColor] +
+endif::winforms,xamarin[]
 ifdef::xam_xf_ex[]
-LabelSettings.link:%%ApiLink%%.AxisLabelSettings%%ApiProp%%Foreground.html[Foreground]
-endif::xam_xf_ex[] 
+LabelSettings.link:%%ApiLink%%.AxisLabelSettings%%ApiProp%%Foreground.html[Foreground] +
+endif::xam_xf_ex[]
 
-|Brush
-|Determines text color of axis labels
+| +
+Brush
+| +
+Determines text color of axis labels
 
 |====

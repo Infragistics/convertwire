@@ -1,12 +1,12 @@
 [cols="a,a"]
 |====
-|*Controls Namespace:* + 
+|*Controls Namespace:*  +
 link:%%ProductAssemblyName%%.v%%ProductVersionShort%%~Infragistics.Windows.Controls_namespace.html[Infragistics.Windows.Controls]
-|*Key APIs:* + 
-link:%%ProductAssemblyName%%.v%%ProductVersionShort%%~Infragistics.Windows.Controls.XamCarouselListBox.html[XamCarouselListBox] 
-link:%%ProductAssemblyName%%.v%%ProductVersionShort%%~Infragistics.Windows.Controls.EffectStop.html[EffectStop] 
-link:%%ProductAssemblyName%%.v%%ProductVersionShort%%~Infragistics.Windows.Controls.CarouselViewSettings.html[CarouselViewSettings] 
-link:%%ProductAssemblyName%%.v%%ProductVersionShort%%~Infragistics.Windows.Controls.CarouselListBoxItem.html[CarouselListBoxItem] 
+|*Key APIs:*  +
+link:%%ProductAssemblyName%%.v%%ProductVersionShort%%~Infragistics.Windows.Controls.XamCarouselListBox.html[XamCarouselListBox] +
+link:%%ProductAssemblyName%%.v%%ProductVersionShort%%~Infragistics.Windows.Controls.EffectStop.html[EffectStop] +
+link:%%ProductAssemblyName%%.v%%ProductVersionShort%%~Infragistics.Windows.Controls.CarouselViewSettings.html[CarouselViewSettings] +
+link:%%ProductAssemblyName%%.v%%ProductVersionShort%%~Infragistics.Windows.Controls.CarouselListBoxItem.html[CarouselListBoxItem] +
 link:%%ProductAssemblyName%%.v%%ProductVersionShort%%~Infragistics.Windows.Controls.CarouselPanelAdorner.html[CarouselPanelAdorner]
 
 |====

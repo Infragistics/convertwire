@@ -17,7 +17,7 @@
 					}
 				}
 				content = content.substring(i+1, content.length);
-				content = '*' + content.replace('\n', '* +\n');
+				content = '*' + content.replace('\n', '* \n');
 			}
 		};
 		
@@ -37,8 +37,10 @@
 				content = content.substring(0, content.length - doubleBreak.length);
 			}
 			
-			// remove leftover whitespace link breaks with AsciiDoc link break
-			content = content.replace(/(\n){2,}/g, ' \n');
+			// remove leftover whitespace line breaks with AsciiDoc line break
+			content = content.replace(/(\n){2,}/g, '\n');
+            
+			content = content.replace(/\n/g, ' +\n');
 			
 			// remove line break character from build flags  
 			content = content.replace(/\[\] \+/g, '[]');
