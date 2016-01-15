@@ -25,7 +25,6 @@ endif::winforms,xamarin[]
 ifdef::xam_xf_ex[]
 LabelSettings.link:%%ApiLink%%.AxisLabelSettings%%ApiProp%%Angle.html[Angle] +
 endif::xam_xf_ex[]
-
 | +
 double
 | +
@@ -38,7 +37,6 @@ endif::winforms,xamarin[]
 ifdef::xam_xf_ex[]
 LabelSettings.link:%%ApiLink%%.AxisLabelSettings%%ApiProp%%Extent.html[Extent] +
 endif::xam_xf_ex[]
-
 | +
 double
 | +
@@ -54,7 +52,6 @@ endif::winforms[]
 ifdef::xam_xf_ex[]
 LabelSettings.link:%%ApiLink%%.AxisLabelSettings%%ApiProp%%FontFamily.html[FontFamily] +
 endif::xam_xf_ex[]
-
 | +
 ifdef::xamarin[]
 Font +
@@ -62,7 +59,6 @@ endif::xamarin[]
 ifdef::xam_xf_ex,winforms[]
 FontFamily +
 endif::xam_xf_ex,winforms[]
-
 | +
 Determines font of axis labels
 
@@ -73,7 +69,6 @@ endif::winforms,xamarin[]
 ifdef::xam_xf_ex[]
 LabelSettings.link:%%ApiLink%%.AxisLabelSettings%%ApiProp%%HorizontalAlignment.html[HorizontalAlignment] +
 endif::xam_xf_ex[]
-
 | +
 HorizontalAlignment
 | +
@@ -86,7 +81,6 @@ endif::winforms,xamarin[]
 ifdef::xam_xf_ex[]
 LabelSettings.link:%%ApiLink%%.AxisLabelSettings%%ApiProp%%VerticalAlignment.html[VerticalAlignment] +
 endif::xam_xf_ex[]
-
 | +
 VerticalAlignment
 | +
@@ -99,7 +93,6 @@ endif::winforms,xamarin[]
 ifdef::xam_xf_ex[]
 LabelSettings.link:%%ApiLink%%.AxisLabelSettings%%ApiProp%%Location.html[Location] +
 endif::xam_xf_ex[]
-
 | +
 ifdef::xam_xf_ex[]
 link:%%ApiLink%%.AxisLabelsLocation.html[AxisLabelsLocation] +
@@ -107,7 +100,6 @@ endif::xam_xf_ex[]
 ifdef::xamarin[]
 link:%%ApiLink%%.AxisLabelsLocation.html[AxisLabelsLocation] +
 endif::xamarin[]
-
 | +
 Determines location of axis labels in relation to axis main line and chart plot area
 
@@ -118,7 +110,6 @@ endif::winforms,xamarin[]
 ifdef::xam_xf_ex[]
 LabelSettings.link:%%ApiLink%%.AxisLabelSettings%%ApiProp%%Visibility.html[Visibility] +
 endif::xam_xf_ex[]
-
 | +
 ifdef::winforms,xamarin[]
 bool +
@@ -126,7 +117,6 @@ endif::winforms,xamarin[]
 ifdef::xam_xf_ex[]
 Visibility +
 endif::xam_xf_ex[]
-
 | +
 Determines whether or not axis labels are visible
 
@@ -137,7 +127,6 @@ endif::winforms,xamarin[]
 ifdef::xam_xf_ex[]
 LabelSettings.link:%%ApiLink%%.AxisLabelSettings%%ApiProp%%Foreground.html[Foreground] +
 endif::xam_xf_ex[]
-
 | +
 Brush
 | +

@@ -40,7 +40,8 @@ describe('html2AsciiDoc', function(){
         'title-anchor-internal',
 		'list-item-nested',
 		'list-item-nested-with-item-text',
-		'list-unordered'
+		'list-unordered',
+        'paragraph-bold-start'
 	].forEach(function(fileName){
 		it('converts html into asciidoc: ' + fileName, function(){
 			var content = getContent(fileName);
