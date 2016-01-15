@@ -72,6 +72,10 @@
       hLevel = parseInt(node.nodeName.charAt(1)) + 1;
       hPrefix = '';
       
+      if(hLevel >= 6){
+          hLevel = 6;
+      }
+      
       hPrefix = Array(hLevel + 1).join('=');
       
       if(!_.contains(content, '<<')){

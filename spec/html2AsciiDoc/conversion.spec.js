@@ -42,7 +42,7 @@ describe('html2AsciiDoc', function(){
 		'list-item-nested-with-item-text',
 		'list-unordered',
         'paragraph-bold-start'
-	].forEach(function(fileName){
+	];['title-h6'].forEach(function(fileName){
 		it('converts html into asciidoc: ' + fileName, function(){
 			var content = getContent(fileName);
 			var result = converter.convert(content.html);
