@@ -20,6 +20,10 @@
 				content = '*' + content.replace('\n', '* \n');
 			}
 		};
+        
+        if(_.startsWith(content, '\n')){
+            content = _.trimLeft(content, '\n');
+        }
 		
 		if(isHeader){
 			content = content.replace(/\n/g, '');

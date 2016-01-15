@@ -85,7 +85,7 @@
 		},
 		{
 			name: 'empty-cell',
-			pattern: /\<td\>\<\/td\>/gi,
+			pattern: /<td>(\s)|<([^>]+)>(\s)(<\/([^>]+)>)<\/td>/gi,
 			replacement: '<td>{temp:empty-cell}</td>'
 		},
 		{
