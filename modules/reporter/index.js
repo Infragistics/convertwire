@@ -9,6 +9,7 @@ fs.mkdirSync(path.resolve(__dirname, '../../logs/tables'));
 fs.mkdirSync(path.resolve(__dirname, '../../logs/tables/complex'));
 fs.mkdirSync(path.resolve(__dirname, '../../logs/tables/nested'));
 fs.mkdirSync(path.resolve(__dirname, '../../logs/tables/blockquote'));
+fs.mkdirSync(path.resolve(__dirname, '../../logs/tables/root-level'));
 
 module.getRandomFileNames = (folderPath, count, groupCount, english) => {
 	var randoms, basePath, fileNames, fileCount, index;
@@ -80,6 +81,45 @@ module.crazyTables = function (folderPath) {
 		console.log(`${results.length} crazy tables found`);
 	} else {
 		console.log('no crazy tables found');
+	}
+
+};
+
+module.rootLevelTables = function (folderPath) {
+	var basePath, fileNames, matches, results = [], title = '', $, $h1;
+
+	basePath = path.resolve(__dirname, folderPath);
+	fileNames = fs.readdirSync(basePath);
+
+	fileNames.forEach((fileName) => {
+		var filePath, contents;
+
+		filePath = path.join(basePath, fileName);
+		contents = fs.readFileSync(filePath, 'utf8');
+        
+        $ = cheerio.load(contents);
+        $h1 = $('h1'); 
+
+		if ($h1 && $h1.next().is('table')) {
+			
+			matches = contents.match(/name&quot;: &quot;(.*)&/);
+			
+			if(matches && matches.length > 0){
+				title = matches[1]
+							.toLowerCase()
+							.replace(/_/g, '-');
+			}
+			
+			results.push(`${fileName}\t\t\t${title}.adoc`);
+			fs.writeFileSync(path.resolve(__dirname, `../../logs/tables/root-level/${fileName}`), contents, 'utf8');
+		}
+	});
+
+	if (results.length > 0) {
+		fs.writeFileSync(path.resolve(__dirname, '../../logs/tables/root-level/list.txt'), results.join('\n'), 'utf8');
+		console.log(`${results.length} root-level tables found`);
+	} else {
+		console.log('no root-level tables found');
 	}
 
 };
@@ -179,6 +219,8 @@ module.crazyTables('../../spec/data/dest/no-format');
 // run against: gulp html
 module.nestedElements('../../spec/data/dest/html', 'html');
 module.nestedElements('../../spec/data/dest/html', 'blockquote');
+
+module.rootLevelTables('../../spec/data/dest/html');
 
 module.findBuildFlaggedCode('../../spec/data/dest');
 
