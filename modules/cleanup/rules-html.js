@@ -97,7 +97,12 @@
 			name:'temporary-token',
 			pattern:/\{TEMP_TOKEN\}/ig,
 			replacement: ''
-		}
+		},
+        {
+            name:'stray-style-elements',
+            pattern: /<style(?:\r|\n|.)+<\/style>/gi,
+            replacement: ''
+        }
 	];
 	
 	module.jquery = [
