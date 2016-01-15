@@ -88,12 +88,7 @@
         content = content.substr(content.lastIndexOf('\n') + 1, content.length);
       }
 
-      linkMatches = content.match(/link:{\S+\[(.*)]/)
-      if (_.isArray(linkMatches) && linkMatches.length > 0) {
-        value = '\n' + hPrefix + ' ' + linkMatches[1] + '\n\n' + content;
-      } else {
-        value = '\n' + hPrefix + ' ' + content;
-      }
+      value = '\n' + hPrefix + ' ' + content;
 
       if (buildFlags.hasDocXBuildFlags(node)) {
         value = buildFlags.wrapWithBuildFlags(value, node);

@@ -29,6 +29,7 @@ describe('html2AsciiDoc', function(){
 		'notes-ja',				
 		'table',
 		'table-p',
+        'heading-link',
 		'ig-bold',
 		'tables-0E7D',
 		'tables-0E8F',		
@@ -42,8 +43,8 @@ describe('html2AsciiDoc', function(){
 		'list-item-nested-with-item-text',
 		'list-unordered',
         'paragraph-bold-start'
-	];['title-h6'].forEach(function(fileName){
-		it('converts html into asciidoc: ' + fileName, function(){
+	].forEach(function(fileName){
+		iit('converts html into asciidoc: ' + fileName, function(){
 			var content = getContent(fileName);
 			var result = converter.convert(content.html);
 			//fs.writeFileSync(path.resolve(__dirname, './asciidoc/' + fileName + '-test.adoc'), result);
