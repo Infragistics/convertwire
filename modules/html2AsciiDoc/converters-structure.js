@@ -73,8 +73,10 @@
       hPrefix = '';
       
       hPrefix = Array(hLevel + 1).join('=');
-
-      content = content.replace(/<[^>]*>/gi, '');
+      
+      if(!_.contains(content, '<<')){
+        content = content.replace(/<[^>]*>/gi, '');  
+      }
       
       anchorMatches = content.match(/\[\[(.*?)\]\]/);
       if(_.isArray(anchorMatches) && anchorMatches.length >= 2){

@@ -37,6 +37,7 @@ describe('html2AsciiDoc', function(){
 		'tables-semantic',		
 		'title-anchors',		
 		'titles',
+        'title-anchor-internal',
 		'list-item-nested',
 		'list-item-nested-with-item-text',
 		'list-unordered'
