@@ -136,22 +136,22 @@
   }; 
   
   var spanNoteCaption = {
-    filter: function(node){
-			  var match = node.nodeName === 'SPAN' &&
-			  				    node.className.toLowerCase() === 'ig-note-caption';
-			  return match;
-		  },
-		  replacement: function(content, node){
-        var value;
-        
-			  value = '.' + content + '\n[NOTE]\n';
-        
-        if(buildFlags.hasDocXBuildFlags(node)){
-          value = buildFlags.wrapWithBuildFlags(value, node);
-        }
-        
-        return value;
-		  }
+      filter: function (node) {
+          var match = node.nodeName === 'SPAN' &&
+              node.className.toLowerCase() === 'ig-note-caption';
+          return match;
+      },
+      replacement: function (content, node) {
+          var value;
+
+          value = '.' + content + '\n[NOTE]\n';
+
+          if (buildFlags.hasDocXBuildFlags(node)) {
+              value = buildFlags.wrapWithBuildFlags(value, node);
+          }
+
+          return value + '\n\n';
+      }
   };
   
   var divNote = {
@@ -176,7 +176,7 @@
         value = buildFlags.wrapWithBuildFlags(value, node);
       }
       
-      return value;
+      return value + '\n\n';
     }
   };
   
