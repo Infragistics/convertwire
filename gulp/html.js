@@ -14,11 +14,11 @@ module.exports.load = function(gulp){
   gulp.task('html-only', function() {
     return gulp.src('./spec/data/src/*.xml')
       .pipe(docx2html())
-      .pipe(cleanup('html'))
+      //.pipe(cleanup('html'))
       .pipe(rename(function(path){
         path.extname = '.html';
       }))
-      .pipe(gulp.dest('./spec/data/dest'));
+      .pipe(gulp.dest('./spec/data/dest/html-only'));
   });
   
   gulp.task('html', function() {

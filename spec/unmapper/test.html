@@ -17,23 +17,7 @@
     </head>
 <body>
 <div id="docX-root">
-<pre id='metadata'>
-|metadata|
-{
-    "name": "datachart-getting-started-with-datachart",
-    "title": "Getting Started with Data Chart",
-    "controlName": ["xamDataChart"],
-    "tags": ["Charting","Getting Started"],
-    "guid": "5f39946e`59dc`43f0`bd49`91714053bfbb",
-    "buildFlags": []
-}
-|metadata|
-</pre>
-
-<div id="docX-root">
-
-<h1 id="ig-document-title">Getting Started with Data Chart</h1>
-
+<h1 id="ig-document-title">Interpolating Unknown Values</h1> 
 <DIV class=ig-block-title>
 <H2>Topic Overview</H2></DIV>
 <TABLE class=ig-layout>
@@ -43,13 +27,13 @@
 <H4>Purpose</H4></TH>
 <TD>
 <DIV class=ig-layout-container>
-<P>This topic provides information on how to get started with the <SPAN class=ig-italic><A href="%%ApiLink%%.%%ControlsName%%.html">%%ControlsName%%</A>™</SPAN> control in your application.</P></DIV></TD></TR>
+<P>This topic explains, with code examples, how to implement interpolation of unknown values in <A href="%%ProductAssemblyName%%.Controls.Charts.XamSparkline.v%%ProductVersionShort%%.html">xamSparkline</A>™.</P></DIV></TD></TR>
 <TR>
 <TH>
-<H4>Required background</H4></TH>
+<H4>Required Background</H4></TH>
 <TD>
 <DIV class=ig-layout-container>
-<P>The following topics are prerequisites to understanding this topic:</P>
+<P>The following table lists the topics required as a prerequisite to understanding this topic.</P>
 <TABLE cellSpacing=0 cellPadding=0>
 <TBODY>
 <TR>
@@ -57,65 +41,134 @@
 <P>Topic</P></TH>
 <TH>
 <P>Purpose</P></TH></TR>
-<TR style="hs-build-flags: XAMARIN">
-<TD style="hs-build-flags: XAMARIN">
-<DIV class=ig-topic-link><A href="Xamarin_Project_with_Infragistics_Controls.html" style="auto-update-caption: true">Creating Project with Infragistics Controls</A> </DIV></TD>
-<TD style="hs-build-flags: XAMARIN">
-<P>This topic explains how to create application project to use with Infragistics Xamarin.Forms controls.</P></TD></TR>
 <TR>
 <TD>
-<DIV class=ig-topic-link><A href="77948afe-5e9b-42d9-96de-a86fe0d22511" style="auto-update-caption: true">%%ControlsName%%</A> </DIV></TD>
+<P><A style="auto-update-caption: true" class=ig-topic-link href="f2452365-ae3d-48ce-a70b-182c9cb8f93d">xamSparkline Overview</A></P></TD>
 <TD>
-<P>This topic provides a general overview of the <SPAN class=ig-italic>%%ControlsName%%</SPAN>.</P></TD></TR></TBODY></TABLE><BR></DIV></TD></TR>
+<P>This topic provides an overview of the <SPAN class=ig-italic>xamSparkline</SPAN> control, its benefits, and the supported chart types.</P></TD></TR>
+<TR>
+<TD>
+<DIV class=ig-topic-link><A style="auto-update-caption: true" class=ig-topic-link href="ddccb3ea-aa79-4de2-929b-d7ae6a32243b">Configuring xamSparkline</A> </DIV></TD>
+<TD>
+<P>This topic provides an overview of the possible ways to configure the <SPAN class=ig-italic>xamSparkline</SPAN> control. Links to the detailed configurations (available in separate topics) are provided as well.</P></TD></TR></TBODY></TABLE><BR></DIV></TD></TR>
 <TR>
 <TH>
-<H4>In this topic</H4></TH>
+<H4>In This Topic</H4></TH>
 <TD>
 <DIV class=ig-layout-container>
 <P>This topic contains the following sections:</P>
 <UL>
-<LI><A href="#Ref397366350">Understanding Chart</A> 
-<LI><A href="#Ref397366354">Selecting Chart</A> 
-<LI><A href="#Ref386478106">Creating Chart</A> </LI></UL></DIV></TD></TR>
+<LI><A href="#_Ref317177227">Interpolating Unknown Values – Conceptual Overview</A> 
+<UL>
+<LI><A href="#Overview">Overview</A> 
+<LI><A href="#_Ref317177334">Data Requirements</A> 
+<LI><A href="#_Ref317177339">Property settings</A> 
+<LI><A href="#_Ref317177376">Example</A> </LI></UL>
+<LI><A href="#_Ref317177381">Interpolating Unknown Values – Code Example</A> 
+<UL>
+<LI><A href="#_Ref317177387">Description</A> 
+<LI><A href="#_Ref317177391">Code</A> </LI></UL>
+<LI><A href="#_Ref317078582">Related Content</A> </LI></UL></DIV></TD></TR></TBODY></TABLE><BR>
+<DIV class=ig-block-title>
+<H2><A name=_Ref317177227></A>Interpolating Unknown Values – Conceptual Overview</H2></DIV>
+<TABLE class=ig-layout>
+<TBODY>
 <TR>
-<TH>
-<H4><A id=Ref397366350 name=Ref397366350></A>Understanding Chart</H4></TH>
+<TH><A id=Overview name=Overview></A>
+<H4>Overview</H4></TH>
 <TD>
 <DIV class=ig-layout-container>
-<P>This section provides information on basic elements of the chart control that are required to plot data.</P>
+<P>With the Interpolating Unknown Values feature, <SPAN class=ig-italic>xamSparkline</SPAN> can detect unknown values (<SPAN class=ig-code-in-text>Null</SPAN> or <SPAN class=ig-code-in-text>double</SPAN>.<SPAN class=ig-code-in-text>NaN</SPAN><SPAN class=ig-code-in-text>)</SPAN> and render the space for the unknown values through a specified interpolation algorithm. If your data contains such values and you do not use this feature, meaning no Interpolation is specified, the unknown value will not be plotted.</P>
+<P>If you have unknown values in your data set, the Interpolating Unknown Values feature provides you with the following options:</P>
+<DIV class=ig-level-1><I><SPAN class=ig-italic>To interpolate the unknown values linearly</SPAN></I> connecting the data point before the null value point to the data point after the null value point. </DIV>
+<DIV class=ig-level-1><I><SPAN class=ig-italic>Not to plot the unknown values</SPAN></I> – instead, a blank point will be inserted for any null value that exists in the data collection. </DIV>
+<DIV class=ig-note><SPAN class=ig-note-caption>Note:</SPAN> For the linear interpolation option (the first one above) to work for a data point, the previous and next data points should both exist. If, for instance, the null value happens to be the first value in the collection there will be no previous point to connect to and, as a result, the null value will be presented as a blank point. The same is true if the last data point is null. </DIV>
+<P>The Interpolating Unknown Values feature is both enabled and set (in terms of type of interpolation) by the <A href="%%ProductAssemblyName%%.Controls.Charts.XamSparkline.v%%ProductVersionShort%%~Infragistics.Controls.Charts.XamSparkline~UnknownValuePlotting.html">UnknownValuePlotting</A> property (See the <A href="#_Ref317177339">Property settings</A> block).</P></DIV></TD></TR>
+<TR>
+<TH>
+<H4><A name=_Ref317177334></A>Data Requirements</H4></TH>
+<TD>
+<DIV class=ig-layout-container>
+<P>Only <SPAN class=ig-code-in-text>Null</SPAN> or <SPAN class=ig-code-in-text>double.NaN</SPAN> values are considered unknown. The expected value types are the numeric values such as integer or double. Non-numeric values are not considered unknown.</P></DIV></TD></TR>
+<TR>
+<TH>
+<H4><A name=_Ref317177339></A>Property settings</H4></TH>
+<TD>
+<DIV class=ig-layout-container>
+<P>The following table maps the xamSparkline interpolation option to the <A href="%%ProductAssemblyName%%.Controls.Charts.XamSparkline.v%%ProductVersionShort%%~Infragistics.Controls.Charts.XamSparkline~UnknownValuePlotting.html">UnknownValuePlotting</A> property settings that deliver them.</P>
 <TABLE cellSpacing=0 cellPadding=0>
 <TBODY>
 <TR>
 <TH>
-<P>Chart Element</P></TH>
+<P>Interpolation option</P></TH>
 <TH>
-<P>Descrption</P></TH></TR>
+<P><A href="%%ProductAssemblyName%%.Controls.Charts.XamSparkline.v%%ProductVersionShort%%~Infragistics.Controls.Charts.XamSparkline~UnknownValuePlotting.html">UnknownValuePlotting</A> property setting</P></TH></TR>
 <TR>
-<TD><A href="%%ApiLink%%.%%ControlsName%%.html">%%ControlsName%%</A></TD>
 <TD>
-<P>The <SPAN class=ig-italic>%%ControlsName%%</SPAN> is a control that supports various types of data visualizations which are called Series objects. The chart control can contain multiple visualizations of your data in the same chart plot area.</P></TD></TR>
+<P>Linear interpolation</P></TD>
+<TD>LinearInterpolate</TD></TR>
 <TR>
-<TD><A href="%%ApiLink%%.Series.html">Series</A></TD>
 <TD>
-<P>The Series objects provide actual visualization of your data. The chart support different types of Series and all types of series are listed in the <A href="95bac122-af84-468f-af2a-5a2b73e72844" style="auto-update-caption: true">Series Types</A> topic. Each type of series can plot data that meets certain data requirements (such as number of data column and their types) as well as what type of axis can be used with it. Refer to the <A href="ef9a7c2d-a9c4-49d0-b6d9-c2ab9c00df50" style="auto-update-caption: true">Series Requirements</A> topic for requirements for each of the series.</P></TD></TR>
-<TR>
-<TD><A href="%%ApiLink%%.Axis.html">Axis</A></TD>
-<TD>
-<P>The Axis objects provide context and information about range of data in a form of labels, numbers, tickmarks, gridlines, stips, and titles. The chart support different types of Axis objects which can be used only with certain types of Series. Refer to the <A href="e0c1a537-ee33-4389-a939-eab0cea8fade" style="auto-update-caption: true">Chart Axes</A> topic for more information about types of axis supported by the chart control.</P></TD></TR></TBODY></TABLE><BR></DIV></TD></TR>
+<P>Not to plot the unknown values</P></TD>
+<TD>DontPlot</TD></TR></TBODY></TABLE><BR></DIV></TD></TR>
 <TR>
 <TH>
-<H4><A id=Ref397366354 name=Ref397366354></A>Selecting Chart</H4></TH>
+<H4><A name=_Ref317177376></A>Example</H4></TH>
 <TD>
 <DIV class=ig-layout-container>
-<P>Based on type of your data, you need to choose which type of series you want to use in the chart control. Some types of series offer support only for certain types of axis. Therefore, you also need to select valid axes that work with selected series.</P>
-<P>The following flow chart explains the process of selecting series and axes based on data that you wish to plot in the chart control.</P>
-<P><IMG alt="" src="images/DataChart_Geting_Started_With_Chart_01.png"></P></DIV></TD></TR>
+<P>The screenshot below demonstrates a Sparkline rendered from the same data set but using different settings of the <A href="%%ProductAssemblyName%%.Controls.Charts.XamSparkline.v%%ProductVersionShort%%~Infragistics.Controls.Charts.XamSparkline~UnknownValuePlotting.html">UnknownValuePlotting</A> property:</P>
+<TABLE cellSpacing=0 cellPadding=0>
+<TBODY>
+<TR>
+<TH><SPAN class=ig-bold>Property</SPAN></TH>
+<TH><SPAN class=ig-bold>Value</SPAN></TH></TR>
+<TR>
+<TD><A href="%%ProductAssemblyName%%.Controls.Charts.XamSparkline.v%%ProductVersionShort%%~Infragistics.Controls.Charts.XamSparkline~UnknownValuePlotting.html">UnknownValuePlotting</A></TD>
+<TD><SPAN class=ig-italic>DontPlot</SPAN></TD></TR></TBODY></TABLE><BR>
+<P><IMG alt="" src="images/Interpolating_Unknown_Values_1.png" width=349 height=119></P>
+<TABLE cellSpacing=0 cellPadding=0>
+<TBODY>
+<TR>
+<TH><SPAN class=ig-bold>Property</SPAN></TH>
+<TH><SPAN class=ig-bold>Value</SPAN></TH></TR>
+<TR>
+<TD><A href="%%ProductAssemblyName%%.Controls.Charts.XamSparkline.v%%ProductVersionShort%%~Infragistics.Controls.Charts.XamSparkline~UnknownValuePlotting.html">UnknownValuePlotting</A></TD>
+<TD><SPAN class=ig-italic>LinearInterpolate</SPAN></TD></TR></TBODY></TABLE><BR>
+<P><IMG alt="" src="images/Interpolating_Unknown_Values_2.png" width=319 height=104></P></DIV></TD></TR></TBODY></TABLE><BR>
+<DIV class=ig-block-title>
+<H2><A name=_Ref317177381></A>Interpolating Unknown Values – Code Example</H2></DIV>
+<TABLE class=ig-layout>
+<TBODY>
 <TR>
 <TH>
-<H4><A id=Ref386478106 name=Ref386478106></A>Creating Chart</H4></TH>
+<H4><A name=_Ref317177387></A>Description</H4></TH>
 <TD>
 <DIV class=ig-layout-container>
-<P>After selecting type of series and two valid axes, you can create an instance of the %%ControlsName%% control in your application. The following topics provide instructions on how to create the Data Chart control using different methods.</P>
+<P>The code below demonstrates handling unknown values using the linear interpolation option.</P></DIV></TD></TR>
+<TR>
+<TH>
+<H4><A name=_Ref317177391></A>Code</H4></TH>
+<TD>
+<DIV class=ig-layout-container>
+<DIV style="DISPLAY: block" id=Example_XAML class=LanguageSpecific>
+<P><SPAN class=lang><B>In XAML:</B></SPAN></P><PRE><SPAN class=code><SPAN class=blue>&lt;</SPAN><SPAN class=brownish>ig</SPAN><SPAN class=blue>:</SPAN><SPAN class=brownish>XamSparkline</SPAN> <SPAN class=red>Name</SPAN><SPAN class=blue>="xamSparkline1"</SPAN> <SPAN class=red>UnknownValuePlotting</SPAN><SPAN class=blue>="LinearInterpolate"</SPAN><SPAN class=blue>/&gt;</SPAN></SPAN>
+</PRE></DIV>
+<DIV style="DISPLAY: block" id=Example_CS class=LanguageSpecific>
+<P><SPAN class=lang><B>In C#:</B></SPAN></P><PRE><SPAN class=code><SPAN class=blue>this</SPAN>.xamSparkline1.UnknownValuePlotting = UnknownValuePlotting.LinearInterpolate;</SPAN>
+</PRE></DIV>
+<DIV style="DISPLAY: block" id=Example_VB class=LanguageSpecific>
+<P><SPAN class=lang><B>In Visual Basic:</B></SPAN></P><PRE><SPAN class=code><SPAN class=blue>Me</SPAN>.xamSparkline1.UnknownValuePlotting = UnknownValuePlotting.LinearInterpolate</SPAN>
+</PRE></DIV></DIV></TD></TR></TBODY></TABLE><BR>
+<DIV class=ig-block-title>
+<H2><A name=_Ref317078582></A>Related Content</H2></DIV>
+<TABLE class=ig-layout>
+<TBODY>
+<TR>
+<TH>
+<H4>Topics</H4></TH>
+<TD>
+<DIV class=ig-layout-container>
+<P>The following topics provide additional information related to this topic.</P>
 <TABLE cellSpacing=0 cellPadding=0>
 <TBODY>
 <TR>
@@ -123,35 +176,23 @@
 <P>Topic</P></TH>
 <TH>
 <P>Purpose</P></TH></TR>
-<TR style="hs-build-flags: XAML">
-<TD style="hs-build-flags: XAML">
-<DIV class=ig-topic-link><A href="189b488d-7833-4379-bc1f-0770ff6a6844" style="auto-update-caption: true">Creating Chart in Code Behind</A> </DIV></TD>
-<TD style="hs-build-flags: XAML">
-<P>This topic provides instruction how to create the %%ControlsName%% control in code behind.</P></TD></TR>
-<TR style="hs-build-flags: XAML">
-<TD style="hs-build-flags: XAML">
-<DIV class=ig-topic-link><A href="0bf844e0-0b36-491d-b434-951a18aa3e1c" style="auto-update-caption: true">Creating Chart in XAML Code </A></DIV></TD>
-<TD style="hs-build-flags: XAML">
-<P>This topic provides instruction how to create the %%ControlsName%% control in XAML code.</P></TD></TR>
-<TR style="hs-build-flags: XAM_XF_EX">
-<TD style="hs-build-flags: XAM_XF_EX">
-<DIV class=ig-topic-link><A href="1f70421a-83b4-409f-a7ce-4fac3b0323d6" style="auto-update-caption: true">Creating Chart in MS Blend</A> </DIV></TD>
-<TD style="hs-build-flags: XAM_XF_EX">
-<P>This topic provides instruction how to create the %%ControlsName%% control in MS Blend designer.</P></TD></TR>
-<TR style="hs-build-flags: WINFORMS">
-<TD style="hs-build-flags: WINFORMS">
-<DIV class=ig-topic-link><A href="DataChart_Creating_Chart_In_VS_Designer_WinForms.html" style="auto-update-caption: true">Creating Chart In VS Designer</A> </DIV></TD>
-<TD style="hs-build-flags: WINFORMS">
-<P>This topic provides instruction how to create the %%ControlsName%% control in %%PlatformIDE%% designer.</P></TD></TR>
-<TR style="hs-build-flags: WINFORMS">
-<TD style="hs-build-flags: WINFORMS">
-<DIV class=ig-topic-link><A href="DataChart_Creating_Chart_In_Code_Behind_WinForms.html" style="auto-update-caption: true">Creating Chart In Code Behind</A> </DIV></TD>
-<TD style="hs-build-flags: WINFORMS">
-<P>This topic provides instruction how to create the %%ControlsName%% control in code behind.</P></TD></TR></TBODY></TABLE><BR></DIV></TD></TR></TBODY></TABLE><BR>
-</div>
-</div>
+<TR>
+<TD>
+<DIV class=ig-topic-link><A style="auto-update-caption: true" class=ig-topic-link href="f2452365-ae3d-48ce-a70b-182c9cb8f93d">xamSparkline Overview</A> </DIV></TD>
+<TD>
+<P>This topic provides an overview of the <SPAN class=ig-italic>xamSparkline</SPAN> control, its benefits, and the supported chart types.</P></TD></TR>
+<TR>
+<TD>
+<DIV class=ig-topic-link><A style="auto-update-caption: true" class=ig-topic-link href="ddccb3ea-aa79-4de2-929b-d7ae6a32243b">Configuring xamSparkline</A> </DIV></TD>
+<TD>
+<P>This topic provides an overview of the possible ways to configure the <SPAN class=ig-italic>xamSparkline</SPAN> control. Links to the detailed configurations (available in separate topics) are provided as well.</P></TD></TR>
+<TR>
+<TD>
+<DIV class=ig-topic-link><A style="auto-update-caption: true" class=ig-topic-link href="b2301ee7-3c8c-4255-874a-e9714d360294">xamSparkline Property Reference</A> </DIV></TD>
+<TD>
+<P>This topic explains the featured properties of the <SPAN class=ig-italic>xamSparkline</SPAN> control.</P></TD></TR></TBODY></TABLE><BR></DIV></TD></TR></TBODY></TABLE><BR></div>
 <script src="https://code.jquery.com/jquery-2.1.4.min.js" type="text/javascript"></script>
-<script src="unmapper.js" type="text/javascript"></script>
+<script src="../../modules/unmapper/index.js" type="text/javascript"></script>
 <script>
     $(function(){
         module.unmap();

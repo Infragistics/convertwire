@@ -26,7 +26,7 @@
 		},
 		{
 			name: 'build-flag:wpf',
-			pattern: /{673B143B-6568-4204-99C0-4548E4AFEF3C}/g,
+			pattern: /\{673B143B-6568-4204-99C0-4548E4AFEF3C\}/g,
 			replacement: 'wpf'
 		},
 		{
@@ -41,7 +41,7 @@
 		},
 		{
 			name: 'build-flag:sl',
-			pattern: /{A72AF817-CD06-4101-A8ED-A0E52FC4DD05}/g,
+			pattern: /\{A72AF817-CD06-4101-A8ED-A0E52FC4DD05\}/g,
 			replacement: 'sl'
 		},
 		{
@@ -85,7 +85,7 @@
 		},
 		{
 			name: 'empty-cell',
-			pattern: /<td>(\s)|<([^>]+)>(\s)(<\/([^>]+)>)<\/td>/gi,
+			pattern: /<td>\s?<\/td>|<td><([^>]+)>(\s)(<\/([^>]+)>)<\/td>/gi,
 			replacement: '<td>{temp:empty-cell}</td>'
 		},
 		{
