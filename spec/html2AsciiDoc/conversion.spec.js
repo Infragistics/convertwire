@@ -44,7 +44,7 @@ describe('html2AsciiDoc', function(){
 		'list-unordered',
         'paragraph-bold-start'
 	].forEach(function(fileName){
-		iit('converts html into asciidoc: ' + fileName, function(){
+		it('converts html into asciidoc: ' + fileName, function(){
 			var content = getContent(fileName);
 			var result = converter.convert(content.html);
 			//fs.writeFileSync(path.resolve(__dirname, './asciidoc/' + fileName + '-test.adoc'), result);

@@ -51,7 +51,8 @@ var formatter = {
 		
 		// get flags from container
 		if($flaggedContainer.attr('style')){
-			style = $flaggedContainer.attr('style').toLowerCase().trim();      
+			style = $flaggedContainer.attr('style').toLowerCase().trim();
+            style = style.replace(/ ?display: ?(none|block) ?; ?/,'');      
 			elementFlags = elementFlags.concat(style.replace(/hs-build-flags: /, '').split(',')); 
 		}
 		
@@ -75,7 +76,7 @@ var formatter = {
 			flags.push(flag);
 		});
 		
-		uniques = _.unique(flags);
+		uniques = _.uniq(flags);
 		
 		return uniques; 
 	},
@@ -105,9 +106,16 @@ var formatter = {
 				$container.append('\n<!--- ' + flag + ' --->\n');								
 				$container.append($clone);
 				$container.append('\n<!--- /' + flag + ' --->\n');
+                
+                if($parent.is('li')){
+                    var parentHtml = $parent.html();
+                    var bracketIndex = parentHtml.indexOf('<');
+                    parentHtml = '<span>' + parentHtml.splice(bracketIndex, 0, '</span>');
+                    $parent.html(parentHtml);
+				    domIndex = $(`#${id}`).index();
+                }
 				
-				$parent.insertAt($container, domIndex);
-				
+				$parent.insertAt($container, domIndex);			
 				domIndex = $(`#${id}`).index();
 			});
 		});
@@ -139,3 +147,21 @@ module.format = function(html){
 	
 	return value;
 };
+
+if (!String.prototype.splice) {
+    /**
+     * {JSDoc}
+     *
+     * The splice() method changes the content of a string by removing a range of
+     * characters and/or adding new characters.
+     *
+     * @this {String}
+     * @param {number} start Index at which to start changing the string.
+     * @param {number} delCount An integer indicating the number of old chars to remove.
+     * @param {string} newSubStr The String that is spliced in.
+     * @return {string} A new string with the spliced substring.
+     */
+    String.prototype.splice = function(start, delCount, newSubStr) {
+        return this.slice(0, start) + newSubStr + this.slice(start + Math.abs(delCount));
+    };
+}

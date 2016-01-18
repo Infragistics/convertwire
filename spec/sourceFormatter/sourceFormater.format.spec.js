@@ -42,6 +42,14 @@ describe('sourceFormatter', function(){
 			//fs.writeFileSync(path.resolve(__dirname, './data/flags-group-dest.html'), result, 'utf8');
 			expect(stripIds(result)).toEqual(stripIds(dest));
 		});
+        
+        it('wraps raw content in a span', function(){
+			var src = fs.readFileSync(path.resolve(__dirname, './data/list-item-with-bare-content-src.html'), 'utf8');
+			var dest = fs.readFileSync(path.resolve(__dirname, './data/list-item-with-bare-content-dest.html'), 'utf8');
+			var result = sourceFormatter.format(src);
+			//fs.writeFileSync(path.resolve(__dirname, './data/list-item-with-bare-content-dest.html'), result, 'utf8');
+			expect(stripIds(result)).toEqual(stripIds(dest));
+		});
 		
 	});
 	
