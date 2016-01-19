@@ -12,13 +12,17 @@ var getNewMarkup = (header, anchorMarkup, content, buildFlags, headerLevel) => {
     var markup = '';
     
     buildFlags = buildFlags? buildFlags : '';
-    
     headerLevel = headerLevel ? headerLevel : 2;
+    anchorMarkup = anchorMarkup ? anchorMarkup : '';
 
     markup = `<div class="ig-content-container" ${buildFlags}> 
-                ${anchorMarkup}
-                <h${headerLevel} class="ig-header">${header}</h${headerLevel}>
-                <div class="ig-content">${content}</div>
+                ${anchorMarkup}`;
+                
+    if(header.length > 0){
+        markup += `<h${headerLevel} class="ig-header">${header}</h${headerLevel}>`
+    }
+       
+    markup += `<div class="ig-content">${content}</div>
             </div>`;
             
     return markup;
@@ -55,15 +59,20 @@ var createNewMarkupFromLayoutTables = () => {
         $rows.each((rowIndex, row) => {
             $row = $(row);
             
-            $header = $(getContents($row.find('th')[0], 'html'));
-            
-            var anchorMarkup = '';
-            
-            if($header.find('a').length > 0){
-                anchorMarkup = $('<div>').append($header.find('a')[0]).html();
+            var html = getContents($row.find('th')[0], 'html');
+            if(html.indexOf('{temp:empty-header}') === -1){
+                $header = $(html);
+                var anchorMarkup = '';
+                
+                if($header.find('a').length > 0){
+                    anchorMarkup = $('<div>').append($header.find('a')[0]).html();
+                }
+                
+                header = $header.text();
+            } else {
+                // empty th
+                header = '';
             }
-            
-            header = $header.text();
             
             var $containers = $row.find('.ig-layout-container');
             
@@ -75,7 +84,7 @@ var createNewMarkupFromLayoutTables = () => {
                     buildFlags = `style="${style}"`;
                 }
                 
-                hasContent = header.length > 0 && content.length > 0;
+                hasContent = content.length > 0; 
                 
                 if(hasContent){
                     rowMarkup.push(getNewMarkup(header, anchorMarkup, content, buildFlags));

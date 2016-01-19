@@ -37,9 +37,19 @@ module.exports.regex = [
 	},
 	{
 		name: 'empty-cell',
-		pattern: /{temp:empty-cell}/ig,
+		pattern: /\{temp:empty-cell\}/ig,
 		replacement: ''
 	},
+    {
+		name: 'empty-header',
+		pattern: /\{temp:empty-header\}/ig,
+		replacement: ''
+	},
+    {
+        name: 'empty-element',
+        pattern: /\{temp:empty-element\}/gi,
+        replacement: ''
+    },
     {
         name: 'bolded-in-document-links',
         pattern: /<<(.*?),( )?\*(.*?)\*( )?>>/g,

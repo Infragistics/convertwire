@@ -88,10 +88,15 @@
 			pattern: /<td>\s?<\/td>|<td><([^>]+)>(\s)(<\/([^>]+)>)<\/td>/gi,
 			replacement: '<td>{temp:empty-cell}</td>'
 		},
+        {
+			name: 'empty-header',
+			pattern: /<th>\s?<\/th>|<th><([^>]+)>(\s)(<\/([^>]+)>)<\/th>/gi,
+			replacement: '<th>{temp:empty-header}</th>'
+		},
 		{
 			name: 'empty-html-tags',
 			pattern: /<[^\/>][^>]*><\/[^>]+>/g,
-			replacement: ''
+			replacement: '{temp:empty-element}'
 		},
 		{
 			name:'temporary-token',
