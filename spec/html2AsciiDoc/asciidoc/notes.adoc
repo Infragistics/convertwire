@@ -1,3 +1,5 @@
 .Note
 [NOTE]
+====
 The CompanyLogo.gif image is not included in this topic. You will have to replace the CompanyLogo.gif with a URI to your own image file.
+====

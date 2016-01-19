@@ -16,279 +16,1819 @@
         </style>
     </head>
 <body>
-<div id="docX-root">
-<h1 id="ig-document-title">Splitting (xamSyntaxEditor)</h1> 
-<DIV class=ig-block-title>
-<H2>Topic Overview</H2></DIV>
-<TABLE class=ig-layout>
-<TBODY>
-<TR>
-<TH>
-<H4>Purpose</H4></TH>
-<TD>
-<DIV class=ig-layout-container>
-<P>This topic will help you understand the document splitting capability of the <SPAN class=ig-italic>xamSyntaxEditor™</SPAN> and how to customize it.</P></DIV></TD></TR>
-<TR>
-<TH>
-<H4>Required background</H4></TH>
-<TD>
-<DIV class=ig-layout-container>
-<P>The following topics are prerequisites to understanding this topic:</P>
-<TABLE cellSpacing=0 cellPadding=0>
-<TBODY>
-<TR>
-<TH>
-<P>Topic</P></TH>
-<TH>
-<P>Purpose</P></TH></TR>
-<TR>
-<TD>
-<DIV class=ig-topic-link><A style="auto-update-caption: true" class=ig-topic-link href="b7042f4b-b074-4f5a-8c89-9a19d64b3088"><SPAN class=ig-italic>xamSyntaxEditor</SPAN> Overview</A> </DIV></TD>
-<TD>
-<P>In this topic, you will find information to help you better understand the <SPAN class=ig-italic>xamSyntaxEditor’s</SPAN> functions.</P></TD></TR>
-<TR>
-<TD>
-<DIV class=ig-topic-link><A class=ig-topic-link href="7bfc11f3-464c-486e-8dcd-584b246707e8">Editing Support Overview</A> </DIV></TD>
-<TD>
-<P>This topic covers the text editing capabilities of the <SPAN class=ig-italic>xamSyntaxEditor</SPAN> control from both the developer and user’s perspective.</P></TD></TR></TBODY></TABLE><BR></DIV></TD></TR>
-<TR>
-<TH>
-<H4>In this topic</H4></TH>
-<TD>
-<DIV class=ig-layout-container>
-<P>This topic contains the following sections:</P>
-<UL>
-<LI><A href="#_Ref332805583"><SPAN class=ig-bold>Introduction</SPAN></A> 
-<LI><A href="#_Ref332805592"><SPAN class=ig-bold>Control Configuration Summary</SPAN></A> 
-<LI><A href="#_Ref332805556"><SPAN class=ig-bold>Enable/Disable Different Splitting Types</SPAN></A> 
-<LI><A href="#_Ref332805564"><SPAN class=ig-bold>Obtain/Set the Current Splitting Status</SPAN></A> 
-<LI><A href="#_Ref332805620"><SPAN class=ig-bold>Related Content</SPAN></A> </LI></UL></DIV></TD></TR></TBODY></TABLE><BR>
-<DIV class=ig-block-title>
-<H2><A name=_Ref332805583></A>Introduction</H2></DIV>
-<TABLE class=ig-layout>
-<TBODY>
-<TR>
-<TH>
-<H4>Splitting summary</H4></TH>
-<TD>
-<DIV class=ig-layout-container>
-<P>The <SPAN class=ig-italic>xamSyntaxEditor</SPAN> supports splitting of the editing area (either horizontally or vertically). When enabled, the user may use this feature for a visual comparison of two parts of the edited document and make changes to both of them. You can configure which splitting is available to the user (see the table below). In addition, there is a property, which can be used to determine the current splitting status of the <SPAN class=ig-italic>xamSyntaxEditor’s</SPAN> editing area.</P>
-<P>The screenshot below shows the <SPAN class=ig-italic>xamSyntaxEditor’s</SPAN> split handles:</P>
-<P><IMG alt="" src="images/xamSyntaxEditor_Splitting1.png" width=611 height=296></P>
-<P>The screenshot below shows the <SPAN class=ig-italic>xamSyntaxEditor</SPAN> split horizontally:</P>
-<P><IMG alt="" src="images/xamSyntaxEditor_Splitting2.png" width=612 height=296></P></DIV></TD></TR></TBODY></TABLE><BR>
-<DIV class=ig-block-title>
-<H2><A name=_Ref332805592></A>Control Configuration Summary</H2></DIV>
-<TABLE class=ig-layout>
-<TBODY>
-<TR>
-<TH>
-<H4>Control configuration summary chart</H4></TH>
-<TD>
-<DIV class=ig-layout-container>
-<P>The following table lists the configurable aspects of the <SPAN class=ig-italic>xamSyntaxEditor’s</SPAN> splitting capabilities.</P>
-<TABLE cellSpacing=0 cellPadding=0>
-<TBODY>
-<TR>
-<TH>
-<P>Configurable aspect</P></TH>
-<TH>
-<P>Details</P></TH>
-<TH>
-<P>Properties</P></TH></TR>
-<TR>
-<TD>
-<P><A href="#_Ref332805556">Enable/Disable Different Splitting Types</A></P></TD>
-<TD>
-<P>You can enable/disable what splitting is available to the user.</P></TD>
-<TD>
-<UL>
-<LI><A href="%%ProductAssemblyName%%.Controls.Editors.XamSyntaxEditor.v%%ProductVersionShort%%~Infragistics.Controls.Editors.XamSyntaxEditor~SplitOptions.html">SplitOptions</A> </LI></UL></TD></TR>
-<TR>
-<TD>
-<P><A href="#_Ref332805564">Obtain/Set the Current Splitting Status</A></P></TD>
-<TD>
-<P>You can obtain/set the current splitting status and see if and how the user has split the editing area.</P></TD>
-<TD>
-<UL>
-<LI><A href="%%ProductAssemblyName%%.Controls.Editors.XamSyntaxEditor.v%%ProductVersionShort%%~Infragistics.Controls.Editors.XamSyntaxEditor~SplitStatus.html">SplitStatus</A> </LI></UL></TD></TR></TBODY></TABLE><BR>
-<P style="FONT-WEIGHT: bold">Note:</P>
-<DIV class=ig-note>You can also use commands to enable/disable splitting types and to set split. Please refer to the <A class=ig-topic-link href="32a964e1-a195-4c82-824e-d535d3be6938">Events and Commands</A> topic for more information. </DIV></DIV></TD></TR></TBODY></TABLE><BR>
-<DIV class=ig-block-title></DIV>
-<DIV class=ig-block-title>
-<H2><A name=_Ref332805556></A>Enable/Disable Different Splitting Types</H2></DIV>
-<TABLE class=ig-layout>
-<TBODY>
-<TR>
-<TH>
-<H4>Overview</H4></TH>
-<TD>
-<DIV class=ig-layout-container>
-<P>You can enable/disable what splitting is available to the user.</P></DIV></TD></TR>
-<TR>
-<TH>
-<H4>Property settings</H4></TH>
-<TD>
-<DIV class=ig-layout-container>
-<P>The following table maps the desired configuration to property settings.</P>
-<TABLE cellSpacing=0 cellPadding=0>
-<TBODY>
-<TR>
-<TH>
-<P>In order to:</P></TH>
-<TH>
-<P>Use this property:</P></TH>
-<TH>
-<P>And set it to:</P></TH></TR>
-<TR>
-<TD>
-<P>Change which splitting option is available to the user</P></TD>
-<TD>
-<P><SPAN class=ig-code-in-text>SplitOptions</SPAN></P></TD>
-<TD>
-<P>A value of type <A href="%%ProductAssemblyName%%.Controls.Editors.XamSyntaxEditor.v%%ProductVersionShort%%~Infragistics.Controls.Editors.EditorDocumentViewSplitOptions.html">EditorDocumentViewSplitOptions</A></P></TD></TR></TBODY></TABLE><BR></DIV></TD></TR>
-<TR>
-<TH>
-<H4>Example</H4></TH>
-<TD>
-<DIV class=ig-layout-container>
-<P>The screenshot below demonstrates how the <SPAN class=ig-italic>xamSyntaxEditor</SPAN> looks as a result of implementing the following settings:</P>
-<TABLE cellSpacing=0 cellPadding=0>
-<TBODY>
-<TR>
-<TH>
-<P>Property</P></TH>
-<TH>
-<P>Value</P></TH></TR>
-<TR>
-<TD>
-<P><SPAN class=ig-code-in-text>SplitOptions</SPAN></P></TD>
-<TD>
-<P><SPAN class=ig-code-in-text>EditorDocumentViewSplitOptions.AllowVerticalSplitsOnly</SPAN></P></TD></TR></TBODY></TABLE><BR>
-<P><IMG alt="" src="images/xamSyntaxEditor_Splitting3.png" width=612 height=296></P></DIV></TD></TR></TBODY></TABLE><BR>
-<DIV class=ig-block-title>
-<H2><A name=_Ref332805564></A>Obtain/Set the Current Splitting Status</H2></DIV>
-<TABLE class=ig-layout>
-<TBODY>
-<TR>
-<TH>
-<H4>Overview</H4></TH>
-<TD>
-<DIV class=ig-layout-container>
-<P>You can obtain and set the current splitting status and see if and how the user has split the editing area.</P></DIV></TD></TR>
-<TR>
-<TH>
-<H4>Property settings</H4></TH>
-<TD>
-<DIV class=ig-layout-container>
-<P>The following table maps the desired configuration to property settings.</P>
-<TABLE cellSpacing=0 cellPadding=0>
-<TBODY>
-<TR>
-<TH>
-<P>In order to:</P></TH>
-<TH>
-<P>Use this property:</P></TH>
-<TH>
-<P>And:</P></TH></TR>
-<TR>
-<TD>
-<P>Obtain the current splitting</P></TD>
-<TD>
-<P><SPAN class=ig-code-in-text>SplitStatus</SPAN></P></TD>
-<TD>
-<P>Read its value</P></TD></TR>
-<TR>
-<TD>
-<P>Set the current splitting</P></TD>
-<TD>
-<P><SPAN class=ig-code-in-text>SplitStatus</SPAN></P></TD>
-<TD>
-<P>Set it to a value of type <A href="%%ProductAssemblyName%%.Controls.Editors.XamSyntaxEditor.v%%ProductVersionShort%%~Infragistics.Controls.Editors.EditorDocumentViewSplitStatus.html">EditorDocumentViewSplitStatus</A></P></TD></TR></TBODY></TABLE><BR></DIV></TD></TR>
-<TR>
-<TH>
-<H4>Code</H4></TH>
-<TD>
-<DIV class=ig-layout-container>
-<P>The following code example shows how to obtain the current split status:</P>
-<DIV style="DISPLAY: block" id=Example_CS class=LanguageSpecific>
-<P><SPAN class=lang><B>In C#:</B></SPAN></P><PRE><SPAN class=code><SPAN class=keyword>if</SPAN> (<SPAN class=keyword>this</SPAN>.xamSyntaxEditor1.SplitStatus ==
-    EditorDocumentViewSplitStatus.SplitHorizontally)
+
+<pre id="metadata">
+|metadata|
 {
-    <SPAN class=comment>// do something</SPAN>
+    &quot;name&quot;: &quot;ig-excel-engine-list-of-supported-built-in-functions&quot;,
+    &quot;controlName&quot;: [&quot;IG Excel Engine&quot;],
+    &quot;tags&quot;: [&quot;Getting Started&quot;,&quot;How Do I&quot;],
+    &quot;guid&quot;: &quot;2e09fe35`e4bc`4d5d`9a43`e49e4abbc455&quot;,  
+    &quot;buildFlags&quot;: [],
+	&quot;createdOn&quot;: &quot;2012-03-30T11:42:44.3335629Z&quot;
 }
-<SPAN class=keyword>else</SPAN> <SPAN class=keyword>if</SPAN> (<SPAN class=keyword>this</SPAN>.xamSyntaxEditor1.SplitStatus ==
-    EditorDocumentViewSplitStatus.SplitVertically)
-{
-    <SPAN class=comment>// do something else</SPAN>
-}</SPAN>
-</PRE></DIV>
-<DIV style="DISPLAY: block" id=Example_VB class=LanguageSpecific>
-<P><SPAN class=lang><B>In Visual Basic:</B></SPAN></P><PRE><SPAN class=code><SPAN class=keyword>If</SPAN> <SPAN class=keyword>Me</SPAN>.xamSyntaxEditor1.SplitStatus = _
-    EditorDocumentViewSplitStatus.SplitHorizontally <SPAN class=keyword>Then</SPAN>
-        <SPAN class=comment>' do something</SPAN>
-<SPAN class=keyword>ElseIf</SPAN> <SPAN class=keyword>Me</SPAN>.xamSyntaxEditor1.SplitStatus = _
-    EditorDocumentViewSplitStatus.SplitVertically <SPAN class=keyword>Then</SPAN>
-        <SPAN class=comment>' do something else</SPAN>
-<SPAN class=keyword>End</SPAN> If</SPAN>
-</PRE></DIV></DIV></TD></TR>
-<TR>
-<TH>{temp:empty-header}</TH>
-<TD>
-<DIV class=ig-layout-container>
-<P>The following code example shows how to set the current split to vertical:</P>
-<DIV style="DISPLAY: block" id=Example_CS class=LanguageSpecific>
-<P><SPAN class=lang><B>In C#:</B></SPAN></P><PRE><SPAN class=code><SPAN class=keyword>this</SPAN>.xamSyntaxEditor1.SplitStatus = EditorDocumentViewSplitStatus.SplitVertically;</SPAN>
-</PRE></DIV></DIV>
-<DIV class=ig-layout-container>
-<DIV style="DISPLAY: block" id=Example_VB class=LanguageSpecific>
-<P><SPAN class=lang><B>In Visual Basic:</B></SPAN></P><PRE><SPAN class=code><SPAN class=keyword>Me</SPAN>.xamSyntaxEditor1.SplitStatus = EditorDocumentViewSplitStatus.SplitVertically</SPAN>
-</PRE></DIV></DIV></TD></TR></TBODY></TABLE><BR>
-<DIV class=ig-block-title>
-<H2><A name=_Ref332805620></A>Related Content</H2></DIV>
-<TABLE class=ig-layout>
-<TBODY>
-<TR>
-<TH>
-<H4>Topics</H4></TH>
-<TD>
-<DIV class=ig-layout-container>
-<P>The following topics provide additional information related to this topic.</P>
-<TABLE cellSpacing=0 cellPadding=0>
-<TBODY>
-<TR>
-<TH>
-<P>Topic</P></TH>
-<TH>
-<P>Purpose</P></TH></TR>
-<TR>
-<TD>
-<DIV class=ig-topic-link><A class=ig-topic-link href="7a03123f-b772-44ce-b1a0-04d2f85d1690">Changing Fonts and Styles</A> </DIV></TD>
-<TD>
-<P>This topic provides information on how to change the presention of the document’s content inside the <SPAN class=ig-italic>xamSyntaxEditor</SPAN>.</P></TD></TR>
-<TR>
-<TD>
-<DIV class=ig-topic-link><A class=ig-topic-link href="10bd103a-9ef7-459b-9946-1b4e3dcba8dc">Current Line Highlighting</A> </DIV></TD>
-<TD>
-<P>This topic explains the current line highlighting feature.</P></TD></TR></TBODY></TABLE><BR></DIV></TD></TR>
-<TR>
-<TH>
-<H4>Samples</H4></TH>
-<TD>
-<DIV class=ig-layout-container>
-<P>The following samples provide additional information related to this topic.</P>
-<TABLE cellSpacing=0 cellPadding=0>
-<TBODY>
-<TR>
-<TH>
-<P>Sample</P></TH>
-<TH>
-<P>Purpose</P></TH></TR>
-<TR>
-<TD>
-<DIV class=ig-topic-link><A style="hs-build-flags: {A72AF817-CD06-4101-A8ED-A0E52FC4DD05}" class=ig-topic-link href="%%SamplesURL%%/syntax-editor/#/splitting-capabilities" target=_blank>Splitting Capabilities</A><A style="hs-build-flags: {673B143B-6568-4204-99C0-4548E4AFEF3C}" class=ig-topic-link href="%%SamplesURL%%/syntax-editor/splitting-capabilities" target=_blank>Splitting Capabilities</A> </DIV></TD>
-<TD>
-<P>This sample demonstrates how to set different splitting options on the editor and how to monitor the current splitting status.</P></TD></TR></TBODY></TABLE><BR></DIV></TD></TR></TBODY></TABLE><BR></div>
+|metadata|
+</pre>
+
+<div id="docX-root">
+<h1 id="ig-document-title">List of Supported Built-in Functions</h1> 
+<div class="ig-block-title">
+<h2>Supported Excel Functions</h2></div>
+<table cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td>
+<h4>Introduction</h4></td>
+<td>
+<p>This document enumerates all currently supported built-in excel functions. All listed functions can be exported and imported and their parameter counts can be verified.</p>
+<p>Functions marked as supported at runtime can be evaluated by the <span class="ig-api-link"><a href="%%ProductAssemblyName%%.Documents.Excel.v%%ProductVersionShort%%~Infragistics.Documents.Excel.WorksheetCell_members.html">WorksheetCell</a></span> instance owning the formula, and the calculated value can be obtained from the cell&#x2019;s <span class="ig-italic">Value</span> property.</p></td></tr>
+<tr>
+<td>
+<h4>Functions reference summary</h4></td>
+<td>
+<p>The following table summarizes the supported Excel Built-in functions.</p>
+<table cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<th>
+<p>Excel function name</p></th>
+<th>
+<p>Supported at runtime</p></th></tr>
+<tr>
+<td>
+<p>ABS</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>ACCRINT</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>ACCRINTM</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>ACOS</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>ACOSH</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>ADDRESS</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>AMORDEGRC</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>AMORLINC</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>AND</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>AREAS</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>ASC</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>ASIN</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>ASINH</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>ATAN</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>ATAN2</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>ATANH</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>AVEDEV</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>AVERAGE</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>AVERAGEA</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>AVERAGEIF</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>AVERAGEIFS</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>BAHTTEXT</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>BESSELI</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>BESSELJ</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>BESSELK</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>BESSELY</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>BETADIST</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>BETAINV</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>BIN2DEC</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>BIN2HEX</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>BIN2OCT</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>BINOMDIST</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>CEILING</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>CELL</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>CHAR</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>CHIDIST</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>CHIINV</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>CHITEST</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>CHOOSE</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>CLEAN</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>CODE</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>COLUMN</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>COLUMNS</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>COMBIN</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>COMPLEX</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>CONCATENATE</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>CONFIDENCE</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>CONVERT</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>CORREL</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>COS</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>COSH</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>COUNT</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>COUNTA</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>COUNTBLANK</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>COUNTIF</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>COUPDAYBS</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>COUPDAYS</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>COUPDAYSNC</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>COUPNCD</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>COUPNUM</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>COUPPCD</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>COVAR</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>CRITBINOM</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>CUBEKPIMEMBER</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>CUBEMEMBER</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>CUBEMEMBERPROPERTY</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>CUBERANKEDMEMBER</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>CUBESET</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>CUBESETCOUNT</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>CUBEVALUE</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>CUMIPMT</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>CUMPRINC</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>DATE</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>DATEDIF</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>DATESTRING</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>DATEVALUE</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>DAVERAGE</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>DAY</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>DAYS360</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>DB</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>DBSC</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>DCOUNT</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>DCOUNTA</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>DDB</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>DEC2BIN</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>DEC2HEX</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>DEC2OCT</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>DEGREES</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>DELTA</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>DEVSQ</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>DGET</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>DISC</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>DMAX</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>DMIN</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>DOLLAR</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>DOLLARDE</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>DOLLARFR</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>DPRODUCT</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>DSTDEV</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>DSTDEVP</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>DSUM</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>DURATION</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>DVAR</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>DVARP</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>EDATE</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>EFFECT</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>EOMONTH</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>ERF</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>ERFC</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>ERROR.TYPE</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>EVEN</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>EXACT</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>EXP</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>EXPONDIST</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>FACT</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>FACTDOUBLE</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>FALSE</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>FDIST</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>FIND</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>FINDB</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>FINV</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>FISHER</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>FISHERINV</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>FIXED</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>FLOOR</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>FORECAST</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>FREQUENCY</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>FTEST</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>FV</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>FVSCHEDULE</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>GAMMADIST</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>GAMMAINV</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>GAMMALN</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>GCD</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>GEOMEAN</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>GESTEP</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>GETPIVOTDATA</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>GROWTH</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>HARMEAN</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>HEX2BIN</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>HEX2DEC</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>HEX2OCT</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>HLOOKUP</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>HOUR</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>HYPERLINK</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>HYPGEOMDIST</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>HYPGEOMVERT</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>IF</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>IFERROR</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>IMABS</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>IMAGINARY</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>IMARGUMENT</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>IMCONJUGATE</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>IMCOS</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>IMDIV</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>IMEXP</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>IMLN</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>IMLOG10</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>IMLOG2</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>IMPOWER</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>IMPRODUCT</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>IMREAL</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>IMSIN</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>IMSQRT</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>IMSUB</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>IMSUM</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>INDEX</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>INDIRECT</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>INFO</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>INT</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>INTERCEPT</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>INTRATE</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>IPMT</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>IRR</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>ISBLANK</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>ISERR</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>ISERROR</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>ISEVEN</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>ISLOGICAL</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>ISNA</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>ISNONTEXT</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>ISNUMBER</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>ISODD</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>ISPMT</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>ISREF</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>ISTEXT</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>KURT</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>LARGE</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>LCM</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>LEFT</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>LEFTB</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>LEN</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>LENB</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>LINEST</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>LN</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>LOG</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>LOG10</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>LOGEST</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>LOGINV</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>LOGNORMDIST</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>LOOKUP</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>LOWER</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>MATCH</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>MAX</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>MAXA</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>MDETERM</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>MDURATION</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>MEDIAN</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>MID</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>MIDB</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>MIN</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>MINA</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>MINUTE</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>MINVERSE</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>MIRR</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>MMULT</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>MNORMSINV</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>MOD</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>MODE</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>MONTH</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>MROUND</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>MULTINOMIAL</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>N</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>NA</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>NEGBINOMDIST</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>NETWORKDAYS</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>NOMINAL</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>NORMDIST</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>NORMINV</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>NORMSDIST</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>NORMSINV</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>NOT</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>NOW</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>NPER</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>NPV</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>NUMBERSTRING</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>OCT2BIN</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>OCT2DEC</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>OCT2HEX</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>ODD</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>ODDFPRICE</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>ODDFYIELD</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>ODDLPRICE</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>ODDLYIELD</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>OFFSET</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>OR</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>PEARSON</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>PERCENTILE</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>PERCENTRANK</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>PERMUT</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>PHONETIC</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>PI</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>PMT</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>POISSON</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>POWER</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>PPMT</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>PRICE</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>PRICEDISC</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>PRICEMAT</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>PROB</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>PRODUCT</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>PROPER</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>PV</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>QUARTILE</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>QUOTIENT</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>RADIANS</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>RAND</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>RANDBETWEEN</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>RANK</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>RATE</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>RECEIVED</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>REPLACE</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>REPLACEB</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>REPT</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>RIGHT</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>RIGHTB</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>ROMAN</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>ROUND</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>ROUNDDOWN</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>ROUNDUP</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>ROW</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>ROWS</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>RSQ</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>RTD</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>SEARCH</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>SEARCHB</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>SECOND</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>SERIESSUM</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>SIGN</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>SIN</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>SINH</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>SKEW</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>SLN</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>SLOPE</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>SMALL</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>SQRT</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>SQRTPI</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>STANDARDIZE</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>STDEV</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>STDEVA</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>STDEVP</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>STDEVPA</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>STEYX</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>SUBSTITUTE</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>SUBTOTAL</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>SUM</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>SUMIF</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>SUMIFS</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>SUMPRODUCT</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>SUMSQ</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>SUMX2MY2</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>SUMX2PY2</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>SUMXMY2</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>SYD</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>T</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>TAN</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>TANH</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>TBILLEQ</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>TBILLPRICE</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>TBILLYIELD</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>TDIST</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>TEXT</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>TIME</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>TIMEVALUE</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>TINV</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>TODAY</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>TRANSPOSE</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>TREND</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>TRIM</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>TRIMMEAN</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>TRUE</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>TRUNC</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>TTEST</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>TYPE</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>UPPER</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>USDOLLAR</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>VALUE</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>VAR</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>VARA</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>VARP</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>VARPA</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>VDB</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>VLOOKUP</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>WEEKDAY</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>WEEKNUM</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>WEIBULL</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>WORKDAY</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>XIRR</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>XNPV</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>YEAR</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
+<tr>
+<td>
+<p>YEARFRAC</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>YIELD</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>YIELDDISC</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>YIELDMAT</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
+<tr>
+<td>
+<p>ZTEST</p></td>
+<td>
+<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr></tbody></table>{temp:empty-element}</td></tr></tbody></table>{temp:empty-element}</div>
 <script src="https://code.jquery.com/jquery-2.1.4.min.js" type="text/javascript"></script>
 <script src="../../modules/unmapper/index.js" type="text/javascript"></script>
 <script>

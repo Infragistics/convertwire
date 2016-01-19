@@ -142,24 +142,17 @@
           return match;
       },
       replacement: function (content, node) {
-          var value;
-
-          value = '.' + content + '\n[NOTE]\n';
-
-          if (buildFlags.hasDocXBuildFlags(node)) {
-              value = buildFlags.wrapWithBuildFlags(value, node);
-          }
-
-          return value + '\n\n';
+          return content = content.trim() + '{label}';
       }
   };
-  
+
   var divNote = {
     filter: function(node){
       var match = false;
       
       match = node.nodeName === 'DIV' &&
-              node.className.toLowerCase() === 'note';
+              (node.className.toLowerCase() === 'note' ||
+               node.className.toLowerCase() === 'ig-note');
       
       return match;
     },
@@ -169,14 +162,21 @@
       label = getNoteLabel(content);
       
       content = content.replace(/\*Note:? ?\* /g, '');
+      
+      var labelParts = content.split('{label}');
+      
+      if(labelParts && labelParts.length >= 2){
+          label = '.' + labelParts[0].trim();
+          content = labelParts[1].trim();
+      }
 
-      value = '\n\n'+ label +'\n[NOTE]\n' + content;
+      value = label +'\n[NOTE]\n====\n' + content + '\n====';
       
       if(buildFlags.hasDocXBuildFlags(node)){
         value = buildFlags.wrapWithBuildFlags(value, node);
       }
       
-      return value + '\n\n';
+      return '\n\n' + value + '\n\n';
     }
   };
   
