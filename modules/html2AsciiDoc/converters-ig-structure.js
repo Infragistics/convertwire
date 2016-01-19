@@ -114,6 +114,17 @@
       return value;
     }
   };
+  
+  var codeInText = {
+      filter: function(node){
+          var match = false;
+          match = node.className == 'ig-code-in-text';
+          return match;
+      },
+      replacement: function(content, node){
+          return '`' + content + '`';
+      }
+  };
 
   var h1DocumentTitle = {
     filter: function(node){
@@ -358,6 +369,7 @@
   converters.push(innovasysWidgetProperty);
   converters.push(divIGLevel1);
   converters.push(spanClassLang);
+  converters.push(codeInText);
   converters.push(spanIGBold);
   converters.push(spanIGItalic);
   converters.push(spanNoteCaption);
