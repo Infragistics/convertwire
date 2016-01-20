@@ -1,3 +1,4 @@
 link:http://google.com[Google] <<bookmark-1,link>>
+
 [[bookmark-1]]
 bookmark-1

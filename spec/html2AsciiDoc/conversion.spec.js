@@ -44,7 +44,7 @@ describe('html2AsciiDoc', function(){
 		'list-unordered',
 		'ig-code-in-text',
         'paragraph-bold-start'
-	].forEach(function(fileName){
+	];['indented-code'].forEach(function(fileName){
 		it('converts html into asciidoc: ' + fileName, function(){
 			var content = getContent(fileName);
 			var result = converter.convert(content.html);

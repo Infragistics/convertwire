@@ -145,7 +145,7 @@
       if (buildFlags.hasDocXBuildFlags(node)) {
         value = buildFlags.wrapWithBuildFlags(value, node);
       }
-      return '\n' + value.trim(); + '\n\n';
+      return '\n\n' + value.trim(); + '\n\n';
     }
   };
 
