@@ -320,7 +320,7 @@
   var br = {
     filter: 'br',
     replacement: function () {
-      return '\n';
+      return '\n\n';
     }
   };
 
