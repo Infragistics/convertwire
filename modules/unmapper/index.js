@@ -45,8 +45,13 @@ var getContents = function(element, contentType){
     return contents;
 };
 
+var getHeaderElement = function($row){
+    return $row.children()[0];
+};
+
 var createNewMarkupFromLayoutTables = () => {
-    var $tbody, $tbodys, $row, $rows, header, $header, content, hasContent, style, 
+    var $tbody, $tbodys, $row, $rows, header, $header, content, hasContent, style,
+        html, headerElement, 
         buildFlags = '', rowMarkup = [], tableMarkup = [], value = {};
     
     $tbodys = $('table.ig-layout > tbody');
@@ -59,7 +64,9 @@ var createNewMarkupFromLayoutTables = () => {
         $rows.each((rowIndex, row) => {
             $row = $(row);
             
-            var html = getContents($row.find('th')[0], 'html');
+            headerElement = getHeaderElement($row);
+            
+            html = getContents(headerElement, 'html');
             if(html.indexOf('{temp:empty-header}') === -1){
                 $header = $(html);
                 var anchorMarkup = '';
