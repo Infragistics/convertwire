@@ -7,9 +7,11 @@ var cheerio = require('cheerio');
 
 fs.mkdirSync(path.resolve(__dirname, '../../logs/tables'));
 fs.mkdirSync(path.resolve(__dirname, '../../logs/tables/complex'));
-fs.mkdirSync(path.resolve(__dirname, '../../logs/tables/nested'));
-fs.mkdirSync(path.resolve(__dirname, '../../logs/tables/blockquote'));
 fs.mkdirSync(path.resolve(__dirname, '../../logs/tables/root-level'));
+fs.mkdirSync(path.resolve(__dirname, '../../logs/tables/nested'));
+fs.mkdirSync(path.resolve(__dirname, '../../logs/tables/nested/blockquote-blockquote'));
+fs.mkdirSync(path.resolve(__dirname, '../../logs/tables/nested/blockquote-pre'));
+fs.mkdirSync(path.resolve(__dirname, '../../logs/tables/nested/blockquote-code'));
 
 module.getRandomFileNames = (folderPath, count, groupCount, english) => {
 	var randoms, basePath, fileNames, fileCount, index;
@@ -124,11 +126,13 @@ module.rootLevelTables = function (folderPath) {
 
 };
 
-module.nestedElements = function (folderPath, elementName) {
+module.nestedElements = function (folderPath, firstElementName, secondElementName) {
 	var basePath, fileNames, results = [], matches, title = '';
 
 	basePath = path.resolve(__dirname, folderPath);
 	fileNames = fs.readdirSync(basePath);
+    
+    var folderName = `${firstElementName}-${secondElementName}`;
 
 	fileNames.forEach((fileName) => {
 		var filePath, contents, $, nestedElementCount;
@@ -138,9 +142,9 @@ module.nestedElements = function (folderPath, elementName) {
 			contents = fs.readFileSync(filePath, 'utf8');
 			$ = cheerio.load(contents);
 			
-			$(elementName).each((i, element) => {
+			$(firstElementName).each((i, element) => {
 				var $element = $(element);
-				nestedElementCount = $element.find(elementName).length;
+				nestedElementCount = $element.find(secondElementName).length;
 			});
 	
 			if (nestedElementCount) {
@@ -153,17 +157,17 @@ module.nestedElements = function (folderPath, elementName) {
 				}
 				
 				results.push(`${fileName}\t\t\t${title}.adoc`);
-				fs.writeFileSync(path.resolve(__dirname, `../../logs/tables/nested/${elementName}/${fileName}`), contents, 'utf8');
+				fs.writeFileSync(path.resolve(__dirname, `../../logs/tables/nested/${folderName}/${fileName}`), contents, 'utf8');
 			}
 		}
 
 	});
-
+    
 	if (results.length > 0) {
-		fs.writeFileSync(path.resolve(__dirname, `../../logs/tables/nested/${elementName}/list.txt`), results.join('\n'), 'utf8');
-		console.log(`${results.length} nested ${elementName} elements found`);
+		fs.writeFileSync(path.resolve(__dirname, `../../logs/tables/nested/${folderName}/list.txt`), results.join('\n'), 'utf8');
+		console.log(`${results.length} topics with ${secondElementName}s nested in ${firstElementName}s found`);
 	} else {
-		console.log(`no nested ${elementName} elements found`);
+		console.log(`no topics with ${secondElementName}s nested in ${firstElementName}s found`);
 	}
 };
 
@@ -217,8 +221,10 @@ if(files.length > 100){
 module.crazyTables('../../spec/data/dest/no-format');
 
 // run against: gulp html
-module.nestedElements('../../spec/data/dest/html', 'html');
-module.nestedElements('../../spec/data/dest/html', 'blockquote');
+module.nestedElements('../../spec/data/dest/html', 'html', 'html');
+module.nestedElements('../../spec/data/dest/html', 'blockquote', 'blockquote');
+module.nestedElements('../../spec/data/dest/html', 'blockquote', 'pre');
+module.nestedElements('../../spec/data/dest/html', 'blockquote', 'code');
 
 module.rootLevelTables('../../spec/data/dest/html');
 
