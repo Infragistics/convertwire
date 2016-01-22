@@ -22,6 +22,7 @@
 		return value.toLowerCase();
 	};
 
+    // --- code ------------------------
 	var preCode = {
 		filter: function (node) {
 			var match = false;
@@ -107,6 +108,7 @@
 			return value;
 		}
 	}
+    // /--- code ------------------------
 	
 	var highlightedDiv = {
 		filter: function (node) {

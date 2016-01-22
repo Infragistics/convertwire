@@ -17,1818 +17,491 @@
     </head>
 <body>
 
-<pre id="metadata">
-|metadata|
-{
-    &quot;name&quot;: &quot;ig-excel-engine-list-of-supported-built-in-functions&quot;,
-    &quot;controlName&quot;: [&quot;IG Excel Engine&quot;],
-    &quot;tags&quot;: [&quot;Getting Started&quot;,&quot;How Do I&quot;],
-    &quot;guid&quot;: &quot;2e09fe35`e4bc`4d5d`9a43`e49e4abbc455&quot;,  
-    &quot;buildFlags&quot;: [],
-	&quot;createdOn&quot;: &quot;2012-03-30T11:42:44.3335629Z&quot;
-}
-|metadata|
-</pre>
-
 <div id="docX-root">
-<h1 id="ig-document-title">List of Supported Built-in Functions</h1> 
+    
+<h1 id="ig-document-title">MultiColumnCombo Column</h1> 
+<table class="ig-layout">
+    <tbody>
+        <tr>
+            <th>
+                <div class="ig-block-header">
+                    <h3>Purpose</h3>
+                </div>
+            </th>
+
+            <td>
+                <div class="ig-layout-container">
+                    <p>This topic introduces the MultiColumnCombo column type available in the xamGrid™ control. It also demonstrates how to use the column
+                    within the xamGrid control.</p>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <th>
+                <div class="ig-block-header">
+                    <h3>Required background</h3>
+                </div>
+            </th>
+
+            <td>
+                <div class="ig-layout-container">
+                    <p>The following table lists the topics required as a prerequisite to understanding this topic.</p>
+
+                    <table cellSpacing="0" cellPadding="0">
+                        <tbody>
+                            <tr>
+                                <th>
+                                    <p><i>Topic</i></p>
+                                </th>
+
+                                <th>
+                                    <p><i>Purpose</i></p>
+                                </th>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <p><a href="{E0C05436-BCA5-4D56-8CF2-B5AF4A572A49}" style="auto-update-caption: true">Define Column Layout</a></p>
+                                </td>
+
+                                <td>
+                                    <p>This topic describes how to create columns with the xamGrid control.</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table><br>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table><br>
+
 <div class="ig-block-title">
-<h2>Supported Excel Functions</h2></div>
-<table cellspacing="0" cellpadding="0">
-<tbody>
-<tr>
-<td>
-<h4>Introduction</h4></td>
-<td>
-<p>This document enumerates all currently supported built-in excel functions. All listed functions can be exported and imported and their parameter counts can be verified.</p>
-<p>Functions marked as supported at runtime can be evaluated by the <span class="ig-api-link"><a href="%%ProductAssemblyName%%.Documents.Excel.v%%ProductVersionShort%%~Infragistics.Documents.Excel.WorksheetCell_members.html">WorksheetCell</a></span> instance owning the formula, and the calculated value can be obtained from the cell&#x2019;s <span class="ig-italic">Value</span> property.</p></td></tr>
-<tr>
-<td>
-<h4>Functions reference summary</h4></td>
-<td>
-<p>The following table summarizes the supported Excel Built-in functions.</p>
-<table cellspacing="0" cellpadding="0">
-<tbody>
-<tr>
-<th>
-<p>Excel function name</p></th>
-<th>
-<p>Supported at runtime</p></th></tr>
-<tr>
-<td>
-<p>ABS</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>ACCRINT</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>ACCRINTM</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>ACOS</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>ACOSH</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>ADDRESS</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>AMORDEGRC</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>AMORLINC</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>AND</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>AREAS</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>ASC</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>ASIN</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>ASINH</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>ATAN</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>ATAN2</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>ATANH</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>AVEDEV</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>AVERAGE</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>AVERAGEA</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>AVERAGEIF</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>AVERAGEIFS</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>BAHTTEXT</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>BESSELI</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>BESSELJ</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>BESSELK</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>BESSELY</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>BETADIST</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>BETAINV</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>BIN2DEC</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>BIN2HEX</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>BIN2OCT</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>BINOMDIST</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>CEILING</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>CELL</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>CHAR</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>CHIDIST</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>CHIINV</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>CHITEST</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>CHOOSE</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>CLEAN</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>CODE</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>COLUMN</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>COLUMNS</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>COMBIN</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>COMPLEX</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>CONCATENATE</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>CONFIDENCE</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>CONVERT</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>CORREL</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>COS</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>COSH</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>COUNT</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>COUNTA</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>COUNTBLANK</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>COUNTIF</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>COUPDAYBS</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>COUPDAYS</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>COUPDAYSNC</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>COUPNCD</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>COUPNUM</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>COUPPCD</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>COVAR</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>CRITBINOM</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>CUBEKPIMEMBER</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>CUBEMEMBER</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>CUBEMEMBERPROPERTY</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>CUBERANKEDMEMBER</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>CUBESET</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>CUBESETCOUNT</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>CUBEVALUE</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>CUMIPMT</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>CUMPRINC</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>DATE</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>DATEDIF</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>DATESTRING</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>DATEVALUE</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>DAVERAGE</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>DAY</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>DAYS360</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>DB</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>DBSC</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>DCOUNT</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>DCOUNTA</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>DDB</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>DEC2BIN</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>DEC2HEX</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>DEC2OCT</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>DEGREES</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>DELTA</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>DEVSQ</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>DGET</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>DISC</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>DMAX</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>DMIN</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>DOLLAR</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>DOLLARDE</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>DOLLARFR</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>DPRODUCT</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>DSTDEV</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>DSTDEVP</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>DSUM</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>DURATION</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>DVAR</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>DVARP</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>EDATE</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>EFFECT</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>EOMONTH</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>ERF</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>ERFC</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>ERROR.TYPE</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>EVEN</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>EXACT</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>EXP</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>EXPONDIST</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>FACT</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>FACTDOUBLE</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>FALSE</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>FDIST</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>FIND</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>FINDB</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>FINV</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>FISHER</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>FISHERINV</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>FIXED</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>FLOOR</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>FORECAST</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>FREQUENCY</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>FTEST</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>FV</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>FVSCHEDULE</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>GAMMADIST</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>GAMMAINV</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>GAMMALN</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>GCD</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>GEOMEAN</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>GESTEP</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>GETPIVOTDATA</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>GROWTH</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>HARMEAN</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>HEX2BIN</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>HEX2DEC</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>HEX2OCT</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>HLOOKUP</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>HOUR</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>HYPERLINK</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>HYPGEOMDIST</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>HYPGEOMVERT</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>IF</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>IFERROR</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>IMABS</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>IMAGINARY</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>IMARGUMENT</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>IMCONJUGATE</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>IMCOS</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>IMDIV</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>IMEXP</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>IMLN</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>IMLOG10</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>IMLOG2</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>IMPOWER</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>IMPRODUCT</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>IMREAL</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>IMSIN</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>IMSQRT</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>IMSUB</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>IMSUM</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>INDEX</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>INDIRECT</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>INFO</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>INT</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>INTERCEPT</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>INTRATE</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>IPMT</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>IRR</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>ISBLANK</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>ISERR</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>ISERROR</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>ISEVEN</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>ISLOGICAL</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>ISNA</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>ISNONTEXT</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>ISNUMBER</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>ISODD</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>ISPMT</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>ISREF</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>ISTEXT</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>KURT</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>LARGE</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>LCM</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>LEFT</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>LEFTB</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>LEN</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>LENB</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>LINEST</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>LN</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>LOG</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>LOG10</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>LOGEST</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>LOGINV</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>LOGNORMDIST</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>LOOKUP</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>LOWER</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>MATCH</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>MAX</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>MAXA</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>MDETERM</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>MDURATION</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>MEDIAN</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>MID</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>MIDB</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>MIN</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>MINA</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>MINUTE</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>MINVERSE</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>MIRR</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>MMULT</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>MNORMSINV</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>MOD</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>MODE</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>MONTH</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>MROUND</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>MULTINOMIAL</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>N</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>NA</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>NEGBINOMDIST</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>NETWORKDAYS</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>NOMINAL</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>NORMDIST</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>NORMINV</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>NORMSDIST</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>NORMSINV</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>NOT</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>NOW</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>NPER</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>NPV</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>NUMBERSTRING</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>OCT2BIN</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>OCT2DEC</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>OCT2HEX</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>ODD</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>ODDFPRICE</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>ODDFYIELD</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>ODDLPRICE</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>ODDLYIELD</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>OFFSET</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>OR</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>PEARSON</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>PERCENTILE</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>PERCENTRANK</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>PERMUT</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>PHONETIC</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>PI</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>PMT</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>POISSON</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>POWER</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>PPMT</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>PRICE</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>PRICEDISC</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>PRICEMAT</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>PROB</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>PRODUCT</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>PROPER</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>PV</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>QUARTILE</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>QUOTIENT</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>RADIANS</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>RAND</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>RANDBETWEEN</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>RANK</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>RATE</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>RECEIVED</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>REPLACE</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>REPLACEB</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>REPT</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>RIGHT</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>RIGHTB</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>ROMAN</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>ROUND</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>ROUNDDOWN</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>ROUNDUP</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>ROW</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>ROWS</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>RSQ</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>RTD</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>SEARCH</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>SEARCHB</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>SECOND</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>SERIESSUM</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>SIGN</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>SIN</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>SINH</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>SKEW</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>SLN</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>SLOPE</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>SMALL</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>SQRT</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>SQRTPI</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>STANDARDIZE</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>STDEV</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>STDEVA</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>STDEVP</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>STDEVPA</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>STEYX</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>SUBSTITUTE</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>SUBTOTAL</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>SUM</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>SUMIF</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>SUMIFS</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>SUMPRODUCT</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>SUMSQ</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>SUMX2MY2</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>SUMX2PY2</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>SUMXMY2</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>SYD</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>T</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>TAN</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>TANH</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>TBILLEQ</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>TBILLPRICE</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>TBILLYIELD</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>TDIST</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>TEXT</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>TIME</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>TIMEVALUE</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>TINV</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>TODAY</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>TRANSPOSE</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>TREND</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>TRIM</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>TRIMMEAN</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>TRUE</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>TRUNC</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>TTEST</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>TYPE</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>UPPER</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>USDOLLAR</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>VALUE</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>VAR</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>VARA</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>VARP</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>VARPA</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>VDB</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>VLOOKUP</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>WEEKDAY</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>WEEKNUM</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>WEIBULL</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>WORKDAY</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>XIRR</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>XNPV</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>YEAR</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_1.png" width="19" height="18"></p></td></tr>
-<tr>
-<td>
-<p>YEARFRAC</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>YIELD</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>YIELDDISC</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>YIELDMAT</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr>
-<tr>
-<td>
-<p>ZTEST</p></td>
-<td>
-<p><img alt="" src="images/ExcelEngine_List_Of_Supported_Built-In_Functions_2.png" width="18" height="19"></p></td></tr></tbody></table>{temp:empty-element}</td></tr></tbody></table>{temp:empty-element}</div>
+    <h2>Introduction</h2>
+</div>
+
+<table class="ig-layout">
+    <tbody>
+        <tr>
+            <th>
+                <div class="ig-block-header">
+                    <h3>MultiColumnCombo column summary</h3>
+                </div>
+            </th>
+
+            <td>
+                <div class="ig-layout-container">
+                    <p>The MultiColumnCombo column is column type that displays multiple columns in a drop down list. It allows users to edit the cell value of
+                    the xamGrid control by selecting a value from a pre-populated drop-down list of items. The difference between the MultiColumnCombo column
+                    and the ComboBoxEditor column is that MultiColumnCombo can display more information for each data item, using multiple grid-like
+                    columns.</p>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <th>
+                <h4>Requirements summary chart</h4>
+            </th>
+
+            <td>
+                <div class="ig-layout-container">
+                    <p>The following table summarizes the requirements for adding the MultiColumnCombo column to the xamGrid control.</p>
+
+                    <table cellSpacing="0" cellPadding="0">
+                        <tbody>
+                            <tr>
+                                <th>
+                                    <p>Requirement</p>
+                                </th>
+
+                                <th>
+                                    <p>Description</p>
+                                </th>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <p>Reference to the %%ProductAssemblyName%%.Controls.Editors.XamComboEditor.v%%ProductVersionShort%%</p>
+                                </td>
+
+                                <td>
+                                    <p>%%ProductNameShort%% assembly containing the XamComboEditor control.</p>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <p>Reference to the %%ProductAssemblyName%%.Controls.Grids.MultiColumnComboColumn.v%%ProductVersionShort%%</p>
+                                </td>
+
+                                <td>
+                                    <p>%%ProductNameShort%% assembly containing the XamMultiColumComboEditor control.</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table><br>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table><br>
+
+<div class="ig-block-title">
+    <h2>Configuring the MultiColumnCombo Column- Conceptual Overview</h2>
+</div>
+
+<table class="ig-layout">
+    <tbody>
+        <tr>
+            <th>
+                <div class="ig-block-header">
+                    <h3>Overview</h3>
+                </div>
+            </th>
+
+            <td>
+                <div class="ig-layout-container">
+                    <p>The MultiColumnCombo column is added to the xamGrid in the same way as any other type of column: you choose between adding the column
+                    manually and automatically (depending on the datasource) by setting the <a href="%%ProductAssemblyName%%.Controls.Grids.MultiColumnComboColumn.v%%ProductVersionShort%%~Infragistics.Controls.Grids.MultiColumnComboColumn~AutoGenerateColumns.html">
+                    AutoGenerateColumns</a> property of MultiColumnCombo:</p>
+
+                    <ul>
+                        <li><span class="ig-italic">False</span> – The MultiColumnCombo type of column is added manually.</li>
+
+                        <li><span class="ig-italic">True</span> – Columns will be generated automatically based on the data source.</li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <th>
+                <div class="ig-block-header">
+                    <h3>Property settings</h3>
+                </div>
+            </th>
+
+            <td>
+                <div class="ig-layout-container">
+                    <p>The following table maps the desired configuration/behaviors to property settings.</p>
+
+                    <table cellSpacing="0" cellPadding="0">
+                        <tbody>
+                            <tr>
+                                <th>
+                                    <p>In order to:</p>
+                                </th>
+
+                                <th>
+                                    <p>Use this property:</p>
+                                </th>
+
+                                <th>
+                                    <p>And set it to:</p>
+                                </th>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <p>Set the data source</p>
+                                </td>
+
+                                <td><a href="%%ProductAssemblyName%%.Controls.Grids.MultiColumnComboColumn.v%%ProductVersionShort%%~Infragistics.Controls.Grids.MultiColumnComboColumn~ItemsSource.html">
+                                ItemsSource</a></td>
+
+                                <td>
+                                    <p>An IEnumerable data source</p>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <p>Let the column generate the columns</p>
+                                </td>
+
+                                <td><a href="%%ProductAssemblyName%%.Controls.Grids.MultiColumnComboColumn.v%%ProductVersionShort%%~Infragistics.Controls.Grids.MultiColumnComboColumn~AutoGenerateColumns.html">
+                                AutoGenerateColumns</a></td>
+
+                                <td>
+                                    <ul>
+                                        <li><span class="ig-italic">True</span> – columns will be generated automatically based on the data source</li>
+
+                                        <li><span class="ig-italic">False</span> – Add the columns manually</li>
+                                    </ul>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <p>Set which value is displayed when the dropdown is closed</p>
+                                </td>
+
+                                <td><a href="%%ProductAssemblyName%%.Controls.Grids.MultiColumnComboColumn.v%%ProductVersionShort%%~Infragistics.Controls.Grids.MultiColumnComboColumn~DisplayMemberPath.html">
+                                DisplayMemberPath</a></td>
+
+                                <td>
+                                    <p>A key from the ItemsSource</p>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <p>Define the columns displayed in the dropdown of the control (if AutoGenerateColumns is set to <span class="ig-italic">False</span>)</p>
+                                </td>
+
+                                <td><a href="%%ProductAssemblyName%%.Controls.Grids.MultiColumnComboColumn.v%%ProductVersionShort%%~Infragistics.Controls.Grids.MultiColumnComboColumn~Columns.html">
+                                Columns</a></td>
+
+                                <td>
+                                    <p>A collection of ComboColumns</p>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <p>Set the selected value of the dropdown</p>
+                                </td>
+
+                                <td><a href="%%ProductAssemblyName%%.Controls.Grids.MultiColumnComboColumn.v%%ProductVersionShort%%~Infragistics.Controls.Grids.MultiColumnComboColumn~SelectedValuePath.html">
+                                SelectedValuePath</a></td>
+
+                                <td>
+                                    <p>A key from the ItemsSource that is used as the value of the selected item of the dropdown</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table><br>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table><br>
+
+<div class="ig-block-title">
+    <h2>Configuring the MultiColumnCombo Column- Code Example</h2>
+</div>
+<table class="ig-layout">
+    <tbody>
+        <tr>
+            <th>
+                <div class="ig-block-header">
+                    <h3>Description</h3>
+                </div>
+            </th>
+
+            <td>
+                <div class="ig-layout-container">
+                    <p>This example demonstrates how to add a MultiColumnCombo column to the xamGrid control and set its key properties. It will also
+                    demonstrate how to add column types to the drop down list of items. You can add columns such as:</p>
+
+                    <ul>
+                        <li><a href="%%ProductAssemblyName%%.Controls.Editors.XamComboEditor.v%%ProductVersionShort%%~Infragistics.Controls.Editors.ImageComboColumn_members.html">
+                        ImageComboColumn</a></li>
+
+                        <li><a href="%%ProductAssemblyName%%.Controls.Editors.XamComboEditor.v%%ProductVersionShort%%~Infragistics.Controls.Editors.CheckboxComboColumn_members.html">
+                        CheckboxComboColumn</a></li>
+
+                        <li><a href="%%ProductAssemblyName%%.Controls.Editors.XamComboEditor.v%%ProductVersionShort%%~Infragistics.Controls.Editors.DateComboColumn_members.html">
+                        DateComboColumn</a></li>
+
+                        <li><a href="%%ProductAssemblyName%%.Controls.Editors.XamComboEditor.v%%ProductVersionShort%%~Infragistics.Controls.Editors.TextComboColumn_members.html">
+                        TextComboColumn</a></li>
+                    </ul>
+
+                    <p>The screenshot below demonstrates how the MultiColumnCombo looks in the xamGrid control as a result of the following settings:</p>
+
+                    <table cellSpacing="0" cellPadding="0">
+                        <tbody>
+                            <tr>
+                                <th>
+                                    <p>Property</p>
+                                </th>
+
+                                <th>
+                                    <p>Value</p>
+                                </th>
+                            </tr>
+
+                            <tr>
+                                <td><a href="%%ProductAssemblyName%%.Controls.Grids.MultiColumnComboColumn.v%%ProductVersionShort%%~Infragistics.Controls.Grids.MultiColumnComboColumn~ItemsSource.html">
+                                ItemsSource</a></td>
+
+                                <td>StaticResource customerlist</td>
+                            </tr>
+
+                            <tr>
+                                <td><a href="%%ProductAssemblyName%%.Controls.Grids.MultiColumnComboColumn.v%%ProductVersionShort%%~Infragistics.Controls.Grids.MultiColumnComboColumn~AutoGenerateColumns.html">
+                                AutoGenerateColumns</a></td>
+
+                                <td>False</td>
+                            </tr>
+
+                            <tr>
+                                <td><a href="%%ProductAssemblyName%%.Controls.Grids.MultiColumnComboColumn.v%%ProductVersionShort%%~Infragistics.Controls.Grids.MultiColumnComboColumn~DisplayMemberPath.html">
+                                DisplayMemberPath</a></td>
+
+                                <td>ContactName</td>
+                            </tr>
+
+                            <tr>
+                                <td><a href="%%ProductAssemblyName%%.Controls.Grids.MultiColumnComboColumn.v%%ProductVersionShort%%~Infragistics.Controls.Grids.MultiColumnComboColumn~SelectedValuePath.html">
+                                SelectedValuePath</a></td>
+
+                                <td>CustomerId</td>
+                            </tr>
+
+                            <tr>
+                                <td><a href="%%ProductAssemblyName%%.Controls.Grids.MultiColumnComboColumn.v%%ProductVersionShort%%~Infragistics.Controls.Grids.MultiColumnComboColumn~Columns.html">
+                                Columns</a></td>
+
+                                <td>
+                                    <p>Added collection of ComboColumns, such as, ImageComboColumn and TextComboColumn</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table><br>
+
+                    <p><img alt="" src="images/xamGrid_MultiColumnCombo_01.png" width="624" height="426"></p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <div class="ig-block-header">
+                    <h3>Code</h3>
+                </div>
+            </th>
+
+            <td>
+                <div style="display: block;" id="Example_XAML" class="LanguageSpecific">
+                    <p><span class="lang"><b>In XAML:</b></span></p>
+                    <pre><span class="code"><span class="blue">&lt;</span><span class="brownish">ig</span><span class="blue">:</span><span class="brownish">XamGrid</span> <span class="red">x</span><span class="blue">:</span><span class="red">Name</span><span class="blue">="dataGrid"</span>
+            <span class="red">AutoGenerateColumns</span><span class="blue">="false"</span>
+            <span class="red">ColumnWidth</span><span class="blue">="*"</span><span class="blue">&gt;</span>
+   <span class="blue">&lt;</span><span class="brownish">ig</span><span class="blue">:</span><span class="brownish">XamGrid.Columns</span><span class="blue">&gt;</span>
+      <span class="comment">&lt;!--Add MultiColumnComboColumn--&gt;</span>
+      <span class="blue">&lt;</span><span class="brownish">ig</span><span class="blue">:</span><span class="brownish">MultiColumnComboColumn</span> <span class="red">Key</span><span class="blue">="CustomerId"</span> <span class="red">x</span><span class="blue">:</span><span class="red">Name</span><span class="blue">="customerList"</span>
+                                 <span class="red">ItemsSource</span><span class="blue">="{</span><span class="brownish">StaticResource</span> <span class="red">customerList</span><span class="blue">}"</span>
+                                 <span class="red">AutoGenerateColumns</span><span class="blue">="False"</span>
+                                 <span class="red">DisplayMemberPath</span><span class="blue">="ContactName"</span>
+                                 <span class="red">SelectedValuePath</span><span class="blue">="CustomerId"</span><span class="blue">&gt;</span>
+       <span class="comment">&lt;!--Add Combo Columns to Columns collection--&gt;</span>
+       <span class="blue">&lt;</span><span class="brownish">ig</span><span class="blue">:</span><span class="brownish">MultiColumnComboColumn.Columns</span><span class="blue">&gt;</span>
+            <span class="blue">&lt;</span><span class="brownish">ig</span><span class="blue">:</span><span class="brownish">ImageComboColumn</span> <span class="red">Key</span><span class="blue">="ImagePath"</span>
+                                 <span class="red">MaximumWidth</span><span class="blue">="60"</span>
+                                 <span class="red">ImageWidth</span><span class="blue">="50"</span> <span class="blue">&gt;</span>
+            <span class="blue">&lt;/</span><span class="brownish">ig</span><span class="blue">:</span><span class="brownish">ImageComboColumn</span><span class="blue">&gt;</span>
+            <span class="blue">&lt;</span><span class="brownish">ig</span><span class="blue">:</span><span class="brownish">TextComboColumn</span> <span class="red">Key</span><span class="blue">="ContactName"</span> <span class="blue">/&gt;</span>
+            <span class="blue">&lt;</span><span class="brownish">ig</span><span class="blue">:</span><span class="brownish">TextComboColumn</span> <span class="red">Key</span><span class="blue">="Company"</span> <span class="blue">/&gt;</span>
+         <span class="blue">&lt;/</span><span class="brownish">ig</span><span class="blue">:</span><span class="brownish">MultiColumnComboColumn.Columns</span><span class="blue">&gt;</span>
+      <span class="blue">&lt;/</span><span class="brownish">ig</span><span class="blue">:</span><span class="brownish">MultiColumnComboColumn</span><span class="blue">&gt;</span>
+   <span class="blue">&lt;/</span><span class="brownish">ig</span><span class="blue">:</span><span class="brownish">XamGrid.Columns</span><span class="blue">&gt;</span>
+<span class="blue">&lt;/</span><span class="brownish">ig</span><span class="blue">:</span><span class="brownish">XamGrid</span><span class="blue">&gt;</span></span>
+</pre>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table><br>
+
+<div class="ig-block-title">
+    <h2>Related Content</h2>
+</div>
+
+<table class="ig-layout">
+    <tbody>
+        <tr>
+            <th>
+                <div class="ig-block-header">
+                    <h3>Topics</h3>
+                </div>
+            </th>
+
+            <td>
+                <div class="ig-layout-container">
+                    <p>The following topics provide additional information related to this topic.</p>
+
+                    <table cellSpacing="0" cellPadding="0">
+                        <tbody>
+                            <tr>
+                                <th>
+                                    <p>Topic</p>
+                                </th>
+
+                                <th>
+                                    <p>Purpose</p>
+                                </th>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <p><a href="{66919FA6-3013-44A6-98B4-AEC94326B711}" style="auto-update-caption: true">Columns</a></p>
+                                </td>
+
+                                <td>
+                                    <p>This section describes the different Columns available within the xamGrid control</p>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <p><a href="e0dfd655-2cdc-4fc0-b8c8-97af554625b5" style="auto-update-caption: true">xamMultiColumnComboEditor</a></p>
+                                </td>
+
+                                <td>
+                                    <p>This topic contains information about the xamMultiColumnComboEditor control</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table><br>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <th>
+                <div class="ig-block-header">
+                    <h3>Samples</h3>
+                </div>
+            </th>
+
+            <td>
+                <div class="ig-layout-container">
+                    <p>The following samples provide additional information related to this topic.</p>
+
+                    <table cellSpacing="0" cellPadding="0">
+                        <tbody>
+                            <tr>
+                                <th>
+                                    <p>Sample</p>
+                                </th>
+
+                                <th>
+                                    <p>Purpose</p>
+                                </th>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div class="ig-topic-link">
+                                        <a class="ig-topic-link" href="%%SamplesURL%%/grid/#/multicolumncomboeditor-columns" target="_blank" style="hs-build-flags: {A72AF817-CD06-4101-A8ED-A0E52FC4DD05}">MultiColumnComboEditor Columns</a><a class="ig-topic-link" href="%%SamplesURL%%/grid/multicolumncomboeditor-columns" target="_blank" style="hs-build-flags: {673B143B-6568-4204-99C0-4548E4AFEF3C}">MultiColumnComboEditor Columns</a>
+                                    </div>
+                                </td>
+
+                                <td>This sample demonstrates how to add the MultiColumnCombo column to your xamGrid control.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+
 <script src="https://code.jquery.com/jquery-2.1.4.min.js" type="text/javascript"></script>
 <script src="../../modules/unmapper/index.js" type="text/javascript"></script>
 <script>

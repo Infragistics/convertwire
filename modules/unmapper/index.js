@@ -50,9 +50,13 @@ var getHeaderElement = function($row){
 };
 
 var createNewMarkupFromLayoutTables = () => {
-    var $tbody, $tbodys, $row, $rows, header, $header, content, hasContent, style,
-        html, headerElement, 
-        buildFlags = '', rowMarkup = [], tableMarkup = [], value = {};
+    var 
+        html, header, headerElement, content, hasContent, style,
+        $tbody, $tbodys, $row, $rows, $header, $containers, 
+        buildFlags = '', 
+        rowMarkup = [], 
+        tableMarkup = [], 
+        value = {};
     
     $tbodys = $('table.ig-layout > tbody');
     
@@ -75,13 +79,16 @@ var createNewMarkupFromLayoutTables = () => {
                     anchorMarkup = $('<div>').append($header.find('a')[0]).html();
                 }
                 
-                header = $header.text();
+                header = $header.text().trim();
             } else {
                 // empty th
                 header = '';
             }
             
-            var $containers = $row.find('.ig-layout-container');
+            $containers = $row.find('.ig-layout-container');
+            if($containers.length === 0){
+                $containers = $($row.children()[1]);
+            }
             
             $containers.each((containerIndex, container) => {
                 content = getContents(container, 'html');
