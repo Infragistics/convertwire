@@ -157,14 +157,17 @@
                     let value = {};
                     
                     let style = $a.attr('style');
-                    let guidMatches = style.match(guidMatchExpression);
                     
-                    if(guidMatches && guidMatches.length > 0){
-                        let guidsToRemove = _.intersection(removeFlags, guidMatches);
-                        if(guidsToRemove.length > 0){
-                            value.src = $('<div>').append($a).html();
-                            value.dest = '';
-                            values.push(value);
+                    if(style){
+                        let guidMatches = style.match(guidMatchExpression);
+                        
+                        if(guidMatches && guidMatches.length > 0){
+                            let guidsToRemove = _.intersection(removeFlags, guidMatches);
+                            if(guidsToRemove.length > 0){
+                                value.src = $('<div>').append($a).html();
+                                value.dest = '';
+                                values.push(value);
+                            }
                         }
                     }
                 });
