@@ -1,6 +1,8 @@
 (function(module){
 	
 	'use strict';
+    
+    const _ = require('lodash');
 	
 	module.regex = [
 		{
@@ -136,7 +138,40 @@
 				
 				return values;
 			}
-		}
+		},
+        {
+            name: 'remove-old-build-variables',
+            apply: ($) => {
+                let values = [];
+                let guidMatchExpression = '{?([0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12})}?';
+                let removeFlags = [
+                    '{03CD8027-2F55-4D9F-9B31-15F1CDA89005}',
+                    '{7F8A205D-BEEC-4CEE-BF00-9B6A6DE582BB}',
+                    '{4522AF82-ECE7-4A43-A30F-FAB0E9311CB1}',
+                    '{3464F388-E853-43C5-8CFF-3C3C2F4DE1A3}',
+                    '{AE4AFBC6-B7A7-4E4A-8D8E-201B876A8FA4}'
+                ];
+                
+                $('a').each((i, a) => {
+                    let $a = $(a);
+                    let value = {};
+                    
+                    let style = $a.attr('style');
+                    let guidMatches = style.match(guidMatchExpression);
+                    
+                    if(guidMatches && guidMatches.length > 0){
+                        let guidsToRemove = _.intersection(removeFlags, guidMatches);
+                        if(guidsToRemove.length > 0){
+                            value.src = $('<div>').append($a).html();
+                            value.dest = '';
+                            values.push(value);
+                        }
+                    }
+                });
+                
+                return values;
+            }
+        }
 	];
 
 }(module.exports));

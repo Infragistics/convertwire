@@ -12,11 +12,36 @@
 		var match = false;
 		
 		var elementHasBuildFlags = function(){
-			return typeof node.style.hsBuildFlags !== 'undefined';
+            var value = false;
+            var style = node.getAttribute('style');
+             
+            if(style && style.indexOf('hs-build-flags') !== -1) {
+                value = true;
+            }
+            
+			if(typeof node.style.hsBuildFlags !== 'undefined'){
+                value = true;
+            };
+            
+            return value;
 		};
 		
 		var elementHasSameBuildFlagsAsParent = function(){
-			return node.style.hsBuildFlags === node.parentNode.style.hsBuildFlags
+            var value = false;
+            var style = node.getAttribute('style');
+            var parentStyle = node.parentNode.getAttribute('style'); 
+            
+            if(style && parentStyle){
+              if(style.toLowerCase() == parentStyle.toLowerCase()){
+                value = true;
+              }  
+            } 
+            
+            if(node.style.hsBuildFlags && node.parentNode.style.hsBuildFlags){
+                value = node.style.hsBuildFlags === node.parentNode.style.hsBuildFlags; 
+            }
+            
+            return value;
 		};
 		
 		if(elementHasBuildFlags()){
@@ -31,10 +56,23 @@
 	};
 	
 	module.wrapWithBuildFlags = function(content, node){
-		var returnValue, flags, isElementThatNeedsPick, ensureFlagValues;
+		var returnValue, flags, isElementThatNeedsPick, ensureFlagValues, style, matches;
 		
 		returnValue = content;
-		flags = node.style.hsBuildFlags.toLowerCase();
+        
+        if(node.style.hsBuildFlags){
+		  flags = node.style.hsBuildFlags.toLowerCase();  
+        } else {
+            style = node.getAttribute('style');
+            if(style){
+                style = style.replace(/\s/g, '');
+                style += ';'; //add extra semicolon to make regex work
+                matches = style.match(/hs-build-flags:(.*?);/);
+                if(matches && matches.length > 0){
+                    flags = matches[1];
+                }
+            }
+        }
 		
 		ensureFlagValues = function(){
 			// These adjustments compensate for a bug in
@@ -61,7 +99,7 @@
 			
 			if(isElementThatNeedsPick()){
 				flags = flags.replace(/,/g, '.');
-				returnValue = 'pick:[' + flags + '="' + content + '"]';	
+				returnValue = ' pick:[' + flags + '="' + content + '"] ';	
 			} else {
 				returnValue = '\n\nifdef::' + flags +'[]'
 				returnValue += (_.startsWith(content, '\n'))? '' : '\n';

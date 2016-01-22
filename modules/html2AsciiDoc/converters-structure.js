@@ -67,7 +67,7 @@
       return match;
     },
     replacement: function (content, node) {
-      var hLevel, hPrefix, linkMatches, value, anchorMatches, anchor = '';
+      var hLevel, hPrefix, value, anchorMatches, anchor = '';
 
       hLevel = parseInt(node.nodeName.charAt(1)) + 1;
       hPrefix = '';
