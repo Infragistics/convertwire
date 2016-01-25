@@ -32,17 +32,21 @@
       var match = false;
       
       match = node.nodeName === 'DIV' &&
-              node.className === 'ig-level-1';
+              (node.className === 'ig-level-1' ||
+              node.className === 'ig-level-2' ||
+              node.className === 'ig-level-3');
       
       return match;
     },
     replacement: function(content, node){
       var value;
       
-      value = content + '\n\n';
+      value = content.trim() + '\n\n';
       
       if(buildFlags.hasDocXBuildFlags(node)){
         value = buildFlags.wrapWithBuildFlags(value, node);
+      } else {
+          value = '\n\n' + value;
       }
       
       return value;

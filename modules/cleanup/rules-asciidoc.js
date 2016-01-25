@@ -1,4 +1,5 @@
-var buildVariables = require('./buildVariables.js'); 
+var buildVariables = require('./buildVariables.js');
+var _ = require('lodash'); 
 
 module.exports.regex = [
 	{
@@ -177,5 +178,27 @@ module.exports.regex = [
         name: 'extra-spaces-between-bold-italic',
         pattern: /(  +)/g,
         replacement: ' '
+    },
+    {
+        name: 'remove-extra-spaces-from-bold-lines',
+        pattern: /^\s\*(.*)?\*\s$/gm,
+        replacement: function(match){
+            var prefix = '';
+            var suffix = '';
+            
+            if(_.startsWith(match, '\n\n')){
+                prefix = '\n\n';
+            } else if(_.startsWith(match, '\n')){
+                prefix = '\n';    
+            }
+            
+            if(_.startsWith(match, '\n\n')){
+                suffix = '\n\n';
+            } else if(_.endsWith(match, '\n')){
+                suffix = '\n';
+            }
+            
+            return prefix + match.trim() + suffix;
+        }
     }
 ];
