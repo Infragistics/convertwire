@@ -1,0 +1,254 @@
+<html>
+    <head>
+        <style>
+            
+            table, td {
+                border:1px solid maroon;
+            }
+            
+            .ig-layout {
+                border: 1px solid pink;
+            }
+            
+            .ig-layout-container {
+                border: 1px solid maroon;
+            }
+        </style>
+    </head>
+<body>
+
+<div id="docX-root">
+<h1 id="ig-document-title">Canvas</h1> 
+<p>%%Warning%%</p>
+<table summary="Multi-row table that helps with the page layout.">
+<tbody>
+<tr>
+<td valign="top">
+<p>The Canvas element is a versatile painting surface. With the Canvas element, you can draw a vast amount of shapes while manipulating them in several different ways. The Canvas element exposes several standard properties, such as <a title="Link to the Win API Reference Guide to the Background member." style="hs-build-flags: {2F65C5C4-0749-4790-9961-6B0A194EAB38}" href="Infragistics4.Documents.Reports.v%%ProductVersionShort%%~Infragistics.Documents.Reports.Report.ICanvas~Background.html">Background </a><a title="Link to the Web API Reference Guide to the Background member." style="hs-build-flags: {2A260688-2BC5-4E1C-9346-751CC715678B}" href="Infragistics4.WebUI.Documents.Reports.v%%ProductVersionShort%%~Infragistics.Documents.Reports.Report.ICanvas~Background.html">Background </a>, <a title="Link to the Win API Reference Guide to the Borders member." style="hs-build-flags: {2F65C5C4-0749-4790-9961-6B0A194EAB38}" href="Infragistics4.Documents.Reports.v%%ProductVersionShort%%~Infragistics.Documents.Reports.Report.ICanvas~Borders.html">Borders </a><a title="Link to the Web API Reference Guide to the Borders member." style="hs-build-flags: {2A260688-2BC5-4E1C-9346-751CC715678B}" href="Infragistics4.WebUI.Documents.Reports.v%%ProductVersionShort%%~Infragistics.Documents.Reports.Report.ICanvas~Borders.html">Borders </a>, and <a title="Link to the Win API Reference Guide to the Margins member." style="hs-build-flags: {2F65C5C4-0749-4790-9961-6B0A194EAB38}" href="Infragistics4.Documents.Reports.v%%ProductVersionShort%%~Infragistics.Documents.Reports.Report.ICanvas~Margins.html">Margins </a><a title="Link to the Web API Reference Guide to the Margins member." style="hs-build-flags: {2A260688-2BC5-4E1C-9346-751CC715678B}" href="Infragistics4.WebUI.Documents.Reports.v%%ProductVersionShort%%~Infragistics.Documents.Reports.Report.ICanvas~Margins.html">Margins </a>, that you will encounter in other layout elements. Also, the Canvas element implements the <a title="Link to the Win API Reference Guide to the IGraphics interface." style="hs-build-flags: {2F65C5C4-0749-4790-9961-6B0A194EAB38}" href="Infragistics4.Documents.Reports.v%%ProductVersionShort%%~Infragistics.Documents.Reports.Graphics.IGraphics.html">IGraphics </a><a title="Link to the Web API Reference Guide to the IGraphics interface." style="hs-build-flags: {2A260688-2BC5-4E1C-9346-751CC715678B}" href="Infragistics4.WebUI.Documents.Reports.v%%ProductVersionShort%%~Infragistics.Documents.Reports.Graphics.IGraphics.html">IGraphics </a>interface, which is where the element derives its visual prowess. The IGraphics interface is very similar to the System.Drawing.Graphics object.</p>
+<h1>Standard Layout Element Properties</h1>
+<p>The Canvas element exposes its own set of standard layout properties that are essential in positioning the canvas as a whole; but there are a few properties exposed through the IGraphics interface that affect what is actually drawn. Two important properties exposed by the IGraphics interface are <a title="Link to the Win API Reference Guide to the Pen member." style="hs-build-flags: {2F65C5C4-0749-4790-9961-6B0A194EAB38}" href="Infragistics4.Documents.Reports.v%%ProductVersionShort%%~Infragistics.Documents.Reports.Graphics.IGraphics~Pen.html">Pen </a><a title="Link to the Web API Reference Guide to the Pen member." style="hs-build-flags: {2A260688-2BC5-4E1C-9346-751CC715678B}" href="Infragistics4.WebUI.Documents.Reports.v%%ProductVersionShort%%~Infragistics.Documents.Reports.Graphics.IGraphics~Pen.html">Pen </a>and <a title="Link to the Win API Reference Guide to the Brush member." style="hs-build-flags: {2F65C5C4-0749-4790-9961-6B0A194EAB38}" href="Infragistics4.Documents.Reports.v%%ProductVersionShort%%~Infragistics.Documents.Reports.Graphics.IGraphics~Brush.html">Brush </a><a title="Link to the Web API Reference Guide to the Brush member." style="hs-build-flags: {2A260688-2BC5-4E1C-9346-751CC715678B}" href="Infragistics4.WebUI.Documents.Reports.v%%ProductVersionShort%%~Infragistics.Documents.Reports.Graphics.IGraphics~Brush.html">Brush </a>(normally exposed by the element itself). Each of these properties affects the stroke and fill of all objects created by the IGraphics interface. Another important concept to understand is that all drawings are created in a linear fashion, which means that you can change the pen and brush while drawing shapes and have the same shape with the same dimensions, but drawn differently.</p>
+<h1>IGraphics Interface</h1>
+<p>The IGraphics Interface is where you will be doing most of your graphics implementation in your reports. Through this interface, you can add hyperlinks anywhere on a page, draw any shape, fill and clip those shapes, and even scale, skew, or transform the shapes.</p>
+<h2>Hyperlinks</h2>
+<p>You can add a hyperlink area by specifying the coordinates of the upper-left corner of the area&apos;s bounding rectangle and then the rectangle&apos;s height and width. The following methods allow you to manipulate hyperlinks on the canvas:</p>
+<table width="100%" summary="Lists out methods that can be used to manipulate hyperlinks on the canvas.">
+<tbody>
+<tr>
+<td valign="top">
+<ul>
+<li><a title="Link to the Win API Reference Guide to the AddHyperlinkArea member." style="hs-build-flags: {2F65C5C4-0749-4790-9961-6B0A194EAB38}" href="Infragistics4.Documents.Reports.v%%ProductVersionShort%%~Infragistics.Documents.Reports.Graphics.IGraphics~AddHyperlinkArea.html">AddHyperlinkArea </a><a title="Link to the Web API Reference Guide to the AddHyperlinkArea member." style="hs-build-flags: {2A260688-2BC5-4E1C-9346-751CC715678B}" href="Infragistics4.WebUI.Documents.Reports.v%%ProductVersionShort%%~Infragistics.Documents.Reports.Graphics.IGraphics~AddHyperlinkArea.html">AddHyperlinkArea </a>
+</li><li><a title="Link to the Win API Reference Guide to the StartHyperlink member." style="hs-build-flags: {2F65C5C4-0749-4790-9961-6B0A194EAB38}" href="Infragistics4.Documents.Reports.v%%ProductVersionShort%%~Infragistics.Documents.Reports.Graphics.IGraphics~StartHyperlink.html">StartHyperlink </a><a title="Link to the Web API Reference Guide to the StartHyperlink member." style="hs-build-flags: {2A260688-2BC5-4E1C-9346-751CC715678B}" href="Infragistics4.WebUI.Documents.Reports.v%%ProductVersionShort%%~Infragistics.Documents.Reports.Graphics.IGraphics~StartHyperlink.html">StartHyperlink </a>
+</li><li><a title="Link to the Win API Reference Guide to the PauseHyperlink member." style="hs-build-flags: {2F65C5C4-0749-4790-9961-6B0A194EAB38}" href="Infragistics4.Documents.Reports.v%%ProductVersionShort%%~Infragistics.Documents.Reports.Graphics.IGraphics~PauseHyperlink.html">PauseHyperlink </a><a title="Link to the Web API Reference Guide to the PauseHyperlink member." style="hs-build-flags: {2A260688-2BC5-4E1C-9346-751CC715678B}" href="Infragistics4.WebUI.Documents.Reports.v%%ProductVersionShort%%~Infragistics.Documents.Reports.Graphics.IGraphics~PauseHyperlink.html">PauseHyperlink </a></li></ul></td>
+<td valign="top">
+<ul>
+<li><a title="Link to the Win API Reference Guide to the ResumeHyperlink member." style="hs-build-flags: {2F65C5C4-0749-4790-9961-6B0A194EAB38}" href="Infragistics4.Documents.Reports.v%%ProductVersionShort%%~Infragistics.Documents.Reports.Graphics.IGraphics~ResumeHyperlink.html">ResumeHyperlink </a><a title="Link to the Web API Reference Guide to the ResumeHyperlink member." style="hs-build-flags: {2A260688-2BC5-4E1C-9346-751CC715678B}" href="Infragistics4.WebUI.Documents.Reports.v%%ProductVersionShort%%~Infragistics.Documents.Reports.Graphics.IGraphics~ResumeHyperlink.html">ResumeHyperlink </a>
+</li><li><a title="Link to the Win API Reference Guide to the EndHyperlink member." style="hs-build-flags: {2F65C5C4-0749-4790-9961-6B0A194EAB38}" href="Infragistics4.Documents.Reports.v%%ProductVersionShort%%~Infragistics.Documents.Reports.Graphics.IGraphics~EndHyperlink.html">EndHyperlink </a><a title="Link to the Web API Reference Guide to the EndHyperlink member." style="hs-build-flags: {2A260688-2BC5-4E1C-9346-751CC715678B}" href="Infragistics4.WebUI.Documents.Reports.v%%ProductVersionShort%%~Infragistics.Documents.Reports.Graphics.IGraphics~EndHyperlink.html">EndHyperlink </a></li></ul></td></tr></tbody></table>
+<h2>Drawing</h2>
+<p>You can create each of the following shapes/drawings by calling their respective Draw method (e.g., call the DrawRectangle method to draw a rectangle); you only need to pass in the required <a title="Link to the Win API Reference Guide to the Point member." style="hs-build-flags: {2F65C5C4-0749-4790-9961-6B0A194EAB38}" href="Infragistics4.Documents.Reports.v%%ProductVersionShort%%~Infragistics.Documents.Reports.Graphics.Point.html">Point </a><a title="Link to the Web API Reference Guide to the Point member." style="hs-build-flags: {2A260688-2BC5-4E1C-9346-751CC715678B}" href="Infragistics4.WebUI.Documents.Reports.v%%ProductVersionShort%%~Infragistics.Documents.Reports.Graphics.Point.html">Point </a>objects to create them. Other drawing properties (such as pen and brush) are set on the Canvas element itself and affect all drawings.</p>
+<table width="100%" summary="Lists out the avialable shapes that can be draw on a canvas.">
+<tbody>
+<tr>
+<td valign="top">
+<ul>
+<li>Arc 
+</li><li>Bezier 
+</li><li>Chord 
+</li><li>Closed Curve 
+</li><li>Curve 
+</li><li>Ellipse 
+</li><li>Image</li></ul></td>
+<td valign="top">
+<ul>
+<li>Line 
+</li><li>Pie 
+</li><li>Polygon 
+</li><li>Rectangle 
+</li><li>Rounded Rectangle 
+</li><li>Spacing 
+</li><li>String</li></ul></td></tr></tbody></table>
+<h2>Filling and Clipping</h2>
+<p>You can either fill or clip regions with each of the shapes below. The Canvas will use its Brush property to fill the shapes. When using a shape to clip a region, you will only be able to see the portion of the shapes behind the clipping shape that are inside the clipping shapes&apos; bounding rectangle. Use the shape&apos;s respective Clip or Fill method (e.g., ClipRectangle to form a rectangular clipping region and FillRectangle to fill the rectangle) to perform the respective action on the shape.</p>
+<table width="100%" summary="Lists out the available filling or/and clipping shapes available for the canvas.">
+<tbody>
+<tr>
+<td valign="top">
+<ul>
+<li>Arc 
+</li><li>Bezier 
+</li><li>Chord 
+</li><li>Closed Curve 
+</li><li>Ellipse 
+{temp:empty-element}</li></ul></td>
+<td valign="top">
+<ul>
+<li>Pie 
+</li><li>Polygon 
+</li><li>Rectangle 
+</li><li>Rounded Rectangle</li></ul></td></tr></tbody></table>
+</td><td style="PADDING-LEFT: 10px" valign="top"><img alt="Shows several shapes drawn on a canvas using different pens, and brushes, and is the result of the code listed below." src="images/DocumentEngine_Canvas_01.png"></td></tr></tbody></table>
+<hr class="splitter">
+
+<p>The following code adds a Canvas element to a section and then draws several shapes using several styles.</p>
+<ol>
+<li><strong>Add a canvas to a section.</strong> 
+<div class="LanguageSpecific" id="Example_VB">
+<p><span class="lang"><strong>In Visual Basic:</strong></span></p><pre><code class="code"><code class="keyword">Imports</code> Infragistics.Documents.Reports.Report
+<code class="keyword">Imports</code> Infragistics.Documents.Reports.Graphics
+.
+.
+.
+<code class="comment">&apos; Add a canvas to the section.</code>
+<code class="keyword">Dim</code> canvas1 <code class="keyword">As</code> Infragistics.Documents.Reports.Report.ICanvas = section1.AddCanvas()
+canvas1.Borders = <code class="keyword">New</code> Borders(Pens.Black, 5)
+canvas1.Margins.Vertical = 5
+canvas1.Paddings.All = 5
+canvas1.Background = <code class="keyword">New</code> Background(<code class="keyword">New</code> SolidColorBrush(<code class="keyword">New</code> Color(240, 240, 220)))</code></pre></div>
+<div class="LanguageSpecific" id="Example_CS">
+<p><span class="lang"><strong>In C#:</strong></span></p><pre><code class="code"><code class="keyword">using</code> Infragistics.Documents.Reports.Report;
+<code class="keyword">using</code> Infragistics.Documents.Reports.Graphics;
+.
+.
+.
+<code class="comment">// Add a canvas to the section.</code>
+Infragistics.Documents.Reports.Report.ICanvas canvas1 = section1.AddCanvas();
+canvas1.Borders = <code class="keyword">new</code> Borders(Pens.Black, 5);
+canvas1.Margins.Vertical = 5;
+canvas1.Paddings.All = 5;
+canvas1.Background = <code class="keyword">new</code> Background(<code class="keyword">new</code> SolidColorBrush(<code class="keyword">new</code> Color(240, 240, 220)));</code></pre></div>
+</li><li><strong>Create a System.Drawing.Graphics object and create a rectangle.</strong> 
+<div class="LanguageSpecific" id="Example_VB">
+<p><span class="lang"><strong>In Visual Basic:</strong></span></p><pre><code class="code"><code class="comment">&apos; Create a System Graphics object and use it
+&apos; to draw a rectangle</code>
+canvas1.CreateGraphics().DrawRectangle( _
+	System.Drawing.Pens.Green, _
+	<code class="keyword">New</code> System.Drawing.Rectangle(10, 10, 20, 20))</code></pre></div>
+<div class="LanguageSpecific" id="Example_CS">
+<p><span class="lang"><strong>In C#:</strong></span></p><pre><code class="code"><code class="comment">// Create a System Graphics object and use it
+// to draw a rectangle</code>
+canvas1.CreateGraphics().DrawRectangle
+(
+	System.Drawing.Pens.Green,
+	<code class="keyword">new</code> System.Drawing.Rectangle(10, 10, 20, 20)
+);</code></pre></div>
+</li><li><strong>Draw a rectangle.</strong> 
+<div class="LanguageSpecific" id="Example_VB">
+<p><span class="lang"><strong>In Visual Basic:</strong></span></p><pre><code class="code"><code class="comment">&apos; Draw a Rectangle with a Hyperlink inside.</code>
+canvas1.StartHyperlink(1, 0, 10)
+canvas1.Pen = <code class="keyword">New</code> Pen(Colors.Red, 5)
+canvas1.Brush = <code class="keyword">New</code> SolidColorBrush(<code class="keyword">New</code> Color(255, 240, 240))
+canvas1.DrawRectangle(50, 50, 150, 100, PaintMode.FillStroke)
+canvas1.AddHyperlinkArea(50, 50, 150, 100)
+canvas1.EndHyperlink()
+
+<code class="comment">&apos; Add text to the rectangle (more accurately, overtop the rectangle).</code>
+canvas1.Font = <code class="keyword">New</code> Font(&quot;Times New Roman&quot;, 18, FontStyle.Italic)
+canvas1.Brush = Brushes.BlueViolet
+canvas1.DrawString(70, 90, &quot;Go to page 2&quot;)</code></pre></div>
+<div class="LanguageSpecific" id="Example_CS">
+<p><span class="lang"><strong>In C#:</strong></span></p><pre><code class="code"><code class="comment">// Draw a Rectangle with a Hyperlink inside.</code>
+canvas1.StartHyperlink(1, 0, 10);
+canvas1.Pen = <code class="keyword">new</code> Pen(Colors.Red, 5);
+canvas1.Brush = <code class="keyword">new</code> SolidColorBrush(<code class="keyword">new</code> Color(255, 240, 240));
+canvas1.DrawRectangle(50, 50, 150, 100, PaintMode.FillStroke);
+canvas1.AddHyperlinkArea(50, 50, 150, 100);
+canvas1.EndHyperlink();
+
+<code class="comment">// Add text to the rectangle (more accurately, overtop the rectangle).</code>
+canvas1.Font = <code class="keyword">new</code> Font(&quot;Times New Roman&quot;, 18, FontStyle.Italic);
+canvas1.Brush = Brushes.BlueViolet;
+canvas1.DrawString(70, 90, &quot;Go to page &#xB9;2&quot;);</code></pre></div>
+</li><li><strong>Draw a green slanted line.</strong> 
+<div class="LanguageSpecific" id="Example_VB">
+<p><span class="lang"><strong>In Visual Basic:</strong></span></p><pre><code class="code"><code class="comment">&apos; Draw a green line 5px thick. </code>
+canvas1.Pen = <code class="keyword">New</code> Pen(Colors.Green, 5)
+canvas1.DrawLine(220, 50, 320, 150)</code></pre></div>
+<div class="LanguageSpecific" id="Example_CS">
+<p><span class="lang"><strong>In C#:</strong></span></p><pre><code class="code"><code class="comment">// Draw a green line 5px thick. </code>
+canvas1.Pen = <code class="keyword">new</code> Pen(Colors.Green, 5);
+canvas1.DrawLine(220, 50, 320, 150);</code></pre></div>
+</li><li><strong>Draw an ellipse.</strong> 
+<div class="LanguageSpecific" id="Example_VB">
+<p><span class="lang"><strong>In Visual Basic:</strong></span></p><pre><code class="code"><code class="comment">&apos; Draw an ellipse and outline it with a blue, 5px line
+&apos; and fill it with a light blue color.</code>
+canvas1.Pen = <code class="keyword">New</code> Pen(Colors.Blue, 5)
+canvas1.Brush = <code class="keyword">New</code> SolidColorBrush(<code class="keyword">New</code> Color(240, 240, 255))
+canvas1.DrawEllipse(340, 50, 150, 100, PaintMode.FillStroke)</code></pre></div>
+<div class="LanguageSpecific" id="Example_CS">
+<p><span class="lang"><strong>In C#:</strong></span></p><pre><code class="code"><code class="comment">// Draw an ellipse and outline it with a blue, 5px line
+// and fill it with a light blue color.</code>
+canvas1.Pen = <code class="keyword">new</code> Pen(Colors.Blue, 5);
+canvas1.Brush = <code class="keyword">new</code> SolidColorBrush(<code class="keyword">new</code> Color(240, 240, 255));
+canvas1.DrawEllipse(340, 50, 150, 100, PaintMode.FillStroke);</code></pre></div>
+</li><li><strong>Change the Canvas&apos; pen and brush style.</strong> 
+<div class="LanguageSpecific" id="Example_VB">
+<p><span class="lang"><strong>In Visual Basic:</strong></span></p><pre><code class="code"><code class="comment">&apos; Change the Canvas&apos; pen and brush.</code>
+canvas1.Pen = <code class="keyword">New</code> Pen(Colors.DarkBlue, 5, DashStyle.DashDot)
+canvas1.Brush = <code class="keyword">New</code> LinearGradientBrush(Colors.Yellow, Colors.Green, 45.0F)</code></pre></div>
+<div class="LanguageSpecific" id="Example_CS">
+<p><span class="lang"><strong>In C#:</strong></span></p><pre><code class="code"><code class="comment">// Change the Canvas&apos; pen and brush.</code>
+canvas1.Pen = <code class="keyword">new</code> Pen(Colors.DarkBlue, 5, DashStyle.DashDot);
+canvas1.Brush = <code class="keyword">new</code> LinearGradientBrush(Colors.Yellow, Colors.Green, 45F);</code></pre></div>
+</li><li><strong>Create a compound shape.</strong> 
+<div class="LanguageSpecific" id="Example_VB">
+<p><span class="lang"><strong>In Visual Basic:</strong></span></p><pre><code class="code"><code class="comment">&apos; Because both shapes are being created as one (using
+&apos; StartShape and EndShape), the intersection of the 
+&apos; two shapes is considered not a part of the shape 
+&apos; and not filled in. Also, the gradient will traverse
+&apos; the entire shape, not both individually.</code>
+canvas1.StartShape(PaintMode.FillStroke)
+canvas1.FillRectangle(120, 200, 200, 200)
+canvas1.DrawEllipse(220, 250, 200, 200)
+canvas1.EndShape()</code></pre></div>
+<div class="LanguageSpecific" id="Example_CS">
+<p><span class="lang"><strong>In C#:</strong></span></p><pre><code class="code"><code class="comment">// Because both shapes are being created as one (using
+// StartShape and EndShape), the intersection of the 
+// two shapes is considered not to be a part of the shape 
+// and not filled in. Also, the gradient will traverse
+// the entire shape, not both individually.</code>
+canvas1.StartShape(PaintMode.FillStroke);
+canvas1.FillRectangle(120, 200, 200, 200);
+canvas1.DrawEllipse(220, 250, 200, 200);
+canvas1.EndShape();</code></pre></div>
+</li><li><strong>Create another rectangle.</strong> 
+<div class="LanguageSpecific" id="Example_VB">
+<p><span class="lang"><strong>In Visual Basic:</strong></span></p><pre><code class="code"><code class="comment">&apos; Draw another rectangle with a different pen and brush.</code>
+canvas1.Pen = <code class="keyword">New</code> Pen(Colors.Red, 5, DashStyle.DashDotDot)
+canvas1.Brush = <code class="keyword">New</code> HatchBrush(HatchStyle.Cross, Colors.Red, Colors.White)
+canvas1.DrawRectangle(50, 500, 150, 100, PaintMode.FillStroke)</code></pre></div>
+<div class="LanguageSpecific" id="Example_CS">
+<p><span class="lang"><strong>In C#:</strong></span></p><pre><code class="code"><code class="comment">// Draw another rectangle with a different pen and brush.</code>
+canvas1.Pen = <code class="keyword">new</code> Pen(Colors.Red, 5, DashStyle.DashDotDot);
+canvas1.Brush = <code class="keyword">new</code> HatchBrush(HatchStyle.Cross, Colors.Red, Colors.White);
+canvas1.DrawRectangle(50, 500, 150, 100, PaintMode.FillStroke);</code></pre></div>
+</li><li><strong>Create another line.</strong> 
+<div class="LanguageSpecific" id="Example_VB">
+<p><span class="lang"><strong>In Visual Basic:</strong></span></p><pre><code class="code"><code class="comment">&apos; Draw another line, this time with a different dash style.</code>
+canvas1.Pen = <code class="keyword">New</code> Pen(Colors.Green, 5, DashStyle.DashDot)
+canvas1.DrawLine(220, 500, 320, 600)</code></pre></div>
+<div class="LanguageSpecific" id="Example_CS">
+<p><span class="lang"><strong>In C#:</strong></span></p><pre><code class="code"><code class="comment">// Draw another line, this time with a different dash style.</code>
+canvas1.Pen = <code class="keyword">new</code> Pen(Colors.Green, 5, DashStyle.DashDot);
+canvas1.DrawLine(220, 500, 320, 600);</code></pre></div>
+</li><li><strong>Create another ellipse.</strong> 
+<div class="LanguageSpecific" id="Example_VB">
+<p><span class="lang"><strong>In Visual Basic:</strong></span></p><pre><code class="code"><code class="comment">&apos; Draw another ellipse with a different pen and brush.</code>
+canvas1.Pen = <code class="keyword">New</code> Pen(Colors.Blue, 5, DashStyle.Dash)
+canvas1.Brush = _
+  <code class="keyword">New</code> HatchBrush(HatchStyle.DiagonalBrick, Colors.Blue, Colors.White)
+canvas1.DrawEllipse(340, 500, 150, 100, PaintMode.FillStroke)</code></pre></div>
+<div class="LanguageSpecific" id="Example_CS">
+<p><span class="lang"><strong>In C#:</strong></span></p><pre><code class="code"><code class="comment">// Draw another ellipse with a different pen and brush.</code>
+canvas1.Pen = <code class="keyword">new</code> Pen(Colors.Blue, 5, DashStyle.Dash);
+canvas1.Brush = 
+  <code class="keyword">new</code> HatchBrush(HatchStyle.DiagonalBrick, Colors.Blue, Colors.White);
+canvas1.DrawEllipse(340, 500, 150, 100, PaintMode.FillStroke);</code></pre></div></li></ol></div>
+
+<script src="https://code.jquery.com/jquery-2.1.4.min.js" type="text/javascript"></script>
+<script src="../../modules/layoutTables/index.js" type="text/javascript"></script>
+<script>
+    $(function(){
+        module.removeLayoutTables();
+    });
+</script>
+</body>
+</html>

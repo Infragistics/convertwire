@@ -6,6 +6,7 @@ var path = require('path');
 
 var docx2html = require('../tasks/gulp-docx2html.js');
 var unmapper = require('../tasks/gulp-unmapper.js');
+var layoutTables = require('../tasks/gulp-layoutTables.js');
 var sourceFormatter = require('../tasks/gulp-sourceFormatter.js');
 var html2AsciiDoc = require('../tasks/gulp-html2AsciiDoc.js');
 var replaceGUIDs = require('../tasks/gulp-replaceGUIDs.js');
@@ -50,6 +51,7 @@ module.exports.load = function(gulp){
       .pipe(docx2html())
       .pipe(cleanup('html'))
       .pipe(unmapper())
+      .pipe(layoutTables())
       .pipe(sourceFormatter())
       .pipe(html2AsciiDoc())
       .pipe(replaceGUIDs(lookupData))
@@ -78,6 +80,7 @@ module.exports.load = function(gulp){
       .pipe(cleanup('html'))      
       .pipe(unmapper())
       .pipe(sourceFormatter())
+      .pipe(layoutTables())
       .pipe(html2AsciiDoc())
       .pipe(replaceGUIDs(lookupData))
       .pipe(cleanup('asciidoc', args.name))
