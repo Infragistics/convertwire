@@ -173,14 +173,16 @@
       return match;
     },
     replacement: (content, node) => {
-      var value, id, name, identifier;
+      var value = '', id, name, identifier;
       
       id = node.getAttribute('id');
       name = node.getAttribute('name');
       
-      identifier = id ? id : name;
-      
-      value = `[[${identifier}]]\n${content}`;
+      if(!_.startsWith(id, 'OLE')){
+        identifier = id ? id : name;
+        
+        value = `[[${identifier}]]\n${content}`;
+      }
       
       return value;
     }

@@ -8,6 +8,8 @@ if(isNodejsContext){
 	var module = {};
 }
 
+var lastHeader = '';
+
 var getNewMarkup = (header, anchorMarkup, content, buildFlags, headerLevel) => {
     var markup = '';
     
@@ -18,12 +20,14 @@ var getNewMarkup = (header, anchorMarkup, content, buildFlags, headerLevel) => {
     markup = `<div class="ig-content-container" ${buildFlags}> 
                 ${anchorMarkup}`;
                 
-    if(header.length > 0){
+    if(header.length > 0 && lastHeader !== header){
         markup += `<h${headerLevel} class="ig-header">${header}</h${headerLevel}>`
     }
        
     markup += `<div class="ig-content">${content}</div>
             </div>`;
+            
+    lastHeader = header;
             
     return markup;
 };

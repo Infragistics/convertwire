@@ -183,8 +183,10 @@ module.exports.regex = [
         name: 'remove-extra-spaces-from-bold-lines',
         pattern: /^\s\*(.*)?\*\s$/gm,
         replacement: function(match){
-            var prefix = '';
-            var suffix = '';
+            var prefix, suffix, value;
+            
+            prefix = '';
+            suffix = '';
             
             if(_.startsWith(match, '\n\n')){
                 prefix = '\n\n';
@@ -198,7 +200,17 @@ module.exports.regex = [
                 suffix = '\n';
             }
             
-            return prefix + match.trim() + suffix;
+            if(/\n\*\*\n/.test(match)){
+                prefix = suffix = match = '';
+            }
+            
+            match = match.trim();
+            
+            match = match.replace('* *', '*');
+            
+            value = prefix + match + suffix;
+            
+            return value;
         }
     }
 ];
