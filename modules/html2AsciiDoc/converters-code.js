@@ -145,7 +145,7 @@
 				prefix = '[source,' + mapper.map(language) + ']\n';
 			}
 			
-			value = prefix + wrapCodeBlock(node.textContent);
+            value = prefix + wrapCodeBlock(content); //changed from node.textContent
 			
 			if(buildFlags.hasDocXBuildFlags(node)){
 				value = buildFlags.wrapWithBuildFlags(value, node);
