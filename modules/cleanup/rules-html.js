@@ -11,6 +11,17 @@
 			pattern: / style=\"display:( )?(none|inline|block|contents|list-item|inline-block|inline-table|table|table-cell|table-column|table-column-group|table-footer-group|table-header-group|table-row|table-row-group|flex|inline-flex|grid|inline-grid|ruby|ruby-base|ruby-text|ruby-base-container|ruby-text-container|run-in|inherit|initial|unset)(;)?\"/gi,
 			replacement: ''
 		},
+        {
+            name: 'wrap-bare-list-item-content-in-span',
+            pattern: /<li(.*?)>([^]+?)<\/li>/gi,
+            replacement: function(match, x, y){
+                if(!_.startsWith(y, '<')){
+                    var index = y.indexOf('<');
+                    y = '<span>' + y.splice(index, 0, '</span>');
+                }
+                return y;
+            }
+        },
 		{
 			name: 'non-breaking-space',
 			pattern: /&#xA0;/g,

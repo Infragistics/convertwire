@@ -83,41 +83,38 @@ var formatter = {
 	
 	duplicateContainersByFlag : function($flaggedContainers){
 		$flaggedContainers.each(function(index, container){
-			var $flaggedContainer, $parent, uniqueFlags, domIndex;
+			var $flaggedContainer, $parent, uniqueFlags, domIndex, markup, _clone;
 			
 			$flaggedContainer = $(container);
 			$parent = $flaggedContainer.parent();
 			domIndex = $flaggedContainer.index();
+
+            var $domContainer = $('<div>');
+            
+            $flaggedContainer.before($domContainer);
 			
-			var _clone = $flaggedContainer.clone();
+			_clone = $flaggedContainer.clone();
 			$flaggedContainer.remove();
+            
+            markup = [];
 			
 			uniqueFlags = formatter.getUniqueFlags($flaggedContainer);
 			
 			uniqueFlags.forEach(function(flag){
-				var $clone, $container, id;
+				var $clone, $container;
 				
-				id = Math.floor(Math.random(1,100000) * 10000000);
-				
-				$container = $(`<div id="${id}">`);
+				$container = $(`<div>`);
 				$clone = _clone.clone();
 				$clone.attr('style', 'hs-build-flags: ' + flag);
 				
 				$container.append('\n<!--- ' + flag + ' --->\n');								
 				$container.append($clone);
 				$container.append('\n<!--- /' + flag + ' --->\n');
-                
-                if($parent.is('li')){
-                    var parentHtml = $parent.html();
-                    var bracketIndex = parentHtml.indexOf('<');
-                    parentHtml = '<span>' + parentHtml.splice(bracketIndex, 0, '</span>');
-                    $parent.html(parentHtml);
-				    domIndex = $(`#${id}`).index();
-                }
 				
-				$parent.insertAt($container, domIndex);			
-				domIndex = $(`#${id}`).index();
+                markup.push($container.html());
 			});
+            
+            $domContainer.html($domContainer.html() + markup.join('\n\n'));
 		});
 	}
 };
@@ -147,21 +144,3 @@ module.format = function(html){
 	
 	return value;
 };
-
-if (!String.prototype.splice) {
-    /**
-     * {JSDoc}
-     *
-     * The splice() method changes the content of a string by removing a range of
-     * characters and/or adding new characters.
-     *
-     * @this {String}
-     * @param {number} start Index at which to start changing the string.
-     * @param {number} delCount An integer indicating the number of old chars to remove.
-     * @param {string} newSubStr The String that is spliced in.
-     * @return {string} A new string with the spliced substring.
-     */
-    String.prototype.splice = function(start, delCount, newSubStr) {
-        return this.slice(0, start) + newSubStr + this.slice(start + Math.abs(delCount));
-    };
-}
