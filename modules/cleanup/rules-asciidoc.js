@@ -85,7 +85,7 @@ module.exports.regex = [
             return ' _' + match + '_ '
         }
     },
-	
+    
 	// ------------ Build Variables -----------------
 	{
 		name: 'build-variables:delimiters',
@@ -196,6 +196,13 @@ module.exports.regex = [
         name: 'extra-spaces-between-bold-italic',
         pattern: /(  +)/g,
         replacement: ' '
+    },
+    {
+        name: 'extra-space-after-italic',
+        pattern: /_(.*?)_ \,/gi,
+        replacement: function(match) {
+            return match.replace('_ ,', '_,')
+        }
     },
     {
         name: 'remove-extra-spaces-from-bold-lines',

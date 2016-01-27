@@ -17,9 +17,9 @@
             replacement: function(match, x, y){
                 if(!_.startsWith(y, '<')){
                     var index = y.indexOf('<');
-                    y = '<span>' + y.splice(index, 0, '</span>');
+                    match = '<li><span>' + y.splice(index, 0, '</span>') + '</li>';
                 }
-                return y;
+                return match;
             }
         },
 		{

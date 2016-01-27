@@ -89,10 +89,7 @@ var createNewMarkupFromLayoutTables = () => {
                 header = '';
             }
             
-            $containers = $row.find('.ig-layout-container');
-            if($containers.length === 0){
-                $containers = $($row.children()[1]);
-            }
+            $containers = $($row.children()[1]);
             
             $containers.each((containerIndex, container) => {
                 content = getContents(container, 'html');
