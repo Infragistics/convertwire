@@ -236,7 +236,7 @@
       src = node.getAttribute('src') || '';
       title = node.title || '';
       titlePart = title ? ' "' + title + '"' : '';
-      value = 'image:' + src + titlePart + '[' + alt + ']';
+      value = 'image::' + src + titlePart + '[' + alt + ']';
 
       if (buildFlags.hasDocXBuildFlags(node)) {
         value = buildFlags.wrapWithBuildFlags(value, node);
