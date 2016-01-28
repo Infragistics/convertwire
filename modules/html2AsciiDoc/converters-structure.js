@@ -135,6 +135,26 @@
     }
   };
   
+  var italic = {
+    filter: ['em', 'i'],
+    replacement: function (content, node) {
+      var value = ' ';
+      
+      if(content !== ' ') {
+        value = content;
+
+        if (buildFlags.hasDocXBuildFlags(node)) {
+            value = buildFlags.wrapWithBuildFlags(value, node);
+        }
+        
+        value = ' _' + value + '_ ';
+      }
+      
+      return value;
+
+    }
+  };
+  
   var paragraph = {
     filter: 'p',
     replacement: function (content, node) {
@@ -352,6 +372,7 @@
 
   var converters = [];
 
+  converters.push(italic);
   converters.push(anchorWithIdAsAnchor);
   converters.push(headers);
   converters.push(hr);

@@ -22,6 +22,11 @@
                 return match;
             }
         },
+        {
+            name: 'empty-inline-elements',
+            pattern: /<(i|em|b|bold|strong|span)>\s+<\/(i|em|b|bold|strong|span)>/gi,
+            replacement: ' '
+        },
 		{
 			name: 'non-breaking-space',
 			pattern: /&#xA0;/g,
