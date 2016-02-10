@@ -1,14 +1,14 @@
 [cols="a,a"]
 |====
-|*1*  +
+|*1* +
 link:1.html[1]
-|*2*  +
+|*2* +
 link:2-1.html[2.1] +
 link:2-2.html[2.2]
 
-|*3*  +
+|*3* +
 link:3-1.html[3.1]
-|*4*  +
+|*4* +
 link:4-1.html[4.1] +
 link:4-2.html[4.2] +
 link:4-3.html[4.3] +

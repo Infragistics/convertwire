@@ -48,6 +48,9 @@
 			
 			// remove line break character from build flags  
 			content = content.replace(/\[\] \+/g, '[]');
+            
+            // replace multiple spaces with nothing
+            content = content.replace(/ {1,}/g, ' ');
 			
 			content = content.replace(/\<temp-token role=\"list:start\"\>/g, '\n\n'); 
 		}
