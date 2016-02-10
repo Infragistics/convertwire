@@ -85,6 +85,13 @@ module.exports.regex = [
             return ' _' + match + '_ '
         }
     },
+    {
+        name: 'telephone-number-mask',
+        pattern: /\(\#+\)\-\#+\-#+/g,
+        replacement: function(match){
+            return 'pass:[' + match + ']';
+        }
+    },
     
 	// ------------ Build Variables -----------------
 	{

@@ -3,3 +3,6 @@ spec/data
 logs
 gulp/credentials.json
 _debug.js
+_builds
+*.zip
+*-lookup.json.txt

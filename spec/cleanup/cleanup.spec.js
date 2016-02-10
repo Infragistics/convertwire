@@ -3,9 +3,15 @@ describe('cleanup', function(){
 	var path = require('path');
 	var cleanup = require(path.resolve(__dirname, '../../modules/cleanup'));
 	var buildVariables = require(path.resolve(__dirname, '../../modules/cleanup/buildVariables.js'));
-	var delimiters = buildVariables.delimiters;
 	
 	describe('asciidoc', () => {
+        
+        it('wraps telephone mast in pass macro', () => {
+			var src = '(###)-###-####';
+			var dest = cleanup.asciidoc(src);
+			var expected = 'pass:[(###)-###-####]';
+			expect(dest).toEqual(expected);
+		});
 			
 		it('replaces stray slashes in ordered lists', () => {
 			var src = '*1\.*';
