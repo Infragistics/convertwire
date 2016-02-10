@@ -40,6 +40,13 @@ describe('cleanup', function(){
 			var expected = '{BuildVariable}';
 			expect(dest).toEqual(expected);
 		});
+        
+        it('removes spaces in links', () => {
+			var src = 'link:{AssemblyName}.Controls.Menus.XamTree.v{ProductVersion}~ Infragistics.Controls.Menus.xamTree~ExpandedIconTemplate.html[ExpandedIconTemplate]';
+			var dest = cleanup.asciidoc(src);
+			var expected = 'link:{AssemblyName}.Controls.Menus.XamTree.v{ProductVersion}~Infragistics.Controls.Menus.xamTree~ExpandedIconTemplate.html[ExpandedIconTemplate]';
+			expect(dest).toEqual(expected);
+		});
 		
 		it('build variable: ProductNameShort => ProductName', () => {
 			var src = buildVariables.wrap('ProductNameShort');;
@@ -314,12 +321,12 @@ describe('cleanup', function(){
 			expect(dest).toEqual(expected);
 		});
         
-        it('replaces multiple &nbsp; with nothing', () => {
+        /*it('replaces multiple &nbsp; with nothing', () => {
             var src = '&nbsp;&nbsp;&nbsp;';
             var dest = cleanup.html(src);
             var expected = '';
             expect(dest).toEqual(expected);
-        });
+        });*/
 		
 		it('replaces style="display:none"; with nothing', () => {
 			var src = '<div style="display:none;">test</div>';

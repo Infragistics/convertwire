@@ -32,11 +32,11 @@
 			pattern: /&#xA0;/g,
 			replacement: '&nbsp;'
 		},
-        {
+        /*{
             name: 'multiple-non-breaking-space',
             pattern: /(\&nbsp;){2,}/g,
             replacement: ''  
-        },
+        },*/
 		{
 			name: 'build-flag:winforms',
 			pattern: /A33F8D9D-1A93-4A02-85E3-FC849DE1B8EA/g,

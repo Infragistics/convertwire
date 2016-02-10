@@ -78,6 +78,13 @@ module.exports.regex = [
         }
     },
     {
+        name: 'spaces-in-links',
+        pattern: /link:(.*?)\[/g,
+        replacement: function(match){
+            return match.replace(/~ /g, '~');
+        }
+    },
+    {
         name: 'italics-in-document-links',
         pattern: /<<(.*?),( )?\_(.*?)\_( )?>>/g,
         replacement: function(match){
