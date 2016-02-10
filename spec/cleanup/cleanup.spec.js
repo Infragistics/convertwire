@@ -6,7 +6,7 @@ describe('cleanup', function(){
 	
 	describe('asciidoc', () => {
         
-        it('wraps telephone mast in pass macro', () => {
+        it('wraps telephone mask in pass macro', () => {
 			var src = '(###)-###-####';
 			var dest = cleanup.asciidoc(src);
 			var expected = 'pass:[(###)-###-####]';
@@ -313,6 +313,13 @@ describe('cleanup', function(){
 			var expected = '<div>test</div>';
 			expect(dest).toEqual(expected);
 		});
+        
+        it('replaces multiple &nbsp; with nothing', () => {
+            var src = '&nbsp;&nbsp;&nbsp;';
+            var dest = cleanup.html(src);
+            var expected = '';
+            expect(dest).toEqual(expected);
+        });
 		
 		it('replaces style="display:none"; with nothing', () => {
 			var src = '<div style="display:none;">test</div>';
@@ -411,6 +418,14 @@ style="hs-build-flags: win-forms, SL"`;
 			
 			var expected = '<DIV id=Example_VB class=LanguageSpecific style="hs-build-flags: win-rt">' +
 						   '<DIV id=Example_VB class=LanguageSpecific style="hs-build-flags: win-rt">';
+						   
+			expect(dest).toEqual(expected);
+		});
+        
+        it('empty elements with {temp:empty-element}', () => {
+			var src = '<td><p> </p></td><a></a>';
+			var dest = cleanup.html(src);
+			var expected = '<td>{temp:empty-cell}</td>{temp:empty-element}';
 						   
 			expect(dest).toEqual(expected);
 		});
