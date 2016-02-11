@@ -99,6 +99,13 @@ module.exports.regex = [
             return 'pass:[' + match + ']';
         }
     },
+    {
+        name: 'include-macro-file-extension',
+        pattern: /include::(.*)?\[\]/gi,
+        replacement: function(match){
+            return match.replace('.html.adoc', '.adoc');
+        }
+    },
     
 	// ------------ Build Variables -----------------
 	{

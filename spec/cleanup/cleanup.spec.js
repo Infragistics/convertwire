@@ -26,6 +26,13 @@ describe('cleanup', function(){
 			var expected = 'Users...';
 			expect(dest).toEqual(expected);
 		});
+        
+        it('fixes include macro file extensions', () => {
+            var src = 'include::xamdiagram-user-interactions-configuration-summary-chart.html.adoc[]';
+            var dest = cleanup.asciidoc(src);
+            var expected = 'include::xamdiagram-user-interactions-configuration-summary-chart.adoc[]';
+            expect(dest).toEqual(expected);
+        });
 		
 		it('replaces â„¢ with &trade;', () => {
 			var src = 'xamDataGridâ„¢';
