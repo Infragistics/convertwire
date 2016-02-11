@@ -29,6 +29,7 @@ describe('html2AsciiDoc', function(){
 		'notes-ja',				
 		'table',
 		'table-p',
+		'table-code',
         'heading-link',
 		'ig-bold',
 		'tables-0E7D',

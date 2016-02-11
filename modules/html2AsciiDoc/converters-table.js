@@ -82,6 +82,16 @@
 		if(!_.contains(value, 'ifdef')) {
 			value = value.replace(/\|\n/, '|');
 		}
+        
+        //remove '+' from code lines
+        value = value.replace(/\] (\+)\n----\{temp:code-start\}((.|\s)*)?\{temp:code-end\}\s(\+)/g, (match) => {
+            var lines = match.split('\n');
+            for(var i=0; i<lines.length; i++){
+                lines[i] = _.trimRight(lines[i], '+');   
+            }
+            return lines.join('\n');
+        });
+        
 		
 		return value;
 	}

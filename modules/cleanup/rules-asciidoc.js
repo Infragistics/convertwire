@@ -107,6 +107,12 @@ module.exports.regex = [
         }
     },
     
+    {
+        name: '{temp:code-start}/{temp:code-end}',
+        pattern: /\{temp:code-(start|end)\}/gi,
+        replacement: ''
+    },
+    
 	// ------------ Build Variables -----------------
 	{
 		name: 'build-variables:delimiters',

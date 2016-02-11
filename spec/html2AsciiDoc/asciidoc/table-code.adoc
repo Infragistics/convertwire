@@ -1,0 +1,15 @@
+[options="header", cols="a,a"]
+|====
+|Property|Value
+
+|link:Geometry.html[Geometry]
+|*In XAML:* +
+[source,xaml] 
+----{temp:code-start} 
+<GeometryGroup> 
+ <LineGeometry StartPoint="0,0" EndPoint="40,40"/> 
+ <LineGeometry StartPoint="40,0" EndPoint="0,40"/> 
+</GeometryGroup> 
+----{temp:code-end} 
+
+|====

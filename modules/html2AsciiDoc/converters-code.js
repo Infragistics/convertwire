@@ -5,7 +5,7 @@
 	var buildFlags = require('./converters-build-flags.js');
 	
 	var wrapCodeBlock = (content) => {
-		return '----\n' + content + '\n----';
+		return '----{temp:code-start}\n' + content + '\n----{temp:code-end}';
 	};
 	
 	var getLanguage = (node) => {
