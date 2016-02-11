@@ -5,6 +5,9 @@ var path = require('path');
 var fs = require('fs');
 var cheerio = require('cheerio');
 
+fs.mkdirSync(path.resolve(__dirname, '../../logs/misc'));
+fs.mkdirSync(path.resolve(__dirname, '../../logs/misc/wingdings'));
+
 fs.mkdirSync(path.resolve(__dirname, '../../logs/tables'));
 fs.mkdirSync(path.resolve(__dirname, '../../logs/tables/complex'));
 fs.mkdirSync(path.resolve(__dirname, '../../logs/tables/root-level'));
@@ -83,6 +86,42 @@ module.crazyTables = function (folderPath) {
 		console.log(`${results.length} crazy tables found`);
 	} else {
 		console.log('no crazy tables found');
+	}
+
+};
+
+module.specialString = function (folderPath, _specialString) {
+	var basePath, fileNames, matches, results = [], title = '';
+
+	basePath = path.resolve(__dirname, folderPath);
+	fileNames = fs.readdirSync(basePath);
+
+	fileNames.forEach((fileName) => {
+		var filePath, contents;
+
+		filePath = path.join(basePath, fileName);
+		contents = fs.readFileSync(filePath, 'utf8');
+
+		if (contents.indexOf(_specialString) > -1) {
+			
+			matches = contents.match(/name&quot;: &quot;(.*)&/);
+			
+			if(matches && matches.length > 0){
+				title = matches[1]
+							.toLowerCase()
+							.replace(/_/g, '-');
+			}
+			
+			results.push(`${fileName}\t\t\t${title}.adoc`);
+			fs.writeFileSync(path.resolve(__dirname, `../../logs/misc/${_specialString}/${fileName}`), contents, 'utf8');
+		}
+	});
+
+	if (results.length > 0) {
+		fs.writeFileSync(path.resolve(__dirname, `../../logs/misc/${_specialString}/list.txt`), results.join('\n'), 'utf8');
+		console.log(`${results.length} topics with ${_specialString} found`);
+	} else {
+		console.log(`no topics with ${_specialString} found`);
 	}
 
 };
@@ -227,6 +266,8 @@ module.nestedElements('../../spec/data/dest/html', 'blockquote', 'pre');
 module.nestedElements('../../spec/data/dest/html', 'blockquote', 'code');
 
 module.rootLevelTables('../../spec/data/dest/html');
+
+module.specialString('../../spec/data/dest/html', 'wingdings');
 
 module.findBuildFlaggedCode('../../spec/data/dest');
 
