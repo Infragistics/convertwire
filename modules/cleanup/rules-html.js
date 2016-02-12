@@ -24,7 +24,7 @@
         },
         {
             name: 'empty-inline-elements',
-            pattern: /<(i|em|b|bold|strong|span)>\s+<\/(i|em|b|bold|strong|span)>/gi,
+            pattern: /<[p|i|em|b|bold|strong|span]>[\s|&nbsp;|&#xA0;]+<\/[p|i|em|b|bold|strong|span]>/gi,
             replacement: ' '
         },
 		{
@@ -112,9 +112,19 @@
 			replacement: '<td>{temp:empty-cell}</td>'
 		},
         {
+			name: 'empty-cell-2',
+			pattern: /<td.*?>\s{0,}<\/td>/gi,
+			replacement: '<td>{temp:empty-cell}</td>'
+		},
+        {
 			name: 'empty-header',
 			pattern: /<th>\s?<\/th>|<th><([^>]+)>(\s)(<\/([^>]+)>)<\/th>/gi,
 			replacement: '<th>{temp:empty-header}</th>'
+		},
+        {
+			name: 'empty-header-2',
+			pattern: /<th.*?>\s{0,}<\/th>/gi,
+			replacement: '<th>{temp:empty-cell}</th>'
 		},
 		{
 			name: 'empty-html-tags',
