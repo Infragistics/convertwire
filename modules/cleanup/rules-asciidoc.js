@@ -73,8 +73,7 @@ module.exports.regex = [
         name: 'bolded-in-document-links',
         pattern: /<<(.*?),( )?\*(.*?)\*( )?>>/g,
         replacement: function(match){
-            match = match.replace(/\*/g, '');
-            return ' *' + match + '* '
+            return match.replace(/\*/g, '');
         }
     },
     {
@@ -217,12 +216,16 @@ module.exports.regex = [
     {
         name: 'stray-asterisk',
         pattern: /\n\*( )?\n/g,
-        replacement: ''
+        replacement: (match) => {
+            return '';
+        }
     },
     {
         name: 'extra-spaces-between-bold-italic',
         pattern: /(  +)/g,
-        replacement: ' '
+        replacement: (match) => { 
+            return ' ';
+        }
     },
     {
         name: 'extra-space-after-italic',
