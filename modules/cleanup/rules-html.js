@@ -157,7 +157,7 @@
 						src = $('<div>').append($a).html();
 						src = src.replace(/"/g, '\"?');
 						
-						$a.html('<span class="temporary">temp content</span>');
+						$a.html('<span class="temporary">{temp:content}</span>');
 						dest = $('<div>').append($a).html();
 						
 						value.src = src;

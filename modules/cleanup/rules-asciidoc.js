@@ -49,6 +49,13 @@ module.exports.regex = [
 		pattern: /(\+ ?)\n.Note:/g,
 		replacement: '+\n\n.Note:'
 	},
+    {
+		name: 'temp-content',
+		pattern: /\{temp:content\}/g,
+		replacement: (match) => {
+            return '';
+        }
+	},
 	{
 		name: 'temp-token=>list:start',
 		pattern: /\<temp-token role=\"list:start\"\>/g,
