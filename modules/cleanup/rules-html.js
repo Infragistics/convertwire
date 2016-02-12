@@ -153,7 +153,7 @@
 					let $a = $(a);
 					let value = {};
 					
-					if($a.text().length === 0 && (typeof $a.attr('id') !== 'undefined')){
+					if($a.text().length === 0 && (typeof $a.attr('id') !== 'undefined' || typeof $a.attr('name') !== 'undefined')){
 						src = $('<div>').append($a).html();
 						src = src.replace(/"/g, '\"?');
 						
