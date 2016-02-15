@@ -328,22 +328,14 @@
   // ===== replace with nothing =====
   // ================================
   
-  var replaceWithNothingClassNames = [
-    //'defaultimg',
-    'ig-content-container',
-    'ig-content',
-    'ig-layout-container'
-  ];
-  
   var replaceWithNothingIDs = [
     'docx-root'
   ];
   
   var nothingElements = {
     filter: function (node) {
-      var classIndex = replaceWithNothingClassNames.indexOf(node.className.toLowerCase());
       var idIndex = replaceWithNothingIDs.indexOf(node.id.toLowerCase());
-      var match = (classIndex >= 0 || idIndex >= 0);
+      var match = idIndex >= 0;
       return match;
     },
     replacement: function (content) {
