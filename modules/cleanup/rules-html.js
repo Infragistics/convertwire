@@ -113,7 +113,7 @@
 		},
         {
 			name: 'empty-cell-2',
-			pattern: /<td.*?>\s{0,}<\/td>/gi,
+			pattern: /<td.*?>[\s]+<\/td>/gi,
 			replacement: '<td>{temp:empty-cell}</td>'
 		},
         {
@@ -123,7 +123,7 @@
 		},
         {
 			name: 'empty-header-2',
-			pattern: /<th.*?>\s{0,}<\/th>/gi,
+			pattern: /<th.*?>[\s]+<\/th>/gi,
 			replacement: '<th>{temp:empty-cell}</th>'
 		},
 		{
