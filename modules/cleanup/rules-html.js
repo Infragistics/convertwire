@@ -32,11 +32,6 @@
 			pattern: /&#xA0;/g,
 			replacement: '&nbsp;'
 		},
-        /*{
-            name: 'multiple-non-breaking-space',
-            pattern: /(\&nbsp;){2,}/g,
-            replacement: ''  
-        },*/
 		{
 			name: 'build-flag:winforms',
 			pattern: /A33F8D9D-1A93-4A02-85E3-FC849DE1B8EA/g,
@@ -129,7 +124,19 @@
 		{
 			name: 'empty-html-tags',
 			pattern: /<[^\/>][^>]*>\s?<\/[^>]+>/g,
-			replacement: '{temp:empty-element}'
+			replacement: (match) => {
+                var returnValue, value, tags;
+                
+                returnValue = '{temp:empty-element}';
+                value = match.toLowerCase().replace(/\<\/?/g, '');  
+                tags = value.split('>');
+                
+                if(tags[0] !== tags[1]){
+                    returnValue = match;
+                }
+                
+                return returnValue;
+            }
 		},
 		{
 			name:'temporary-token',
