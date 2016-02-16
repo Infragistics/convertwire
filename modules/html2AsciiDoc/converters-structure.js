@@ -67,7 +67,7 @@
       return match;
     },
     replacement: function (content, node) {
-      var hLevel, hPrefix, value, anchorMatches, anchor = '';
+      var hLevel, hPrefix, value = '', anchorMatches, anchor = '';
 
       hLevel = parseInt(node.nodeName.charAt(1)) + 1;
       hPrefix = '';
@@ -88,7 +88,9 @@
         content = content.substr(content.lastIndexOf('\n') + 1, content.length);
       }
 
-      value = '\n' + hPrefix + ' ' + content;
+      if(content && content.length > 0){
+        value = '\n' + hPrefix + ' ' + content;  
+      }
 
       if (buildFlags.hasDocXBuildFlags(node)) {
         value = buildFlags.wrapWithBuildFlags(value, node);
