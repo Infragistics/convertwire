@@ -30,6 +30,7 @@ describe('html2AsciiDoc', function(){
 		'table',
 		'table-p',
 		'table-code',
+		'table-note',
         'heading-link',
 		'ig-bold',
 		'tables-0E7D',

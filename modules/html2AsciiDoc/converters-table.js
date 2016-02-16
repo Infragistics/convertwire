@@ -83,15 +83,20 @@
 			value = value.replace(/\|\n/, '|');
 		}
         
-        //remove '+' from code lines
-        value = value.replace(/\] (\+)\n----\{temp:code-start\}((.|\s)*)?\{temp:code-end\}\s(\+)/g, (match) => {
-            var lines = match.split('\n');
-            for(var i=0; i<lines.length; i++){
-                lines[i] = _.trimRight(lines[i], '+');   
-            }
-            return lines.join('\n');
-        });
+        var removePlusFromLinesPatterns = [
+            /\[source.*?(\+)\n----\{temp:code-start\}((.|\s)*)?\{temp:code-end\}\s(\+)/g, // code lines
+            /\.Note((.|\s)*)?\{temp:note-end\}/g // note lines
+        ];
         
+        removePlusFromLinesPatterns.forEach((pattern) => {
+            value = value.replace(pattern, (match) => {
+                var lines = match.split('\n');
+                for(var i=0; i<lines.length; i++){
+                    lines[i] = _.trimRight(lines[i], '+');   
+                }
+                return '\n' + lines.join('\n');
+            });
+        });
 		
 		return value;
 	}

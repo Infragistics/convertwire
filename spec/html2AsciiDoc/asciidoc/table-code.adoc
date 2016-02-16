@@ -4,6 +4,7 @@
 
 |link:Geometry.html[Geometry]
 |*In XAML:* +
+
 [source,xaml] 
 ----{temp:code-start} 
 <GeometryGroup> 

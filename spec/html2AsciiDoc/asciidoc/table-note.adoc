@@ -1,0 +1,12 @@
+[cols="a,a"]
+|====
+|test
+|IsEditing +
+
+.Note 
+[NOTE] 
+==== 
+The IsEditing state his is only a visual state; the nodes are not editable. 
+===={temp:note-end}
+
+|====

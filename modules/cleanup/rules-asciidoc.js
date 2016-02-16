@@ -119,6 +119,12 @@ module.exports.regex = [
         replacement: ''
     },
     
+    {
+        name: '{temp:note-end}',
+        pattern: /\{temp:note-end\}/gi,
+        replacement: ''
+    },
+    
 	// ------------ Build Variables -----------------
 	{
 		name: 'build-variables:delimiters',

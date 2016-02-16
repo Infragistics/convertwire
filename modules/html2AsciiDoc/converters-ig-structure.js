@@ -185,7 +185,7 @@
           content = labelParts[1].trim();
       }
 
-      value = label +'\n[NOTE]\n====\n' + content + '\n====';
+      value = label +'\n[NOTE]\n====\n' + content + '\n===={temp:note-end}';
       
       if(buildFlags.hasDocXBuildFlags(node)){
         value = buildFlags.wrapWithBuildFlags(value, node);
