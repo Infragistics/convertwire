@@ -224,6 +224,47 @@ module.exports.regex = [
 		pattern: buildVariables.regex('8D4A1277-50C4-4872-86D2-1435FDBCBD84'),
 		replacement: buildVariables.wrap('WebChartCLR3')
 	},
+    {
+		name: 'build-variables: win-forms-clr2',
+		pattern: buildVariables.regex('15005E59-85F4-4255-AD91-C66026EBB030'),
+		replacement: buildVariables.wrap('win-forms-clr2')
+	},
+    {
+		name: 'build-variables: win-forms',
+		pattern: buildVariables.regex('CF21C2C7-9FDA-4779-B7E5-3CEB93F4AF16'),
+		replacement: buildVariables.wrap('win-forms')
+	},
+    {
+		name: 'build-variables: win-forms',
+		pattern: buildVariables.regex('13F74CE5-CB08-4922-AF90-39C0329B50FA'),
+		replacement: buildVariables.wrap('win-forms')
+	},
+    {
+		name: 'build-variables: asp.net-clr2',
+		pattern: buildVariables.regex('AE4AFBC6-B7A7-4E4A-8D8E-201B876A8FA4'),
+		replacement: buildVariables.wrap('asp.net-clr2')
+	},
+    {
+		name: 'build-variables: win-forms',
+		pattern: buildVariables.regex('3464F388-E853-43C5-8CFF-3C3C2F4DE1A3'),
+		replacement: buildVariables.wrap('win-forms')
+	},
+    {
+		name: 'build-variables: asp.net-clr2',
+		pattern: buildVariables.regex('4522AF82-ECE7-4A43-A30F-FAB0E9311CB1'),
+		replacement: buildVariables.wrap('asp.net-clr2')
+	},
+    {
+		name: 'build-variables: win-forms',
+		pattern: buildVariables.regex('7F8A205D-BEEC-4CEE-BF00-9B6A6DE582BB'),
+		replacement: buildVariables.wrap('win-forms')
+	},
+    {
+		name: 'build-variables: asp.net-clr2',
+		pattern: buildVariables.regex('03CD8027-2F55-4D9F-9B31-15F1CDA89005'),
+		replacement: buildVariables.wrap('asp.net-clr2')
+	},
+    
 	// ----------------------------------------------
     
     {
