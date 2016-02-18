@@ -203,7 +203,7 @@
       if(!_.startsWith(id, 'OLE')){
         identifier = id ? id : name;
         
-        value = `[[${identifier}]]\n${content}`;
+        value = `\n\n[[${identifier}]]\n${content}`;
       }
       
       return value;
