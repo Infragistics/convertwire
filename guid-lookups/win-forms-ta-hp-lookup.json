@@ -1,236 +1,80 @@
-[
-  {
-    "0ee20636-773d-4d18-98be-3d039c4ec7bf": "whats-new-in-2012-volume-1"
-  },
-  {
-    "0fc319c2-643c-4cea-9f1b-4529de14dac9": "whats-new-in-2014-volume-2"
-  },
-  {
-    "160122df-bb4d-49a9-8f54-52db599e2beb": "test-automation-for-infragistics-controls"
-  },
-  {
-    "2076317c-6dd4-4a3f-b835-07d17fe88acb": "whats-new-whats-new-2015-volume-1"
-  },
-  {
-    "216e5398-c7d7-422d-8565-2ee3b4728074": "wincarousel-user-input-to-actions"
-  },
-  {
-    "2c4aeea2-ef07-4996-85e3-38c116a98bb0": "whats-new-in-2010-volume-3"
-  },
-  {
-    "2c8c57b8-56ba-4088-86a6-8997b529456c": "wincarousel-actions"
-  },
-  {
-    "3018f014-2c3a-4293-9ba3-6a55ca12dc34": "version-free-assembly-names"
-  },
-  {
-    "3635ec1a-8ac8-45b6-afab-739e340e17b8": "whats-new-in-2014-volume-1"
-  },
-  {
-    "4dd337dd-3ac3-45d6-8ede-06c81b759842": "winpivotgrid-user-input-to-actions"
-  },
-  {
-    "63b4b6cf-91e1-4468-a17f-9fbe7d447dde": "whats-new-in-2013-volume-1"
-  },
-  {
-    "6ee706d7-8baf-4589-bb7a-4f7df4a3f315": "winpivotgrid"
-  },
-  {
-    "7df9038b-c0f3-4e3f-8b02-4519921d9905": "winpivotgrid-actions"
-  },
-  {
-    "80369c57-8779-443f-b590-92e759bbb6fd": "whats-new-in-2010-volume-2"
-  },
-  {
-    "8cb855f5-fef0-4eca-a67e-8a407b0939b9": "whats-new-2015-volume-2"
-  },
-  {
-    "925f71ff-c707-4dc9-985c-135a756a0c0d": "whats-new-in-2013-volume-2"
-  },
-  {
-    "a6183084-6a48-4a2b-87e9-148d27e71142": "winpivotgrid-enumerations-reference"
-  },
-  {
-    "b15405a9-1943-425b-905d-a334dd72f3e6": "whats-new-in-2012-volume-2"
-  },
-  {
-    "d87cb643-122b-4556-b91c-6139a408f303": "wincarousel-properties-reference"
-  },
-  {
-    "db2dbb96-f5b5-4d9a-a6a4-193d12d46429": "wincarousel"
-  },
-  {
-    "ed0f1063-e36a-4ea5-ad69-11a9c2d4e719": "known-issues-restyled-run-time-dialogs"
-  },
-  {
-    "f0447a28-b909-47c5-ae4e-1d000f6185f0": "whats-new-in-2011-volume-2"
-  },
-  {
-    "fc44ce01-46ad-45d5-9e87-38817622c9ad": "whats-new-in-2011-volume-1"
-  },
-  {
-    "fd40ca80-2514-47be-8107-8c73175b76a1": "known-issues-in-2013-volume-2"
-  },
-  {
-    "{0B837D68-57D2-475D-95AA-C607A21763E6}": "whats-new-in-2009-volume-1"
-  },
-  {
-    "{13F7B910-F3F6-446D-92D7-BACF025E2FBB}": "revision-history"
-  },
-  {
-    "{14846C12-5BDE-41B7-B8DA-1181F8D4E0D4}": "whats-new-in-2010-volume-1"
-  },
-  {
-    "{1E1433AC-B925-4129-94A7-50CC78456218}": "whats-new-in-2005-volume-1"
-  },
-  {
-    "{23247E97-0159-4AFD-B9C0-3CF2E01B8A78}": "whats-new-in-2005-volume-3"
-  },
-  {
-    "{267CF065-8011-4EF8-B56C-3010945241C2}": "whats-new-in-2007-volume-2"
-  },
-  {
-    "{28721D2C-A668-4B57-8643-C04CF742D837}": "getting-started"
-  },
-  {
-    "{2C9627FC-83C8-4977-8333-DD2149B47CB3}": "using-the-utilities-report-all-action-results"
-  },
-  {
-    "{2DDB42A0-7EA2-4DCB-BE5B-53480D401F80}": "known-issues-windesktopalert"
-  },
-  {
-    "{310B62DB-DC64-4355-828F-4714482F7E9F}": "known-issues"
-  },
-  {
-    "{3298BCE9-6FAC-4EDF-B05B-14503E2448CC}": "known-issues-wingrid"
-  },
-  {
-    "{422944EB-7187-4509-872E-E644D5BCEB5F}": "known-issues-wincombo"
-  },
-  {
-    "{4B7E18AB-8A28-4B03-BE08-EE3F9C54F7D7}": "known-issues-winstatusbar"
-  },
-  {
-    "{4C5C6800-F390-4405-9883-DCB5375CCF5D}": "whats-new-in-2007-volume-1"
-  },
-  {
-    "{56F3BEE7-7248-404F-88C3-39ADCC6E5A0A}": "settings-utility"
-  },
-  {
-    "{57112550-18ED-4C0A-8754-BF5A073A305C}": "whats-new-in-2006-volume-2"
-  },
-  {
-    "{58879435-AA51-43A0-8D4D-9931F7221A02}": "prerequisites"
-  },
-  {
-    "{5B6A6FA2-0714-4EC8-8E1F-1633FE50230A}": "known-issues-winformattedtexteditor"
-  },
-  {
-    "{5FA02CC5-AC21-4C3C-B78D-A7FE7CC78B62}": "whats-new-in-2008-volume-2"
-  },
-  {
-    "{6F323B0F-2295-4A4B-9EE4-8AB14C9E8C58}": "creating-a-test"
-  },
-  {
-    "{776E473B-9D29-4F63-8F6B-5DDC0BA8180D}": "whats-new-in-2008-volume-1"
-  },
-  {
-    "{78613EFC-8FD4-4070-9E0E-799F21722AA6}": "frequently-asked-questions"
-  },
-  {
-    "{7DC78940-20B4-42AC-812C-8A1EBBA4F3B0}": "known-issues-winschedule"
-  },
-  {
-    "{813D0370-6E52-45A3-A8F4-6D7101018D3B}": "using-the-utilities-hard-break-on-all-errors"
-  },
-  {
-    "{8335B29A-BB6C-45E4-99C5-D426632C5FF9}": "users-guide"
-  },
-  {
-    "{88402F4B-843E-4FED-882C-F2DA6CEA46DB}": "known-issues-wintoolbarsmanager"
-  },
-  {
-    "{8C100B5A-2C46-4444-AA4A-54CE027EE05A}": "known-issues-general-known-issues"
-  },
-  {
-    "{98C5C11C-3FBA-4CC5-8FE5-4A689B451788}": "whats-new"
-  },
-  {
-    "{9A392E82-941B-4E64-BE5C-81FE0EF3141B}": "using-the-utilities"
-  },
-  {
-    "{A2610E5D-3136-4531-86EA-3F5239C05EFF}": "known-issues-winspellchecker"
-  },
-  {
-    "{A4A7B531-3D08-4B29-BC5D-D0DCFD326757}": "known-issues-winpanel"
-  },
-  {
-    "{A9424FB8-5920-45EA-A455-C55CA6D5097D}": "manually-setting-up-windows-forms-test-automation-for-hp-software"
-  },
-  {
-    "{AB00AC38-393A-4F1B-94D8-CD498547BEAF}": "whats-new-in-2006-volume-1"
-  },
-  {
-    "{B1693920-20F0-4243-94BA-96515B8C1A16}": "api-reference-guide"
-  },
-  {
-    "{B64FA200-DF1F-407A-8867-29C94185D55F}": "getting-started-supported-software"
-  },
-  {
-    "{BBD7CF15-8484-4F5A-A116-ACCF9E40AF8D}": "known-issues-appstylist-windows-forms"
-  },
-  {
-    "{BD2DE126-F3FD-4D2B-AEE2-7C98DFB6EEBF}": "accessing-the-samples"
-  },
-  {
-    "{BE48B043-1878-4DC0-89FE-CC46A5D2DDB8}": "running-a-test"
-  },
-  {
-    "{C6761496-6AC0-4C06-A928-40169F21798F}": "introduction"
-  },
-  {
-    "{CC28C8DB-CA14-45FA-9EF9-8C1CB4634595}": "whats-new-in-2009-volume-2"
-  },
-  {
-    "{D5395318-5C98-4A72-88C3-606D8927F1A7}": "supported-controls-and-components"
-  },
-  {
-    "{DC753E57-8853-4003-9A82-4AD2ECE571A4}": "whats-new-in-2007-volume-3"
-  },
-  {
-    "{DDCA9399-AF03-41E1-997B-F1366C232A2C}": "known-issues-winchart"
-  },
-  {
-    "{DF9404C6-07EA-47F3-A783-0B0967823E3D}": "known-issues-wintimelineview"
-  },
-  {
-    "{E05BA75A-7731-4A4C-B258-507B3DF62329}": "using-windows-forms-test-automation"
-  },
-  {
-    "{E1A83881-FE54-4190-928E-640B5D96FFB6}": "whats-new-in-2008-volume-3"
-  },
-  {
-    "{E293DD2D-CBD7-4407-80AE-3B4317039F47}": "working-with-tests"
-  },
-  {
-    "{E5D64A56-D748-4FB7-A38C-5C0485083F49}": "welcome-to-windows-forms-test-automation-for-hp-software"
-  },
-  {
-    "{ED6ACD8F-70DC-4D13-858B-3F0009B071CC}": "using-the-utilities-record-items-by-index"
-  },
-  {
-    "{EF0D4C0F-AFA6-478B-B416-870AE362FE2B}": "version-utility"
-  },
-  {
-    "{F070D632-B451-42CE-A327-78E8D0CA15F4}": "editing-a-test"
-  },
-  {
-    "{F53FB448-88AE-443D-AB66-DC65165E188A}": "known-issues-wineditor-controls"
-  },
-  {
-    "{FC25FC4E-3181-4A0B-8B7D-6F9895FFABD3}": "whats-new-in-2006-volume-3"
-  },
-  {
-    "{FC993A69-6D74-4C20-A0F0-58361942B9F9}": "whats-new-in-2005-volume-2"
-  }
-]
+{
+    "0ee20636-773d-4d18-98be-3d039c4ec7bf": "whats-new-in-2012-volume-1",
+    "0fc319c2-643c-4cea-9f1b-4529de14dac9": "whats-new-in-2014-volume-2",
+    "160122df-bb4d-49a9-8f54-52db599e2beb": "test-automation-for-infragistics-controls",
+    "2076317c-6dd4-4a3f-b835-07d17fe88acb": "whats-new-whats-new-2015-volume-1",
+    "216e5398-c7d7-422d-8565-2ee3b4728074": "wincarousel-user-input-to-actions",
+    "2c4aeea2-ef07-4996-85e3-38c116a98bb0": "whats-new-in-2010-volume-3",
+    "2c8c57b8-56ba-4088-86a6-8997b529456c": "wincarousel-actions",
+    "3018f014-2c3a-4293-9ba3-6a55ca12dc34": "version-free-assembly-names",
+    "3635ec1a-8ac8-45b6-afab-739e340e17b8": "whats-new-in-2014-volume-1",
+    "4dd337dd-3ac3-45d6-8ede-06c81b759842": "winpivotgrid-user-input-to-actions",
+    "63b4b6cf-91e1-4468-a17f-9fbe7d447dde": "whats-new-in-2013-volume-1",
+    "6ee706d7-8baf-4589-bb7a-4f7df4a3f315": "winpivotgrid",
+    "7df9038b-c0f3-4e3f-8b02-4519921d9905": "winpivotgrid-actions",
+    "80369c57-8779-443f-b590-92e759bbb6fd": "whats-new-in-2010-volume-2",
+    "8cb855f5-fef0-4eca-a67e-8a407b0939b9": "whats-new-2015-volume-2",
+    "925f71ff-c707-4dc9-985c-135a756a0c0d": "whats-new-in-2013-volume-2",
+    "a6183084-6a48-4a2b-87e9-148d27e71142": "winpivotgrid-enumerations-reference",
+    "b15405a9-1943-425b-905d-a334dd72f3e6": "whats-new-in-2012-volume-2",
+    "d87cb643-122b-4556-b91c-6139a408f303": "wincarousel-properties-reference",
+    "db2dbb96-f5b5-4d9a-a6a4-193d12d46429": "wincarousel",
+    "ed0f1063-e36a-4ea5-ad69-11a9c2d4e719": "known-issues-restyled-run-time-dialogs",
+    "f0447a28-b909-47c5-ae4e-1d000f6185f0": "whats-new-in-2011-volume-2",
+    "fc44ce01-46ad-45d5-9e87-38817622c9ad": "whats-new-in-2011-volume-1",
+    "fd40ca80-2514-47be-8107-8c73175b76a1": "known-issues-in-2013-volume-2",
+    "0B837D68-57D2-475D-95AA-C607A21763E6": "whats-new-in-2009-volume-1",
+    "13F7B910-F3F6-446D-92D7-BACF025E2FBB": "revision-history",
+    "14846C12-5BDE-41B7-B8DA-1181F8D4E0D4": "whats-new-in-2010-volume-1",
+    "1E1433AC-B925-4129-94A7-50CC78456218": "whats-new-in-2005-volume-1",
+    "23247E97-0159-4AFD-B9C0-3CF2E01B8A78": "whats-new-in-2005-volume-3",
+    "267CF065-8011-4EF8-B56C-3010945241C2": "whats-new-in-2007-volume-2",
+    "28721D2C-A668-4B57-8643-C04CF742D837": "getting-started",
+    "2C9627FC-83C8-4977-8333-DD2149B47CB3": "using-the-utilities-report-all-action-results",
+    "2DDB42A0-7EA2-4DCB-BE5B-53480D401F80": "known-issues-windesktopalert",
+    "310B62DB-DC64-4355-828F-4714482F7E9F": "known-issues",
+    "3298BCE9-6FAC-4EDF-B05B-14503E2448CC": "known-issues-wingrid",
+    "422944EB-7187-4509-872E-E644D5BCEB5F": "known-issues-wincombo",
+    "4B7E18AB-8A28-4B03-BE08-EE3F9C54F7D7": "known-issues-winstatusbar",
+    "4C5C6800-F390-4405-9883-DCB5375CCF5D": "whats-new-in-2007-volume-1",
+    "56F3BEE7-7248-404F-88C3-39ADCC6E5A0A": "settings-utility",
+    "57112550-18ED-4C0A-8754-BF5A073A305C": "whats-new-in-2006-volume-2",
+    "58879435-AA51-43A0-8D4D-9931F7221A02": "prerequisites",
+    "5B6A6FA2-0714-4EC8-8E1F-1633FE50230A": "known-issues-winformattedtexteditor",
+    "5FA02CC5-AC21-4C3C-B78D-A7FE7CC78B62": "whats-new-in-2008-volume-2",
+    "6F323B0F-2295-4A4B-9EE4-8AB14C9E8C58": "creating-a-test",
+    "776E473B-9D29-4F63-8F6B-5DDC0BA8180D": "whats-new-in-2008-volume-1",
+    "78613EFC-8FD4-4070-9E0E-799F21722AA6": "frequently-asked-questions",
+    "7DC78940-20B4-42AC-812C-8A1EBBA4F3B0": "known-issues-winschedule",
+    "813D0370-6E52-45A3-A8F4-6D7101018D3B": "using-the-utilities-hard-break-on-all-errors",
+    "8335B29A-BB6C-45E4-99C5-D426632C5FF9": "users-guide",
+    "88402F4B-843E-4FED-882C-F2DA6CEA46DB": "known-issues-wintoolbarsmanager",
+    "8C100B5A-2C46-4444-AA4A-54CE027EE05A": "known-issues-general-known-issues",
+    "98C5C11C-3FBA-4CC5-8FE5-4A689B451788": "whats-new",
+    "9A392E82-941B-4E64-BE5C-81FE0EF3141B": "using-the-utilities",
+    "A2610E5D-3136-4531-86EA-3F5239C05EFF": "known-issues-winspellchecker",
+    "A4A7B531-3D08-4B29-BC5D-D0DCFD326757": "known-issues-winpanel",
+    "A9424FB8-5920-45EA-A455-C55CA6D5097D": "manually-setting-up-windows-forms-test-automation-for-hp-software",
+    "AB00AC38-393A-4F1B-94D8-CD498547BEAF": "whats-new-in-2006-volume-1",
+    "B1693920-20F0-4243-94BA-96515B8C1A16": "api-reference-guide",
+    "B64FA200-DF1F-407A-8867-29C94185D55F": "getting-started-supported-software",
+    "BBD7CF15-8484-4F5A-A116-ACCF9E40AF8D": "known-issues-appstylist-windows-forms",
+    "BD2DE126-F3FD-4D2B-AEE2-7C98DFB6EEBF": "accessing-the-samples",
+    "BE48B043-1878-4DC0-89FE-CC46A5D2DDB8": "running-a-test",
+    "C6761496-6AC0-4C06-A928-40169F21798F": "introduction",
+    "CC28C8DB-CA14-45FA-9EF9-8C1CB4634595": "whats-new-in-2009-volume-2",
+    "D5395318-5C98-4A72-88C3-606D8927F1A7": "supported-controls-and-components",
+    "DC753E57-8853-4003-9A82-4AD2ECE571A4": "whats-new-in-2007-volume-3",
+    "DDCA9399-AF03-41E1-997B-F1366C232A2C": "known-issues-winchart",
+    "DF9404C6-07EA-47F3-A783-0B0967823E3D": "known-issues-wintimelineview",
+    "E05BA75A-7731-4A4C-B258-507B3DF62329": "using-windows-forms-test-automation",
+    "E1A83881-FE54-4190-928E-640B5D96FFB6": "whats-new-in-2008-volume-3",
+    "E293DD2D-CBD7-4407-80AE-3B4317039F47": "working-with-tests",
+    "E5D64A56-D748-4FB7-A38C-5C0485083F49": "welcome-to-windows-forms-test-automation-for-hp-software",
+    "ED6ACD8F-70DC-4D13-858B-3F0009B071CC": "using-the-utilities-record-items-by-index",
+    "EF0D4C0F-AFA6-478B-B416-870AE362FE2B": "version-utility",
+    "F070D632-B451-42CE-A327-78E8D0CA15F4": "editing-a-test",
+    "F53FB448-88AE-443D-AB66-DC65165E188A": "known-issues-wineditor-controls",
+    "FC25FC4E-3181-4A0B-8B7D-6F9895FFABD3": "whats-new-in-2006-volume-3",
+    "FC993A69-6D74-4C20-A0F0-58361942B9F9": "whats-new-in-2005-volume-2"
+}

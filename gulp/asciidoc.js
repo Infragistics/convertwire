@@ -35,7 +35,10 @@ var lookupPath = {
   "ExcelEngine"     : "WebAndWin-ExcelEngine",
   "WinForms"        : "WinForms",
   "Xamarin"         : "Xamarin",
-  "Silverlight"     : "XAML-Silverlight"
+  "Silverlight"     : "XAML-Silverlight",
+  "ta-hp"           : "win-forms-ta-hp",
+  "ta-rft"          : "win-forms-ta-rft",
+  "ta-wpf"          : "wpf-ta"
 };
 
 module.exports.load = function(gulp){
