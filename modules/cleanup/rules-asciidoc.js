@@ -27,6 +27,15 @@ module.exports.regex = [
 			return match.replace('\\.', '.')
 		}
 	},
+    {
+        name: 'change-block-build-flags-in-table-headers-to-inline-pick-macros',
+        pattern: /\|ifdef::(.*?)\[\](.*?)endif::.*?\[\]/ig,
+        replacement: function(match, x, y){
+            x = x.replace(',','.');
+            var result = `|pick:[${x}="${y}"] `;
+            return result;
+        }
+    },
 	{
 		name: 'ellpises',
 		pattern: /â€¦/g,
