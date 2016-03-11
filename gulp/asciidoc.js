@@ -42,6 +42,25 @@ var lookupPath = {
 };
 
 module.exports.load = function(gulp){
+    
+    gulp.task('html2adoc', (callback) => {
+        var onError = function(error){
+            gutil.beep();
+            logger.log(error);
+        };
+        return gulp.src('./spec/data/src/*.html')
+        .pipe(plumber(onError))
+        .pipe(html2AsciiDoc())
+        .pipe(cleanup('asciidoc'))
+        .pipe(rename(function(path){
+            path.extname = '.adoc';
+        }))
+        .pipe(gulp.dest('./spec/data/dest'))
+        .on('end', function(){
+            gutil.beep();
+            logger.report();
+        });
+    });
 
   gulp.task('asciidoc-no-rename', function(callback) {
     

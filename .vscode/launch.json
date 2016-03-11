@@ -9,17 +9,15 @@
 			// Type of configuration. Possible values: "node", "mono".
 			"type": "node",
 			// Workspace relative or absolute path to the program.
-			"program": "_debug.js",
+			"program": "${workspaceRoot}/_debug.js",
 			// Automatically stop program after launch.
 			"stopOnEntry": false,
 			// Command line arguments passed to the program.
 			"args": [],
 			// Workspace relative or absolute path to the working directory of the program being debugged. Default is the current workspace.
-			"cwd": ".",
+			"cwd": "${workspaceRoot}/",
 			// Workspace relative or absolute path to the runtime executable to be used. Default is the runtime executable on the PATH.
 			"runtimeExecutable": null,
-			// Optional arguments passed to the runtime executable.
-			"runtimeArguments": [],
 			// Environment variables passed to the program.
 			"env": { },
 			// Use JavaScript source maps (if they exist).
@@ -31,17 +29,15 @@
 			// Type of configuration. Possible values: "node", "mono".
 			"type": "node",
 			// Workspace relative or absolute path to the program.
-			"program": "./gulpfile.js",
+			"program": "${workspaceRoot}/gulpfile.js",
 			// Automatically stop program after launch.
 			"stopOnEntry": false,
 			// Command line arguments passed to the program.
 			"args": ["gulp", "--name", "DesignersGuide"],
 			// Workspace relative or absolute path to the working directory of the program being debugged. Default is the current workspace.
-			"cwd": ".",
+			"cwd": "${workspaceRoot}/",
 			// Workspace relative or absolute path to the runtime executable to be used. Default is the runtime executable on the PATH.
 			"runtimeExecutable": null,
-			// Optional arguments passed to the runtime executable.
-			"runtimeArguments": ["--nolazy"],
 			// Environment variables passed to the program.
 			"env": {
 				"NODE_ENV": "development"
@@ -57,17 +53,15 @@
 			// Type of configuration. Possible values: "node", "mono".
 			"type": "node",
 			// Workspace relative or absolute path to the program.
-			"program": "./modules/reporter/index.js",
+			"program": "${workspaceRoot}/modules/reporter/index.js",
 			// Automatically stop program after launch.
 			"stopOnEntry": false,
 			// Command line arguments passed to the program.
 			"args": [],
 			// Workspace relative or absolute path to the working directory of the program being debugged. Default is the current workspace.
-			"cwd": ".",
+			"cwd": "${workspaceRoot}/",
 			// Workspace relative or absolute path to the runtime executable to be used. Default is the runtime executable on the PATH.
 			"runtimeExecutable": null,
-			// Optional arguments passed to the runtime executable.
-			"runtimeArguments": [],
 			// Environment variables passed to the program.
 			"env": { },
 			// Use JavaScript source maps (if they exist).
@@ -79,17 +73,15 @@
 			// Type of configuration. Possible values: "node", "mono".
 			"type": "node",
 			// Workspace relative or absolute path to the program.
-			"program": "./modules/writeFileNamesToFirebase/index.js",
+			"program": "${workspaceRoot}/modules/writeFileNamesToFirebase/index.js",
 			// Automatically stop program after launch.
 			"stopOnEntry": false,
 			// Command line arguments passed to the program.
 			"args": ["--name", "DataChart"],
 			// Workspace relative or absolute path to the working directory of the program being debugged. Default is the current workspace.
-			"cwd": ".",
+			"cwd": "${workspaceRoot}/",
 			// Workspace relative or absolute path to the runtime executable to be used. Default is the runtime executable on the PATH.
 			"runtimeExecutable": null,
-			// Optional arguments passed to the runtime executable.
-			"runtimeArguments": [],
 			// Environment variables passed to the program.
 			"env": { },
 			// Use JavaScript source maps (if they exist).
