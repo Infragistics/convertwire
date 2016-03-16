@@ -6,3 +6,4 @@ _debug.js
 _builds
 *.zip
 *-lookup.json.txt
+~lookups
