@@ -2,6 +2,7 @@ const fs = require('fs');
 
 var replacements = [
     { src: 'master-', dest: '' },
+    { src: 'sl-lookup', dest: 'silverlight-lookup' },
     { src: 'asp.net', dest: 'aspnet' },
     { src: 'win-forms', dest: 'winforms' },
     { src: 'document-engine', dest: 'documentengine' },
