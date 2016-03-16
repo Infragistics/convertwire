@@ -36,8 +36,8 @@ var lookupPath = {
   "WinForms"        : "WinForms",
   "Xamarin"         : "Xamarin",
   "Silverlight"     : "XAML-Silverlight",
-  "ta-hp"           : "win-forms-ta-hp",
-  "ta-rft"          : "win-forms-ta-rft",
+  "ta-hp"           : "winforms-ta-hp",
+  "ta-rft"          : "winforms-ta-rft",
   "ta-wpf"          : "wpf-ta"
 };
 

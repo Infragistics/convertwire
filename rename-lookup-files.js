@@ -2,7 +2,8 @@ const fs = require('fs');
 
 var replacements = [
     { src: 'master-', dest: '' },
-    { src: 'sl-lookup', dest: 'silverlight-lookup' },
+    { src: 'wpf-', dest: 'xaml-wpf-' },
+    { src: 'sl-', dest: 'xaml-silverlight-' },
     { src: 'asp.net', dest: 'aspnet' },
     { src: 'win-forms', dest: 'winforms' },
     { src: 'document-engine', dest: 'documentengine' },
@@ -20,6 +21,7 @@ var replacements = [
     { src: 'radial-gauge', dest: 'radialgauge' },
     { src: 'surface-chart', dest: 'surfacechart' },
     { src: 'waw', dest: 'webandwin' },
+    { src: 'duplicates', dest: 'duplicate' },
     { src: 'xplat', dest: 'common' }
 ];
 
