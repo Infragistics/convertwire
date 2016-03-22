@@ -122,4 +122,4 @@ module.checkFolder = (folderPath) => {
 	}
 };
 
-//module.checkFolder('../../spec/data/dest');
+module.checkFolder('../../spec/data/dest');

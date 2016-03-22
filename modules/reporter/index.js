@@ -10,11 +10,12 @@ fs.mkdirSync(path.resolve(__dirname, '../../logs/misc/wingdings'));
 
 fs.mkdirSync(path.resolve(__dirname, '../../logs/tables'));
 fs.mkdirSync(path.resolve(__dirname, '../../logs/tables/complex'));
-fs.mkdirSync(path.resolve(__dirname, '../../logs/tables/root-level'));
-fs.mkdirSync(path.resolve(__dirname, '../../logs/tables/nested'));
-fs.mkdirSync(path.resolve(__dirname, '../../logs/tables/nested/blockquote-blockquote'));
-fs.mkdirSync(path.resolve(__dirname, '../../logs/tables/nested/blockquote-pre'));
-fs.mkdirSync(path.resolve(__dirname, '../../logs/tables/nested/blockquote-code'));
+//fs.mkdirSync(path.resolve(__dirname, '../../logs/tables/root-level'));
+
+fs.mkdirSync(path.resolve(__dirname, '../../logs/elements/nested'));
+fs.mkdirSync(path.resolve(__dirname, '../../logs/elements/nested/blockquote-blockquote'));
+fs.mkdirSync(path.resolve(__dirname, '../../logs/elements/nested/blockquote-pre'));
+fs.mkdirSync(path.resolve(__dirname, '../../logs/elements/nested/blockquote-code'));
 
 module.getRandomFileNames = (folderPath, count, groupCount, english) => {
 	var randoms, basePath, fileNames, fileCount, index;
@@ -196,7 +197,7 @@ module.nestedElements = function (folderPath, firstElementName, secondElementNam
 				}
 				
 				results.push(`${fileName}\t\t\t${title}.adoc`);
-				fs.writeFileSync(path.resolve(__dirname, `../../logs/tables/nested/${folderName}/${fileName}`), contents, 'utf8');
+				fs.writeFileSync(path.resolve(__dirname, `../../logs/elements/nested/${folderName}/${fileName}`), contents, 'utf8');
 			}
 		}
 
@@ -265,7 +266,7 @@ module.nestedElements('../../spec/data/dest/html', 'blockquote', 'blockquote');
 module.nestedElements('../../spec/data/dest/html', 'blockquote', 'pre');
 module.nestedElements('../../spec/data/dest/html', 'blockquote', 'code');
 
-module.rootLevelTables('../../spec/data/dest/html');
+//module.rootLevelTables('../../spec/data/dest/html');
 
 module.specialString('../../spec/data/dest/html', 'wingdings');
 

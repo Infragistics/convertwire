@@ -1,6 +1,7 @@
 const fs = require('fs');
 
 var replacements = [
+    { src: 'xaml-wpf-duplicate', dest: 'master-wpf-duplicate'},
     { src: 'master-', dest: '' },
     { src: 'wpf-', dest: 'xaml-wpf-' },
     { src: 'sl-', dest: 'xaml-silverlight-' },
