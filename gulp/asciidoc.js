@@ -3,6 +3,7 @@ var nodeDebug = require('gulp-node-debug');
 var plumber = require('gulp-plumber');
 var gutil = require('gulp-util');
 var path = require('path');
+var bom = require('gulp-bom');
 
 var docx2html = require('../tasks/gulp-docx2html.js');
 var unmapper = require('../tasks/gulp-unmapper.js');
@@ -127,6 +128,7 @@ module.exports.load = function(gulp){
           console.log(`${name} not found in remote data`);
         }
       }))
+      .pipe(bom())
       .pipe(gulp.dest('./spec/data/dest'))
       .on('end', function(){
         gutil.beep();
