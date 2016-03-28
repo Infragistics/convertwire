@@ -28,6 +28,11 @@ module.exports.regex = [
 		}
 	},
     {
+        name: '',
+        pattern: /\\\.\ /g,
+        replacement: () => '. '
+    },
+    {
         name: 'change-block-build-flags-in-table-headers-to-inline-pick-macros',
         pattern: /\|ifdef::(.*?)\[\](.*?)endif::.*?\[\]/ig,
         replacement: function(match, x, y){
