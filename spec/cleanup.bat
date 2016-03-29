@@ -1,0 +1,1 @@
+erase C:\Users\cshoemaker\Documents\IG\Rewire\convertwire\spec\data\*.* /S /Q /F
