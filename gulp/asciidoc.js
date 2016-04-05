@@ -1,5 +1,4 @@
 var rename = require('gulp-rename');
-var nodeDebug = require('gulp-node-debug');
 var plumber = require('gulp-plumber');
 var gutil = require('gulp-util');
 var path = require('path');
@@ -97,10 +96,19 @@ module.exports.load = function(gulp){
       gutil.beep();
       logger.log(error);
     };
-    return gulp.src('./spec/data/src/*.xml')
+    
+    var srcPath = './spec/data/src/*.xml';
+        
+    if(/^en$/i.test(args.lang)) {
+        srcPath = ['!./spec/data/src/*.ja-JP.xml','./spec/data/src/*.xml'];
+    } else if(/^jp$/i.test(args.lang)) {
+        srcPath = './spec/data/src/*.ja-JP.xml';
+    }
+    
+    return gulp.src(srcPath)
       .pipe(plumber(onError))
       .pipe(docx2html())
-      .pipe(cleanup('html'))      
+      .pipe(cleanup('html'))
       .pipe(layoutTables())
       .pipe(unmapper())
       .pipe(sourceFormatter())

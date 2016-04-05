@@ -50,11 +50,12 @@ ${htmlDocument.markup}</div>`;
 				return obj.hasOwnProperty('Topic') && obj.Topic.$.Id.length > 0;
 			};
 			
-			let isJapaneseTopic = () => {
+			let isJapaneseTopic = (obj) => {
 				return obj.hasOwnProperty('topic');
 			};
 			
 			if(error){
+                console.log(error);
 				callback(error, null);			
 			} else {
 
