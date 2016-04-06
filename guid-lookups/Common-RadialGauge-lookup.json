@@ -1,12 +1,12 @@
 {
-    "14874e95-3cfd-45d0-9457-37f6a4aec348": "radialgauge-using-radialgauge",
-    "456ea3c4-09e4-400a-ae84-50f2772b4ce3": "radialgauge-configuring-ranges",
-    "46c24907-1118-4915-a3d0-72412c487782": "radialgauge-configuring-needles",
-    "4bcd4757-dc0c-47e2-9383-cbb56898a05c": "radialgauge-api-overview",
-    "8be0eac7-4e8f-4cc4-9e43-b1fc68d1f353": "radialgauge-configuring-the-scale",
-    "9daa61e7-3725-4ce9-803d-06d80e245891": "radialgauge",
-    "c611b2f4-4ea0-44f2-b747-ac5fe44df5ac": "radialgauge-configuring-tick-marks",
-    "d556c180-8b27-4566-9214-5605612bbf33": "radialgauge-configuring-labels",
-    "e48d9906-cb25-4e03-aff8-babf23c27c25": "radialgauge-configuring-the-backing",
-    "ea74c1c1-87da-4a46-aaa2-2a2572233abe": "radialgauge-getting-started-with-radialgauge"
+  "46c24907-1118-4915-a3d0-72412c487782": "radialgauge-configuring-needles",
+  "4bcd4757-dc0c-47e2-9383-cbb56898a05c": "radialgauge-api-overview",
+  "14874e95-3cfd-45d0-9457-37f6a4aec348": "radialgauge-using-radialgauge",
+  "d556c180-8b27-4566-9214-5605612bbf33": "radialgauge-configuring-labels",
+  "e48d9906-cb25-4e03-aff8-babf23c27c25": "radialgauge-configuring-the-backing",
+  "ea74c1c1-87da-4a46-aaa2-2a2572233abe": "radialgauge-getting-started-with-radialgauge",
+  "9daa61e7-3725-4ce9-803d-06d80e245891": "radialgauge",
+  "8be0eac7-4e8f-4cc4-9e43-b1fc68d1f353": "radialgauge-configuring-the-scale",
+  "456ea3c4-09e4-400a-ae84-50f2772b4ce3": "radialgauge-configuring-ranges",
+  "c611b2f4-4ea0-44f2-b747-ac5fe44df5ac": "radialgauge-configuring-tick-marks"
 }
