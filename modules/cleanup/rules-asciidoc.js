@@ -128,8 +128,8 @@ module.exports.regex = [
     },
     
     {
-        name: '{temp:code-start}/{temp:code-end}',
-        pattern: /\{temp:code-(start|end)\}/gi,
+        name: '&temp:code-start&/&temp:code-end&',
+        pattern: /\&temp:code-(start|end)\&/gi,
         replacement: ''
     },
     

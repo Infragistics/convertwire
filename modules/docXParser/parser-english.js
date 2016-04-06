@@ -26,6 +26,11 @@
 			
 		if(_.isArray(defs)) {
 			let isExtraContent = (value) => {
+                if(!_.isString(value)) {
+                    console.log('isExtraContent: ' + value);
+                    value = '';
+                };
+                
 				let match = value.indexOf('<') > -1 || value.length > 100;
 				if(!match){
 					let count = value.match(/ /g);

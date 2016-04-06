@@ -1,6 +1,11 @@
 
 
 module.exports.replace = function(content, remoteData){
+    
+    if(typeof content !== 'string') {
+        console.log('replaceGuids: ' + content);
+        content = ''
+    };
 	
 	var guidMatchExpression = '{?([0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12})}?';
 	var expression = new RegExp(guidMatchExpression, 'ig');

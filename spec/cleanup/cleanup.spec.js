@@ -27,15 +27,15 @@ describe('cleanup', function(){
 			expect(dest).toEqual(expected);
 		});
         
-        it('removes {temp:code-start} and {temp:code-end}', () => {
+        it('removes &temp:code-start& and &temp:code-end&', () => {
 			var src = 
 `[source,xaml] 
-----{temp:code-start}
+----&temp:code-start&
 <GeometryGroup> 
  <LineGeometry StartPoint="0,0" EndPoint="40,40"/> 
  <LineGeometry StartPoint="40,0" EndPoint="0,40"/>
 </GeometryGroup>
-----{temp:code-end}`;
+----&temp:code-end&`;
 
 			var dest = cleanup.asciidoc(src);
             

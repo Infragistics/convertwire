@@ -11,6 +11,9 @@
 	const japanese = require('./parser-japanese.js');
 	
 	module.toHtml = (htmlDocument) => {
+        
+        console.log('Converting: ' + htmlDocument.docXGuid);
+        
 			let htmlString = 
 `<div id="docX-root">
 <h1 id="ig-document-title">${htmlDocument.title}</h1> 
