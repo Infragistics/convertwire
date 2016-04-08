@@ -187,6 +187,9 @@
 
       value = label +'\n[NOTE]\n====\n' + content + '\n===={temp:note-end}';
       
+      // HACK: d858c7af-15e1-44c7-a9b6-599c86e87247
+      //value = 'Note\n[NOTE]\n====\n' + content + '\n===={temp:note-end}';
+      
       if(buildFlags.hasDocXBuildFlags(node)){
         value = buildFlags.wrapWithBuildFlags(value, node);
       }
