@@ -162,7 +162,10 @@
 					
 					if($a.text().length === 0 && (typeof $a.attr('id') !== 'undefined' || typeof $a.attr('name') !== 'undefined')){
 						src = $('<div>').append($a).html();
-						src = src.replace(/"/g, '\"?');
+						src = src
+                                .replace(/"/g, '\"?')
+                                .replace(/\(/g, '\\(')
+                                .replace(/\)/g, '\\)');
 						
 						$a.html('<span class="temporary">{temp:content}</span>');
 						dest = $('<div>').append($a).html();

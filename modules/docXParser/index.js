@@ -12,7 +12,7 @@
 	
 	module.toHtml = (htmlDocument) => {
         
-        console.log('Converting: ' + htmlDocument.docXGuid);
+        //console.log('Converting: ' + htmlDocument.docXGuid);
         
 			let htmlString = 
 `<div id="docX-root">

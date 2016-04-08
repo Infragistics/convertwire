@@ -1,0 +1,1 @@
+erase %~dp0\data\dest\*.* /S /Q /F

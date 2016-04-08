@@ -38,7 +38,7 @@ module.html = function(source){
 	});
 	
 	replacements.forEach((rule) => {
-		var regex = new RegExp(rule.src, 'gi');
+        var regex = new RegExp(rule.src, 'gi');
 		source = source.replace(regex, rule.dest);
 	});
 	

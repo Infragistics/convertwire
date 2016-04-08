@@ -382,12 +382,20 @@ describe('cleanup', function(){
 			expect(dest).toEqual(expected);
 		});
 		
-		it('preserves in-document anchors', () => {
+		iit('preserves in-document anchors', () => {
 			var src = '<div><a id="yep"></a> Yep</div>';
 			var dest = cleanup.html(src);
+            //console.log(dest);
 			var expected = '<div><a id="yep"><span class="temporary">{temp:content}</span></a> Yep</div>';
 			expect(dest).toEqual(expected);
 		});
+        
+        it('handles special charaters in replace string', () => {
+            var src = '<a name="?_FindReplace_(by_specifying"?></a>';
+			var dest = cleanup.html(src);
+			var expected = '<a name="_FindReplace_(by_specifying"><span class="temporary">{temp:content}</span></a>';
+			expect(dest).toEqual(expected);
+        });
 		
 		it('replaces xam_xf_ex with xaml-xf-ex', () => {
 			var src = '<DIV id=Example_XAML class=LanguageSpecific style="hs-build-flags: XAM_XF_EX">' + 
