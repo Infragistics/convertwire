@@ -185,10 +185,12 @@
           content = labelParts[1].trim();
       }
 
-      value = label +'\n[NOTE]\n====\n' + content + '\n===={temp:note-end}';
+      //value = label +'\n[NOTE]\n====\n' + content + '\n===={temp:note-end}';
       
-      // HACK: d858c7af-15e1-44c7-a9b6-599c86e87247
-      //value = 'Note\n[NOTE]\n====\n' + content + '\n===={temp:note-end}';
+      // HACK: 
+      //        d858c7af-15e1-44c7-a9b6-599c86e87247 - CommonControls
+      //        b0a6e86f-c069-4a2b-87a7-faf24dfed888 - Silverlight
+      value = 'Note\n[NOTE]\n====\n' + content + '\n===={temp:note-end}';
       
       if(buildFlags.hasDocXBuildFlags(node)){
         value = buildFlags.wrapWithBuildFlags(value, node);
