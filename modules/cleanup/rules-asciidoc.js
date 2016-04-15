@@ -288,13 +288,14 @@ module.exports.regex = [
             return '';
         }
     },
-    {
-        name: 'extra-spaces-between-bold-italic',
-        pattern: /(  +)/g,
-        replacement: (match) => { 
-            return ' ';
-        }
-    },
+    //{
+    //    name: 'extra-spaces-between-bold-italic',
+    //    pattern: /(  +)/g,
+	//    pattern: /_(  +)\*/g,
+    //    replacement: (match) => { 
+    //        return ' ';
+    //    }
+    //},
     {
         name: 'extra-space-after-italic',
         pattern: /_(.*?)_ \,/gi,

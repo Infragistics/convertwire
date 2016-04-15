@@ -132,6 +132,7 @@
                 tags = value.split('>');
                 
                 if(tags[0] !== tags[1]){
+					match = match.replace(/="\?/, '="').replace(/"\?>/, '">');
                     returnValue = match;
                 }
                 

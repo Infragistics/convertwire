@@ -382,10 +382,9 @@ describe('cleanup', function(){
 			expect(dest).toEqual(expected);
 		});
 		
-		iit('preserves in-document anchors', () => {
+		it('preserves in-document anchors', () => {
 			var src = '<div><a id="yep"></a> Yep</div>';
 			var dest = cleanup.html(src);
-            //console.log(dest);
 			var expected = '<div><a id="yep"><span class="temporary">{temp:content}</span></a> Yep</div>';
 			expect(dest).toEqual(expected);
 		});
@@ -393,7 +392,7 @@ describe('cleanup', function(){
         it('handles special charaters in replace string', () => {
             var src = '<a name="?_FindReplace_(by_specifying"?></a>';
 			var dest = cleanup.html(src);
-			var expected = '<a name="_FindReplace_(by_specifying"><span class="temporary">{temp:content}</span></a>';
+			var expected = '<a name="_FindReplace_(by_specifying"></a>';
 			expect(dest).toEqual(expected);
         });
 		
