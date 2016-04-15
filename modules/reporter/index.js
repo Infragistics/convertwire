@@ -179,6 +179,7 @@ module.rootLevelTables = function (folderPath) {
 
 var isElementsDirectoryCreated = false;
 var isElementsNestedDirectoryCreated = false;
+var nestedDirectories = {};
 
 module.nestedElements = function (folderPath, firstElementName, secondElementName) {
 	var basePath, fileNames, results = [], matches, title = '';
@@ -222,6 +223,11 @@ module.nestedElements = function (folderPath, firstElementName, secondElementNam
                     isElementsNestedDirectoryCreated = true;
                 }
                 
+                if(!nestedDirectories[folderName]){
+                    fs.mkdirSync(path.resolve(__dirname, '../../logs/elements/nested/' + folderName));
+                    nestedDirectories[folderName] = true;
+                }
+                
 				fs.writeFileSync(path.resolve(__dirname, `../../logs/elements/nested/${folderName}/${fileName}`), contents, 'utf8');
 			}
 		}
@@ -229,7 +235,7 @@ module.nestedElements = function (folderPath, firstElementName, secondElementNam
 	});
     
 	if (results.length > 0) {
-		fs.writeFileSync(path.resolve(__dirname, `../../logs/tables/nested/${folderName}/list.txt`), results.join('\n'), 'utf8');
+		fs.writeFileSync(path.resolve(__dirname, `../../logs/elements/nested/${folderName}/list.txt`), results.join('\n'), 'utf8');
 		console.log(`${results.length} topics with ${secondElementName}s nested in ${firstElementName}s found`);
 	} else {
 		console.log(`no topics with ${secondElementName}s nested in ${firstElementName}s found`);
