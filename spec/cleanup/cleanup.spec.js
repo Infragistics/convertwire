@@ -27,6 +27,13 @@ describe('cleanup', function(){
 			expect(dest).toEqual(expected);
 		});
 		
+		it('bold terms to have only one space after last astrisk', () => {
+			var src = '. *Create a shape instance.*There are two ways to do this:';
+			var dest = cleanup.asciidoc(src);
+			var expected = '. *Create a shape instance.* There are two ways to do this:';
+			expect(dest).toEqual(expected);
+		});
+		
 		it('replaces sâ€¦ with ....', () => {
 			var src = 'Usersâ€¦';
 			var dest = cleanup.asciidoc(src);

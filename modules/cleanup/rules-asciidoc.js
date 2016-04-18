@@ -156,6 +156,19 @@ module.exports.regex = [
 			return `*_${a}_*`;
 		}
 	},
+	
+	// fix for: https://github.com/Infragistics/convertwire/issues/138
+	{
+		name: 'ensures there is a space after bolded terms',
+		pattern: /\*.+\*./g,
+		replacement: (match) => {
+			var lastChar = match[match.length - 1];
+			if (lastChar !== ' ') {
+				match = match.substr(0, match.length - 1) + ' ' + lastChar;
+			}
+			return match;
+		}
+	},
     
 	// ------------ Build Variables -----------------
 	{
