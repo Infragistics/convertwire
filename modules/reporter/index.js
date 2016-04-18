@@ -1,5 +1,7 @@
 module = module.exports;
 
+const os = require('os');
+
 var _ = require('lodash');
 var path = require('path');
 var fs = require('fs');
@@ -30,12 +32,12 @@ module.getRandomFileNames = (folderPath, count, groupCount, english) => {
 				i--;
 			}
 		}
-		randoms.push('\n');
+		randoms.push(os.EOL);
 	}
 	
 	var nameSuffix = english? '' : '-ja-JP';
 
-	fs.writeFileSync(path.resolve(__dirname, `../../logs/randomNames${nameSuffix}.txt`), randoms.join('\n'), 'utf8');
+	fs.writeFileSync(path.resolve(__dirname, `../../logs/randomNames${nameSuffix}.txt`), randoms.join(os.EOL), 'utf8');
 	
 	console.log('names generated');
 };
@@ -81,7 +83,7 @@ module.crazyTables = function (folderPath) {
 	});
 
 	if (results.length > 0) {
-		fs.writeFileSync(path.resolve(__dirname, '../../logs/tables/complex/list.txt'), results.join('\n'), 'utf8');
+		fs.writeFileSync(path.resolve(__dirname, '../../logs/tables/complex/list.txt'), results.join(os.EOL), 'utf8');
 		console.log(`${results.length} crazy tables found`);
 	} else {
 		console.log('no crazy tables found');
@@ -130,7 +132,7 @@ module.specialString = function (folderPath, _specialString) {
 	});
 
 	if (results.length > 0) {
-		fs.writeFileSync(path.resolve(__dirname, `../../logs/misc/${_specialString}/list.txt`), results.join('\n'), 'utf8');
+		fs.writeFileSync(path.resolve(__dirname, `../../logs/misc/${_specialString}/list.txt`), results.join(os.EOL), 'utf8');
 		console.log(`${results.length} topics with ${_specialString} found`);
 	} else {
 		console.log(`no topics with ${_specialString} found`);
@@ -169,7 +171,7 @@ module.rootLevelTables = function (folderPath) {
 	});
 
 	if (results.length > 0) {
-		fs.writeFileSync(path.resolve(__dirname, '../../logs/tables/root-level/list.txt'), results.join('\n'), 'utf8');
+		fs.writeFileSync(path.resolve(__dirname, '../../logs/tables/root-level/list.txt'), results.join(os.EOL), 'utf8');
 		console.log(`${results.length} root-level tables found`);
 	} else {
 		console.log('no root-level tables found');
@@ -235,7 +237,7 @@ module.nestedElements = function (folderPath, firstElementName, secondElementNam
 	});
     
 	if (results.length > 0) {
-		fs.writeFileSync(path.resolve(__dirname, `../../logs/elements/nested/${folderName}/list.txt`), results.join('\n'), 'utf8');
+		fs.writeFileSync(path.resolve(__dirname, `../../logs/elements/nested/${folderName}/list.txt`), results.join(os.EOL), 'utf8');
 		console.log(`${results.length} topics with ${secondElementName}s nested in ${firstElementName}s found`);
 	} else {
 		console.log(`no topics with ${secondElementName}s nested in ${firstElementName}s found`);
@@ -274,10 +276,45 @@ module.findBuildFlaggedCode = function (folderPath) {
 	});
 
 	if (results.length > 0) {
-		fs.writeFileSync(path.resolve(__dirname, '../../logs/build-flagged-code.txt'), results.join('\n'), 'utf8');
+		fs.writeFileSync(path.resolve(__dirname, '../../logs/build-flagged-code.txt'), results.join(os.EOL), 'utf8');
 		console.log(`${results.length} topics with build flagged code`);
 	} else {
 		console.log('no topics with build flagged code found');
+	}
+};
+
+module.hasPattern = (folderPath, pattern, identifier, description) => {
+	
+	var basePath = path.resolve(__dirname, folderPath);
+	var fileNames = fs.readdirSync(basePath);
+	
+	var badFileNames = [];
+	var writePathRoot = '../../logs/patterns';
+
+	fileNames.forEach((fileName) => {
+		if(/.adoc/.test(fileName)){
+			var text = fs.readFileSync(path.join(basePath, fileName), 'utf8');
+			var matches = text.match(pattern)
+			if(matches !== null && matches.length > 0){
+				badFileNames.push(fileName);
+			}
+		}
+	});
+	
+	if(fileNames.length > 0){
+		if(!fs.existsSync(writePathRoot)){
+			fs.mkdirSync(writePathRoot);
+		}
+		
+		var writeToFolder = path.join(writePathRoot, identifier);
+		var reportContents = `${description}${os.EOL}${os.EOL}
+------------------${os.EOL}${os.EOL}
+${badFileNames.join(os.EOL)}`;
+		
+		fs.mkdirSync(writeToFolder);
+		fs.writeFileSync(path.join(writeToFolder, 'list.txt'), reportContents);
+		
+		console.log(`${badFileNames.length} topics found for ${identifier}`);
 	}
 };
 
@@ -299,6 +336,9 @@ module.nestedElements('../../spec/data/dest/html', 'blockquote', 'code');
 module.specialString('../../spec/data/dest/html', 'wingdings');
 
 module.findBuildFlaggedCode('../../spec/data/dest');
+
+const longListPattern = /(\.{6,} )/g;
+module.hasPattern('../../spec/data/dest', longListPattern, 'long-list', 'AsciiDoc does not support lists deeper than five levels deep.');
 
 console.log('starting verification');
 var verify = require('../verify')

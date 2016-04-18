@@ -138,6 +138,15 @@ module.exports.regex = [
         pattern: /\{temp:note-end\}/gi,
         replacement: ''
     },
+	
+	// fix for: https://github.com/Infragistics/convertwire/issues/134
+	{
+        name: 'remove-extra-list-start-flags',
+        pattern: /\[start=\d\]\s([.]{2,})? /gi,
+        replacement: (match, a) => {
+			return a + ' ';
+		}
+    },
     
 	// ------------ Build Variables -----------------
 	{
