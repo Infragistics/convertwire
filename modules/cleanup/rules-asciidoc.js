@@ -147,6 +147,15 @@ module.exports.regex = [
 			return a + ' ';
 		}
     },
+	
+	// fix for: https://github.com/Infragistics/convertwire/issues/137
+	{
+		name: 'correctly orders bold/italic markup',
+		pattern: /_\*(.+)\*_/g,
+		replacement: (match, a) => {
+			return `*_${a}_*`;
+		}
+	},
     
 	// ------------ Build Variables -----------------
 	{

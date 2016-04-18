@@ -20,6 +20,13 @@ describe('cleanup', function(){
 			expect(dest).toEqual(expected);
 		});
 		
+		it('sets correct order of bold/italic', () => {
+			var src = '_*xamDiagram*_';
+			var dest = cleanup.asciidoc(src);
+			var expected = '*_xamDiagram_*';
+			expect(dest).toEqual(expected);
+		});
+		
 		it('replaces sâ€¦ with ....', () => {
 			var src = 'Usersâ€¦';
 			var dest = cleanup.asciidoc(src);
