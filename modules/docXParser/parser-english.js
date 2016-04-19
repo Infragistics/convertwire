@@ -56,9 +56,7 @@
 			defs.forEach((def, i) => {
 				let value = def.PropertyValue._;
 				value = !_.isUndefined(value)? value.trim() : ''; 
-				if(isExtraContent(value)){
-					htmlDocument.markup += '\n\n' + value;
-				} else if (isTags(value, i)){
+				if (isTags(value, i)){
 					htmlDocument.tags = utils.listToArray(value, ',');
 				} else if (isControlName(value, i)){
 					htmlDocument.controlName = utils.listToArray(value, ',');
