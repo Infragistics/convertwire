@@ -229,7 +229,7 @@
       
       if(parts.length > 0){
         language = parts.shift().replace(/\*/g, '');
-        value = '\n\n[source,' + language + ']\n----' + parts.join('\n') + '----';
+        value = '\n\n[source,' + language + ']\n----' + parts.join('\n') + '----\n\n';
       }
       
       value = value.replace(/----([^]*?)----/g, (match) => {
@@ -238,6 +238,10 @@
       
       value = value.replace(/\]\n----\n\n/g, (match) => {
         return ']\n----\n';
+      });
+      
+      value = value.replace(/(.)----/g, (match) => {
+        return match[0] + '\n' + match.substr(1);
       });
       
       return value;
