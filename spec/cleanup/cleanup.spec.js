@@ -41,32 +41,6 @@ describe('cleanup', function(){
 			expect(dest).toEqual(expected);
 		});
         
-        it('removes &temp:code-start& and &temp:code-end&', () => {
-			var src = 
-`[source,xaml] 
-----&temp:code-start&
-<GeometryGroup> 
- <LineGeometry StartPoint="0,0" EndPoint="40,40"/> 
- <LineGeometry StartPoint="40,0" EndPoint="0,40"/>
-</GeometryGroup>
-----&temp:code-end&`;
-
-			var dest = cleanup.asciidoc(src);
-            
-			var expected =
-`[source,xaml] 
-----
-<GeometryGroup> 
- <LineGeometry StartPoint="0,0" EndPoint="40,40"/> 
- <LineGeometry StartPoint="40,0" EndPoint="0,40"/>
-</GeometryGroup>
-----`;
-
-			expect(dest).toEqual(expected);
-		});
-        
-        //
-        
         it('fixes include macro file extensions', () => {
             var src = 'include::xamdiagram-user-interactions-configuration-summary-chart.html.adoc[]';
             var dest = cleanup.asciidoc(src);

@@ -3,21 +3,21 @@
 
 *In XAML:*
 
-----&temp:code-start&
+----
 xmlns:igDP="http://infragistics.com/DataPresenter"
 
-----&temp:code-end&
+----
 
 *In Visual Basic:*
 
-----&temp:code-start&
+----
 Imports Infragistics.Windows.DataPresenter
 
-----&temp:code-end&
+----
 
 *In C#:*
 
-----&temp:code-start&
+----
 using Infragistics.Windows.DataPresenter;
 
-----&temp:code-end&
+----

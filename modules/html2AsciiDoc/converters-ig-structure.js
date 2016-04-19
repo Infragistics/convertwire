@@ -229,8 +229,17 @@
       
       if(parts.length > 0){
         language = parts.shift().replace(/\*/g, '');
-        value = '[source,' + language + ']\n----' + parts.join('\n') + '----';
+        value = '\n\n[source,' + language + ']\n----' + parts.join('\n') + '----';
       }
+      
+      value = value.replace(/----([^]*?)----/g, (match) => {
+        return match.replace(/\n\n/g, '\n');
+      });
+      
+      value = value.replace(/\]\n----\n\n/g, (match) => {
+        return ']\n----\n';
+      });
+      
       return value;
     }
   };

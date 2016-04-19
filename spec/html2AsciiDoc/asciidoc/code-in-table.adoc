@@ -1,0 +1,15 @@
+[options="header", cols="a,a"]
+|====
+|Property|Value
+
+|link:example.html[DiagramNode.DisplayTemplate]
+|*In XAML:* 
+
+[source,XAML]
+---- 
+<DataTemplate> 
+<Button Content="{Binding}" /> 
+</DataTemplate> 
+----
+
+|====

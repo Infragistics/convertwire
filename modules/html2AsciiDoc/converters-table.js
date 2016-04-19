@@ -44,7 +44,7 @@
 			// remove leftover whitespace line breaks with AsciiDoc line break
 			content = content.replace(/(\n){2,}/g, '\n');
             
-			content = content.replace(/\n/g, ' +\n');
+			content = content.replace(/\n/g, ' \n\n');
 			
 			// remove line break character from build flags  
 			content = content.replace(/\[\] \+/g, '[]');
@@ -83,9 +83,10 @@
 			value = value.replace(/\|\n/, '|');
 		}
         
+		/*
         var removePlusFromLinesPatterns = [
-            /\[source.*?(\+)\n----\{temp:code-start\}((.|\s)*)?\{temp:code-end\}\s(\+)/g, // code lines
-            /\.Note((.|\s)*)?\{temp:note-end\}/g // note lines
+            /\[source.*?(\+)\n----\&temp:code-start\&((.|\s)*)?\&temp:code-end\&\s(\+)/g, // code lines
+            /\.Note((.|\s)*)?\&temp:note-end\&/g // note lines
         ];
         
         removePlusFromLinesPatterns.forEach((pattern) => {
@@ -97,6 +98,24 @@
                 return '\n' + lines.join('\n');
             });
         });
+		*/
+		
+		value = value.replace(/source[^]*---- ?\+\n/g, (match) => {
+			return match.replace(/ ?\+\s?\n/g, () => '\n');
+		});
+		
+		value = value.replace(/(.)\[source/g, (match) => {
+			return match.split('[').join('\n\n[');
+		});
+
+		// removes double returns from code listings		
+		value = value.replace(/----([^]*?)----/g, (match) => {
+			return match.replace(/\n\n/g, '\n');
+		});
+		
+		value = value.replace(/]\s*?\n\n----/g, (match) => {
+			return ']\n----';
+		});
 		
 		return value;
 	}
