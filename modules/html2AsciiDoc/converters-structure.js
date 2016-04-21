@@ -286,17 +286,21 @@
   var li = {
     filter: 'li',
     replacement: function (content, node) {
-      var 
-        prefix = '', 
-        parent = node.parentNode,  
-        startValue, 
+      var
+        prefix = '',
+        parent = node.parentNode,
+        startValue,
         element;
-      
+
       element = getElementInfo(content, node);
-     
-      prefix = Array(element.listLevel + 1).join(element.delimiter) + ' ';
       
-      if(element.isOrderedListItem){
+      if(element.listLevel > 0){
+        prefix = Array(element.listLevel + 1).join(element.delimiter) + ' ';
+      } else {
+        prefix = element.delimiter + ' ';
+      }
+
+      if (element.isOrderedListItem) {
         if (element.orderedItemNumber === 1) {
           startValue = parent.getAttribute('start');
           startValue = (startValue === null) ? element.orderedItemNumber : startValue;
@@ -304,8 +308,8 @@
           startValue = element.orderedItemNumber;
         }
         prefix = '[start=' + startValue + ']\n' + prefix;
-      } 
-      
+      }
+
       content = prefix + content + '\n';
 
       if (element.hasBuildFlags) {
