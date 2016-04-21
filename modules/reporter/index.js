@@ -340,6 +340,9 @@ module.findBuildFlaggedCode('../../spec/data/dest');
 const longListPattern = /(\.{6,} )/g;
 module.hasPattern('../../spec/data/dest', longListPattern, 'long-list', 'AsciiDoc does not support lists deeper than five levels deep.');
 
+const spacesInImagePaths = /src=".+(\s).+"/gi;
+module.hasPattern('../../spec/data/dest', spacesInImagePaths, 'spaces-in-image-paths', 'Image paths must not have blank spaces');
+
 console.log('starting verification');
 var verify = require('../verify')
 verify.checkFolder('../../spec/data/dest');

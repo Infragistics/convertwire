@@ -48,9 +48,10 @@ describe('html2AsciiDoc', function(){
 		'ig-code-in-text',
         'paragraph-bold-start',
 		'code-in-table',
-		'list-bad-nesting'
-	];['list-bad-nesting'].forEach(function(fileName){
-		iit('converts html into asciidoc: ' + fileName, function(){
+		'list-bad-nesting',
+		'table-cell-extra-space-link'
+	].forEach(function(fileName){
+		it('converts html into asciidoc: ' + fileName, function(){
 			var content = getContent(fileName);
 			var result = converter.convert(content.html);
 			//fs.writeFileSync(path.resolve(__dirname, './asciidoc/' + fileName + '-test.adoc'), result);
