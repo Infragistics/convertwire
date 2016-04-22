@@ -49,7 +49,8 @@ describe('html2AsciiDoc', function(){
         'paragraph-bold-start',
 		'code-in-table',
 		'list-bad-nesting',
-		'table-cell-extra-space-link'
+		'table-cell-extra-space-link',
+		'innovasys-widget-include'
 	].forEach(function(fileName){
 		it('converts html into asciidoc: ' + fileName, function(){
 			var content = getContent(fileName);

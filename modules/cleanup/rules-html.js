@@ -109,7 +109,18 @@
         {
 			name: 'empty-cell-2',
 			pattern: /<td.*?>[\s]+<\/td>/gi,
-			replacement: '<td>{temp:empty-cell}</td>'
+			replacement: (match) => {
+				
+				var returnValue = '<td>{temp:empty-cell}</td>';
+				
+				match = match.replace('<td>', '').replace('</td>', '');
+				
+				if(/[a-zA-Z0-9]/.test(match)){
+					returnValue = `<td>${match}</td>`;
+				}
+				
+				return returnValue;
+			}
 		},
         {
 			name: 'empty-header',

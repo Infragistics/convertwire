@@ -207,6 +207,12 @@
   var innovasysWidgetProperty = {
     filter: 'innovasys:widgetproperty',
     replacement: function(content, node){
+      var isInclude = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(content);
+
+      if(isInclude){
+        content = `\n\ninclude::${content}.adoc[]\n\n`
+      }
+
       return content;
     }
   };
@@ -258,6 +264,8 @@
       return match;
     },
     replacement: function(content, node){
+      if(/include::/.test(content)) return content;
+      
       return '\ninclude::' + content.toLowerCase().replace(/_/g, '-') + '.adoc[]\n';
     }
   };
