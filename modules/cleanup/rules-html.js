@@ -159,7 +159,12 @@
             name:'stray-style-elements',
             pattern: /<style(?:\r|\n|.)+<\/style>/gi,
             replacement: ''
-        }
+        },
+		{
+			name: 'removes-innovasys-widget-namespace-node',
+			pattern: /<\?.+\/>/g,
+			replacement: ''
+		}
 	];
 	
 	module.jquery = [

@@ -7,22 +7,18 @@
   "license": "ISC",
   "devDependencies": {
     "jasmine": "^2.3.1",
-    "jasmine-debug": "^0.1.1",
-    "jasmine-node": "^1.14.5",
-    "node-inspector": "^0.10.2"
+    "jasmine-node": "^1.14.5"
   },
   "dependencies": {
     "bunyan": "^1.4.0",
     "cheerio": "^0.19.0",
-    "firebase": "^2.3.1",
+    "gulp": "^3.9.1",
     "gulp-bom": "^1.0.0",
     "gulp-clean": "^0.3.1",
-    "gulp-node-debug": "0.0.3",
     "gulp-plumber": "^1.0.1",
     "gulp-rename": "^1.2.2",
     "gulp-util": "^3.0.6",
     "lodash": "^3.9.3",
-    "moment": "^2.10.6",
     "string": "^3.3.0",
     "through2": "^2.0.0",
     "to-markdown": "^1.2.1",

@@ -341,13 +341,24 @@ describe('cleanup', function(){
 			var expected = '<div>test</div>';
 			expect(dest).toEqual(expected);
 		});
-        
-        /*it('replaces multiple &nbsp; with nothing', () => {
-            var src = '&nbsp;&nbsp;&nbsp;';
-            var dest = cleanup.html(src);
-            var expected = '';
-            expect(dest).toEqual(expected);
-        });*/
+		
+		it('removes innovasys widget XML namespace block', () => {
+			var src = `
+<TABLE class=ig-layout>
+<TBODY>
+<TR><TD>  <?xml:namespace prefix = "innovasys" ns = "http://www.innovasys.com/widgets" /><innovasys:widget layout="block" type="Include Topic"><innovasys:widgetproperty layout="block" name="source">5fb1d26d-e938-446d-8c40-2d3ce05eae4b</innovasys:widgetproperty> </innovasys:widget></TD></TR>
+</TBODY></TABLE>`;
+
+			var dest = cleanup.html(src);
+			
+			var expected = `
+<TABLE class=ig-layout>
+<TBODY>
+<TR><TD>  <innovasys:widget layout="block" type="Include Topic"><innovasys:widgetproperty layout="block" name="source">5fb1d26d-e938-446d-8c40-2d3ce05eae4b</innovasys:widgetproperty> </innovasys:widget></TD></TR>
+</TBODY></TABLE>`;
+
+			expect(dest).toEqual(expected);
+		});
 		
 		it('replaces style="display:none"; with nothing', () => {
 			var src = '<div style="display:none;">test</div>';

@@ -56,6 +56,7 @@ var getHeaderElement = function($row){
 var createNewMarkupFromLayoutTables = () => {
     var 
         html, header, headerElement, content, hasContent, style,
+        columns, index,
         $tbody, $tbodys, $row, $rows, $header, $containers, 
         buildFlags = '', 
         rowMarkup = [], 
@@ -89,7 +90,17 @@ var createNewMarkupFromLayoutTables = () => {
                 header = '';
             }
             
-            $containers = $($row.children()[1]);
+            // fix for: https://github.com/Infragistics/convertwire/issues/160
+            columns = $row.children();
+            index = 1;
+            
+            if(columns.length > 2){
+                if($(columns[1]).html().length === 0){
+                    index = 2;
+                }
+            }
+            
+            $containers = $(columns[index]);
             
             $containers.each((containerIndex, container) => {
                 content = getContents(container, 'html');
