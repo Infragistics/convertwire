@@ -343,6 +343,9 @@ module.hasPattern('../../spec/data/dest', longListPattern, 'long-list', 'AsciiDo
 const spacesInImagePaths = /src=".+(\s).+"/gi;
 module.hasPattern('../../spec/data/dest', spacesInImagePaths, 'spaces-in-image-paths', 'Image paths must not have blank spaces');
 
+const operatorCharacterSequences = /(<=|->|<-)/gi;
+module.hasPattern('../../spec/data/dest', operatorCharacterSequences, 'operator-character-sequences', 'Operator character sequences (not in code listings) need to be surrounded with double dollar signs. For example: $$=>$$');
+
 console.log('starting verification');
 var verify = require('../verify')
 verify.checkFolder('../../spec/data/dest');
