@@ -1,5 +1,5 @@
-=== h2
+== h2
 
 paragraph
 
-===== <<_Ref367305754,General>>
+==== <<_Ref367305754,General>>

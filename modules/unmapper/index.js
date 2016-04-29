@@ -14,7 +14,8 @@ var getNewMarkup = (header, anchorMarkup, content, buildFlags, headerLevel) => {
     var markup = '';
     
     buildFlags = buildFlags? buildFlags : '';
-    headerLevel = headerLevel ? headerLevel : 2;
+    //headerLevel = headerLevel ? headerLevel : 2;
+    headerLevel = 3;
     anchorMarkup = anchorMarkup ? anchorMarkup : '';
 
     markup = `<div class="ig-content-container" ${buildFlags}> 

@@ -69,8 +69,12 @@
     replacement: function (content, node) {
       var hLevel, hPrefix, value = '', anchorMatches, anchor = '';
 
-      hLevel = parseInt(node.nodeName.charAt(1)) + 1;
+      hLevel = parseInt(node.nodeName.charAt(1));
       hPrefix = '';
+      
+      if(hLevel == 1){
+        hLevel = 2;
+      }
       
       if(hLevel >= 6){
           hLevel = 6;

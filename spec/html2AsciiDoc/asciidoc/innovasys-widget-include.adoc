@@ -1,6 +1,6 @@
 [cols="a,a"]
 |====
-|[[_Ref391537908]]=====  _xamDiagram_   configuration summary
+|[[_Ref391537908]]====  _xamDiagram_   configuration summary
 |include::5fb1d26d-e938-446d-8c40-2d3ce05eae4b.adoc[]
 
 |====

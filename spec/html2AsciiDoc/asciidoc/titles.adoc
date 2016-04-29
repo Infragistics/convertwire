@@ -6,6 +6,6 @@
 
 == Example
 
-=== Preview
+== Preview
 
-=== Procedure
+== Procedure
