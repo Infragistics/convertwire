@@ -69,6 +69,13 @@ describe('cleanup', function(){
 			expect(dest).toEqual(expected);
 		});
 		
+		it('removes extra spaces before a tm', () => {
+			var src = '_xamDiagram_  ™';
+			var dest = cleanup.asciidoc(src);
+			var expected = '_xamDiagram_™';
+			expect(dest).toEqual(expected);
+		});
+		
 		it('build variable: ProductNameShort => ProductName', () => {
 			var src = buildVariables.wrap('ProductNameShort');;
 			var dest = cleanup.asciidoc(src);

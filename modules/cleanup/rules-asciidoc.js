@@ -169,6 +169,13 @@ module.exports.regex = [
 			return match;
 		}
 	},
+	
+	// fix for: https://github.com/Infragistics/convertwire/issues/166
+	{
+		name: '',
+		pattern: /\s+™/g,
+		replacement: '™'
+	},
     
 	// ------------ Build Variables -----------------
 	{
