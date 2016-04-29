@@ -51,12 +51,13 @@ describe('html2AsciiDoc', function(){
 		'code-in-table',
 		'list-bad-nesting',
 		'table-cell-extra-space-link',
-		'innovasys-widget-include'
+		'innovasys-widget-include',
+		'ig-level'
 	].forEach(function(fileName){
 		it('converts html into asciidoc: ' + fileName, function(){
 			var content = getContent(fileName);
 			var result = converter.convert(content.html);
-			//fs.writeFileSync(path.resolve(__dirname, './asciidoc/' + fileName + '-test.adoc'), result);
+			//fs.writeFileSync(path.resolve(__dirname, './asciidoc/' + fileName + '.adoc'), result);
 			expect(result).toEqual(content.adoc);
 		});
 	});

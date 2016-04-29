@@ -31,22 +31,23 @@
     filter: function(node){
       var match = false;
       
-      match = node.nodeName === 'DIV' &&
-              (node.className === 'ig-level-1' ||
-              node.className === 'ig-level-2' ||
-              node.className === 'ig-level-3');
+      match = node.nodeName === 'DIV' && 
+              /ig-level-/i.test(node.className);
       
       return match;
     },
     replacement: function(content, node){
-      var value;
+      var value, level, prefix;
       
-      value = content.trim() + '\n\n';
+      level = parseInt(node.className.replace('ig-level-', ''));
+      prefix = Array(level + 1).join('*') +  ' ';
+      
+      value = prefix + content.trim() + '\n\n';
       
       if(buildFlags.hasDocXBuildFlags(node)){
         value = buildFlags.wrapWithBuildFlags(value, node);
       } else {
-          value = '\n\n' + value;
+        value = '\n\n' + value;
       }
       
       return value;
