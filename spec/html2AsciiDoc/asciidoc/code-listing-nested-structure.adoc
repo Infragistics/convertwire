@@ -1,0 +1,16 @@
+*In C#:*
+
+[source]
+----
+ShapeFileReader reader = new ShapeFileReader();
+reader.Uri = "Shapefiles/usa_st/../../ShapeFiles/usa_st";
+
+DataMapping.Converter converter = new DataMapping.Converter();
+reader.DataMapping = converter.ConvertFromString("Caption=STATE_ABBR") as 
+----
+
+[source]
+----
+DataMapping;
+statesLayer.Reader = reader;
+----

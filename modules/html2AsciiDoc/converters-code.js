@@ -140,18 +140,23 @@
 			parts = language.split('_');
 			prefix = '';
 			
-			if (language.length > 0) {
-				language = (parts.length > 1) ? parts[1].toLowerCase() : language;
-				prefix = '[source,' + mapper.map(language) + ']\n';
-			}
-			
-            value = prefix + wrapCodeBlock(content); //changed from node.textContent
-			
-			if(buildFlags.hasDocXBuildFlags(node)){
-				value = buildFlags.wrapWithBuildFlags(value, node);
+			if(!/\[source/.test(content)){
+				if (language.length > 0) {
+					language = (parts.length > 1) ? parts[1].toLowerCase() : language;
+					prefix = '[source,' + mapper.map(language) + ']\n';
+				}
+				
+				value = prefix + wrapCodeBlock(content); //changed from node.textContent
+				
+				if(buildFlags.hasDocXBuildFlags(node)){
+					value = buildFlags.wrapWithBuildFlags(value, node);
+				} else {
+					value = '\n\n' + value + '\n\n';
+				}	
 			} else {
-				value = '\n\n' + value + '\n\n';
+				value = content;
 			}
+			
 			
 			return value;
 		}

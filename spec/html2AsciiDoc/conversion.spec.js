@@ -21,6 +21,7 @@ describe('html2AsciiDoc', function(){
 	[
 		'anchors',
 		'anchors-title',
+		'code-listing-nested-structure',
 		'build-list',
 		'indented-code',		
 		'multiple-ol',		

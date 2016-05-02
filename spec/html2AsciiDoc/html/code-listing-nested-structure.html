@@ -1,0 +1,12 @@
+<div id="docX-root">
+<div style="display: block;" id="Example_CS" class="LanguageSpecific">
+<p><span class="lang"><b>In C#:</b></span></p>
+<pre><br><code class="code">ShapeFileReader reader = <span class="blue">new</span> ShapeFileReader();
+reader.Uri = <span class="string">"<span class="hs-buildflag-markup">Shapefiles/usa_st</span><span>/../../ShapeFiles/usa_st</span>"</span>;
+
+DataMapping.Converter converter = <span class="blue">new</span> DataMapping.Converter();
+reader.DataMapping = converter.ConvertFromString(<span class="string">"Caption=STATE_ABBR"</span>) <span class="blue">as</span> </code><code class="code">DataMapping;
+statesLayer.Reader = reader;</code>
+</pre>
+</div>
+</div>
