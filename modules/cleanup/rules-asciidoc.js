@@ -172,9 +172,19 @@ module.exports.regex = [
 	
 	// fix for: https://github.com/Infragistics/convertwire/issues/166
 	{
-		name: '',
+		name: 'remove-space-before-trademark',
 		pattern: /\s+™/g,
 		replacement: '™'
+	},
+	
+	// fix for: https://github.com/Infragistics/convertwire/issues/169
+	{
+		name: 'remove-space-before-pick-macro',
+		pattern: /\n pick:\[/g,
+		//replacement: 'pick:['
+		replacement: (match) => {
+			return 'pick:[';
+		}
 	},
     
 	// ------------ Build Variables -----------------

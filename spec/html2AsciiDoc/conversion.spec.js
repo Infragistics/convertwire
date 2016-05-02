@@ -49,6 +49,7 @@ describe('html2AsciiDoc', function(){
 		'list-unordered',
 		'ig-code-in-text',
         'paragraph-bold-start',
+		'pick-macro-new-line-space',
 		'code-in-table',
 		'list-bad-nesting',
 		'table-cell-extra-space-link',
