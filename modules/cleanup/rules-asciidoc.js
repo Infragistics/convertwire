@@ -181,9 +181,16 @@ module.exports.regex = [
 	{
 		name: 'remove-space-before-pick-macro',
 		pattern: /\n pick:\[/g,
+		replacement: 'pick:['
+	},
+
+	// fix for: https://github.com/Infragistics/convertwire/issues/176
+	{
+		name: 'move-order-token-above-ordered-list-start-token',
+		pattern: /(\[start=.\])\s{1,}\.\s{1,}(\[\[.*\]\])\n/g,
 		//replacement: 'pick:['
-		replacement: (match) => {
-			return 'pick:[';
+		replacement: (match, startToken, anchorToken) => {
+			return `${anchorToken}\n${startToken}\n. `;
 		}
 	},
     

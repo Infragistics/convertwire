@@ -76,6 +76,22 @@ describe('cleanup', function(){
 			expect(dest).toEqual(expected);
 		});
 		
+		it('reorders anchor tokens over list start tokens', () => {
+			var src = `[start=1]
+. 
+
+[[step1]]
+Step 1`;
+
+			var dest = cleanup.asciidoc(src);
+			
+			var expected = `[[step1]]
+[start=1]
+. Step 1`;
+
+			expect(dest).toEqual(expected);
+		});
+		
 		it('build variable: ProductNameShort => ProductName', () => {
 			var src = buildVariables.wrap('ProductNameShort');;
 			var dest = cleanup.asciidoc(src);
