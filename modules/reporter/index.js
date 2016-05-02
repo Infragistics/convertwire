@@ -346,6 +346,9 @@ module.hasPattern('../../spec/data/dest', spacesInImagePaths, 'spaces-in-image-p
 const operatorCharacterSequences = /(<=|->|<-)/gi;
 module.hasPattern('../../spec/data/dest', operatorCharacterSequences, 'operator-character-sequences', 'Operator character sequences (not in code listings) need to be surrounded with double dollar signs. For example: $$=>$$');
 
+const filePathsWithUnderscores = /\\.*_{1,}.*\\/ig
+module.hasPattern('../../spec/data/dest', operatorCharacterSequences, 'paths-with-underscores', 'The file path(s) in these topics need to have all italics removed from the paths so that paths with underscores do not interfere with the AsciiDoc italics (which uses underscores).');
+
 console.log('starting verification');
 var verify = require('../verify')
 verify.checkFolder('../../spec/data/dest');
