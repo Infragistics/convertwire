@@ -41,6 +41,7 @@ describe('html2AsciiDoc', function(){
 		'tables-no-headers',		
 		'tables-semantic',		
 		'title-anchors',
+		'table-empty-cell-ignores-case',
 		'table-widget',		
 		'titles',
         'title-anchor-internal',

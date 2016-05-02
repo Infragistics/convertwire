@@ -113,7 +113,7 @@
 				
 				var returnValue = '<td>{temp:empty-cell}</td>';
 				
-				match = match.replace('<td>', '').replace('</td>', '');
+				match = match.replace(/\<td\>/i, '').replace(/\<\/td\>/i, '');
 				
 				if(/[a-zA-Z0-9]/.test(match)){
 					returnValue = `<td>${match}</td>`;

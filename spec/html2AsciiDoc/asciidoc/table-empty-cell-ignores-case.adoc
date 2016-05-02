@@ -1,0 +1,11 @@
+[options="header", cols="a,a"]
+|====
+|Property|Value
+
+|`CriticalSlackLimit`
+|2
+
+|`AreCriticalTasksHighlighted`
+|`True`
+
+|====
