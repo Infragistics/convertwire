@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic>
+  <title m="2012-05-07T20:14:58.1776919Z">Silverlight を使用した作業の開始</title>
+  <topicsection m="2012-04-27T19:21:45Z" name="BodyText">
+&lt;P&gt;%%PlatformName%% ヘルプ ドキュメントは、Microsoft® %%PlatformName%%™ の主要概念をすでに熟知していることを前提としています。製品の能力を十分に活用するために、%%PlatformName%% の基本的な概念を理解することを強く推奨します。&lt;/P&gt;
+&lt;P&gt;%%PlatformName%% の主要な概念と機能についての詳細は、以下の MSDN Library リンクをクリックしてください。&lt;/P&gt;
+&lt;UL&gt;
+&lt;LI&gt;&lt;A href="http://msdn.microsoft.com/ja-jp/library/bb404700(VS.95).aspx" target=_blank&gt;Silverlight の概要&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="http://msdn.microsoft.com/ja-jp/library/bb404703(VS.95).aspx" target=_blank&gt;Silverlight を開始&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="http://msdn.microsoft.com/ja-jp/library/cc189054(VS.95).aspx" target=_blank&gt;XAML&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="http://msdn.microsoft.com/ja-jp/library/cc838124(VS.95).aspx" target=_blank&gt;データ アクセスとデータ構造&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="http://msdn.microsoft.com/ja-jp/library/cc189050(VS.95).aspx" target=_blank&gt;ビジュアル デザイン&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="http://msdn.microsoft.com/ja-jp/library/cc221412(VS.95).aspx" target=_blank&gt;タイプ、プロパティ、メソッド、およびイベント&lt;/A&gt; &lt;/LI&gt;&lt;/UL&gt;</topicsection>
+</topic>

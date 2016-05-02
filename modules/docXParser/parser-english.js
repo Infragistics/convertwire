@@ -14,6 +14,8 @@
 		
 		if(!_.isUndefined(obj.Topic.Title) && !_.isUndefined(obj.Topic.Title._)){
 			htmlDocument.title = obj.Topic.Title._.trim();
+		} else if(!_.isUndefined(obj.Topic.Title) && obj.Topic.Title.length > 0) {
+			htmlDocument.title = obj.Topic.Title;
 		}
 			
 		if(!_.isUndefined(obj.Topic.TopicSections.TopicSection.Content._)){

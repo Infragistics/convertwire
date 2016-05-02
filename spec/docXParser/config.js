@@ -4,6 +4,24 @@
 	// makes finding data easy in tests
 	module.topicData = {
 		
+		'733bbcc4-b55d-4061-91da-332e6fc34789': {
+			fileName: '733bbcc4-b55d-4061-91da-332e6fc34789.xml',
+			fileNameJP: '733bbcc4-b55d-4061-91da-332e6fc34789.ja-JP.xml',
+			name: 'Getting_Started_with_Silverlight',
+			docXGuid: '733bbcc4-b55d-4061-91da-332e6fc34789',
+			title: {
+				en: 'Getting Started with Silverlight',
+				jp: 'Silverlight を使用した作業の開始'
+			},
+			markupFragment: {
+				en: '<P>The %%ProductName%% help documentation assumes that you are already familiar',
+				jp: '<P>%%PlatformName%% ヘルプ ドキュメントは'
+			},
+			controlName: [],
+			tags: ['Getting Started'],
+			buildFlags: []			
+		},
+		
 		'0f087027-4cf6-4de5-92f2-ff0ea9383701': {
 			fileName: '0f087027-4cf6-4de5-92f2-ff0ea9383701.xml',
 			fileNameJP: '0f087027-4cf6-4de5-92f2-ff0ea9383701.ja-JP.xml',

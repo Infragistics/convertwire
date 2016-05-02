@@ -169,6 +169,14 @@ describe('docXParser', function(){
 				});			
 			});
 			
+			it('extracts title', function(){
+				topics.forEach(function(topic, index){
+					var testData = config.topicData[topic.docXGuid];
+					var areEqual = _.isEqual(topic.buildFlags, testData.buildFlags);
+					expect(areEqual).toBe(true);
+				});			
+			});
+			
 		});
 	});
 	

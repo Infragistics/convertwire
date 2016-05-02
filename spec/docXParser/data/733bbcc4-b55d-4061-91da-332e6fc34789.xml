@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Topic Id="733bbcc4-b55d-4061-91da-332e6fc34789" Status="New Topic" CreatedOn="2012-01-24T13:35:47.2484724Z" ModifiedOn="2012-09-11T17:19:31.3331997Z" PageTypeName="" AutoIndex="true" HelpContextIds="" Name="Getting_Started_with_Silverlight" BuildFlags="">
+  <Title>Getting Started with Silverlight</Title>
+  <ContentsTitle />
+  <Notes></Notes>
+  <TopicSections>
+    <TopicSection Name="BodyText">
+      <Content m="2012-09-11T17:19:31.3311997Z">&lt;P&gt;The %%ProductName%% help documentation assumes that you are already familiar with key concepts of&amp;nbsp;Microsoft® %%PlatformName%%™. In order to take full advantage of the power of the product, it is strongly recommended that you gain knowledge of the fundamental concepts of %%PlatformName%%.&lt;/P&gt;
+&lt;P&gt;For more information on the key concepts and features of %%PlatformName%%, click the following MSDN Library links:&lt;/P&gt;
+&lt;UL&gt;
+&lt;LI&gt;&lt;A href="http://msdn.microsoft.com/en-us/library/bb404700(VS.95).aspx" target=_blank&gt;Silverlight Overview&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="http://msdn.microsoft.com/en-us/library/bb404703(VS.95).aspx" target=_blank&gt;Get Started with Silverlight&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="http://msdn.microsoft.com/en-us/library/cc189054(VS.95).aspx" target=_blank&gt;XAML&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="http://msdn.microsoft.com/en-us/library/cc838124(VS.95).aspx" target=_blank&gt;Data Access and Data Structures&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="http://msdn.microsoft.com/en-us/library/cc189050(VS.95).aspx" target=_blank&gt;Visual Design&lt;/A&gt; 
+&lt;LI&gt;&lt;A href="http://msdn.microsoft.com/en-us/library/cc221412(VS.95).aspx" target=_blank&gt;Types, Properties, Methods and Events&lt;/A&gt; &lt;/LI&gt;&lt;/UL&gt;</Content>
+    </TopicSection>
+  </TopicSections>
+  <TopicLinks />
+  <TopicKeywords />
+  <PropertyDefinitionValues>
+    <PropertyDefinitionValue PropertyDefinitionId="13d6c29d-793c-4dc7-a744-5600452e41e0">
+      <PropertyValue m="2013-05-23T13:50:26.9859427Z">Getting Started</PropertyValue>
+    </PropertyDefinitionValue>
+    <PropertyDefinitionValue PropertyDefinitionId="780cf777-d4d5-432f-bb63-7877980f87ed">
+      <PropertyValue m="2013-05-23T13:50:26.9859427Z"></PropertyValue>
+    </PropertyDefinitionValue>
+  </PropertyDefinitionValues>
+</Topic>
