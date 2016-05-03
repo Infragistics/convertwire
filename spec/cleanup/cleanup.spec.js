@@ -76,6 +76,17 @@ describe('cleanup', function(){
 			expect(dest).toEqual(expected);
 		});
 		
+		it('reformats malformed Related Topics', () => {
+			var src = `== 
+
+*Related Topics*`;
+
+			var dest = cleanup.asciidoc(src);
+			
+			var expected = '== Related Topics\n\n';
+			expect(dest).toEqual(expected);
+		});
+		
 		it('reorders anchor tokens over list start tokens', () => {
 			var src = `[start=1]
 . 

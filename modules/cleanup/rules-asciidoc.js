@@ -188,9 +188,17 @@ module.exports.regex = [
 	{
 		name: 'move-order-token-above-ordered-list-start-token',
 		pattern: /(\[start=.\])\s{1,}\.\s{1,}(\[\[.*\]\])\n/g,
-		//replacement: 'pick:['
 		replacement: (match, startToken, anchorToken) => {
 			return `${anchorToken}\n${startToken}\n. `;
+		}
+	},
+	
+	// fix for: https://github.com/Infragistics/convertwire/issues/175
+	{
+		name: 'fix-malformed-related-topics',
+		pattern: /== ?\n\n\*(Related Topics?)\*/g,
+		replacement: (match, label) => {
+			return `== ${label}\n\n`;
 		}
 	},
     
