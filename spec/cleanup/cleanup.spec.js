@@ -87,6 +87,34 @@ describe('cleanup', function(){
 			expect(dest).toEqual(expected);
 		});
 		
+		it('reformats malformed Related Topics some more', () => {
+			var src = `Figure SEQ Figure 2: DataSlicer with the header area Expanded.Related Topics
+
+== Related Topics
+
+== Related Topic
+
+this is a test Related Topic`;
+
+			var dest = cleanup.asciidoc(src);
+			
+			var expected = `Figure SEQ Figure 2: DataSlicer with the header area Expanded.
+
+== Related Topics
+
+
+== Related Topics
+
+== Related Topic
+
+this is a test 
+
+== Related Topic
+`;
+
+			expect(dest).toEqual(expected);
+		});
+		
 		it('reformats malformed Related Topics', () => {
 			var src = `[start=1]
 
@@ -111,6 +139,7 @@ _Create a Calendar layout with the xamDockManager control._`;
 			
 			var expected = `[start=1]
 . Create a Calendar layout with the xamDockManager control.
+
 
 [start=1]
 . *Create a Calendar layout with the xamDockManager control.*

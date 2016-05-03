@@ -210,6 +210,19 @@ module.exports.regex = [
 			return `${startToken}\n. ${firstCharacterOfContent}`;
 		}
 	},
+	
+	// fix for: https://github.com/Infragistics/convertwire/issues/181
+	{
+		name: 'fix-malformed-related-topics-2',
+		pattern: /(.{3})(Related Topics?)/ig,
+		replacement: (match, prefix, label) => {
+			if(/={1,6} /.test(prefix)){
+				return match;
+			} else {
+				return `${prefix}\n\n== ${label}\n`;
+			}
+		}
+	},
     
 	// ------------ Build Variables -----------------
 	{
