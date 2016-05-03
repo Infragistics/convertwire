@@ -87,6 +87,39 @@ describe('cleanup', function(){
 			expect(dest).toEqual(expected);
 		});
 		
+		it('reformats malformed Related Topics', () => {
+			var src = `[start=1]
+
+. 
+
+Create a Calendar layout with the xamDockManager control.
+
+
+[start=1]
+
+. 
+
+*Create a Calendar layout with the xamDockManager control.*
+
+[start=1]
+
+. 
+
+_Create a Calendar layout with the xamDockManager control._`;
+
+			var dest = cleanup.asciidoc(src);
+			
+			var expected = `[start=1]
+. Create a Calendar layout with the xamDockManager control.
+
+[start=1]
+. *Create a Calendar layout with the xamDockManager control.*
+
+[start=1]
+. _Create a Calendar layout with the xamDockManager control._`;
+			expect(dest).toEqual(expected);
+		});
+		
 		it('reorders anchor tokens over list start tokens', () => {
 			var src = `[start=1]
 . 

@@ -201,6 +201,15 @@ module.exports.regex = [
 			return `== ${label}\n\n`;
 		}
 	},
+	
+	// fix for: https://github.com/Infragistics/convertwire/issues/181
+	{
+		name: 'fix-malformed-related-topics',
+		pattern: /(\[start=.\])\s{1,}\.\s{1,}\s{1,}([a-zA-Z]|\*|_)/g,
+		replacement: (match, startToken, firstCharacterOfContent) => {
+			return `${startToken}\n. ${firstCharacterOfContent}`;
+		}
+	},
     
 	// ------------ Build Variables -----------------
 	{
