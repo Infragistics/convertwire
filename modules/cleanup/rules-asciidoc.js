@@ -214,9 +214,9 @@ module.exports.regex = [
 	// fix for: https://github.com/Infragistics/convertwire/issues/181
 	{
 		name: 'fix-malformed-related-topics-2',
-		pattern: /(.{3})(Related Topics?)/ig,
-		replacement: (match, prefix, label) => {
-			if(/={1,6} /.test(prefix)){
+		pattern: /(.{3})(Related Topics?)(.{2})?/ig,
+		replacement: (match, prefix, label, suffix) => {
+			if(/={1,6} /.test(prefix) || suffix === '>>'){
 				return match;
 			} else {
 				return `${prefix}\n\n== ${label}\n`;

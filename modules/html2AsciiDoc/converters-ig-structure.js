@@ -17,10 +17,14 @@
       replacement: function(content, node){
         var value;
         
-        value = '\n\n== ' + content + '\n';
-        
-        if(buildFlags.hasDocXBuildFlags(node)){
-          value = buildFlags.wrapWithBuildFlags(value, node);
+        if(/li/i.test(node.parentNode.nodeName)){
+          value = content;
+        } else {
+          value = '\n\n== ' + content + '\n';
+          
+          if(buildFlags.hasDocXBuildFlags(node)){
+            value = buildFlags.wrapWithBuildFlags(value, node);
+          }
         }
         
         return value;
