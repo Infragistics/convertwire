@@ -223,6 +223,14 @@ module.exports.regex = [
 			}
 		}
 	},
+	
+	{
+		name: 'fix-malformed-in-document-links',
+		pattern: /\*\s\* (<<.+>>) ?\*/ig,
+		replacement: (match, link) => {
+			return '* ' + link;
+		}
+	},
     
 	// ------------ Build Variables -----------------
 	{

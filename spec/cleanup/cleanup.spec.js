@@ -61,6 +61,13 @@ describe('cleanup', function(){
 			var expected = '{BuildVariable}';
 			expect(dest).toEqual(expected);
 		});
+		
+		it('fixes in-document links with extra bolds', () => {
+			var src = '* * <<RelatedTopics,Related Topics>>*';
+			var dest = cleanup.asciidoc(src);
+			var expected = '* <<RelatedTopics,Related Topics>>';
+			expect(dest).toEqual(expected);
+		});
         
         it('removes spaces in links', () => {
 			var src = 'link:{AssemblyName}.Controls.Menus.XamTree.v{ProductVersion}~ Infragistics.Controls.Menus.xamTree~ExpandedIconTemplate.html[ExpandedIconTemplate]';
