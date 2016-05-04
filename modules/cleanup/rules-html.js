@@ -24,7 +24,7 @@
         },
         {
             name: 'empty-inline-elements',
-            pattern: /<[p|i|em|b|bold|strong|span]>[\s|&nbsp;|&#xA0;]+<\/[p|i|em|b|bold|strong|span]>/gi,
+            pattern: /<[p|i|em|b|bold|strong|span]>(\s|&nbsp;|&#xA0;)+<\/[p|i|em|b|bold|strong|span]>/gi,
             replacement: ' '
         },
 		{
