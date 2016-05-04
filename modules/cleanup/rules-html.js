@@ -14,10 +14,10 @@
         {
             name: 'wrap-bare-list-item-content-in-span',
             pattern: /<li(.*?)>([^]+?)<\/li>/gi,
-            replacement: function(match, x, y){
-                if(!_.startsWith(y, '<')){
-                    var index = y.indexOf('<');
-                    match = '<li><span>' + y.splice(index, 0, '</span>') + '</li>';
+            replacement: function(match, attributes, content){
+                if(!_.startsWith(content, '<')){
+                    var index = content.indexOf('<');
+                    match = '<li' + attributes  + '><span>' + content.splice(index, 0, '</span>') + '</li>';
                 }
                 return match;
             }
