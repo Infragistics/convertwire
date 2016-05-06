@@ -207,7 +207,7 @@
       if(!_.startsWith(id, 'OLE')){
         identifier = id ? id : name;
         
-        value = `\n\n[[${identifier}]]\n${content}`;
+        value = `\n\n[[${identifier.replace(/ /g, '-')}]]\n${content}`;
       }
       
       return value;

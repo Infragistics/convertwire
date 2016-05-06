@@ -20,6 +20,7 @@ describe('html2AsciiDoc', function(){
 	
 	[
 		'anchors',
+		'anchor-target-spaces',
 		'anchors-title',
 		'code-listing-nested-structure',
 		'build-list',
