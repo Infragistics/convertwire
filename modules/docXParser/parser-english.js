@@ -16,6 +16,8 @@
 			htmlDocument.title = obj.Topic.Title._.trim();
 		} else if(!_.isUndefined(obj.Topic.Title) && obj.Topic.Title.length > 0) {
 			htmlDocument.title = obj.Topic.Title;
+		} else if(!_.isUndefined(obj.Topic.$.Name) && obj.Topic.$.Name.length > 0){
+			htmlDocument.title = obj.Topic.$.Name.replace(/_/g, ' ');
 		}
 			
 		if(!_.isUndefined(obj.Topic.TopicSections.TopicSection.Content._)){

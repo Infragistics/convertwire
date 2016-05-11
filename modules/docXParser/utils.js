@@ -22,7 +22,7 @@ module.exports.createHtmlDocument = function(){
 		name: '',
 		title: '',
 		markup: '',
-		controlName: '',
+		controlName: [],
 		tags: [],
 		docXGuid: '',
 		buildFlags: []

@@ -33,22 +33,27 @@ describe('docXParser', function(){
 		});
 	};
 	
+	var isDoneWithJpTopics = false;
+	
 	var getJPTopics = function(){
 		beforeEach(function(done){
 			if(jpTopics.length === 0){
 				var keys = _.keys(config.topicData);
 				keys.forEach(function(key, index){
 					var file = config.topicData[key];
-					var filePath = path.resolve(__dirname, 'data/' + file.fileNameJP);
-					fs.readFile(filePath, 'utf8', function(readError, xmlString){
-						parser.parse(xmlString, filePath, function(error, topic){
-							jpTopics.push(topic);
-							if(jpTopics.length === keys.length){
-								done();
-							}
+					if(file.fileNameJP.length > 0){
+						var filePath = path.resolve(__dirname, 'data/' + file.fileNameJP);
+						fs.readFile(filePath, 'utf8', function(readError, xmlString){
+							parser.parse(xmlString, filePath, function(error, topic){
+								jpTopics.push(topic);
+								if(isDoneWithJpTopics){
+									done();
+								}
+							});
 						});
-					});
+					}
 				});
+				isDoneWithJpTopics = true;
 			} else {
 				done();
 			}
@@ -144,10 +149,9 @@ describe('docXParser', function(){
 					var testData = config.topicData[topic.docXGuid];
 					var areEqual = _.isEqual(topic.controlName, testData.controlName);
 					if(!areEqual){
-						console.log('-----');
-						console.log(topic.controlName);
-						console.log(testData.controlName);
-						console.log('-----');
+						if(topic.controlName.length === 0 && testData.controlName.length === 0){
+							areEqual = true;
+						}
 					}
 					expect(areEqual).toBe(true);
 				});

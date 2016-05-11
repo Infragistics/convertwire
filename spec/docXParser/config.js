@@ -106,6 +106,23 @@
 			controlName: ['WinToolbarsManager'],
 			tags: ['Application Scenarios'],
 			buildFlags: [] 
+		},
+		'2026b068-5d48-4b49-b401-f01d4a0427e7': {
+			fileName: '2026b068-5d48-4b49-b401-f01d4a0427e7.xml',
+			fileNameJP: '',
+			name: 'Revision_History',
+			docXGuid: '2026b068-5d48-4b49-b401-f01d4a0427e7',
+			title: {
+				en: 'Revision History',
+				jp: ''
+			},
+			markupFragment: {
+				en: '<P>This section makes it',
+				jp: ''
+			},
+			controlName: [],
+			tags: [],
+			buildFlags: []
 		}
 	};
 	
