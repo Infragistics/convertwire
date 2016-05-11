@@ -231,6 +231,12 @@ module.exports.regex = [
 			return '* ' + link;
 		}
 	},
+	
+	{
+		name: 'add-line-break-to-ifdef-rows',
+		pattern: /\n\|ifdef/gi,
+		replacement: '\n|\nifdef'
+	},
     
 	// ------------ Build Variables -----------------
 	{

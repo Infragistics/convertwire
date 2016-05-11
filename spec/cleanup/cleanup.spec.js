@@ -83,6 +83,40 @@ describe('cleanup', function(){
 			expect(dest).toEqual(expected);
 		});
 		
+		it('adds line break when ifdef is first in a row', () => {
+			var src = `[options="header", cols="a,a"]
+|====
+|Sample|Purpose
+
+|ifdef::sl[] 
+
+sl
+
+endif::sl[] 
+
+| cell
+
+|====`;
+			var dest = cleanup.asciidoc(src);
+			
+			var expected = `[options="header", cols="a,a"]
+|====
+|Sample|Purpose
+
+|
+ifdef::sl[] 
+
+sl
+
+endif::sl[] 
+
+| cell
+
+|====`;
+			
+			expect(dest).toEqual(expected);
+		});
+		
 		it('reformats malformed Related Topics', () => {
 			var src = `== 
 
