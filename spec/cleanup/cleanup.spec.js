@@ -128,6 +128,26 @@ endif::sl[]
 			expect(dest).toEqual(expected);
 		});
 		
+		it('adds passthrough tokens for lines that start with .NET', () => {
+			var src = `// first line
+| .NET Framework
+|.NET Framework
+.NET Framework
+The .NET Framework
+craigshoemaker.net`;
+
+			var dest = cleanup.asciidoc(src);
+			
+			var expected = `// first line
+| $$.NET$$ Framework
+|$$.NET$$ Framework
+$$.NET$$ Framework
+The .NET Framework
+craigshoemaker.net`;
+
+			expect(dest).toEqual(expected);
+		});
+		
 		it('reformats malformed Related Topics some more', () => {
 			var src = `Figure SEQ Figure 2: DataSlicer with the header area Expanded.Related Topics
 

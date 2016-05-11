@@ -237,6 +237,14 @@ module.exports.regex = [
 		pattern: /\n\|ifdef/gi,
 		replacement: '\n|\nifdef'
 	},
+	
+	{
+		name: 'add-passthrough-to-lines-starting-with-.net',
+		pattern: /\n\|? ?(\.net)/gi,
+		replacement: (match, dotnet) => {
+			return match.replace(dotnet, '$$$$' + dotnet + '$$$$');
+		}
+	},
     
 	// ------------ Build Variables -----------------
 	{
