@@ -1,0 +1,18 @@
+[cols="a,a"]
+|====
+ifdef::sl,wpf[]
+|header
+|content
+endif::sl,wpf[]
+
+|====
+
+[[RelatedContent]]
+== Related Content
+
+[cols="a,a"]
+|====
+|*Header 2
+|Content 2
+
+|====

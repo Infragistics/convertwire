@@ -109,6 +109,8 @@ var createNewMarkupFromLayoutTables = () => {
                 style = $row.attr('style');
                 if(style){
                     buildFlags = `style="${style}"`;
+                } else {
+                    buildFlags = '';
                 }
                 
                 hasContent = content.length > 0; 
