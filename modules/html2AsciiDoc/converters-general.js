@@ -17,9 +17,21 @@
 			return content;
 		}
 	};
+	
+	var div = {
+		filter: 'div',
+		replacement: function (content, node) {
+
+			if (buildFlags.hasDocXBuildFlags(node)) {
+				content = buildFlags.wrapWithBuildFlags(content, node);
+			}
+
+			return `\n\n${content}\n\n`;
+		}
+	};
 
 	var general = {
-		filter: ['div', 'span', 'u', 'font'],
+		filter: ['span', 'u', 'font'],
 		replacement: function (content, node) {
 
 			if (buildFlags.hasDocXBuildFlags(node)) {
@@ -32,6 +44,7 @@
 
 	var converters = [];
 	
+	converters.push(div);
 	converters.push(general);
 	converters.push(divBuildFlagged);
 
