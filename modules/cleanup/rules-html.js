@@ -164,6 +164,17 @@
 			name: 'removes-innovasys-widget-namespace-node',
 			pattern: /<\?.+\/>/g,
 			replacement: ''
+		},
+		
+		{
+			name: 'adds-a-P-element-before-unformatted-content-after-a-title',
+			pattern: /<\/h1>\s+(.+)</gi,
+			replacement: (match, text) => {
+				if(!/</.test(text[0])){
+					match = match.replace(text, '<p>' + text);
+				}
+				return match;
+			}
 		}
 	];
 	
