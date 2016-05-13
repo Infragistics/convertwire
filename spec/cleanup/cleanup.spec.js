@@ -148,6 +148,19 @@ craigshoemaker.net`;
 			expect(dest).toEqual(expected);
 		});
 		
+		it('adds line break to headers when there is not one', () => {
+			var src = `Text
+== Header`;
+
+			var dest = cleanup.asciidoc(src);
+			
+			var expected = `Text
+
+== Header`;
+
+			expect(dest).toEqual(expected);
+		});
+		
 		it('reformats malformed Related Topics some more', () => {
 			var src = `Figure SEQ Figure 2: DataSlicer with the header area Expanded.Related Topics
 

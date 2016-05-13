@@ -245,6 +245,15 @@ module.exports.regex = [
 			return match.replace(dotnet, '$$$$' + dotnet + '$$$$');
 		}
 	},
+	
+	{
+		name: 'add-line-break-to-header-if-one-does-not-exist',
+		pattern: /.\n(={1,5}) ./g,
+		replacement:  (match, heading) => {
+			match = match.replace(heading, '\n' + heading);
+			return match;
+		}
+	},
     
 	// ------------ Build Variables -----------------
 	{
