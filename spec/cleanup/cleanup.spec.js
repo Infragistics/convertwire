@@ -128,6 +128,31 @@ endif::sl[]
 			expect(dest).toEqual(expected);
 		});
 		
+		it('reformats malformed Related Topics', () => {
+			var src = `<temp-token role="list:start">* *label1* - detail1
+
++ more info1
+
+<temp-token role="list:start">* *label2* - detail2
+
++ more info2`;
+
+			var dest = cleanup.asciidoc(src);
+			
+			var expected = `* *label1* - detail1
+
++
+
+more info1
+
+* *label2* - detail2
+
++
+
+more info2`;
+			expect(dest).toEqual(expected);
+		});
+		
 		it('adds passthrough tokens for lines that start with .NET', () => {
 			var src = `// first line
 | .NET Framework

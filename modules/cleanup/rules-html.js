@@ -180,6 +180,49 @@
 	
 	module.jquery = [
 		{
+			name: 'add-comment-list-continuation-character-to-paragraphs-in-lists',
+			apply:  ($) => {
+				let src = '', dest = '', values = [];
+				
+				$('li').each((i, li) => {
+					let $li = $(li);
+					let value = {};
+					
+					src = $('<div>').append($li).html();
+					
+					let elements = $li.find('p, div, br');
+					
+					elements.each((j, element) => {
+						let $element = $(element);
+						
+						if($element.prev().length > 0){
+							$element.html('\+ ' + $element.html());					
+						}
+						
+					});
+					
+					src = src
+							.replace(/"/g, '\"?')
+							.replace(/\(/g, '\\(')
+							.replace(/\)/g, '\\)');
+					
+					dest = $('<div>').append($li).html();
+					
+					var matches = dest.match(/<p>\+.{10}/i);
+					if(matches){
+						matches.forEach((match) => {
+							values.push({ 
+								src: match.replace('\+ ', ''), 
+								dest: match
+							});
+						});
+					}
+				});
+				
+				return values;
+			}
+		},
+		{
 			name: 'add-comment-to-in-document-anchors',
 			apply:  ($) => {
 				let src = '', dest = '', values = [];

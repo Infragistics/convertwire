@@ -254,6 +254,22 @@ module.exports.regex = [
 			return match;
 		}
 	},
+	
+	{
+		name: 'fixes-stray-list-token-when-first-word-is-bolded',
+		pattern: /(\n?\*)(\s+)(\*.+\*)/g,
+		replacement: (match, prefix, whitespace, suffix) => {
+			return prefix + ' ' + suffix;
+		}
+	},
+	
+	{
+		name: 'put-list-continuation-character-on-own-line',
+		pattern: /\n\+ /g,
+		replacement:  (match) => {
+			return match[0] + match[1] + '\n\n'; 
+		}
+	},
     
 	// ------------ Build Variables -----------------
 	{
