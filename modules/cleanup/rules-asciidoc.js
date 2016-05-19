@@ -254,10 +254,9 @@ module.exports.regex = [
 			return match;
 		}
 	},
-	
 	{
 		name: 'fixes-stray-list-token-when-first-word-is-bolded',
-		pattern: /(\n?\*)(\s+)(\*.+\*)/g,
+		pattern: /(^\n?\*)(\s+)(\*.+\*)/g,
 		replacement: (match, prefix, whitespace, suffix) => {
 			return prefix + ' ' + suffix;
 		}
