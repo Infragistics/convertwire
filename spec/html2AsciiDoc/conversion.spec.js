@@ -47,6 +47,7 @@ describe('html2AsciiDoc', function(){
 		'table-widget',		
 		'titles',
         'title-anchor-internal',
+        'title-anchor-at-end',
 		'list-item-nested',
 		'list-item-nested-with-item-text',
 		'list-unordered',

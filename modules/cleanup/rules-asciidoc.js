@@ -250,7 +250,9 @@ module.exports.regex = [
 		name: 'add-line-break-to-header-if-one-does-not-exist',
 		pattern: /.\n(={1,5}) ./g,
 		replacement:  (match, heading) => {
-			match = match.replace(heading, '\n' + heading);
+			if(!/]/.test(match)){
+				match = match.replace(heading, '\n' + heading);
+			}
 			return match;
 		}
 	},
@@ -419,14 +421,6 @@ module.exports.regex = [
             return '';
         }
     },
-    //{
-    //    name: 'extra-spaces-between-bold-italic',
-    //    pattern: /(  +)/g,
-	//    pattern: /_(  +)\*/g,
-    //    replacement: (match) => { 
-    //        return ' ';
-    //    }
-    //},
     {
         name: 'extra-space-after-italic',
         pattern: /_(.*?)_ \,/gi,
@@ -467,5 +461,10 @@ module.exports.regex = [
             
             return value;
         }
-    }
+    },
+	{
+        name: 'extra-space-after-italic',
+        pattern: /\n{3,}/gi,
+        replacement: '\n\n'
+    },
 ];

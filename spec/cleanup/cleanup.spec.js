@@ -201,7 +201,6 @@ this is a test Related Topic`;
 
 == Related Topics
 
-
 == Related Topics
 
 == Related Topic
@@ -238,7 +237,6 @@ _Create a Calendar layout with the xamDockManager control._`;
 			
 			var expected = `[start=1]
 . Create a Calendar layout with the xamDockManager control.
-
 
 [start=1]
 . *Create a Calendar layout with the xamDockManager control.*

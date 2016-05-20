@@ -67,7 +67,7 @@
       return match;
     },
     replacement: function (content, node) {
-      var hLevel, hPrefix, value = '', anchorMatches, anchor = '';
+      var hLevel, hPrefix, value = '', anchorMatches, anchor = '', headerText = '';
 
       hLevel = parseInt(node.nodeName.charAt(1));
       hPrefix = '';
@@ -86,23 +86,33 @@
         content = content.replace(/<[^>]*>/gi, '');  
       }
       
-      anchorMatches = content.match(/\[\[(.*?)\]\]/);
-      if(_.isArray(anchorMatches) && anchorMatches.length >= 2){
-        anchor = content.substr(0,content.lastIndexOf('\n'));
-        content = content.substr(content.lastIndexOf('\n') + 1, content.length);
+      if(_.endsWith(content, '\n')){
+        content = _.trimRight(content, '\n');
       }
-
-      if(content && content.length > 0){
-        value = '\n' + hPrefix + ' ' + content;  
+      
+      anchorMatches = content.match(/(\[\[.+\]\])/g);
+      
+      headerText = content;
+      
+      if(anchorMatches){
+        anchorMatches.forEach((match) => {
+          headerText = headerText.replace(match, '');
+        });
+      } else {
+        anchorMatches = [];
+      }
+      
+      headerText = headerText.replace(/\n/g, '').trim();
+      
+      if(content && headerText.length > 0){
+        value = '\n' + hPrefix + ' ' + headerText;  
       }
 
       if (buildFlags.hasDocXBuildFlags(node)) {
         value = buildFlags.wrapWithBuildFlags(value, node);
       }
       
-      value = '\n\n' + anchor + value + '\n\n';
-      
-      value = value.replace('\n\n\n', '\n\n');
+      value = '\n\n' + anchorMatches.join('\n') + value + '\n\n';
 
       return value;
     }
