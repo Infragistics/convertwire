@@ -63,6 +63,16 @@ module.exports.regex = [
 		pattern: /(\+ ?)\n.Note:/g,
 		replacement: '+\n\n.Note:'
 	},
+	{
+		name: 'note-in-a-table-cell-jp1',
+		pattern: /(\+ ?)\n.注:/g,
+		replacement: '+\n\n.注:'
+	},
+	{
+		name: 'note-in-a-table-cell-jp2',
+		pattern: /(\+ ?)\n.注意:/g,
+		replacement: '+\n\n.注:'
+	},
     {
 		name: 'temp-content',
 		pattern: /\{temp:content\}/g,
@@ -202,6 +212,14 @@ module.exports.regex = [
 		}
 	},
 	
+	{
+		name: 'fix-malformed-related-topics-jp',
+		pattern: /== ?\n\n\*(関連トピック)\*/g,
+		replacement: (match, label) => {
+			return `== ${label}\n\n`;
+		}
+	},
+	
 	// fix for: https://github.com/Infragistics/convertwire/issues/181
 	{
 		name: 'fix-malformed-related-topics',
@@ -215,6 +233,18 @@ module.exports.regex = [
 	{
 		name: 'fix-malformed-related-topics-2',
 		pattern: /(.{3})(Related Topics?)(.{2})?/ig,
+		replacement: (match, prefix, label, suffix) => {
+			if(/={1,6} /.test(prefix) || suffix === '>>'){
+				return match;
+			} else {
+				return `${prefix}\n\n== ${label}\n`;
+			}
+		}
+	},
+	
+	{
+		name: 'fix-malformed-related-topics-2-jp',
+		pattern: /(.{3})(関連トピック)(.{2})?/ig,
 		replacement: (match, prefix, label, suffix) => {
 			if(/={1,6} /.test(prefix) || suffix === '>>'){
 				return match;
