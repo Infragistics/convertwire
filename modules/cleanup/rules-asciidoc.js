@@ -271,6 +271,16 @@ module.exports.regex = [
 			return match[0] + match[1] + '\n\n'; 
 		}
 	},
+	
+	{
+		name: 'place-bold-characters-inside-pick-macro',
+		pattern: /\*pick:\[.+\=(.+)\]\*/g,
+		replacement:  (match, label) => {
+			match = match.substr(1, match.length - 2);
+			label = label.replace(/\"/g, '');
+			return match.replace(label, '*' + label + '*');
+		}
+	},
     
 	// ------------ Build Variables -----------------
 	{
