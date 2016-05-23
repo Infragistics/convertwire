@@ -179,6 +179,36 @@ module.rootLevelTables = function (folderPath) {
 
 };
 
+module.longTitles = function (folderPath) {
+	var basePath, fileNames, results = [], title = '', $, $h1;
+
+	basePath = path.resolve(__dirname, folderPath);
+	fileNames = fs.readdirSync(basePath);
+
+	fileNames.forEach((fileName) => {
+		var filePath, contents;
+
+		filePath = path.join(basePath, fileName);
+		contents = fs.readFileSync(filePath, 'utf8');
+        
+        $ = cheerio.load(contents);
+        $h1 = $('h1').first(); 
+		title = $h1.text();
+
+		if (title.length > 45) {
+			results.push(fileName);
+		}
+	});
+
+	if (results.length > 0) {
+		fs.writeFileSync(path.resolve(__dirname, '../../logs/long-titles.txt'), results.join(os.EOL), 'utf8');
+		console.log(`${results.length} topics found with long titles`);
+	} else {
+		console.log('no topics found with long titles');
+	}
+
+};
+
 var isElementsDirectoryCreated = false;
 var isElementsNestedDirectoryCreated = false;
 var nestedDirectories = {};
@@ -336,6 +366,7 @@ module.nestedElements('../../spec/data/dest/html', 'blockquote', 'code');
 module.specialString('../../spec/data/dest/html', 'wingdings');
 
 module.findBuildFlaggedCode('../../spec/data/dest');
+module.longTitles('../../spec/data/dest/html');
 
 const longListPattern = /(\.{6,} )/g;
 module.hasPattern('../../spec/data/dest', longListPattern, 'long-list', 'AsciiDoc does not support lists deeper than five levels deep.');
