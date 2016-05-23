@@ -175,6 +175,12 @@
 				}
 				return match;
 			}
+		},
+		
+		{
+			name: 'strip-out-font-styles',
+			pattern: /style="font-family: (.+)" /gi,
+			replacement: ''
 		}
 	];
 	
