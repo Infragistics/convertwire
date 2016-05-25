@@ -29,6 +29,48 @@
 			return `\n\n${content}\n\n`;
 		}
 	};
+	
+	var tt = {
+		filter: 'tt',
+		replacement: function (content, node) {
+			
+			content = '`' + content + '`';
+
+			if (buildFlags.hasDocXBuildFlags(node)) {
+				content = buildFlags.wrapWithBuildFlags(content, node);
+			}
+
+			return content;
+		}
+	};
+	
+	var sup = {
+		filter: 'sup',
+		replacement: function (content, node) {
+			
+			content = '^' + content + '^';
+
+			if (buildFlags.hasDocXBuildFlags(node)) {
+				content = buildFlags.wrapWithBuildFlags(content, node);
+			}
+
+			return content;
+		}
+	};
+	
+	var sub = {
+		filter: 'sub',
+		replacement: function (content, node) {
+			
+			content = '~' + content + '~';
+
+			if (buildFlags.hasDocXBuildFlags(node)) {
+				content = buildFlags.wrapWithBuildFlags(content, node);
+			}
+
+			return content;
+		}
+	};
 
 	var general = {
 		filter: ['span', 'u', 'font'],
@@ -44,6 +86,9 @@
 
 	var converters = [];
 	
+	converters.push(tt);
+	converters.push(sub);
+	converters.push(sup);
 	converters.push(div);
 	converters.push(general);
 	converters.push(divBuildFlagged);

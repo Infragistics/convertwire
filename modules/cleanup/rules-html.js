@@ -210,7 +210,9 @@
 					src = src
 							.replace(/"/g, '\"?')
 							.replace(/\(/g, '\\(')
-							.replace(/\)/g, '\\)');
+							.replace(/\)/g, '\\)')
+							.replace(/\[/g, '\\[')
+							.replace(/\]/g, '\\]');
 					
 					dest = $('<div>').append($li).html();
 					
@@ -242,7 +244,9 @@
 						src = src
                                 .replace(/"/g, '\"?')
                                 .replace(/\(/g, '\\(')
-                                .replace(/\)/g, '\\)');
+                                .replace(/\)/g, '\\)')
+								.replace(/\[/g, '\\[')
+								.replace(/\]/g, '\\]');
 						
 						$a.html('<span class="temporary">{temp:content}</span>');
 						dest = $('<div>').append($a).html();

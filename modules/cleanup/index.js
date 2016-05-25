@@ -38,7 +38,12 @@ module.html = function(source){
 	});
 	
 	replacements.forEach((rule) => {
-        var regex = new RegExp(rule.src, 'gi');
+		var expression = rule.src;
+		
+		expression = expression.replace(/\[/g, '\\[')
+							   .replace(/\]/g, '\\]');
+							   
+        var regex = new RegExp(expression, 'gi');
 		source = source.replace(regex, rule.dest);
 	});
 	

@@ -331,7 +331,7 @@ module.hasPattern = (folderPath, pattern, identifier, description) => {
 		}
 	});
 	
-	if(fileNames.length > 0){
+	if(badFileNames.length > 0){
 		if(!fs.existsSync(writePathRoot)){
 			fs.mkdirSync(writePathRoot);
 		}
