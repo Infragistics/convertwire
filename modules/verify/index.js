@@ -1,5 +1,7 @@
 module = module.exports;
 
+const os = require('os');
+
 var _ = require('lodash');
 
 // removed 'summary','param'
@@ -114,7 +116,7 @@ module.checkFolder = (folderPath) => {
 	});
 	
 	if(totalResults.length > 0){
-		var finalText = final.join('\n');
+		var finalText = final.join(os.EOL);
 		
 		fs.writeFileSync(path.resolve(__dirname, '../../logs/validation.txt'), finalText,'utf8');
 		
