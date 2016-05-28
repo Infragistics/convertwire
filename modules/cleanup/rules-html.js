@@ -3,6 +3,7 @@
 	'use strict';
     
     const _ = require('lodash');
+	const buildVariables = require('./buildVariables.js');
 	
 	module.regex = [
 		{
@@ -34,22 +35,22 @@
 		},
 		{
 			name: 'build-flag:winforms',
-			pattern: /A33F8D9D-1A93-4A02-85E3-FC849DE1B8EA/g,
+			pattern: buildVariables.guidRegex('A33F8D9D-1A93-4A02-85E3-FC849DE1B8EA'),
 			replacement: 'win-forms'
 		},
 		{
 			name: 'build-flag:winrt',
-			pattern: /34ADE70F-C190-412D-A2CE-25D1E1AE0FF8/g,
+			pattern: buildVariables.guidRegex('34ADE70F-C190-412D-A2CE-25D1E1AE0FF8'),
 			replacement: 'win-rt'
 		},
 		{
 			name: 'build-flag:wpf',
-			pattern: /\{673B143B-6568-4204-99C0-4548E4AFEF3C\}/g,
+			pattern: buildVariables.guidRegex('673B143B-6568-4204-99C0-4548E4AFEF3C'),
 			replacement: 'wpf'
 		},
 		{
 			name: 'build-flag:android',
-			pattern: /18DC7F35-922E-46A9-9127-9FA472AE43E2/g,
+			pattern: buildVariables.guidRegex('18DC7F35-922E-46A9-9127-9FA472AE43E2'),
 			replacement: 'android'
 		},
 		{
@@ -59,12 +60,12 @@
 		},
 		{
 			name: 'build-flag:sl',
-			pattern: /\{A72AF817-CD06-4101-A8ED-A0E52FC4DD05\}/g,
+			pattern: buildVariables.guidRegex('A72AF817-CD06-4101-A8ED-A0E52FC4DD05'),
 			replacement: 'sl'
 		},
 		{
 			name: 'build-flag:winphone',
-			pattern: /27968E2C-EB4E-49F9-9A03-2FF58C6428F6/g,
+			pattern: buildVariables.guidRegex('27968E2C-EB4E-49F9-9A03-2FF58C6428F6'),
 			replacement: 'win-phone'
 		},
 		{
@@ -181,7 +182,165 @@
 			name: 'strip-out-font-styles',
 			pattern: /style="font-family: (.+)" /gi,
 			replacement: ''
+		},
+		
+		{
+			name: 'build-flags: aspnet-clr2',
+			pattern: buildVariables.guidRegex('AB62A791-93F7-4985-B3E9-FC67170F0851'),
+			replacement: 'aspnet-clr2'
+		},
+		{
+			name: 'build-flags: aspnet',
+			pattern: buildVariables.guidRegex('E542A2D2-3728-48FD-899D-567D508B9E3B'),
+			replacement: 'aspnet'
+		},
+		{
+			name: 'build-flags: win-forms-clr2',
+			pattern: buildVariables.guidRegex('A00A25FA-66B6-4DF9-A3B4-1E3048B3B98C'),
+			replacement: 'win-forms-clr2'
+		},
+		{
+			name: 'build-flags: aspnet',
+			pattern: buildVariables.guidRegex('47EF6E5B-2A26-4A43-BB8B-E6AAC70456D6'),
+			replacement: 'aspnet'
+		},
+		{
+			name: 'build-flags: win-forms-clr2',
+			pattern: buildVariables.guidRegex('2F65C5C4-0749-4790-9961-6B0A194EAB38'),
+			replacement: 'win-forms-clr2'
+		},
+		{
+			name: 'build-flags: aspnet',
+			pattern: buildVariables.guidRegex('2A260688-2BC5-4E1C-9346-751CC715678B'),
+			replacement: 'aspnet'
+		},
+		{
+			name: 'build-flags: win-forms-clr2',
+			pattern: buildVariables.guidRegex('852A6B97-388C-4F56-B722-4F08BD3FD8A7'),
+			replacement: 'win-forms-clr2'
+		},
+		{
+			name: 'build-flags: aspnet',
+			pattern: buildVariables.guidRegex('8D4A1277-50C4-4872-86D2-1435FDBCBD84'),
+			replacement: 'aspnet'
+		},
+		{
+			name: 'build-flags: win-forms-clr2',
+			pattern: buildVariables.guidRegex('15005E59-85F4-4255-AD91-C66026EBB030'),
+			replacement: 'win-forms-clr2'
+		},
+		{
+			name: 'build-flags: win-forms',
+			pattern: buildVariables.guidRegex('CF21C2C7-9FDA-4779-B7E5-3CEB93F4AF16'),
+			replacement: 'win-forms'
+		},
+		{
+			name: 'build-flags: win-forms',
+			pattern: buildVariables.guidRegex('13F74CE5-CB08-4922-AF90-39C0329B50FA'),
+			replacement: 'win-forms'
+		},
+		{
+			name: 'build-flags: aspnet-clr2',
+			pattern: buildVariables.guidRegex('AE4AFBC6-B7A7-4E4A-8D8E-201B876A8FA4'),
+			replacement: 'aspnet-clr2'
+		},
+		{
+			name: 'build-flags: win-forms',
+			pattern: buildVariables.guidRegex('3464F388-E853-43C5-8CFF-3C3C2F4DE1A3'),
+			replacement: 'win-forms'
+		},
+		{
+			name: 'build-flags: aspnet-clr2',
+			pattern: buildVariables.guidRegex('4522AF82-ECE7-4A43-A30F-FAB0E9311CB1'),
+			replacement: 'aspnet-clr2'
+		},
+		{
+			name: 'build-flags: win-forms',
+			pattern: buildVariables.guidRegex('7F8A205D-BEEC-4CEE-BF00-9B6A6DE582BB'),
+			replacement: 'win-forms'
+		},
+		{
+			name: 'build-flags: aspnet-clr2',
+			pattern: buildVariables.guidRegex('03CD8027-2F55-4D9F-9B31-15F1CDA89005'),
+			replacement: 'aspnet-clr2'
+		},
+		
+		{
+			name: 'build-flags: win-forms',
+			pattern: buildVariables.guidRegex('960134D0-0B95-4AAE-91A3-C2E06F7AEC83'),
+			replacement: 'win-forms'
+		},
+		
+		{
+			name: 'build-flags: win-forms',
+			pattern: buildVariables.guidRegex('1CDD7CD9-3620-4C9E-B860-3E62888E8CD4'),
+			replacement: 'win-forms'
+		},
+		
+		{
+			name: 'build-flags: win-forms',
+			pattern: buildVariables.guidRegex('49B86B31-A986-4DF1-A87A-C671F3D31C5C'),
+			replacement: 'win-forms'
+		},
+		
+		{
+			name: 'build-flags: docx-online',
+			pattern: buildVariables.guidRegex('46CEF21D-3301-4517-A875-A0906828390E'),
+			replacement: 'docx-online'
+		},
+		
+		{
+			name: 'build-flags: docx-booklet',
+			pattern: buildVariables.guidRegex('4AAE0FD4-7313-4FEE-A25F-0785B885F736'),
+			replacement: 'docx-booklet'
+		},
+		
+		{
+			name: 'build-flags: wpf',
+			pattern: buildVariables.guidRegex('B25A8D73-DCF4-46FA-992E-E23DD5CFC37A'),
+			replacement: 'wpf'
+		},
+		
+		{
+			name: 'build-flags: sl',
+			pattern: buildVariables.guidRegex('BDABF795-FD54-442D-8DC6-71F2D8EB48DE'),
+			replacement: 'sl'
+		},
+		
+		{
+			name: 'build-flags: wpf',
+			pattern: buildVariables.guidRegex('BDEA21D1-C8F9-404A-BC55-209AB27AD4F2'),
+			replacement: 'wpf'
+		},
+		
+		{
+			name: 'build-flags: android',
+			pattern: /DROID-IN/gi,
+			replacement: 'android'
+		},
+		
+		{
+			name: 'build-flags: android',
+			pattern: /DROID-EX/gi,
+			replacement: 'wpf,win-forms,xamarin'
+		},
+		
+		{
+			name: 'build-flags: wpf',
+			pattern: /xam-xf-ex/gi,
+			replacement: 'wpf'
 		}
+		
+		/*
+		,{
+			// this one needs to run last!
+			name: 'remove-brackets-from-guids',
+			pattern: /\{([0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12})\}/gi,
+			replacement: (match, guid) => {
+				return guid;
+			}
+		}
+		*/
 	];
 	
 	module.jquery = [
@@ -261,6 +420,7 @@
 				return values;
 			}
 		},
+		/*
         {
             name: 'remove-old-build-variables',
             apply: ($) => {
@@ -296,7 +456,7 @@
                 
                 return values;
             }
-        }
+        }*/
 	];
 
 }(module.exports));

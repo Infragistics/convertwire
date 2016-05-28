@@ -366,7 +366,7 @@ module.nestedElements('../../spec/data/dest/html', 'blockquote', 'code');
 module.specialString('../../spec/data/dest/html', 'wingdings');
 
 module.findBuildFlaggedCode('../../spec/data/dest');
-module.longTitles('../../spec/data/dest/html');
+//module.longTitles('../../spec/data/dest/html');
 
 const longListPattern = /(\.{6,} )/g;
 module.hasPattern('../../spec/data/dest', longListPattern, 'long-list', 'AsciiDoc does not support lists deeper than five levels deep.');

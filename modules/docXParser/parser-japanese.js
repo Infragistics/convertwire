@@ -36,24 +36,38 @@
 			englishXML = fs.readFileSync(file.en.fullPath, 'utf8');
 			
 			parser.parseString(englishXML, (error, obj) => {
-				enParser.parse(obj, filePath, (parseError, englishHtmlDocument) => {
-					htmlDocument = englishHtmlDocument;
-					
-					let jpXML = fs.readFileSync(file.jp.fullPath, 'utf8');
-					
-					parser.parseString(jpXML, (jpParseError, jpObj) => {
+				
+				if(error){
+					callback(error, {});
+				} else {
+					enParser.parse(obj, filePath, (parseError, englishHtmlDocument) => {
 						
-						if(!_.isUndefined(jpObj.topic.title) && !_.isUndefined(jpObj.topic.title._)){
-							htmlDocument.title = jpObj.topic.title._.trim();
+						if(parseError){
+							callback(parseError, {});
+						} else {							
+							htmlDocument = englishHtmlDocument;
+							
+							let jpXML = fs.readFileSync(file.jp.fullPath, 'utf8');
+							
+							parser.parseString(jpXML, (jpParseError, jpObj) => {
+								
+								if(jpParseError){
+									callback(jpParseError, {});
+								} else {
+									if(!_.isUndefined(jpObj.topic.title) && !_.isUndefined(jpObj.topic.title._)){
+										htmlDocument.title = jpObj.topic.title._.trim();
+									}
+									
+									if(!_.isUndefined(jpObj.topic.topicsection)){
+										htmlDocument.markup = jpObj.topic.topicsection._;
+									}
+									
+									callback(null, htmlDocument);
+								}
+							});
 						}
-						
-						if(!_.isUndefined(jpObj.topic.topicsection)){
-							htmlDocument.markup = jpObj.topic.topicsection._;
-						}
-						
-						callback(error, htmlDocument);
 					});
-				});
+				}
 			});
 		} else {
 			let error = {
