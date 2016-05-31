@@ -12,6 +12,11 @@ module.exports.regex = [
 		replacement: buildVariables.wrap('DataChartLinkBase')
 	},
 	{
+		name: 'build-variables: ApiControlsBase => DataChartLinkBase',
+		pattern: buildVariables.regex('ApiControlsBase'),
+		replacement: buildVariables.wrap('DataChartLinkBase')
+	},
+	{
 		name: 'build-variables: AssemblyName => DataChartAssembly',
 		pattern: buildVariables.regex('AssemblyName'),
 		replacement: buildVariables.wrap('DataChartAssembly')

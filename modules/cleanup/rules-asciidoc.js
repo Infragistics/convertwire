@@ -322,9 +322,14 @@ module.exports.regex = [
 		}
 	},
 	{
-		name: 'build-variables: AssemblyPlatform => ApiLink',
+		name: 'build-variables: AssemblyVersion => ApiVersion',
+		pattern: buildVariables.regex('AssemblyVersion'),
+		replacement: buildVariables.wrap('ApiVersion')
+	},
+	{
+		name: 'build-variables: AssemblyPlatform => ApiPlatform',
 		pattern: buildVariables.regex('AssemblyPlatform'),
-		replacement: buildVariables.wrap('ApiLink')
+		replacement: buildVariables.wrap('ApiPlatform')
 	},
 	{
 		name: 'build-variables: ProductNameShort => ProductName',
@@ -337,9 +342,24 @@ module.exports.regex = [
 		replacement: buildVariables.wrap('ControlsRangeName')
 	},
 	{
-		name: 'build-variables: ProductAssemblyName => AssemblyName',
+		name: 'build-variables: ProductAssemblyName => ApiPlatform',
 		pattern: buildVariables.regex('ProductAssemblyName'),
-		replacement: buildVariables.wrap('AssemblyName')
+		replacement: buildVariables.wrap('ApiPlatform')
+	},
+	{
+		name: 'build-variables: XpSdkInstallPath => InstallPathXP',
+		pattern: buildVariables.regex('XpSdkInstallPath'),
+		replacement: buildVariables.wrap('InstallPathXP')
+	},
+	{
+		name: 'build-variables: VistaSdkInstallPath => InstallPathVista',
+		pattern: buildVariables.regex('VistaSdkInstallPath'),
+		replacement: buildVariables.wrap('InstallPathVista')
+	},
+	{
+		name: 'build-variables: PlatformNameFull => PlatformName',
+		pattern: buildVariables.regex('PlatformNameFull'),
+		replacement: buildVariables.wrap('PlatformName')
 	},
 	{
 		name: 'build-variables: ProductPlatform => AssemblyName',

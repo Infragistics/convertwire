@@ -35,5 +35,10 @@ module.exports.regex = [
 		name: 'build-variables: ControlsBase => RadialGaugeBase',
 		pattern: buildVariables.regex('ControlsBase'),
 		replacement: buildVariables.wrap('RadialGaugeBase')
+	},
+	{
+		name: 'build-variables: ControlsRangeName => RadialGaugeRange',
+		pattern: buildVariables.regex('ControlsRangeName'),
+		replacement: buildVariables.wrap('RadialGaugeRange')
 	}
 ];

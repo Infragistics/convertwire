@@ -1,0 +1,473 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Configuration>
+    <BuildFlags>
+        <!-- note that obsolete flags will not be visible in that table editor nor they will be used in generating production TOC -->
+        <BuildFlag Color="#FFF8B0ED" Id="xamarin"        IsObsolete="false" Purpose="(XAML for xamarin platform)"   />
+        <BuildFlag Color="#FFF33DD8" Id="xaml"           IsObsolete="false" Purpose="(XAML for SL + WPF + win-phone + win-rt + xamarin + win-universal)"  />
+        <BuildFlag Color="#FF0BBC0B" Id="xaml-xf-ex"     IsObsolete="true" Purpose="(XAML for SL + WPF + win-phone + win-rt)"  />
+        <BuildFlag Color="#FF9CF79C" Id="sl"             IsObsolete="true" Purpose="(CS+VB+XAML for SL platform)"  />
+        <BuildFlag Color="#FF71F2EA" Id="wpf"            IsObsolete="false" Purpose="(CS+VB+XAML for WPF platform)"  />
+        <BuildFlag Color="#FF07A59C" Id="win-universal"  IsObsolete="false" Purpose="(CS+VB+XAML for win-universal platform)"   />
+        <BuildFlag Color="#FFF3D044" Id="win-phone"      IsObsolete="true" Purpose="(CS+VB+XAML for win-phone platform)"  />
+        <BuildFlag Color="#FFA38C2F" Id="win-rt"         IsObsolete="true" Purpose="(CS+VB+XAML for win-rt platform)"  />
+        <BuildFlag Color="#FF9CB8E9" Id="win-forms"      IsObsolete="false" Purpose="(CS+VB for win-forms platform CLR3+)"  />
+        <BuildFlag Color="#FF5883CE" Id="win-forms-clr2" IsObsolete="false" Purpose="(CS+VB for win-forms platform CLR2)"  />
+        <BuildFlag Color="#FFFCA54B" Id="jquery"         IsObsolete="false" Purpose="(JAVA  for jQuery platform)" />
+        <BuildFlag Color="#FFF13503" Id="android-ex"     IsObsolete="true" Purpose="(CS+VB for SL + WPF + win-phone + win-rt + xamarin + win-forms)" />
+        <BuildFlag Color="#FFFC714B" Id="android"        IsObsolete="false" Purpose="(JAVA  for Android platform)" />
+        <BuildFlag Color="#FFFAC828" Id="asp.net"        IsObsolete="false" Purpose="(JAVA  for asp.net platform)" />
+        <BuildFlag Color="#FFC3A00A" Id="asp.net-clr2"   IsObsolete="false" Purpose="(JAVA  for asp.net platform)" />
+        <BuildFlag Color="#FFC3C1C1" Id="ios"            IsObsolete="false" Purpose="(Obj-C for iOS platform)" />
+        <BuildFlag Color="#FF44433F" Id="docx-booklet"   IsObsolete="true"  Purpose=" " />
+        <BuildFlag Color="#FF44433F" Id="docx-online"    IsObsolete="true"  Purpose=" " />
+    </BuildFlags>
+    <ConvertFlags>
+        <!-- Conversion of build flags from old Guid flags used in DocumentX topics-->
+        <BuildFlag Id="docx-booklet"    Guid="{4AAE0FD4-7313-4FEE-A25F-0785B885F736}"  />
+        <BuildFlag Id="docx-online"     Guid="{46CEF21D-3301-4517-A875-A0906828390E}"  />
+        <!--$/NetAdvantage/DEV/ASP.NET.PG/2016.1/ProductGuidance/Topics/Product-->
+        <!-- TODO: check if CLR2 build flags are still needed/used -->
+        <BuildFlag Id="asp.net-clr2"    Guid="{AB62A791-93F7-4985-B3E9-FC67170F0851}" Profile="CLR2" />
+        <BuildFlag Id="asp.net"         Guid="{E542A2D2-3728-48FD-899D-567D508B9E3B}" Profile="CLR3" />
+        <!--$/NetAdvantage/DEV/WinForms/2016.1/ProductGuidance/Topics/Product-->
+        <!-- TODO: check if CLR2 build flags are still needed/used -->
+        <BuildFlag Id="win-forms"       Guid="A33F8D9D-1A93-4A02-85E3-FC849DE1B8EA" />
+        <BuildFlag Id="win-forms"       Guid="WINFORMS" />
+        <BuildFlag Id="win-forms-clr2"  Guid="{15005E59-85F4-4255-AD91-C66026EBB030}" Profile="CLR2"/>
+        <BuildFlag Id="win-forms"       Guid="{CF21C2C7-9FDA-4779-B7E5-3CEB93F4AF16}" Profile="CLR3" />
+        <!--$/NetAdvantage/DEV/WinForms/2016.1/TA/RFT/ProductGuidance/Topics/Product-->
+        <BuildFlag Id="win-forms"       Guid="{49B86B31-A986-4DF1-A87A-C671F3D31C5C}" Profile="CLR2" />
+        <!--$/NetAdvantage/DEV/WinForms/2016.1/TA/HP/ProductGuidance/Topics/Product-->
+        <BuildFlag Id="win-forms"       Guid="{1CDD7CD9-3620-4C9E-B860-3E62888E8CD4}" Profile="CLR1" />
+        <BuildFlag Id="win-forms"       Guid="{960134D0-0B95-4AAE-91A3-C2E06F7AEC83}" Profile="CLR2" />
+        <!--$/NetAdvantage/DEV/WebAndWin/2016.1/ProductGuidance/Topics/Chart -->
+        <!-- TODO: check if CLR2 build flags are still needed/used -->
+        <BuildFlag Id="win-forms-clr2"  Guid="{852A6B97-388C-4F56-B722-4F08BD3FD8A7}" Profile="CLR2" />
+        <BuildFlag Id="win-forms"       Guid="{13F74CE5-CB08-4922-AF90-39C0329B50FA}" Profile="CLR3" />
+        <BuildFlag Id="asp.net-clr2"    Guid="{AE4AFBC6-B7A7-4E4A-8D8E-201B876A8FA4}" Profile="CLR2" />
+        <BuildFlag Id="asp.net"         Guid="{8D4A1277-50C4-4872-86D2-1435FDBCBD84}" Profile="CLR3" />
+        <!-- $/NetAdvantage/DEV/WebAndWin/2016.1/ProductGuidance/Topics/DocumentEngine -->
+        <!-- TODO: check if CLR2 build flags are still needed/used -->
+        <BuildFlag Id="win-forms-clr2"  Guid="{2F65C5C4-0749-4790-9961-6B0A194EAB38}" Profile="CLR2" />
+        <BuildFlag Id="win-forms"       Guid="{3464F388-E853-43C5-8CFF-3C3C2F4DE1A3}" Profile="CLR3" />
+        <BuildFlag Id="asp.net-clr2"    Guid="{4522AF82-ECE7-4A43-A30F-FAB0E9311CB1}" Profile="CLR2" />
+        <BuildFlag Id="asp.net"         Guid="{2A260688-2BC5-4E1C-9346-751CC715678B}" Profile="CLR3" />
+        <!-- $/NetAdvantage/DEV/WebAndWin/2016.1/ProductGuidance/Topics/ExcelEngine -->
+        <!-- TODO: check if build flags for CLR2 are still needed/used -->
+        <BuildFlag Id="win-forms-clr2"  Guid="{A00A25FA-66B6-4DF9-A3B4-1E3048B3B98C}" Profile="CLR2" />
+        <BuildFlag Id="win-forms"       Guid="{7F8A205D-BEEC-4CEE-BF00-9B6A6DE582BB}" Profile="CLR3" />
+        <BuildFlag Id="asp.net-clr2"    Guid="{03CD8027-2F55-4D9F-9B31-15F1CDA89005}" Profile="CLR2" />
+        <BuildFlag Id="asp.net"         Guid="{47EF6E5B-2A26-4A43-BB8B-E6AAC70456D6}" Profile="CLR3" />
+        <!--$/NetAdvantage/DEV/Common/2016.1/PG/Barcodes-->
+        <!--$/NetAdvantage/DEV/Common/2016.1/PG/BulletGraph-->
+        <!--$/NetAdvantage/DEV/Common/2016.1/PG/DataChart-->
+        <!--$/NetAdvantage/DEV/Common/2016.1/PG/FunnelChart-->
+        <!--$/NetAdvantage/DEV/Common/2016.1/PG/LinearGauge-->
+        <!--$/NetAdvantage/DEV/Common/2016.1/PG/PieChart-->
+        <!--$/NetAdvantage/DEV/Common/2016.1/PG/RadialGauge-->
+        <!--$/NetAdvantage/DEV/Common/2016.1/PG/Spreadsheet-->
+        <!--$/NetAdvantage/DEV/Xamarin/2016.1/ProductGuidance/Product-->
+        <!--<BuildFlag Id="xaml-xf-ex"      Guid="xam-xf-ex" />-->
+        <BuildFlag Id="wpf"      Guid="xam-xf-ex" />
+        <!--(NOTE ADDED "L" TO SPELL "XAML" CORRECTLY-->
+        <BuildFlag Id="win-phone"       Guid="WINPHONE" />
+        <BuildFlag Id="win-rt"          Guid="WINRT" />
+        <BuildFlag Id="android"         Guid="DROID-IN" />
+        <!--<BuildFlag Id="android-ex"      Guid="DROID-EX" />-->
+        <BuildFlag Id="wpf,win-forms,xamarin"      Guid="DROID-EX" />
+       <!--$/NetAdvantage/DEV/Common/2016.1/PG/SurfaceChart-->
+        <BuildFlag Id="wpf"           Guid="B25A8D73-DCF4-46FA-992E-E23DD5CFC37A" />
+        <!--$/NetAdvantage/DEV/XAML/2016.1/ProductGuidance/XAML/CommonControls-->
+        <!--$/NetAdvantage/DEV/XAML/2016.1/ProductGuidance/XAML/DesignersGuide-->
+        <!--$/NetAdvantage/DEV/XAML/2016.1/ProductGuidance/XAML/GeneralConcepts-->
+        <!--$/NetAdvantage/DEV/XAML/2016.1/ProductGuidance/XAML/ANDROID-->
+        <!--$/NetAdvantage/DEV/XAML/2016.1/ProductGuidance/XAML/ANDROID-->
+        <BuildFlag Id="sl"            Guid="{A72AF817-CD06-4101-A8ED-A0E52FC4DD05}" />
+        <BuildFlag Id="wpf"           Guid="{673B143B-6568-4204-99C0-4548E4AFEF3C}" />
+        <BuildFlag Id="win-phone"     Guid="27968E2C-EB4E-49F9-9A03-2FF58C6428F6" />
+        <BuildFlag Id="win-rt"        Guid="34ADE70F-C190-412D-A2CE-25D1E1AE0FF8" />
+        <!--$/NetAdvantage/DEV/XAML/2016.1/ProductGuidance/XAML/ANDROID-->
+        <BuildFlag Id="android"       Guid="18DC7F35-922E-46A9-9127-9FA472AE43E2" />
+        <BuildFlag Id="win-forms"     Guid="A33F8D9D-1A93-4A02-85E3-FC849DE1B8EA"/>
+        <!--NetAdvantage\DEV\XAML\2016.1\ProductGuidance\XAML\WinRT-->
+        <BuildFlag Id="sl"            Guid="BDABF795-FD54-442D-8DC6-71F2D8EB48DE" />
+        <BuildFlag Id="wpf"           Guid="BDEA21D1-C8F9-404A-BC55-209AB27AD4F2" />
+    </ConvertFlags>
+    <Products>
+        <Product Name="ios"           BuildFlags="ios"   />
+        <Product Name="asp.net"       BuildFlags="asp.net"   />
+        <!--TODO: enable if build flags for CLR2 are still needed/used-->
+        <!-- 
+    <Product Name="asp.net-clr2"  BuildFlags="asp.net-clr2"  />-->
+        <Product Name="android"       BuildFlags="android"   />
+        <Product Name="jquery"        BuildFlags="android-ex,jquery"   />
+        <Product Name="xamarin"       BuildFlags="android-ex,xaml,xamarin"  />
+        <Product Name="sl"            BuildFlags="android-ex,xaml,xaml-xf-ex,sl"   />
+        <Product Name="wpf"           BuildFlags="android-ex,xaml,xaml-xf-ex,wpf"   />
+        <Product Name="win-forms"     BuildFlags="android-ex,win-forms"   />
+        <Product Name="wpf-ta"           BuildFlags="wpf"   />
+        <!-- TODO: enable if build flags for CLR2 are still needed/used-->
+        <!--
+    <Product Name="win-forms-clr2"     BuildFlags="android-ex,win-forms-clr2" />-->
+        <!--TODO: enable when win-universal topics are created-->
+        <!-- 
+    <Product Name="win-universal" BuildFlags="android-ex,xaml,xaml-xf-ex,win-universal"  />-->
+    </Products>
+    <Tables RootPath="C:\workPG\NetAdvantage\dev" Branch="2016.1" >
+        <!--master tables are not used in any other tables and they have one-to-one mapping (table to product) -->
+        <Table Name="master-xamarin"          Type="Master" Localizable="True" Products="xamarin"          Path="\xamarin\{BRANCH}\ProductGuidance\Product"     />
+        <Table Name="master-android"          Type="Master" Localizable="True" Products="android"          Path="\xaml\{BRANCH}\ProductGuidance\xaml\Android"     />
+     
+        <Table Name="master-wpf"              Type="Master" Localizable="True" Products="wpf"              Path="\xaml\{BRANCH}\ProductGuidance\xaml\WPF"      />
+        <Table Name="master-wpf-ta"           Type="Master" Localizable="False" Products="wpf-ta"           Path="\xaml\{BRANCH}\ta\ProductGuidance\topics\Product"           />
+        <Table Name="master-win-forms"        Type="Master" Localizable="True" Products="win-forms"        Path="\winforms\{BRANCH}\ProductGuidance\topics\Product"    />
+        <Table Name="master-win-forms-ta-rft" Type="Master" Localizable="True" Products="win-forms-ta-rft" Path="\winforms\{BRANCH}\ta\rft\ProductGuidance\topics\Product"           />
+        <Table Name="master-win-forms-ta-hp"  Type="Master" Localizable="True" Products="win-forms-ta-hp"  Path="\winforms\{BRANCH}\ta\hp\ProductGuidance\topics\Product"           />
+        <Table Name="master-asp.net"          Type="Master" Localizable="True" Products="asp.net"          Path="\ASP.NET.PG\{BRANCH}\ProductGuidance\Topics\Product"         />
+     
+        <Table Name="x-plat-surface-chart"   Type="Shared" Localizable="True" Products="wpf"                                Path="\common\{BRANCH}\PG\SurfaceChart"/>
+        <Table Name="x-plat-doughnut-chart"  Type="Shared" Localizable="True" Products="wpf,android"                            Path="\common\{BRANCH}\PG\DoughnutChart"  />
+        <Table Name="x-plat-barcodes"        Type="Shared" Localizable="True" Products="wpf,android"                        Path="\common\{BRANCH}\PG\Barcodes"          />
+        <Table Name="x-plat-funnel-chart"    Type="Shared" Localizable="True" Products="wpf,android"                            Path="\common\{BRANCH}\PG\FunnelChart"    />
+        <Table Name="x-plat-bullet-graph"    Type="Shared" Localizable="True" Products="wpf,sl,android,xamarin"             Path="\common\{BRANCH}\PG\BulletGraph"      />
+        <Table Name="x-plat-linear-gauge"    Type="Shared" Localizable="True" Products="wpf,sl,android,xamarin"             Path="\common\{BRANCH}\PG\LinearGauge"    />
+        <Table Name="x-plat-radial-gauge"    Type="Shared" Localizable="True" Products="wpf,sl,android,xamarin"             Path="\common\{BRANCH}\PG\RadialGauge"  />
+        <Table Name="x-plat-data-chart"      Type="Shared" Localizable="True" Products="wpf,sl,android,xamarin,win-forms"   Path="\common\{BRANCH}\PG\DataChart"  />
+        <Table Name="x-plat-pie-chart"       Type="Shared" Localizable="True" Products="wpf,sl,android,xamarin"             Path="\common\{BRANCH}\PG\PieChart"  />
+        <Table Name="x-plat-spreadsheet"     Type="Shared" Localizable="True" Products="wpf,win-forms"                      Path="\common\{BRANCH}\PG\Spreadsheet"    />
+        <Table Name="x-plat-data-grid"       Type="Shared" Localizable="True" Products="android"                            Path="\common\{BRANCH}\PG\DataGrid"  />
+      
+        <!--note waw stands for "web and windows" -->
+        <Table Name="waw-chart"             Type="Shared" Products="win-forms,asp.net"       Path="\WebAndWin\{BRANCH}\ProductGuidance\topics\Chart"   />
+        <Table Name="waw-document-engine"   Type="Shared" Products="win-forms,asp.net"       Path="\WebAndWin\{BRANCH}\ProductGuidance\topics\DocumentEngine"   />
+        <Table Name="waw-excel-engine"      Type="Shared" Products="win-forms,asp.net"       Path="\WebAndWin\{BRANCH}\ProductGuidance\topics\ExcelEngine"   />
+
+        <!--<Table Name="master-silverlight"               Type="Master" Products="sl"               Path="\xaml\{BRANCH}\ProductGuidance\xaml\Silverlight"   />-->
+        <!--<Table Name="master-ios"              Type="Master" Products="ios"              Path="\iOS\{BRANCH}\ProductGuidance\Topics\Product"     />-->
+        <!--<Table Name="master-jquery"           Type="Master" Products="jquery"           Path=""     />-->
+
+        <!--<Table Name="master-win-universal"    Type="Master" Products="win-universal"  Path="" />-->
+
+        <!--shared tables are used in other master or shared tables and they have one-to-many mapping (table to products) -->
+        <!--<Table Name="xaml-general-concepts" Type="Shared" Products="wpf,sl"                             Path="\xaml\{BRANCH}\ProductGuidance\xaml\GeneralConcepts"    />
+    <Table Name="xaml-designers-guide"  Type="Shared" Products="wpf,sl"                             Path="\xaml\{BRANCH}\ProductGuidance\xaml\DesignersGuide" />
+    <Table Name="xaml-common-controls"  Type="Shared" Products="wpf,sl"                             Path="\xaml\{BRANCH}\ProductGuidance\xaml\CommonControls"/>-->
+
+        <!--
+    x-plat-radial-gauge
+    x-plat-radial-gauge.toc
+    -->
+    </Tables>
+
+    <!-- Variable replacements from DOCX to ADOC -->
+    <VariableReplacements >
+        <!-- NOTE the * char indicates replacement variables in all tables/topics-->
+        <VariableGroup Table="*">
+            <Mapping Target="%%AssemblyVersion%%"         Value="ApiVersion" />
+            <Mapping Target="%%AssemblyPlatform%%"        Value="ApiPlatform"/>
+            <Mapping Target="%%ProductAssemblyName%%"     Value="ApiPlatform" />
+            <Mapping Target="%%ProductNameShort%%"        Value="ProductName" />
+            <Mapping Target="%%ProductVersion%%"          Value="ProductVersion" />
+            <Mapping Target="%%ProductVersionCondensed%%" Value="ProductVersion" />
+            <Mapping Target="%%ProductVersionFull%%"      Value="ProductVersion" />
+            <Mapping Target="%%ProductVersionShort%%"     Value="ProductVersion" />
+            <Mapping Target="%%ProductVersionNumber%%"    Value="ProductVersion" />
+            <Mapping Target="%%ProductNameVersion%%"      Value="ProductNameVersion" />
+             
+
+            <Mapping Target="%%PlatformNameFull%%"        Value="PlatformName" />
+            <Mapping Target="%%VsVersion%%"               Value="PlatformIDE" />
+            <Mapping Target="%%XpSdkInstallPath%%"        Value="InstallPathXP" />
+            <Mapping Target="%%VistaSdkInstallPath%%"     Value="InstallPathVista" /> 
+        </VariableGroup>
+        <VariableGroup Table="x-plat-radial-gauge">
+            <Mapping Target="%%ApiLink%%"               Value="RadialGaugeLink" />
+            <Mapping Target="%%ApiLinkBase%%"           Value="RadialGaugeLinkBase" />
+            <Mapping Target="%%AssemblyName%%"          Value="RadialGaugeAssembly" />
+            <Mapping Target="%%ControlsNamespace%%"     Value="RadialGaugeNamespace" />
+            <Mapping Target="%%ControlsNamespaceBase%%" Value="RadialGaugeNamespaceBase" />
+            <Mapping Target="%%ControlsName%%"          Value="RadialGaugeName" />
+            <Mapping Target="%%ControlsRangeName%%"     Value="RadialGaugeRange" />
+            <Mapping Target="%%ControlsBase%%"          Value="RadialGaugeBase" />
+        </VariableGroup>
+        <VariableGroup Table="x-plat-linear-gauge">
+            <Mapping Target="%%ApiLink%%"               Value="LinearGaugeLink" />
+            <Mapping Target="%%ApiLinkBase%%"           Value="LinearGaugeLinkBase" />
+            <Mapping Target="%%AssemblyName%%"          Value="LinearGaugeAssembly" />
+            <Mapping Target="%%ControlsNamespace%%"     Value="LinearGaugeNamespace" />
+            <Mapping Target="%%ControlsNamespaceBase%%" Value="LinearGaugeNamespaceBase" />
+            <Mapping Target="%%ControlsName%%"          Value="LinearGaugeName" />
+            <Mapping Target="%%ControlsRangeName%%"     Value="LinearGaugeRange" />
+            <Mapping Target="%%ControlsBase%%"          Value="LinearGaugeBase" />
+        </VariableGroup>
+        <VariableGroup Table="x-plat-bullet-graph">
+            <Mapping Target="%%ApiLink%%"               Value="BulletGraphLink" />
+            <Mapping Target="%%ApiLinkBase%%"           Value="BulletGraphLinkBase" />
+            <Mapping Target="%%AssemblyName%%"          Value="BulletGraphAssembly" />
+            <Mapping Target="%%ControlsNamespace%%"     Value="BulletGraphNamespace" />
+            <Mapping Target="%%ControlsNamespaceBase%%" Value="BulletGraphNamespaceBase" />
+            <Mapping Target="%%ControlsName%%"          Value="BulletGraphName" />
+            <Mapping Target="%%ControlsRangeName%%"     Value="BulletGraphRange" />
+            <Mapping Target="%%ControlsBase%%"          Value="BulletGraphBase" />
+        </VariableGroup>
+        <VariableGroup Table="x-plat-barcodes">
+            <Mapping Target="%%ApiLink%%"               Value="BarcodesLink" />
+            <Mapping Target="%%ApiLinkBase%%"           Value="BarcodesLinkBase" />
+            <Mapping Target="%%AssemblyName%%"          Value="BarcodesAssembly" />
+            <Mapping Target="%%ControlsNamespace%%"     Value="BarcodesNamespace" />
+            <Mapping Target="%%ControlsNamespaceBase%%" Value="BarcodesNamespaceBase" />
+            <Mapping Target="%%ControlsName%%"          Value="BarcodesName" />
+            <Mapping Target="%%ControlsBase%%"          Value="BarcodesBase" />
+            <Mapping Target="%%ControlsQRBarcode%%"     Value="BarcodeQR" />
+            <Mapping Target="%%Controls128Barcode%%"    Value="Barcode128" />
+        </VariableGroup>
+        <VariableGroup Table="x-plat-spreadsheet">
+            <Mapping Target="%%ApiLink%%"               Value="SpreadsheetLink" />
+            <Mapping Target="%%ApiLinkBase%%"           Value="SpreadsheetLinkBase" />
+            <Mapping Target="%%AssemblyName%%"          Value="SpreadsheetAssembly" />
+            <Mapping Target="%%ControlsNamespace%%"     Value="SpreadsheetNamespace" />
+            <Mapping Target="%%ControlsNamespaceBase%%" Value="SpreadsheetNamespaceBase" />
+            <Mapping Target="%%ControlsName%%"          Value="SpreadsheetName" />
+            <Mapping Target="%%ControlsBase%%"          Value="SpreadsheetBase" />
+        </VariableGroup>
+        <VariableGroup Table="x-plat-data-chart">
+            <Mapping Target="%%ApiLink%%"               Value="DataChartLink" />
+            <Mapping Target="%%ApiLinkBase%%"           Value="DataChartLinkBase" />
+            <Mapping Target="%%ApiControlsBase%%"       Value="DataChartLinkBase" />
+            <Mapping Target="%%AssemblyName%%"          Value="DataChartAssembly" />
+            <Mapping Target="%%ControlsNamespace%%"     Value="DataChartNamespace" />
+            <Mapping Target="%%ControlsNamespaceBase%%" Value="DataChartNamespaceBase" />
+            <Mapping Target="%%ControlsName%%"          Value="DataChartName" />
+            <Mapping Target="%%ControlsBase%%"          Value="DataChartBase" />
+        </VariableGroup>
+        <VariableGroup Table="x-plat-pie-chart">
+            <Mapping Target="%%ApiLink%%"               Value="PieChartLink" />
+            <Mapping Target="%%ApiLinkBase%%"           Value="PieChartLinkBase" /> 
+            <Mapping Target="%%AssemblyName%%"          Value="PieChartAssembly" />
+            <Mapping Target="%%ControlsNamespace%%"     Value="PieChartNamespace" />
+            <Mapping Target="%%ControlsNamespaceBase%%" Value="PieChartNamespaceBase" />
+            <Mapping Target="%%ControlsName%%"          Value="PieChartName" />
+            <Mapping Target="%%ControlsBase%%"          Value="PieChartBase" />
+        </VariableGroup>
+        <VariableGroup Table="x-plat-funnel-chart">
+            <Mapping Target="%%ApiLink%%"               Value="FunnelChartLink" />
+            <Mapping Target="%%ApiLinkBase%%"           Value="FunnelChartLinkBase" />
+            <Mapping Target="%%AssemblyName%%"          Value="FunnelChartAssembly" />
+            <Mapping Target="%%ControlsNamespace%%"     Value="FunnelChartNamespace" />
+            <Mapping Target="%%ControlsNamespaceBase%%" Value="FunnelChartNamespaceBase" />
+            <Mapping Target="%%ControlsName%%"          Value="FunnelChartName" />
+            <Mapping Target="%%ControlsBase%%"          Value="FunnelChartBase" />
+        </VariableGroup>
+        <VariableGroup Table="x-plat-doughnut-chart">
+            <Mapping Target="%%ApiLink%%"               Value="DoughnutChartLink" />
+            <Mapping Target="%%ApiLinkBase%%"           Value="DoughnutChartLinkBase" />
+            <Mapping Target="%%AssemblyName%%"          Value="DoughnutChartAssembly" />
+            <Mapping Target="%%ControlsNamespace%%"     Value="DoughnutChartNamespace" />
+            <Mapping Target="%%ControlsNamespaceBase%%" Value="DoughnutChartNamespaceBase" />
+            <Mapping Target="%%ControlsName%%"          Value="DoughnutChartName" />
+            <Mapping Target="%%ControlsBase%%"          Value="DoughnutChartBase" />
+        </VariableGroup>
+        <VariableGroup Table="x-plat-surface-chart">
+            <Mapping Target="%%ApiLink%%"               Value="SurfaceChartLink" />
+            <Mapping Target="%%ApiLinkBase%%"           Value="SurfaceChartLinkBase" />
+            <Mapping Target="%%ApiControlsBase%%"       Value="SurfaceChartLinkBase" />
+            <Mapping Target="%%AssemblyName%%"          Value="SurfaceChartAssembly" />
+            <Mapping Target="%%ControlsNamespace%%"     Value="SurfaceChartNamespace" />
+            <Mapping Target="%%ControlsNamespaceBase%%" Value="SurfaceChartNamespaceBase" />
+            <Mapping Target="%%ControlsName%%"          Value="SurfaceChartName" />
+            <Mapping Target="%%ControlsBase%%"          Value="SurfaceChartBase" />
+        </VariableGroup>
+        <VariableGroup Table="x-plat-sparkline-chart">
+            <Mapping Target="%%ApiLink%%"               Value="SparklineLink" />
+            <Mapping Target="%%ApiLinkBase%%"           Value="SparklineLinkBase" />
+            <Mapping Target="%%AssemblyName%%"          Value="SparklineAssembly" />
+            <Mapping Target="%%ControlsNamespace%%"     Value="SparklineNamespace" />
+            <Mapping Target="%%ControlsNamespaceBase%%" Value="SparklineNamespaceBase" />
+            <Mapping Target="%%ControlsName%%"          Value="SparklineName" />
+            <Mapping Target="%%ControlsBase%%"          Value="SparklineBase" />
+        </VariableGroup>
+        <VariableGroup Table="x-plat-data-grid">
+            <Mapping Target="%%ApiLink%%"               Value="DataGridLink" />
+            <Mapping Target="%%ApiLinkBase%%"           Value="DataGridLinkBase" />
+            <Mapping Target="%%ApiControlsBase%%"       Value="DataGridLinkBase" />
+            <Mapping Target="%%AssemblyName%%"          Value="DataGridAssembly" />
+            <Mapping Target="%%ControlsNamespace%%"     Value="DataGridNamespace" />
+            <Mapping Target="%%ControlsNamespaceBase%%" Value="DataGridNamespaceBase" />
+            <Mapping Target="%%ControlsName%%"          Value="DataGridName" />
+            <Mapping Target="%%ControlsBase%%"          Value="DataGridBase" />
+            <Mapping Target="%%DVApiLink%%"             Value="DataVizLink" />
+        </VariableGroup>
+        <VariableGroup Table="master-asp.net">
+            <Mapping Target="%%OldSamplesUrl%%"         Value="SamplesURL" />
+            <Mapping Target="%%jQueryApiUrl%%"          Value="jQueryApiLink" /> 
+        </VariableGroup>
+    </VariableReplacements>
+
+    <!-- Variable definitions for ADOC (excluding any obsolete products, e.g. SL) -->
+    <Variables >
+        <!-- NOTE the * char indicates default product and it can be overridden by 
+             a variable with the same and a value for different product-->
+        <Variable Name="InstallPath"        Products="*" Value="C:\Program Files (x86)\Infragistics\20{ProductVersion}\{PlatformName}"/>
+        <Variable Name="InstallPathVista"   Products="*" Value="C:\Users\Public\Documents\Infragistics"/>
+        <Variable Name="InstallPathXP"      Products="*" Value="C:\Documents and Settings\All Users\Documents\Infragistics"/>
+        <Variable Name="ProductVersion"     Products="*" Value="16.2"/>
+        <Variable Name="ProductName"        Products="*" Value="Infragistics {PlatformName}"/>
+        <!-- Note some variables have values built from other variables  -->
+        <Variable Name="ProductNameVersion" Products="*" Value="{ProductName} 20{ProductVersion}"/>
+
+        <Variable Name="ApiProp"      Products="*"       Value="~"/>
+        <Variable Name="ApiProp"      Products="android" Value="~set"/>
+        <Variable Name="ApiPropGet"   Products="android" Value="~get"/>
+        <Variable Name="ApiPropAdd"   Products="android" Value="~add"/>
+
+        <!-- Note some variables have blank values for default product  -->
+        <Variable Name="ApiVersion"   Products="*"              Value=""/>
+        <!-- Note some variables override values of default product with values for specific product(s)  -->
+        <Variable Name="ApiVersion"   Products="wpf,win-forms"  Value=".v{ProductVersion}"/>
+ 
+        <Variable Name="ApiPlatform"  Products="wpf"        Value="InfragisticsWPF4."/>
+        <Variable Name="ApiPlatform"  Products="win-forms"  Value="Infragistics4."/>
+        <Variable Name="ApiPlatform"  Products="xamarin"    Value="InfragisticsXF."/>
+        <Variable Name="ApiPlatform"  Products="android"    Value="Infragistics."/>
+ 
+        <Variable Name="PlatformName" Products="wpf,wpf-ta"       Value="WPF"/>
+        <!--<Variable Name="PlatformName" Products="wpf-ta"     Value="WPF Test Automation for HP"/>-->
+        <Variable Name="PlatformName" Products="win-forms"        Value="Windows Forms"/>
+        <Variable Name="PlatformName" Products="win-forms-ta-rft" Value="Windows Forms"/>
+        <Variable Name="PlatformName" Products="win-forms-ta-hp"  Value="Windows Forms"/>
+        <Variable Name="PlatformName" Products="asp.net"          Value="ASP.NET"/>
+        <Variable Name="PlatformName" Products="xamarin"          Value="Xamarin.Forms"/>
+        <Variable Name="PlatformName" Products="android"          Value="Android"/>
+        <Variable Name="PlatformName" Products="win-universal"    Value="Universal Windows Platform"/>
+     
+        <Variable Name="PlatformIDE"  Products="*"       Value="Visual Studio 2013-2015"/>
+        <Variable Name="PlatformIDE"  Products="android" Value="Android Studio v1.3.2"/>
+ 
+        <Variable Name="SamplesURL"   Products="wpf"       Value="http://www.infragistics.com/products/wpf/sample"/>
+        <Variable Name="SamplesURL"   Products="win-forms" Value="http://www.infragistics.com/samples/windows-forms/"/>
+
+        <Variable Name="DataChartLink"          Products="*" Value="{ApiPlatform}{DataChartAssembly}{ApiVersion}{DataChartNamespace}"/>
+        <Variable Name="DataChartLinkBase"      Products="*" Value="{ApiPlatform}{DataChartAssembly}{ApiVersion}{DataChartNamespaceBase}"/>
+        <Variable Name="DataChartAssembly"      Products="wpf" Value="Controls.Charts.XamDataChart"/>
+        <Variable Name="DataChartNamespace"     Products="wpf" Value="~Infragistics.Controls.Charts"/>
+        <Variable Name="DataChartNamespaceBase" Products="wpf" Value="~Infragistics.Controls.Charts"/>
+        <Variable Name="DataChartName"          Products="wpf" Value="XamDataChart"/>
+        <Variable Name="DataChartBase"          Products="wpf" Value="SeriesViewer"/>
+        <Variable Name="DataChartAssembly"      Products="xamarin" Value="Controls.Charts"/>
+        <Variable Name="DataChartNamespace"     Products="xamarin" Value="~Infragistics.XF.Controls"/>
+        <Variable Name="DataChartNamespaceBase" Products="xamarin" Value="~Infragistics.XF"/>
+        <Variable Name="DataChartName"          Products="xamarin" Value="XFDataChart"/>
+        <Variable Name="DataChartBase"          Products="xamarin" Value="SeriesViewer"/>
+        <Variable Name="DataChartAssembly"      Products="win-forms" Value="Win.DataVisualization.UltraDataChart"/>
+        <Variable Name="DataChartNamespace"     Products="win-forms" Value="~Infragistics.Win.DataVisualization"/>
+        <Variable Name="DataChartNamespaceBase" Products="win-forms" Value="~Infragistics.Win.DataVisualization"/>
+        <Variable Name="DataChartName"          Products="win-forms" Value="UltraDataChart"/>
+        <Variable Name="DataChartBase"          Products="win-forms" Value="SeriesViewer"/>
+        <Variable Name="DataChartAssembly"      Products="android" Value="DataChart"/>
+        <Variable Name="DataChartNamespace"     Products="android" Value="~com.infragistics.controls"/>
+        <Variable Name="DataChartNamespaceBase" Products="android" Value="~com.infragistics.controls"/>
+        <Variable Name="DataChartName"          Products="android" Value="DataChartView"/>
+        <Variable Name="DataChartBase"          Products="android" Value="SeriesViewerBaseView"/>
+
+        <Variable Name="FunnelChartLink"          Products="*" Value="{ApiPlatform}{FunnelChartAssembly}{ApiVersion}{FunnelChartNamespace}"/>
+        <Variable Name="FunnelChartLinkBase"      Products="*" Value="{ApiPlatform}{FunnelChartAssembly}{ApiVersion}{FunnelChartNamespaceBase}"/>
+        <Variable Name="FunnelChartAssembly"      Products="wpf" Value="Controls.Charts.XamDataChart"/>
+        <Variable Name="FunnelChartNamespace"     Products="wpf" Value="~Infragistics.Controls.Charts"/>
+        <Variable Name="FunnelChartNamespaceBase" Products="wpf" Value="~Infragistics.Controls.Charts"/>
+        <Variable Name="FunnelChartName"          Products="wpf" Value="XamFunnelChart"/>
+        <Variable Name="FunnelChartBase"          Products="wpf" Value="SeriesViewer"/>
+        <Variable Name="FunnelChartAssembly"      Products="xamarin" Value="Controls.Charts"/>
+        <Variable Name="FunnelChartNamespace"     Products="xamarin" Value="~Infragistics.XF.Controls"/>
+        <Variable Name="FunnelChartNamespaceBase" Products="xamarin" Value="~Infragistics.XF"/>
+        <Variable Name="FunnelChartName"          Products="xamarin" Value="XFFunnelChart"/>
+        <Variable Name="FunnelChartBase"          Products="xamarin" Value="SeriesViewer"/>
+        <Variable Name="FunnelChartAssembly"      Products="win-forms" Value="Win.DataVisualization.UltraDataChart"/>
+        <Variable Name="FunnelChartNamespace"     Products="win-forms" Value="~Infragistics.Win.DataVisualization"/>
+        <Variable Name="FunnelChartNamespaceBase" Products="win-forms" Value="~Infragistics.Win.DataVisualization"/>
+        <Variable Name="FunnelChartName"          Products="win-forms" Value="UltraFunnelChart"/>
+        <Variable Name="FunnelChartBase"          Products="win-forms" Value="SeriesViewer"/>
+        <Variable Name="FunnelChartAssembly"      Products="android" Value="DataChart"/>
+        <Variable Name="FunnelChartNamespace"     Products="android" Value="~com.infragistics.controls"/>
+        <Variable Name="FunnelChartNamespaceBase" Products="android" Value="~com.infragistics.controls"/>
+        <Variable Name="FunnelChartName"          Products="android" Value="FunnelChartView"/>
+        <Variable Name="FunnelChartBase"          Products="android" Value="SeriesViewerBaseView"/>
+
+        <Variable Name="PieChartLink"          Products="*" Value="{ApiPlatform}{FunnelChartAssembly}{ApiVersion}{FunnelChartNamespace}"/>
+        <Variable Name="PieChartLinkBase"      Products="*" Value="{ApiPlatform}{FunnelChartAssembly}{ApiVersion}{FunnelChartNamespaceBase}"/>
+        <Variable Name="PieChartAssembly"      Products="wpf" Value="Controls.Charts.XamDataChart"/>
+        <Variable Name="PieChartNamespace"     Products="wpf" Value="~Infragistics.Controls.Charts"/>
+        <Variable Name="PieChartNamespaceBase" Products="wpf" Value="~Infragistics.Controls.Charts"/>
+        <Variable Name="PieChartName"          Products="wpf" Value="XamPieChart"/>
+        <Variable Name="PieChartBase"          Products="wpf" Value="SeriesViewer"/>
+        <Variable Name="PieChartAssembly"      Products="xamarin" Value="Controls.Charts"/>
+        <Variable Name="PieChartNamespace"     Products="xamarin" Value="~Infragistics.XF.Controls"/>
+        <Variable Name="PieChartNamespaceBase" Products="xamarin" Value="~Infragistics.XF"/>
+        <Variable Name="PieChartName"          Products="xamarin" Value="XFPieChart"/>
+        <Variable Name="PieChartBase"          Products="xamarin" Value="SeriesViewer"/>
+        <Variable Name="PieChartAssembly"      Products="win-forms" Value="Win.DataVisualization.UltraDataChart"/>
+        <Variable Name="PieChartNamespace"     Products="win-forms" Value="~Infragistics.Win.DataVisualization"/>
+        <Variable Name="PieChartNamespaceBase" Products="win-forms" Value="~Infragistics.Win.DataVisualization"/>
+        <Variable Name="PieChartName"          Products="win-forms" Value="UltraPieChart"/>
+        <Variable Name="PieChartBase"          Products="win-forms" Value="SeriesViewer"/>
+        <Variable Name="PieChartAssembly"      Products="android" Value="DataChart"/>
+        <Variable Name="PieChartNamespace"     Products="android" Value="~com.infragistics.controls"/>
+        <Variable Name="PieChartNamespaceBase" Products="android" Value="~com.infragistics.controls"/>
+        <Variable Name="PieChartName"          Products="android" Value="PieChartView"/>
+        <Variable Name="PieChartBase"          Products="android" Value="SeriesViewerBaseView"/>
+
+        <Variable Name="DoughnutChartLink"          Products="*" Value="{ApiPlatform}{FunnelChartAssembly}{ApiVersion}{FunnelChartNamespace}"/>
+        <Variable Name="DoughnutChartLinkBase"      Products="*" Value="{ApiPlatform}{FunnelChartAssembly}{ApiVersion}{FunnelChartNamespaceBase}"/>
+        <Variable Name="DoughnutChartAssembly"      Products="wpf" Value="Controls.Charts.XamDataChart"/>
+        <Variable Name="DoughnutChartNamespace"     Products="wpf" Value="~Infragistics.Controls.Charts"/>
+        <Variable Name="DoughnutChartNamespaceBase" Products="wpf" Value="~Infragistics.Controls.Charts"/>
+        <Variable Name="DoughnutChartName"          Products="wpf" Value="XamDoughnutChart"/>
+        <Variable Name="DoughnutChartBase"          Products="wpf" Value="SeriesViewer"/>
+        <Variable Name="DoughnutChartAssembly"      Products="xamarin" Value="Controls.Charts"/>
+        <Variable Name="DoughnutChartNamespace"     Products="xamarin" Value="~Infragistics.XF.Controls"/>
+        <Variable Name="DoughnutChartNamespaceBase" Products="xamarin" Value="~Infragistics.XF"/>
+        <Variable Name="DoughnutChartName"          Products="xamarin" Value="XFDoughnutChart"/>
+        <Variable Name="DoughnutChartBase"          Products="xamarin" Value="SeriesViewer"/>
+        <Variable Name="DoughnutChartAssembly"      Products="win-forms" Value="Win.DataVisualization.UltraDataChart"/>
+        <Variable Name="DoughnutChartNamespace"     Products="win-forms" Value="~Infragistics.Win.DataVisualization"/>
+        <Variable Name="DoughnutChartNamespaceBase" Products="win-forms" Value="~Infragistics.Win.DataVisualization"/>
+        <Variable Name="DoughnutChartName"          Products="win-forms" Value="UltraDoughnutChart"/>
+        <Variable Name="DoughnutChartBase"          Products="win-forms" Value="SeriesViewer"/>
+        <Variable Name="DoughnutChartAssembly"      Products="android" Value="DataChart"/>
+        <Variable Name="DoughnutChartNamespace"     Products="android" Value="~com.infragistics.controls"/>
+        <Variable Name="DoughnutChartNamespaceBase" Products="android" Value="~com.infragistics.controls"/>
+        <Variable Name="DoughnutChartName"          Products="android" Value="DoughnutChartView"/>
+        <Variable Name="DoughnutChartBase"          Products="android" Value="SeriesViewerBaseView"/>
+        
+        <Variable Name="SurfaceChartLink"          Products="*" Value="{ApiPlatform}{SurfaceChartAssembly}{ApiVersion}{SurfaceChartNamespace}"/>
+        <Variable Name="SurfaceChartLinkBase"      Products="*" Value="{ApiPlatform}{SurfaceChartAssembly}{ApiVersion}{SurfaceChartNamespaceBase}"/>
+        <Variable Name="SurfaceChartAssembly"      Products="wpf" Value="Controls.Charts.XamSurfaceChart3D"/>
+        <Variable Name="SurfaceChartNamespace"     Products="wpf" Value="~Infragistics.Controls.Charts"/>
+        <Variable Name="SurfaceChartNamespaceBase" Products="wpf" Value="~Infragistics.Controls.Charts"/>
+        <Variable Name="SurfaceChartName"          Products="wpf" Value="XamScatterSurface3D"/>
+        <Variable Name="SurfaceChartBase"          Products="wpf" Value="XamChart3D"/>
+        
+        <Variable Name="OpdLink"                Products="wpf" Value="{ApiPlatform}{OpdAssembly}{ApiVersion}{OpdNamespace}"/>
+        <Variable Name="OpdAssembly"            Products="wpf" Value="DataVisualization"/>
+        <Variable Name="OpdNamespace"           Products="wpf" Value="~Infragistics.Controls"/>
+        <Variable Name="OpdName"                Products="wpf" Value="XamOverviewPlusDetailPane"/>
+
+        <Variable Name="DockLink"               Products="wpf" Value="{ApiPlatform}{DockAssembly}{ApiVersion}{DockNamespace}"/>
+        <Variable Name="DockAssembly"           Products="wpf" Value="DataVisualization"/>
+        <Variable Name="DockNamespace"          Products="wpf" Value="~Infragistics.Controls"/>
+        <Variable Name="DockName"               Products="wpf" Value="XamDock"/>
+
+        <Variable Name="ZoombarLink"            Products="wpf" Value="{ApiPlatform}{ZoombarAssembly}{ApiVersion}{ZoombarNamespace}"/>
+        <Variable Name="ZoombarAssembly"        Products="wpf" Value="DataVisualization"/>
+        <Variable Name="ZoombarNamespace"       Products="wpf" Value="~Infragistics.Controls"/>
+        <Variable Name="ZoombarName"            Products="wpf" Value="XamZoombar"/>
+
+        <Variable Name="DataVizLink"            Products="wpf" Value="{ApiPlatform}{DataVizAssembly}{ApiVersion}{DataVizNamespace}"/>
+        <Variable Name="DataVizAssembly"        Products="wpf" Value="DataVisualization"/>
+        <Variable Name="DataVizNamespace"       Products="wpf" Value="~Infragistics.Controls"/>
+    </Variables>
+
+    <TocCheckers>
+        <TocChecker Value="Link"  Restrictions="_"/>
+        <TocChecker Value="Title" Restrictions="xam"/>
+    </TocCheckers>
+</Configuration>

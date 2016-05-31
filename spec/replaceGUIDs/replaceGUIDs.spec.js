@@ -4,9 +4,9 @@ describe('replaceGUIDs', function(){
 		var svc = require(path.resolve(__dirname, '../../modules/replaceGUIDs'));
 		
 		var remoteData = {
-			'f774a2ab-6b55-40b8-b5e9-ab54ce1e83ff': 'title-one',
-			'f83a3bf1-9b81-47c8-b743-cdbc714df506': 'title-two',
-			'f90d204a-c226-4e44-9593-f9e4b7fdd98c': 'title-three'
+			'f774a2ab\-6b55\-40b8\-b5e9\-ab54ce1e83ff': 'title-one',
+			'f83a3bf1\-9b81\-47c8\-b743\-cdbc714df506': 'title-two',
+			'f90d204a\-c226\-4e44\-9593\-f9e4b7fdd98c': 'title-three'
 		};
 		
 		var content = '= Introduction\n\n' + 

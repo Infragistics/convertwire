@@ -40,8 +40,7 @@ module.html = function(source){
 	replacements.forEach((rule) => {
 		var expression = rule.src;
 		
-		expression = expression.replace(/\[/g, '\\[')
-							   .replace(/\]/g, '\\]');
+		expression = expression.replace(/[#-.]|[[-^]|[?|{}]/g, '\\$&');
 							   
         var regex = new RegExp(expression, 'gi');
 		source = source.replace(regex, rule.dest);

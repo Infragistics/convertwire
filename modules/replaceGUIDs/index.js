@@ -1,4 +1,7 @@
 
+var sanitize = (value) => {
+	return value.replace(/[#-.]|[[-^]|[?|{}]/g, '\\$&');
+};
 
 module.exports.replace = function(content, remoteData){
     
@@ -13,8 +16,8 @@ module.exports.replace = function(content, remoteData){
 	
 	if(guids){
 		guids.forEach(function(guid){
-			guid = guid.replace(/(\{|\})/g, '');
-			var regex = new RegExp('\{?'+ guid +'\}?', 'ig');
+			sanitized = sanitize(guid);
+			var regex = new RegExp('\{?'+ sanitized +'\}?', 'ig');
 			if(remoteData[guid]){
 				content = content.replace(regex, remoteData[guid] + '.html');
 			}

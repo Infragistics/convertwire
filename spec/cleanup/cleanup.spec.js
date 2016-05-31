@@ -276,17 +276,24 @@ Step 1`;
 			expect(dest).toEqual(expected);
 		});
 		
+		it('build variable: AssemblyVersion => ApiVersion', () => {
+			var src = buildVariables.wrap('AssemblyVersion');;
+			var dest = cleanup.asciidoc(src);
+			var expected = buildVariables.wrap('ApiVersion');;
+			expect(dest).toEqual(expected);
+		});
+		
 		it('build variable: AssemblyPlatform => ApiLink', () => {
 			var src = buildVariables.wrap('AssemblyPlatform');
 			var dest = cleanup.asciidoc(src);
-			var expected = buildVariables.wrap('ApiLink');
+			var expected = buildVariables.wrap('ApiPlatform');
 			expect(dest).toEqual(expected);
 		});
 		
 		it('build variable: ProductAssemblyName => AssemblyName', () => {
 			var src = buildVariables.wrap('ProductAssemblyName');
 			var dest = cleanup.asciidoc(src);
-			var expected = buildVariables.wrap('AssemblyName');
+			var expected = buildVariables.wrap('ApiPlatform');
 			expect(dest).toEqual(expected);
 		});
 		
@@ -332,6 +339,20 @@ Step 1`;
 			expect(dest).toEqual(expected);
 		});
 		
+		it('build variable: XpSdkInstallPath => InstallPathXP', () => {
+			var src = buildVariables.wrap('XpSdkInstallPath');
+			var dest = cleanup.asciidoc(src);
+			var expected = buildVariables.wrap('InstallPathXP');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('build variable: XpSdkInstallPath => InstallPathXP', () => {
+			var src = buildVariables.wrap('VistaSdkInstallPath');
+			var dest = cleanup.asciidoc(src);
+			var expected = buildVariables.wrap('InstallPathVista');
+			expect(dest).toEqual(expected);
+		});
+		
 		it('DataChart build variable: ApiLink => DataChartLink', () => {
 			var src = buildVariables.wrap('ApiLink');
 			var dest = cleanup.asciidoc(src, 'DataChart');
@@ -343,6 +364,13 @@ Step 1`;
 			var src = buildVariables.wrap('ApiLink');
 			var dest = cleanup.asciidoc(src, 'DataChart');
 			var expected = buildVariables.wrap('DataChartLink');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('DataChart build variable: ApiControlsBase => DataChartLinkBase', () => {
+			var src = buildVariables.wrap('ApiControlsBase');
+			var dest = cleanup.asciidoc(src, 'DataChart');
+			var expected = buildVariables.wrap('DataChartLinkBase');
 			expect(dest).toEqual(expected);
 		});
 		
@@ -394,6 +422,289 @@ Step 1`;
 			var expected = buildVariables.wrap('DataChartBase');
 			expect(dest).toEqual(expected);
 		});
+		
+		// ----- ASPNET -------------
+		it('DataChart build variable: OldSamplesUrl => SamplesURL', () => {
+			var src = buildVariables.wrap('OldSamplesUrl');
+			var dest = cleanup.asciidoc(src, 'ASPNET');
+			var expected = buildVariables.wrap('SamplesURL');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('DataChart build variable: jQueryApiUrl => jQueryApiLink', () => {
+			var src = buildVariables.wrap('jQueryApiUrl');
+			var dest = cleanup.asciidoc(src, 'ASPNET');
+			var expected = buildVariables.wrap('jQueryApiLink');
+			expect(dest).toEqual(expected);
+		});
+		//
+		
+		// ----- DataGrid -------------
+		it('DataGrid build variable: ApiLink => DataGridLink', () => {
+			var src = buildVariables.wrap('ApiLink');
+			var dest = cleanup.asciidoc(src, 'DataGrid');
+			var expected = buildVariables.wrap('DataGridLink');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('DataGrid build variable: ApiLink => DataGridLink', () => {
+			var src = buildVariables.wrap('ApiLink');
+			var dest = cleanup.asciidoc(src, 'DataGrid');
+			var expected = buildVariables.wrap('DataGridLink');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('DataGrid build variable: ApiLinkBase => DataGridLinkBase', () => {
+			var src = buildVariables.wrap('ApiLinkBase');
+			var dest = cleanup.asciidoc(src, 'DataGrid');
+			var expected = buildVariables.wrap('DataGridLinkBase');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('DataGrid build variable: AssemblyName => DataGridAssembly', () => {
+			var src = buildVariables.wrap('AssemblyName');
+			var dest = cleanup.asciidoc(src, 'DataGrid');
+			var expected = buildVariables.wrap('DataGridAssembly');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('DataGrid build variable: ControlsNamespace => DataGridNamespace', () => {
+			var src = buildVariables.wrap('ControlsNamespace');
+			var dest = cleanup.asciidoc(src, 'DataGrid');
+			var expected = buildVariables.wrap('DataGridNamespace');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('DataGrid build variable: ControlsNamespaceBase => DataGridNamespaceBase', () => {
+			var src = buildVariables.wrap('ControlsNamespaceBase');
+			var dest = cleanup.asciidoc(src, 'DataGrid');
+			var expected = buildVariables.wrap('DataGridNamespaceBase');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('DataGrid build variable: ControlsName => DataGridName', () => {
+			var src = buildVariables.wrap('ControlsName');
+			var dest = cleanup.asciidoc(src, 'DataGrid');
+			var expected = buildVariables.wrap('DataGridName');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('DataGrid build variable: ControlsName => DataGridName', () => {
+			var src = buildVariables.wrap('ControlsName');
+			var dest = cleanup.asciidoc(src, 'DataGrid');
+			var expected = buildVariables.wrap('DataGridName');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('DataGrid build variable: ControlsBase => DataGridBase', () => {
+			var src = buildVariables.wrap('ControlsBase');
+			var dest = cleanup.asciidoc(src, 'DataGrid');
+			var expected = buildVariables.wrap('DataGridBase');
+			expect(dest).toEqual(expected);
+		});
+
+		it('DataGrid build variable: DVApiLink => DataVizLink', () => {
+			var src = buildVariables.wrap('DVApiLink');
+			var dest = cleanup.asciidoc(src, 'DataGrid');
+			var expected = buildVariables.wrap('DataVizLink');
+			expect(dest).toEqual(expected);
+		});
+		// ----------------------------
+		
+		// ----- SurfaceChart -------------
+		it('SurfaceChart build variable: ApiLink => SurfaceChartLink', () => {
+			var src = buildVariables.wrap('ApiLink');
+			var dest = cleanup.asciidoc(src, 'SurfaceChart');
+			var expected = buildVariables.wrap('SurfaceChartLink');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('SurfaceChart build variable: ApiLink => SurfaceChartLink', () => {
+			var src = buildVariables.wrap('ApiLink');
+			var dest = cleanup.asciidoc(src, 'SurfaceChart');
+			var expected = buildVariables.wrap('SurfaceChartLink');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('SurfaceChart build variable: ApiLinkBase => SurfaceChartLinkBase', () => {
+			var src = buildVariables.wrap('ApiLinkBase');
+			var dest = cleanup.asciidoc(src, 'SurfaceChart');
+			var expected = buildVariables.wrap('SurfaceChartLinkBase');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('SurfaceChart build variable: AssemblyName => SurfaceChartAssembly', () => {
+			var src = buildVariables.wrap('AssemblyName');
+			var dest = cleanup.asciidoc(src, 'SurfaceChart');
+			var expected = buildVariables.wrap('SurfaceChartAssembly');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('SurfaceChart build variable: ControlsNamespace => SurfaceChartNamespace', () => {
+			var src = buildVariables.wrap('ControlsNamespace');
+			var dest = cleanup.asciidoc(src, 'SurfaceChart');
+			var expected = buildVariables.wrap('SurfaceChartNamespace');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('SurfaceChart build variable: ControlsNamespaceBase => SurfaceChartNamespaceBase', () => {
+			var src = buildVariables.wrap('ControlsNamespaceBase');
+			var dest = cleanup.asciidoc(src, 'SurfaceChart');
+			var expected = buildVariables.wrap('SurfaceChartNamespaceBase');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('SurfaceChart build variable: ControlsName => SurfaceChartName', () => {
+			var src = buildVariables.wrap('ControlsName');
+			var dest = cleanup.asciidoc(src, 'SurfaceChart');
+			var expected = buildVariables.wrap('SurfaceChartName');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('SurfaceChart build variable: ControlsName => SurfaceChartName', () => {
+			var src = buildVariables.wrap('ControlsName');
+			var dest = cleanup.asciidoc(src, 'SurfaceChart');
+			var expected = buildVariables.wrap('SurfaceChartName');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('SurfaceChart build variable: ControlsBase => SurfaceChartBase', () => {
+			var src = buildVariables.wrap('ControlsBase');
+			var dest = cleanup.asciidoc(src, 'SurfaceChart');
+			var expected = buildVariables.wrap('SurfaceChartBase');
+			expect(dest).toEqual(expected);
+		});
+		// ----------------------------
+		
+		// ----- DoughnutChart -------------
+		it('DoughnutChart build variable: ApiLink => DoughnutChartLink', () => {
+			var src = buildVariables.wrap('ApiLink');
+			var dest = cleanup.asciidoc(src, 'DoughnutChart');
+			var expected = buildVariables.wrap('DoughnutChartLink');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('DoughnutChart build variable: ApiLink => DoughnutChartLink', () => {
+			var src = buildVariables.wrap('ApiLink');
+			var dest = cleanup.asciidoc(src, 'DoughnutChart');
+			var expected = buildVariables.wrap('DoughnutChartLink');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('DoughnutChart build variable: ApiLinkBase => DoughnutChartLinkBase', () => {
+			var src = buildVariables.wrap('ApiLinkBase');
+			var dest = cleanup.asciidoc(src, 'DoughnutChart');
+			var expected = buildVariables.wrap('DoughnutChartLinkBase');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('DoughnutChart build variable: AssemblyName => DoughnutChartAssembly', () => {
+			var src = buildVariables.wrap('AssemblyName');
+			var dest = cleanup.asciidoc(src, 'DoughnutChart');
+			var expected = buildVariables.wrap('DoughnutChartAssembly');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('DoughnutChart build variable: ControlsNamespace => DoughnutChartNamespace', () => {
+			var src = buildVariables.wrap('ControlsNamespace');
+			var dest = cleanup.asciidoc(src, 'DoughnutChart');
+			var expected = buildVariables.wrap('DoughnutChartNamespace');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('DoughnutChart build variable: ControlsNamespaceBase => DoughnutChartNamespaceBase', () => {
+			var src = buildVariables.wrap('ControlsNamespaceBase');
+			var dest = cleanup.asciidoc(src, 'DoughnutChart');
+			var expected = buildVariables.wrap('DoughnutChartNamespaceBase');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('DoughnutChart build variable: ControlsName => DoughnutChartName', () => {
+			var src = buildVariables.wrap('ControlsName');
+			var dest = cleanup.asciidoc(src, 'DoughnutChart');
+			var expected = buildVariables.wrap('DoughnutChartName');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('DoughnutChart build variable: ControlsName => DoughnutChartName', () => {
+			var src = buildVariables.wrap('ControlsName');
+			var dest = cleanup.asciidoc(src, 'DoughnutChart');
+			var expected = buildVariables.wrap('DoughnutChartName');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('DoughnutChart build variable: ControlsBase => DoughnutChartBase', () => {
+			var src = buildVariables.wrap('ControlsBase');
+			var dest = cleanup.asciidoc(src, 'DoughnutChart');
+			var expected = buildVariables.wrap('DoughnutChartBase');
+			expect(dest).toEqual(expected);
+		});
+		// ----------------------------
+		
+		// ----- FunnelChart -------------
+		it('FunnelChart build variable: ApiLink => FunnelChartLink', () => {
+			var src = buildVariables.wrap('ApiLink');
+			var dest = cleanup.asciidoc(src, 'FunnelChart');
+			var expected = buildVariables.wrap('FunnelChartLink');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('FunnelChart build variable: ApiLink => FunnelChartLink', () => {
+			var src = buildVariables.wrap('ApiLink');
+			var dest = cleanup.asciidoc(src, 'FunnelChart');
+			var expected = buildVariables.wrap('FunnelChartLink');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('FunnelChart build variable: ApiLinkBase => FunnelChartLinkBase', () => {
+			var src = buildVariables.wrap('ApiLinkBase');
+			var dest = cleanup.asciidoc(src, 'FunnelChart');
+			var expected = buildVariables.wrap('FunnelChartLinkBase');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('FunnelChart build variable: AssemblyName => FunnelChartAssembly', () => {
+			var src = buildVariables.wrap('AssemblyName');
+			var dest = cleanup.asciidoc(src, 'FunnelChart');
+			var expected = buildVariables.wrap('FunnelChartAssembly');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('FunnelChart build variable: ControlsNamespace => FunnelChartNamespace', () => {
+			var src = buildVariables.wrap('ControlsNamespace');
+			var dest = cleanup.asciidoc(src, 'FunnelChart');
+			var expected = buildVariables.wrap('FunnelChartNamespace');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('FunnelChart build variable: ControlsNamespaceBase => FunnelChartNamespaceBase', () => {
+			var src = buildVariables.wrap('ControlsNamespaceBase');
+			var dest = cleanup.asciidoc(src, 'FunnelChart');
+			var expected = buildVariables.wrap('FunnelChartNamespaceBase');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('FunnelChart build variable: ControlsName => FunnelChartName', () => {
+			var src = buildVariables.wrap('ControlsName');
+			var dest = cleanup.asciidoc(src, 'FunnelChart');
+			var expected = buildVariables.wrap('FunnelChartName');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('FunnelChart build variable: ControlsName => FunnelChartName', () => {
+			var src = buildVariables.wrap('ControlsName');
+			var dest = cleanup.asciidoc(src, 'FunnelChart');
+			var expected = buildVariables.wrap('FunnelChartName');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('FunnelChart build variable: ControlsBase => FunnelChartBase', () => {
+			var src = buildVariables.wrap('ControlsBase');
+			var dest = cleanup.asciidoc(src, 'FunnelChart');
+			var expected = buildVariables.wrap('FunnelChartBase');
+			expect(dest).toEqual(expected);
+		});
+		// ----------------------------
 		
 		// ----- PieChart -------------
 		it('PieChart build variable: ApiLink => PieChartLink', () => {
@@ -460,11 +771,299 @@ Step 1`;
 		});
 		// ----------------------------
 		
-				// ----- RadialGauge -------------
+		// ----- Barcodes -------------
+		it('Barcodes build variable: ApiLink => BarcodesLink', () => {
+			var src = buildVariables.wrap('ApiLink');
+			var dest = cleanup.asciidoc(src, 'Barcodes');
+			var expected = buildVariables.wrap('BarcodesLink');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('Barcodes build variable: ApiLink => BarcodesLink', () => {
+			var src = buildVariables.wrap('ApiLink');
+			var dest = cleanup.asciidoc(src, 'Barcodes');
+			var expected = buildVariables.wrap('BarcodesLink');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('Barcodes build variable: ApiLinkBase => BarcodesLinkBase', () => {
+			var src = buildVariables.wrap('ApiLinkBase');
+			var dest = cleanup.asciidoc(src, 'Barcodes');
+			var expected = buildVariables.wrap('BarcodesLinkBase');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('Barcodes build variable: AssemblyName => BarcodesAssembly', () => {
+			var src = buildVariables.wrap('AssemblyName');
+			var dest = cleanup.asciidoc(src, 'Barcodes');
+			var expected = buildVariables.wrap('BarcodesAssembly');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('Barcodes build variable: ControlsNamespace => BarcodesNamespace', () => {
+			var src = buildVariables.wrap('ControlsNamespace');
+			var dest = cleanup.asciidoc(src, 'Barcodes');
+			var expected = buildVariables.wrap('BarcodesNamespace');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('Barcodes build variable: ControlsNamespaceBase => BarcodesNamespaceBase', () => {
+			var src = buildVariables.wrap('ControlsNamespaceBase');
+			var dest = cleanup.asciidoc(src, 'Barcodes');
+			var expected = buildVariables.wrap('BarcodesNamespaceBase');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('Barcodes build variable: ControlsName => BarcodesName', () => {
+			var src = buildVariables.wrap('ControlsName');
+			var dest = cleanup.asciidoc(src, 'Barcodes');
+			var expected = buildVariables.wrap('BarcodesName');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('Barcodes build variable: ControlsName => BarcodesName', () => {
+			var src = buildVariables.wrap('ControlsName');
+			var dest = cleanup.asciidoc(src, 'Barcodes');
+			var expected = buildVariables.wrap('BarcodesName');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('Barcodes build variable: ControlsBase => BarcodesBase', () => {
+			var src = buildVariables.wrap('ControlsBase');
+			var dest = cleanup.asciidoc(src, 'Barcodes');
+			var expected = buildVariables.wrap('BarcodesBase');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('Barcodes build variable: ControlsQRBarcode => BarcodeQR', () => {
+			var src = buildVariables.wrap('ControlsQRBarcode');
+			var dest = cleanup.asciidoc(src, 'Barcodes');
+			var expected = buildVariables.wrap('BarcodeQR');
+			expect(dest).toEqual(expected);
+		});
+		// ----------------------------
+		
+		// ----- Spreadsheet -------------
+		it('Spreadsheet build variable: ApiLink => SpreadsheetLink', () => {
+			var src = buildVariables.wrap('ApiLink');
+			var dest = cleanup.asciidoc(src, 'Spreadsheet');
+			var expected = buildVariables.wrap('SpreadsheetLink');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('Spreadsheet build variable: ApiLink => SpreadsheetLink', () => {
+			var src = buildVariables.wrap('ApiLink');
+			var dest = cleanup.asciidoc(src, 'Spreadsheet');
+			var expected = buildVariables.wrap('SpreadsheetLink');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('Spreadsheet build variable: ApiLinkBase => SpreadsheetLinkBase', () => {
+			var src = buildVariables.wrap('ApiLinkBase');
+			var dest = cleanup.asciidoc(src, 'Spreadsheet');
+			var expected = buildVariables.wrap('SpreadsheetLinkBase');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('Spreadsheet build variable: AssemblyName => SpreadsheetAssembly', () => {
+			var src = buildVariables.wrap('AssemblyName');
+			var dest = cleanup.asciidoc(src, 'Spreadsheet');
+			var expected = buildVariables.wrap('SpreadsheetAssembly');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('Spreadsheet build variable: ControlsNamespace => SpreadsheetNamespace', () => {
+			var src = buildVariables.wrap('ControlsNamespace');
+			var dest = cleanup.asciidoc(src, 'Spreadsheet');
+			var expected = buildVariables.wrap('SpreadsheetNamespace');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('Spreadsheet build variable: ControlsNamespaceBase => SpreadsheetNamespaceBase', () => {
+			var src = buildVariables.wrap('ControlsNamespaceBase');
+			var dest = cleanup.asciidoc(src, 'Spreadsheet');
+			var expected = buildVariables.wrap('SpreadsheetNamespaceBase');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('Spreadsheet build variable: ControlsName => SpreadsheetName', () => {
+			var src = buildVariables.wrap('ControlsName');
+			var dest = cleanup.asciidoc(src, 'Spreadsheet');
+			var expected = buildVariables.wrap('SpreadsheetName');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('Spreadsheet build variable: ControlsName => SpreadsheetName', () => {
+			var src = buildVariables.wrap('ControlsName');
+			var dest = cleanup.asciidoc(src, 'Spreadsheet');
+			var expected = buildVariables.wrap('SpreadsheetName');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('Spreadsheet build variable: ControlsBase => SpreadsheetBase', () => {
+			var src = buildVariables.wrap('ControlsBase');
+			var dest = cleanup.asciidoc(src, 'Spreadsheet');
+			var expected = buildVariables.wrap('SpreadsheetBase');
+			expect(dest).toEqual(expected);
+		});
+		// ----------------------------
+		
+		// ----- BulletGraph -------------
+		it('BulletGraph build variable: ApiLink => BulletGraphLink', () => {
+			var src = buildVariables.wrap('ApiLink');
+			var dest = cleanup.asciidoc(src, 'BulletGraph');
+			var expected = buildVariables.wrap('BulletGraphLink');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('BulletGraph build variable: ControlsRangeName => BulletGraphRange', () => {
+			var src = buildVariables.wrap('ControlsRangeName');
+			var dest = cleanup.asciidoc(src, 'BulletGraph');
+			var expected = buildVariables.wrap('BulletGraphRange');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('BulletGraph build variable: ApiLink => BulletGraphLink', () => {
+			var src = buildVariables.wrap('ApiLink');
+			var dest = cleanup.asciidoc(src, 'BulletGraph');
+			var expected = buildVariables.wrap('BulletGraphLink');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('BulletGraph build variable: ApiLinkBase => BulletGraphLinkBase', () => {
+			var src = buildVariables.wrap('ApiLinkBase');
+			var dest = cleanup.asciidoc(src, 'BulletGraph');
+			var expected = buildVariables.wrap('BulletGraphLinkBase');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('BulletGraph build variable: AssemblyName => BulletGraphAssembly', () => {
+			var src = buildVariables.wrap('AssemblyName');
+			var dest = cleanup.asciidoc(src, 'BulletGraph');
+			var expected = buildVariables.wrap('BulletGraphAssembly');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('BulletGraph build variable: ControlsNamespace => BulletGraphNamespace', () => {
+			var src = buildVariables.wrap('ControlsNamespace');
+			var dest = cleanup.asciidoc(src, 'BulletGraph');
+			var expected = buildVariables.wrap('BulletGraphNamespace');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('BulletGraph build variable: ControlsNamespaceBase => BulletGraphNamespaceBase', () => {
+			var src = buildVariables.wrap('ControlsNamespaceBase');
+			var dest = cleanup.asciidoc(src, 'BulletGraph');
+			var expected = buildVariables.wrap('BulletGraphNamespaceBase');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('BulletGraph build variable: ControlsName => BulletGraphName', () => {
+			var src = buildVariables.wrap('ControlsName');
+			var dest = cleanup.asciidoc(src, 'BulletGraph');
+			var expected = buildVariables.wrap('BulletGraphName');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('BulletGraph build variable: ControlsName => BulletGraphName', () => {
+			var src = buildVariables.wrap('ControlsName');
+			var dest = cleanup.asciidoc(src, 'BulletGraph');
+			var expected = buildVariables.wrap('BulletGraphName');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('BulletGraph build variable: ControlsBase => BulletGraphBase', () => {
+			var src = buildVariables.wrap('ControlsBase');
+			var dest = cleanup.asciidoc(src, 'BulletGraph');
+			var expected = buildVariables.wrap('BulletGraphBase');
+			expect(dest).toEqual(expected);
+		});
+		// ----------------------------
+
+		// ----- LinearGauge -------------
+		it('LinearGauge build variable: ApiLink => LinearGaugeLink', () => {
+			var src = buildVariables.wrap('ApiLink');
+			var dest = cleanup.asciidoc(src, 'LinearGauge');
+			var expected = buildVariables.wrap('LinearGaugeLink');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('LinearGauge build variable: ControlsRangeName => LinearGaugeRange', () => {
+			var src = buildVariables.wrap('ControlsRangeName');
+			var dest = cleanup.asciidoc(src, 'LinearGauge');
+			var expected = buildVariables.wrap('LinearGaugeRange');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('LinearGauge build variable: ApiLink => LinearGaugeLink', () => {
+			var src = buildVariables.wrap('ApiLink');
+			var dest = cleanup.asciidoc(src, 'LinearGauge');
+			var expected = buildVariables.wrap('LinearGaugeLink');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('LinearGauge build variable: ApiLinkBase => LinearGaugeLinkBase', () => {
+			var src = buildVariables.wrap('ApiLinkBase');
+			var dest = cleanup.asciidoc(src, 'LinearGauge');
+			var expected = buildVariables.wrap('LinearGaugeLinkBase');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('LinearGauge build variable: AssemblyName => LinearGaugeAssembly', () => {
+			var src = buildVariables.wrap('AssemblyName');
+			var dest = cleanup.asciidoc(src, 'LinearGauge');
+			var expected = buildVariables.wrap('LinearGaugeAssembly');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('LinearGauge build variable: ControlsNamespace => LinearGaugeNamespace', () => {
+			var src = buildVariables.wrap('ControlsNamespace');
+			var dest = cleanup.asciidoc(src, 'LinearGauge');
+			var expected = buildVariables.wrap('LinearGaugeNamespace');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('LinearGauge build variable: ControlsNamespaceBase => LinearGaugeNamespaceBase', () => {
+			var src = buildVariables.wrap('ControlsNamespaceBase');
+			var dest = cleanup.asciidoc(src, 'LinearGauge');
+			var expected = buildVariables.wrap('LinearGaugeNamespaceBase');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('LinearGauge build variable: ControlsName => LinearGaugeName', () => {
+			var src = buildVariables.wrap('ControlsName');
+			var dest = cleanup.asciidoc(src, 'LinearGauge');
+			var expected = buildVariables.wrap('LinearGaugeName');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('LinearGauge build variable: ControlsName => LinearGaugeName', () => {
+			var src = buildVariables.wrap('ControlsName');
+			var dest = cleanup.asciidoc(src, 'LinearGauge');
+			var expected = buildVariables.wrap('LinearGaugeName');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('LinearGauge build variable: ControlsBase => LinearGaugeBase', () => {
+			var src = buildVariables.wrap('ControlsBase');
+			var dest = cleanup.asciidoc(src, 'LinearGauge');
+			var expected = buildVariables.wrap('LinearGaugeBase');
+			expect(dest).toEqual(expected);
+		});
+		// ----------------------------
+		
+		// ----- RadialGauge -------------
 		it('RadialGauge build variable: ApiLink => RadialGaugeLink', () => {
 			var src = buildVariables.wrap('ApiLink');
 			var dest = cleanup.asciidoc(src, 'RadialGauge');
 			var expected = buildVariables.wrap('RadialGaugeLink');
+			expect(dest).toEqual(expected);
+		});
+		
+		it('RadialGauge build variable: ControlsRangeName => RadialGaugeRange', () => {
+			var src = buildVariables.wrap('ControlsRangeName');
+			var dest = cleanup.asciidoc(src, 'RadialGauge');
+			var expected = buildVariables.wrap('RadialGaugeRange');
 			expect(dest).toEqual(expected);
 		});
 		
@@ -606,8 +1205,8 @@ Step 1`;
 					  
 			var dest = cleanup.html(src);
 			
-			var expected = '<DIV id=Example_VB class=LanguageSpecific style="hs-build-flags: android-ex">' +
-						   '<DIV id=Example_VB class=LanguageSpecific style="hs-build-flags: android-ex">';
+			var expected = '<DIV id=Example_VB class=LanguageSpecific style="hs-build-flags: wpf,win-forms,xamarin">' +
+						   '<DIV id=Example_VB class=LanguageSpecific style="hs-build-flags: wpf,win-forms,xamarin">';
 						   
 			expect(dest).toEqual(expected);
 		});

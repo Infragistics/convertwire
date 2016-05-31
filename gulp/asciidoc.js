@@ -88,6 +88,54 @@ module.exports.load = function(gulp){
       });
   });
   
+  gulp.task('rename', function(callback) {
+    
+    var count = 0;
+    
+    var onError = function(error){
+      gutil.beep();
+      logger.log(error);
+    };
+    
+    var srcPath = './spec/data/src/*.xml';
+        
+    if(/^en$/i.test(args.lang)) {
+        srcPath = ['!./spec/data/src/*.ja-JP.xml','./spec/data/src/*.xml'];
+    } else if(/^jp$/i.test(args.lang)) {
+        srcPath = './spec/data/src/*.ja-JP.xml';
+    }
+    
+    return gulp.src(srcPath)
+      .pipe(plumber(onError))
+      .pipe(rename(function(path){
+        path.extname = '.adoc';
+        var isJP = path.basename.indexOf('.ja-JP') > -1;
+        var guid = path.basename
+                              .replace(/\.ja-JP/i, '')
+                              .replace(/\{|\}/g, '');
+        var name = path.basename
+                              .replace(/\.ja-JP/i, '-ja-JP')
+                              .replace(/\{|\}/g, '');
+        
+        if(lookupData[guid]){
+          path.basename = lookupData[guid];
+          path.basename += isJP ? '.ja-JP' : '';
+          
+          console.log(path.basename);
+          count++;
+        } else {
+          console.log(`${name} not found in remote data`);
+        }
+      }))
+      .pipe(bom())
+      .pipe(gulp.dest('./spec/data/dest'))
+      .on('end', function(){
+        gutil.beep();
+        console.log(`${count} files converted`);
+        logger.report();
+      });
+  });
+  
   gulp.task('asciidoc-conversion', function(callback) {
     
     var count = 0;
@@ -112,7 +160,6 @@ module.exports.load = function(gulp){
       .pipe(layoutTables())
       .pipe(unmapper())
       .pipe(sourceFormatter())
-      .pipe(layoutTables())
       .pipe(html2AsciiDoc())
       .pipe(replaceGUIDs(lookupData))
       .pipe(cleanup('asciidoc', args.name))
@@ -187,5 +234,6 @@ module.exports.load = function(gulp){
     
     console.log('\nStarting conversion task.\n');
     return gulp.start('asciidoc-conversion');
+    //return gulp.start('rename');
   });
 };

@@ -1,8 +1,13 @@
 module = module.exports;
 
+var sanitize = (value) => {
+	return value.replace(/[#-.]|[[-^]|[?|{}]/g, '\\$&');
+};
+
 module.delimiters = { start: '{', end: '}' };
 
 module.guidRegex = (guid) => {
+	guid = sanitize(guid);
 	return new RegExp(`\{?${guid}\}?`, 'gi');
 };
 
@@ -11,9 +16,7 @@ module.wrap = (variable) => {
 };
 
 module.regex = (variable) => {
-	var exp = new RegExp(module.wrap(variable)
-							.replace(module.delimiters.start, '\\' + module.delimiters.start + '?')
-							.replace(module.delimiters.end, '\\' + module.delimiters.end + '?')
-						, 'gi');
+	variable = sanitize(variable);
+	var exp = new RegExp(module.wrap(variable), 'gi');
 	return exp;
 };

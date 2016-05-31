@@ -5,6 +5,10 @@
     const _ = require('lodash');
 	const buildVariables = require('./buildVariables.js');
 	
+	var sanitize = (value) => {
+		return value.replace(/[#-.]|[[-^]|[?|{}]/g, '\\$&');
+	};
+	
 	module.regex = [
 		{
 			name: 'style-display-none',
@@ -76,7 +80,7 @@
 		{
 			name: 'build-flag:droid_ex',
 			pattern: /droid_ex/gi,
-			replacement: 'android-ex'
+			replacement: 'droid-ex'
 		},
 		{
 			name:'build-flag:winforms2',
@@ -318,11 +322,13 @@
 			pattern: /DROID-IN/gi,
 			replacement: 'android'
 		},
-		
 		{
 			name: 'build-flags: android',
 			pattern: /DROID-EX/gi,
-			replacement: 'wpf,win-forms,xamarin'
+			replacement: (match) => {
+				var value = 'wpf,win-forms,xamarin';
+				return value;
+			}
 		},
 		
 		{
@@ -400,12 +406,7 @@
 					
 					if($a.text().length === 0 && (typeof $a.attr('id') !== 'undefined' || typeof $a.attr('name') !== 'undefined')){
 						src = $('<div>').append($a).html();
-						src = src
-                                .replace(/"/g, '\"?')
-                                .replace(/\(/g, '\\(')
-                                .replace(/\)/g, '\\)')
-								.replace(/\[/g, '\\[')
-								.replace(/\]/g, '\\]');
+						src = sanitize(src);
 						
 						$a.html('<span class="temporary">{temp:content}</span>');
 						dest = $('<div>').append($a).html();
