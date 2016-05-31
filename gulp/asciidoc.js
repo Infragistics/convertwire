@@ -20,22 +20,22 @@ var lookupPath = {
   "Android"         : "Android",
   "ASPNET"          : "ASPNET",
   "iOS"             : "iOS",
-  "Barcodes"        : "Common-Barcodes",
-  "BulletGraph"     : "Common-BulletGraph",
-  "DataChart"       : "Common-DataChart",
-  "LinearGauge"     : "Common-LinearGauge",
-  "PieChart"        : "Common-PieChart",
-  "RadialGauge"     : "Common-RadialGauge",
-  "CommonControls"  : "XAML-CommonControls",
-  "DesignersGuide"  : "XAML-DesignersGuide",
-  "GeneralConcepts" : "XAML-GeneralConcepts",
-  "WPF"             : "XAML-WPF",
-  "Chart"           : "WebAndWin-Chart",
-  "DocumentEngine"  : "WebAndWin-DocumentEngine",
-  "ExcelEngine"     : "WebAndWin-ExcelEngine",
+  "Barcodes"        : "Barcodes",
+  "BulletGraph"     : "BulletGraph",
+  "DataChart"       : "DataChart",
+  "LinearGauge"     : "LinearGauge",
+  "PieChart"        : "PieChart",
+  "RadialGauge"     : "RadialGauge",
+  "CommonControls"  : "CommonControls",
+  "DesignersGuide"  : "DesignersGuide",
+  "GeneralConcepts" : "GeneralConcepts",
+  "WPF"             : "WPF",
+  "Chart"           : "Chart",
+  "DocumentEngine"  : "DocumentEngine",
+  "ExcelEngine"     : "ExcelEngine",
   "WinForms"        : "WinForms",
   "Xamarin"         : "Xamarin",
-  "Silverlight"     : "XAML-Silverlight",
+  "Silverlight"     : "Silverlight",
   "ta-hp"           : "winforms-ta-hp",
   "ta-rft"          : "winforms-ta-rft",
   "ta-wpf"          : "wpf-ta"
@@ -124,7 +124,7 @@ module.exports.load = function(gulp){
           console.log(path.basename);
           count++;
         } else {
-          console.log(`${name} not found in remote data`);
+          console.log(`${name} not found in lookup data`);
         }
       }))
       .pipe(bom())
@@ -201,7 +201,7 @@ module.exports.load = function(gulp){
                   .demand(['name'])
                   .argv;
 
-    var lookupDataFilePath = './guid-lookups/' + lookupPath[args.name] + '-lookup.json';
+    var lookupDataFilePath = './guid-lookups/' + lookupPath[args.name].toLowerCase() + '-lookup.json';
     var duplicateLookupFilePath = './guid-lookups/' + lookupPath[args.name] + '-duplicate.json';
     var doesDuplicatesLookupExist = fs.existsSync(duplicateLookupFilePath);
     
@@ -233,7 +233,7 @@ module.exports.load = function(gulp){
     lookupData = JSON.parse(fs.readFileSync(lookupDataFilePath, 'utf8'));
     
     console.log('\nStarting conversion task.\n');
-    return gulp.start('asciidoc-conversion');
-    //return gulp.start('rename');
+    //return gulp.start('asciidoc-conversion');
+    return gulp.start('rename');
   });
 };
