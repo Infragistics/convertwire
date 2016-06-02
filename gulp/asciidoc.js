@@ -38,7 +38,12 @@ var lookupPath = {
   "Silverlight"     : "Silverlight",
   "ta-hp"           : "winforms-ta-hp",
   "ta-rft"          : "winforms-ta-rft",
-  "ta-wpf"          : "wpf-ta"
+  "ta-wpf"          : "wpf-ta",
+  "SurfaceChart"    : "surfacechart",
+  "DoughnutChart"   : "doughnutchart",
+  "FunnelChart"     : "funnelchart",
+  "Spreadsheet"     : "spreadsheet",
+  "DataGrid"        : "datagrid"
 };
 
 module.exports.load = function(gulp){
@@ -233,7 +238,11 @@ module.exports.load = function(gulp){
     lookupData = JSON.parse(fs.readFileSync(lookupDataFilePath, 'utf8'));
     
     console.log('\nStarting conversion task.\n');
-    //return gulp.start('asciidoc-conversion');
-    return gulp.start('rename');
+    
+    if(args.rename) {
+      return gulp.start('rename');
+    }
+    
+    return gulp.start('asciidoc-conversion');
   });
 };
