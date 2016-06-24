@@ -82,6 +82,32 @@ describe('cleanup', function(){
 			var expected = '_xamDiagram_™';
 			expect(dest).toEqual(expected);
 		});
+
+		it('removes extra spaces inside a bold words', () => {
+			var src = `
+* * WinButton*
+* * WinCheckEditor*
+* * WinCombo*
+
+this is a test of the emergency *broadcast* system
+
+* one
+* two
+* three`;
+
+			var dest = cleanup.asciidoc(src);
+			var expected = `
+* *WinButton*
+* *WinCheckEditor*
+* *WinCombo*
+
+this is a test of the emergency *broadcast* system
+
+* one
+* two
+* three`;
+			expect(dest).toEqual(expected);
+		});
 		
 		it('adds line break when ifdef is first in a row', () => {
 			var src = `[options="header", cols="a,a"]

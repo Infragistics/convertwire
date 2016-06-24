@@ -311,6 +311,14 @@ module.exports.regex = [
 			return match.replace(label, '*' + label + '*');
 		}
 	},
+
+	{
+		name: 'remove-extra-space-inside-bold-word',
+		pattern: /\* \*( .+)\*/gi,
+		replacement: (match, term) => {
+			return match.replace(term, term.trim());
+		}
+	},
     
 	// ------------ Build Variables -----------------
 	{
