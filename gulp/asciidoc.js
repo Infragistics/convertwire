@@ -35,7 +35,7 @@ var lookupPath = {
   "ExcelEngine"     : "ExcelEngine",
   "WinForms"        : "WinForms",
   "Xamarin"         : "Xamarin",
-  "Silverlight"     : "Silverlight",
+  "Silverlight"     : "sl",
   "ta-hp"           : "winforms-ta-hp",
   "ta-rft"          : "winforms-ta-rft",
   "ta-wpf"          : "wpf-ta",
