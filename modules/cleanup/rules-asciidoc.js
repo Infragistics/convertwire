@@ -1,5 +1,6 @@
 var buildVariables = require('./buildVariables.js');
 var _ = require('lodash');
+const regex = require('../regex');
 
 if (!String.prototype.splice) {
     /**
@@ -25,6 +26,18 @@ module.exports.regex = [
 		pattern: /[1-9]\\./g,
 		replacement: function(match){
 			return match.replace('\\.', '.')
+		}
+	},
+
+	{
+		name: 'japanese-include-add-localized-file-extension',
+		pattern: /(\s{1,}.+\s{1,}\s{1,}.+\s{1,})include::(.+).adoc\[/gi,
+		replacement: (match, text, fileName) => {
+			var jpPattern = regex.japaneseText;
+			if(jpPattern.test(text)){
+				match = match.replace(fileName, fileName + '.ja-JP').replace('.html', '');
+			}
+			return match
 		}
 	},
 

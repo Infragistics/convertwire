@@ -6,6 +6,30 @@ describe('cleanup', function(){
 	
 	describe('asciidoc', () => {
 
+		it('supports Japanese file extension for included files', () => {
+			var src = `[[_Ref391537902]]
+== _xamDiagram_   構成の概要
+
+[[_Ref391537908]]
+
+=== xamDiagram 構成の概要
+
+include::xamdiagram-configuration-summary.adoc[]`;
+
+			var dest = cleanup.asciidoc(src);
+
+			var expected = `[[_Ref391537902]]
+== _xamDiagram_   構成の概要
+
+[[_Ref391537908]]
+
+=== xamDiagram 構成の概要
+
+include::xamdiagram-configuration-summary.ja-JP.adoc[]`;
+
+			expect(dest).toEqual(expected);
+		});
+
 		it('removes stray note label', () => {
 			var src = `The DataPresenter controls allow your end users to filter out records in order to view a smaller subset of the original data. You can expose record filtering functionality to your end users in two different ways -- a filter record or a filter icon in the field headers.
 
