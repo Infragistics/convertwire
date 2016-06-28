@@ -27,6 +27,13 @@ module.exports.regex = [
 			return match.replace('\\.', '.')
 		}
 	},
+
+	{
+		name: 'remove-stray-note-label',
+		pattern: /\nNote:\s{1,}\.Note/gi,
+		replacement: '\n\n.Note'
+	},
+
     {
         name: '',
         pattern: /\\\.\ /g,

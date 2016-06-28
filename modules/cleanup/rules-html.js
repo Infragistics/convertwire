@@ -170,6 +170,18 @@
 			pattern: /<\?.+\/>/g,
 			replacement: ''
 		},
+
+		{
+			name: 'removes-extra-note-label-english',
+			pattern: /<p.+>Note:<\/p>\s?<div class="?ig-note"?>/gi,
+			replacement: '<div class="ig-note">'
+		},
+
+		{
+			name: 'removes-extra-note-label-japanese',
+			pattern: /<div class="note">\s? {1,}<strong>注:<\/strong>/gi,
+			replacement: '<div class="ig-note">'
+		},
 		
 		{
 			name: 'adds-a-P-element-before-unformatted-content-after-a-title',

@@ -5,6 +5,24 @@ describe('cleanup', function(){
 	var buildVariables = require(path.resolve(__dirname, '../../modules/cleanup/buildVariables.js'));
 	
 	describe('asciidoc', () => {
+
+		it('removes stray note label', () => {
+			var src = `The DataPresenter controls allow your end users to filter out records in order to view a smaller subset of the original data. You can expose record filtering functionality to your end users in two different ways -- a filter record or a filter icon in the field headers.
+
+Note:
+
+.Note
+[NOTE]
+====`;
+
+			var dest = cleanup.asciidoc(src);
+			var expected = `The DataPresenter controls allow your end users to filter out records in order to view a smaller subset of the original data. You can expose record filtering functionality to your end users in two different ways -- a filter record or a filter icon in the field headers.
+
+.Note
+[NOTE]
+====`;
+			expect(dest).toEqual(expected);
+		});
         
         it('wraps telephone mask in pass macro', () => {
 			var src = '(###)-###-####';
@@ -1152,6 +1170,21 @@ Step 1`;
 	});
 	
 	describe('html', () => {
+
+		it('removes-extra-note-label-english', () => {
+			var src = `<h1 id="ig-document-title">About Record Filtering</h1> 
+<p>The DataPresenter controls allow your end users to filter out records in order to view a smaller subset of the original data. You can expose record filtering functionality to your end users in two different ways -- a filter record or a filter icon in the field headers.</p>
+<p style="FONT-WEIGHT: bold">Note:</p>
+<div class="ig-note">The filter record and filter icons are not available for the xamDataCarousel&#x2122; control. However, you can add filter conditions to xamDataCarousel in XAML or in procedural code to filter your data. </div>`;
+
+			var dest = cleanup.html(src);
+
+			var expected = `<h1 id="ig-document-title">About Record Filtering</h1> 
+<p>The DataPresenter controls allow your end users to filter out records in order to view a smaller subset of the original data. You can expose record filtering functionality to your end users in two different ways -- a filter record or a filter icon in the field headers.</p>
+<div class="ig-note">The filter record and filter icons are not available for the xamDataCarousel&#x2122; control. However, you can add filter conditions to xamDataCarousel in XAML or in procedural code to filter your data. </div>`;
+
+			expect(dest).toEqual(expected);
+		});
 		
 		it('replaces style="display:none" with nothing', () => {
 			var src = '<div style="display:none">test</div>';
