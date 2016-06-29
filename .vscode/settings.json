@@ -6,5 +6,13 @@
 		"node_modules": true,
 		"spec/data/_orig": true,
 		"spec/data/src": true
-	}
+	},
+	"search.exclude": {
+        "**/.git": true,
+        "**/node_modules": true,
+        "**/bower_components": true,
+        "**/~lookups": true,
+        "**/_builds": true,
+		"**/spec/data": true
+    }
 }

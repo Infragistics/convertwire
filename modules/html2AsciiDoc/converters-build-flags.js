@@ -98,7 +98,6 @@
 			flags = flags.replace(/ /g, '');
 			
 			if(isElementThatNeedsPick()){
-				flags = flags.replace(/,/g, '.');
 				returnValue = ' pick:[' + flags + '="' + content + '"] ';	
 			} else {
 				returnValue = '\n\nifdef::' + flags +'[]'

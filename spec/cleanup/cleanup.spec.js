@@ -54,6 +54,13 @@ Note:
 			var expected = 'pass:[(###)-###-####]';
 			expect(dest).toEqual(expected);
 		});
+
+		it('moves title charaters into pick macro', () => {
+			var src = `== pick:[sl.wpf="link:test.html[Test]"]`;
+			var dest = cleanup.asciidoc(src);
+			var expected = `pick:[sl.wpf="== link:test.html[Test]"]`;
+			expect(dest).toEqual(expected);
+		});
 			
 		it('replaces stray slashes in ordered lists', () => {
 			var src = '*1\.*';
@@ -1231,6 +1238,24 @@ Step 1`;
 <TBODY>
 <TR><TD>  <innovasys:widget layout="block" type="Include Topic"><innovasys:widgetproperty layout="block" name="source">5fb1d26d-e938-446d-8c40-2d3ce05eae4b</innovasys:widgetproperty> </innovasys:widget></TD></TR>
 </TBODY></TABLE>`;
+
+			expect(dest).toEqual(expected);
+		});
+
+		it('removes autoupdate style attribute', () => {
+			var src = `
+<div id="docX-root">
+<H1><A href="ffd7c9ee-5103-4a99-9ce8-7ba27104a275" style="auto-update-caption: true">Getting Started with Infragistics Control Persistence Framework</A></H1>
+<div>
+`;
+
+			var dest = cleanup.html(src);
+
+			var expected = `
+<div id="docX-root">
+<H1><A href="ffd7c9ee-5103-4a99-9ce8-7ba27104a275" >Getting Started with Infragistics Control Persistence Framework</A></H1>
+<div>
+`;
 
 			expect(dest).toEqual(expected);
 		});

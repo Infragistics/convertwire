@@ -160,6 +160,13 @@
 			pattern:/\{TEMP_TOKEN\}/ig,
 			replacement: ''
 		},
+
+		{
+			name:'remove-autoupdate-style-attribute',
+			pattern: /style=\"auto-update-caption:\s?true"|false"/gi,
+			replacement: ''
+		},
+
         {
             name:'stray-style-elements',
             pattern: /<style(?:\r|\n|.)+<\/style>/gi,

@@ -30,6 +30,14 @@ module.exports.regex = [
 	},
 
 	{
+		name: 'moves-title-charaters-into-pick-macro',
+		pattern: /(=={1,}) pick:\[.+=\"/gi,
+		replacement: (match, titleChars) => {
+			return match.replace(titleChars + ' ', '') + titleChars + ' ';
+		}
+	},
+	
+	{
 		name: 'japanese-include-add-localized-file-extension',
 		pattern: /(\s{1,}.+\s{1,}\s{1,}.+\s{1,})include::(.+).adoc\[/gi,
 		replacement: (match, text, fileName) => {
