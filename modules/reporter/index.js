@@ -362,6 +362,8 @@ module.nestedElements('../../spec/data/dest/html', 'html', 'html');
 module.nestedElements('../../spec/data/dest/html', 'blockquote', 'blockquote');
 module.nestedElements('../../spec/data/dest/html', 'blockquote', 'pre');
 module.nestedElements('../../spec/data/dest/html', 'blockquote', 'code');
+module.nestedElements('../../spec/data/dest/html', 'li', 'pre');
+module.nestedElements('../../spec/data/dest/html', 'li', 'code');
 
 module.specialString('../../spec/data/dest/html', 'wingdings');
 

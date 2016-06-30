@@ -27,6 +27,21 @@
                 return match;
             }
         },
+
+		{
+			name: 'line-continuation-for-list-items',
+			pattern: /<li>(.|\s)+?<\/li>/gi,
+			replacement: (match, markup) => {
+				match = match.replace(/<p>|<div>|<br>|<br \/>/gi, (tag) => {
+					return `<div>+</div>` + tag;
+				});
+
+				match = match.replace(/\n\n\+\n/gi, '\n+');
+
+				return match;
+			}
+		},
+
         {
             name: 'empty-inline-elements',
             pattern: /<[p|i|em|b|bold|strong|span]>(\s|&nbsp;|&#xA0;)+<\/[p|i|em|b|bold|strong|span]>/gi,
@@ -354,7 +369,7 @@
 			name: 'build-flags: wpf',
 			pattern: /xam-xf-ex/gi,
 			replacement: 'wpf'
-		}
+		},
 		
 		,{
 			// this one needs to run last!
@@ -367,6 +382,7 @@
 	];
 	
 	module.jquery = [
+		/*
 		{
 			name: 'add-comment-list-continuation-character-to-paragraphs-in-lists',
 			apply:  ($) => {
@@ -377,6 +393,12 @@
 					let value = {};
 					
 					src = $('<div>').append($li).html();
+					src = src
+							.replace(/"/g, '\"?')
+							.replace(/\(/g, '\\(')
+							.replace(/\)/g, '\\)')
+							.replace(/\[/g, '\\[')
+							.replace(/\]/g, '\\]');
 					
 					let elements = $li.find('p, div, br');
 					
@@ -384,17 +406,10 @@
 						let $element = $(element);
 						
 						if($element.prev().length > 0){
-							$element.html('\+ ' + $element.html());					
+							$element.html('\+ ' + $element.html());							
 						}
 						
 					});
-					
-					src = src
-							.replace(/"/g, '\"?')
-							.replace(/\(/g, '\\(')
-							.replace(/\)/g, '\\)')
-							.replace(/\[/g, '\\[')
-							.replace(/\]/g, '\\]');
 					
 					dest = $('<div>').append($li).html();
 					
@@ -412,6 +427,7 @@
 				return values;
 			}
 		},
+		*/
 		{
 			name: 'add-comment-to-in-document-anchors',
 			apply:  ($) => {

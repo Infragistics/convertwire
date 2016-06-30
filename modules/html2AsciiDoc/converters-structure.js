@@ -330,6 +330,25 @@
         content = buildFlags.wrapWithBuildFlags(content, node);
       }
 
+      // strip extra line breaks for line continuation
+      content = content.replace(/\n{1,}\+\n{1,}/gi, '\n+\n');
+
+      // remove extra characters/line break for first list item
+      /*
+        changes this:
+
+[start=1]
+. 
++
+*Set up a project with an UltraCalcManager and a DataGridView.*
+
+        to this:
+
+[start=1]
+. *Set up a project with an UltraCalcManager and a DataGridView.*
+      */
+      content = content.replace(/]\n\. \n\+\n/, ']\n\. ');
+
       return content;
     }
   };
