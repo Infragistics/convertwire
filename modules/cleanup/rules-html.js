@@ -356,7 +356,6 @@
 			replacement: 'wpf'
 		}
 		
-		/*
 		,{
 			// this one needs to run last!
 			name: 'remove-brackets-from-guids',
@@ -365,7 +364,6 @@
 				return guid;
 			}
 		}
-		*/
 	];
 	
 	module.jquery = [
