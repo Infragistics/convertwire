@@ -36,6 +36,14 @@ module.exports.regex = [
 			return match.replace(titleChars + ' ', '') + titleChars + ' ';
 		}
 	},
+
+	{
+		name: 'trim-new-lines-that-begin-with-italics',
+		pattern: /\n _/gi,
+		replacement: (match) => {
+			return '\n' + match.trim();
+		}
+	},
 	
 	{
 		name: 'japanese-include-add-localized-file-extension',

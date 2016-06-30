@@ -47,6 +47,18 @@ Note:
 ====`;
 			expect(dest).toEqual(expected);
 		});
+
+		it('trims new lines that begin with italics', () => {
+			var src = `
+ _italic_ words`;
+
+			var dest = cleanup.asciidoc(src);
+
+			var expected = `
+_italic_ words`;
+
+			expect(dest).toEqual(expected);
+		});
         
         it('wraps telephone mask in pass macro', () => {
 			var src = '(###)-###-####';
