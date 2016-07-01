@@ -362,8 +362,6 @@ module.nestedElements('../../spec/data/dest/html', 'html', 'html');
 module.nestedElements('../../spec/data/dest/html', 'blockquote', 'blockquote');
 module.nestedElements('../../spec/data/dest/html', 'blockquote', 'pre');
 module.nestedElements('../../spec/data/dest/html', 'blockquote', 'code');
-module.nestedElements('../../spec/data/dest/html', 'li', 'pre');
-module.nestedElements('../../spec/data/dest/html', 'li', 'code');
 
 module.specialString('../../spec/data/dest/html', 'wingdings');
 
@@ -376,8 +374,8 @@ module.hasPattern('../../spec/data/dest', longListPattern, 'long-list', 'AsciiDo
 const spacesInImagePaths = /src=".+(\s).+"/gi;
 module.hasPattern('../../spec/data/dest', spacesInImagePaths, 'spaces-in-image-paths', 'Image paths must not have blank spaces');
 
-const operatorCharacterSequences = /(<=|->|<-)/gi;
-module.hasPattern('../../spec/data/dest', operatorCharacterSequences, 'operator-character-sequences', 'Operator character sequences (not in code listings) need to be surrounded with double dollar signs. For example: $$=>$$. The characters to look for are <= or -> or <-');
+//const operatorCharacterSequences = /(<=|->|<-)/gi;
+//module.hasPattern('../../spec/data/dest', operatorCharacterSequences, 'operator-character-sequences', 'Operator character sequences (not in code listings) need to be surrounded with double dollar signs. For example: $$=>$$. The characters to look for are <= or -> or <-');
 
 const filePathsWithUnderscores = /\\.*_{1,}.*\\/ig
 module.hasPattern('../../spec/data/dest', operatorCharacterSequences, 'paths-with-underscores', 'The file path(s) in these topics need to have all italics removed from the paths so that paths with underscores do not interfere with the AsciiDoc italics (which uses underscores).');
