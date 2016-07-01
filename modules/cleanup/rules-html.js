@@ -28,6 +28,11 @@
             }
         },
 
+		/*
+		 * removing for now per conversation with Liz. Using line
+		 * continuation characters will end up breaking notes, code 
+		 * listings and other nested elements, so its worth 
+		 * not having all lines indented in favor of working content 
 		{
 			name: 'line-continuation-for-list-items',
 			pattern: /<li>(.|\s)+?<\/li>/gi,
@@ -40,7 +45,7 @@
 
 				return match;
 			}
-		},
+		}, */
 
         {
             name: 'empty-inline-elements',
@@ -370,8 +375,57 @@
 			pattern: /xam-xf-ex/gi,
 			replacement: 'wpf'
 		},
+
+		{
+			name: 'escape-*',
+			pattern: /\*/g,
+			replacement: '$$$*$$$'
+		},
+
+		{
+			name: 'escape-<=',
+			pattern: /(<|&lt;)=/gi,
+			replacement: (match, lt) => {
+				return `$$${lt}=$$`;
+			}
+		},
+
+		{
+			name: 'escape-->',
+			pattern: /\-(>|&gt;)/gi,
+			replacement: (match, gt) => {
+				return `$$-${gt}$$`;
+			}
+		},
+
+		{
+			name: 'escape-->',
+			pattern: /(<|&lt;)\-/g,
+			replacement: (match, lt) => {
+				return `$$${lt}-$$`;
+			}
+		},
+
+		{
+			name: 'unescape-operator-characters-in-code-and-pre',
+			pattern: /<(code|pre)(.|\s)+?<\/(code|pre)>/gi,
+			replacement: (match) => {
+				match = match.replace(/\$\$\*\$\$/g, '*');
+
+				match = match.replace(/\$\$\&lt;=\$\$/g, '<=');
+				match = match.replace(/\$\$<=\$\$/g, '<=');
+
+				match = match.replace(/\$\$\&lt;-\$\$/g, '<-');
+				match = match.replace(/\$\$<-\$\$/g, '<-');
+
+				match = match.replace(/\$\$-\&gt;\$\$/g, '->');
+				match = match.replace(/\$\$->\$\$/g, '->');
+
+				return match;
+			}
+		},
 		
-		,{
+		{
 			// this one needs to run last!
 			name: 'remove-brackets-from-guids',
 			pattern: /\{([0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12})\}/gi,
@@ -380,6 +434,10 @@
 			}
 		}
 	];
+
+	var removeEscapeCharacters = (match) => {
+
+	};
 	
 	module.jquery = [
 		/*
