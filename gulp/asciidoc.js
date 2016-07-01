@@ -60,6 +60,7 @@ module.exports.load = function(gulp){
         .pipe(rename(function(path){
             path.extname = '.adoc';
         }))
+        .pipe(bom())
         .pipe(gulp.dest('./spec/data/dest'))
         .on('end', function(){
             gutil.beep();
@@ -86,6 +87,7 @@ module.exports.load = function(gulp){
       .pipe(rename(function(path){
         path.extname = '.adoc';
       }))
+      .pipe(bom())      
       .pipe(gulp.dest('./spec/data/dest'))
       .on('end', function(){
         gutil.beep();
