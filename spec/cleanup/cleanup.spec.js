@@ -1355,6 +1355,60 @@ style="hs-build-flags: win-forms, SL"`;
 						   
 			expect(dest).toEqual(expected);
 		});
+
+		it('escapes-operator-characters-in-text-only', () => {
+			var src = `
+you have to use the *, <=, ->, <- operators
+
+<code>
+i * j;
+i &lt;= j;
+i <= j;
+i -&gt; j;
+i -> j;
+i &lt;- j;
+i <- j;
+</code>
+
+<pre>
+i * j;
+i &lt;= j;
+i <= j;
+i -&gt; j;
+i -> j;
+i &lt;- j;
+i <- j;
+</pre>
+`;
+
+			var dest = cleanup.html(src);
+
+			var expected = `
+you have to use the $$*$$, $$<=$$, $$->$$, $$<-$$ operators
+
+<code>
+i * j;
+i <= j;
+i <= j;
+i -> j;
+i -> j;
+i <- j;
+i <- j;
+</code>
+
+<pre>
+i * j;
+i <= j;
+i <= j;
+i -> j;
+i -> j;
+i <- j;
+i <- j;
+</pre>
+`;
+
+			expect(dest).toEqual(expected);
+		});
 		
 		it('replaces winphone with win-phone', () => {
 			var src = '<DIV id=Example_VB class=LanguageSpecific style="hs-build-flags: WinPhone">' + 
