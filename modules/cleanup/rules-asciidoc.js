@@ -571,4 +571,22 @@ module.exports.regex = [
         pattern: /\n{3,}/gi,
         replacement: '\n\n'
     },
+
+	{
+		name:'stray-asterisks',
+		pattern: /\n\*{1,}\n/g,
+		replacement: ''
+	},
+
+	{
+		name:'space-before-link',
+		pattern: /(.)link:/gi,
+		replacement: (match, firstChar) => {
+			if(!/ /.test(firstChar)){
+			firstChar += ' ';
+			match = firstChar + match.substr(1, match.length);
+		}
+			return match;
+		}
+	}
 ];
