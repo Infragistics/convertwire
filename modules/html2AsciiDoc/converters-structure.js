@@ -330,12 +330,18 @@
         content = buildFlags.wrapWithBuildFlags(content, node);
       }
 
+    /*
+		 * removing for now per conversation with Liz. Using line
+		 * continuation characters will end up breaking notes, code 
+		 * listings and other nested elements, so its worth 
+		 * not having all lines indented in favor of working content
+
       // strip extra line breaks for line continuation
       content = content.replace(/\n{1,}\+\n{1,}/gi, '\n+\n');
 
       // remove extra characters/line break for first list item
       /*
-        changes this:
+       * changes this:
 
 [start=1]
 . 
@@ -347,7 +353,7 @@
 [start=1]
 . *Set up a project with an UltraCalcManager and a DataGridView.*
       */
-      content = content.replace(/]\n\. \n\+\n/, ']\n\. ');
+      //content = content.replace(/]\n\. \n\+\n/, ']\n\. ');
 
       return content;
     }
