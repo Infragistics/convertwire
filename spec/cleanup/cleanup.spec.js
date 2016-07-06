@@ -1292,6 +1292,13 @@ Step 1`;
 			var expected = '<div>&nbsp;</div>';
 			expect(dest).toEqual(expected);
 		});
+
+		it('remove non build flag styles', () => {
+			var src = '<PRE style="HEIGHT: 74px; WIDTH: 769px">Test</PRE>';
+			var dest = cleanup.html(src);
+			var expected = '<PRE >Test</PRE>';
+			expect(dest).toEqual(expected);
+		});
 		
 		it('preserves in-document anchors', () => {
 			var src = '<div><a id="yep"></a> Yep</div>';

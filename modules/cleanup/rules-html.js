@@ -226,6 +226,17 @@
 			pattern: /style="font-family: (.+)" /gi,
 			replacement: ''
 		},
+
+		{
+			name: 'remove-non-build-flag-styles',
+			pattern: /style="(.+?)"/gi,
+			replacement: (match, type) => {
+				if(!/hs-build-flags/gi.test(type)){
+					match = '';
+				}
+				return match;
+			}
+		},
 		
 		{
 			name: 'build-flags: aspnet-clr2',
