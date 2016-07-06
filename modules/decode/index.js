@@ -1,5 +1,4 @@
 const decodeCharRefs = (value) => {
-    console.log(value);
     return value
         .replace(/&#(\d+);/g, function(match, num) {
             return String.fromCharCode(num);
@@ -10,6 +9,5 @@ const decodeCharRefs = (value) => {
 }
 
 module.exports = (value) => {
-    console.log('decode');
     return decodeCharRefs(value);
 };
