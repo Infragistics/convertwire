@@ -134,7 +134,7 @@ var createNewMarkupFromStepTables = () => {
     var $tbody, $tbodys, $row, $rows, header, content, hasContent, style, 
         buildFlags = '', rowMarkup = [], tableMarkup = [], value = {};
     
-    $tbodys = $('th:contains("Step")').closest('table').children();
+    $tbodys = $('th:contains("Step"), th:contains("手順")').closest('table').children();
     
     $tbodys.each((tbodyIndex, tbody) => {
         $tbody = $(tbody);
