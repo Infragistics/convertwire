@@ -1,0 +1,10 @@
+== test
+
+[cols="a,a"]
+|====
+|BrushScale
+|バブルのブラシ スケールを定義する link:%%ApiLink%%.ValueBrushScale.html[ValueBrushScale] または link:%%ApiLink%%.CustomPaletteBrushScale.html[CustomPaletteBrushScale]。
+
+|====
+
+バブルのブラシ スケールを定義する link:%%ApiLink%%.ValueBrushScale.html[ValueBrushScale] または link:%%ApiLink%%.CustomPaletteBrushScale.html[CustomPaletteBrushScale]。

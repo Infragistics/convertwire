@@ -121,7 +121,9 @@
 		// removes stray spaces at the beginning of a new line
 		// starting with links or images
 		// fix for: https://github.com/Infragistics/convertwire/issues/155
-		value = value.replace(/[^a-z\]\*] (link|image):/gi, 'link:');
+		value = value.replace(/\n\s+(link|image):/gi, (match, linkOrImage) => {
+			return `\n\n${linkOrImage}:`;
+		});
 		
 		return value;
 	}

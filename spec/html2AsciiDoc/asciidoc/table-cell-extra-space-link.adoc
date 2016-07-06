@@ -1,6 +1,7 @@
 [cols="a,a,a"]
 |====
 |image::Images/UltraCode128Barcode.png[toolbox icon for ultracode128barcode] 
+
 link:xamBarcode_Configuring_Code128.html[UltraCode128Barcode]
 |Infragistics.Win.DataVisualization
 |%%ProductPlatform%%.Win.DataVisualization.Barcodes.v%%ProductVersionShort%%

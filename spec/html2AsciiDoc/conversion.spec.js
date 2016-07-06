@@ -45,6 +45,7 @@ describe('html2AsciiDoc', function(){
 		'title-anchors',
 		'table-empty-cell-ignores-case',
 		'table-widget',		
+		'table-link-jp-text',		
 		'titles',
         'title-anchor-internal',
         'title-anchor-at-end',
