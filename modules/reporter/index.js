@@ -222,7 +222,7 @@ module.nestedElements = function (folderPath, firstElementName, secondElementNam
     var folderName = `${firstElementName}-${secondElementName}`;
 
 	fileNames.forEach((fileName) => {
-		var filePath, contents, $, nestedElementCount;
+		var filePath, contents, $, nestedElementCount = 0;
 		
 		if(path.extname(fileName) === '.html'){
 			filePath = path.join(basePath, fileName);
@@ -231,10 +231,10 @@ module.nestedElements = function (folderPath, firstElementName, secondElementNam
 			
 			$(firstElementName).each((i, element) => {
 				var $element = $(element);
-				nestedElementCount = $element.find(secondElementName).length;
+				nestedElementCount += $element.find(secondElementName).length;
 			});
 	
-			if (nestedElementCount) {
+			if (nestedElementCount > 0) {
 				matches = contents.match(/name&quot;: &quot;(.*)&/);
 				
 				if(matches && matches.length > 0){
@@ -359,6 +359,7 @@ module.crazyTables('../../spec/data/dest/no-format');
 
 // run against: gulp html
 module.nestedElements('../../spec/data/dest/html', 'html', 'html');
+module.nestedElements('../../spec/data/dest/html', 'table', 'table');
 module.nestedElements('../../spec/data/dest/html', 'blockquote', 'blockquote');
 module.nestedElements('../../spec/data/dest/html', 'blockquote', 'pre');
 module.nestedElements('../../spec/data/dest/html', 'blockquote', 'code');
@@ -366,7 +367,6 @@ module.nestedElements('../../spec/data/dest/html', 'blockquote', 'code');
 module.specialString('../../spec/data/dest/html', 'wingdings');
 
 module.findBuildFlaggedCode('../../spec/data/dest');
-//module.longTitles('../../spec/data/dest/html');
 
 const longListPattern = /(\.{6,} )/g;
 module.hasPattern('../../spec/data/dest', longListPattern, 'long-list', 'AsciiDoc does not support lists deeper than five levels deep.');
@@ -374,11 +374,8 @@ module.hasPattern('../../spec/data/dest', longListPattern, 'long-list', 'AsciiDo
 const spacesInImagePaths = /src=".+(\s).+"/gi;
 module.hasPattern('../../spec/data/dest', spacesInImagePaths, 'spaces-in-image-paths', 'Image paths must not have blank spaces');
 
-//const operatorCharacterSequences = /(<=|->|<-)/gi;
-//module.hasPattern('../../spec/data/dest', operatorCharacterSequences, 'operator-character-sequences', 'Operator character sequences (not in code listings) need to be surrounded with double dollar signs. For example: $$=>$$. The characters to look for are <= or -> or <-');
-
 const filePathsWithUnderscores = /\\.*_{1,}.*\\/ig
-module.hasPattern('../../spec/data/dest', operatorCharacterSequences, 'paths-with-underscores', 'The file path(s) in these topics need to have all italics removed from the paths so that paths with underscores do not interfere with the AsciiDoc italics (which uses underscores).');
+module.hasPattern('../../spec/data/dest', filePathsWithUnderscores, 'paths-with-underscores', 'The file path(s) in these topics need to have all italics removed from the paths so that paths with underscores do not interfere with the AsciiDoc italics (which uses underscores).');
 
 console.log('starting verification');
 var verify = require('../verify')
