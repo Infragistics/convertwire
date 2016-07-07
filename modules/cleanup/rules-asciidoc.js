@@ -436,44 +436,44 @@ module.exports.regex = [
 		replacement: buildVariables.wrap('PlatformIDE')
 	},
 	{
-		name: 'build-variables: CRL2',
+		name: 'build-variables: aspnet-clr2',
 		pattern: buildVariables.regex('AB62A791-93F7-4985-B3E9-FC67170F0851'),
-		replacement: buildVariables.wrap('CRL2')
+		replacement: buildVariables.wrap('aspnet-clr2')
 	},
 	{
-		name: 'build-variables: CRL3',
+		name: 'build-variables: aspnet',
 		pattern: buildVariables.regex('E542A2D2-3728-48FD-899D-567D508B9E3B'),
-		replacement: buildVariables.wrap('CRL3')
+		replacement: buildVariables.wrap('aspnet')
 	},
     {
 		name: 'build-variables: WinExcelCLR2',
 		pattern: buildVariables.regex('A00A25FA-66B6-4DF9-A3B4-1E3048B3B98C'),
-		replacement: buildVariables.wrap('WinExcelCLR2')
+		replacement: buildVariables.wrap('win-forms-clr2')
 	},
     {
-		name: 'build-variables: WebExcelCLR3',
+		name: 'build-variables: aspnet',
 		pattern: buildVariables.regex('47EF6E5B-2A26-4A43-BB8B-E6AAC70456D6'),
-		replacement: buildVariables.wrap('WebExcelCLR3')
+		replacement: buildVariables.wrap('aspnet')
 	},
     {
 		name: 'build-variables: Win2',
 		pattern: buildVariables.regex('2F65C5C4-0749-4790-9961-6B0A194EAB38'),
-		replacement: buildVariables.wrap('Win2')
+		replacement: buildVariables.wrap('win-forms-clr2')
 	},
     {
 		name: 'build-variables: Web3',
 		pattern: buildVariables.regex('2A260688-2BC5-4E1C-9346-751CC715678B'),
-		replacement: buildVariables.wrap('Win3')
+		replacement: buildVariables.wrap('aspnet')
 	},
     {
-		name: 'build-variables: WinChartCLR2',
+		name: 'build-variables: win-forms-clr2',
 		pattern: buildVariables.regex('852A6B97-388C-4F56-B722-4F08BD3FD8A7'),
-		replacement: buildVariables.wrap('WinChartCLR2')
+		replacement: buildVariables.wrap('win-forms-clr2')
 	},
     {
-		name: 'build-variables: WebChartCLR3',
+		name: 'build-variables: aspnet',
 		pattern: buildVariables.regex('8D4A1277-50C4-4872-86D2-1435FDBCBD84'),
-		replacement: buildVariables.wrap('WebChartCLR3')
+		replacement: buildVariables.wrap('aspnet')
 	},
     {
 		name: 'build-variables: win-forms-clr2',
@@ -491,9 +491,9 @@ module.exports.regex = [
 		replacement: buildVariables.wrap('win-forms')
 	},
     {
-		name: 'build-variables: asp.net-clr2',
+		name: 'build-variables: aspnet-clr2',
 		pattern: buildVariables.regex('AE4AFBC6-B7A7-4E4A-8D8E-201B876A8FA4'),
-		replacement: buildVariables.wrap('asp.net-clr2')
+		replacement: buildVariables.wrap('aspnet-clr2')
 	},
     {
 		name: 'build-variables: win-forms',
@@ -501,9 +501,9 @@ module.exports.regex = [
 		replacement: buildVariables.wrap('win-forms')
 	},
     {
-		name: 'build-variables: asp.net-clr2',
+		name: 'build-variables:aspnet-clr2',
 		pattern: buildVariables.regex('4522AF82-ECE7-4A43-A30F-FAB0E9311CB1'),
-		replacement: buildVariables.wrap('asp.net-clr2')
+		replacement: buildVariables.wrap('aspnet-clr2')
 	},
     {
 		name: 'build-variables: win-forms',
@@ -511,9 +511,9 @@ module.exports.regex = [
 		replacement: buildVariables.wrap('win-forms')
 	},
     {
-		name: 'build-variables: asp.net-clr2',
+		name: 'build-variables: aspnet-clr2',
 		pattern: buildVariables.regex('03CD8027-2F55-4D9F-9B31-15F1CDA89005'),
-		replacement: buildVariables.wrap('asp.net-clr2')
+		replacement: buildVariables.wrap('aspnet-clr2')
 	},
     
 	// ----------------------------------------------
