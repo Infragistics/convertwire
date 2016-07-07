@@ -103,6 +103,16 @@ module.exports.load = function(gulp){
       gutil.beep();
       logger.log(error);
     };
+
+    args = require('yargs')
+                  .usage('Usage: gulp rename $0')
+                  .demand(['name'])
+                  .argv;
+
+    var fs = require('fs');
+    var lookupDataFilePath = './guid-lookups/' + lookupPath[args.name].toLowerCase() + '-lookup.json';
+    console.log('\nReading lookup data.\n');
+    lookupData = JSON.parse(fs.readFileSync(lookupDataFilePath, 'utf8'));    
     
     var srcPath = './spec/data/src/*.xml';
         
@@ -135,7 +145,7 @@ module.exports.load = function(gulp){
         }
       }))
       .pipe(bom())
-      .pipe(gulp.dest('./spec/data/dest'))
+      .pipe(gulp.dest('./spec/data/dest-rename'))
       .on('end', function(){
         gutil.beep();
         console.log(`${count} files converted`);
