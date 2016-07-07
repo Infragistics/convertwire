@@ -366,6 +366,12 @@
 			pattern: buildVariables.guidRegex('BDEA21D1-C8F9-404A-BC55-209AB27AD4F2'),
 			replacement: 'wpf'
 		},
+
+		{
+			name: 'build-flags: win-universal',
+			pattern: /uwp/gi,
+			replacement: 'win-universal'
+		},
 		
 		{
 			name: 'build-flags: android',
