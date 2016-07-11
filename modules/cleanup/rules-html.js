@@ -438,6 +438,8 @@
 				match = match.replace(/\$\$-\&gt;\$\$/g, '->');
 				match = match.replace(/\$\$->\$\$/g, '->');
 
+				match = match.replace(/\n/g, 'TEMP_LINE_BREAK\n');
+
 				return match;
 			}
 		},
@@ -451,10 +453,6 @@
 			}
 		}
 	];
-
-	var removeEscapeCharacters = (match) => {
-
-	};
 	
 	module.jquery = [
 		/*

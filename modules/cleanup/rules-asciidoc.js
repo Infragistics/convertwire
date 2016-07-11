@@ -577,6 +577,54 @@ module.exports.regex = [
 		pattern: /\n\*{1,}\n/g,
 		replacement: ''
 	},
+//*
+	{
+		name: 'line-breaks',
+		pattern: /TEMP_LINE_BREAK/g,
+		replacement: ''
+	},
+//*/
+
+/*
+ifdef::xaml[]
+----
+var radialGauge = new {ControlsName}();
+pick:[xaml="this.LayoutRoot.Children.Add(radialGauge);"]  pick:[win-forms="Me.Controls.Add(radialGauge);"] 
+----
+endif::xaml[]
+
+ */
+
+	{
+		name: 'code-blocks',
+		pattern: /ifdef::(.+?)\[]\s{0,}----\s{0,}(.|\s)+?----\s{0,}endif/gi,
+		replacement: (match, blockFlagList) => {
+			var _returnValue = match.replace(/pick:\[(.+?)="(.+?)"\]/gi, (match, pickFlagList, codeSnippet) => {
+				var returnValue, matchCount = 0, _pickFlagList, _blockFlagList;
+				
+				returnValue = codeSnippet;
+				_pickFlagList = pickFlagList.toLowerCase().split(',');
+				_blockFlagList = blockFlagList.toLowerCase().split(',');
+
+				_pickFlagList.forEach((pickFlag) => {
+					_blockFlagList.forEach((blockFlag) => {
+						if(pickFlag === blockFlag) {
+							matchCount++;
+						}
+					});
+				});
+
+				if(matchCount === 0){
+					returnValue = '';
+				}
+				return returnValue;
+			});
+
+			_returnValue = _returnValue.replace(/\n{2,}/g, '\n\n');
+
+			return _returnValue;
+		}
+	},
 
 	{
 		name:'space-before-link',
@@ -590,3 +638,6 @@ module.exports.regex = [
 		}
 	}
 ];
+
+//----\s+(.+?)\s+---- 			code block
+//pick:\[(.+?)="(.+?)"\] 		pick
