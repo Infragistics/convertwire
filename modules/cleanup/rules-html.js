@@ -95,7 +95,7 @@
 		{
 			name: 'build-flag:xam_xf_ex',
 			pattern: /xam_xf_ex/gi,
-			replacement: 'xaml-xf-ex'
+			replacement: 'wpf,win-universal'
 		},
 		{
 			name: 'build-flag:droid_ex',
@@ -390,7 +390,7 @@
 		{
 			name: 'build-flags: wpf',
 			pattern: /xam-xf-ex/gi,
-			replacement: 'wpf'
+			replacement: 'wpf,win-universal'
 		},
 
 		{

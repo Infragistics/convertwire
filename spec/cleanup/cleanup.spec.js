@@ -1314,14 +1314,14 @@ Step 1`;
 			expect(dest).toEqual(expected);
         });
 		
-		it('replaces xam_xf_ex with xaml-xf-ex', () => {
+		it('replaces xam_xf_ex with wpf', () => {
 			var src = '<DIV id=Example_XAML class=LanguageSpecific style="hs-build-flags: XAM_XF_EX">' + 
 					  '<DIV id=Example_XAML class=LanguageSpecific style="hs-build-flags: XAM_XF_EX">';
 					  
 			var dest = cleanup.html(src);
 			
-			var expected = '<DIV id=Example_XAML class=LanguageSpecific style="hs-build-flags: xaml-xf-ex">' +
-						   '<DIV id=Example_XAML class=LanguageSpecific style="hs-build-flags: xaml-xf-ex">';
+			var expected = '<DIV id=Example_XAML class=LanguageSpecific style="hs-build-flags: wpf,win-universal">' +
+						   '<DIV id=Example_XAML class=LanguageSpecific style="hs-build-flags: wpf,win-universal">';
 						   
 			expect(dest).toEqual(expected);
 		});

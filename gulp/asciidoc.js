@@ -43,7 +43,8 @@ var lookupPath = {
   "DoughnutChart"   : "doughnutchart",
   "FunnelChart"     : "funnelchart",
   "Spreadsheet"     : "spreadsheet",
-  "DataGrid"        : "datagrid"
+  "DataGrid"        : "datagrid",
+  "win-universal"   : "win-universal"
 };
 
 module.exports.load = function(gulp){
