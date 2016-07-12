@@ -596,6 +596,14 @@ endif::xaml[]
  */
 
 	{
+		name: '',
+		pattern: /\[source,.+]\n----\n\n(.|\n)+?----/gi,
+		replacement: (match) => {
+			return match.replace(/----\n\n/, '----\n');
+		}
+	},
+
+	{
 		name: 'code-blocks',
 		pattern: /ifdef::(.+?)\[]\s{0,}----\s{0,}(.|\s)+?----\s{0,}endif/gi,
 		replacement: (match, blockFlagList) => {
