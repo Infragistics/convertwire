@@ -1393,24 +1393,24 @@ i <- j;
 			var expected = `
 you have to use the $$*$$, $$<=$$, $$->$$, $$<-$$ operators
 
-<code>
-i * j;
-i <= j;
-i <= j;
-i -> j;
-i -> j;
-i <- j;
-i <- j;
+<code>TEMP_LINE_BREAK
+i * j;TEMP_LINE_BREAK
+i <= j;TEMP_LINE_BREAK
+i <= j;TEMP_LINE_BREAK
+i -> j;TEMP_LINE_BREAK
+i -> j;TEMP_LINE_BREAK
+i <- j;TEMP_LINE_BREAK
+i <- j;TEMP_LINE_BREAK
 </code>
 
-<pre>
-i * j;
-i <= j;
-i <= j;
-i -> j;
-i -> j;
-i <- j;
-i <- j;
+<pre>TEMP_LINE_BREAK
+i * j;TEMP_LINE_BREAK
+i <= j;TEMP_LINE_BREAK
+i <= j;TEMP_LINE_BREAK
+i -> j;TEMP_LINE_BREAK
+i -> j;TEMP_LINE_BREAK
+i <- j;TEMP_LINE_BREAK
+i <- j;TEMP_LINE_BREAK
 </pre>
 `;
 
