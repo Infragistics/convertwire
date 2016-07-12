@@ -1,13 +1,13 @@
 {
-  "{011E1BF6-370A-40EB-BA76-A0DE3800CC9C}": "uwp-getting-support",
-  "{4483411E-3ED9-4188-A732-253B6A81AA4D}": "uwp-known-issues-and-limitations",
-  "{9041122F-2640-4BB0-AC36-C11B21BE21CA}": "uwp-uwp-product",
-  "{A0DEAF02-5B0C-44A2-8E65-76AC4DCB744E}": "uwp-ide-support",
+  "011E1BF6-370A-40EB-BA76-A0DE3800CC9C": "uwp-getting-support",
+  "4483411E-3ED9-4188-A732-253B6A81AA4D": "uwp-known-issues-and-limitations",
+  "9041122F-2640-4BB0-AC36-C11B21BE21CA": "uwp-uwp-product",
+  "A0DEAF02-5B0C-44A2-8E65-76AC4DCB744E": "uwp-ide-support",
   "0cce9283-ead6-45cb-a2cb-d88bc03a8dd9": "uwp-controls",
-  "{50FD2B15-9778-4E57-90D4-875FE345494F}": "uwp-android-samples",
-  "{1B606998-580B-42C2-A570-E55DE7B5E753}": "uwp-whats-new",
+  "50FD2B15-9778-4E57-90D4-875FE345494F": "uwp-android-samples",
+  "1B606998-580B-42C2-A570-E55DE7B5E753": "uwp-whats-new",
   "f457a744-1359-465e-9a01-e0531411c846": "whatsnew-whats-new-in-2016-volume-2",
-  "{6D38CC3E-648B-44CB-818F-FC8031BD752E}": "uwp-known-issues-and-breaking-changes",
-  "{F2765D94-6674-472F-A8F9-DCFF0FA36A7E}": "api-reference-guide",
-  "{59EE0C3F-A1CF-4DAD-8EC7-D1C56C00390C}": "uwp-getting-started-with-uwp"
+  "6D38CC3E-648B-44CB-818F-FC8031BD752E": "uwp-known-issues-and-breaking-changes",
+  "F2765D94-6674-472F-A8F9-DCFF0FA36A7E": "api-reference-guide",
+  "59EE0C3F-A1CF-4DAD-8EC7-D1C56C00390C": "uwp-getting-started-with-uwp"
 }
