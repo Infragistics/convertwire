@@ -1,4 +1,6 @@
 var isNodejsContext = typeof module !== 'undefined';
+
+const unsupportedFlags = ['sl','win-phone','win-rt'];
  
 if(isNodejsContext){
 	module = module.exports;
@@ -102,16 +104,18 @@ var formatter = {
 			
 			uniqueFlags.forEach(function(flag){
 				var $clone, $container;
-				
-				$container = $(`<div>`);
-				$clone = _clone.clone();
-				$clone.attr('style', 'hs-build-flags: ' + flag);
-				
-				$container.append('\n<!--- ' + flag + ' --->\n');								
-				$container.append($clone);
-				$container.append('\n<!--- /' + flag + ' --->\n');
-				
-                markup.push($container.html());
+
+				if(unsupportedFlags.indexOf(flag) === -1){				
+					$container = $(`<div>`);
+					$clone = _clone.clone();
+					$clone.attr('style', 'hs-build-flags: ' + flag);
+					
+					$container.append('\n<!--- ' + flag + ' --->\n');								
+					$container.append($clone);
+					$container.append('\n<!--- /' + flag + ' --->\n');
+					
+					markup.push($container.html());
+				}
 			});
             
             $domContainer.html($domContainer.html() + markup.join('\n\n'));
