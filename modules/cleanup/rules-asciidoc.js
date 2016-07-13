@@ -604,6 +604,15 @@ endif::xaml[]
 	},
 
 	{
+		name: '',
+		pattern: /----\s{0,}(.|\s)+?----/g,
+		replacement: (match) => {
+			match = match.replace(/\n \n/g, '').replace(/\n{2,}/g, '\n');
+			return match; 
+		}
+	},
+
+	{
 		name: 'code-blocks',
 		pattern: /ifdef::(.+?)\[]\s{0,}----\s{0,}(.|\s)+?----\s{0,}endif/gi,
 		replacement: (match, blockFlagList) => {
@@ -628,7 +637,7 @@ endif::xaml[]
 				return returnValue;
 			});
 
-			_returnValue = _returnValue.replace(/\n{2,}/g, '\n\n');
+			_returnValue = _returnValue.replace(/\n{2,}/g, '\n');
 
 			return _returnValue;
 		}
@@ -643,6 +652,20 @@ endif::xaml[]
 			match = firstChar + match.substr(1, match.length);
 		}
 			return match;
+		}
+	},
+
+	{
+		name: 'remove-more-than-two-line-breaks',
+		pattern: /(\n(\s{0,}){2,})----/g,
+		replacement: '\n----'
+	},
+
+	{
+		name: '',
+		pattern: /\s_\slink:.+_\s/gi,
+		replacement: (match) => {
+			return match.replace(/_ link/, '_link');
 		}
 	}
 ];
