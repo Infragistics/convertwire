@@ -50,12 +50,20 @@ var formatter = {
 	
 	getUniqueFlags : function($flaggedContainer){
 		var style, matches, uniques, elementFlags = [], flags = [];
+
+		const WPF_WINUNIVERSAL = 'wpf,win-universal';
 		
 		// get flags from container
 		if($flaggedContainer.attr('style')){
 			style = $flaggedContainer.attr('style').toLowerCase().trim();
-            style = style.replace(/ ?display: ?(none|block) ?; ?/,'');      
-			elementFlags = elementFlags.concat(style.replace(/hs-build-flags: /, '').split(',')); 
+            style = style.replace(/ ?display: ?(none|block) ?; ?/,''); 
+			style = style.replace(/hs-build-flags: /, '');
+
+			if(style === WPF_WINUNIVERSAL){
+				elementFlags.push(WPF_WINUNIVERSAL);
+			} else {
+				elementFlags = elementFlags.concat(style.split(',')); 
+			}
 		}
 		
 		// get flags from any children
@@ -68,8 +76,13 @@ var formatter = {
 							.replace('"','')
 							.replace(';', '')
 							.replace(', ', ',');
+
+				if(match === WPF_WINUNIVERSAL){
+					elementFlags.push(WPF_WINUNIVERSAL);					
+				} else {
+					elementFlags = elementFlags.concat(match.split(','));
+				}
 				
-				elementFlags = elementFlags.concat(match.split(','));
 			});
 		}
 		
