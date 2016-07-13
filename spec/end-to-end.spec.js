@@ -46,7 +46,6 @@ describe('end to end', function() {
                 e.Row.StartsNewPrintedPage = true;
         }
     } 
-
 ----`;
             
             
