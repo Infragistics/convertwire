@@ -604,10 +604,10 @@ endif::xaml[]
 	},
 
 	{
-		name: '',
+		name: 'clean-up-code-blocks',
 		pattern: /----\s{0,}(.|\s)+?----/g,
 		replacement: (match) => {
-			match = match.replace(/\n \n/g, '').replace(/\n{2,}/g, '\n');
+			match = match.replace(/\n \n/g, '').replace(/\n{2,}/g, '\n').replace(/( \n){1,}----/, '\n----');
 			return match; 
 		}
 	},
@@ -654,19 +654,18 @@ endif::xaml[]
 			return match;
 		}
 	},
-
 	{
-		name: 'remove-more-than-two-line-breaks',
-		pattern: /(\n(\s{0,}){2,})----/g,
-		replacement: '\n----'
-	},
-
-	{
-		name: '',
+		name: 'remove-space-before-italicized-link',
 		pattern: /\s_\slink:.+_\s/gi,
 		replacement: (match) => {
 			return match.replace(/_ link/, '_link');
 		}
+	},
+
+	{
+		name:'ensure-code-block-delimiters-are-on-own-line',
+		pattern: / {1,}----\n/g,
+		replacement: '\n----\n'
 	}
 ];
 

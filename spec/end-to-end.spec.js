@@ -45,7 +45,7 @@ describe('end to end', function() {
             if (cellText == "PG")
                 e.Row.StartsNewPrintedPage = true;
         }
-    } 
+    }
 ----`;
             
             
