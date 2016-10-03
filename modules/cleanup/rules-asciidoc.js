@@ -577,24 +577,12 @@ module.exports.regex = [
 		pattern: /\n\*{1,}\n/g,
 		replacement: ''
 	},
-//*
+
 	{
 		name: 'line-breaks',
 		pattern: /TEMP_LINE_BREAK/g,
 		replacement: ''
 	},
-//*/
-
-/*
-ifdef::xaml[]
-----
-var radialGauge = new {ControlsName}();
-pick:[xaml="this.LayoutRoot.Children.Add(radialGauge);"]  pick:[win-forms="Me.Controls.Add(radialGauge);"] 
-----
-endif::xaml[]
-
- */
-
 	{
 		name: '',
 		pattern: /\[source,.+]\n----\n\n(.|\n)+?----/gi,
@@ -602,16 +590,17 @@ endif::xaml[]
 			return match.replace(/----\n\n/, '----\n');
 		}
 	},
-
+//*
 	{
 		name: 'clean-up-code-blocks',
-		pattern: /----\s{0,}(.|\s)+?----/g,
+		//pattern: /----\s{0,}(.|\s)+?----/g,
+		pattern: /----(.|\s)*?----/g,
 		replacement: (match) => {
 			match = match.replace(/\n \n/g, '').replace(/\n{2,}/g, '\n').replace(/( \n){1,}----/, '\n----');
 			return match; 
 		}
 	},
-
+// */
 	{
 		name: 'code-blocks',
 		pattern: /ifdef::(.+?)\[]\s{0,}----\s{0,}(.|\s)+?----\s{0,}endif/gi,
@@ -667,6 +656,7 @@ endif::xaml[]
 		pattern: / {1,}----\n/g,
 		replacement: '\n----\n'
 	}
+	// */
 ];
 
 //----\s+(.+?)\s+---- 			code block

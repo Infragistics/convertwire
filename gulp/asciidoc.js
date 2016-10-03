@@ -12,6 +12,7 @@ var html2AsciiDoc = require('../tasks/gulp-html2AsciiDoc.js');
 var replaceGUIDs = require('../tasks/gulp-replaceGUIDs.js');
 var cleanup = require('../tasks/gulp-cleanup.js');
 var logger = require('../modules/logger');
+var print = require('gulp-print');
 
 var lookupData = {};
 var args = {};
@@ -44,7 +45,9 @@ var lookupPath = {
   "FunnelChart"     : "funnelchart",
   "Spreadsheet"     : "spreadsheet",
   "DataGrid"        : "datagrid",
-  "win-universal"   : "win-universal"
+  "win-universal"   : "win-universal",
+  "designersguide"  : "xaml-designers-guide",
+  "generalconcepts" : "xaml-general-concepts"
 };
 
 module.exports.load = function(gulp){
@@ -173,6 +176,7 @@ module.exports.load = function(gulp){
     
     return gulp.src(srcPath)
       .pipe(plumber(onError))
+      .pipe(print())
       .pipe(docx2html())
       .pipe(cleanup('html'))
       .pipe(layoutTables())

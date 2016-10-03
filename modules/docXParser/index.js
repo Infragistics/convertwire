@@ -45,41 +45,47 @@ ${htmlDocument.markup}</div>`;
 	};
 	
 	module.parse = (xmlString, filePath, callback) => {
-		
-		parser.parseString(xmlString, (error, obj) => {
-			let langParser = null, parseError;
-			
-			let isEnglishTopic = (obj) => {
-				return obj.hasOwnProperty('Topic') && obj.Topic.$.Id.length > 0;
-			};
-			
-			let isJapaneseTopic = (obj) => {
-				return obj.hasOwnProperty('topic');
-			};
-			
-			if(error){
-                console.log(error);
-				callback(error, null);			
-			} else {
 
-				if(isJapaneseTopic(obj)) {
-					langParser = japanese;
-				} else if (isEnglishTopic(obj)){
-					langParser = english;
-				} else {
-					parseError = {
-						message: 'Not an English or Japanese topic',
-						filePath: filePath,
-						tag: 'format'
-					};
-					callback(parseError, null);
-				}
+		try{
+			parser.parseString(xmlString, (error, obj) => {
+				let langParser = null, parseError;
 				
-				if(langParser){
-					langParser.parse(obj, filePath, callback);
+				let isEnglishTopic = (obj) => {
+					return obj.hasOwnProperty('Topic') && obj.Topic.$.Id.length > 0;
+				};
+				
+				let isJapaneseTopic = (obj) => {
+					return obj.hasOwnProperty('topic');
+				};
+				
+				if(error){
+					console.log(error);
+					callback(error, null);			
+				} else {
+
+					if(isJapaneseTopic(obj)) {
+						langParser = japanese;
+					} else if (isEnglishTopic(obj)){
+						langParser = english;
+					} else {
+						parseError = {
+							message: 'Not an English or Japanese topic',
+							filePath: filePath,
+							tag: 'format'
+						};
+						callback(parseError, null);
+					}
+					
+					if(langParser){
+						langParser.parse(obj, filePath, callback);
+					}
 				}
-			}
-		});
+			});
+		} catch(error){
+			var errorMessage = `Error parsing file: ${filePath}`;
+			console.log(errorMessage);
+			callback(errorMessage, null);
+		}
 	};
 	
 }(module.exports));

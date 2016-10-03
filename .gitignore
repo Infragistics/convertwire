@@ -7,3 +7,5 @@ _builds
 *.zip
 *-lookup.json.txt
 ~lookups
+_wpf
+_wpf-test
