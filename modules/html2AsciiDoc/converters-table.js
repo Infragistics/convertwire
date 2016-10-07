@@ -155,6 +155,20 @@
 			return '\n' + value + '\n\n\n';
 	    }
 	};
+
+	var colGroup = {
+		filter: 'colgroup',
+	    replacement: () => {
+			return '';
+		}
+	};
+
+	var col = {
+		filter: 'col',
+	    replacement: () => {
+			return '';
+		}
+	};
 	
 	var table = {
 		filter: 'table',
@@ -214,6 +228,8 @@
 	var converters = [];
 	
 	converters.push(headerCell);
+	converters.push(colGroup);
+	converters.push(col);
 	converters.push(cell);
 	converters.push(row);
 	converters.push(table);

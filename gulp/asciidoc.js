@@ -1,8 +1,12 @@
+/*jslint node: true */
+/*jshint esversion: 6 */
+
 var rename = require('gulp-rename');
 var plumber = require('gulp-plumber');
 var gutil = require('gulp-util');
 var path = require('path');
 var bom = require('gulp-bom');
+var notify = require('gulp-notify');
 
 var docx2html = require('../tasks/gulp-docx2html.js');
 var unmapper = require('../tasks/gulp-unmapper.js');
@@ -53,23 +57,36 @@ var lookupPath = {
 module.exports.load = function(gulp){
     
     gulp.task('html2adoc', (callback) => {
+
+      args = require('yargs')
+                      .usage('Usage: html2adoc $0')
+                      .demand(['src','dest'])
+                      .argv;
+
         var onError = function(error){
             gutil.beep();
             logger.log(error);
         };
-        return gulp.src('./spec/data/src/*.html')
-        .pipe(plumber(onError))
-        .pipe(html2AsciiDoc())
-        .pipe(cleanup('asciidoc'))
-        .pipe(rename(function(path){
-            path.extname = '.adoc';
-        }))
-        .pipe(bom())
-        .pipe(gulp.dest('./spec/data/dest'))
-        .on('end', function(){
-            gutil.beep();
-            logger.report();
-        });
+
+        console.log(`Reading ${args.src}`);
+
+        return gulp.src(path.join(args.src, '*.html'))
+                   .pipe(plumber(onError))
+                   .pipe(html2AsciiDoc())
+                   .pipe(cleanup('asciidoc'))
+                   .pipe(rename(function(path){
+                       path.extname = '.adoc';
+                   }))
+                   .pipe(bom())
+                   .pipe(gulp.dest(args.dest))
+                   .pipe(notify({
+                      message: `Finished creating AsciiDoc files at: ${args.dest}`,
+                      onLast: true
+                   }))
+                   .on('end', function(){
+                       gutil.beep();
+                       logger.report();
+                   });
     });
 
   gulp.task('asciidoc-no-rename', function(callback) {

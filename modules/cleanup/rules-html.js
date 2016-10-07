@@ -424,6 +424,12 @@
 		},
 
 		{
+			name: 'removes un-converted colgroup elements',
+			pattern: /<colgroup.+colgroup> ?/gi,
+			replacement: ''
+		},
+
+		{
 			name: 'unescape-operator-characters-in-code-and-pre',
 			pattern: /<(code|pre)(.|\s)+?<\/(code|pre)>/gi,
 			replacement: (match) => {
