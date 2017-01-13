@@ -68,11 +68,20 @@ module.exports.load = function(gulp){
             logger.log(error);
         };
 
+        var options = {
+          allowH1Headers: false
+        };
+
+        if(args.allowH1Headers) {
+          console.log('Allowing H1 headers');
+          options.allowH1Headers = true;
+        }
+
         console.log(`Reading ${args.src}`);
 
         return gulp.src(path.join(args.src, '*.html'))
                    .pipe(plumber(onError))
-                   .pipe(html2AsciiDoc())
+                   .pipe(html2AsciiDoc(options))
                    .pipe(cleanup('asciidoc'))
                    .pipe(rename(function(path){
                        path.extname = '.adoc';

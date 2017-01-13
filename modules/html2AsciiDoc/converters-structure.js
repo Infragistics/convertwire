@@ -5,6 +5,7 @@
   var _ = require('lodash');
   var buildFlags = require('./converters-build-flags.js');
   var listElements = ['UL', 'OL', 'LI'];
+  var _options = {};
 
   var getListDepth = function (node, level, increment) {
     var isListElement, isListItemElement;
@@ -71,9 +72,11 @@
 
       hLevel = parseInt(node.nodeName.charAt(1));
       hPrefix = '';
-      
-      if(hLevel == 1){
-        hLevel = 2;
+
+      if(!_options.allowH1Headers) {
+        if(hLevel === 1){
+          hLevel = 2;
+        }
       }
       
       if(hLevel >= 6){
@@ -436,7 +439,8 @@
   converters.push(del);
   converters.push(checkboxListItem);
 
-  module.get = function () {
+  module.get = function (options) {
+    _options = options;
     return converters;
   };
 
