@@ -68,7 +68,7 @@
       return match;
     },
     replacement: function (content, node) {
-      var hLevel, hPrefix, value = '', anchorMatches, anchor = '', headerText = '';
+      var hLevel, hPrefix, value = '', anchorMatches, anchor = '', headerText = '', id;
 
       hLevel = parseInt(node.nodeName.charAt(1));
       hPrefix = '';
@@ -78,6 +78,8 @@
           hLevel = 2;
         }
       }
+
+      id = node.getAttribute('id');
       
       if(hLevel >= 6){
           hLevel = 6;
@@ -114,8 +116,14 @@
       if (buildFlags.hasDocXBuildFlags(node)) {
         value = buildFlags.wrapWithBuildFlags(value, node);
       }
+
+      if(id) {
+        id = `[[${id}]]`;
+      } else {
+        id = '';
+      }
       
-      value = '\n\n' + anchorMatches.join('\n') + value + '\n\n';
+      value = '\n\n' + id + anchorMatches.join('\n') + value + '\n\n';
 
       return value;
     }
