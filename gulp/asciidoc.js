@@ -81,6 +81,7 @@ module.exports.load = function(gulp){
 
         return gulp.src(path.join(args.src, '*.html'))
                    .pipe(plumber(onError))
+                   .pipe(cleanup('html'))
                    .pipe(html2AsciiDoc(options))
                    .pipe(cleanup('asciidoc'))
                    .pipe(rename(function(path){

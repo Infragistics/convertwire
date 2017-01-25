@@ -127,6 +127,11 @@
 			}
 		},
 		{
+			name: 'empty-cell-3',
+			pattern: /<td(\s*?)class="(.*?)">(\s*?)<\/td>/gi,
+			replacement: '<td>{temp:empty-cell}</td>'
+		},
+		{
 			name: 'empty-cell',
 			pattern: /<td>\s?<\/td>|<td><([^>]+)>(\s)(<\/([^>]+)>)<\/td>/gi,
 			replacement: '<td>{temp:empty-cell}</td>'
