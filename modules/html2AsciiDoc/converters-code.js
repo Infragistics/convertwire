@@ -23,6 +23,27 @@
 	};
 
     // --- code ------------------------
+	var code = {
+		filter: (node) => {
+			let match = false;
+
+			match = (/code/i.test(node.nodeName) && 
+					 !/pre/i.test(node.parentNode.nodeName));
+
+			return match;
+		},
+		replacement: (content, node) => {
+
+			let value = '`' + content + '`';
+
+			if(buildFlags.hasDocXBuildFlags(node)){
+				value = buildFlags.wrapWithBuildFlags(value, node);
+			}
+
+			return value;
+		}
+	};
+
 	var preCode = {
 		filter: function (node) {
 			var match = false;
@@ -54,7 +75,7 @@
 			
 			return value;
 		}
-	}
+	};
 	
 	var syntaxHighlighted = {
 		filter: function (node) {
@@ -107,7 +128,7 @@
 			
 			return value;
 		}
-	}
+	};
     // /--- code ------------------------
 	
 	var highlightedDiv = {
@@ -164,6 +185,7 @@
 	
 	var converters = [];
 
+	converters.push(code);
 	converters.push(preCode);
 	converters.push(syntaxHighlighted);
 	converters.push(codeDiv);
