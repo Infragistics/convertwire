@@ -335,7 +335,7 @@
         prefix = '[start=' + startValue + ']\n' + prefix;
       }
 
-      content = prefix + content + '\n';
+      content = prefix + content.trim() + '\n';
 
       if (element.hasBuildFlags) {
         content = buildFlags.wrapWithBuildFlags(content, node);
