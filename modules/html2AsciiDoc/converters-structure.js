@@ -277,19 +277,43 @@
   var img = {
     filter: 'img',
     replacement: function (content, node) {
-      var alt, src, title, titlePart, value
+      var alt, src, title, titlePart, value, colon = '::', width, height;
 
       alt = node.alt || '';
       src = node.getAttribute('src') || '';
       title = node.title || '';
       titlePart = title ? ' "' + title + '"' : '';
-      value = 'image::' + src + titlePart + '[' + alt + ']';
+
+      width = node.getAttribute('width');
+      height = node.getAttribute('height');
+
+      if(width) {
+        width = ',width="' + width + '"';
+      } else {
+        width = '';
+      }
+
+      if(height) {
+        height = ',height="' + height + '"';
+      } else {
+        height = '';
+      }
+
+      var isInlineImage = /image/i.test(node.parentNode.className);
+
+      colon = isInlineImage ? ':' : '::';
+
+      value = 'image' + colon + src + titlePart + '[' + alt + width + height + ']';
 
       if (buildFlags.hasDocXBuildFlags(node)) {
         value = buildFlags.wrapWithBuildFlags(value, node);
       }
 
-      return '\n\n' + value + '\n\n';
+      if(!isInlineImage) {
+        value = '\n\n' + value + '\n\n';
+      }
+
+      return value;
     }
   };
 
