@@ -17,6 +17,23 @@
 			return content;
 		}
 	};
+
+	var buildFlagElements = {
+		filter: 'build-flag',
+		replacement: (content, node) => {
+			let flags = node.getAttribute('value');
+			let type = node.getAttribute('type');
+			let value = '';
+
+			if(type === 'begin') {
+				value = `ifdef::${flags}[]`;
+			} else {
+				value = `endif::${flags}[]`;
+			}
+
+			return '\n' + value + '\n';
+		}
+	};
 	
 	var div = {
 		filter: 'div',
@@ -89,6 +106,7 @@
 	converters.push(tt);
 	converters.push(sub);
 	converters.push(sup);
+	converters.push(buildFlagElements);
 	converters.push(div);
 	converters.push(general);
 	converters.push(divBuildFlagged);
