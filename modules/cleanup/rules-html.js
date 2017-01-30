@@ -543,25 +543,37 @@
 			apply: ($) => {
 				let values = [], src, dest;
 
+				function decodeCharRefs(string) {
+					return string
+						.replace(/&#(\d+);/g, function(match, num) {
+							return String.fromCharCode(num);
+						})
+						.replace(/&#x([A-Za-z0-9]+);/g, function(match, num) {
+							return String.fromCharCode(parseInt(num, 16));
+						});
+				}
+
 				$('.note').each((i, e) => {
 					var $container = $(e);
 					var $content = $container.find('.content');
 					var title = $content.find('.title').text();
 					var content = $content.find('.paragraph').html();
+
+					content = decodeCharRefs(content);
 				
 					var html = `<div class="ig-note">
 						<span class="ig-note-caption">${title}</span>
 						${content}
 					</div>`;
 
-					src = $('<div>').append($container).html();
+					src = decodeCharRefs($('<div>').append($container).html());
 
 					values.push({ src: src, dest: html });
 				});
 
 				return values;
 			}
-		},
+		}
 		/*
         {
             name: 'remove-old-build-variables',
