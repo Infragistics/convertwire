@@ -21,9 +21,9 @@
 	var buildFlagElements = {
 		filter: 'build-flag',
 		replacement: (content, node) => {
-			let flags = node.getAttribute('value');
-			let type = node.getAttribute('type');
-			let value = '';
+			var flags = node.getAttribute('value');
+			var type = node.getAttribute('type');
+			var value = '';
 
 			if(type === 'begin') {
 				value = `ifdef::${flags}[]`;

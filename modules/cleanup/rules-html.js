@@ -470,11 +470,11 @@
 		{
 			name: 'add-comment-list-continuation-character-to-paragraphs-in-lists',
 			apply:  ($) => {
-				let src = '', dest = '', values = [];
+				var src = '', dest = '', values = [];
 				
 				$('li').each((i, li) => {
-					let $li = $(li);
-					let value = {};
+					var $li = $(li);
+					var value = {};
 					
 					src = $('<div>').append($li).html();
 					src = src
@@ -484,10 +484,10 @@
 							.replace(/\[/g, '\\[')
 							.replace(/\]/g, '\\]');
 					
-					let elements = $li.find('p, div, br');
+					var elements = $li.find('p, div, br');
 					
 					elements.each((j, element) => {
-						let $element = $(element);
+						var $element = $(element);
 						
 						if($element.prev().length > 0){
 							$element.html('\+ ' + $element.html());							
@@ -515,11 +515,11 @@
 		{
 			name: 'add-comment-to-in-document-anchors',
 			apply:  ($) => {
-				let src = '', dest = '', values = [];
+				var src = '', dest = '', values = [];
 				
 				$('a').each((i, a) => {
-					let $a = $(a);
-					let value = {};
+					var $a = $(a);
+					var value = {};
 					
 					if($a.text().length === 0 && (typeof $a.attr('id') !== 'undefined' || typeof $a.attr('name') !== 'undefined')){
 						src = $('<div>').append($a).html();
@@ -541,7 +541,7 @@
 		{
 			name: 'asciidoctor-note-table',
 			apply: ($) => {
-				let values = [], src, dest;
+				var values = [], src, dest;
 
 				function decodeCharRefs(string) {
 					return string
@@ -578,9 +578,9 @@
         {
             name: 'remove-old-build-variables',
             apply: ($) => {
-                let values = [];
-                let guidMatchExpression = '{?([0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12})}?';
-                let removeFlags = [
+                var values = [];
+                var guidMatchExpression = '{?([0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12})}?';
+                var removeFlags = [
                     '{03CD8027-2F55-4D9F-9B31-15F1CDA89005}',
                     '{7F8A205D-BEEC-4CEE-BF00-9B6A6DE582BB}',
                     '{4522AF82-ECE7-4A43-A30F-FAB0E9311CB1}',
@@ -589,16 +589,16 @@
                 ];
                 
                 $('a').each((i, a) => {
-                    let $a = $(a);
-                    let value = {};
+                    var $a = $(a);
+                    var value = {};
                     
-                    let style = $a.attr('style');
+                    var style = $a.attr('style');
                     
                     if(style){
-                        let guidMatches = style.match(guidMatchExpression);
+                        var guidMatches = style.match(guidMatchExpression);
                         
                         if(guidMatches && guidMatches.length > 0){
-                            let guidsToRemove = _.intersection(removeFlags, guidMatches);
+                            var guidsToRemove = _.intersection(removeFlags, guidMatches);
                             if(guidsToRemove.length > 0){
                                 value.src = $('<div>').append($a).html();
                                 value.dest = '';

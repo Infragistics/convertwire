@@ -25,7 +25,7 @@
     // --- code ------------------------
 	var code = {
 		filter: (node) => {
-			let match = false;
+			var match = false;
 
 			match = (/code/i.test(node.nodeName) && 
 					 !/pre/i.test(node.parentNode.nodeName));
@@ -34,7 +34,7 @@
 		},
 		replacement: (content, node) => {
 
-			let value = '`' + content + '`';
+			var value = '`' + content + '`';
 
 			if(buildFlags.hasDocXBuildFlags(node)){
 				value = buildFlags.wrapWithBuildFlags(value, node);
