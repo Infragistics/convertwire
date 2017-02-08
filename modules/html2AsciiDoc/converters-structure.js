@@ -279,13 +279,13 @@
 			var match = false;
 
 			match = (/img/i.test(node.nodeName) && 
-					 /__build-flag-begin|end\.png/i.test(node.getAttribute("src")));
+					 /tripwire-build-flag-begin|end\.png/i.test(node.getAttribute("src")));
 
 			return match;
 		},
 		replacement: (content, node) => {
 			var flags = node.getAttribute('alt');
-			var isBeginFlag = /__build-flag-begin\.png/i.test(node.getAttribute('src'));
+			var isBeginFlag = /tripwire-build-flag-begin\.png/i.test(node.getAttribute('src'));
 			var value = '';
 
 			if(isBeginFlag) {
